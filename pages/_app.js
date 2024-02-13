@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Color from "@/src/utils/Color";
 import { Toaster } from "react-hot-toast";
 import { appWithTranslation } from "next-i18next";
+import { makeStore } from "../src/utils/store";
 
 function App({ Component, pageProps }) {
   return (
@@ -17,4 +18,4 @@ function App({ Component, pageProps }) {
   );
 }
 
-export default appWithTranslation(App);
+export default appWithTranslation(makeStore(App));
