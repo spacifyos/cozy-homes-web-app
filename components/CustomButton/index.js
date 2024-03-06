@@ -17,7 +17,7 @@ const CustomButton = ({
       {loading ? (
         <span className="loading loading-spinner"></span>
       ) : (
-        <CustomText size={"small"}>{buttonText}</CustomText>
+        <p>{buttonText}</p>
       )}
     </button>
   );

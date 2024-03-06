@@ -1,0 +1,25 @@
+@import "utils/color";
+@import "utils/scaling";
+
+@mixin custom-text($fontColor) {
+  font-family: "Noto Sans";
+  color: $fontColor;
+  font-weight: normal;
+  @extend .font-size-normal;
+}
+
+.black-text {
+  @include custom-text($primary-black-color);
+}
+
+.white-text {
+  @include custom-text($primary-white-color);
+}
+
+.disable-text {
+  @include custom-text($disable-color);
+}
+
+.primary-text {
+  @include custom-text($primary-color);
+}

@@ -152,3 +152,7 @@ export const postForgetPasswordSuccess = (data) => ({
 export const postForgetPasswordFailure = () => ({
   type: "POST_FORGET_PASSWORD_FAILURE",
 });
+
+export const saveAuth = () => ({
+  type:"SAVE_AUTH"
+})

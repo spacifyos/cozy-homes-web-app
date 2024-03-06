@@ -10,6 +10,8 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomFlatList from "@/components/CustomFlatList";
 import _ from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import { useDispatch } from "react-redux";
+import * as authAction from "@/src/actions/auth";
 
 export { getServerSideProps };
 
@@ -17,6 +19,10 @@ function Home() {
   const { t } = useTranslation("common");
 
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch();
+
+  dispatch(authAction.saveAuth());
 
   const people = [
     { firstName: "Elson", lastName: "Correia", info: { age: 24 } },
@@ -49,18 +55,19 @@ function Home() {
       className={"container flex-1"}
       style={{ backgroundColor: Color.primaryWhiteColor }}
     >
-      <CustomEmptyBox/>
+      <CustomEmptyBox />
       <CustomFlatList itemList={people} renderItem={renderItem} />
       <LoadingOverlay loading={loading} />
       <CustomInput />
       <CustomButton
-        buttonText="Test Button"
+        buttonClassName={"primary-btn"}
+        buttonText="Top Up"
         buttonStyles={{}}
         onClick={onClickButton}
         loading={loading}
       />
-      <CustomText>
-        This page shares my best articles to read on topics like health,
+      <CustomText textClassName={"font-size-xxxlarge"}>
+        This page shares my best articles to read on topics like health, Jaya
         happiness, creativity, productivity and more. The central question that
         drives my work is, “How can we live better?” To answer that question, I
         like to write about science-based ways to solve practical problems.

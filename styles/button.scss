@@ -1,0 +1,32 @@
+@import "utils/color";
+@import "customText";
+@import "utils/scaling";
+
+@mixin custom-button {
+  padding: 5px 10px;
+  width: 100%;
+  border-radius: 10px;
+
+  p {
+    font-weight: bold !important;
+    @extend .font-size-xlarge;
+    @extend .white-text;
+  }
+}
+
+.primary-btn:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+}
+
+.primary-btn {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+}
+
+.disable-btn {
+  @include custom-button;
+  @include custom-text($primary-white-color);
+}

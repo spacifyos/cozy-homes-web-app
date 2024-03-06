@@ -64,7 +64,9 @@ export default function (state = initialState, action) {
           status: false,
         },
       };
-
+    case "SAVE_AUTH": return {
+      ...state,data:"ssssss"
+    }
     default:
       return state;
   }
