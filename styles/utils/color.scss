@@ -1,4 +1,17 @@
-$primary-color: #F65626;
+$primary-color: #f65626;
+$secondary-color: #fff4e0;
 $primary-black-color: #000000;
 $primary-white-color: #ffffff;
-$disable-color: #c6c6c6;
+$disable-color: #94a1a6;
+
+.primaryWhite-bg-color {
+  background-color: $primary-white-color;
+}
+
+.primary-bg-color {
+  background-color: $primary-color;
+}
+
+.secondary-bg-color {
+  background-color: $secondary-color;
+}

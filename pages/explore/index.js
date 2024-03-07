@@ -6,7 +6,7 @@ export { getServerSideProps };
 function Home() {
   const { t } = useTranslation("common");
 
-  return <h1>{t("h1")}</h1>;
+  return <div className="primaryWhite-bg-color flex-1"></div>;
 }
 
 export default withTranslation("common")(Home);

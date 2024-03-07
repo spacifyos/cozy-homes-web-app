@@ -38,3 +38,43 @@ body {
 ::-webkit-scrollbar {
   display: none !important;
 }
+
+.global-horizontal-padding {
+  padding: 0 15px;
+}
+
+.global-horizontal-margin {
+  margin: 0 10px;
+}
+
+.global-box-shadow {
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.global-border-radius {
+  border-radius: 10px;
+}
+
+.toggle-primary-color {
+  background-color: $primary-color !important;
+  border: none !important;
+}
+
+.toggle-disable-color {
+  background-color: $disable-color !important;
+  border: none !important;
+}
+
+.border-16 {
+  border-width: 16px !important;
+}
+
+.border-secondary-color {
+  border-color: $secondary-color;
+}
+
+.text-primary-content {
+  color: $primary-color;
+}

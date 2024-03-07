@@ -5,8 +5,18 @@ import { appWithTranslation } from "next-i18next";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
+import BottomNavigate from "@/components/BottomNavigate";
+import { useRouter } from "next/router";
+import _ from "lodash";
 
 function App({ Component, pageProps }) {
+  const router = useRouter();
+  const routeName = _.get(router, ["route"], "");
+
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -16,10 +26,23 @@ function App({ Component, pageProps }) {
         >
           <div
             style={{ maxWidth: 500 }}
-            className={"flex flex-col w-screen h-full relative overflow-scroll"}
+            className={
+              "primaryWhite-bg-color flex flex-col w-screen h-full relative overflow-scroll"
+            }
           >
             <Toaster />
             <Component {...pageProps} />
+
+            {_.isEqual(routeName, "/explore") ||
+            _.isEqual(routeName, "/myStay") ||
+            _.isEqual(routeName, "/account") ? (
+              <BottomNavigate
+                routeName={routeName}
+                onClickChangeTab={onClickChangeTab}
+              />
+            ) : (
+              false
+            )}
           </div>
         </div>
       </PersistGate>

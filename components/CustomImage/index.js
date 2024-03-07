@@ -1,6 +1,18 @@
-const CustomImage = ({ src, width = "100%", height = "auto", imageStyle }) => {
+const CustomImage = ({
+  className,
+  src,
+  width = 50,
+  height = 50,
+  imageStyle,
+}) => {
   return (
-    <img src={src} width={width} height={height} style={{ ...imageStyle }} />
+    <img
+      className={className}
+      src={src}
+      width={width}
+      height={height}
+      style={{ ...imageStyle }}
+    />
   );
 };
 

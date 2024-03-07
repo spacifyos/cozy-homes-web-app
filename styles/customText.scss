@@ -4,8 +4,6 @@
 @mixin custom-text($fontColor) {
   font-family: "Noto Sans";
   color: $fontColor;
-  font-weight: normal;
-  @extend .font-size-normal;
 }
 
 .black-text {
