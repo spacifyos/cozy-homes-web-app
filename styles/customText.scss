@@ -21,3 +21,7 @@
 .primary-text {
   @include custom-text($primary-color);
 }
+
+.power-on-text {
+  @include custom-text($power-on-color);
+}

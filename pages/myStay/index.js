@@ -1,13 +1,24 @@
 import CustomHeader from "@/components/CustomHeader";
-import UserComponent from "@/components/MyStay/UserComponent";
-import TenancyComponent from "@/components/MyStay/TenancyComponent";
+import UserSection from "@/components/MyStay/UserSection";
+import TenancySection from "@/components/MyStay/TenancySection";
+import FeatureSection from "@/components/MyStay/FeatureSection";
+import MeterSection from "@/components/MyStay/MeterSection";
+import InvoiceSection from "@/components/MyStay/InvoiceSection";
 
 const MyStay = () => {
   return (
     <CustomHeader pageTitle={"My Stay"}>
-      <UserComponent />
+      <div className="pb-36">
+        <UserSection />
 
-      <TenancyComponent />
+        <TenancySection />
+
+        <FeatureSection />
+
+        <MeterSection />
+
+        <InvoiceSection />
+      </div>
     </CustomHeader>
   );
 };

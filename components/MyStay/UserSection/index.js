@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const UserComponent = () => {
+const UserSection = () => {
   return (
     <div className="flex justify-between pb-5">
       <div className="flex items-center pr-3">
@@ -48,4 +48,4 @@ const UserComponent = () => {
   );
 };
 
-export default UserComponent;
+export default UserSection;

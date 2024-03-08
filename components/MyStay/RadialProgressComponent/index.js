@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 
-const CustomRadialChart = () => {
+const RadialProgressComponent = () => {
   return (
     <div
       className="radial-progress primaryWhite-bg-color text-primary-content border-16 border-secondary-color"
@@ -20,4 +20,4 @@ const CustomRadialChart = () => {
   );
 };
 
-export default CustomRadialChart;
+export default RadialProgressComponent;

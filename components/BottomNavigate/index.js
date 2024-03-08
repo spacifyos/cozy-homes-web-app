@@ -27,35 +27,37 @@ const lists = [
 
 const BottomNavigate = ({ routeName, onClickChangeTab }) => {
   return (
-    <div
-      className="absolute bottom-0 left-0 right-0 global-box-shadow primaryWhite-bg-color flex justify-between items-center py-3 px-7 global-border-radius"
-      style={{ margin: "0 10px 10px 10px" }}
-    >
-      {_.map(lists, (item, index) => {
-        const name = _.get(item, ["name"], "");
-        const value = _.get(item, ["value"], "");
-        const icon = _.get(item, ["icon"], "");
-        const activeIcon = _.get(item, ["activeIcon"], "");
+    <div className="fixed bottom-0 w-full  " style={{ maxWidth: 500 }}>
+      <div
+        className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
+        style={{ margin: 10 }}
+      >
+        {_.map(lists, (item, index) => {
+          const name = _.get(item, ["name"], "");
+          const value = _.get(item, ["value"], "");
+          const icon = _.get(item, ["icon"], "");
+          const activeIcon = _.get(item, ["activeIcon"], "");
 
-        return (
-          <div
-            onClick={() => onClickChangeTab(value)}
-            key={index}
-            className="flex flex-col justify-center items-center"
-          >
-            <CustomImage
-              src={_.isEqual(value, routeName) ? activeIcon : icon}
-              width={25}
-              height={25}
-            />
-            <CustomText
-              textClassName={`${_.isEqual(value, routeName) ? "primary-text" : "disable-text"} font-size-small pt-1`}
+          return (
+            <div
+              onClick={() => onClickChangeTab(value)}
+              key={index}
+              className="flex flex-col justify-center items-center"
             >
-              {name}
-            </CustomText>
-          </div>
-        );
-      })}
+              <CustomImage
+                src={_.isEqual(value, routeName) ? activeIcon : icon}
+                width={25}
+                height={25}
+              />
+              <CustomText
+                textClassName={`${_.isEqual(value, routeName) ? "primary-text" : "disable-text"} font-size-small pt-1`}
+              >
+                {name}
+              </CustomText>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

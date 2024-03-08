@@ -3,12 +3,14 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import { useState } from "react";
-import CustomRadialChart from "@/components/CustomRadialChart";
+import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
 
 const TenancyLabel = () => {
   return (
     <div className={"pb-2"}>
-      <CustomText textClassName="font-bold font-size-small primary-text">M Vertica</CustomText>
+      <CustomText textClassName="font-bold font-size-small primary-text">
+        M Vertica
+      </CustomText>
       <CustomText textClassName="font-size-xsmall">A-01-01, Room 1</CustomText>
     </div>
   );
@@ -32,7 +34,7 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
   );
 };
 
-const TenancyComponent = () => {
+const TenancySection = () => {
   const [isChecked, setIsChecked] = useState(true);
 
   const onClickChangeAutoPay = () => {
@@ -40,12 +42,12 @@ const TenancyComponent = () => {
   };
 
   return (
-    <div>
+    <div className="pb-7">
       <CustomText textClassName="font-size-xxlarge font-bold pb-3">
         My Tenancy
       </CustomText>
 
-      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-5 py-3 flex justify-between items-center">
+      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center">
         <div className="flex flex-col items-start">
           <div className="primary-bg-color p-3 global-border-radius mb-1">
             <CustomImage src={Images.buildingIcon} width={20} height={20} />
@@ -68,12 +70,12 @@ const TenancyComponent = () => {
           />
         </div>
 
-        <div>
-          < CustomRadialChart/>
+        <div className="flex-1 flex justify-center items-center">
+          <RadialProgressComponent />
         </div>
       </div>
     </div>
   );
 };
 
-export default TenancyComponent;
+export default TenancySection;
