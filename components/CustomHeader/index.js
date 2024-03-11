@@ -10,7 +10,7 @@ const CustomHeader = ({ children, pageTitle }) => {
         src={Images.topBackgroundImage}
       />
       <div className="flex items-center pb-5 pt-10">
-        <CustomImage className={"me-5 w-2.5"} src={Images.rightIcon} />
+        <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon} />
         <CustomText textClassName={"font-bold"} styles={{ fontSize: 20 }}>
           {pageTitle}
         </CustomText>
