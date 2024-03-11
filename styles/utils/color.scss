@@ -1,5 +1,6 @@
 $primary-color: #f65626;
 $secondary-color: #fff4e0;
+$primary-bg-color: #f5f8fd;
 $primary-black-color: #000000;
 $primary-white-color: #ffffff;
 $disable-color: #94a1a6;
@@ -11,6 +12,10 @@ $power-on-color: #41c0be;
 
 .primary-bg-color {
   background-color: $primary-color;
+}
+
+.bg-color {
+  background-color: $primary-bg-color;
 }
 
 .secondary-bg-color {

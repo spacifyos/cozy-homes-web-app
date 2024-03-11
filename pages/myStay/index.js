@@ -8,7 +8,7 @@ import InvoiceSection from "@/components/MyStay/InvoiceSection";
 const MyStay = () => {
   return (
     <CustomHeader pageTitle={"My Stay"}>
-      <div className="pb-36">
+      <div className="pb-23">
         <UserSection />
 
         <TenancySection />

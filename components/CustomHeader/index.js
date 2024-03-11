@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 
 const CustomHeader = ({ children, pageTitle }) => {
   return (
-    <div className="global-horizontal-padding flex-1 relative ">
+    <div className="global-horizontal-padding flex-1 relative bg-color ">
       <CustomImage
         className={"absolute right-0 w-3/5 h-20"}
         src={Images.topBackgroundImage}

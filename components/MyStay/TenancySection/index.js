@@ -43,7 +43,7 @@ const TenancySection = () => {
 
   return (
     <div className="pb-7">
-      <CustomText textClassName="font-size-xxlarge font-bold pb-3">
+      <CustomText textClassName="font-size-xxlarge font-bold pb-2">
         My Tenancy
       </CustomText>
 

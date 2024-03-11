@@ -4,13 +4,35 @@
 
 @mixin custom-button {
   padding: 5px 10px;
-  width: 100%;
   border-radius: 10px;
+  @extend .global-box-shadow;
 
   p {
     font-weight: bold !important;
-    @extend .font-size-xlarge;
-    @extend .white-text;
+  }
+}
+
+.default-btn:hover {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color;
+  color: $primary-black-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .disable-text;
+  }
+}
+
+.default-btn {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color;
+  color: $primary-black-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .disable-text;
   }
 }
 
@@ -18,15 +40,30 @@
   border: 1px solid $primary-color;
   background-color: $primary-color;
   @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
 }
 
 .primary-btn {
   border: 1px solid $primary-color;
   background-color: $primary-color;
   @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
 }
 
 .disable-btn {
   @include custom-button;
   @include custom-text($primary-white-color);
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
 }

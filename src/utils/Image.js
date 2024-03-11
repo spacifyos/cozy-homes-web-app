@@ -19,6 +19,8 @@ const Image = {
   onIcon: "images/icon/on_icon.png",
   offIcon: "images/icon/off_icon.png",
   moreIcon: "images/icon/more_icon.png",
+  invoiceIcon: "images/icon/invoice_icon.png",
+  inactiveCheckIcon: "images/icon/inactive_check_icon.png",
   topBackgroundImage: "/images/top_background.png",
   emptyImage: "/images/emptyBox.png",
   logoImage: "/images/logo.png",
