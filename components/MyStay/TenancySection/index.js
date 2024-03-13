@@ -26,7 +26,7 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
       </CustomText>
       <input
         type="checkbox"
-        className={`toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
+        className={`toggle default-toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
         checked={isChecked}
         onClick={onClickChangeAutoPay}
       />

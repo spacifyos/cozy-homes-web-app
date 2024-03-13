@@ -1,0 +1,9 @@
+@import "utils/color";
+@import "utils/scaling";
+@import "customText";
+
+.default-toggle:focus-visible {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+}
