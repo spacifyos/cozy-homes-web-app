@@ -40,6 +40,18 @@ const Image = {
   banner2Image: "/images/banner_2.png",
   banner3Image: "/images/banner_3.png",
   listingDefaultImage: "/images/listing_default_image.png",
+  filterDefaultImage: "/images/filter_default_image.png",
+  unitAmenitiesIcon: "/images/amenities/unit_icon.png",
+  bedAmenitiesIcon: "/images/amenities/bed_icon.png",
+  windowAmenitiesIcon: "/images/amenities/window_icon.png",
+  femaleAmenitiesIcon: "/images/amenities/female_icon.png",
+  bathAmenitiesIcon: "/images/amenities/bath_icon.png",
+  aircornAmenitiesIcon: "/images/amenities/aircorn_icon.png",
+  wifiAmenitiesIcon: "/images/amenities/wifi_icon.png",
+  laundryAmenitiesIcon: "/images/amenities/laundry_icon.png",
+  cookAmenitiesIcon: "/images/amenities/cook_icon.png",
+  swimmingAmenitiesIcon: "/images/amenities/swimming_icon.png",
+  gymAmenitiesIcon: "/images/amenities/gym_icon.png",
 };
 
 export default Image;

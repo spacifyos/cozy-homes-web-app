@@ -7,7 +7,7 @@ import InvoiceSection from "@/components/MyStay/InvoiceSection";
 
 const MyStay = () => {
   return (
-    <CustomHeader pageTitle={"My Stay"} hideGoBackButton>
+    <CustomHeader pageTitle={"My Stay"} hideGoBackButton padding>
       <div className="pb-23">
         <UserSection />
 

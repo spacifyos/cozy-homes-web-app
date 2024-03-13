@@ -8,7 +8,7 @@ import CustomText from "@/components/CustomText";
 
 const Account = () => {
   return (
-    <CustomHeader pageTitle={"Account"} hideGoBackButton>
+    <CustomHeader pageTitle={"Account"} hideGoBackButton padding>
       <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
         <ProfileCard />
         <RoomzCoins />

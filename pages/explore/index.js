@@ -7,6 +7,7 @@ import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import CustomSelect from "@/components/CustomSelect";
 import ListingSection from "@/components/Explore/ListingSection";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
@@ -18,15 +19,19 @@ const cityList = [
 
 function Home() {
   const { t } = useTranslation("common");
+  const router = useRouter();
 
   const onChangeCity = (value) => {
     console.log(value.target.value);
   };
 
-  return (
-    <CustomHeader hideGoBackButton>
-      <div className="pb-24">
+  const onClickToFilter = () => {
+    router.push("/filter");
+  };
 
+  return (
+    <CustomHeader hideGoBackButton padding>
+      <div className="pb-24">
         <BannerCarousel />
 
         <div className="grid grid-cols-6 gap-4 pb-7">
@@ -39,6 +44,7 @@ function Home() {
           <CustomButton
             buttonClassName="default-btn"
             icon={Images.filterIcon}
+            onClick={onClickToFilter}
           />
 
           <CustomInput className="col-span-3" placeholder="State" />
