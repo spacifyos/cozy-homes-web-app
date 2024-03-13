@@ -8,7 +8,7 @@ const ListingCardComponent = () => {
       <CustomImage
         src={Images.filterDefaultImage}
         width="100%"
-        className="rounded-2xl mb-1"
+        className="rounded-2xl mb-1 global-box-shadow"
       />
       <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
         M Vertica
