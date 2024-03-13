@@ -8,7 +8,7 @@ import CustomText from "@/components/CustomText";
 
 const Account = () => {
   return (
-    <CustomHeader pageTitle={"Account"}>
+    <CustomHeader pageTitle={"Account"} hideGoBackButton>
       <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
         <ProfileCard />
         <RoomzCoins />
@@ -24,7 +24,7 @@ const Account = () => {
       {/*  icon={Images.lockIcon}*/}
       {/*/>*/}
 
-      <div className="divider"></div>
+      <div className="divider-line"></div>
 
       <FeatureComponent
         title="My Invoice"
@@ -40,14 +40,14 @@ const Account = () => {
 
       <FeatureComponent title="Set Pin Number" icon={Images.primaryLockIcon} />
 
-      <div className="divider"></div>
+      <div className="divider-line"></div>
 
       <FeatureComponent
         title="Term & Conditions"
         icon={Images.primaryTermAndConditionIcon}
       />
 
-      <div className="divider"></div>
+      <div className="divider-line"></div>
 
       <div className="flex justify-between items-center pb-28">
         <div className="flex items-center primaryWhite-bg-color p-3 global-box-shadow global-border-radius">

@@ -84,3 +84,10 @@ body {
 .text-primary-content {
   color: $primary-color;
 }
+
+.divider-line {
+  height: 1px;
+  width: 100%;
+  background-color: #e0ecff !important;
+  margin: 25px 0;
+}
