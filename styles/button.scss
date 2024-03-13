@@ -67,3 +67,11 @@
     @extend .white-text;
   }
 }
+
+.default-btn:focus-visible,
+.primary-btn:focus-visible,
+.disable-btn:focus-visible {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+}
