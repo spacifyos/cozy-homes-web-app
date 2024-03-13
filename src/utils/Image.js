@@ -27,11 +27,19 @@ const Image = {
   primaryLogoutIcon: "images/icon/primary_logout_icon.png",
   primaryMeterIcon: "images/icon/primary_meter.png",
   primaryRingIcon: "images/icon/primary_ring_icon.png",
-  primaryTermAndConditionIcon: "images/icon/primary_term_and_condition_icon.png",
+  primaryTermAndConditionIcon:
+    "images/icon/primary_term_and_condition_icon.png",
   inactiveCheckIcon: "images/icon/inactive_check_icon.png",
+  downIcon: "images/icon/down_icon.png",
+  filterIcon: "images/icon/filter_icon.png",
+  searchOutlineActiveIcon: "images/icon/search_outline_active_icon.png",
   topBackgroundImage: "/images/top_background.png",
   emptyImage: "/images/emptyBox.png",
   logoImage: "/images/logo.png",
+  banner1Image: "/images/banner_1.png",
+  banner2Image: "/images/banner_2.png",
+  banner3Image: "/images/banner_3.png",
+  listingDefaultImage: "/images/listing_default_image.png",
 };
 
 export default Image;

@@ -1,0 +1,45 @@
+@import "utils/color";
+@import "utils/scaling";
+@import "customText";
+
+@mixin custom-select($bgColor) {
+  border-radius: 0.5rem;
+  @extend .global-box-shadow;
+
+  select {
+    color: $primary-black-color;
+    background-color: $bgColor;
+    border: 1px solid $primary-white-color;
+  }
+
+  select:required:invalid {
+    @extend .font-size-small;
+    color: $disable-color;
+    font-style: italic !important;
+  }
+
+  option[value=""][disabled] {
+    display: none;
+  }
+
+  option {
+    color: $primary-black-color;
+  }
+
+  select:focus {
+    outline: none;
+    outline-offset: unset;
+  }
+}
+
+.default-select:focus,
+.default-select:focus-within {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+  @include custom-select($primary-white-color);
+}
+
+.default-select {
+  @include custom-select($primary-white-color);
+}

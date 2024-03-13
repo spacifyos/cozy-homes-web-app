@@ -7,7 +7,7 @@ const CustomImage = ({
 }) => {
   return (
     <img
-      className={className}
+      className={`object-contain ${className}`}
       src={src}
       width={width}
       height={height}

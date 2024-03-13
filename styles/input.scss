@@ -1,0 +1,36 @@
+@import "utils/color";
+@import "utils/scaling";
+
+@mixin custom-input($bgColor) {
+  background-color: $bgColor;
+  border: 1px solid $primary-white-color;
+  @extend .global-box-shadow;
+
+  input {
+    width: 100%;
+    color: $primary-black-color;
+  }
+
+  ::placeholder {
+    @extend .font-size-small;
+    font-style: italic;
+    opacity: 1;
+  }
+
+  input:focus {
+    outline: none;
+    outline-offset: unset;
+  }
+}
+
+.default-input:focus,
+.default-input:focus-within {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+  @include custom-input($primary-white-color);
+}
+
+.default-input {
+  @include custom-input($primary-white-color);
+}
