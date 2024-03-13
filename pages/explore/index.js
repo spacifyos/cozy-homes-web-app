@@ -26,6 +26,7 @@ function Home() {
   return (
     <CustomHeader hideGoBackButton>
       <div className="pb-24">
+
         <BannerCarousel />
 
         <div className="grid grid-cols-6 gap-4 pb-7">
