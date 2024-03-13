@@ -7,9 +7,11 @@ const CustomSelect = ({
   label,
   className,
   onChange,
+  styles,
 }) => {
   return (
     <label
+      style={styles}
       className={`form-control w-full max-w-xs default-select ${className}`}
     >
       {!_.isEmpty(label) ? <CustomText>{label}</CustomText> : false}

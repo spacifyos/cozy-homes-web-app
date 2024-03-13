@@ -107,7 +107,7 @@ const Filter = () => {
         <div className="col-span-3">
           <div className="flex pb-5 justify-end">
             <CustomSelect
-              className="w-3/4"
+              styles={{ width: "75%" }}
               optionList={optionList}
               placeholder="Sort by: Price (Low to high)"
             />
