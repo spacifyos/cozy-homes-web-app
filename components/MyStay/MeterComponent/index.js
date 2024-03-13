@@ -55,7 +55,7 @@ const MeterComponent = () => {
       </div>
 
       <div className="grid grid-cols-6 gap-3">
-        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius">
+        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14">
           <CustomText textClassName="disable-text font-size-xxsmall">
             Balance Unit
           </CustomText>
@@ -68,7 +68,7 @@ const MeterComponent = () => {
         </div>
 
         <CustomButton
-          buttonClassName="col-span-4 primary-btn h-full"
+          buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText="Top Up"
         />
