@@ -34,7 +34,7 @@ function App({ Component, pageProps }) {
             <Component {...pageProps} />
 
             {_.isEqual(routeName, "/explore") ||
-            _.isEqual(routeName, "/myStay") ||
+            _.isEqual(routeName, "/my-stay") ||
             _.isEqual(routeName, "/account") ? (
               <BottomNavigate
                 routeName={routeName}

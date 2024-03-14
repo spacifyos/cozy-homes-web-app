@@ -1,7 +1,7 @@
 import Color from "@/src/utils/Color";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import SplashScreen from "@/pages/splashScreen";
+import SplashScreen from "@/pages/splash-screen";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import _ from "lodash";

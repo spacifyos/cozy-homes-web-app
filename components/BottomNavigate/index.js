@@ -13,7 +13,7 @@ const lists = [
   },
   {
     name: "My Stay",
-    value: "/myStay",
+    value: "/my-stay",
     icon: Images.homeIcon,
     activeIcon: Images.homeIconActive,
   },
