@@ -13,6 +13,7 @@ const FeatureComponent = ({ item }) => {
       </div>
 
       <CustomText textClassName="font-semibold">{name}</CustomText>
+
     </div>
   );
 };
