@@ -73,8 +73,12 @@ const amenitiesList = [
 
 const optionList = [
   {
-    name: "Sort by: Price (Low to high)",
-    value: "Sort by: Price (Low to high)",
+    name: "Sort by: Price (Low to High)",
+    value: "Sort by: Price (Low to High)",
+  },
+  {
+    name: "Sort by: Price (High to Low)",
+    value: "Sort by: Price (High to Low)",
   },
 ];
 

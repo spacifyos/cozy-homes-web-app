@@ -5,7 +5,8 @@
     "account": "帐户"
   },
   "pageTitle": {
-    "myStay": "我的住宿"
+    "myStay": "我的住宿",
+    "myMeter": "我的计量器"
   },
   "general": {},
   "myStay": {
@@ -28,5 +29,10 @@
     "invoice": "发票",
     "status": "状态",
     "dueDate": "截止日期"
+  },
+
+  "myMeter": {
+      "todayUsage": "今天的用量",
+      "unit": "单位"
   }
 }

@@ -1,0 +1,60 @@
+.containerText{
+    font-size: 20px;
+    font-weight: bold;
+}
+.containerDateText{
+    font-size: 1px;
+    font-weight: bold;
+}
+
+.containerItem{
+    display: inline-flex;
+    inline-size: 112px;
+    text-align: center;
+}
+
+.meterUsage{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.RadialContainer{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.unit{
+   padding-top: 9px;
+}
+
+.response{
+    display: flex;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    gap: 20%;
+}
+
+.containerFeatureText{
+    font-size: 10%;
+    font-weight: bold;
+}
+
+@media (max-width: 430px) {
+    .response{
+        gap: 10%;
+    }
+    .containerText{
+        font-size: 15px;
+    }
+    .containerFeatureText{
+        font-size: 62%;
+    }
+}
