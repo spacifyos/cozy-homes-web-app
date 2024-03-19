@@ -4,23 +4,29 @@ import TenancySection from "@/components/MyStay/TenancySection";
 import FeatureSection from "@/components/MyStay/FeatureSection";
 import MeterSection from "@/components/MyStay/MeterSection";
 import InvoiceSection from "@/components/MyStay/InvoiceSection";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+
+export { getServerSideProps };
 
 const MyStay = () => {
+  const { t } = useTranslation("common");
+
   return (
-    <CustomHeader pageTitle={"My Stay"} hideGoBackButton padding>
+    <CustomHeader pageTitle={t("pageTitle.myStay")} hideGoBackButton padding>
       <div className="pb-23">
-        <UserSection />
+        <UserSection t={t} />
 
-        <TenancySection />
+        <TenancySection t={t} />
 
-        <FeatureSection />
+        <FeatureSection t={t} />
 
-        <MeterSection />
+        <MeterSection t={t} />
 
-        <InvoiceSection />
+        <InvoiceSection t={t}/>
       </div>
     </CustomHeader>
   );
 };
 
-export default MyStay;
+export default withTranslation("common")(MyStay);

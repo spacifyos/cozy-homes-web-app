@@ -4,30 +4,29 @@ import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import { useRouter } from "next/router";
 
-const lists = [
-  {
-    name: "Explore",
-    value: "/explore",
-    icon: Images.searchIcon,
-    activeIcon: Images.searchIconActive,
-  },
-  {
-    name: "My Stay",
-    value: "/my-stay",
-    icon: Images.homeIcon,
-    activeIcon: Images.homeIconActive,
-  },
-  {
-    name: "Account",
-    value: "/account",
-    icon: Images.accountIcon,
-    activeIcon: Images.accountIconActive,
-  },
-];
-
-const BottomNavigate = ({ routeName, onClickChangeTab }) => {
+const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
+  const lists = [
+    {
+      name: t("root.explore"),
+      value: "/explore",
+      icon: Images.searchIcon,
+      activeIcon: Images.searchIconActive,
+    },
+    {
+      name: t("root.myStay"),
+      value: "/my-stay",
+      icon: Images.homeIcon,
+      activeIcon: Images.homeIconActive,
+    },
+    {
+      name: t("root.account"),
+      value: "/account",
+      icon: Images.accountIcon,
+      activeIcon: Images.accountIconActive,
+    },
+  ];
   return (
-    <div className="fixed bottom-0 w-full  " style={{ maxWidth: 500 }}>
+    <div className="fixed bottom-0 w-full" style={{ maxWidth: 500 }}>
       <div
         className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
         style={{ margin: 10 }}

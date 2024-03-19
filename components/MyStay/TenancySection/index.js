@@ -34,7 +34,7 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
   );
 };
 
-const TenancySection = () => {
+const TenancySection = ({ t }) => {
   const [isChecked, setIsChecked] = useState(true);
 
   const onClickChangeAutoPay = () => {
@@ -44,7 +44,7 @@ const TenancySection = () => {
   return (
     <div className="pb-7">
       <CustomText textClassName="font-size-xxlarge font-bold pb-2">
-        My Tenancy
+        {t("myStay.myTenancy")}
       </CustomText>
 
       <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center">
@@ -55,14 +55,17 @@ const TenancySection = () => {
 
           <TenancyLabel />
 
-          <CustomLabelValue label={"Tenancy Code"} value={"Roomz-T123456789"} />
+          <CustomLabelValue
+            label={t("myStay.tenancyCode")}
+            value={"Roomz-T123456789"}
+          />
 
           <CustomLabelValue
-            label={"Tenancy Period"}
+            label={t("myStay.tenancyPeriod")}
             value={"01 Jan 2024 - 31 Dec 2025"}
           />
 
-          <CustomLabelValue label={"Rental Fee"} value={"RM750"} />
+          <CustomLabelValue label={t("myStay.rentalFee")} value={"RM750"} />
 
           <AutoPayButton
             onClickChangeAutoPay={onClickChangeAutoPay}
@@ -71,7 +74,7 @@ const TenancySection = () => {
         </div>
 
         <div className="flex-1 flex justify-center items-center">
-          <RadialProgressComponent />
+          <RadialProgressComponent t={t} />
         </div>
       </div>
     </div>

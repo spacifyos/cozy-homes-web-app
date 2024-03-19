@@ -1,14 +1,14 @@
 import CustomText from "@/components/CustomText";
 import MeterComponent from "@/components/MyStay/MeterComponent";
 
-const MeterSection = () => {
+const MeterSection = ({t}) => {
   return (
     <div className="pb-7">
       <CustomText textClassName="font-size-xxlarge font-bold pb-2">
-        My Meter
+          {t("myStay.myMeter")}
       </CustomText>
 
-      <MeterComponent />
+      <MeterComponent t={t} />
     </div>
   );
 };

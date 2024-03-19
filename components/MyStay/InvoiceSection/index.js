@@ -3,11 +3,11 @@ import CustomButton from "@/components/CustomButton";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import _ from "lodash";
 
-const InvoiceSection = () => {
+const InvoiceSection = ({ t }) => {
   return (
     <div>
       <CustomText textClassName="font-size-xxlarge font-bold pb-2">
-        My Invoice
+        {t("myStay.myInvoice")}
       </CustomText>
 
       <div className="flex items-center pb-3">
@@ -29,7 +29,7 @@ const InvoiceSection = () => {
       </div>
 
       {_.map(Array(3), (item) => (
-        <InvoiceComponent />
+        <InvoiceComponent t={t} />
       ))}
     </div>
   );

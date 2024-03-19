@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 
-const MeterComponent = () => {
+const MeterComponent = ({ t }) => {
   return (
     <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative">
       <CustomImage
@@ -24,7 +24,7 @@ const MeterComponent = () => {
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="pr-3 font-size-small disable-text">
-              Meter Status
+              {t("myStay.meterStatus")}
             </CustomText>
 
             <div className="flex items-center pr-3">
@@ -35,7 +35,7 @@ const MeterComponent = () => {
                 className="mr-1"
               />
               <CustomText textClassName="power-on-text font-size-small">
-                Wifi
+                {t("myStay.wifi")}
               </CustomText>
             </div>
 
@@ -47,7 +47,7 @@ const MeterComponent = () => {
                 className="mr-1"
               />
               <CustomText textClassName="disable-text font-size-small">
-                Power
+                {t("myStay.power")}
               </CustomText>
             </div>
           </div>
@@ -57,7 +57,7 @@ const MeterComponent = () => {
       <div className="grid grid-cols-6 gap-3">
         <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14">
           <CustomText textClassName="disable-text font-size-xxsmall">
-            Balance Unit
+            {t("myStay.balanceUnit")}
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="primary-text font-size-xlarge font-bold pe-1">
@@ -70,7 +70,7 @@ const MeterComponent = () => {
         <CustomButton
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
-          buttonText="Top Up"
+          buttonText={t("myStay.topUp")}
         />
       </div>
     </div>

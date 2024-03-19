@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const UserSection = () => {
+const UserSection = ({ t }) => {
   return (
     <div className="flex justify-between pb-5">
       <div className="flex items-center pr-3">
@@ -34,7 +34,7 @@ const UserSection = () => {
         </div>
         <div className="pl-2">
           <CustomText textClassName="disable-text font-size-small line-clamp-1">
-            Roomz Coins
+            {t("myStay.roomzCoins")}
           </CustomText>
           <div className="flex items-center justify-start">
             <CustomText textClassName="primary-text font-bold font-size-xxlarge pr-2">

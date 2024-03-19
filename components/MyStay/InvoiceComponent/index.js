@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const InvoiceComponent = () => {
+const InvoiceComponent = ({ t }) => {
   return (
     <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative mb-3">
       <div className="flex items-center">
@@ -12,7 +12,7 @@ const InvoiceComponent = () => {
 
         <div className="flex flex-col">
           <CustomText textClassName="black-text font-size-small font-bold pb-1.5 line-clamp-1">
-            Invoice #: SP-210000222
+            {t("myStay.invoice")} #: SP-210000222
           </CustomText>
 
           <div className="flex items-center pb-1.5">
@@ -21,7 +21,7 @@ const InvoiceComponent = () => {
                 RM 750
               </CustomText>
               <CustomText textClassName="disable-text font-size-xxsmall">
-                Rental Fee
+                {t("myStay.rentalFee")}
               </CustomText>
             </div>
             <div>
@@ -38,14 +38,14 @@ const InvoiceComponent = () => {
               </div>
 
               <CustomText textClassName="disable-text font-size-xxsmall">
-                Status
+                {t("myStay.status")}
               </CustomText>
             </div>
           </div>
 
           <div className="flex items-center">
             <CustomText textClassName="pr-3 font-size-xxsmall disable-text italic">
-              Due Date 30 Nov 2024
+              {t("myStay.dueDate")} 30 Nov 2024
             </CustomText>
           </div>
         </div>

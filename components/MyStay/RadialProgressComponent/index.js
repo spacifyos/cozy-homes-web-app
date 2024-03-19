@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 
-const RadialProgressComponent = () => {
+const RadialProgressComponent = ({ t }) => {
   return (
     <div
       className="radial-progress primaryWhite-bg-color text-primary-content border-16 border-secondary-color"
@@ -9,7 +9,7 @@ const RadialProgressComponent = () => {
     >
       <div className="flex-col flex justify-end items-center">
         <CustomText textClassName="font-size-xxsmall disable-text line-clamp-1">
-          Tenancy Remaining
+          {t("myStay.tenancyRemaining")}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold">
           9999

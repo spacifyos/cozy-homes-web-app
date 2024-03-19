@@ -1,3 +1,32 @@
 {
-  "h1": "简单的例子"
+  "root": {
+    "explore": "探索",
+    "myStay": "我的住宿",
+    "account": "帐户"
+  },
+  "pageTitle": {
+    "myStay": "我的住宿"
+  },
+  "general": {},
+  "myStay": {
+    "roomzCoins": "房币",
+    "myTenancy": "我的租期",
+    "tenancyPeriod": "租期",
+    "tenancyCode": "租约代码",
+    "rentalFee": "租金费用",
+    "tenancyRemaining": "剩余租期",
+    "scan": "扫描",
+    "eAgreement": "电子协议",
+    "helpCenter": "帮助中心",
+    "myMeter": "我的计量器",
+    "meterStatus": "计量器状态",
+    "wifi": "网络",
+    "power": "电力",
+    "balanceUnit": "余额单位",
+    "topUp": "充值",
+    "myInvoice": "我的发票",
+    "invoice": "发票",
+    "status": "状态",
+    "dueDate": "截止日期"
+  }
 }

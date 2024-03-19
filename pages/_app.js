@@ -1,7 +1,7 @@
 import "@/styles/globals.scss";
 import Color from "@/src/utils/Color";
 import { Toaster } from "react-hot-toast";
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 
 function App({ Component, pageProps }) {
+  const { t } = useTranslation("common");
   const router = useRouter();
   const routeName = _.get(router, ["route"], "");
 
@@ -37,6 +38,7 @@ function App({ Component, pageProps }) {
             _.isEqual(routeName, "/my-stay") ||
             _.isEqual(routeName, "/account") ? (
               <BottomNavigate
+                t={t}
                 routeName={routeName}
                 onClickChangeTab={onClickChangeTab}
               />

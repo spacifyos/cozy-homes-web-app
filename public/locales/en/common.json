@@ -1,3 +1,32 @@
 {
-  "h1": "A simple example"
+  "root": {
+    "explore": "Explore",
+    "myStay": "My Stay",
+    "account": "Account"
+  },
+  "pageTitle": {
+    "myStay": "My Stay"
+  },
+  "general": {},
+  "myStay": {
+    "roomzCoins": " Roomz Coins",
+    "myTenancy": "My Tenancy",
+    "tenancyPeriod": "Tenancy Period",
+    "tenancyCode": "Tenancy Code",
+    "rentalFee": "Rental Fee",
+    "tenancyRemaining": "Tenancy Remaining",
+    "scan": "Scan",
+    "eAgreement": "E-Agreement",
+    "helpCenter": "Help Center",
+    "myMeter": "My Meter",
+    "meterStatus": "Meter Status",
+    "wifi": "Wifi",
+    "power": "Power",
+    "balanceUnit": "Balance Unit",
+    "topUp": "Top Up",
+    "myInvoice": "My Invoice",
+    "invoice": "Invoice",
+    "status": "Status",
+    "dueDate": "Due Date"
+  }
 }
