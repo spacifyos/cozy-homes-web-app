@@ -43,6 +43,10 @@
     "topUp": "Top Up",
     "clearBalance": "Clear Balance",
     "usage": "Usage",
-    "disconnect": "Disconnect"
+    "disconnect": "Disconnect",
+    "totalUsage(Unit)": "Total Usage(Unit)",
+    "totalUnit": "Total Unit",
+    "meterUsage": "Meter Usage",
+    "availableUnit": "Available Unit"
   }
 }

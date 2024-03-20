@@ -33,6 +33,20 @@
 
   "myMeter": {
       "todayUsage": "今天的用量",
-      "unit": "单位"
+      "unit": "单位",
+      "serialNumber": "编号",
+      "meterStatus": "计量状态",
+      "usedUnit": "用量（单位）",
+      "unitPrice": "单位价格",
+      "balanceUnit": "余额单位",
+      "lastConnectedAt": "上次连接时间",
+      "topUp": "充值",
+      "clearBalance": "清除余额",
+      "usage": "使用量",
+      "disconnect": "断开连接",
+      "totalUsage(Unit)": "总使用量（单位）",
+      "totalUnit": "总单位",
+      "meterUsage": "计量使用量",
+      "availableUnit": "可用单位"
   }
 }

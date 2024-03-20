@@ -7,18 +7,18 @@ const MeterDetail= ({ t }) => {
     return (
         <div className="response">
             <div className="containerItem flex flex-col items-center" >
-                <div className="primary-bg-color p-4 global-border-radius mb-1 mr-2">
-                    <CustomImage src={Images.meterIcon} width={22} height={20}/>
-                </div>
-                <CustomText textClassName="primary-text font-bold">
-                    M Vertica
-                </CustomText>
+                    <div className="primary-bg-color p-4 global-border-radius mb-1 mr-2">
+                        <CustomImage src={Images.meterIcon} width={22} height={20}/>
+                    </div>
+                        <CustomText textClassName="primary-text font-bold">
+                            M Vertica
+                        </CustomText>
 
-                <CustomText textClassName="font-bold ">
-                    A-01-01, Room 1 Smart Meter
-                </CustomText>
-
+                        <CustomText textClassName="font-bold ">
+                            A-01-01, Room 1 Smart Meter
+                        </CustomText>
             </div>
+
 
             <div className="flex flex-col items-start">
 

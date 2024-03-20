@@ -8,6 +8,7 @@ import MeterRadialProgressComponent from "@/components/MyMeter/MeterRadialProgre
 import MeterDetail from "@/components/MyMeter/MeterDetail";
 import BalanceUnit from "@/components/MyMeter/BalanceUnit";
 import MeterFeature from "@/components/MyMeter/MeterFeature";
+import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 
 
 
@@ -22,7 +23,7 @@ const MyMeter = () => {
     return (
 
         <CustomHeader pageTitle={t("pageTitle.myMeter")} hideBgImage padding onClickGoBack={onClickGoBack}>
-
+            <div className="pb-23">
             <div className="meterUsage">
                 <CustomText textClassName="containerText">
                     {t("myMeter.todayUsage")}
@@ -40,6 +41,8 @@ const MyMeter = () => {
 
             <MeterFeature t={t}/>
 
+            <MeterUsageSection t={t}/>
+         </div>
         </CustomHeader>
     );
 };
