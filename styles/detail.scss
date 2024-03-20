@@ -1,0 +1,19 @@
+@import "utils/color";
+@import "utils/scaling";
+@import "customText";
+
+
+.carousel{
+  height: 300px;
+  border-radius: 30px;
+}
+.dot-btn {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: $disable-color;
+}
+
+.dot-btn:active {
+  background-color: $primary-color;
+}

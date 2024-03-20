@@ -5,7 +5,8 @@
     "account": "Account"
   },
   "pageTitle": {
-    "myStay": "My Stay"
+    "myStay": "My Stay",
+    "detail": "Detail"
   },
   "general": {},
   "myStay": {
@@ -28,5 +29,9 @@
     "invoice": "Invoice",
     "status": "Status",
     "dueDate": "Due Date"
+  },
+  "detail": {
+    "overView": "Overview",
+    "policy": "Policy"
   }
 }
