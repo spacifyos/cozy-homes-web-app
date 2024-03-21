@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Fliter/AmenitiesComponent";
 import ListingCardComponent from "@/components/Fliter/ListingCardComponent";
 import _ from "lodash";
+import { useState } from "react";
 
 const cityList = [
   { name: "Skudai", value: "skudai" },
@@ -17,56 +18,67 @@ const amenitiesList = [
   {
     name: "Whole Unit",
     icon: Images.unitAmenitiesIcon,
+    iconActive: Images.unitAmenitiesIconActive,
     isActive: false,
   },
   {
     name: "Room City",
     icon: Images.bedAmenitiesIcon,
+    iconActive: Images.bedAmenitiesIconActive,
     isActive: true,
   },
   {
     name: "Window",
     icon: Images.windowAmenitiesIcon,
+    iconActive: Images.windowAmenitiesIconActive,
     isActive: true,
   },
   {
     name: "Female Unit",
     icon: Images.femaleAmenitiesIcon,
+    iconActive: Images.femaleAmenitiesIconActive,
     isActive: true,
   },
   {
     name: "Private Bathroom",
     icon: Images.bathAmenitiesIcon,
+    iconActive: Images.bathAmenitiesIconActive,
     isActive: false,
   },
   {
     name: "Air-conditioner",
     icon: Images.aircornAmenitiesIcon,
+    iconActive: Images.aircornAmenitiesIconActive,
     isActive: false,
   },
   {
     name: "WiFi",
     icon: Images.wifiAmenitiesIcon,
+    iconActive: Images.wifiAmenitiesIconActive,
     isActive: false,
   },
   {
     name: "Laundry Area",
     icon: Images.laundryAmenitiesIcon,
+    iconActive: Images.laundryAmenitiesIconActive,
     isActive: true,
   },
   {
     name: "Kitchen",
     icon: Images.cookAmenitiesIcon,
+    iconActive: Images.cookAmenitiesIconActive,
     isActive: true,
   },
   {
     name: "Swimming Pool",
     icon: Images.swimmingAmenitiesIcon,
+    iconActive: Images.swimmingAmenitiesIconActive,
     isActive: false,
   },
   {
     name: "GYM Room",
     icon: Images.gymAmenitiesIcon,
+    iconActive: Images.gymAmenitiesIconActive,
     isActive: false,
   },
 ];
@@ -81,8 +93,27 @@ const optionList = [
 const Filter = () => {
   const router = useRouter();
 
+  const [iconLiat, setIconList] = useState(amenitiesList);
+
   const onClickGoBack = () => {
     router.back();
+  };
+
+  const onClickSelectAmenities = (name) => {
+    setIconList((prevState) => {
+      return _.map(prevState, (item) => {
+        if (_.get(item, ["name"], "") === name) {
+          return {
+            ...item,
+            ...{ isActive: !_.get(item, ["isActive"], false) },
+          };
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+    });
   };
 
   return (
@@ -102,7 +133,10 @@ const Filter = () => {
 
         <div className="grid grid-cols-4 gap-5 pb-7">
           <div className="col-span-1">
-            <AmenitiesComponent list={amenitiesList} />
+            <AmenitiesComponent
+              list={iconLiat}
+              onClickSelectAmenities={onClickSelectAmenities}
+            />
           </div>
 
           <div className="col-span-3">

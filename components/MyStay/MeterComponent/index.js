@@ -8,18 +8,16 @@ const MeterComponent = ({ t }) => {
     <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative">
       <CustomImage
         src={Images.moreIcon}
-        width={5}
-        height={10}
+        width={25}
+        height={25}
         className="absolute right-4"
       />
 
       <div className="flex items-center pb-1">
-        <div className="primary-bg-color p-3 global-border-radius mb-1 mr-2">
+        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2">
           <CustomImage
             src={Images.meterIcon}
-            width={20}
-            height={20}
-            imageStyle={{ width: 25, height: 25 }}
+            imageStyle={{ width: 30, height: 30 }}
           />
         </div>
 
