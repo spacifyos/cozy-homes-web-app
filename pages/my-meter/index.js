@@ -9,29 +9,29 @@ import MeterDetail from "@/components/MyMeter/MeterDetail";
 import BalanceUnit from "@/components/MyMeter/BalanceUnit";
 import MeterFeature from "@/components/MyMeter/MeterFeature";
 import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
-
-
+import { useRouter } from "next/router";
 
 
 export { getServerSideProps };
-const onClickGoBack = () => {
-    router.back();
-};
-const MyMeter = () => {
-    const { t } = useTranslation("common");
 
+const MyMeter = () => {
+    const router = useRouter();
+    const { t } = useTranslation("common");
+    const onClickGoBack = () => {
+        router.push("/my-stay");
+    };
     return (
 
-        <CustomHeader pageTitle={t("pageTitle.myMeter")} hideBgImage padding onClickGoBack={onClickGoBack}>
+        <CustomHeader pageTitle={t("pageTitle.myMeter")} hideBgImage onClickGoBack={onClickGoBack}>
             <div className="pb-23">
             <div className="meterUsage">
-                <CustomText textClassName="containerText">
+                <CustomText textClassName="font-size-xxlarge font-bold">
                     {t("myMeter.todayUsage")}
                 </CustomText>
-                <CustomImage className="mr-4" src={Images.refreshIcon} height={18} width={28}/>
+                <CustomImage className="mr-4" src={Images.refreshIcon} height={18} width={18}/>
             </div>
 
-            <div className="RadialContainer pb-5">
+            <div className="RadialContainer p-3">
                 <MeterRadialProgressComponent t={t}/>
             </div>
 

@@ -7,7 +7,6 @@ import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import CustomSelect from "@/components/CustomSelect";
 import ListingSection from "@/components/Explore/ListingSection";
-import { useRouter } from "next/router";
 
 export { getServerSideProps };
 

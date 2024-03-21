@@ -1,7 +1,4 @@
-.containerText{
-    font-size: 20px;
-    font-weight: bold;
-}
+@import "utils/color";
 .containerDateText{
     font-size: 1px;
     font-weight: bold;
@@ -19,11 +16,11 @@
     justify-content: space-between;
 }
 .meterText{
-    color: #ffffff;
+    color: $primary-white-color;
     font-size: 15px;
 }
 .meterSmallText{
-    color: #cccccc;
+    color: $primary-white-color;
     font-size: 10px;
 }
 .RadialContainer{
@@ -42,17 +39,16 @@
     background-color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    padding:15px;
     justify-content: center;
     align-items: center;
-    gap: 20%;
+    gap: 10%;
+}
+.divider-horizontal{
+    margin-left: 0;
+    margin-right: 0;
 }
 
-.containerFeatureText{
-    font-size: 10%;
-    font-weight: bold;
-}
 
 .MeterUsageContainer{
     background-color: #ffffff;
@@ -63,29 +59,12 @@
     justify-content: space-between;
     position: relative;
     margin-bottom: 12px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 12px;
-    padding-bottom: 16px;
+    padding: 15px;
 }
 
 .MeterInsidecontainer{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 40px;
-}
-@media (max-width: 430px) {
-    .response{
-        gap: 10%;
-    }
-    .containerText{
-        font-size: 15px;
-    }
-    .containerFeatureText{
-        font-size: 10px;
-    }
-    .MeterInsidecontainer{
-        padding-left: 16px;
-    }
+    padding-left: 15px;
 }
