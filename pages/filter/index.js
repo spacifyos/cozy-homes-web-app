@@ -87,36 +87,38 @@ const Filter = () => {
 
   return (
     <CustomHeader pageTitle="Search" hideBgImage onClickGoBack={onClickGoBack}>
-      <div className="grid grid-cols-4 gap-2 pb-7">
-        <CustomInput
-          rightIcon={Images.searchOutlineActiveIcon}
-          className="col-span-2"
-          placeholder="Keyword"
-        />
+      <div className="global-horizontal-padding">
+        <div className="grid grid-cols-4 gap-2 pb-7">
+          <CustomInput
+            rightIcon={Images.searchOutlineActiveIcon}
+            className="col-span-2"
+            placeholder="Keyword"
+          />
 
-        <CustomInput placeholder="State" />
+          <CustomInput placeholder="State" />
 
-        <CustomSelect placeholder="City" optionList={cityList} />
-      </div>
-
-      <div className="grid grid-cols-4 gap-5 pb-7">
-        <div>
-          <AmenitiesComponent list={amenitiesList} />
+          <CustomSelect placeholder="City" optionList={cityList} />
         </div>
 
-        <div className="col-span-3">
-          <div className="flex pb-5 justify-end">
-            <CustomSelect
-              styles={{ width: "75%" }}
-              optionList={optionList}
-              placeholder="Sort by: Price (Low to high)"
-            />
+        <div className="grid grid-cols-4 gap-5 pb-7">
+          <div className="col-span-1">
+            <AmenitiesComponent list={amenitiesList} />
           </div>
 
-          <div className="grid grid-cols-2 gap-3 ">
-            {_.map(Array(12), (item) => (
-              <ListingCardComponent />
-            ))}
+          <div className="col-span-3">
+            <div className="flex pb-5 justify-end">
+              <CustomSelect
+                styles={{ width: "75%" }}
+                optionList={optionList}
+                placeholder="Sort by: Price (Low to high)"
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 ">
+              {_.map(Array(12), (item) => (
+                <ListingCardComponent />
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -7,7 +7,10 @@ const InvoiceComponent = ({ t }) => {
     <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative mb-3">
       <div className="flex items-center">
         <div className="flex items-center primary-bg-color p-3 global-border-radius mb-1 mr-2">
-          <CustomImage src={Images.invoiceIcon} width={20} height={20} />
+          <CustomImage
+            src={Images.invoiceIcon}
+            imageStyle={{ width: 20, height: 20 }}
+          />
         </div>
 
         <div className="flex flex-col">
@@ -17,7 +20,7 @@ const InvoiceComponent = ({ t }) => {
 
           <div className="flex items-center pb-1.5">
             <div className="pr-12">
-              <CustomText textClassName="primary-text font-bold leading-4">
+              <CustomText textClassName="primary-text font-size-xsmall font-bold leading-4">
                 RM 750
               </CustomText>
               <CustomText textClassName="disable-text font-size-xxsmall">

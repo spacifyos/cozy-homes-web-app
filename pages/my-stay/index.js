@@ -14,7 +14,7 @@ const MyStay = () => {
 
   return (
     <CustomHeader pageTitle={t("pageTitle.myStay")} hideGoBackButton padding>
-      <div className="pb-23">
+      <div className="pb-23 global-horizontal-padding">
         <UserSection t={t} />
 
         <TenancySection t={t} />

@@ -10,7 +10,7 @@ const ListingCardComponent = () => {
         src={Images.listingDefaultImage}
         width="100%"
       />
-      <CustomText textClassName="font-size-large font-bold">
+      <CustomText textClassName="font-size-small font-bold">
         Kuala Lumpur
       </CustomText>
     </div>
