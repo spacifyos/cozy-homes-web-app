@@ -1,6 +1,3 @@
-import 'daisyui/dist/full.css';
-
-
 const RoomPicCarousel = () => {
     return (
         <div>

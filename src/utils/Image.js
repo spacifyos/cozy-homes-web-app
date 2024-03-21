@@ -52,6 +52,11 @@ const Image = {
   cookAmenitiesIcon: "/images/amenities/cook_icon.png",
   swimmingAmenitiesIcon: "/images/amenities/swimming_icon.png",
   gymAmenitiesIcon: "/images/amenities/gym_icon.png",
+  overviewIcon: "/images/icon/overview_icon.png",
+  policyIcon:"/images/icon/policy_icon.png",
+  bedInactiveIcon:"/images/icon/inactive_bed_icon.png",
+  rentalFeeIcon:"/images/icon/rentalFee_icon.png",
+  squareIcon:"/images/icon/square_icon.png"
 };
 
 export default Image;

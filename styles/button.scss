@@ -49,7 +49,7 @@
 
 .primary-btn {
   border: 1px solid $primary-color;
-  background-color: $primary-color;
+  background-color: $primary-color !important;
   @include custom-button;
 
   p {
@@ -59,7 +59,7 @@
 }
 
 .disable-btn {
-  @include custom-button;
+  @include custom-button ;
   @include custom-text($primary-white-color);
 
   p {
