@@ -3,24 +3,25 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 
+
 const MeterDetail= ({ t }) => {
     return (
-        <div className="response">
-            <div className="containerItem flex flex-col justify-between items-center ">
-                <div className="primary-bg-color p-4 global-border-radius">
-                    <CustomImage src={Images.meterIcon} width={22} height={20}/>
-                </div>
+    <div className="response py-4 flex flex-row  items-center gap-4">
+        <div className="containerItem flex flex-col justify-between items-center ">
+            <div className="primary-bg-color p-3 global-border-radius">
+                <CustomImage src={Images.meterIcon} width={40} height={40}/>
+            </div>
                 <CustomText textClassName="primary-text font-bold">
                     M Vertica
                 </CustomText>
 
-                <CustomText>
+                <CustomText textClassName="line-clamp-2">
                     A-01-01, Room 1 Smart Meter
                 </CustomText>
             </div>
 
             <div className="divider divider-horizontal"></div>
-            <div className="flex flex-col items-start pt-2 ">
+            <div className="flex flex-col items-start ">
 
                 <CustomLabelValue
                     label={t("myMeter.serialNumber")}
