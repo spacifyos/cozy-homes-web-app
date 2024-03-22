@@ -22,7 +22,7 @@ const MeterComponent = ({ t }) => {
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1">
+          <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1 pr-5">
             M Vertica, A-01-01, Room 1 Smart Meter
           </CustomText>
           <div className="flex items-center">

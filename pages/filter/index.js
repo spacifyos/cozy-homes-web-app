@@ -131,15 +131,15 @@ const Filter = () => {
           <CustomSelect placeholder="City" optionList={cityList} />
         </div>
 
-        <div className="grid grid-cols-4 gap-5 pb-7">
-          <div className="col-span-1">
-            <AmenitiesComponent
-              list={iconLiat}
-              onClickSelectAmenities={onClickSelectAmenities}
-            />
+        <div className="w-full pb-7 flex gap-5">
+          <div className="w-1/5">
+              <AmenitiesComponent
+                list={iconLiat}
+                onClickSelectAmenities={onClickSelectAmenities}
+              />
           </div>
 
-          <div className="col-span-3">
+          <div className="w-4/5">
             <div className="flex pb-5 justify-end">
               <CustomSelect
                 styles={{ width: "75%" }}
