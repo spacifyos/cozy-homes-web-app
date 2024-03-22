@@ -9,7 +9,7 @@ const UserSection = ({ t }) => {
         <CustomImage src={Images.userIcon} height={25} width={55} />
 
         <div className="flex flex-col justify-center pl-2">
-          <CustomText textClassName="font-size-xlarge font-bold line-clamp-1 pb-1">
+          <CustomText textClassName="font-size-large font-bold line-clamp-1 pb-1">
             John Doe
           </CustomText>
 

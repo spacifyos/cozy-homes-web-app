@@ -39,20 +39,22 @@ body {
   }
 }
 
-::-webkit-scrollbar {
-  display: none !important;
-}
+//::-webkit-scrollbar {
+//  display: none !important;
+//}
 
 .pb-23 {
   padding-bottom: 88px;
 }
 
 .global-horizontal-padding {
-  padding: 0 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .global-horizontal-margin {
-  margin: 0 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .global-box-shadow {

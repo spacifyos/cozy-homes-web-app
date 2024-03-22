@@ -42,15 +42,21 @@ const TenancySection = ({ t }) => {
   };
 
   return (
-    <div className="pb-7">
-      <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+    <div className="pb-7 ">
+      <CustomText textClassName="font-size-xlarge font-bold pb-2">
         {t("myStay.myTenancy")}
       </CustomText>
 
-      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center">
+      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center relative">
+        <CustomImage
+          src={Images.moreIcon}
+          width={25}
+          height={25}
+          className="absolute right-4 top-3"
+        />
         <div className="flex flex-col items-start">
-          <div className="primary-bg-color p-3 global-border-radius mb-1">
-            <CustomImage src={Images.buildingIcon} width={20} height={20} />
+          <div className="primary-bg-color p-2 global-border-radius mb-1">
+            <CustomImage src={Images.buildingIcon} width={30} height={30} />
           </div>
 
           <TenancyLabel />
