@@ -29,7 +29,7 @@ function App({ Component, pageProps }) {
           <div
             style={{ maxWidth: 500 }}
             className={
-              "primaryWhite-bg-color flex flex-col w-screen h-full relative"
+              "primaryWhite-bg-color flex flex-col w-screen h-full relative "
             }
           >
             <Toaster />

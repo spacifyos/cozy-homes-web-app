@@ -4,7 +4,7 @@ import Images from "@/src/utils/Image";
 const SplashScreen = () => {
   return (
     <div
-      className="primary-bg-color flex justify-center items-start h-full"
+      className="primary-bg-color flex justify-center items-start h-screen"
       style={{ paddingTop: "35%" }}
     >
       <div>
