@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomSelect from "@/components/CustomSelect";
 import ListingSection from "@/components/Explore/ListingSection";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export { getServerSideProps };
 
@@ -21,12 +22,18 @@ function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
 
+  const [selectedCategory, setSelectedCategory] = useState("City");
+
   const onChangeCity = (value) => {
     console.log(value.target.value);
   };
 
   const onClickToFilter = () => {
     router.push("/filter");
+  };
+
+  const onClickSelectCategory = (category) => {
+    setSelectedCategory(category);
   };
 
   return (
@@ -57,7 +64,11 @@ function Home() {
           />
         </div>
 
-        <ListingSection lists={Array(6)} />
+        <ListingSection
+          lists={Array(6)}
+          onClickSelectCategory={onClickSelectCategory}
+          selectedCategory={selectedCategory}
+        />
       </div>
     </CustomHeader>
   );

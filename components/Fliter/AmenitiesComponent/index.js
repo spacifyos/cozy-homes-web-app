@@ -20,7 +20,6 @@ const AmenitiesComponent = ({ list, onClickSelectAmenities }) => {
               src={isActive ? iconActive : icon}
               width={25}
               height={25}
-              className=""
             />
             <CustomText
               textClassName={`${isActive ? "primary-text" : "disable-text"} text-center font-size-xxsmall`}
