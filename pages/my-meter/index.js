@@ -11,40 +11,47 @@ import MeterFeature from "@/components/MyMeter/MeterFeature";
 import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 import { useRouter } from "next/router";
 
-
 export { getServerSideProps };
 
 const MyMeter = () => {
-    const router = useRouter();
-    const { t } = useTranslation("common");
-    const onClickGoBack = () => {
-        router.push("/my-stay");
-    };
-    return (
+  const router = useRouter();
+  const { t } = useTranslation("common");
+  const onClickGoBack = () => {
+    router.push("/my-stay");
+  };
+  return (
+    <CustomHeader
+      pageTitle={t("pageTitle.myMeter")}
+      hideBgImage
+      onClickGoBack={onClickGoBack}
+    >
+      <div className="pb-23 global-horizontal-padding">
+        <div className="meterUsage">
+          <CustomText textClassName="font-size-xxlarge font-bold">
+            {t("myMeter.todayUsage")}
+          </CustomText>
+          <CustomImage
+            className="mr-4"
+            src={Images.refreshIcon}
+            height={18}
+            width={18}
+          />
+        </div>
 
-        <CustomHeader pageTitle={t("pageTitle.myMeter")} hideBgImage onClickGoBack={onClickGoBack}>
-            <div className="pb-23">
-            <div className="meterUsage">
-                <CustomText textClassName="font-size-xxlarge font-bold">
-                    {t("myMeter.todayUsage")}
-                </CustomText>
-                <CustomImage className="mr-4" src={Images.refreshIcon} height={18} width={18}/>
-            </div>
+        <div className="RadialContainer p-3">
+          <MeterRadialProgressComponent t={t} />
+        </div>
 
-            <div className="RadialContainer p-3">
-                <MeterRadialProgressComponent t={t}/>
-            </div>
+        <MeterDetail t={t} />
 
-            <MeterDetail t={t}/>
+        <BalanceUnit t={t} />
 
-            <BalanceUnit t={t}/>
+        <MeterFeature t={t} />
 
-            <MeterFeature t={t}/>
-
-            <MeterUsageSection t={t}/>
-         </div>
-        </CustomHeader>
-    );
+        <MeterUsageSection t={t} />
+      </div>
+    </CustomHeader>
+  );
 };
 
 export default withTranslation("common")(MyMeter);
