@@ -23,13 +23,13 @@ function App({ Component, pageProps }) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <div
-          className={"flex flex-col justify-center items-center h-screen"}
+          className={"flex flex-col justify-center items-center h-full"}
           style={{ backgroundColor: Color.primaryBgColor }}
         >
           <div
             style={{ maxWidth: 500 }}
             className={
-              "primaryWhite-bg-color flex flex-col w-screen h-full relative overflow-auto"
+              "primaryWhite-bg-color flex flex-col w-screen h-full relative"
             }
           >
             <Toaster />

@@ -2,8 +2,14 @@ import CustomText from "@/components/CustomText";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
+import Skeleton from "@/components/Skeleton";
 
-const ListingSection = ({ lists, onClickSelectCategory, selectedCategory }) => {
+const ListingSection = ({
+  lists,
+  onClickSelectCategory,
+  selectedCategory,
+  listingLoading,
+}) => {
   return (
     <div>
       <CustomText textClassName="font-size-xlarge font-bold pb-2">
@@ -39,7 +45,7 @@ const ListingSection = ({ lists, onClickSelectCategory, selectedCategory }) => {
 
       <div className="grid grid-cols-3 gap-3">
         {_.map(lists, (item) => {
-          return <ListingCardComponent />;
+          return listingLoading ? <Skeleton /> : <ListingCardComponent />;
         })}
       </div>
     </div>

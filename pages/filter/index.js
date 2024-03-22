@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Fliter/AmenitiesComponent";
 import ListingCardComponent from "@/components/Fliter/ListingCardComponent";
 import _ from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Skeleton from "@/components/Skeleton";
 
 const cityList = [
   { name: "Skudai", value: "skudai" },
@@ -94,6 +95,13 @@ const Filter = () => {
   const router = useRouter();
 
   const [iconLiat, setIconList] = useState(amenitiesList);
+  const [listingLoading, setListingLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setListingLoading(false);
+    }, 1000);
+  }, []);
 
   const onClickGoBack = () => {
     router.back();
@@ -133,10 +141,10 @@ const Filter = () => {
 
         <div className="w-full pb-7 flex gap-5">
           <div className="w-1/5">
-              <AmenitiesComponent
-                list={iconLiat}
-                onClickSelectAmenities={onClickSelectAmenities}
-              />
+            <AmenitiesComponent
+              list={iconLiat}
+              onClickSelectAmenities={onClickSelectAmenities}
+            />
           </div>
 
           <div className="w-4/5">
@@ -149,9 +157,13 @@ const Filter = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 ">
-              {_.map(Array(12), (item) => (
-                <ListingCardComponent />
-              ))}
+              {_.map(Array(12), (item) =>
+                listingLoading ? (
+                  <Skeleton />
+                ) : (
+                  <ListingCardComponent listingLoading={listingLoading} />
+                ),
+              )}
             </div>
           </div>
         </div>
