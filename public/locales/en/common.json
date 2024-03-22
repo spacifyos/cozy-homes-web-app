@@ -32,6 +32,16 @@
   },
   "detail": {
     "overView": "Overview",
-    "policy": "Policy"
+    "policy": "Policy",
+    "facilities": "Facilities",
+    "aircond": "Air-Conditioner",
+    "laundryArea": "Laundry Area",
+    "chairAndDesk": "Chair and Desk",
+    "sharedKitchen": "Shared Kitchen",
+    "closet": "Closet",
+    "diningArea": "Dining Area",
+    "wifi": "Wi-Fi",
+    "mailbox": "Mail Box",
+    "recommend": "Recommend For You"
   }
 }

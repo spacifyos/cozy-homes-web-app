@@ -1,4 +1,3 @@
-import _ from "lodash";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
@@ -14,7 +13,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.bathAmenitiesIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall">Bathroom</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Bathroom</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">Shared</CustomText>
 
             </div>
@@ -24,7 +23,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.bedInactiveIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall">Bed</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Bed</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">Queen</CustomText>
 
             </div>
@@ -34,7 +33,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.squareIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall">Square ft.</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Square ft.</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">150</CustomText>
 
             </div>
@@ -44,7 +43,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.rentalFeeIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall">Rental Fee (per month)</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Rental Fee (per month)</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">RM750</CustomText>
 
             </div>

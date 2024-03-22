@@ -56,7 +56,18 @@ const Image = {
   policyIcon:"/images/icon/policy_icon.png",
   bedInactiveIcon:"/images/icon/inactive_bed_icon.png",
   rentalFeeIcon:"/images/icon/rentalFee_icon.png",
-  squareIcon:"/images/icon/square_icon.png"
+  squareIcon:"/images/icon/square_icon.png",
+  aircondIcon:"/images/icon/aircond_icon.png",
+  cutleyIcon:"/images/icon/cutlery_icon.png",
+  deskChairIcon:"/images/icon/desk-chair_icon.png",
+  gasStoveIcon:"/images/icon/gas-stove_icon.png",
+  mailboxIcon:"/images/icon/mailbox_icon.png",
+  vectorIcon:"/images/icon/Vector_icon.png",
+  wardrobeIcon:"/images/icon/wardrobe_icon.png",
+  wifiIcon:"/images/icon/wifi_icon.png",
+  whatsapp:"/images/icon/whatsapp_icon.png",
+  blackphone:"/images/icon/blackphone.png",
+  agent:"/images/agent.png"
 };
 
 export default Image;

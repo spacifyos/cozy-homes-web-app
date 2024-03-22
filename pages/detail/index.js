@@ -4,6 +4,10 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import RoomPicCarousel from "@/components/Detail/RoomPicCarousel";
 import DetailComponent from "@/components/Detail/DetailComponent";
 import DetailFeatureSection from "@/components/Detail/DetailFeatureSection";
+import Facilities from "@/components/Detail/Facilities";
+import AgentSection from "@/components/Detail/AgentSection";
+import RoomzMap from "@/components/Detail/RoomzMap";
+import RecommendSection from "@/components/Detail/RecommendSection";
 
 
 export { getServerSideProps };
@@ -17,13 +21,17 @@ const Detail = () => {
         <CustomHeader pageTitle={t("pageTitle.detail")} hideBgImage onClickGoBack={onClickGoBack}>
             <div className="pb-23">
 
-                <RoomPicCarousel t={t} />
+                <RoomPicCarousel t={t}/>
 
                 <DetailComponent t={t}/>
 
                 <DetailFeatureSection t={t}/>
 
+                <Facilities t={t}/>
 
+                <RoomzMap t={t}/>
+
+                <RecommendSection t={t}/>
             </div>
         </CustomHeader>
     );

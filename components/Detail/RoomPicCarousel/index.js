@@ -25,8 +25,6 @@ const RoomPicCarousel = () => {
                 <a href="#item3" className="dot-btn" tabIndex="3"></a>
                 <a href="#item4" className="dot-btn" tabIndex="4"></a>
             </div>
-
-
         </div>
 
 
