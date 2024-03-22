@@ -43,7 +43,7 @@ const TenancySection = ({ t }) => {
 
   return (
     <div className="pb-7 ">
-      <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+      <CustomText textClassName="font-size-xlarge font-bold pb-2">
         {t("myStay.myTenancy")}
       </CustomText>
 
