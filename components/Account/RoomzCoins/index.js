@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 
 const RoomzCoins = () => {
   return (
-    <div className="coin-container">
+    <div className="profile-coin-container">
       <CustomImage
         src={Images.moreIcon}
         height={25}
@@ -12,7 +12,7 @@ const RoomzCoins = () => {
         className="absolute right-5 top-5"
       />
 
-      <div className="coin-icon-container">
+      <div className="profile-coin-icon-container">
         <CustomImage src={Images.logoImage} height={30} width={30} />
       </div>
 

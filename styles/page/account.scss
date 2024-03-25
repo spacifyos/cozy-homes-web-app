@@ -1,12 +1,12 @@
-.user-info-container {
+.profile-user-info-container {
   @apply p-5 w-full global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center relative;
 }
 
-.coin-container {
+.profile-coin-container {
   @apply p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center relative;
 }
 
-.coin-icon-container {
+.profile-coin-icon-container {
   @apply primary-bg-color p-2 global-box-shadow global-border-radius mb-2;
 }
 

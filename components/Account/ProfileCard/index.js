@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 
 const ProfileCard = () => {
   return (
-    <div className="user-info-container">
+    <div className="profile-user-info-container">
       <CustomImage
         src={Images.editIcon}
         height={25}

@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 const RadialProgressComponent = ({ t }) => {
   return (
     <div
-      className="radial-progress primaryWhite-bg-color text-primary-content border-16 border-secondary-color"
+      className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color"
       style={{ "--value": 70, "--size": "8rem", "--thickness": "0.5rem" }}
       role="progressbar"
     >
