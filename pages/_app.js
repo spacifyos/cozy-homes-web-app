@@ -1,5 +1,4 @@
 import "@/styles/globals.scss";
-import "@/styles/page/filter.scss";
 import Color from "@/src/utils/Color";
 import { Toaster } from "react-hot-toast";
 import { appWithTranslation, useTranslation } from "next-i18next";

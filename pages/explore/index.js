@@ -47,7 +47,7 @@ function Home() {
     <CustomHeader hideGoBackButton padding>
       <BannerCarousel />
 
-      <div className="pb-24 global-horizontal-padding">
+      <div className="body-container">
         <div className="grid grid-cols-6 gap-4 pb-7">
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}

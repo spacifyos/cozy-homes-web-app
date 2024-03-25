@@ -6,7 +6,7 @@ import _ from "lodash";
 const InvoiceSection = ({ t, selectedCategory, onClickSelectCategory }) => {
   return (
     <div>
-      <CustomText textClassName="font-size-xlarge font-bold pb-2">
+      <CustomText textClassName="section-title">
         {t("myStay.myInvoice")}
       </CustomText>
 

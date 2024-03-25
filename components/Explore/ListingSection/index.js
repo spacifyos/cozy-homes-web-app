@@ -12,9 +12,7 @@ const ListingSection = ({
 }) => {
   return (
     <div>
-      <CustomText textClassName="font-size-xlarge font-bold pb-2">
-        Popular
-      </CustomText>
+      <CustomText textClassName="section-title">Popular</CustomText>
 
       <div className="flex items-center pb-4">
         <CustomButton

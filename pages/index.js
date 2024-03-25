@@ -12,11 +12,11 @@ function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     router.replace("/explore");
-  //   }, 1000);
-  // });
+  useEffect(() => {
+    setTimeout(() => {
+      router.replace("/explore");
+    }, 1000);
+  });
 
   return (
     <div

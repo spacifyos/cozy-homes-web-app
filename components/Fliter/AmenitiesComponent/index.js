@@ -5,7 +5,7 @@ import CustomText from "@/components/CustomText";
 const AmenitiesComponent = ({ list, onClickSelectAmenities }) => {
   return (
     <div
-      className="amenities-container grid grid-cols-1 gap-5 primaryWhite-bg-color px-3 py-6 global-box-shadow global-border-radius sticky overflow-y-scroll"
+      className="amenities-nav-container"
       style={{ height: 600, top: 10 }}
     >
       {_.map(list, (item) => {

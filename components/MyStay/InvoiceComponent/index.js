@@ -4,9 +4,9 @@ import CustomText from "@/components/CustomText";
 
 const InvoiceComponent = ({ t }) => {
   return (
-    <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative mb-3">
+    <div className="invoice-container">
       <div className="flex items-center">
-        <div className="flex items-center primary-bg-color p-2 global-border-radius mb-1 mr-2">
+        <div className="invoice-icon-container">
           <CustomImage
             src={Images.invoiceIcon}
             imageStyle={{ width: 30, height: 30 }}

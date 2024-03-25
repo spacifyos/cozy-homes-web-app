@@ -5,7 +5,7 @@ import CustomButton from "@/components/CustomButton";
 
 const MeterComponent = ({ t }) => {
   return (
-    <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative">
+    <div className="meter-container">
       <CustomImage
         src={Images.moreIcon}
         width={25}
