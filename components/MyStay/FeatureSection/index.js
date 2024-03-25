@@ -8,6 +8,7 @@ const FeatureSection = ({ t }) => {
     // { name: "Smart Lock", icon: Images.lockIcon },
     { name: t("myStay.eAgreement"), icon: Images.agreementIcon },
     { name: t("myStay.helpCenter"), icon: Images.helpIcon },
+
   ];
 
   return (

@@ -1,21 +1,43 @@
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
+import CustomText from "@/components/CustomText";
+import CustomButton from "@/components/CustomButton";
+
 const RoomPicCarousel = () => {
     return (
-        <div>
-            <div className="carousel w-full">
-                <div id="item1" className="carousel-item w-full">
-                    <img src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg"
+        <div className="pb-5">
+            <div className="carousel w-full RoompicContainer">
+                <div id="item1" className="carousel-item w-full relative">
+                    <CustomImage
+                        className="btn-sm absolute right-0"
+                        src={Images.bookMarks}
+                    />
+                    <img src={Images.listingDefaultImage}
+                         className="w-full"/>
+
+                </div>
+                <div id="item2" className="carousel-item w-full relative">
+                    <CustomImage
+                        className="btn-sm absolute right-0"
+                        src={Images.bookMarks}
+                    />
+                    <img src={Images.listingDefaultImage}
                          className="w-full"/>
                 </div>
-                <div id="item2" className="carousel-item w-full">
-                    <img src="https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg"
+                <div id="item3" className="carousel-item w-full relative">
+                    <CustomImage
+                        className="btn-sm absolute right-0"
+                        src={Images.bookMarks}
+                    />
+                    <img src={Images.listingDefaultImage}
                          className="w-full"/>
                 </div>
-                <div id="item3" className="carousel-item w-full">
-                    <img src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg"
-                         className="w-full"/>
-                </div>
-                <div id="item4" className="carousel-item w-full">
-                    <img src="https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+                <div id="item4" className="carousel-item w-full relative">
+                    <CustomImage
+                        className="btn-sm absolute right-0"
+                        src={Images.bookMarks}
+                    />
+                    <img src={Images.listingDefaultImage}
                          className="w-full"/>
                 </div>
             </div>

@@ -32,6 +32,8 @@ const Detail = () => {
                 <RoomzMap t={t}/>
 
                 <RecommendSection t={t}/>
+
+
             </div>
         </CustomHeader>
     );

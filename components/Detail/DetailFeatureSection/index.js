@@ -6,7 +6,7 @@ import Images from "@/src/utils/Image";
 const DetailFeatureSection = ({ t }) => {
 
     return (
-        <div className="grid grid-cols-4 gap-2 flex justify-center items-center pt-5">
+        <div className="grid grid-cols-4 gap-2 flex justify-center items-center pb-5">
             <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center">
 
                     <CustomImage

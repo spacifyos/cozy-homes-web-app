@@ -65,9 +65,15 @@ const Image = {
   vectorIcon:"/images/icon/Vector_icon.png",
   wardrobeIcon:"/images/icon/wardrobe_icon.png",
   wifiIcon:"/images/icon/wifi_icon.png",
-  whatsapp:"/images/icon/whatsapp_icon.png",
+  whatsapp:"/images/icon/whatsapp.png",
   blackphone:"/images/icon/blackphone.png",
-  agent:"/images/agent.png"
+  agent:"/images/agent.png",
+  bookMarks:"/images/icon/bookmark_n.png",
+  femaleUnitIcon:"/images/icon/female_unit_s.png",
+  windowIcon:"/images/icon/window_n.png",
+  paidIcon:"/images/icon/paid.png",
+  verifiedIcon:"/images/icon/verified.png",
+  call:"/images/icon/call.png"
 };
 
 export default Image;
