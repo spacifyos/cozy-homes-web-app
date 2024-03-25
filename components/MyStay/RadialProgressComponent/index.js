@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 
-const RadialProgressComponent = ({ t }) => {
+const RadialProgressComponent = ({ t, dimensions }) => {
   const [remainingDay, setRemainingDay] = useState(0);
   const [percentage, setPercentage] = useState(0);
 
@@ -21,12 +21,13 @@ const RadialProgressComponent = ({ t }) => {
     return () => clearInterval(interval);
   }, [remainingDay]);
 
+
   return (
     <div
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color"
       style={{
         "--value": percentage,
-        "--size": "8rem",
+        "--size": `${dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,
         "--thickness": "0.5rem",
       }}
       role="progressbar"
