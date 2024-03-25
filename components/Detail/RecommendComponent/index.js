@@ -5,8 +5,8 @@ import CustomButton from "@/components/CustomButton";
 
 const RoomPicCarousel = () => {
     return (
-        <div className="pb-5">
-            <div className="carousel">
+        <div className="">
+            <div className="carousel pb-5">
 
                 <div id="Recommenditem1" className="carousel-item relative">
 

@@ -6,7 +6,7 @@ import CustomButton from "@/components/CustomButton";
 const RoomPicCarousel = () => {
     return (
         <div className="pb-5">
-            <div className="carousel w-full RoompicContainer">
+            <div className="carousel w-full room-pic-container">
                 <div id="item1" className="carousel-item w-full relative">
                     <CustomImage
                         className="btn-sm absolute right-0"

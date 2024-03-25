@@ -12,7 +12,7 @@ const roomlist ={
 
 }
     return(
-        <div className="pb-4">
+        <div className="pb-2">
 
             <CustomText textClassName="font-size-xlarge font-bold pb-2">
                 {t("detail.recommend")}

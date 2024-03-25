@@ -33,6 +33,7 @@ const Detail = () => {
 
                 <RecommendSection t={t}/>
 
+                <AgentSection t={t}/>
 
             </div>
         </CustomHeader>

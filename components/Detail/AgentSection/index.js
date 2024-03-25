@@ -5,20 +5,23 @@ import CustomImage from "@/components/CustomImage";
 
 const AgentSection = ({ t }) => {
     return (
-        <div className="fixed bottom-0 w-full" style={{maxWidth: 500}}>
-            <div className="grid-cols-12 primaryWhite-bg-color rounded-2xl global-box-shadow relative"
-                 style={{overflow: " hidden"}}>
-                <div className=" flex-row flex p-2">
-                    <CustomImage
-                        src={Images.agent}
-                        width={60}
-                        className="rounded-2xl"
-                    />
-                    <div className="flex flex-col pl-12 pt-11 absolute">
-                        <div className="p-1 global-border-radius mb-1">
+        <div className="sticky bottom-3 w-full" style={{maxWidth: 470}}>
+            <div className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative"
+                 style={{overflow: "hidden"}}>
+                <div className=" flex-row flex p-2 ">
+                    <div className="relative">
+                        <CustomImage
+                            src={Images.agent}
+                            width={60}
+                            className="rounded-2xl"
+                        />
+                        <div className="flex flex-col bottom-0 absolute" style={{right:-10}}>
+                            {/*<div className="p-1 global-border-radius mb-1">*/}
                             <CustomImage src={Images.paidIcon} width={20} height={20}/>
+                            {/*</div>*/}
                         </div>
                     </div>
+
 
                     <div className="flex flex-col items-start pl-5 ">
                         <CustomText textClassName="font-size-small font-bold pt-2">
