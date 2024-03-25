@@ -3,8 +3,8 @@ import MeterComponent from "@/components/MyStay/MeterComponent";
 
 const BalanceUnit = ({t}) => {
     return (
-        <div className="pb-7">
-             <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-center items-center mt-3">
+
+             <div className="balance-container">
                 <div className="flex flex-row justify-center items-center">
                     <CustomText textClassName="font-size-normal">
                         {t("myMeter.balanceUnit")}:
@@ -14,7 +14,7 @@ const BalanceUnit = ({t}) => {
 
                     <CustomText textClassName="disable-text font-size-xxsmall italic"> {t("myMeter.lastConnectedAt")}: 15 Dec 2022, 2:15pm</CustomText>
              </div>
-        </div>
+
     );
 };
 

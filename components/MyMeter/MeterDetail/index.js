@@ -6,8 +6,8 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 
 const MeterDetail= ({ t }) => {
     return (
-    <div className="response py-4 flex flex-row  items-center gap-4">
-        <div className="containerItem flex flex-col justify-between items-center ">
+    <div className="meter-response">
+        <div className="flex flex-1 flex-col items-center">
             <div className="primary-bg-color p-3 global-border-radius">
                 <CustomImage src={Images.meterIcon} width={40} height={40}/>
             </div>
@@ -15,13 +15,13 @@ const MeterDetail= ({ t }) => {
                     M Vertica
                 </CustomText>
 
-                <CustomText textClassName="line-clamp-2">
+                <CustomText textClassName="line-clamp-2 text-center">
                     A-01-01, Room 1 Smart Meter
                 </CustomText>
             </div>
 
-            <div className="divider divider-horizontal"></div>
-            <div className="flex flex-col items-start ">
+            <div className="divider divider-horizontal px-4"></div>
+            <div className="flex flex-col items-start flex-1">
 
                 <CustomLabelValue
                     label={t("myMeter.serialNumber")}

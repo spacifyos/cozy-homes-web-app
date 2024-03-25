@@ -6,7 +6,7 @@ import MeterUsageComponent from "@/components/MyMeter/MeterUsageComponent";
 const InvoiceSection = ({ t, selectChange, onClickChange }) => {
     return (
         <div>
-            <CustomText textClassName="font-size-xlarge font-bold pb-2">
+            <CustomText textClassName="section-title">
                 {t("myMeter.meterUsage")}
             </CustomText>
 

@@ -7,9 +7,9 @@ const MeterFeatureComponent = ({ item }) => {
     const icon = _.get(item, ["icon"], "");
 
     return (
-        <div className="flex flex-col justify-center items-center MeterItem ">
-            <div className="global-box-shadow global-border-radius p-2 mb-2 flex justify-center items-center min-h-20 primaryWhite-bg-color">
-                <CustomImage src={icon} height={60} width={10} className="w-4/5"  />
+        <div className="flex flex-col justify-center items-center text-center">
+            <div className="meter-feature-component">
+                <CustomImage src={icon} height={50} width={50} />
 
             </div>
 
