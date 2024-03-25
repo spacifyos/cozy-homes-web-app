@@ -5,7 +5,7 @@ import CustomButton from "@/components/CustomButton";
 
 const MeterComponent = ({ t }) => {
   return (
-    <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative">
+    <div className="meter-container">
       <CustomImage
         src={Images.moreIcon}
         width={25}
@@ -22,7 +22,7 @@ const MeterComponent = ({ t }) => {
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1">
+          <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1 pr-5">
             M Vertica, A-01-01, Room 1 Smart Meter
           </CustomText>
           <div className="flex items-center">

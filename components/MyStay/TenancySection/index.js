@@ -18,7 +18,7 @@ const TenancyLabel = () => {
 
 const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
   return (
-    <div className="flex justify-center items-center secondary-bg-color px-3 py-2 global-border-radius mt-1">
+    <div className="auto-pay-button">
       <CustomText
         textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold pr-3`}
       >
@@ -43,11 +43,11 @@ const TenancySection = ({ t }) => {
 
   return (
     <div className="pb-7 ">
-      <CustomText textClassName="font-size-xlarge font-bold pb-2">
+      <CustomText textClassName="section-title">
         {t("myStay.myTenancy")}
       </CustomText>
 
-      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center relative">
+      <div className="tenancy-container">
         <CustomImage
           src={Images.moreIcon}
           width={25}

@@ -1,0 +1,8 @@
+.carousel-container {
+  @apply carousel;
+  @apply carousel-center;
+  @apply max-w-lg;
+  @apply p-4;
+  @apply space-x-1;
+  @apply rounded-box;
+}

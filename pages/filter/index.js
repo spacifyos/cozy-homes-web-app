@@ -6,7 +6,8 @@ import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Fliter/AmenitiesComponent";
 import ListingCardComponent from "@/components/Fliter/ListingCardComponent";
 import _ from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Skeleton from "@/components/Skeleton";
 
 const cityList = [
   { name: "Skudai", value: "skudai" },
@@ -98,6 +99,13 @@ const Filter = () => {
   const router = useRouter();
 
   const [iconLiat, setIconList] = useState(amenitiesList);
+  const [listingLoading, setListingLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setListingLoading(false);
+    }, 1000);
+  }, []);
 
   const onClickGoBack = () => {
     router.back();
@@ -122,7 +130,7 @@ const Filter = () => {
 
   return (
     <CustomHeader pageTitle="Search" hideBgImage onClickGoBack={onClickGoBack}>
-      <div className="global-horizontal-padding">
+      <div className="body-container" style={{ paddingBottom: 0 }}>
         <div className="grid grid-cols-4 gap-2 pb-7">
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}
@@ -135,15 +143,15 @@ const Filter = () => {
           <CustomSelect placeholder="City" optionList={cityList} />
         </div>
 
-        <div className="grid grid-cols-4 gap-5 pb-7">
-          <div className="col-span-1">
+        <div className="w-full pb-7 flex gap-5">
+          <div className="w-1/5">
             <AmenitiesComponent
               list={iconLiat}
               onClickSelectAmenities={onClickSelectAmenities}
             />
           </div>
 
-          <div className="col-span-3">
+          <div className="w-4/5">
             <div className="flex pb-5 justify-end">
               <CustomSelect
                 styles={{ width: "75%" }}
@@ -153,9 +161,13 @@ const Filter = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 ">
-              {_.map(Array(12), (item) => (
-                <ListingCardComponent />
-              ))}
+              {_.map(Array(12), (item) =>
+                listingLoading ? (
+                  <Skeleton />
+                ) : (
+                  <ListingCardComponent listingLoading={listingLoading} />
+                ),
+              )}
             </div>
           </div>
         </div>

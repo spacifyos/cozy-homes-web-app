@@ -5,30 +5,24 @@ import CustomText from "@/components/CustomText";
 const UserSection = ({ t }) => {
   return (
     <div className="flex justify-between pb-5">
-      <div className="flex items-center pr-3">
+      <div className="user-info-container">
         <CustomImage src={Images.userIcon} height={25} width={55} />
 
-        <div className="flex flex-col justify-center pl-2">
-          <CustomText textClassName="font-size-large font-bold line-clamp-1 pb-1">
-            John Doe
-          </CustomText>
+        <div className="user-info-content">
+          <CustomText textClassName="user-name">John Doe</CustomText>
 
           <div className="flex items-center">
             <CustomImage src={Images.phoneIcon} height={15} width={15} />
-            <CustomText textClassName="disable-text font-size-xsmall pl-2 line-clamp-1">
-              +6012-3456789
-            </CustomText>
+            <CustomText textClassName="user-info">+6012-3456789</CustomText>
           </div>
           <div className="flex items-center">
             <CustomImage src={Images.emailIcon} height={15} width={15} />
-            <CustomText textClassName="disable-text font-size-xsmall pl-2 line-clamp-1">
-              user@gmail.com
-            </CustomText>
+            <CustomText textClassName="user-info">user@gmail.com</CustomText>
           </div>
         </div>
       </div>
 
-      <div className="primaryWhite-bg-color global-box-shadow p-3 flex items-center justify-center global-border-radius">
+      <div className="coin-container">
         <div className="p-2 primary-bg-color rounded-md">
           <CustomImage src={Images.logoImage} height={30} width={30} />
         </div>

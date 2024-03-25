@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 
 const RoomzCoins = () => {
   return (
-    <div className="p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col justify-content items-center relative">
+    <div className="profile-coin-container">
       <CustomImage
         src={Images.moreIcon}
         height={25}
@@ -12,7 +12,7 @@ const RoomzCoins = () => {
         className="absolute right-5 top-5"
       />
 
-      <div className="primary-bg-color p-2 global-box-shadow global-border-radius mb-2">
+      <div className="profile-coin-icon-container">
         <CustomImage src={Images.logoImage} height={30} width={30} />
       </div>
 

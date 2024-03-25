@@ -7,8 +7,8 @@ const FeatureComponent = ({ item }) => {
   const icon = _.get(item, ["icon"], "");
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="global-box-shadow global-border-radius w-full p-3 mb-2 flex justify-center items-center min-h-24 primaryWhite-bg-color">
+    <div className="feature-container">
+      <div className="feature-icon-container">
         <CustomImage src={icon} imageStyle={{ width: 50, height: 55 }} />
       </div>
 

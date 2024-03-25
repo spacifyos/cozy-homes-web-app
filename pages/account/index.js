@@ -13,7 +13,7 @@ export { getServerSideProps };
 const Account = () => {
   return (
     <CustomHeader pageTitle={"Account"} hideGoBackButton padding>
-      <div className="global-horizontal-padding">
+      <div className="body-container">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
           <ProfileCard />
           <RoomzCoins />
@@ -57,8 +57,8 @@ const Account = () => {
 
         <div className="divider-line"></div>
 
-        <div className="flex justify-between items-center pb-28">
-          <div className="flex items-center primaryWhite-bg-color p-3 global-box-shadow global-border-radius">
+        <div className="flex justify-between items-center pb-3">
+          <div className="logout-container">
             <CustomImage
               src={Images.primaryLogoutIcon}
               width={25}

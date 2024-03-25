@@ -10,7 +10,7 @@ const imageList = [
 
 const BannerCarousel = () => {
   return (
-    <div className="carousel carousel-center max-w-lg p-4 space-x-1 rounded-box">
+    <div className="carousel-container">
       {_.map(imageList, (item) => {
         return (
           <div className="carousel-item">
