@@ -42,6 +42,12 @@
     "diningArea": "Dining Area",
     "wifi": "Wi-Fi",
     "mailbox": "Mail Box",
-    "recommend": "Recommend For You"
+    "recommend": "Recommend For You",
+    "bathRoom": "Bathroom",
+    "shared": "Shared",
+    "bed": "Bed",
+    "queen": "Queen",
+    "squareFt": "Square ft.",
+    "rentalFee": "Rental Fee (per month)"
   }
 }

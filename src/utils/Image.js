@@ -73,7 +73,8 @@ const Image = {
   windowIcon:"/images/icon/window_n.png",
   paidIcon:"/images/icon/paid.png",
   verifiedIcon:"/images/icon/verified.png",
-  call:"/images/icon/call.png"
+  call:"/images/icon/call.png",
+  bookmarks_s:"/images/icon/bookmarks_s.png"
 };
 
 export default Image;

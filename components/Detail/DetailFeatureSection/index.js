@@ -6,44 +6,44 @@ import Images from "@/src/utils/Image";
 const DetailFeatureSection = ({ t }) => {
 
     return (
-        <div className="grid grid-cols-4 gap-2 flex justify-center items-center pb-5">
-            <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center">
+        <div className="grid grid-cols-4 gap-2 pb-5">
+            <div className="detail-feature-container">
 
                     <CustomImage
                         src={Images.bathAmenitiesIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Bathroom</CustomText>
-                <CustomText textClassName="primary-text font-size-small font-bold">Shared</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">   {t("detail.bathRoom")}</CustomText>
+                <CustomText textClassName="primary-text font-size-small font-bold">{t("detail.shared")}</CustomText>
 
             </div>
-            <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center items-start">
+            <div className="detail-feature-container">
 
                     <CustomImage
                         src={Images.bedInactiveIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Bed</CustomText>
-                <CustomText textClassName="primary-text font-size-small font-bold">Queen</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.bed")}</CustomText>
+                <CustomText textClassName="primary-text font-size-small font-bold">{t("detail.queen")}</CustomText>
 
             </div>
-            <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center items-start">
+            <div className="detail-feature-container">
 
                     <CustomImage
                         src={Images.squareIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Square ft.</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.squareFt")}</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">150</CustomText>
 
             </div>
-            <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center items-start">
+            <div className="detail-feature-container">
 
                     <CustomImage
                         src={Images.rentalFeeIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">Rental Fee (per month)</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.rentalFee")}</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">RM750</CustomText>
 
             </div>
