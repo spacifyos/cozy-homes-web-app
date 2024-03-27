@@ -6,7 +6,7 @@
   },
   "pageTitle": {
     "myStay": "My Stay",
-    "detail": "Detail"
+    "property-detail": "Detail"
   },
   "general": {},
   "myStay": {
@@ -30,7 +30,7 @@
     "status": "Status",
     "dueDate": "Due Date"
   },
-  "detail": {
+  "property-detail": {
     "overView": "Overview",
     "policy": "Policy",
     "facilities": "Facilities",

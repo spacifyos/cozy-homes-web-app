@@ -6,11 +6,12 @@
 @import "input.scss";
 @import "select.scss";
 @import "toggle.scss";
-@import "detail.scss";
+@import "page/property-detail";
 @import "page/explore.scss";
 @import "page/filter.scss";
 @import "page/my-stay.scss";
 @import "page/account.scss";
+@import "carousel-dotBtn.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {

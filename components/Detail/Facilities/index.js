@@ -6,21 +6,21 @@ import FacilitiesComponent from "@/components/Detail/FacilitiesComponent";
 
 const Facilities = ({ t }) => {
     const facilitiesLists = [
-        { name: t("detail.aircond"), icon: Images.aircondIcon },
-        { name: t("detail.laundryArea"), icon: Images.vectorIcon },
-        { name: t("detail.chairAndDesk"), icon: Images.deskChairIcon},
-        { name: t("detail.sharedKitchen"), icon: Images.gasStoveIcon},
-        { name: t("detail.closet"), icon: Images.wardrobeIcon},
-        { name: t("detail.diningArea"), icon: Images.cutleyIcon},
-        { name: t("detail.wifi"), icon: Images.wifiIcon},
-        { name: t("detail.mailbox"), icon: Images.mailboxIcon},
+        { name: t("property-detail.aircond"), icon: Images.aircondIcon },
+        { name: t("property-detail.laundryArea"), icon: Images.vectorIcon },
+        { name: t("property-detail.chairAndDesk"), icon: Images.deskChairIcon},
+        { name: t("property-detail.sharedKitchen"), icon: Images.gasStoveIcon},
+        { name: t("property-detail.closet"), icon: Images.wardrobeIcon},
+        { name: t("property-detail.diningArea"), icon: Images.cutleyIcon},
+        { name: t("property-detail.wifi"), icon: Images.wifiIcon},
+        { name: t("property-detail.mailbox"), icon: Images.mailboxIcon},
 
     ];
 
     return (
         <div className="pb-5">
-            <CustomText textClassName="font-size-xlarge font-bold pb-2">
-                {t("detail.facilities")}
+            <CustomText textClassName="section-title">
+                {t("property-detail.facilities")}
             </CustomText>
 
             <div className="flex flex-row justify-between items-center flex-wrap pr-15">

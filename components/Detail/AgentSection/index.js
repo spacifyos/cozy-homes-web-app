@@ -4,7 +4,8 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 
 const AgentSection = ({t}) => {
-    return (<div className="sticky bottom-3 w-full" style={{maxWidth: 470}}>
+    return (
+        <div className="sticky bottom-3 w-full pt-5" style={{maxWidth: 470}}>
         <div className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
              style={{overflow: "hidden"}}>
             <div className=" flex-row flex p-2 justify-between">

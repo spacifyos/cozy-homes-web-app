@@ -85,7 +85,7 @@ const Image = {
   paidIcon:"/images/icon/paid.png",
   verifiedIcon:"/images/icon/verified.png",
   call:"/images/icon/call.png",
-  bookmarks_s:"/images/icon/bookmarks_s.png"
+  bookMarks_s:"/images/icon/bookmark_s.png"
 };
 
 export default Image;

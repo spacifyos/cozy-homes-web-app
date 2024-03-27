@@ -6,7 +6,7 @@
   },
   "pageTitle": {
     "myStay": "我的住宿",
-    "detail": "详情"
+    "property-detail": "详情"
   },
   "general": {},
   "myStay": {
@@ -30,7 +30,7 @@
     "status": "状态",
     "dueDate": "截止日期"
   },
-  "detail": {
+  "property-detail": {
     "overView": "Overview",
     "policy": "Policy",
     "facilities": "设施",

@@ -13,8 +13,8 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.bathAmenitiesIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">   {t("detail.bathRoom")}</CustomText>
-                <CustomText textClassName="primary-text font-size-small font-bold">{t("detail.shared")}</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">   {t("property-detail.bathRoom")}</CustomText>
+                <CustomText textClassName="primary-text font-size-small font-bold">{t("property-detail.shared")}</CustomText>
 
             </div>
             <div className="detail-feature-container">
@@ -23,8 +23,8 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.bedInactiveIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.bed")}</CustomText>
-                <CustomText textClassName="primary-text font-size-small font-bold">{t("detail.queen")}</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("property-detail.bed")}</CustomText>
+                <CustomText textClassName="primary-text font-size-small font-bold">{t("property-detail.queen")}</CustomText>
 
             </div>
             <div className="detail-feature-container">
@@ -33,7 +33,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.squareIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.squareFt")}</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("property-detail.squareFt")}</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">150</CustomText>
 
             </div>
@@ -43,7 +43,7 @@ const DetailFeatureSection = ({ t }) => {
                         src={Images.rentalFeeIcon}
                         width={20}
                     />
-                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("detail.rentalFee")}</CustomText>
+                    <CustomText textClassName="disable-text font-size-xxsmall h-8">{t("property-detail.rentalFee")}</CustomText>
                 <CustomText textClassName="primary-text font-size-small font-bold">RM750</CustomText>
 
             </div>

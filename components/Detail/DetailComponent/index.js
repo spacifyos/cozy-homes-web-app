@@ -4,8 +4,8 @@ import Images from "@/src/utils/Image";
 
 const DetailComponent = ({ t }) => {
     return (
-        <div className=" pb-5">
-            <div className="flex flex-col items-start">
+        <div className=" pb-5 pt-5">
+            <div className=" flex flex-col items-start">
 
                 <CustomText textClassName="font-size-large font-bold">
                     M Vertica, Kuala Lumpur
@@ -25,13 +25,13 @@ const DetailComponent = ({ t }) => {
                     icon={Images.overviewIcon}
                     buttonClassName="col-span-3 primary-btn flex-row-reverse h-14"
                     textClassName="font-size-xlarge"
-                    buttonText={t("detail.overView")}
+                    buttonText={t("property-detail.overView")}
                 />
                 <CustomButton
                     icon={Images.policyIcon}
                     buttonClassName="col-span-3 primaryWhite-bg-color h-14 flex-row-reverse default-btn"
                     textClassName="font-size-xlarge disable-text global-box-shadow"
-                    buttonText={t("detail.policy")}
+                    buttonText={t("property-detail.policy")}
                 />
             </div>
         </div>

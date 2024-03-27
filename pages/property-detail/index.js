@@ -8,20 +8,31 @@ import Facilities from "@/components/Detail/Facilities";
 import AgentSection from "@/components/Detail/AgentSection";
 import RoomzMap from "@/components/Detail/RoomzMap";
 import RecommendSection from "@/components/Detail/RecommendSection";
-
+import {useEffect, useState} from "react";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
-const onClickGoBack = () => {
-    router.back();
-};
+
 const Detail = () => {
+    const router = useRouter();
+    const [listingLoading, setListingLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setListingLoading(false);
+        }, 1000);
+    }, []);
+    const onClickGoBack = () => {
+        router.push("/explore");
+    };
     const { t } = useTranslation("common");
 
     return (
-        <CustomHeader pageTitle={t("pageTitle.detail")} hideBgImage onClickGoBack={onClickGoBack}>
-            <div className="pb-10">
+        <CustomHeader pageTitle={t("pageTitle.property-detail")} hideBgImage onClickGoBack={onClickGoBack}>
+            <div className="body-container"  style={{ paddingBottom: 0 }}>
 
-                <RoomPicCarousel t={t}/>
+                <RoomPicCarousel t={t}
+                />
 
                 <DetailComponent t={t}/>
 
@@ -31,9 +42,9 @@ const Detail = () => {
 
                 <RoomzMap t={t}/>
 
-                <RecommendSection t={t}/>
+                <RecommendSection t={t} listingLoading={listingLoading}/>
 
-                <AgentSection t={t}/>
+                <AgentSection t={t} />
 
             </div>
         </CustomHeader>
