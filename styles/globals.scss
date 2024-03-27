@@ -7,6 +7,10 @@
 @import "select.scss";
 @import "toggle.scss";
 @import "detail.scss";
+@import "page/explore.scss";
+@import "page/filter.scss";
+@import "page/my-stay.scss";
+@import "page/account.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
@@ -39,20 +43,22 @@ body {
   }
 }
 
-::-webkit-scrollbar {
-  display: none !important;
-}
+//::-webkit-scrollbar {
+//  display: none !important;
+//}
 
 .pb-23 {
   padding-bottom: 88px;
 }
 
 .global-horizontal-padding {
-  padding: 0 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .global-horizontal-margin {
-  margin: 0 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .global-box-shadow {
@@ -83,13 +89,17 @@ body {
   border-color: $secondary-color;
 }
 
-.text-primary-content {
-  color: $primary-color;
-}
-
 .divider-line {
   height: 1px;
   width: 100%;
   background-color: #e0ecff !important;
   margin: 25px 0;
+}
+
+.section-title {
+  @apply font-size-xlarge font-bold pb-2;
+}
+
+.body-container {
+  @apply pb-24 global-horizontal-padding;
 }

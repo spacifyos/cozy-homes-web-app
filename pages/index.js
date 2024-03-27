@@ -20,7 +20,7 @@ function Home() {
 
   return (
     <div
-      className={"container flex-1"}
+      className={"container flex-1 h-screen"}
       style={{ backgroundColor: Color.primaryWhiteColor }}
     >
       <SplashScreen />

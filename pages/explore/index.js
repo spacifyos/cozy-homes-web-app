@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomSelect from "@/components/CustomSelect";
 import ListingSection from "@/components/Explore/ListingSection";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export { getServerSideProps };
 
@@ -21,6 +22,15 @@ function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
 
+  const [selectedCategory, setSelectedCategory] = useState("City");
+  const [listingLoading, setListingLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setListingLoading(false);
+    }, 1000);
+  }, []);
+
   const onChangeCity = (value) => {
     console.log(value.target.value);
   };
@@ -29,11 +39,15 @@ function Home() {
     router.push("/filter");
   };
 
+  const onClickSelectCategory = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <CustomHeader hideGoBackButton padding>
-      <div className="pb-24">
-        <BannerCarousel />
+      <BannerCarousel />
 
+      <div className="body-container">
         <div className="grid grid-cols-6 gap-4 pb-7">
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}
@@ -57,7 +71,12 @@ function Home() {
           />
         </div>
 
-        <ListingSection lists={Array(6)} />
+        <ListingSection
+          lists={Array(6)}
+          onClickSelectCategory={onClickSelectCategory}
+          selectedCategory={selectedCategory}
+          listingLoading={listingLoading}
+        />
       </div>
     </CustomHeader>
   );

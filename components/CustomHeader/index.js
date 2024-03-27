@@ -11,7 +11,7 @@ const CustomHeader = ({
   padding = false,
 }) => {
   return (
-    <div className="global-horizontal-padding flex-1 relative bg-color">
+    <div className="flex-1 relative bg-color">
       {hideBgImage ? (
         false
       ) : (
@@ -21,7 +21,9 @@ const CustomHeader = ({
         />
       )}
 
-      <div className={`flex items-center pb-5 ${padding ? "pt-12" : "pt-5"}`}>
+      <div
+        className={`flex items-center global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"}`}
+      >
         {hideGoBackButton ? (
           false
         ) : (

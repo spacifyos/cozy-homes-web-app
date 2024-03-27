@@ -45,8 +45,8 @@ const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
             >
               <CustomImage
                 src={_.isEqual(value, routeName) ? activeIcon : icon}
-                width={20}
-                height={20}
+                width={25}
+                height={25}
               />
               <CustomText
                 textClassName={`${_.isEqual(value, routeName) ? "primary-text" : "disable-text"} font-size-small pt-1`}

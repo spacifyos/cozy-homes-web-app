@@ -4,10 +4,13 @@ import CustomText from "@/components/CustomText";
 
 const InvoiceComponent = ({ t }) => {
   return (
-    <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative mb-3">
+    <div className="invoice-container">
       <div className="flex items-center">
-        <div className="flex items-center primary-bg-color p-3 global-border-radius mb-1 mr-2">
-          <CustomImage src={Images.invoiceIcon} width={20} height={20} />
+        <div className="invoice-icon-container">
+          <CustomImage
+            src={Images.invoiceIcon}
+            imageStyle={{ width: 30, height: 30 }}
+          />
         </div>
 
         <div className="flex flex-col">
@@ -17,7 +20,7 @@ const InvoiceComponent = ({ t }) => {
 
           <div className="flex items-center pb-1.5">
             <div className="pr-12">
-              <CustomText textClassName="primary-text font-bold leading-4">
+              <CustomText textClassName="primary-text font-size-xsmall font-bold leading-4">
                 RM 750
               </CustomText>
               <CustomText textClassName="disable-text font-size-xxsmall">
@@ -27,7 +30,7 @@ const InvoiceComponent = ({ t }) => {
             <div>
               <div className="flex items-center">
                 <CustomImage
-                  src={Images.inactiveCheckIcon}
+                  src={Images.unpaidIcon}
                   width={13}
                   height={13}
                   className="mr-1"
@@ -53,8 +56,8 @@ const InvoiceComponent = ({ t }) => {
         <div className="flex items-center">
           <CustomImage
             src={Images.moreIcon}
-            width={5}
-            height={10}
+            width={25}
+            height={25}
             className="absolute right-4"
           />
         </div>

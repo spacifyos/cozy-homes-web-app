@@ -2,8 +2,9 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
+import _ from "lodash";
 
 const TenancyLabel = () => {
   return (
@@ -18,7 +19,7 @@ const TenancyLabel = () => {
 
 const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
   return (
-    <div className="flex justify-center items-center secondary-bg-color px-3 py-2 global-border-radius mt-1">
+    <div className="auto-pay-button">
       <CustomText
         textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold pr-3`}
       >
@@ -36,21 +37,35 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
 
 const TenancySection = ({ t }) => {
   const [isChecked, setIsChecked] = useState(true);
+  const targetRef = useRef();
+  const [dimensions, setDimensions] = useState(0);
+
+  useEffect(() => {
+    if (targetRef.current) {
+      setDimensions(targetRef.current.offsetWidth);
+    }
+  }, [targetRef]);
 
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
   };
 
   return (
-    <div className="pb-7">
-      <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+    <div className="pb-7 ">
+      <CustomText textClassName="section-title">
         {t("myStay.myTenancy")}
       </CustomText>
 
-      <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center">
+      <div className="tenancy-container">
+        <CustomImage
+          src={Images.moreIcon}
+          width={25}
+          height={25}
+          className="absolute right-4 top-3"
+        />
         <div className="flex flex-col items-start">
-          <div className="primary-bg-color p-3 global-border-radius mb-1">
-            <CustomImage src={Images.buildingIcon} width={20} height={20} />
+          <div className="primary-bg-color p-2 global-border-radius mb-1">
+            <CustomImage src={Images.buildingIcon} width={30} height={30} />
           </div>
 
           <TenancyLabel />
@@ -73,8 +88,11 @@ const TenancySection = ({ t }) => {
           />
         </div>
 
-        <div className="flex-1 flex justify-center items-center">
-          <RadialProgressComponent t={t} />
+        <div
+          className="flex-1 flex justify-center items-center"
+          ref={targetRef}
+        >
+          <RadialProgressComponent t={t} dimensions={dimensions} />
         </div>
       </div>
     </div>

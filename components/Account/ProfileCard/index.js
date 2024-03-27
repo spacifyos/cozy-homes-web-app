@@ -4,11 +4,11 @@ import CustomText from "@/components/CustomText";
 
 const ProfileCard = () => {
   return (
-    <div className="p-5 w-full global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center relative ">
+    <div className="profile-user-info-container">
       <CustomImage
         src={Images.editIcon}
-        height={15}
-        width={15}
+        height={25}
+        width={25}
         className="absolute right-5 top-5"
       />
 
