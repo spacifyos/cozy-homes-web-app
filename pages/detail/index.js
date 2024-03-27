@@ -19,7 +19,7 @@ const Detail = () => {
 
     return (
         <CustomHeader pageTitle={t("pageTitle.detail")} hideBgImage onClickGoBack={onClickGoBack}>
-            <div className="pb-23">
+            <div className="pb-10">
 
                 <RoomPicCarousel t={t}/>
 
@@ -32,6 +32,9 @@ const Detail = () => {
                 <RoomzMap t={t}/>
 
                 <RecommendSection t={t}/>
+
+                <AgentSection t={t}/>
+
             </div>
         </CustomHeader>
     );

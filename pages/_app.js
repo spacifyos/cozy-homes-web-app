@@ -44,11 +44,14 @@ function App({ Component, pageProps }) {
                 routeName={routeName}
                 onClickChangeTab={onClickChangeTab}
               />
+
             ) : (
               false
             )}
+
           </div>
         </div>
+
       </PersistGate>
     </Provider>
   );

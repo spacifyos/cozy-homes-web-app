@@ -4,8 +4,8 @@ import Images from "@/src/utils/Image";
 
 const DetailComponent = ({ t }) => {
     return (
-        <div>
-            <div className="flex flex-col items-start pt-5">
+        <div className=" pb-5">
+            <div className="flex flex-col items-start">
 
                 <CustomText textClassName="font-size-large font-bold">
                     M Vertica, Kuala Lumpur

@@ -18,12 +18,12 @@ const Facilities = ({ t }) => {
     ];
 
     return (
-        <div>
-            <CustomText textClassName="font-size-xxlarge font-bold pt-5 pb-4">
+        <div className="pb-5">
+            <CustomText textClassName="font-size-xlarge font-bold pb-2">
                 {t("detail.facilities")}
             </CustomText>
 
-            <div className="flex flex-row justify-between items-center flex-wrap pr-20">
+            <div className="flex flex-row justify-between items-center flex-wrap pr-15">
                 {_.map(facilitiesLists, (item) => {
                     return <FacilitiesComponent item={item} />;
                 })}

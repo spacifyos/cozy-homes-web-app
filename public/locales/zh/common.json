@@ -5,7 +5,8 @@
     "account": "帐户"
   },
   "pageTitle": {
-    "myStay": "我的住宿"
+    "myStay": "我的住宿",
+    "detail": "详情"
   },
   "general": {},
   "myStay": {
@@ -28,5 +29,25 @@
     "invoice": "发票",
     "status": "状态",
     "dueDate": "截止日期"
+  },
+  "detail": {
+    "overView": "Overview",
+    "policy": "Policy",
+    "facilities": "设施",
+    "aircond": "冷气",
+    "laundryArea": "洗衣区域",
+    "chairAndDesk": "椅子和桌子",
+    "sharedKitchen": "共享厨房",
+    "closet": "衣橱",
+    "diningArea": "用餐区域",
+    "wifi": "Wi-Fi",
+    "mailbox": "邮箱",
+    "recommend": "向你推荐",
+    "bathRoom": "浴室",
+    "shared": "共享",
+    "bed": "床",
+    "queen": "Queen",
+    "squareFt": "平方米",
+    "rentalFee": "租金 (月)"
   }
 }
