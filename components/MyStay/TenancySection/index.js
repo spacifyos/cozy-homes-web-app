@@ -2,8 +2,9 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
+import _ from "lodash";
 
 const TenancyLabel = () => {
   return (
@@ -36,6 +37,14 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
 
 const TenancySection = ({ t }) => {
   const [isChecked, setIsChecked] = useState(true);
+  const targetRef = useRef();
+  const [dimensions, setDimensions] = useState(0);
+
+  useEffect(() => {
+    if (targetRef.current) {
+      setDimensions(targetRef.current.offsetWidth);
+    }
+  }, [targetRef]);
 
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
@@ -79,8 +88,11 @@ const TenancySection = ({ t }) => {
           />
         </div>
 
-        <div className="flex-1 flex justify-center items-center">
-          <RadialProgressComponent t={t} />
+        <div
+          className="flex-1 flex justify-center items-center"
+          ref={targetRef}
+        >
+          <RadialProgressComponent t={t} dimensions={dimensions} />
         </div>
       </div>
     </div>

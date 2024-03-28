@@ -97,12 +97,9 @@ body {
 }
 
 .section-title {
-  @apply font-size-xlarge;
-  @apply font-bold;
-  @apply pb-2;
+  @apply font-size-xlarge font-bold pb-2;
 }
 
 .body-container {
-  @apply pb-24;
-  @apply global-horizontal-padding;
+  @apply pb-24 global-horizontal-padding;
 }

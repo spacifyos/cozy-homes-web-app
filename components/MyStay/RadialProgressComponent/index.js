@@ -1,10 +1,35 @@
 import CustomText from "@/components/CustomText";
+import { useEffect, useState } from "react";
 
-const RadialProgressComponent = ({ t }) => {
+const RadialProgressComponent = ({ t, dimensions }) => {
+  const [remainingDay, setRemainingDay] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newNumber = remainingDay + 1;
+      const newPercentage = (newNumber / 365) * 100;
+
+      if (newPercentage <= 70) {
+        setRemainingDay(newNumber);
+        setPercentage(newPercentage);
+      } else {
+        clearInterval(interval);
+      }
+    }, 3);
+
+    return () => clearInterval(interval);
+  }, [remainingDay]);
+
+
   return (
     <div
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color"
-      style={{ "--value": 70, "--size": "8rem", "--thickness": "0.5rem" }}
+      style={{
+        "--value": percentage,
+        "--size": `${dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,
+        "--thickness": "0.5rem",
+      }}
       role="progressbar"
     >
       <div className="flex-col flex justify-end items-center">
@@ -12,7 +37,7 @@ const RadialProgressComponent = ({ t }) => {
           {t("myStay.tenancyRemaining")}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold">
-          9999
+          {remainingDay}
         </CustomText>
         <CustomText textClassName="font-size-small">days</CustomText>
       </div>
