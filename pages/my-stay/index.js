@@ -7,16 +7,22 @@ import InvoiceSection from "@/components/MyStay/InvoiceSection";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
 const MyStay = () => {
+  const router = useRouter();
   const { t } = useTranslation("common");
 
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
 
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
+  };
+
+  const onClickTopUp = () => {
+    router.push("/my-meter");
   };
 
   return (
@@ -28,7 +34,7 @@ const MyStay = () => {
 
         <FeatureSection t={t} />
 
-        <MeterSection t={t} />
+        <MeterSection t={t} onClickTopUp={onClickTopUp} />
 
         <InvoiceSection
           t={t}

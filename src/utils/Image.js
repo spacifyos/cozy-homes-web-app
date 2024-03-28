@@ -63,6 +63,10 @@ const Image = {
   swimmingAmenitiesIconActive: "/images/amenities/swimming_icon_active.png",
   gymAmenitiesIcon: "/images/amenities/gym_icon.png",
   gymAmenitiesIconActive: "/images/amenities/gym_icon_active.png",
+  topUpIcon:"/images/icon/topUp_icon.png",
+  clearIcon:"/images/icon/clear_icon.png",
+  usageIcon:"/images/icon/usage_icon.png",
+  disconnect:"/images/icon/disconnect_icon.png"
 };
 
 export default Image;

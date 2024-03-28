@@ -2,10 +2,12 @@
   "root": {
     "explore": "Explore",
     "myStay": "My Stay",
-    "account": "Account"
+    "account": "Account",
+    "myMeter": "My Meter"
   },
   "pageTitle": {
-    "myStay": "My Stay"
+    "myStay": "My Stay",
+    "myMeter": "My Meter"
   },
   "general": {},
   "myStay": {
@@ -28,5 +30,23 @@
     "invoice": "Invoice",
     "status": "Status",
     "dueDate": "Due Date"
+  },
+  "myMeter": {
+    "todayUsage": "Today Usage",
+    "unit": "unit",
+    "serialNumber": "Serial Number",
+    "meterStatus": "Meter Status",
+    "usedUnit": "Used(Unit)",
+    "unitPrice": "Unit Price",
+    "balanceUnit": "Balance Unit",
+    "lastConnectedAt": "Last Connected At",
+    "topUp": "Top Up",
+    "clearBalance": "Clear Balance",
+    "usage": "Usage",
+    "disconnect": "Disconnect",
+    "totalUsage(Unit)": "Total Usage(Unit)",
+    "totalUnit": "Total Unit",
+    "meterUsage": "Meter Usage",
+    "availableUnit": "Available Unit"
   }
 }
