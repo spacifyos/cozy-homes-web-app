@@ -45,7 +45,7 @@ const RoomPicCarousel = ( ) => {
                         max: 3000,
                         min: 1024
                     },
-                    items: 3,
+                    items: 1,
                     partialVisibilityGutter: 40
                 },
                 mobile: {
@@ -74,19 +74,10 @@ const RoomPicCarousel = ( ) => {
             slidesToSlide={1}
             swipeable
         >
-            {[...Array(5)].map((_, index) => {
-                const handleImageClick = generateHandleImageClick(index);
-                return (
-                    <div key={index}>
-                        <img
-                            src={currentImageIndexes[index] === 0 ? Images.bookMarks : Images.bookMarks_s}
-                            onClick={handleImageClick}
-                            className="btn-sm absolute top-4 right-1"
-                        />
-                        <img src={Images.listingDefaultImage} className="w-full carousel-img"/>
-                    </div>
-                );
-            })}
+            {[...Array(5)].map((_, index) => (
+                <img src={Images.listingDefaultImage} className="w-full carousel-img" key={index} />
+            ))}
+
         </Carousel>
     );
 };
