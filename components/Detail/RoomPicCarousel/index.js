@@ -12,7 +12,8 @@ const RoomPicCarousel = ( ) => {
     const [currentImageIndexes, setCurrentImageIndexes] = useState([0, 0, 0, 0]);
     const imageUrls = [
        Images.listingDefaultImage,
-        Images.room
+        Images.room,
+        Images.roomview
 
 
     ];

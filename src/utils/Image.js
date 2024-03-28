@@ -85,7 +85,8 @@ const Image = {
   verifiedIcon:"/images/icon/verified.png",
   call:"/images/icon/call.png",
   bookMarks_Active:"/images/icon/bookmark_s.png",
-  room:"/images/room.png"
+  room:"/images/room.png",
+  roomview:"/images/roomview.png"
 };
 
 export default Image;

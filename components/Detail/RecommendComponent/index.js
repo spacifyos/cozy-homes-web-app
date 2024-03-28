@@ -117,8 +117,8 @@ const RoomPicCarousel = () => {
                                 <CustomImage src={Images.windowIcon} width={20} height={20}/>
                             </div>
                         </div>
-                        <div className="room-img-container">
-                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow room-img"/>
+                        <div className="Recommend-img-container">
+                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow Recommend-img"/>
                         </div>
                         <div className="pt-2">
                             <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
