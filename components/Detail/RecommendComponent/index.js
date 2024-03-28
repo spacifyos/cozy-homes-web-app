@@ -5,8 +5,48 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import {useState} from "react";
 import _ from "lodash";
-import Skeleton from "@/components/Skeleton";
+
+
 const RoomPicCarousel = () => {
+    const roomData = [
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 750',
+            imageUrl: Images.filterDefaultImage
+        },
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 850',
+            imageUrl: Images.room
+        },
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 850',
+            imageUrl: Images.room
+        },
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 850',
+            imageUrl: Images.room
+        },
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 1150',
+            imageUrl: Images.room
+        },
+        {
+            name: 'M Vertica',
+            address: 'A-01-01, Room 2',
+            price: 'RM 850',
+            imageUrl: Images.room
+        },
+
+    ];
 
     return (
         <Carousel
@@ -63,7 +103,7 @@ const RoomPicCarousel = () => {
             swipeable
         >
 
-            {[...Array(4)].map((_, index) => (
+            {_.map(roomData,(room, index) => (
                 <div key={index} id={`Recommenditem${index + 1}`} className="carousel-item relative">
                     <div className="p-1">
                         <div className="flex flex-col pl-2 pt-3 absolute">
@@ -77,18 +117,19 @@ const RoomPicCarousel = () => {
                                 <CustomImage src={Images.windowIcon} width={20} height={20}/>
                             </div>
                         </div>
-
-                        <img src={Images.filterDefaultImage} className="w-40 rounded-2xl global-box-shadow"/>
+                        <div className="room-img-container">
+                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow room-img"/>
+                        </div>
                         <div className="pt-2">
                             <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
-                                M Vertica
+                                {room.name}
                             </CustomText>
                             <CustomText textClassName="font-size-xsmall primary-text leading-4 line-clamp-1">
-                                A-01-01, Room 2
+                                {room.address}
                             </CustomText>
                             <div className="flex items-end">
                                 <CustomText textClassName="font-size-large font-bold mr-2">
-                                    RM 750
+                                    {room.price}
                                 </CustomText>
                                 <CustomText textClassName="disable-text font-size-xsmall">/ month</CustomText>
                             </div>
