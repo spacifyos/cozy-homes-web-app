@@ -12,27 +12,28 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Image from "next/image";
 import Images from "@/src/utils/Image";
+import CustomImage from "@/components/CustomImage";
+
 export {getServerSideProps};
 
-const Detail = () => {
+const Detail = ({}) => {
     const router = useRouter();
-    const [listingLoading, setListingLoading] = useState(true);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setListingLoading(false);
-        }, 1000);
-    }, []);
     const onClickGoBack = () => {
-        router.push("/explore");
+        router.back();
     };
     const {t} = useTranslation("common");
+    const [isBookMarks, setIsBookMarks] = useState(true);
+
+    const rightButton = () => {
+        setIsBookMarks(!isBookMarks);
+    };
+
 
     return (
-        <CustomHeader pageTitle={t("pageTitle.property-detail")} hideBgImage onClickGoBack={onClickGoBack}>
-            <image
-                src={Images.bookMarks}
-            />
+        <CustomHeader pageTitle={t("pageTitle.property-detail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
+        rightButtonIcon={isBookMarks ? Images.bookMarks : Images.bookMarks_Active}
+        >
             <div className="body-container" style={{paddingBottom: 0}}>
 
                 <RoomPicCarousel t={t}
@@ -46,7 +47,7 @@ const Detail = () => {
 
                 <RoomzMap t={t}/>
 
-                <RecommendSection t={t} listingLoading={listingLoading}/>
+                <RecommendSection t={t}/>
 
                 <AgentSection t={t}/>
 

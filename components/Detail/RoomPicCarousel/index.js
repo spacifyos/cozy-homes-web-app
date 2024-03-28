@@ -5,11 +5,20 @@ import CustomButton from "@/components/CustomButton";
 import {useState, useEffect} from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-
+import _ from "lodash";
+import Image from "next/image";
 
 const RoomPicCarousel = ( ) => {
     const [currentImageIndexes, setCurrentImageIndexes] = useState([0, 0, 0, 0]);
+    const imageUrls = [
+       Images.listingDefaultImage,
+        Images.room
 
+
+    ];
+    const imageList = _.map(imageUrls, (url, index) => (
+        <img src={url} className="w-full carousel-img" key={index} />
+    ));
     const generateHandleImageClick = (index) => {
         return () => {
             setCurrentImageIndexes(prevIndexes => {
@@ -74,9 +83,7 @@ const RoomPicCarousel = ( ) => {
             slidesToSlide={1}
             swipeable
         >
-            {[...Array(5)].map((_, index) => (
-                <img src={Images.listingDefaultImage} className="w-full carousel-img" key={index} />
-            ))}
+            {imageList}
 
         </Carousel>
     );

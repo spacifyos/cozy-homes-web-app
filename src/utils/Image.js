@@ -82,10 +82,10 @@ const Image = {
   bookMarks:"/images/icon/bookmark_n.png",
   femaleUnitIcon:"/images/icon/female_unit_s.png",
   windowIcon:"/images/icon/window_n.png",
-  paidIcon:"/images/icon/paid.png",
   verifiedIcon:"/images/icon/verified.png",
   call:"/images/icon/call.png",
-  bookMarks_s:"/images/icon/bookmark_s.png"
+  bookMarks_Active:"/images/icon/bookmark_s.png",
+  room:"/images/room.png"
 };
 
 export default Image;

@@ -22,8 +22,20 @@
  height: 250px;
   overflow: hidden;
   object-fit: cover;
+
 }
 
 .detail-feature-container{
   @apply global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center;
+}
+.room-img-container{
+  width: 140px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.room-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

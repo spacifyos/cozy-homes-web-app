@@ -23,15 +23,18 @@ const DetailComponent = ({ t }) => {
             <div className="grid grid-cols-6 gap-4 items-center pt-5">
                 <CustomButton
                     icon={Images.overviewIcon}
-                    buttonClassName="col-span-3 primary-btn flex-row-reverse h-14"
+                    buttonClassName="col-span-3 primary-btn flex-row-reverse h-14 "
                     textClassName="font-size-xlarge"
                     buttonText={t("property-detail.overView")}
+                    imageStyle={{ width: "25px", height: "25px" }}
                 />
                 <CustomButton
                     icon={Images.policyIcon}
+                    imageStyle={{ width: "25px", height: "25px" }}
                     buttonClassName="col-span-3 primaryWhite-bg-color h-14 flex-row-reverse default-btn"
                     textClassName="font-size-xlarge disable-text global-box-shadow"
                     buttonText={t("property-detail.policy")}
+
                 />
             </div>
         </div>

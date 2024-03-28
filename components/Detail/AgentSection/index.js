@@ -44,6 +44,7 @@ const AgentSection = ({t}) => {
                     <CustomImage
                         src={Images.whatsapp}
                         width={40}
+                        className="global-box-shadow"
                     />
                 </div>
 

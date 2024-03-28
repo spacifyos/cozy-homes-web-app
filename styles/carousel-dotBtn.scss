@@ -1,3 +1,8 @@
 .react-multi-carousel-dot--active button{
   background-color: $primary-color !important;
 }
+
+.react-multi-carousel-dot button{
+  width: 8px !important;
+  height: 8px !important;
+}
