@@ -34,7 +34,7 @@ const MyMeter = () => {
       onClickGoBack={onClickGoBack}
     >
       <div className="pb-5 global-horizontal-padding">
-        <div className="flex flex-row justify-between">
+        <div className="flex justify-between">
           <CustomText textClassName="section-title">
             {t("myMeter.todayUsage")}
           </CustomText>
