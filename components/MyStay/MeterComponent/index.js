@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 
-const MeterComponent = ({ t }) => {
+const MeterComponent = ({ t, onClickTopUp }) => {
   return (
     <div className="meter-container">
       <CustomImage
@@ -74,6 +74,7 @@ const MeterComponent = ({ t }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
+          onClick={onClickTopUp}
         />
       </div>
     </div>
