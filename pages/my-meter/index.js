@@ -32,6 +32,7 @@ const MyMeter = () => {
       pageTitle={t("pageTitle.myMeter")}
       hideBgImage
       onClickGoBack={onClickGoBack}
+      hideRightButton
     >
       <div className="pb-5 global-horizontal-padding">
         <div className="flex justify-between">

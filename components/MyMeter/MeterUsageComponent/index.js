@@ -10,14 +10,14 @@ const MeterUsageComponent = ({ t }) => {
         <div className="meter-usage-inside-container">
           <CustomImage src={Images.meterIcon} width={35} height={35} />
           <div className="flex flex-col pl-2">
-            <CustomText textClassName="font-size-xxsmall primaryWhite-text-color">
+            <CustomText textClassName="font-size-xxsmall white-text">
               {t("myMeter.availableUnit")}
             </CustomText>
             <div className="flex flex-row justify-center items-end">
-              <CustomText textClassName="font-size-large primaryWhite-text-color">
+              <CustomText textClassName="font-size-large white-text">
                 99999
               </CustomText>
-              <CustomText textClassName="font-size-xxsmall primaryWhite-text-color pl-1">
+              <CustomText textClassName="font-size-xxsmall white-text pl-1">
                 unit
               </CustomText>
             </div>
