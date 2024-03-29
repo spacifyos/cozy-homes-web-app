@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 
-const MeterComponent = ({ t }) => {
+const MeterComponent = ({ t, onClickTopUp }) => {
   return (
     <div className="meter-container">
       <CustomImage
@@ -57,7 +57,7 @@ const MeterComponent = ({ t }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-6 gap-3">
+      <div className="grid grid-cols-6 gap-2">
         <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14">
           <CustomText textClassName="disable-text font-size-xxsmall">
             {t("myStay.balanceUnit")}
@@ -74,6 +74,7 @@ const MeterComponent = ({ t }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
+          onClick={onClickTopUp}
         />
       </div>
     </div>
