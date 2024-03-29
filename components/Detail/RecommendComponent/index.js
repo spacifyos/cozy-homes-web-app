@@ -72,7 +72,7 @@ const RoomPicCarousel = () => {
                         max: 3000,
                         min: 1024
                     },
-                    items: 3,
+                    items: 2,
                     partialVisibilityGutter: 40
                 },
                 mobile: {
@@ -88,7 +88,7 @@ const RoomPicCarousel = () => {
                         max: 1024,
                         min: 464
                     },
-                    items: 3,
+                    items: 2,
                     partialVisibilityGutter: 30
                 }
             }}
@@ -103,39 +103,46 @@ const RoomPicCarousel = () => {
         >
 
             {_.map(roomData,(room, index) => (
-                <div key={index} id={`Recommenditem${index + 1}`} className="carousel-item relative">
-                    <div className="p-1">
-                        <div className="flex flex-col pl-2 pt-3 absolute">
-                            <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">
-                                <CustomImage src={Images.femaleUnitIcon} width={20} height={20}/>
-                            </div>
-                        </div>
+                <div
+                    key={index}
+                    className="carousel-item relative flex flex-col px-1"
+                >
 
-                        <div className="flex flex-col pl-2 pt-12 absolute">
-                            <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">
-                                <CustomImage src={Images.windowIcon} width={20} height={20}/>
-                            </div>
-                        </div>
-                        <div className="Recommend-img-container">
-                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow Recommend-img"
-
-                            />
-                        </div>
-                        <div className="pt-2">
-                            <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
-                                {room.name}
-                            </CustomText>
-                            <CustomText textClassName="font-size-xsmall primary-text leading-4 line-clamp-1">
-                                {room.address}
-                            </CustomText>
-                            <div className="flex items-end">
-                                <CustomText textClassName="font-size-large font-bold mr-2">
-                                    {room.price}
-                                </CustomText>
-                                <CustomText textClassName="disable-text font-size-xsmall">/ month</CustomText>
-                            </div>
+                    <div className="flex flex-col left-3 top-3 absolute">
+                        <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">
+                            <CustomImage src={Images.femaleUnitIcon} width={20} height={20}/>
                         </div>
                     </div>
+
+                    <div className="flex flex-col left-3 top-12 absolute">
+                        <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">
+                            <CustomImage src={Images.windowIcon} width={20} height={20}/>
+                        </div>
+                    </div>
+
+                    <CustomImage
+                        src={room.imageUrl}
+                        imageStyle={{height: 150, width: "100%", objectFit:"cover"}}
+                        className=" rounded-2xl global-box-shadow"
+                    />
+
+                    <div className="pt-2">
+                        <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
+                            {room.name}
+                        </CustomText>
+                        <CustomText textClassName="font-size-xsmall primary-text leading-4 line-clamp-1">
+                            {room.address}
+                        </CustomText>
+                        <div className="flex items-end">
+                            <CustomText textClassName="font-size-large font-bold mr-2">
+                                {room.price}
+                            </CustomText>
+                            <CustomText textClassName="disable-text font-size-xsmall">
+                                / month
+                            </CustomText>
+                        </div>
+                    </div>
+
                 </div>
             ))}
 
