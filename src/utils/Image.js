@@ -76,17 +76,17 @@ const Image = {
   vectorIcon:"/images/icon/Vector_icon.png",
   wardrobeIcon:"/images/icon/wardrobe_icon.png",
   wifiIcon:"/images/icon/wifi_icon.png",
-  whatsapp:"/images/icon/whatsapp.png",
-  blackphone:"/images/icon/blackphone.png",
-  agent:"/images/agent.png",
-  bookMarks:"/images/icon/bookmark_n.png",
+  whatsappIcon:"/images/icon/whatsapp.png",
+  blackphoneIcon:"/images/icon/blackphone.png",
+  agentIcon:"/images/agent.png",
+  bookMarksIcon:"/images/icon/bookmark_n.png",
+  bookMarksIconActive:"/images/icon/bookmark_s.png",
   femaleUnitIcon:"/images/icon/female_unit_s.png",
   windowIcon:"/images/icon/window_n.png",
   verifiedIcon:"/images/icon/verified.png",
-  call:"/images/icon/call.png",
-  bookMarks_Active:"/images/icon/bookmark_s.png",
+  callIcon:"/images/icon/call.png",
   room:"/images/room.png",
-  roomview:"/images/roomview.png"
+  roomView:"/images/roomview.png"
 };
 
 export default Image;

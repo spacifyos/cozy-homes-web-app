@@ -9,26 +9,16 @@ import _ from "lodash";
 import Image from "next/image";
 
 const RoomPicCarousel = ( ) => {
-    const [currentImageIndexes, setCurrentImageIndexes] = useState([0, 0, 0, 0]);
     const imageUrls = [
        Images.listingDefaultImage,
         Images.room,
-        Images.roomview
+        Images.roomView
 
 
     ];
     const imageList = _.map(imageUrls, (url, index) => (
         <img src={url} className="w-full carousel-img" key={index} />
     ));
-    const generateHandleImageClick = (index) => {
-        return () => {
-            setCurrentImageIndexes(prevIndexes => {
-                const newIndexes = [...prevIndexes];
-                newIndexes[index] = newIndexes[index] === 0 ? 1 : 0;
-                return newIndexes;
-            });
-        };
-    };
 
     return (
         <Carousel

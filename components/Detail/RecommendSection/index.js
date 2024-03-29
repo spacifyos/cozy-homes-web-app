@@ -1,8 +1,4 @@
-import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import Images from "@/src/utils/Image";
-import FacilitiesComponent from "@/components/Detail/FacilitiesComponent";
-import _ from "lodash";
 import RecommendComponent from "@/components/Detail/RecommendComponent";
 
 const RecommendSection = ({t}) => {

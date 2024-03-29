@@ -3,7 +3,7 @@
 @import "../customText";
 .carousel-img{
   height: 300px;
- border-radius: 10px;
+  border-radius: 10px;
 }
 
 .dot-btn {
@@ -19,23 +19,19 @@
 
 .map-container{
   width: 100%;
- height: 250px;
-  overflow: hidden;
-  object-fit: cover;
-
+  height: 300px;
+  border-radius: 10px;
 }
 
 .detail-feature-container{
   @apply global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center;
 }
 .Recommend-img-container{
-  width: 140px;
+  width: 163px;
   height: 150px;
-  object-fit: cover;
 }
 
 .Recommend-img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }

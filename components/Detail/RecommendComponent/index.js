@@ -3,11 +3,10 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import {useState} from "react";
 import _ from "lodash";
 
-
 const RoomPicCarousel = () => {
+
     const roomData = [
         {
             name: 'M Vertica',
@@ -118,7 +117,9 @@ const RoomPicCarousel = () => {
                             </div>
                         </div>
                         <div className="Recommend-img-container">
-                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow Recommend-img"/>
+                            <img src={room.imageUrl} className="w-40 rounded-2xl global-box-shadow Recommend-img"
+
+                            />
                         </div>
                         <div className="pt-2">
                             <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">

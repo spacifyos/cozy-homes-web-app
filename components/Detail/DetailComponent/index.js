@@ -4,35 +4,35 @@ import Images from "@/src/utils/Image";
 
 const DetailComponent = ({ t }) => {
     return (
-        <div className=" pb-5 pt-5">
+        <div className=" pb-7 pt-7">
             <div className=" flex flex-col items-start">
 
-                <CustomText textClassName="font-size-large font-bold">
+                <CustomText textClassName="font-size-large font-bold p-1">
                     M Vertica, Kuala Lumpur
                 </CustomText>
 
-                <CustomText textClassName="font-size-normal font-bold primary-text">
+                <CustomText textClassName="font-size-normal font-bold primary-text p-1">
                     A-01-01, Room 2
                 </CustomText>
-                <CustomText textClassName="disable-text font-size-small">
+                <CustomText textClassName="disable-text font-size-small p-1">
                     Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala Lumpur, Federal Territory of Kuala
                     Lumpur.
                 </CustomText>
             </div>
 
-            <div className="grid grid-cols-6 gap-4 items-center pt-5">
+            <div className="grid grid-cols-6 gap-6 items-center pt-5 px-2">
                 <CustomButton
                     icon={Images.overviewIcon}
-                    buttonClassName="col-span-3 primary-btn flex-row-reverse h-14 "
-                    textClassName="font-size-xlarge"
+                    buttonClassName="col-span-3 primary-btn flex-row-reverse"
+                    textClassName="font-size-normal"
                     buttonText={t("property-detail.overView")}
-                    imageStyle={{ width: "25px", height: "25px" }}
+                    imageStyle={{ width: "20px", height: "20px" }}
                 />
                 <CustomButton
                     icon={Images.policyIcon}
-                    imageStyle={{ width: "25px", height: "25px" }}
-                    buttonClassName="col-span-3 primaryWhite-bg-color h-14 flex-row-reverse default-btn"
-                    textClassName="font-size-xlarge disable-text global-box-shadow"
+                    imageStyle={{ width: "20px", height: "20px" }}
+                    buttonClassName="col-span-3 primaryWhite-bg-color flex-row-reverse default-btn"
+                    textClassName="font-size-normal disable-text global-box-shadow"
                     buttonText={t("property-detail.policy")}
 
                 />

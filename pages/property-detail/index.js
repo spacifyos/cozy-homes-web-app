@@ -10,9 +10,8 @@ import RoomzMap from "@/components/Detail/RoomzMap";
 import RecommendSection from "@/components/Detail/RecommendSection";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import Image from "next/image";
 import Images from "@/src/utils/Image";
-import CustomImage from "@/components/CustomImage";
+
 
 export {getServerSideProps};
 
@@ -32,7 +31,7 @@ const Detail = ({}) => {
 
     return (
         <CustomHeader pageTitle={t("pageTitle.property-detail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
-        rightButtonIcon={isBookMarks ? Images.bookMarks : Images.bookMarks_Active}
+        rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
         >
             <div className="body-container" style={{paddingBottom: 0}}>
 

@@ -18,7 +18,7 @@ const Facilities = ({ t }) => {
     ];
 
     return (
-        <div className="pb-5">
+        <div className="pb-7">
             <CustomText textClassName="section-title">
                 {t("property-detail.facilities")}
             </CustomText>

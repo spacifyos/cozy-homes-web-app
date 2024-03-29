@@ -6,7 +6,7 @@ import Images from "@/src/utils/Image";
 const DetailFeatureSection = ({ t }) => {
 
     return (
-        <div className="grid grid-cols-4 gap-2 pb-5">
+        <div className="grid grid-cols-4 gap-2 pb-7">
             <div className="detail-feature-container">
 
                     <CustomImage
@@ -18,7 +18,6 @@ const DetailFeatureSection = ({ t }) => {
 
             </div>
             <div className="detail-feature-container">
-
                     <CustomImage
                         src={Images.bedInactiveIcon}
                         width={20}
