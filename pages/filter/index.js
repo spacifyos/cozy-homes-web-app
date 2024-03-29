@@ -129,7 +129,7 @@ const Filter = () => {
   };
 
   return (
-    <CustomHeader pageTitle="Search" hideBgImage onClickGoBack={onClickGoBack}>
+    <CustomHeader pageTitle="Search" hideBgImage hideRightButton onClickGoBack={onClickGoBack}>
       <div className="body-container" style={{ paddingBottom: 0 }}>
         <div className="grid grid-cols-4 gap-2 pb-7">
           <CustomInput

@@ -44,7 +44,7 @@ function Home() {
   };
 
   return (
-    <CustomHeader hideGoBackButton padding>
+    <CustomHeader hideGoBackButton hideRightButton padding>
       <BannerCarousel />
 
       <div className="body-container">
@@ -76,6 +76,7 @@ function Home() {
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
           listingLoading={listingLoading}
+
         />
       </div>
     </CustomHeader>

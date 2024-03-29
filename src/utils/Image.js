@@ -66,7 +66,31 @@ const Image = {
   topUpIcon:"/images/icon/topup_icon.png",
   clearIcon:"/images/icon/clear_icon.png",
   usageIcon:"/images/icon/usage_icon.png",
-  disconnect:"/images/icon/disconnect_icon.png"
+  disconnect:"/images/icon/disconnect_icon.png",
+  overviewIcon: "/images/icon/overview_icon.png",
+  policyIcon:"/images/icon/policy_icon.png",
+  bedInactiveIcon:"/images/icon/inactive_bed_icon.png",
+  rentalFeeIcon:"/images/icon/rentalFee_icon.png",
+  squareIcon:"/images/icon/square_icon.png",
+  aircondIcon:"/images/icon/aircond_icon.png",
+  cutleyIcon:"/images/icon/cutlery_icon.png",
+  deskChairIcon:"/images/icon/desk-chair_icon.png",
+  gasStoveIcon:"/images/icon/gas-stove_icon.png",
+  mailboxIcon:"/images/icon/mailbox_icon.png",
+  vectorIcon:"/images/icon/Vector_icon.png",
+  wardrobeIcon:"/images/icon/wardrobe_icon.png",
+  wifiIcon:"/images/icon/wifi_icon.png",
+  whatsappIcon:"/images/icon/whatsapp.png",
+  blackphoneIcon:"/images/icon/blackphone.png",
+  agentIcon:"/images/agent.png",
+  bookMarksIcon:"/images/icon/bookmark_n.png",
+  bookMarksIconActive:"/images/icon/bookmark_s.png",
+  femaleUnitIcon:"/images/icon/female_unit_s.png",
+  windowIcon:"/images/icon/window_n.png",
+  verifiedIcon:"/images/icon/verified.png",
+  callIcon:"/images/icon/call.png",
+  room:"/images/room.png",
+  roomView:"/images/roomview.png"
 };
 
 export default Image;

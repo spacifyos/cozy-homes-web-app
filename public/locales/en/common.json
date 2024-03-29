@@ -7,6 +7,7 @@
   },
   "pageTitle": {
     "myStay": "My Stay",
+    "property-detail": "Detail",
     "myMeter": "My Meter"
   },
   "general": {},
@@ -48,5 +49,25 @@
     "totalUnit": "Total Unit",
     "meterUsage": "Meter Usage",
     "availableUnit": "Available Unit"
+  },
+  "property-detail": {
+    "overView": "Overview",
+    "policy": "Policy",
+    "facilities": "Facilities",
+    "aircond": "Air-Conditioner",
+    "laundryArea": "Laundry Area",
+    "chairAndDesk": "Chair and Desk",
+    "sharedKitchen": "Shared Kitchen",
+    "closet": "Closet",
+    "diningArea": "Dining Area",
+    "wifi": "Wi-Fi",
+    "mailbox": "Mail Box",
+    "recommend": "Recommend For You",
+    "bathRoom": "Bathroom",
+    "shared": "Shared",
+    "bed": "Bed",
+    "queen": "Queen",
+    "squareFt": "Square ft.",
+    "rentalFee": "Rental Fee (per month)"
   }
 }

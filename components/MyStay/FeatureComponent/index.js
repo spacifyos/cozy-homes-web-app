@@ -9,7 +9,7 @@ const FeatureComponent = ({ item }) => {
   return (
     <div className="feature-container">
       <div className="feature-icon-container">
-        <CustomImage src={icon} imageStyle={{ width: 50, height: 55 }} />
+        <CustomImage src={icon} imageStyle={{ width: 50, height: 50 }} />
       </div>
 
       <CustomText textClassName="font-size-small font-bold">{name}</CustomText>

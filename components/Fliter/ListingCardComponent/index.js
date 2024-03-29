@@ -1,14 +1,20 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import {useRouter} from "next/router";
 
 const ListingCardComponent = () => {
+    const router = useRouter();
+    const onClickToPropertyDetail = () => {
+        router.push("/property-detail");
+    };
   return (
     <div className="">
       <CustomImage
         src={Images.filterDefaultImage}
         width="100%"
         className="rounded-2xl mb-1 global-box-shadow"
+        onClick={onClickToPropertyDetail}
       />
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
         M Vertica

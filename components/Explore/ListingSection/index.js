@@ -9,6 +9,7 @@ const ListingSection = ({
   onClickSelectCategory,
   selectedCategory,
   listingLoading,
+
 }) => {
   return (
     <div>
@@ -43,7 +44,7 @@ const ListingSection = ({
 
       <div className="grid grid-cols-3 gap-3">
         {_.map(lists, (item) => {
-          return listingLoading ? <Skeleton /> : <ListingCardComponent />;
+          return listingLoading ? <Skeleton /> : <ListingCardComponent/>;
         })}
       </div>
     </div>

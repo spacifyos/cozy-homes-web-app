@@ -26,7 +26,7 @@ const MyStay = () => {
   };
 
   return (
-    <CustomHeader pageTitle={t("pageTitle.myStay")} hideGoBackButton padding>
+    <CustomHeader pageTitle={t("pageTitle.myStay")} hideGoBackButton hideRightButton padding>
       <div className="body-container">
         <UserSection t={t} />
 

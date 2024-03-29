@@ -12,7 +12,7 @@ export { getServerSideProps };
 
 const Account = () => {
   return (
-    <CustomHeader pageTitle={"Account"} hideGoBackButton padding>
+    <CustomHeader pageTitle={"Account"} hideGoBackButton hideRightButton padding>
       <div className="body-container">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
           <ProfileCard />

@@ -6,6 +6,7 @@
   },
   "pageTitle": {
     "myStay": "我的住宿",
+    "property-detail": "详情",
     "myMeter": "我的计量器"
   },
   "general": {},
@@ -30,7 +31,6 @@
     "status": "状态",
     "dueDate": "截止日期"
   },
-
   "myMeter": {
       "todayUsage": "今天的用量",
       "unit": "单位",
@@ -48,5 +48,25 @@
       "totalUnit": "总单位",
       "meterUsage": "计量使用量",
       "availableUnit": "可用单位"
+  },
+  "property-detail": {
+    "overView": "Overview",
+    "policy": "Policy",
+    "facilities": "设施",
+    "aircond": "冷气",
+    "laundryArea": "洗衣区域",
+    "chairAndDesk": "椅子和桌子",
+    "sharedKitchen": "共享厨房",
+    "closet": "衣橱",
+    "diningArea": "用餐区域",
+    "wifi": "Wi-Fi",
+    "mailbox": "邮箱",
+    "recommend": "向你推荐",
+    "bathRoom": "浴室",
+    "shared": "共享",
+    "bed": "床",
+    "queen": "Queen",
+    "squareFt": "平方米",
+    "rentalFee": "租金 (月)"
   }
 }
