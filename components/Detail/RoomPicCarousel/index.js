@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const RoomPicCarousel = ( ) => {
     const imageUrls = [
-       Images.listingDefaultImage,
+        Images.listingDefaultImage,
         Images.room,
         Images.roomView
 
