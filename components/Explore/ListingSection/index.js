@@ -5,15 +5,17 @@ import _ from "lodash";
 import Skeleton from "@/components/Skeleton";
 
 const ListingSection = ({
+  t,
   lists,
   onClickSelectCategory,
   selectedCategory,
   listingLoading,
-
 }) => {
   return (
     <div>
-      <CustomText textClassName="section-title">Popular</CustomText>
+      <CustomText textClassName="section-title">
+        {t("explore.popular")}
+      </CustomText>
 
       <div className="flex items-center pb-4">
         <CustomButton
@@ -44,7 +46,7 @@ const ListingSection = ({
 
       <div className="grid grid-cols-3 gap-3">
         {_.map(lists, (item) => {
-          return listingLoading ? <Skeleton /> : <ListingCardComponent/>;
+          return listingLoading ? <Skeleton /> : <ListingCardComponent />;
         })}
       </div>
     </div>

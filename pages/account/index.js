@@ -11,16 +11,23 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 export { getServerSideProps };
 
 const Account = () => {
+  const { t } = useTranslation("common");
+
   return (
-    <CustomHeader pageTitle={"Account"} hideGoBackButton hideRightButton padding>
+    <CustomHeader
+      pageTitle={t("pageTitle.account")}
+      hideGoBackButton
+      hideRightButton
+      padding
+    >
       <div className="body-container">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
           <ProfileCard />
-          <RoomzCoins />
+          <RoomzCoins t={t} />
         </div>
 
         <FeatureComponent
-          title="Smart Meter Pairing"
+          title={t("account.smartMeterPairing")}
           icon={Images.primaryMeterIcon}
         />
 
@@ -32,26 +39,26 @@ const Account = () => {
         <div className="divider-line"></div>
 
         <FeatureComponent
-          title="My Invoice"
+          title={t("account.myInvoice")}
           icon={Images.primaryInvoiceIcon}
           pb={3}
         />
 
         <FeatureComponent
-          title="Latest Update"
+          title={t("account.latestUpdate")}
           icon={Images.primaryRingIcon}
           pb={3}
         />
 
         <FeatureComponent
-          title="Set Pin Number"
+          title={t("account.setPinNumber")}
           icon={Images.primaryLockIcon}
         />
 
         <div className="divider-line"></div>
 
         <FeatureComponent
-          title="Term & Conditions"
+          title={t("account.termAndCondition")}
           icon={Images.primaryTermAndConditionIcon}
         />
 
@@ -65,11 +72,13 @@ const Account = () => {
               height={25}
               className="mr-2"
             />
-            <CustomText textClassName="font-size-small">Logout</CustomText>
+            <CustomText textClassName="font-size-small">
+              {t("account.logout")}
+            </CustomText>
           </div>
 
           <CustomText textClassName="disable-text font-size-small">
-            Version 1.0.0
+            {t("account.version")} 1.0.0
           </CustomText>
         </div>
       </div>

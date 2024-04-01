@@ -52,7 +52,7 @@ function Home() {
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}
             className="col-span-5"
-            placeholder="Keyword"
+            placeholder={t("explore.keyword")}
           />
 
           <CustomButton
@@ -61,22 +61,25 @@ function Home() {
             onClick={onClickToFilter}
           />
 
-          <CustomInput className="col-span-3" placeholder="State" />
+          <CustomInput
+            className="col-span-3"
+            placeholder={t("explore.state")}
+          />
 
           <CustomSelect
             className="col-span-3"
-            placeholder="City"
+            placeholder={t("explore.city")}
             optionList={cityList}
             onChange={onChangeCity}
           />
         </div>
 
         <ListingSection
+            t={t}
           lists={Array(6)}
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
           listingLoading={listingLoading}
-
         />
       </div>
     </CustomHeader>

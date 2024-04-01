@@ -2,15 +2,42 @@
   "root": {
     "explore": "Explore",
     "myStay": "My Stay",
-    "account": "Account",
-    "myMeter": "My Meter"
+    "account": "Account"
   },
   "pageTitle": {
     "myStay": "My Stay",
-    "property-detail": "Detail",
-    "myMeter": "My Meter"
+    "myMeter": "My Meter",
+    "account": "Account",
+    "propertyDetail": "Property Detail",
+    "search": "Search"
   },
   "general": {},
+  "explore": {
+    "keyword": "Keyword",
+    "state": "State",
+    "city": "City",
+    "popular": "Popular"
+  },
+  "account": {
+    "account": "Account",
+    "roomzCoins": "Roomz Coins",
+    "smartMeterPairing": "Smart Meter Pairing",
+    "myInvoice": "My Invoice",
+    "latestUpdate": "Latest Update",
+    "setPinNumber": "Set PIN Number",
+    "termAndCondition": "Terms & Conditions",
+    "logout": "Logout",
+    "version": "Version"
+  },
+  "search": {
+    "keyword": "Keyword",
+    "state": "State",
+    "city": "City",
+    "sortBy": "Sort by",
+    "priceLowToHigh": "Price (Low to High)",
+    "priceHighToLow": "Price (High to Low)",
+    "month": "Month"
+  },
   "myStay": {
     "roomzCoins": " Roomz Coins",
     "myTenancy": "My Tenancy",
@@ -30,7 +57,10 @@
     "myInvoice": "My Invoice",
     "invoice": "Invoice",
     "status": "Status",
-    "dueDate": "Due Date"
+    "dueDate": "Due Date",
+    "days": "days",
+    "paid": "Paid",
+    "unpaid": "Unpaid"
   },
   "myMeter": {
     "todayUsage": "Today Usage",
@@ -68,6 +98,7 @@
     "bed": "Bed",
     "queen": "Queen",
     "squareFt": "Square ft.",
-    "rentalFee": "Rental Fee (per month)"
+    "rentalFee": "Rental Fee (per month)",
+    "memberSince": "Member since"
   }
 }

@@ -2,7 +2,7 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 
-const RoomzCoins = () => {
+const RoomzCoins = ({ t }) => {
   return (
     <div className="profile-coin-container">
       <CustomImage
@@ -17,7 +17,7 @@ const RoomzCoins = () => {
       </div>
 
       <CustomText textClassName="disable-text font-size-small">
-        Roomz Coins
+        {t("account.roomzCoins")}
       </CustomText>
 
       <div className="flex items-center">

@@ -16,12 +16,13 @@ import Images from "@/src/utils/Image";
 export {getServerSideProps};
 
 const Detail = ({}) => {
+    const {t} = useTranslation("common");
     const router = useRouter();
 
     const onClickGoBack = () => {
         router.back();
+
     };
-    const {t} = useTranslation("common");
     const [isBookMarks, setIsBookMarks] = useState(true);
 
     const rightButton = () => {
@@ -30,7 +31,7 @@ const Detail = ({}) => {
 
 
     return (
-        <CustomHeader pageTitle={t("pageTitle.property-detail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
+        <CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
         rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
         >
             <div className="body-container" style={{paddingBottom: 0}}>

@@ -39,7 +39,7 @@ const RadialProgressComponent = ({ t, dimensions }) => {
         <CustomText textClassName="font-size-xxlarge primary-text font-bold">
           {remainingDay}
         </CustomText>
-        <CustomText textClassName="font-size-small">days</CustomText>
+        <CustomText textClassName="font-size-small">{t("myStay.days")}</CustomText>
       </div>
     </div>
   );

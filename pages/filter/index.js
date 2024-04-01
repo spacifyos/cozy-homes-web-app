@@ -8,6 +8,10 @@ import ListingCardComponent from "@/components/Fliter/ListingCardComponent";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import Skeleton from "@/components/Skeleton";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+
+export { getServerSideProps };
 
 const cityList = [
   { name: "Skudai", value: "skudai" },
@@ -84,19 +88,20 @@ const amenitiesList = [
   },
 ];
 
-const optionList = [
-  {
-    name: "Sort by: Price (Low to High)",
-    value: "Sort by: Price (Low to High)",
-  },
-  {
-    name: "Sort by: Price (High to Low)",
-    value: "Sort by: Price (High to Low)",
-  },
-];
-
 const Filter = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
+
+  const optionList = [
+    {
+      name: t("search.sortBy") + ": " + t("search.priceLowToHigh"),
+      value: "Sort by: Price (Low to High)",
+    },
+    {
+      name: t("search.sortBy") + ": " + t("search.priceHighToLow"),
+      value: "Sort by: Price (High to Low)",
+    },
+  ];
 
   const [iconLiat, setIconList] = useState(amenitiesList);
   const [listingLoading, setListingLoading] = useState(true);
@@ -129,18 +134,23 @@ const Filter = () => {
   };
 
   return (
-    <CustomHeader pageTitle="Search" hideBgImage hideRightButton onClickGoBack={onClickGoBack}>
+    <CustomHeader
+      pageTitle={t("pageTitle.search")}
+      hideBgImage
+      hideRightButton
+      onClickGoBack={onClickGoBack}
+    >
       <div className="body-container" style={{ paddingBottom: 0 }}>
         <div className="grid grid-cols-4 gap-2 pb-7">
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}
             className="col-span-2"
-            placeholder="Keyword"
+            placeholder={t("search.keyword")}
           />
 
-          <CustomInput placeholder="State" />
+          <CustomInput placeholder={t("search.state")} />
 
-          <CustomSelect placeholder="City" optionList={cityList} />
+          <CustomSelect placeholder={t("search.city")} optionList={cityList} />
         </div>
 
         <div className="w-full pb-7 flex gap-5">
@@ -156,7 +166,9 @@ const Filter = () => {
               <CustomSelect
                 styles={{ width: "75%" }}
                 optionList={optionList}
-                placeholder="Sort by: Price (Low to high)"
+                placeholder={
+                  t("search.sortBy") + ": " + t("search.priceLowToHigh")
+                }
               />
             </div>
 
@@ -165,7 +177,7 @@ const Filter = () => {
                 listingLoading ? (
                   <Skeleton />
                 ) : (
-                  <ListingCardComponent listingLoading={listingLoading} />
+                  <ListingCardComponent listingLoading={listingLoading} t={t} />
                 ),
               )}
             </div>
@@ -176,4 +188,4 @@ const Filter = () => {
   );
 };
 
-export default Filter;
+export default withTranslation("common")(Filter);

@@ -36,7 +36,7 @@ const InvoiceComponent = ({ t }) => {
                   className="mr-1"
                 />
                 <CustomText textClassName="disable-text font-size-xsmall leading-4">
-                  Unpaid
+                  {t("myStay.unpaid")}
                 </CustomText>
               </div>
 
