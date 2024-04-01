@@ -16,7 +16,9 @@
     "keyword": "关键词",
     "state": "州",
     "city": "城市",
-    "popular": "热门"
+    "popularCity": "热门城市",
+    "popularUniversity": "热门大学/学院",
+    "popularCondo": "热门公寓"
   },
   "account": {
     "account": "账户",

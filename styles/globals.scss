@@ -105,3 +105,11 @@ body {
 .body-container {
   @apply pb-24 global-horizontal-padding;
 }
+
+.feature-button {
+  cursor: pointer;
+}
+
+.feature-button:hover {
+  background-color: $primary-white-color;
+}

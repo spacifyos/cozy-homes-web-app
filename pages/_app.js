@@ -8,6 +8,7 @@ import { store, persistor } from "@/src/utils/store";
 import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
 import _ from "lodash";
+import 'react-multi-carousel/lib/styles.css';
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");

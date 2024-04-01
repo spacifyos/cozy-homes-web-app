@@ -16,7 +16,9 @@
     "keyword": "Keyword",
     "state": "State",
     "city": "City",
-    "popular": "Popular"
+    "popularCity": "Popular City",
+    "popularUniversity": "Popular University/College",
+    "popularCondo": "Popular Condo"
   },
   "account": {
     "account": "Account",

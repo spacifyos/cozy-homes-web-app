@@ -2,7 +2,6 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import _ from "lodash";
 
 const RoomPicCarousel = () => {
