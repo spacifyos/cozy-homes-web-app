@@ -32,44 +32,40 @@ const FeaturesSection = () => {
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1"
+          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
           buttonText="Short Stay"
-          icon={Image.bedAmenitiesIconActive}
-          imageHeight={25}
-          imageWidth={25}
+          icon={Image.shortStayIcon}
+          imageStyle={{ width: 20, height: 20 }}
         />
       </div>
       <div className="col-span-3">
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1"
+          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
           buttonText="Event Space"
-          icon={Image.bedAmenitiesIconActive}
-          imageHeight={25}
-          imageWidth={25}
+          icon={Image.eventIcon}
+          imageStyle={{ width: 20, height: 20 }}
         />
       </div>
       <div className="col-span-3">
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1"
+          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
           buttonText="Car park"
-          icon={Image.bedAmenitiesIconActive}
-          imageHeight={25}
-          imageWidth={25}
+          icon={Image.carParkIcon}
+          imageStyle={{ width: 20, height: 20 }}
         />
       </div>
       <div className="col-span-3">
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1"
+          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
           buttonText="Workspace"
-          icon={Image.bedAmenitiesIconActive}
-          imageHeight={25}
-          imageWidth={25}
+          icon={Image.workspaceIcon}
+          imageStyle={{ width: 20, height: 20 }}
         />
       </div>
     </div>

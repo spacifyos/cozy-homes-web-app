@@ -3,12 +3,17 @@ import Image from "@/src/utils/Image";
 import _ from "lodash";
 import CustomText from "@/components/CustomText";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ locale, onClickChangeLanguage }) => {
   const LanguageList = [
-    { image: Image.logoImage, name: "EN", value: "en" },
-    { image: Image.logoImage, name: "BM", value: "bm" },
-    { image: Image.logoImage, name: "ZH", value: "zh" },
+    { image: Image.enIcon, name: "EN", value: "en" },
+    { image: Image.bnIcon, name: "BM", value: "bm" },
+    { image: Image.zhIcon, name: "ZH", value: "zh" },
   ];
+
+  const currentLocale = _.find(LanguageList, (item) =>
+    _.isEqual(_.get(item, ["value"], "en"), locale),
+  );
+  const currentLanguageIcon = _.get(currentLocale, ["image"], "");
 
   return (
     <div className="global-horizontal-padding relative" style={{ height: 60 }}>
@@ -20,18 +25,34 @@ const LanguageSwitcher = () => {
           className="collapse-title items-center"
           style={{ display: "flex", paddingInlineEnd: 0 }}
         >
-          <CustomImage src={Image.logoImage} height={25} width={25} />
+          <CustomImage
+            src={
+              _.isEmpty(currentLanguageIcon)
+                ? Image.logoImage
+                : currentLanguageIcon
+            }
+            height={25}
+            width={25}
+          />
         </summary>
 
         {_.map(LanguageList, (item) => {
+          const image = _.get(item, ["image"], "");
+          const name = _.get(item, ["name"], "");
+          const value = _.get(item, ["value"], "");
+
           return (
-            <div className="collapse-content flex items-center">
+            <div
+              className="collapse-content flex items-center cursor-pointer"
+              onClick={() => onClickChangeLanguage(value)}
+            >
               <CustomImage
-                src={_.get(item, ["image"], "")}
+                src={image}
                 height={20}
-                width={20} className="mr-3"
+                width={20}
+                className="mr-3"
               />
-              <CustomText>{_.get(item, ["name"], "")}</CustomText>
+              <CustomText>{name}</CustomText>
             </div>
           );
         })}

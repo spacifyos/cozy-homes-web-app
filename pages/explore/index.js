@@ -2,15 +2,12 @@ import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomHeader from "@/components/CustomHeader";
 import BannerCarousel from "@/components/Explore/BannerCarousel";
-import CustomInput from "@/components/CustomInput";
-import Images from "@/src/utils/Image";
-import CustomButton from "@/components/CustomButton";
-import CustomSelect from "@/components/CustomSelect";
 import ListingSection from "@/components/Explore/ListingSection";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
+import _ from "lodash";
 
 export { getServerSideProps };
 
@@ -36,10 +33,16 @@ const condoListing = [
 ];
 
 function Home() {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
   const router = useRouter();
+  const locale = _.get(router, ["locale"], "en");
 
   const [listingLoading, setListingLoading] = useState(true);
+
+  const onClickChangeLanguage = (newLocale) => {
+    const { pathname, asPath, query } = router;
+    router.push({ pathname, query }, asPath, { locale: newLocale });
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -57,7 +60,10 @@ function Home() {
 
   return (
     <CustomHeader hideGoBackButton hideRightButton padding>
-      <LanguageSwitcher />
+      <LanguageSwitcher
+        locale={locale}
+        onClickChangeLanguage={onClickChangeLanguage}
+      />
 
       <BannerCarousel />
 
