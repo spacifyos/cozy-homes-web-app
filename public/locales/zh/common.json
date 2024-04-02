@@ -62,7 +62,8 @@
     "dueDate": "截止日期",
     "days": "天",
     "paid": "已付款",
-    "unpaid": "未付款"
+    "unpaid": "未付款",
+    "smartLock": "电子锁"
   },
   "myMeter": {
     "todayUsage": "今天的用量",

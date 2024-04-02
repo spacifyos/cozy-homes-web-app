@@ -62,7 +62,8 @@
     "dueDate": "Due Date",
     "days": "days",
     "paid": "Paid",
-    "unpaid": "Unpaid"
+    "unpaid": "Unpaid",
+    "smartLock": "Smart Lock"
   },
   "myMeter": {
     "todayUsage": "Today Usage",

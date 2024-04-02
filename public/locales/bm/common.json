@@ -62,7 +62,8 @@
     "dueDate": "Tarikh Jatuh Tempo",
     "days": "hari",
     "paid": "Dibayar",
-    "unpaid": "Belum Dibayar"
+    "unpaid": "Belum Dibayar",
+    "smartLock": "kunci pintar"
   },
   "myMeter": {
     "todayUsage": "Penggunaan Hari Ini",

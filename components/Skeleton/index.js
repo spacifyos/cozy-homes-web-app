@@ -1,8 +1,10 @@
+import _ from "lodash";
+
 const Skeleton = () => {
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <div className="skeleton h-32 w-full"></div>
-      <div className="skeleton h-4 w-28"></div>
+    <div className="flex flex-col gap-2 w-full">
+      <div className="skeleton" style={{ height: 100, width: 100 }}></div>
+      <div className="skeleton h-3" style={{ width: _.random(50, 80) }}></div>
     </div>
   );
 };
