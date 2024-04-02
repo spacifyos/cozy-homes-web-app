@@ -11,6 +11,7 @@ import RecommendSection from "@/components/Detail/RecommendSection";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Images from "@/src/utils/Image";
+import PolicyDetail from "@/components/Detail/PolicyDetail";
 
 
 export {getServerSideProps};
@@ -18,42 +19,50 @@ export {getServerSideProps};
 const Detail = ({}) => {
     const {t} = useTranslation("common");
     const router = useRouter();
-
+    const [selectDetail, setSelectedDetail] = useState("Tenancy");
+    const [showPolicy, setShowPolicy] = useState(true);
     const onClickGoBack = () => {
         router.back();
-
     };
     const [isBookMarks, setIsBookMarks] = useState(true);
 
     const rightButton = () => {
         setIsBookMarks(!isBookMarks);
     };
+    const onClickSelectDetail = (select) => {
+        setSelectedDetail(select);
+    };
+    useEffect(() => {
 
+        setShowPolicy(selectDetail === "Tenancy");
+    }, [selectDetail]);
 
-    return (
-        <CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
-        rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
-        >
-            <div className="body-container" style={{paddingBottom: 0}}>
-
-                <RoomPicCarousel t={t}
-                />
-
-                <DetailComponent t={t}/>
-
-                <DetailFeatureSection t={t}/>
-
-                <Facilities t={t}/>
-
-                <RoomzMap t={t}/>
-
-                <RecommendSection t={t}/>
-
-                <AgentSection t={t}/>
-
-            </div>
-        </CustomHeader>
-    );
+    return (<CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack}
+                          rightButton={rightButton}
+                          rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
+    >
+        <div className="body-container" style={{paddingBottom: 0}}>
+            <RoomPicCarousel t={t}/>
+            <DetailComponent
+                t={t}
+                onClickSelectDetail={onClickSelectDetail}
+                selectDetail={selectDetail}
+            />
+            {showPolicy ? (
+                <>
+                    <DetailFeatureSection t={t}/>
+                    <Facilities t={t}/>
+                    <RoomzMap t={t}/>
+                    <RecommendSection t={t}/>
+                    <AgentSection t={t}/>
+                </>
+            ) : (
+                <>
+                    <PolicyDetail t={t}/>
+                </>
+            )}
+        </div>
+    </CustomHeader>);
 };
 
 export default withTranslation("common")(Detail);

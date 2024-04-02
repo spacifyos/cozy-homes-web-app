@@ -81,7 +81,7 @@
     "availableUnit": "Available Unit"
   },
   "propertyDetail": {
-    "overView": "Overview",
+    "tenancy": "Tenancy",
     "policy": "Policy",
     "facilities": "Facilities",
     "aircond": "Air-Conditioner",
@@ -99,6 +99,7 @@
     "queen": "Queen",
     "squareFt": "Square ft.",
     "rentalFee": "Rental Fee (per month)",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "cancellationPolicy": "Cancellation Policy"
   }
 }

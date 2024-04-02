@@ -7,6 +7,7 @@ const Image = {
   accountIconActive: "/images/icon/account_icon_active.png",
   leftIcon: "/images/icon/left_icon.png",
   rightIcon: "/images/icon/right_icon.png",
+  righWhiteIcon:"/images/icon/rightWhite_icon.png",
   userIcon: "/images/icon/user_icon.png",
   phoneIcon: "/images/icon/phone_icon.png",
   emailIcon: "/images/icon/email_icon.png",
@@ -67,7 +68,9 @@ const Image = {
   clearIcon:"/images/icon/clear_icon.png",
   usageIcon:"/images/icon/usage_icon.png",
   disconnect:"/images/icon/disconnect_icon.png",
-  overviewIcon: "/images/icon/overview_icon.png",
+  tenancyIconActive: "/images/icon/tenancy_icon.png",
+  tenancyIcon:"/images/icon/tenancy_disable_icon.png",
+  policyIconActive:"/images/icon/policy_icon_active.png",
   policyIcon:"/images/icon/policy_icon.png",
   bedInactiveIcon:"/images/icon/inactive_bed_icon.png",
   rentalFeeIcon:"/images/icon/rentalFee_icon.png",
@@ -90,7 +93,9 @@ const Image = {
   verifiedIcon:"/images/icon/verified.png",
   callIcon:"/images/icon/call.png",
   room:"/images/room.png",
-  roomView:"/images/roomview.png"
+  roomView:"/images/roomview.png",
+  scheduleIcon:"/images/icon/schedule_icon.png",
+  inforIconActive:"/images/icon/infor_icon.png"
 };
 
 export default Image;

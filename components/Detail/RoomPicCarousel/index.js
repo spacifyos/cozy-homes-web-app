@@ -4,7 +4,6 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import {useState, useEffect} from "react";
 import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import _ from "lodash";
 import Image from "next/image";
 
