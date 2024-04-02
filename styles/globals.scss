@@ -113,3 +113,7 @@ body {
 .feature-button:hover {
   background-color: $primary-white-color;
 }
+
+.collapse-arrow > .collapse-title:after {
+  top: 25px !important;
+}

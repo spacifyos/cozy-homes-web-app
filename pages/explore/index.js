@@ -38,9 +38,11 @@ function Home() {
   const locale = _.get(router, ["locale"], "en");
 
   const [listingLoading, setListingLoading] = useState(true);
+  const [openSwitcher, setOpenSwitcher] = useState(false);
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
+    setOpenSwitcher(false);
     router.push({ pathname, query }, asPath, { locale: newLocale });
   };
 
@@ -58,10 +60,16 @@ function Home() {
     router.push("/property-detail");
   };
 
+  const onClickOpenSwitcher = () => {
+    setOpenSwitcher(!openSwitcher);
+  };
+
   return (
     <CustomHeader hideGoBackButton hideRightButton padding>
       <LanguageSwitcher
         locale={locale}
+        openSwitcher={openSwitcher}
+        onClickOpenSwitcher={onClickOpenSwitcher}
         onClickChangeLanguage={onClickChangeLanguage}
       />
 
