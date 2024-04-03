@@ -9,7 +9,7 @@
 @import "page/meter-detail";
 @import "page/property-detail";
 @import "page/explore.scss";
-@import "page/filter.scss";
+@import "page/search.scss";
 @import "page/my-stay.scss";
 @import "page/account.scss";
 @import "carousel.scss";
@@ -54,13 +54,13 @@ body {
 }
 
 .global-horizontal-padding {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .global-horizontal-margin {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .global-box-shadow {

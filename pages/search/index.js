@@ -3,13 +3,14 @@ import CustomInput from "@/components/CustomInput";
 import Images from "@/src/utils/Image";
 import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
-import AmenitiesComponent from "@/components/Fliter/AmenitiesComponent";
-import ListingCardComponent from "@/components/Fliter/ListingCardComponent";
+import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
+import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import _ from "lodash";
 import { useEffect, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import TagComponent from "@/components/Search/TagComponent";
 
 export { getServerSideProps };
 
@@ -92,6 +93,24 @@ const Filter = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
 
+  const [tagList, setTagList] = useState([
+    { name: "Verified Room", isActive: false },
+    { name: "Verified Host", isActive: false },
+    { name: "Zero Deposit", isActive: false },
+    { name: "6 months", isActive: false },
+  ]);
+  const [tagList2, setTagList2] = useState([
+    { name: "TARUMT", isActive: false },
+    { name: "UTAR", isActive: false },
+    { name: "ALFA", isActive: false },
+    { name: "CATS", isActive: false },
+    { name: "SUNWAY", isActive: false },
+    { name: "INTI", isActive: false },
+    { name: "UTM", isActive: false },
+  ]);
+  const [iconList, setIconList] = useState(amenitiesList);
+  const [listingLoading, setListingLoading] = useState(true);
+
   const optionList = [
     {
       name: t("search.sortBy") + ": " + t("search.priceLowToHigh"),
@@ -103,8 +122,41 @@ const Filter = () => {
     },
   ];
 
-  const [iconLiat, setIconList] = useState(amenitiesList);
-  const [listingLoading, setListingLoading] = useState(true);
+  const onClickSelectTag = (tag) => {
+    setTagList((prevState) => {
+      return _.map(prevState, (item) => {
+        if (_.get(item, ["name"], "") === tag) {
+          console.log(tag);
+          return {
+            ...item,
+            ...{ isActive: !_.get(item, ["isActive"], false) },
+          };
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+    });
+  };
+
+  const onClickSelectTag2 = (tag) => {
+    setTagList2((prevState) => {
+      return _.map(prevState, (item) => {
+        if (_.get(item, ["name"], "") === tag) {
+          console.log(tag);
+          return {
+            ...item,
+            ...{ isActive: !_.get(item, ["isActive"], false) },
+          };
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+    });
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -140,23 +192,29 @@ const Filter = () => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
+      <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
+        <CustomInput
+          rightIcon={Images.searchOutlineActiveIcon}
+          className="col-span-2"
+          placeholder={t("search.keyword")}
+        />
+
+        <CustomInput placeholder={t("search.state")} />
+
+        <CustomSelect placeholder={t("search.city")} optionList={cityList} />
+      </div>
+
+      <div className="pb-3 pl-4">
+        <TagComponent lists={tagList} onClickSelectTag={onClickSelectTag} />
+
+        <TagComponent lists={tagList2} onClickSelectTag={onClickSelectTag2} />
+      </div>
+
       <div className="body-container" style={{ paddingBottom: 0 }}>
-        <div className="grid grid-cols-4 gap-2 pb-7">
-          <CustomInput
-            rightIcon={Images.searchOutlineActiveIcon}
-            className="col-span-2"
-            placeholder={t("search.keyword")}
-          />
-
-          <CustomInput placeholder={t("search.state")} />
-
-          <CustomSelect placeholder={t("search.city")} optionList={cityList} />
-        </div>
-
         <div className="w-full pb-7 flex gap-5">
           <div className="w-1/5">
             <AmenitiesComponent
-              list={iconLiat}
+              list={iconList}
               onClickSelectAmenities={onClickSelectAmenities}
             />
           </div>
@@ -175,7 +233,7 @@ const Filter = () => {
             <div className="grid grid-cols-2 gap-3 ">
               {_.map(Array(12), (item) =>
                 listingLoading ? (
-                  <Skeleton />
+                  <Skeleton width="100%" height={140} />
                 ) : (
                   <ListingCardComponent listingLoading={listingLoading} t={t} />
                 ),

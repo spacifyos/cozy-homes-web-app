@@ -111,7 +111,7 @@ const ListingSection = ({
         >
           {_.map(lists, (item) => {
             return listingLoading ? (
-              <Skeleton />
+              <Skeleton width={100} height={100}  />
             ) : (
               <ListingCardComponent
                 item={item}

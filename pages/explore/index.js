@@ -53,7 +53,7 @@ function Home() {
   }, []);
 
   const onClickToFilter = () => {
-    router.push("/filter");
+    router.push("/search");
   };
 
   const onClickToPropertyDetail = () => {

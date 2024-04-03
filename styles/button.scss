@@ -59,12 +59,64 @@
 }
 
 .disable-btn {
-  @include custom-button ;
+  @include custom-button;
   @include custom-text($primary-white-color);
 
   p {
     font-weight: bold !important;
     @extend .white-text;
+  }
+}
+
+.tag-button {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.tag-button:hover {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+  }
+}
+
+.tag-button-active {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.tag-button-active:hover {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
   }
 }
 
