@@ -12,7 +12,7 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/Detail/PolicyDetail";
-
+import _ from "lodash";
 
 export {getServerSideProps};
 
@@ -39,6 +39,7 @@ const Detail = ({}) => {
 
     return (<CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack}
                           rightButton={rightButton}
+                          HeaderImageStyle={{width:"30px",height:"30px"}}
                           rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
     >
         <div className="body-container" style={{paddingBottom: 0}}>
@@ -48,7 +49,7 @@ const Detail = ({}) => {
                 onClickSelectDetail={onClickSelectDetail}
                 selectDetail={selectDetail}
             />
-            {showPolicy ? (
+            {_.isEqual(showPolicy, true) ? (
                 <>
                     <DetailFeatureSection t={t}/>
                     <Facilities t={t}/>

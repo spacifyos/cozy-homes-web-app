@@ -9,7 +9,8 @@
     "myMeter": "My Meter",
     "account": "Account",
     "propertyDetail": "Property Detail",
-    "search": "Search"
+    "search": "Search",
+    "bookingOverview": "Booking Overview"
   },
   "general": {},
   "explore": {
@@ -101,5 +102,31 @@
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since",
     "cancellationPolicy": "Cancellation Policy"
+  },
+  "payment": {
+    "viewBooking": "View Booking",
+    "paymentSuccess": "Payment Successful",
+    "paymentFail": "Payment Fail"
+  },
+  "bookingOverview": {
+    "bookingCode": "Booking Code",
+    "viewMore": "View More",
+    "roomForRent": "Room for Rent",
+    "paymentDetail": "Payment Detail",
+    "moveInFee": "Move-In Fee",
+    "tenancyAgreementFee": "Tenancy Agreement Fee",
+    "securityDeposit": "Security Deposit",
+    "step1": "Step 1",
+    "step2": "Step 2",
+    "step3": "Step 3",
+    "booking": "Booking",
+    "payment": "Payment",
+    "agencyReview": "Agency Review",
+    "completed": "Completed",
+    "pending": "Pending",
+    "status": "Status",
+    "payNow": "Pay Now",
+    "bookingCreatedAt": "Booking created at ",
+    "paymentAuthorizedAt": "Payment authorized at"
   }
 }

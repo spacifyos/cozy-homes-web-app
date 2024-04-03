@@ -1,7 +1,4 @@
 import CustomText from "@/components/CustomText";
-import CustomImage from "@/components/CustomImage";
-import _ from "lodash";
-
 
 const PolicyDetail = ({t}) => {
 

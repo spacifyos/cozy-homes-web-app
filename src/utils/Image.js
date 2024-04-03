@@ -95,7 +95,13 @@ const Image = {
   room:"/images/room.png",
   roomView:"/images/roomview.png",
   scheduleIcon:"/images/icon/schedule_icon.png",
-  inforIconActive:"/images/icon/infor_icon.png"
+  inforIconActive:"/images/icon/infor_icon.png",
+  xIcon:"/images/icon/x_icon.png",
+  successIcon:"/images/icon/success_icon.png",
+  failIcon:"/images/icon/fail_icon.png",
+  stepCompleteIcon:"/images/icon/stepComplete_icon.png",
+  step2Icon:"/images/icon/step2_icon.png",
+  step3Icon:"/images/icon/step3_icon.png"
 };
 
 export default Image;

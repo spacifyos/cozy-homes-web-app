@@ -12,6 +12,7 @@ const CustomHeader = ({
                           rightButton,
                           rightButtonIcon,
                           padding = false,
+                          HeaderImageStyle,
                       }) => {
     return (
         <div className="flex-1 relative bg-color">
@@ -45,7 +46,7 @@ const CustomHeader = ({
                 ) : (
 
                     <div onClick={rightButton}>
-                        <img src={rightButtonIcon} className={"icon"} style={{width: "30px", height: "30px"}}/>
+                        <img src={rightButtonIcon} className={"icon"}  style={{ ...HeaderImageStyle }}/>
                     </div>
                 )}
             </div>

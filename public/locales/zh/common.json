@@ -9,7 +9,8 @@
     "myMeter": "我的计量器",
     "account": "账户",
     "propertyDetail": "房子信息",
-    "search": "搜索"
+    "search": "搜索",
+    "bookingOverview": "预订概览"
   },
   "general": {},
   "explore": {
@@ -102,5 +103,32 @@
     "memberSince": "会员制",
     "cancellationPolicy": "取消政策",
     "tenancy": "租赁"
+  },
+  "payment": {
+    "viewBooking": "查看预订",
+    "paymentSuccess": "支付成功",
+    "paymentFail": "支付失败"
+  },
+  "bookingOverview": {
+    "bookingCode": "预订代码",
+    "viewMore": "查看更多",
+    "roomForRent": "出租的房间",
+    "paymentDetail": "付款详情",
+    "moveInFee": "入住费用",
+    "tenancyAgreementFee": "租赁协议费用",
+    "securityDeposit": "押金",
+    "step1": "步骤 1",
+    "step2": "步骤 2",
+    "step3": "步骤 3",
+    "booking": "预订",
+    "payment": "付款",
+    "agencyReview": "机构评价",
+    "completed": "已完成",
+    "pending": "待定",
+    "status": "状态",
+    "payNow": "立即支付",
+    "bookingCreatedAt": "预订创建于",
+    "paymentAuthorizedAt": "支付授权于"
   }
+
 }
