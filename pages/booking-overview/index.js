@@ -28,7 +28,7 @@ const bookingOverview = ({}) => {
         <CustomHeader pageTitle={t("pageTitle.bookingOverview")} hideBgImage
                       onClickGoBack={onClickGoBack}
         >
-            <div className="body-container">
+            <div className="body-container" style={{paddingBottom:40}}>
                 <BookingOverviewDetail t={t}/>
 
                 <StepSection t={t} viewBooking={viewBooking}/>

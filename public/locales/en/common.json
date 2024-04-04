@@ -107,8 +107,8 @@
   },
   "payment": {
     "viewBooking": "View Booking",
-    "paymentSuccess": "Payment Successful",
-    "paymentFail": "Payment Fail"
+    "paymentSuccessful": "Payment Successful",
+    "paymentFailed": "Payment Failed"
   },
   "bookingOverview": {
     "bookingCode": "Booking Code",
@@ -126,7 +126,7 @@
     "agencyReview": "Agency Review",
     "completed": "Completed",
     "pending": "Pending",
-    "status": "Status",
+    "status": "Status:",
     "payNow": "Pay Now",
     "bookingCreatedAt": "Booking created at ",
     "paymentAuthorizedAt": "Payment authorized at"

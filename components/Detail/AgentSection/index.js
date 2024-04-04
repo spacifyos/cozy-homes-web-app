@@ -37,7 +37,7 @@ const AgentSection = ({t}) => {
                         </CustomText>
                     </div>
 
-                    <div className="flex gap-2 items-center flex-2 pr-1">
+                    <div className="flex gap-3 items-center flex-2 pr-1">
                         <div className="p-2 global-box-shadow global-border-radius agent-section-icon" >
                             <CustomImage
                                 src={Images.scheduleIcon}

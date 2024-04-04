@@ -25,7 +25,6 @@ const Detail = ({}) => {
         router.back();
     };
     const [isBookMarks, setIsBookMarks] = useState(true);
-
     const rightButton = () => {
         setIsBookMarks(!isBookMarks);
     };
@@ -33,37 +32,30 @@ const Detail = ({}) => {
         setSelectedDetail(select);
     };
     useEffect(() => {
-
         setShowPolicy(selectDetail === "Tenancy");
     }, [selectDetail]);
 
     return (<CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack}
                           rightButton={rightButton}
-                          HeaderImageStyle={{width:"30px",height:"30px"}}
+                          HeaderImageStyle={{width: "30px", height: "30px"}}
                           rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
-
     >
-        <div className="body-container" style={{paddingBottom: 130}}>
+        <div className="body-container" style={{paddingBottom: 136}}>
             <RoomPicCarousel t={t}/>
             <DetailComponent
                 t={t}
                 onClickSelectDetail={onClickSelectDetail}
                 selectDetail={selectDetail}
             />
-            {_.isEqual(showPolicy, true) ? (
-                <>
-
-                    <DetailFeatureSection t={t}/>
-                    <Facilities t={t}/>
-                    <RoomzMap t={t}/>
-                    <RecommendSection t={t}/>
-                    <AgentSection t={t}/>
-                </>
-            ) : (
-                <>
-                    <PolicyDetail t={t}/>
-                </>
-            )}
+            {_.isEqual(showPolicy, true) ? (<>
+                <DetailFeatureSection t={t}/>
+                <Facilities t={t}/>
+                <RoomzMap t={t}/>
+                <RecommendSection t={t}/>
+            </>) : (<>
+                <PolicyDetail t={t}/>
+            </>)}
+            <AgentSection t={t}/>
         </div>
     </CustomHeader>);
 };

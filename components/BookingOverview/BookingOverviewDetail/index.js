@@ -1,8 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
+import Images from "@/src/utils/Image";
 const BookingOverviewDetail = ({t}) => {
-
-
     return (
         <div className="p-4 pb-7">
         <div className="flex items-center gap-1 pb-4">
@@ -23,7 +22,6 @@ const BookingOverviewDetail = ({t}) => {
             <CustomText textClassName="font-size-xsmall disable-text pb-4">
                 YOLO Type A, Single Bedroom, 106 sqft.
             </CustomText>
-
             <div className="grid-cols-2 grid">
                 <CustomButton
                     buttonClassName="primary-btn view-more-btn font-size-xsmall"
@@ -31,29 +29,22 @@ const BookingOverviewDetail = ({t}) => {
                     onClick={() => document.getElementById('booking-overview-modal').showModal()}
                 />
             </div>
-
             <dialog id="booking-overview-modal" className="modal">
                 <div className="modal-box" style={{width: "90%"}}>
                     <form method="dialog">
-
                         <CustomButton buttonClassName="modal-x-btn"
-                                      buttonText="x"
+                                      icon={Images.xIcon}
                                       buttonStyles={{outline: "none", outlineOffset: "unset", border: "none"}}
                         />
                     </form>
-
-                    <CustomText textClassName="modal-title-font pb-2">
+                    <CustomText textClassName="modal-title-font pb-2 pt-5">
                         {t("bookingOverview.paymentDetail")}
-
-
                     </CustomText>
                     <CustomText textClassName="modal-sub-font">
                         Please check the payment breakdown below. Should you have any inquiries, please contact the
                         owner or agent before proceeding with your payment.
                     </CustomText>
-
                     <div className="divider divider-bookingOverview"></div>
-
                     <div className="payment-details-fee">
                         <CustomText textClassName="modal-font-primary">
                             {t("bookingOverview.moveInFee")}
@@ -78,9 +69,7 @@ const BookingOverviewDetail = ({t}) => {
                             RM400.00
                         </CustomText>
                     </div>
-
                     <div className="divider divider-bookingOverview"></div>
-
                     <div className="payment-details-fee">
                         <CustomText textClassName="modal-font-primary">
                           Total

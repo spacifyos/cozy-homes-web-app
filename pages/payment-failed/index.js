@@ -9,19 +9,18 @@ import {getServerSideProps} from "@/src/utils/getStatic";
 import {useState} from "react";
 
 export {getServerSideProps};
-const PaymentSuccessful = ({}) => {
+const PaymentFailed = ({}) => {
     const router = useRouter();
     const {t} = useTranslation("common");
-    const [viewBooking, setViewBooking] = useState(true);
+    const [viewBooking, setViewBooking] = useState(false);
     const onClickGoMainPage = () => {
         router.push("/explore");
     };
     const onClickViewBooking = () => {
         setViewBooking(viewBooking)
-        router.push({
-            pathname: '/booking-overview', query: {viewBooking: viewBooking}
-        });
+        router.push("/booking-overview");
     }
+
     return (<CustomHeader hideGoBackButton
                           rightButton={onClickGoMainPage}
                           rightButtonIcon={Images.xIcon}
@@ -30,17 +29,16 @@ const PaymentSuccessful = ({}) => {
     >
         <div className="flex flex-col justify-center items-center pt-7">
             <CustomImage
-                src={Images.successIcon}
+                src={Images.failIcon}
                 imageStyle={{width: "150px", height: "150px"}}
             />
             <CustomText textClassName="font-bold pt-4" styles={{fontSize: "25px"}}>
-                {t("payment.paymentSuccessful")}
+                {t("payment.paymentFailed")}
             </CustomText>
             <div className="pb-4 px-10 pt-4">
                 <CustomText textClassName="font-size-xsmall text-center">
-                    Your booking was successful. We will process the tenancy agreement.
-                    An email confirmation will be sent to email <a href="mailto:te**@gmail.com"
-                                                                   className="underline">te**@gmail.com.</a>
+                    Sorry. We encounter an error while processing your payment.
+                    Please try again later.
                 </CustomText>
             </div>
             <CustomButton buttonClassName="primary-btn"
@@ -51,4 +49,4 @@ const PaymentSuccessful = ({}) => {
     </CustomHeader>);
 };
 
-export default PaymentSuccessful;
+export default PaymentFailed;

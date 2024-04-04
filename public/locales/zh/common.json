@@ -108,7 +108,7 @@
   },
   "payment": {
     "viewBooking": "查看预订",
-    "paymentSuccess": "支付成功",
+    "paymentSuccessful": "支付成功",
     "paymentFail": "支付失败"
   },
   "bookingOverview": {
@@ -127,7 +127,7 @@
     "agencyReview": "机构评价",
     "completed": "已完成",
     "pending": "待定",
-    "status": "状态",
+    "status": "状态:",
     "payNow": "立即支付",
     "bookingCreatedAt": "预订创建于",
     "paymentAuthorizedAt": "支付授权于"

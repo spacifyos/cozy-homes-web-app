@@ -1,6 +1,7 @@
 
 .view-more-btn{
-  width: 106px;
+  min-height: 30px !important;
+  height: 40px
 }
 
 .step-section-infor-font{
@@ -57,4 +58,8 @@
 
 .payment-details-fee{
   @apply flex justify-between items-center flex-wrap pb-2;
+}
+
+.diver-step-section{
+  margin: 0;
 }

@@ -20,7 +20,7 @@ const DetailComponent = ({t, onClickSelectDetail, selectDetail}) => {
                 </CustomText>
             </div>
 
-            <div className="grid grid-cols-6 gap-6 items-center pt-4">
+            <div className="grid grid-cols-6 gap-3 items-center pt-4">
                 <CustomButton
                     icon={_.isEqual(selectDetail, "Tenancy") ? Images.tenancyIconActive : Images.tenancyIcon}
                     buttonClassName={`col-span-3 ${_.isEqual(selectDetail, "Tenancy") ? "primary-btn" : "default-btn"} flex-row-reverse`}

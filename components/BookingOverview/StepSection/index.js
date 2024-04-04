@@ -15,51 +15,40 @@ const StepSection = ({t, viewBooking}) => {
     const isPayment = _.isEqual(viewBooking, true);
 
     return (<div className="global-box-shadow global-border-radius primaryWhite-bg-color p-7">
-
-            <div className="flex flex-row items-start gap-2 pb-10">
+            <div className="flex flex-row items-start gap-2 ">
                 <CustomImage
                     src={Images.stepCompleteIcon}
                     imageStyle={{width: "30px", height: "30px"}}
                 />
                 <div className="flex flex-col">
-
                     <CustomText textClassName="step-section-step-font">
                         {t("bookingOverview.step1")}
                     </CustomText>
-
                     <div className="leading-5">
-
                         <CustomText textClassName="font-size-xsmall">
                             {t("bookingOverview.booking")}
                         </CustomText>
-
                         <div className="flex gap-3 items-center pb-2 pt-1">
-
                             <CustomText textClassName="font-size-xsmall">
                                 {t("bookingOverview.status")}
                             </CustomText>
-
                             <CustomText
                                 textClassName="step-section-complete-font">
                                 {t("bookingOverview.completed")}
                             </CustomText>
-
                         </div>
                         <CustomText textClassName="step-section-infor-font">
                             {t("bookingOverview.bookingCreatedAt")} 2022-07-27 18:55:50
                         </CustomText>
                     </div>
-
                 </div>
             </div>
-
-            <div className="flex flex-row items-start gap-2 pb-10">
+            <div className="divider divider-step-section"></div>
+            <div className="flex gap-2">
                 <CustomImage
-
                     src={_.isEqual(viewBooking, true) ? Images.step2Icon : Images.stepCompleteIcon}
                     imageStyle={{width: "30px", height: "30px"}}
                 />
-
                 <div className="flex flex-col ">
                     <CustomText
                         textClassName={`step-section-step-font ${_.isEqual(viewBooking, true) ? "disable-text" : ""}  py-2`}>
@@ -78,25 +67,21 @@ const StepSection = ({t, viewBooking}) => {
                             {isPayment ? pending : completed}
                         </CustomText>
                     </div>
-
-                    {_.isEqual(viewBooking, true) ? (<>
+                    {_.isEqual(viewBooking, true) ? (
                         <CustomButton
                             buttonClassName="primary-btn"
-                            buttonText=  {t("bookingOverview.payNow")}
+                            buttonText={t("bookingOverview.payNow")}
                             onClick={onClickPayNow}
                         />
-                    </>) : (
-
-                        <>
-                            <CustomText textClassName="step-section-infor-font">
-                                {t("bookingOverview.paymentAuthorizedAt")} 2022-07-27 19:55:50
-                            </CustomText>
-                        </>)}
-
+                    ) : (
+                        <CustomText textClassName="step-section-infor-font">
+                            {t("bookingOverview.paymentAuthorizedAt")} 2022-07-27 19:55:50
+                        </CustomText>
+                    )}
                 </div>
             </div>
-
-            <div className="flex flex-row items-start gap-2">
+            <div className="divider divider-step-section"></div>
+            <div className="flex gap-2">
                 <CustomImage
                     src={Images.step3Icon}
                     imageStyle={{width: "30px", height: "30px"}}
@@ -108,16 +93,14 @@ const StepSection = ({t, viewBooking}) => {
                     <CustomText textClassName="font-size-xsmall">
                         {t("bookingOverview.agencyReview")}
                     </CustomText>
-                    <div className="flex gap-3 items-center pb-2 pt-1">
+                    <div className="flex gap-3 items-center pt-1">
                         <CustomText textClassName="font-size-xsmall">
                             {t("bookingOverview.status")}
                         </CustomText>
-
                         <CustomText
                             textClassName="step-section-pending-font">
                             {t("bookingOverview.pending")}
                         </CustomText>
-
                     </div>
                 </div>
             </div>
