@@ -41,8 +41,9 @@ const Detail = ({}) => {
                           rightButton={rightButton}
                           HeaderImageStyle={{width:"30px",height:"30px"}}
                           rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
+
     >
-        <div className="body-container" style={{paddingBottom: 0}}>
+        <div className="body-container" style={{paddingBottom: 130}}>
             <RoomPicCarousel t={t}/>
             <DetailComponent
                 t={t}
@@ -51,6 +52,7 @@ const Detail = ({}) => {
             />
             {_.isEqual(showPolicy, true) ? (
                 <>
+
                     <DetailFeatureSection t={t}/>
                     <Facilities t={t}/>
                     <RoomzMap t={t}/>

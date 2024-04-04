@@ -27,3 +27,12 @@
   @apply global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full flex-col flex justify-center;
 }
 
+.agent-section-container{
+  position: fixed;
+  bottom: 10px;
+  padding-top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 20px);
+  max-width: 470px;
+}

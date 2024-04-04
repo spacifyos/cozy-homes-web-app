@@ -4,7 +4,7 @@ import CustomImage from "@/components/CustomImage";
 
 const AgentSection = ({t}) => {
     return (
-        <div className="sticky bottom-5 w-full pt-5" style={{maxWidth: 470}}>
+        <div className="agent-section-container">
             <div
                 className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
                 style={{overflow: "hidden"}}
