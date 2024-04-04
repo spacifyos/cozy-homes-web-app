@@ -98,7 +98,18 @@ body {
   background-color: #e0ecff !important;
   margin: 25px 0;
 }
-
+.divider-custom:before{
+  height: 6px;
+  margin-left: 120px;
+  margin-right: 120px;
+  border-radius: 10px;
+}
+.divider-custom:after{
+ display:none;
+}
+.modal-box{
+  padding-top: 0;
+}
 .section-title {
   @apply font-size-xlarge font-bold pb-2;
 }

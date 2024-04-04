@@ -6,6 +6,10 @@ import BookingOverviewDetail from "@/components/BookingOverview/BookingOverviewD
 import StepSection from "@/components/BookingOverview/StepSection";
 import {useEffect, useState} from "react";
 import _ from "lodash";
+import CustomButton from "@/components/CustomButton";
+import Images from "@/src/utils/Image";
+import CustomText from "@/components/CustomText";
+import OverviewModal from "@/components/BookingOverview/OverviewModal";
 
 export {getServerSideProps};
 const bookingOverview = ({}) => {
@@ -28,11 +32,12 @@ const bookingOverview = ({}) => {
         <CustomHeader pageTitle={t("pageTitle.bookingOverview")} hideBgImage
                       onClickGoBack={onClickGoBack}
         >
-            <div className="body-container" style={{paddingBottom:40}}>
+            <div className="body-container relative " style={{paddingBottom: 40}}>
                 <BookingOverviewDetail t={t}/>
 
                 <StepSection t={t} viewBooking={viewBooking}/>
 
+                <OverviewModal t={t}/>
             </div>
 
         </CustomHeader>
