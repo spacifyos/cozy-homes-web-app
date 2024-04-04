@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
+import propertyDetail from "@/pages/property-detail";
 
 const AgentSection = ({t}) => {
     return (
@@ -37,21 +38,21 @@ const AgentSection = ({t}) => {
                     </div>
 
                     <div className="flex gap-2 items-center flex-2 pr-1">
-                        <div className="p-2 global-box-shadow global-border-radius " style={{ width: 35, height: 35}}>
+                        <div className="p-2 global-box-shadow global-border-radius agent-section-icon" >
                             <CustomImage
                                 src={Images.scheduleIcon}
                                 width={28}
 
                             />
                         </div>
-                        <div className="p-2 global-box-shadow global-border-radius"  style={{ width: 35, height: 35}}>
+                        <div className="p-2 global-box-shadow global-border-radius agent-section-icon" >
                             <CustomImage
                                 src={Images.callIcon}
                                 width={28}
 
                             />
                         </div>
-                        <div  className="global-box-shadow global-border-radius"  style={{ width: 35, height: 35}}>
+                        <div  className="global-box-shadow global-border-radius agent-section-icon" >
                             <CustomImage
                                 src={Images.whatsappIcon}
                                 width={45}
@@ -65,7 +66,7 @@ const AgentSection = ({t}) => {
                     <div className="flex secondary-bg-color h-full pb-2 px-4 pt-3 justify-between items-center">
                         <div className="flex flex-col leading-4">
                             <CustomText textClassName="font-size-xsmall">
-                                Total move in cost
+                                {t("propertyDetail.totalMoveInCost")}
                             </CustomText>
                             <CustomText textClassName="font-size-small primary-text font-bold">
                                 RM1,020
@@ -80,7 +81,7 @@ const AgentSection = ({t}) => {
                     </div>
                     <div className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center">
                         <CustomText textClassName="font-size-large font-bold white-text">
-                            Book Now
+                            {t("propertyDetail.bookNow")}
                         </CustomText>
                         <CustomImage
                             src={Images.righWhiteIcon}

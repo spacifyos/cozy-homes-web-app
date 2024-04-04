@@ -102,7 +102,9 @@
     "rentalFee": "租金 (月)",
     "memberSince": "会员制",
     "cancellationPolicy": "取消政策",
-    "tenancy": "租赁"
+    "tenancy": "租赁",
+    "totalMoveInCost": "总入住费用",
+    "bookNow": "立即预订"
   },
   "payment": {
     "viewBooking": "查看预订",

@@ -101,7 +101,9 @@
     "squareFt": "Square ft.",
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since",
-    "cancellationPolicy": "Cancellation Policy"
+    "cancellationPolicy": "Cancellation Policy",
+    "totalMoveInCost": "Total move in cost",
+    "bookNow": "Book Now"
   },
   "payment": {
     "viewBooking": "View Booking",
