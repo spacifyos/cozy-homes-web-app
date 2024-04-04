@@ -69,7 +69,7 @@ const StepSection = ({t, viewBooking}) => {
                     </div>
                     {_.isEqual(viewBooking, true) ? (
                         <CustomButton
-                            buttonClassName="primary-btn"
+                            buttonClassName="booking-overview-btn"
                             buttonText={t("bookingOverview.payNow")}
                             onClick={onClickPayNow}
                         />

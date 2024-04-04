@@ -24,7 +24,7 @@ const BookingOverviewDetail = ({t}) => {
             </CustomText>
             <div className="grid-cols-2 grid">
                 <CustomButton
-                    buttonClassName="primary-btn view-more-btn font-size-xsmall"
+                    buttonClassName="booking-overview-btn font-size-xsmall"
                     buttonText={t("bookingOverview.viewMore")}
                     onClick={() => document.getElementById('booking-overview-modal').showModal()}
                 />

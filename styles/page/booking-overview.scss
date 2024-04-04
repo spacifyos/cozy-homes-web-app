@@ -1,8 +1,10 @@
 
-.view-more-btn{
+.booking-overview-btn{
   min-height: 30px !important;
-  height: 40px
+  height: 40px;
+  @apply  primary-btn;
 }
+
 
 .step-section-infor-font{
   @apply disable-text font-size-xsmall;
