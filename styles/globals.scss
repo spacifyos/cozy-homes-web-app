@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "button.scss";
-@import "customText.scss";
+@import "text.scss";
 @import "input.scss";
 @import "select.scss";
 @import "toggle.scss";
@@ -13,6 +13,7 @@
 @import "page/my-stay.scss";
 @import "page/account.scss";
 @import "carousel.scss";
+@import "page/booking.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {

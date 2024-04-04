@@ -1,0 +1,72 @@
+@import "../utils/color";
+@import "../utils/scaling";
+
+.booking-input {
+  background-color: $primary-bg-color;
+  width: 100%;
+  border: 1px solid #939ca2;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 3px 0;
+  color: $primary-black-color;
+  @apply font-size-xsmall;
+}
+
+.booking-input::placeholder {
+  color: #939ca2;
+}
+
+.booking-select {
+  background-color: $primary-bg-color;
+  width: 100%;
+  border: 1px solid #939ca2;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 3px 0;
+  color: $primary-black-color;
+  @apply font-size-xsmall;
+
+  option[value=""][disabled] {
+    display: none;
+    color: #939ca2;
+  }
+
+  option {
+    color: $primary-black-color;
+  }
+}
+
+.booking-select:required:invalid {
+  @extend .font-size-xsmall;
+  color: $disable-color;
+}
+
+.error-message {
+  color: $error-color;
+  @apply font-size-xxsmall;
+}
+
+.input-title {
+  color: $primary-black-color;
+  @apply font-size-xxsmall;
+}
+
+.booking-select:focus-within,
+.booking-select:focus,
+.booking-input:focus-within,
+.booking-input:focus {
+  outline: none;
+  outline-offset: unset;
+}
+
+.booking-radio:checked {
+  background-color: $primary-color;
+  box-shadow:
+    0 0 0 4px $primary-bg-color inset,
+    0 0 0 4px $primary-bg-color inset;
+}
+
+.booking-radio{
+  height: 20px;
+  width: 20px;
+}

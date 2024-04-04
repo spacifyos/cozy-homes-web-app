@@ -9,7 +9,8 @@
     "myMeter": "My Meter",
     "account": "Account",
     "propertyDetail": "Property Detail",
-    "search": "Search"
+    "search": "Search",
+    "booking": "Booking"
   },
   "general": {},
   "explore": {
@@ -103,5 +104,8 @@
     "squareFt": "Square ft.",
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since"
+  },
+  "booking": {
+
   }
 }

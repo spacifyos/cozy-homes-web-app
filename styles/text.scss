@@ -25,3 +25,7 @@
 .power-on-text {
   @include custom-text($power-on-color);
 }
+
+.error-text {
+  @include custom-text($error-color);
+}

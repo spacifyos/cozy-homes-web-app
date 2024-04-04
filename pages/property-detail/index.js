@@ -1,6 +1,6 @@
 import CustomHeader from "@/components/CustomHeader";
 import {useTranslation, withTranslation} from "next-i18next";
-import {getServerSideProps} from "@/src/utils/getStatic";
+import { getServerSideProps } from "@/src/utils/getStatic";
 import RoomPicCarousel from "@/components/Detail/RoomPicCarousel";
 import DetailComponent from "@/components/Detail/DetailComponent";
 import DetailFeatureSection from "@/components/Detail/DetailFeatureSection";

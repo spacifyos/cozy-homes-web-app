@@ -41,7 +41,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
             <div
               onClick={() => onClickChangeTab(value)}
               key={index}
-              className="flex flex-col justify-center items-center"
+              className="flex flex-col justify-center items-center cursor-pointer"
             >
               <CustomImage
                 src={_.isEqual(value, routeName) ? activeIcon : icon}

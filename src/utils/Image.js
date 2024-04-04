@@ -98,6 +98,12 @@ const Image = {
   enIcon: "/images/icon/en_icon.png",
   zhIcon: "/images/icon/zh_icon.png",
   bnIcon: "/images/icon/bn_icon.png",
+  icFront: "/images/ic_front_sample.png",
+  icBack: "/images/ic_back_sample.png",
+  uploadIcon: "/images/icon/upload_icon.png",
+  infoIcon: "/images/icon/info_icon.png",
+  upIcon: "/images/icon/up_icon.png",
+  checkIcon: "/images/icon/check_icon.png",
 };
 
 export default Image;
