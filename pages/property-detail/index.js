@@ -1,6 +1,6 @@
 import CustomHeader from "@/components/CustomHeader";
 import {useTranslation, withTranslation} from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
+import {getServerSideProps} from "@/src/utils/getStatic";
 import RoomPicCarousel from "@/components/Detail/RoomPicCarousel";
 import DetailComponent from "@/components/Detail/DetailComponent";
 import DetailFeatureSection from "@/components/Detail/DetailFeatureSection";
@@ -30,9 +30,10 @@ const Detail = ({}) => {
     };
 
 
-    return (
-        <CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack} rightButton={rightButton}
-        rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
+    return (<CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack}
+                          rightButton={rightButton}
+                          rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
+                          imageStyle={{width: "30px", height: "30px"}}
         >
             <div className="body-container" style={{paddingBottom: 0}}>
 
@@ -52,8 +53,7 @@ const Detail = ({}) => {
                 <AgentSection t={t}/>
 
             </div>
-        </CustomHeader>
-    );
+        </CustomHeader>);
 };
 
 export default withTranslation("common")(Detail);
