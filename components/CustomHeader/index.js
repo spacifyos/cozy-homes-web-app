@@ -9,7 +9,8 @@ const CustomHeader = ({
                           hideBgImage = false,
                           onClickGoBack,
                           hideRightButton = false,
-                          rightButton,
+                          onClickRightButton,
+                          onClickRightSecondButton,
                           rightButtonIcon,
                           rightSecondButtonIcon,
                           padding = false,
@@ -44,14 +45,14 @@ const CustomHeader = ({
                 {hideRightButton ? (
                     false
                 ) : (
-                    <div>
-                        <div onClick={rightButton}>
+                    <div className="flex justify-center items-center gap-8 pr-2">
+                        <div onClick={onClickRightButton}>
                             <CustomImage
                                 src={rightButtonIcon}
                                 imageStyle={{...imageStyle}}
                             />
                         </div>
-                        <div>
+                        <div onClick={onClickRightSecondButton}>
                             <CustomImage
                                 src={rightSecondButtonIcon}
                                 imageStyle={{...imageStyle}}

@@ -31,7 +31,7 @@ const Detail = ({}) => {
 
 
     return (<CustomHeader pageTitle={t("pageTitle.propertyDetail")} hideBgImage onClickGoBack={onClickGoBack}
-                          rightButton={rightButton}
+                          onClickRightButton={rightButton}
                           rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
                           imageStyle={{width: "30px", height: "30px"}}
         >
