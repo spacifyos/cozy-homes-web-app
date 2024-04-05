@@ -24,14 +24,14 @@ function App({ Component, pageProps }) {
       <PersistGate loading={null} persistor={persistor}>
         <div
           className={
-            "flex flex-col justify-center items-center h-screen overflow-hidden"
+            "flex flex-col justify-center items-center h-full overflow-hidden"
           }
           style={{ backgroundColor: Color.primaryBgColor }}
         >
           <div
             style={{ maxWidth: 500 }}
             className={
-              "primaryWhite-bg-color flex flex-col w-screen h-screen relative overflow-y-scroll"
+              "primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
             }
           >
             <Toaster />
