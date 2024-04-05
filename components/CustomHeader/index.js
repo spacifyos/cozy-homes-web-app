@@ -14,7 +14,7 @@ const CustomHeader = ({
   padding = false,
 }) => {
   return (
-    <div className="flex-1 relative bg-color">
+    <div className="flex-1 relative bg-color overflow-y-hidden">
       {hideBgImage ? (
         false
       ) : (
@@ -25,7 +25,7 @@ const CustomHeader = ({
       )}
 
       <div
-        className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"}`}
+        className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}
       >
         <div className="flex justify-center items-center">
           {hideGoBackButton ? (
