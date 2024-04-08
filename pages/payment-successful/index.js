@@ -1,12 +1,10 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
-import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import {useRouter} from "next/router";
 import CustomButton from "@/components/CustomButton";
 import {useTranslation, withTranslation} from "next-i18next";
 import {getServerSideProps} from "@/src/utils/getStatic";
-import {useState} from "react";
 
 export {getServerSideProps};
 const PaymentSuccessful = ({}) => {
@@ -24,10 +22,10 @@ const PaymentSuccessful = ({}) => {
     return (
         <div className="flex flex-col justify-center items-center pt-32 relative">
             <CustomImage
-            src={Images.xIcon}
-            imageStyle={{width: "20px" }}
-            className=" absolute top-5 right-5"
-            onClick={onClickGoMainPage}
+                src={Images.cancelIcon}
+                imageStyle={{width: "20px"}}
+                className=" absolute top-5 right-5"
+                onClick={onClickGoMainPage}
             />
             <CustomImage
                 src={Images.successIcon}
@@ -39,13 +37,13 @@ const PaymentSuccessful = ({}) => {
             <div className="pb-4 px-10 pt-4">
                 <CustomText textClassName="font-size-xsmall text-center">
                     Your booking was successful. We will process the tenancy agreement.
-                    An email confirmation will be sent to email <a href="mailto:te**@gmail.com"
-                                                                   className="underline">te**@gmail.com.</a>
+                    An email confirmation will be sent to email <span
+                    className="underline">te**@gmail.com.</span>
                 </CustomText>
             </div>
             <CustomButton
                 buttonClassName="primary-btn"
-                buttonStyles={{padding:"5px 30px"}}
+                buttonStyles={{padding: "5px 30px"}}
                 buttonText={t("payment.viewBooking")}
                 onClick={onClickGoToBookingOverview}
             />

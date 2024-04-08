@@ -1,13 +1,10 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
-import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import {useRouter} from "next/router";
 import CustomButton from "@/components/CustomButton";
 import {useTranslation, withTranslation} from "next-i18next";
 import {getServerSideProps} from "@/src/utils/getStatic";
-import {useState} from "react";
-import paymentSuccessful from "@/pages/payment-successful";
 
 export {getServerSideProps};
 const PaymentFailed = ({}) => {
@@ -17,18 +14,18 @@ const PaymentFailed = ({}) => {
         router.push("/explore");
     };
 
-    const [paymentSuccess, setPaymentSuccess] = useState(false);
+    const onClickPaymentFail = () => {
 
-    const onClickPaymentFail= () => {
-        setPaymentSuccess(paymentSuccess)
-        router.push("/booking-overview/123");
+        router.push({
+            pathname: '/booking-overview/123', query: {paymentSuccess: false}
+        });
     }
     return (
 
         <div className="flex flex-col justify-center items-center pt-32 relative">
             <CustomImage
-                src={Images.xIcon}
-                imageStyle={{width: "20px" }}
+                src={Images.cancelIcon}
+                imageStyle={{width: "20px"}}
                 className=" absolute top-5 right-5"
                 onClick={onClickGoMainPage}
             />
@@ -46,7 +43,7 @@ const PaymentFailed = ({}) => {
                 </CustomText>
             </div>
             <CustomButton buttonClassName="primary-btn"
-                          buttonStyles={{padding:"5px 30px"}}
+                          buttonStyles={{padding: "5px 30px"}}
                           buttonText={t("payment.viewBooking")}
                           onClick={onClickPaymentFail}
             />

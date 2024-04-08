@@ -6,9 +6,6 @@ import BookingOverviewDetail from "@/components/BookingOverview/BookingOverviewD
 import StepSection from "@/components/BookingOverview/StepSection";
 import {useEffect, useState} from "react";
 import _ from "lodash";
-import CustomButton from "@/components/CustomButton";
-import Images from "@/src/utils/Image";
-import CustomText from "@/components/CustomText";
 import OverviewModal from "@/components/BookingOverview/OverviewModal";
 
 export {getServerSideProps};
@@ -19,7 +16,7 @@ const BookingOverview = ({}) => {
 
     useEffect(() => {
         const paymentSuccess = _.get(router, ['query', 'paymentSuccess'], "");
-        if (!_.isEmpty(paymentSuccess)) {
+        if (_.isEqual(paymentSuccess,"true")) {
             setPaymentSuccess(paymentSuccess);
         }
     }, [router.query]);

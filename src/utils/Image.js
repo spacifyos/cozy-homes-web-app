@@ -96,7 +96,7 @@ const Image = {
   roomView:"/images/roomview.png",
   scheduleIcon:"/images/icon/schedule_icon.png",
   inforIconActive:"/images/icon/infor_icon.png",
-  xIcon:"/images/icon/x_icon.png",
+  cancelIcon:"/images/icon/x_icon.png",
   successIcon:"/images/icon/success_icon.png",
   failIcon:"/images/icon/fail_icon.png",
   stepCompleteIcon:"/images/icon/stepComplete_icon.png",

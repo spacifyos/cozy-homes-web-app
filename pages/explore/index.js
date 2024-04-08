@@ -32,7 +32,7 @@ function Home() {
   }, []);
 
   const onClickToPropertyDetail = () => {
-    router.push("/property-detail");
+    router.push("/property-detail/123");
 
   };
 
