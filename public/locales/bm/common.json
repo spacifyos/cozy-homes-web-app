@@ -64,7 +64,8 @@
     "days": "hari",
     "paid": "Dibayar",
     "unpaid": "Belum Dibayar",
-    "smartLock": "kunci pintar"
+    "smartLock": "kunci pintar",
+    "address": "Alamat"
   },
   "myMeter": {
     "todayUsage": "Penggunaan Hari Ini",
@@ -104,5 +105,9 @@
     "squareFt": "Kaki Persegi",
     "rentalFee": "Yuran Sewaan (sebulan)",
     "memberSince": "Ahli sejak"
+  },
+  "myTenancy": {
+    "address": "Alamak",
+    "createdAt": "Dicipta pada"
   }
 }

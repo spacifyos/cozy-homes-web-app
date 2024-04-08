@@ -65,7 +65,8 @@
     "days": "days",
     "paid": "Paid",
     "unpaid": "Unpaid",
-    "smartLock": "Smart Lock"
+    "smartLock": "Smart Lock",
+    "address": "Address"
   },
   "myMeter": {
     "todayUsage": "Today Usage",
@@ -106,7 +107,9 @@
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since"
   },
-  "booking": {
-
+  "myTenancy":{
+    "address": "Address",
+    "createdAt": "Created At"
   }
+
 }

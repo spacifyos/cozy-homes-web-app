@@ -64,7 +64,8 @@
     "days": "天",
     "paid": "已付款",
     "unpaid": "未付款",
-    "smartLock": "电子锁"
+    "smartLock": "电子锁",
+    "address": "地址"
   },
   "myMeter": {
     "todayUsage": "今天的用量",
@@ -104,5 +105,9 @@
     "squareFt": "平方米",
     "rentalFee": "租金 (月)",
     "memberSince": "会员自"
+  },
+  "myTenancy": {
+    "address": "地址",
+    "createdAt": "创建于"
   }
 }

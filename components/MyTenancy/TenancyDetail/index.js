@@ -56,7 +56,7 @@ const TenancyDetail = ({t}) => {
                 />
             </div>
             <div
-                className="flex mx-16 justify-center items-center py-3"
+                className="flex mx-16 justify-center items-center py-4"
                 ref={targetRef}
             >
                 <RadialProgressComponent t={t} dimensions={dimensions}/>
@@ -71,8 +71,20 @@ const TenancyDetail = ({t}) => {
 
                 </div>
                 <CustomLabelValue
-                    label={t("myStay.tenancyCode")}
-                    value={"Roomz-T123456789"}
+                    label={t("myStay.rentalFee")}
+                    value={"RM750 / monthly"}
+                />
+                <CustomLabelValue
+                    label={t("myStay.tenancyPeriod")}
+                    value={"30 Nov 2023 - 31 Dec 2024"}
+                />
+                <CustomLabelValue
+                    label={t("myTenancy.address")}
+                    value={"Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala Lumpur, Federal Territory of Kuala Lumpur."}
+                />
+                <CustomLabelValue
+                    label={t("myTenancy.createdAt")}
+                    value={"28 Nov 2023, 15:56:43"}
                 />
             </div>
         </div>
