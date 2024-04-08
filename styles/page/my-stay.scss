@@ -27,11 +27,12 @@
 }
 
 .feature-container {
-  @apply flex flex-col justify-center items-center;
+  @apply flex flex-col justify-center items-center cursor-pointer;
 }
 
 .feature-icon-container {
-  @apply global-box-shadow global-border-radius w-full p-3 mb-2 flex justify-center items-center min-h-24 primaryWhite-bg-color;
+  @apply global-box-shadow w-full p-3 mb-2 flex justify-center items-center primaryWhite-bg-color;
+  border-radius: 999px;
 }
 
 .meter-container {

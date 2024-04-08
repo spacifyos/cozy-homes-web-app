@@ -3,57 +3,56 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
 const CustomHeader = ({
-                          children,
-                          pageTitle,
-                          hideGoBackButton = false,
-                          hideBgImage = false,
-                          onClickGoBack,
-                          hideRightButton = false,
-                          rightButton,
-                          rightButtonIcon,
-                          padding = false,
-                          HeaderImageStyle,
-                      }) => {
-    return (
-        <div className="flex-1 relative bg-color">
-            {hideBgImage ? (
-                false
-            ) : (
-                <CustomImage
-                    className={"absolute right-0 w-3/5"}
-                    src={Images.topBackgroundImage}
-                />
-            )}
+  children,
+  pageTitle,
+  hideGoBackButton = false,
+  hideBgImage = false,
+  onClickGoBack,
+  hideRightButton = false,
+  rightButton,
+  rightButtonIcon,
+  padding = false,
+}) => {
+  return (
+    <div className="flex-1 relative bg-color overflow-hidden">
+      {hideBgImage ? (
+        false
+      ) : (
+        <CustomImage
+          className={"absolute right-0 w-3/5"}
+          src={Images.topBackgroundImage}
+        />
+      )}
 
-            <div
-                className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"}`}
-            >
-            <div className="flex justify-center items-center">
-                {hideGoBackButton ? (
-                    false
-                ) : (
-                    <div onClick={onClickGoBack}>
-                        <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon}/>
-
-                    </div>
-                )}
-                <CustomText textClassName={"font-bold"} styles={{fontSize: 20}}>
-                    {pageTitle}
-                </CustomText>
+      <div
+        className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}
+      >
+        <div className="flex justify-center items-center">
+          {hideGoBackButton ? (
+            false
+          ) : (
+            <div onClick={onClickGoBack} className="cursor-pointer">
+              <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon} />
             </div>
-                {hideRightButton ? (
-                    false
-                ) : (
-
-                    <div onClick={rightButton}>
-                        <img src={rightButtonIcon} className={"icon"}  style={{ ...HeaderImageStyle }}/>
-                    </div>
-                )}
-            </div>
-            {children}
+          )}
+          <CustomText textClassName={"font-bold"} styles={{ fontSize: 18 }}>
+            {pageTitle}
+          </CustomText>
         </div>
-
-    );
+        {hideRightButton ? (
+          false
+        ) : (
+          <div onClick={rightButton}>
+            <CustomImage
+              src={rightButtonIcon}
+              imageStyle={{ width: 20, height: 20 }}
+            />
+          </div>
+        )}
+      </div>
+      {children}
+    </div>
+  );
 };
 
 export default CustomHeader;

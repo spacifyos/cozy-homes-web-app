@@ -1,19 +1,26 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
+import _ from "lodash";
 
-const ListingCardComponent = ({onClickToPropertyDetail}) => {
+const ListingCardComponent = ({ item, onClickToPropertyDetail }) => {
+  const router = useRouter();
+  const image = _.get(item, ["image"], "");
+  const title = _.get(item, ["title"], "");
+
   return (
-    <div className="flex flex-col items-center">
+    <div
+      className="flex flex-col items-center px-1 cursor-pointer"
+      onClick={onClickToPropertyDetail}
+    >
       <CustomImage
-        className="rounded-2xl mb-2"
-        src={Images.listingDefaultImage}
-        width="100%"
-        onClick={onClickToPropertyDetail}
+        className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
+        src={image}
+        imageStyle={{ height: 100, width: 100 }}
       />
-      <CustomText textClassName="font-size-small font-bold">
-        Kuala Lumpur
+      <CustomText textClassName="font-size-xsmall font-bold text-center">
+        {title}
       </CustomText>
     </div>
   );

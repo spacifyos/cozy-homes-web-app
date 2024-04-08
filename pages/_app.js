@@ -10,6 +10,9 @@ import { useRouter } from "next/router";
 import _ from "lodash";
 import "react-multi-carousel/lib/styles.css";
 import "@/styles/globals.scss";
+import "react-multi-carousel/lib/styles.css";
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");
@@ -25,14 +28,14 @@ function App({ Component, pageProps }) {
       <PersistGate loading={null} persistor={persistor}>
         <div
           className={
-            "flex flex-col justify-center items-center h-screen overflow-hidden"
+            "flex flex-col justify-center items-center h-full overflow-hidden"
           }
           style={{ backgroundColor: Color.primaryBgColor }}
         >
           <div
             style={{ maxWidth: 500 }}
             className={
-              "primaryWhite-bg-color flex flex-col w-screen h-screen relative overflow-y-scroll"
+              "primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
             }
           >
             <Toaster />
@@ -46,14 +49,11 @@ function App({ Component, pageProps }) {
                 routeName={routeName}
                 onClickChangeTab={onClickChangeTab}
               />
-
             ) : (
               false
             )}
-
           </div>
         </div>
-
       </PersistGate>
     </Provider>
   );

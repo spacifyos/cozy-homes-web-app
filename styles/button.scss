@@ -1,5 +1,5 @@
 @import "utils/color";
-@import "customText";
+@import "text";
 @import "utils/scaling";
 
 @mixin custom-button {
@@ -58,8 +58,8 @@
   }
 }
 
-.disable-btn {
-  @include custom-button ;
+.disable-btn:hover {
+  @include custom-button;
   @include custom-text($primary-white-color);
 
   p {
@@ -68,9 +68,144 @@
   }
 }
 
+.disable-btn {
+  @include custom-button;
+  @include custom-text($primary-white-color);
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.tag-button:hover {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+  }
+}
+
+.tag-button {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.tag-button-active:hover {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
+  }
+}
+
+.tag-button-active {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.pdf-previous-btn:hover {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-previous-btn {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-next-btn:hover {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.pdf-next-btn {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.default-btn-outline:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
+.default-btn-outline {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
 .default-btn:focus-visible,
 .primary-btn:focus-visible,
-.disable-btn:focus-visible {
+.disable-btn:focus-visible,
+.disable-btn:focus-visible,
+.tag-button:focus-visible,
+.tag-button-active:focus-visible {
   outline: none;
   outline-offset: unset;
   border: none;

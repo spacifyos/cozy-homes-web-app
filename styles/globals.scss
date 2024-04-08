@@ -2,18 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 @import "button.scss";
-@import "customText.scss";
+@import "text.scss";
 @import "input.scss";
 @import "select.scss";
 @import "toggle.scss";
 @import "page/meter-detail";
 @import "page/property-detail";
 @import "page/explore.scss";
-@import "page/filter.scss";
+@import "page/search.scss";
 @import "page/my-stay.scss";
 @import "page/account.scss";
 @import "carousel.scss";
 @import "page/booking-overview";
+@import "page/booking.scss";
+@import "page/e-agreement.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
@@ -55,13 +57,13 @@ body {
 }
 
 .global-horizontal-padding {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .global-horizontal-margin {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .global-box-shadow {
@@ -115,5 +117,17 @@ body {
 }
 
 .body-container {
-  @apply pb-24 global-horizontal-padding;
+  @apply global-horizontal-padding;
+}
+
+.feature-button {
+  cursor: pointer;
+}
+
+.feature-button:hover {
+  background-color: $primary-white-color;
+}
+
+.collapse-arrow > .collapse-title:after {
+  top: 25px !important;
 }

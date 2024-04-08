@@ -11,7 +11,7 @@ const MeterFeature = ({ t }) => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-5 justify-center pb-7">
+    <div className="grid grid-cols-4 gap-4 justify-center pb-7">
       {_.map(featureLists, (item) => {
         return <MeterFeatureComponent item={item} />;
       })}

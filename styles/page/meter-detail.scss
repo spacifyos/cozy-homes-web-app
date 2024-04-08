@@ -1,35 +1,34 @@
 @import "../utils/color";
 
-.radial-container{
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
+.radial-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
-
-.divider-horizontal{
-    margin-left: 0;
-    margin-right: 0;
-
+.divider-horizontal {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .meter-response {
-    @apply flex p-5 global-border-radius global-box-shadow primaryWhite-bg-color justify-between;
+  @apply flex p-5 global-border-radius global-box-shadow primaryWhite-bg-color justify-between;
 }
 
-.balance-container{
-    @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-center items-center mt-3 mb-7;
+.balance-container {
+  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-center items-center mt-3 mb-7;
 }
 
-.meter-feature-component{
-    @apply global-box-shadow global-border-radius p-2 mb-2 flex justify-center items-center min-h-20 primaryWhite-bg-color w-full;
+.meter-feature-component {
+  @apply global-box-shadow p-2 mb-2 flex justify-center items-center primaryWhite-bg-color;
+  border-radius: 999px;
 }
 
-.meter-usage-component{
-    @apply p-3 mb-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col;
+.meter-usage-component {
+  @apply p-3 mb-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col;
 }
 
-.meter-usage-inside-container{
-    @apply flex items-center primary-bg-color p-3 global-border-radius mb-1 mr-2;
+.meter-usage-inside-container {
+  @apply flex items-center primary-bg-color p-3 global-border-radius mb-1 mr-2;
 }
