@@ -23,7 +23,7 @@ const TenancyFeeDetail = ({t}) => {
 
     return (
         <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-5">
-            <CustomText textClassName="disable-text font-size-xxsmall">{t("myTenancy.otherInformation")}</CustomText>
+            <CustomText textClassName="disable-text font-size-small">{t("myTenancy.otherInformation")}</CustomText>
 
             <div className="divider divider-step-section" style={{margin: 0}}></div>
 

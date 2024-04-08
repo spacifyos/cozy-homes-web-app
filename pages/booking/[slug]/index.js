@@ -52,7 +52,6 @@ const Booking = () => {
       pageTitle={t("pageTitle.booking")}
       hideBgImage
       hideRightButton
-      hideRightSecondButton
       onClickGoBack={onClickGoBack}
     >
       <div className="body-container">

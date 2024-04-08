@@ -8,6 +8,7 @@ import TenancyDetail from "@/components/MyTenancy/TenancyDetail";
 import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
 import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
 import Eagreement from "@/components/MyTenancy/E-AgreementSection";
+import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
 
 export {getServerSideProps};
 
@@ -31,6 +32,7 @@ const MyTenancy = ({}) => {
                 <TenancyFeeDetail t={t}/>
                 {/*<SubscribeAutoPayModal t={t}/>*/}
                 <Eagreement t={t}/>
+                <InsuranceSection t={t}/>
             </div>
         </CustomHeader>
     );
