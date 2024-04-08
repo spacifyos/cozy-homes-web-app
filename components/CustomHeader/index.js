@@ -14,7 +14,7 @@ const CustomHeader = ({
   padding = false,
 }) => {
   return (
-    <div className="flex-1 relative bg-color overflow-y-hidden">
+    <div className="flex-1 relative bg-color overflow-hidden">
       {hideBgImage ? (
         false
       ) : (
@@ -35,7 +35,7 @@ const CustomHeader = ({
               <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon} />
             </div>
           )}
-          <CustomText textClassName={"font-bold"} styles={{ fontSize: 20 }}>
+          <CustomText textClassName={"font-bold"} styles={{ fontSize: 18 }}>
             {pageTitle}
           </CustomText>
         </div>
@@ -45,7 +45,7 @@ const CustomHeader = ({
           <div onClick={rightButton}>
             <CustomImage
               src={rightButtonIcon}
-              imageStyle={{ width: "30px", height: "30px" }}
+              imageStyle={{ width: 20, height: 20 }}
             />
           </div>
         )}

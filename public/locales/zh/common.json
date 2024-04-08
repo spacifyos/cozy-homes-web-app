@@ -9,7 +9,8 @@
     "myMeter": "我的计量器",
     "account": "账户",
     "propertyDetail": "房子信息",
-    "search": "搜索"
+    "search": "搜索",
+    "booking": "预定"
   },
   "general": {},
   "explore": {
@@ -103,5 +104,32 @@
     "squareFt": "平方米",
     "rentalFee": "租金 (月)",
     "memberSince": "会员自"
+  },
+  "eAgreement": {
+    "landlord": "房东",
+    "tenant": "租户",
+    "agreed": "同意",
+    "signed": "签署"
+  },
+  "eAgreementDetail": {
+    "referenceNumber": "参考编号",
+    "status": "状态",
+    "service": "服务",
+    "property": "物业",
+    "agreementDate": "协议日期",
+    "tenure": "任期",
+    "landlord": "房东",
+    "activity": "活动",
+    "tenant": "租户",
+    "stampingStatus": "盖章状态",
+    "insurance": "保险",
+    "viewAndAgree": "查看并同意",
+    "viewAndSign": "查看并签署"
+  },
+  "viewAgreement": {
+    "page": "页",
+    "previous": "上一页",
+    "next": "下一页"
   }
+
 }

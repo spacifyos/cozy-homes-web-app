@@ -33,7 +33,7 @@ const condoListing = [
 ];
 
 function Home() {
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
   const router = useRouter();
   const locale = _.get(router, ["locale"], "en");
 
@@ -75,7 +75,7 @@ function Home() {
 
       <BannerCarousel />
 
-      <div className="body-container">
+      <div className="body-container pb-24">
         <FeaturesSection />
         {/*<div className="grid grid-cols-6 gap-4 pb-7">*/}
         {/*  <CustomInput*/}

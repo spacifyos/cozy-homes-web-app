@@ -16,6 +16,7 @@ const Image = {
   lockIcon: "/images/icon/smart_lock_icon.png",
   helpIcon: "/images/icon/help_icon.png",
   agreementIcon: "/images/icon/agreement_icon.png",
+  agreementIconActive: "/images/icon/agreement_icon_active.png",
   meterIcon: "/images/icon/meter_icon.png",
   onIcon: "/images/icon/on_icon.png",
   offIcon: "/images/icon/off_icon.png",
@@ -104,6 +105,10 @@ const Image = {
   infoIcon: "/images/icon/info_icon.png",
   upIcon: "/images/icon/up_icon.png",
   checkIcon: "/images/icon/check_icon.png",
+  checkGreyIcon: "/images/icon/check_grey_icon.png",
+  checkGreenIcon: "/images/icon/check_green_icon.png",
+  downloadIcon: "/images/icon/download_icon.png",
+  uncheckIcon: "/images/icon/uncheck_icon.png",
 };
 
 export default Image;

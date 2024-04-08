@@ -14,6 +14,7 @@
 @import "page/account.scss";
 @import "carousel.scss";
 @import "page/booking.scss";
+@import "page/e-agreement.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
@@ -104,7 +105,7 @@ body {
 }
 
 .body-container {
-  @apply pb-24 global-horizontal-padding;
+  @apply global-horizontal-padding;
 }
 
 .feature-button {

@@ -105,7 +105,30 @@
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since"
   },
-  "booking": {
-
+  "eAgreement": {
+    "landlord": "Landlord",
+    "tenant": "Tenant",
+    "agreed": "Agreed",
+    "signed": "Signed"
+  },
+  "eAgreementDetail": {
+    "referenceNumber": "Reference Number",
+    "status": "Status",
+    "service": "Service",
+    "property": "Property",
+    "agreementDate": "Agreement Date",
+    "tenure": "Tenure",
+    "landlord": "Landlord",
+    "activity": "Activity",
+    "tenant": "Tenant",
+    "stampingStatus": "Stamping Status",
+    "insurance": "Insurance",
+    "viewAndAgree": "View & Agree",
+    "viewAndSign": "View & Sign"
+  },
+  "viewAgreement": {
+    "page": "Page",
+    "previous": "Previous",
+    "next": "Next"
   }
 }

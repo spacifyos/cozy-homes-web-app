@@ -9,7 +9,8 @@
     "myMeter": "Meter Saya",
     "account": "Akaun",
     "propertyDetail": "Perincian Hartanah",
-    "search": "Cari"
+    "search": "Cari",
+    "booking": "Tempahan"
   },
   "general": {},
   "explore": {
@@ -103,5 +104,31 @@
     "squareFt": "Kaki Persegi",
     "rentalFee": "Yuran Sewaan (sebulan)",
     "memberSince": "Ahli sejak"
+  },
+  "eAgreement": {
+    "landlord": "Pemilik",
+    "tenant": "Penyewa",
+    "agreed": "Bersetuju",
+    "signed": "Ditandatangani"
+  },
+  "eAgreementDetail": {
+    "referenceNumber": "Nombor Rujukan",
+    "status": "Status",
+    "service": "Perkhidmatan",
+    "property": "Harta",
+    "agreementDate": "Tarikh Perjanjian",
+    "tenure": "Tempoh",
+    "landlord": "Pemilik",
+    "activity": "Aktiviti",
+    "tenant": "Penyewa",
+    "stampingStatus": "Status Cap",
+    "insurance": "Insurans",
+    "viewAndAgree": "Lihat & Setuju",
+    "viewAndSign": "Lihat & Tandatangan"
+  },
+  "viewAgreement": {
+    "page": "Halaman",
+    "previous": "Sebelumnya",
+    "next": "Seterusnya"
   }
 }
