@@ -16,7 +16,7 @@ const FeatureSection = ({ t, onClickToAgreement}) => {
       <FeatureComponent name={t("myStay.smartLock")} icon={Images.lockIcon} />
       <FeatureComponent
         name={t("myStay.eAgreement")}
-        icon={Images.agreementIcon}
+        icon={Images.agreementIconActive}
         onClickToNextPage={onClickToAgreement}
       />
       <FeatureComponent name={t("myStay.helpCenter")} icon={Images.helpIcon} />
