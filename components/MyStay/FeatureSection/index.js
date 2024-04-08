@@ -6,7 +6,7 @@ const FeatureSection = ({ t, onClickToAgreement}) => {
   const featureLists = [
     { name: t("myStay.scan"), icon: Images.qrIcon },
     { name: t("myStay.smartLock"), icon: Images.lockIcon },
-    { name: t("myStay.eAgreement"), icon: Images.agreementIcon },
+    { name: t("myStay.eAgreement"), icon: Images.agreementIconActive },
     { name: t("myStay.helpCenter"), icon: Images.helpIcon },
   ];
 
