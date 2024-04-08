@@ -18,7 +18,7 @@ const PaymentSuccessful = ({}) => {
     const onClickGoToBookingOverview = () => {
 
         router.push({
-            pathname: '/booking-overview', query: {paymentSuccess: true}
+            pathname: '/booking-overview/123', query: {paymentSuccess: true}
         });
     }
     return (

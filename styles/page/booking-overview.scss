@@ -62,6 +62,9 @@
   @apply flex justify-between items-center flex-wrap pb-2;
 }
 
-.diver-step-section{
-  margin: 0;
+.divider-step-section {
+  &:before,
+  &:after {
+    height: 1px;
+  }
 }

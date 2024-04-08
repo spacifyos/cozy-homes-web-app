@@ -3,13 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import {useRouter} from "next/router";
 
-const ListingCardComponent = () => {
-    const router = useRouter();
-
-    const onClickToPropertyDetail = () => {
-        router.push("/property-detail");
-
-    };
+const ListingCardComponent = ({onClickToPropertyDetail}) => {
   return (
     <div className="flex flex-col items-center">
       <CustomImage

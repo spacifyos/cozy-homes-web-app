@@ -21,7 +21,7 @@ const PaymentFailed = ({}) => {
 
     const onClickPaymentFail= () => {
         setPaymentSuccess(paymentSuccess)
-        router.push("/booking-overview");
+        router.push("/booking-overview/123");
     }
     return (
 

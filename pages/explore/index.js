@@ -31,6 +31,11 @@ function Home() {
     }, 1000);
   }, []);
 
+  const onClickToPropertyDetail = () => {
+    router.push("/property-detail");
+
+  };
+
   const onChangeCity = (value) => {
     console.log(value.target.value);
   };
@@ -80,6 +85,7 @@ function Home() {
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
           listingLoading={listingLoading}
+            onClickToPropertyDetail={onClickToPropertyDetail}
         />
       </div>
     </CustomHeader>
