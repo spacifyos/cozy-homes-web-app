@@ -16,6 +16,8 @@ const CustomHeader = ({
                           padding = false,
                           imageStyle
                       }) => {
+    const isRightSecondButton = !_.isEmpty(rightSecondButtonIcon);
+
     return (
         <div className="flex-1 relative bg-color">
             {hideBgImage ? (
@@ -42,16 +44,22 @@ const CustomHeader = ({
                         {pageTitle}
                     </CustomText>
                 </div>
+
+                <div className="flex justify-center items-center">
                 {hideRightButton ? (
                     false
                 ) : (
-                    <div className="flex justify-center items-center gap-8 pr-2">
+                    <div className="flex justify-center items-center ">
                         <div onClick={onClickRightButton}>
                             <CustomImage
                                 src={rightButtonIcon}
                                 imageStyle={{...imageStyle}}
                             />
                         </div>
+                    </div>
+                )}
+                {isRightSecondButton && (
+                    <div className="flex justify-center items-center pl-8 pr-2">
                         <div onClick={onClickRightSecondButton}>
                             <CustomImage
                                 src={rightSecondButtonIcon}
@@ -60,6 +68,7 @@ const CustomHeader = ({
                         </div>
                     </div>
                 )}
+                </div>
             </div>
             {children}
         </div>

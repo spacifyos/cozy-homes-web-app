@@ -108,6 +108,21 @@
   },
   "myTenancy": {
     "address": "地址",
-    "createdAt": "创建于"
+    "createdAt": "创建于",
+    "otherInformation": "其他信息",
+    "electricityPricePerUnit": "每单位电价",
+    "rentalDeposit": "租金押金",
+    "utilityDeposit": "公用事业押金",
+    "keyDeposit": "钥匙押金",
+    "fitUpDeposit": "装修押金",
+    "restorationDeposit": "修复押金",
+    "otherDeposit": "其他押金",
+    "subscribeAutoPay": "订阅自动支付",
+    "referenceNumber": "参考号码",
+    "applicationStatus": "应用状态",
+    "tenantName": "租户姓名",
+    "rentalFee": "租金费用",
+    "period": "周期",
+    "notActivated": "未激活"
   }
 }

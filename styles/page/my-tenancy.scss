@@ -1,3 +1,8 @@
 .tenancy-auto-pay-button {
   @apply flex justify-center items-center secondary-bg-color px-2 py-2 global-border-radius;
 }
+
+.auto-pay-btn{
+  min-height: 40px !important;
+  height: 40px;
+}

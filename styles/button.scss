@@ -58,6 +58,17 @@
   }
 }
 
+.terminate-btn{
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color !important;
+  @include custom-button;
+
+  p{
+    font-weight: bold !important;
+    @extend .primary-text;
+  }
+}
+
 .disable-btn {
   @include custom-button;
   @include custom-text($primary-white-color);

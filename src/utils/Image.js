@@ -105,7 +105,8 @@ const Image = {
   upIcon: "/images/icon/up_icon.png",
   checkIcon: "/images/icon/check_icon.png",
   saveIcon:"/images/icon/save_icon.png",
-  shareIcon:"/images/icon/share_icon.png"
+  shareIcon:"/images/icon/share_icon.png",
+  noDataIcon:"/images/icon/no_data_icon.png"
 };
 
 export default Image;

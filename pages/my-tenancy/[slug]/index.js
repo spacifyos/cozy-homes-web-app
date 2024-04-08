@@ -1,11 +1,13 @@
 import CustomHeader from "@/components/CustomHeader";
 import {useTranslation, withTranslation} from "next-i18next";
 import {getServerSideProps} from "@/src/utils/getStatic";
-import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import Images from "@/src/utils/Image";
 import TenancyUserSection from "@/components/MyTenancy/TenancyUserSection";
 import TenancyDetail from "@/components/MyTenancy/TenancyDetail";
+import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
+import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
+import Eagreement from "@/components/MyTenancy/E-AgreementSection";
 
 export {getServerSideProps};
 
@@ -26,6 +28,9 @@ const MyTenancy = ({}) => {
             <div className="body-container">
                 <TenancyUserSection t={t}/>
                 <TenancyDetail t={t}/>
+                <TenancyFeeDetail t={t}/>
+                {/*<SubscribeAutoPayModal t={t}/>*/}
+                <Eagreement t={t}/>
             </div>
         </CustomHeader>
     );

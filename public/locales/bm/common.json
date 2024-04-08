@@ -108,6 +108,21 @@
   },
   "myTenancy": {
     "address": "Alamak",
-    "createdAt": "Dicipta pada"
+    "createdAt": "Dicipta pada",
+    "otherInformation": "Maklumat lain",
+    "electricityPricePerUnit": "Harga Elektrik Per Unit",
+    "rentalDeposit": "Deposit Sewa",
+    "utilityDeposit": "Deposit Utiliti",
+    "keyDeposit": "Deposit Kunci",
+    "fitUpDeposit": "Deposit Penyesuaian",
+    "restorationDeposit": "Deposit Pemulihan",
+    "otherDeposit": "Deposit Lain",
+    "subscribeAutoPay": "Langgan Pembayaran Auto",
+    "referenceNumber": "Nombor Rujukan",
+    "applicationStatus": "Status Permohonan",
+    "tenantName": "Nama Penyewa",
+    "rentalFee": "Yuran Sewa",
+    "period": "Tempoh",
+    "notActivated":"tidak diaktifkan"
   }
 }

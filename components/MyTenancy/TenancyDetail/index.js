@@ -7,12 +7,14 @@ import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent
 import Images from "@/src/utils/Image";
 
 const TenancyLabel = () => {
-    return (<div className={"pl-2"}>
+    return (
+        <div className={"pl-2"}>
         <CustomText textClassName="font-bold font-size-small primary-text">
             M Vertica
         </CustomText>
         <CustomText textClassName="font-size-xsmall">A-01-01, Room 1</CustomText>
-    </div>);
+    </div>
+    );
 };
 const AutoPayButton = ({isChecked = false, onClickChangeAutoPay}) => {
     return (<div className="tenancy-auto-pay-button">
@@ -44,7 +46,7 @@ const TenancyDetail = ({t}) => {
 
 
     return (
-        <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
+        <div className="global-border-radius global-box-shadow primaryWhite-bg-color mb-5 p-4">
             <div className="flex justify-between items-center">
                 <CustomLabelValue
                     label={t("myStay.tenancyCode")}

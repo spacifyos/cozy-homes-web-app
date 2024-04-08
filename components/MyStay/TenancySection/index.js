@@ -41,7 +41,7 @@ const TenancySection = ({ t }) => {
   const [dimensions, setDimensions] = useState(0);
   const router= useRouter();
     const onClickGoToMyTenancy = () => {
-        router.push("/my-tenancy");
+        router.push("/my-tenancy/123");
 
     };
   useEffect(() => {

@@ -109,7 +109,22 @@
   },
   "myTenancy":{
     "address": "Address",
-    "createdAt": "Created At"
+    "createdAt": "Created At",
+    "otherInformation": "Other Information",
+    "electricityPricePerUnit": "Electricity Price Per Unit",
+    "rentalDeposit": "Rental Deposit",
+    "utilityDeposit": "Utility Deposit",
+    "keyDeposit": "Key Deposit",
+    "fitUpDeposit": "Fit Up Deposit",
+    "restorationDeposit": "Restoration Deposit",
+    "otherDeposit": "Other Deposit",
+    "subscribeAutoPay": "Subsribe Auto Pay",
+    "referenceNumber": "Reference Number",
+    "applicationStatus": "Application Status",
+    "tenantName": "Tenant Name",
+    "rentalFee": "Rental Fee",
+    "period": "Period",
+    "notActivated": "Not Activated"
   }
 
 }
