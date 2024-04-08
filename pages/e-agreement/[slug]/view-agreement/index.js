@@ -7,20 +7,32 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { pdfjs } from "react-pdf";
 import { Document, Page } from "react-pdf";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import Constant from "@/src/utils/Constant";
 import _ from "lodash";
+import SignatureCanvas from "react-signature-canvas";
+import CustomInput from "@/components/CustomInput";
 
 export { getServerSideProps };
 
 const ViewAgreement = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const targetRef = useRef();
+  let canvasRef;
 
-  const [read, setRead] = useState(false);
+  const [readAgree, setReadAgree] = useState(false);
+  const [readSign, setReadSign] = useState(false);
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
+  const [dimensions, setDimensions] = useState(0);
+
+  useEffect(() => {
+    if (targetRef.current) {
+      setDimensions(targetRef.current.offsetWidth);
+    }
+  }, [targetRef]);
 
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -37,8 +49,12 @@ const ViewAgreement = () => {
     router.back();
   };
 
-  const onClickRead = () => {
-    setRead(!read);
+  const onClickReadAgree = () => {
+    setReadAgree(!readAgree);
+  };
+
+  const onClickReadSign = () => {
+    setReadSign(!readSign);
   };
 
   const onClickNext = () => {
@@ -47,6 +63,10 @@ const ViewAgreement = () => {
 
   const onClickPrevious = () => {
     if (pageNumber !== 1) setPageNumber(pageNumber - 1);
+  };
+
+  const onClickResetCanvas = () => {
+    canvasRef.clear();
   };
 
   return (
@@ -105,10 +125,10 @@ const ViewAgreement = () => {
 
         <div className="flex items-start gap-2 pt-5">
           <CustomImage
-            src={read ? Images.checkGreenIcon : Images.uncheckIcon}
+            src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
             height={23}
             width={23}
-            onClick={onClickRead}
+            onClick={onClickReadAgree}
           />
           <CustomText textClassName="font-size-small text-justify leading-4">
             I, <span className="primary-text">Demo (NRIC: 10920192)</span>,
@@ -118,6 +138,73 @@ const ViewAgreement = () => {
             therein.
           </CustomText>
         </div>
+
+        {/*<div className="">*/}
+        {/*  <CustomText textClassName="font-bold">Please Sign Below</CustomText>*/}
+        {/*  <div*/}
+        {/*    className="flex justify-end cursor-pointer"*/}
+        {/*    onClick={onClickResetCanvas}*/}
+        {/*  >*/}
+        {/*    <CustomText textClassName="primary-text">Reset</CustomText>*/}
+        {/*  </div>*/}
+        {/*  <div*/}
+        {/*    className="primaryWhite-bg-color global-border-radius "*/}
+        {/*    ref={targetRef}*/}
+        {/*  >*/}
+        {/*    <SignatureCanvas*/}
+        {/*      ref={(ref) => (canvasRef = ref)}*/}
+        {/*      backgroundColor="rgba(255,255,255,255)"*/}
+        {/*      canvasProps={{*/}
+        {/*        width: dimensions,*/}
+        {/*        height: 200,*/}
+        {/*        backgroundColor: "white",*/}
+        {/*      }}*/}
+        {/*    />*/}
+        {/*  </div>*/}
+
+          {/*<div className="flex items-start gap-2 pt-5 py-10">*/}
+          {/*  <CustomImage*/}
+          {/*    src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}*/}
+          {/*    height={23}*/}
+          {/*    width={23}*/}
+          {/*    onClick={onClickReadSign}*/}
+          {/*  />*/}
+          {/*  <CustomText textClassName="font-size-small text-justify leading-4">*/}
+          {/*    The parties agreed that this agreement may be electronically*/}
+          {/*    signed. The parties agree that the electronic signatures appearing*/}
+          {/*    on this agreement are the same as handwritten signature for the*/}
+          {/*    purpose of validity, enforceability and admissibility.*/}
+          {/*  </CustomText>*/}
+          {/*</div>*/}
+
+          {/*<div className="grid grid-cols-2 gap-2">*/}
+          {/*  <CustomButton*/}
+          {/*    buttonText="Reject"*/}
+          {/*    buttonClassName="default-btn-outline"*/}
+          {/*  />*/}
+          {/*  <CustomButton*/}
+          {/*    buttonText="Submit Signature"*/}
+          {/*    buttonClassName="primary-btn"*/}
+          {/*  />*/}
+          {/*</div>*/}
+        {/*</div>*/}
+
+        {/*<div className="">*/}
+        {/*  <CustomText textClassName="font-bold pb-5">Insert Pin Number</CustomText>*/}
+
+        {/*  <CustomInput label="Pin Number" required labelClassName="font-bold" placeholder="Enter the 6-digit pin number" />*/}
+
+        {/*  <div className="grid grid-cols-2 gap-2 pt-10">*/}
+        {/*    <CustomButton*/}
+        {/*        buttonText="Cancel"*/}
+        {/*        buttonClassName="default-btn-outline"*/}
+        {/*    />*/}
+        {/*    <CustomButton*/}
+        {/*        buttonText="Submit"*/}
+        {/*        buttonClassName="primary-btn"*/}
+        {/*    />*/}
+        {/*  </div>*/}
+        {/*</div>*/}
       </div>
     </CustomHeader>
   );

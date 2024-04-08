@@ -178,6 +178,28 @@
   }
 }
 
+.default-btn-outline:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
+.default-btn-outline {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
 .default-btn:focus-visible,
 .primary-btn:focus-visible,
 .disable-btn:focus-visible,
