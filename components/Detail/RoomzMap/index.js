@@ -6,7 +6,12 @@ const RoomzMap = () => {
     <div className="map-container google-map-code global-box-shadow mb-7">
       <iframe
         src={map}
-        style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "10px",
+          border: "none",
+        }}
       />
     </div>
   );

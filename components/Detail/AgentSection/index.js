@@ -3,95 +3,79 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import propertyDetail from "@/pages/property-detail/[slug]";
 
-const AgentSection = ({t}) => {
-    return (
-        <div className="agent-section-container">
+const AgentSection = ({ t, onClickBooking }) => {
+  return (
+    <div className="agent-section-container">
+      <div
+        className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
+        style={{ overflow: "hidden" }}
+      >
+        <div className=" flex-row flex p-2 pl-3 justify-between items-center">
+          <div className="relative ">
+            <CustomImage
+              src={Images.agentIcon}
+              width={43}
+              className="rounded-2xl"
+            />
             <div
-                className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
-                style={{overflow: "hidden"}}
+              className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"
+              style={{ right: -3 }}
             >
-                <div className=" flex-row flex p-2 pl-3 justify-between items-center">
-                    <div className="relative ">
-                        <CustomImage
-                            src={Images.agentIcon}
-                            width={43}
-                            className="rounded-2xl"
-                        />
-                        <div
-                            className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"
-                            style={{right: -3}}
-                        >
-                            <CustomImage src={Images.paidIcon} width={14}/>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col items-start pl-2 flex-1">
-                        <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
-                            Razak bin Osman
-                        </CustomText>
-                        <CustomText textClassName="disable-text font-size-xxsmall">
-                            {t("propertyDetail.memberSince")} 2023-08-08
-                        </CustomText>
-                        <CustomText textClassName="font-size-xxsmall power-on-text">
-                            15 Active Listing
-                        </CustomText>
-                    </div>
-
-                    <div className="flex gap-3 items-center flex-2 pr-1">
-                        <div className="p-2 global-box-shadow global-border-radius agent-section-icon" >
-                            <CustomImage
-                                src={Images.scheduleIcon}
-                                width={28}
-
-                            />
-                        </div>
-                        <div className="p-2 global-box-shadow global-border-radius agent-section-icon" >
-                            <CustomImage
-                                src={Images.callIcon}
-                                width={28}
-
-                            />
-                        </div>
-                        <div  className="global-box-shadow global-border-radius agent-section-icon" >
-                            <CustomImage
-                                src={Images.whatsappIcon}
-                                width={45}
-
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="grid grid-cols-2 justify-center items-center ">
-                    <div className="flex secondary-bg-color h-full pb-2 px-4 pt-3 justify-between items-center">
-                        <div className="flex flex-col leading-4">
-                            <CustomText textClassName="font-size-xsmall">
-                                {t("propertyDetail.totalMoveInCost")}
-                            </CustomText>
-                            <CustomText textClassName="font-size-small primary-text font-bold">
-                                RM1,020
-                            </CustomText>
-                        </div>
-
-                        <CustomImage
-                            src={Images.inforIconActive}
-                            width={15}
-                        />
-
-                    </div>
-                    <div className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center">
-                        <CustomText textClassName="font-size-large font-bold white-text">
-                            {t("propertyDetail.bookNow")}
-                        </CustomText>
-                        <CustomImage
-                            src={Images.righWhiteIcon}
-                            width={6}
-                        />
-                    </div>
-                </div>
+              <CustomImage src={Images.paidIcon} width={14} />
             </div>
+          </div>
+
+          <div className="flex flex-col items-start pl-2 flex-1">
+            <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
+              Razak bin Osman
+            </CustomText>
+            <CustomText textClassName="disable-text font-size-xxsmall">
+              {t("propertyDetail.memberSince")} 2023-08-08
+            </CustomText>
+            <CustomText textClassName="font-size-xxsmall power-on-text">
+              15 Active Listing
+            </CustomText>
+          </div>
+
+          <div className="flex gap-3 items-center flex-2 pr-1">
+            <div className="p-2 global-box-shadow global-border-radius agent-section-icon">
+              <CustomImage src={Images.scheduleIcon} width={28} />
+            </div>
+            <div className="p-2 global-box-shadow global-border-radius agent-section-icon">
+              <CustomImage src={Images.callIcon} width={28} />
+            </div>
+            <div className="global-box-shadow global-border-radius agent-section-icon">
+              <CustomImage src={Images.whatsappIcon} width={45} />
+            </div>
+          </div>
         </div>
-    );
+
+        <div className="grid grid-cols-2 justify-center items-center ">
+          <div className="flex secondary-bg-color h-full py-2 px-4 justify-between items-center">
+            <div className="flex flex-col leading-4">
+              <CustomText textClassName="font-size-xsmall">
+                {t("propertyDetail.totalMoveInCost")}
+              </CustomText>
+              <CustomText textClassName="font-size-small primary-text font-bold">
+                RM1,020
+              </CustomText>
+            </div>
+
+            <CustomImage src={Images.inforIconActive} width={15} />
+          </div>
+          <div
+            className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
+            onClick={onClickBooking}
+          >
+            <CustomText textClassName="font-size-large font-bold white-text">
+              {t("propertyDetail.bookNow")}
+            </CustomText>
+            <CustomImage src={Images.righWhiteIcon} width={6} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AgentSection;

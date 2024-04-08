@@ -1,4 +1,3 @@
-
 import Color from "@/src/utils/Color";
 import { Toaster } from "react-hot-toast";
 import { appWithTranslation, useTranslation } from "next-i18next";
@@ -54,6 +53,7 @@ function App({ Component, pageProps }) {
             )}
           </div>
         </div>
+
       </PersistGate>
     </Provider>
   );

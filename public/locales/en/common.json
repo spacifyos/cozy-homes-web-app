@@ -133,7 +133,7 @@
     "status": "Status:",
     "payNow": "Pay Now",
     "bookingCreatedAt": "Booking created at ",
-    "paymentAuthorizedAt": "Payment authorized at"
+    "paymentAuthorizedAt": "Payment authorized at",
     "memberSince": "Member since"
   },
   "eAgreement": {

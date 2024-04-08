@@ -13,9 +13,9 @@
 @import "page/my-stay.scss";
 @import "page/account.scss";
 @import "carousel.scss";
-@import "page/booking-overview";
 @import "page/booking.scss";
 @import "page/e-agreement.scss";
+@import "page/booking-overview.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
@@ -100,16 +100,16 @@ body {
   background-color: #e0ecff !important;
   margin: 25px 0;
 }
-.divider-custom:before{
+.divider-custom:before {
   height: 6px;
-  margin-left: 120px;
-  margin-right: 120px;
+  margin-left: 140px;
+  margin-right: 140px;
   border-radius: 10px;
 }
-.divider-custom:after{
- display:none;
+.divider-custom:after {
+  display: none;
 }
-.modal-box{
+.modal-box {
   padding-top: 0;
 }
 .section-title {
