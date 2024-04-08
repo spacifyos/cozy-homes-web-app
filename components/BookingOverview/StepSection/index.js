@@ -5,14 +5,14 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import {useRouter} from "next/router";
 
-const StepSection = ({t, viewBooking}) => {
+const StepSection = ({t, paymentSuccess}) => {
     const router = useRouter();
     const onClickPayNow = () => {
         router.push("/payment-successful");
     };
     const completed = t("bookingOverview.completed");
     const pending = t("bookingOverview.pending");
-    const isPayment = _.isEqual(viewBooking, true);
+    const isPayment = _.isEqual(paymentSuccess, true);
 
     return (<div className="global-box-shadow global-border-radius primaryWhite-bg-color p-7">
             <div className="flex flex-row items-start gap-2 ">
@@ -46,12 +46,12 @@ const StepSection = ({t, viewBooking}) => {
             <div className="divider divider-step-section"></div>
             <div className="flex gap-2">
                 <CustomImage
-                    src={_.isEqual(viewBooking, true) ? Images.step2Icon : Images.stepCompleteIcon}
+                    src={_.isEqual(paymentSuccess, true) ? Images.step2Icon : Images.stepCompleteIcon}
                     imageStyle={{width: "30px", height: "30px"}}
                 />
                 <div className="flex flex-col ">
                     <CustomText
-                        textClassName={`step-section-step-font ${_.isEqual(viewBooking, true) ? "disable-text" : ""}  py-2`}>
+                        textClassName={`step-section-step-font ${_.isEqual(paymentSuccess, true) ? "disable-text" : ""}  py-2`}>
                         {t("bookingOverview.step2")}
                     </CustomText>
                     <CustomText textClassName="font-size-xsmall">
@@ -67,7 +67,7 @@ const StepSection = ({t, viewBooking}) => {
                             {isPayment ? pending : completed}
                         </CustomText>
                     </div>
-                    {_.isEqual(viewBooking, true) ? (
+                    {_.isEqual(isPayment, true) ? (
                         <CustomButton
                             buttonClassName="booking-overview-btn"
                             buttonText={t("bookingOverview.payNow")}

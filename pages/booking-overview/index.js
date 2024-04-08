@@ -12,31 +12,30 @@ import CustomText from "@/components/CustomText";
 import OverviewModal from "@/components/BookingOverview/OverviewModal";
 
 export {getServerSideProps};
-const bookingOverview = ({}) => {
+const BookingOverview = ({}) => {
     const {t} = useTranslation("common");
+    const [paymentSuccess, setPaymentSuccess] = useState(true);
     const router = useRouter();
-    const [viewBooking, setViewBooking] = useState(true);
+
+    useEffect(() => {
+        const paymentSuccess = _.get(router, ['query', 'paymentSuccess'], "");
+        if (!_.isEmpty(paymentSuccess)) {
+            setPaymentSuccess(paymentSuccess);
+        }
+    }, [router.query]);
 
     const onClickGoBack = () => {
         router.back();
     };
-    useEffect(() => {
-        const viewBooking = _.get(router, 'query.viewBooking', undefined);
-        if (viewBooking !== undefined) {
-            setViewBooking(viewBooking);
-        }
-    }, [router.query]);
-
-
     return (
         <CustomHeader pageTitle={t("pageTitle.bookingOverview")} hideBgImage
                       onClickGoBack={onClickGoBack}
         >
-            <div className="body-container relative " style={{paddingBottom: 40}}>
+            <div className="body-container" style={{paddingBottom: 40}}>
                 <BookingOverviewDetail t={t}/>
-
-                <StepSection t={t} viewBooking={viewBooking}/>
-
+                <StepSection t={t}
+                             paymentSuccess={paymentSuccess}
+                />
                 <OverviewModal t={t}/>
             </div>
 
@@ -44,4 +43,4 @@ const bookingOverview = ({}) => {
     );
 };
 
-export default bookingOverview;
+export default BookingOverview;

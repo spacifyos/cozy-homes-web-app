@@ -12,23 +12,23 @@ export {getServerSideProps};
 const PaymentSuccessful = ({}) => {
     const router = useRouter();
     const {t} = useTranslation("common");
-    const [viewBooking, setViewBooking] = useState(true);
     const onClickGoMainPage = () => {
         router.push("/explore");
     };
-    const onClickViewBooking = () => {
-        setViewBooking(viewBooking)
+    const onClickGoToBookingOverview = () => {
+
         router.push({
-            pathname: '/booking-overview', query: {viewBooking: viewBooking}
+            pathname: '/booking-overview', query: {paymentSuccess: true}
         });
     }
-    return (<CustomHeader hideGoBackButton
-                          rightButton={onClickGoMainPage}
-                          rightButtonIcon={Images.xIcon}
-                          HeaderImageStyle={{width: "20px"}}
-                          hideBgImage
-    >
-        <div className="flex flex-col justify-center items-center pt-7">
+    return (
+        <div className="flex flex-col justify-center items-center pt-32 relative">
+            <CustomImage
+            src={Images.xIcon}
+            imageStyle={{width: "20px" }}
+            className=" absolute top-5 right-5"
+            onClick={onClickGoMainPage}
+            />
             <CustomImage
                 src={Images.successIcon}
                 imageStyle={{width: "150px", height: "150px"}}
@@ -43,12 +43,14 @@ const PaymentSuccessful = ({}) => {
                                                                    className="underline">te**@gmail.com.</a>
                 </CustomText>
             </div>
-            <CustomButton buttonClassName="primary-btn"
-                          buttonText={t("payment.viewBooking")}
-                          onClick={onClickViewBooking}
+            <CustomButton
+                buttonClassName="primary-btn"
+                buttonStyles={{padding:"5px 30px"}}
+                buttonText={t("payment.viewBooking")}
+                onClick={onClickGoToBookingOverview}
             />
         </div>
-    </CustomHeader>);
+    )
 };
 
 export default PaymentSuccessful;

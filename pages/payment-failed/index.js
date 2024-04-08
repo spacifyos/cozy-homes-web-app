@@ -7,27 +7,31 @@ import CustomButton from "@/components/CustomButton";
 import {useTranslation, withTranslation} from "next-i18next";
 import {getServerSideProps} from "@/src/utils/getStatic";
 import {useState} from "react";
+import paymentSuccessful from "@/pages/payment-successful";
 
 export {getServerSideProps};
 const PaymentFailed = ({}) => {
     const router = useRouter();
     const {t} = useTranslation("common");
-    const [viewBooking, setViewBooking] = useState(false);
     const onClickGoMainPage = () => {
         router.push("/explore");
     };
-    const onClickViewBooking = () => {
-        setViewBooking(viewBooking)
+
+    const [paymentSuccess, setPaymentSuccess] = useState(false);
+
+    const onClickPaymentFail= () => {
+        setPaymentSuccess(paymentSuccess)
         router.push("/booking-overview");
     }
+    return (
 
-    return (<CustomHeader hideGoBackButton
-                          rightButton={onClickGoMainPage}
-                          rightButtonIcon={Images.xIcon}
-                          HeaderImageStyle={{width: "20px"}}
-                          hideBgImage
-    >
-        <div className="flex flex-col justify-center items-center pt-7">
+        <div className="flex flex-col justify-center items-center pt-32 relative">
+            <CustomImage
+                src={Images.xIcon}
+                imageStyle={{width: "20px" }}
+                className=" absolute top-5 right-5"
+                onClick={onClickGoMainPage}
+            />
             <CustomImage
                 src={Images.failIcon}
                 imageStyle={{width: "150px", height: "150px"}}
@@ -42,11 +46,12 @@ const PaymentFailed = ({}) => {
                 </CustomText>
             </div>
             <CustomButton buttonClassName="primary-btn"
+                          buttonStyles={{padding:"5px 30px"}}
                           buttonText={t("payment.viewBooking")}
-                          onClick={onClickViewBooking}
+                          onClick={onClickPaymentFail}
             />
         </div>
-    </CustomHeader>);
+    )
 };
 
 export default PaymentFailed;
