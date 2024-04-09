@@ -8,7 +8,6 @@ const DetailFeatureSection = ({ t }) => {
       <div className="detail-feature-container">
         <CustomImage src={Images.bathAmenitiesIcon} width={20} />
         <CustomText textClassName="disable-text font-size-xxsmall h-8">
-          {" "}
           {t("propertyDetail.bathRoom")}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small font-bold">
@@ -35,7 +34,7 @@ const DetailFeatureSection = ({ t }) => {
       </div>
       <div className="detail-feature-container">
         <CustomImage src={Images.rentalFeeIcon} width={20} />
-        <CustomText textClassName="disable-text font-size-xxsmall h-8">
+        <CustomText textClassName="disable-text font-size-xxsmall h-8 leading-3">
           {t("propertyDetail.rentalFee")}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small font-bold">

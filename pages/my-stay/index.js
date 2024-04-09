@@ -22,17 +22,26 @@ const MyStay = () => {
   };
 
   const onClickTopUp = () => {
-    router.push("/my-meter");
+    router.push("/my-meter/123");
+  };
+
+  const onClickToAgreement = () => {
+    router.push("/e-agreement");
   };
 
   return (
-    <CustomHeader pageTitle={t("pageTitle.myStay")} hideGoBackButton hideRightButton padding>
-      <div className="body-container">
+    <CustomHeader
+      pageTitle={t("pageTitle.myStay")}
+      hideGoBackButton
+      hideRightButton
+      padding
+    >
+      <div className="body-container pb-24">
         <UserSection t={t} />
 
         <TenancySection t={t} />
 
-        <FeatureSection t={t} />
+        <FeatureSection t={t} onClickToAgreement={onClickToAgreement} />
 
         <MeterSection t={t} onClickTopUp={onClickTopUp} />
 

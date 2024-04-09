@@ -10,8 +10,9 @@
     "account": "Account",
     "propertyDetail": "Property Detail",
     "search": "Search",
-    "booking": "Booking",
-    "myTenancy": "My Tenancy"
+    "myTenancy": "My Tenancy",
+    "bookingOverview": "Booking Overview",
+    "booking": "Booking"
   },
   "general": {},
   "explore": {
@@ -87,7 +88,7 @@
     "availableUnit": "Available Unit"
   },
   "propertyDetail": {
-    "overView": "Overview",
+    "tenancy": "Tenancy",
     "policy": "Policy",
     "facilities": "Facilities",
     "aircond": "Air-Conditioner",
@@ -105,7 +106,65 @@
     "queen": "Queen",
     "squareFt": "Square ft.",
     "rentalFee": "Rental Fee (per month)",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "cancellationPolicy": "Cancellation Policy",
+    "tenancy": "tenancy",
+    "totalMoveInCost": "Total move in cost",
+    "bookNow": "Book Now"
+  },
+  "payment": {
+    "viewBooking": "View Booking",
+    "paymentSuccessful": "Payment Successful",
+    "paymentFailed": "Payment Failed"
+  },
+  "bookingOverview": {
+    "bookingCode": "Booking Code",
+    "viewMore": "View More",
+    "roomForRent": "Room for Rent",
+    "paymentDetail": "Payment Detail",
+    "moveInFee": "Move-In Fee",
+    "tenancyAgreementFee": "Tenancy Agreement Fee",
+    "securityDeposit": "Security Deposit",
+    "step1": "Step 1",
+    "step2": "Step 2",
+    "step3": "Step 3",
+    "booking": "Booking",
+    "payment": "Payment",
+    "agencyReview": "Agency Review",
+    "completed": "Completed",
+    "pending": "Pending",
+    "status": "Status:",
+    "payNow": "Pay Now",
+    "bookingCreatedAt": "Booking created at ",
+    "paymentAuthorizedAt": "Payment authorized at",
+    "memberSince": "Member since",
+    "total": "Total"
+  },
+  "eAgreement": {
+    "landlord": "Landlord",
+    "tenant": "Tenant",
+    "agreed": "Agreed",
+    "signed": "Signed"
+  },
+  "eAgreementDetail": {
+    "referenceNumber": "Reference Number",
+    "status": "Status",
+    "service": "Service",
+    "property": "Property",
+    "agreementDate": "Agreement Date",
+    "tenure": "Tenure",
+    "landlord": "Landlord",
+    "activity": "Activity",
+    "tenant": "Tenant",
+    "stampingStatus": "Stamping Status",
+    "insurance": "Insurance",
+    "viewAndAgree": "View & Agree",
+    "viewAndSign": "View & Sign"
+  },
+  "viewAgreement": {
+    "page": "Page",
+    "previous": "Previous",
+    "next": "Next"
   },
   "myTenancy":{
     "address": "Address",

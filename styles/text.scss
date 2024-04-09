@@ -33,3 +33,7 @@
 .not-available-text{
   @include custom-text($not-available-color);
 }
+
+.grey-text {
+  @include custom-text($grey-color);
+}

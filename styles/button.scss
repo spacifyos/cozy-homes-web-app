@@ -58,6 +58,16 @@
   }
 }
 
+.disable-btn:hover {
+  @include custom-button;
+  @include custom-text($primary-white-color);
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
 .terminate-btn{
   border: 1px solid $primary-color;
   background-color: $primary-white-color !important;
@@ -79,6 +89,17 @@
   }
 }
 
+.tag-button:hover {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+  }
+}
+
 .tag-button {
   border: none;
   background-color: $primary-white-color;
@@ -94,13 +115,13 @@
   }
 }
 
-.tag-button:hover {
+.tag-button-active:hover {
   border: none;
-  background-color: $primary-white-color;
+  background-color: $primary-color;
   border-radius: 15px;
 
   p {
-    @extend .primary-text;
+    @extend .white-text;
     @extend .font-size-xsmall;
   }
 }
@@ -120,20 +141,82 @@
   }
 }
 
-.tag-button-active:hover {
-  border: none;
-  background-color: $primary-color;
-  border-radius: 15px;
+.pdf-previous-btn:hover {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  width: 80px;
+  @include custom-button;
 
   p {
-    @extend .white-text;
-    @extend .font-size-xsmall;
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-previous-btn {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-next-btn:hover {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.pdf-next-btn {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.default-btn-outline:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
+.default-btn-outline {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
   }
 }
 
 .default-btn:focus-visible,
 .primary-btn:focus-visible,
-.disable-btn:focus-visible {
+.disable-btn:focus-visible,
+.disable-btn:focus-visible,
+.tag-button:focus-visible,
+.tag-button-active:focus-visible {
   outline: none;
   outline-offset: unset;
   border: none;

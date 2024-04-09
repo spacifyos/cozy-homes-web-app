@@ -27,7 +27,7 @@
 }
 
 .feature-container {
-  @apply flex flex-col justify-center items-center;
+  @apply flex flex-col justify-center items-center cursor-pointer;
 }
 
 .feature-icon-container {

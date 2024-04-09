@@ -11,6 +11,7 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import Image from "@/src/utils/Image";
 import { useState } from "react";
+import AgentSection from "@/components/Detail/AgentSection";
 
 export { getServerSideProps };
 
@@ -47,6 +48,10 @@ const Booking = () => {
     router.back();
   };
 
+  const onClickBooking = () => {
+    router.push(`/booking/1/overview`);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -54,9 +59,13 @@ const Booking = () => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
-      <div className="body-container">
+      <div className="body-container pb-36">
         <div className="flex justify-center pb-4">
-          <CustomImage src={Images.logoImage} imageStyle={{ width: "100%" }} />
+          <CustomImage
+            src={Images.filterDefaultImage}
+            imageStyle={{ width: "100%" }}
+            className="rounded-2xl"
+          />
         </div>
 
         <CustomText textClassName="primary-text font-bold">
@@ -266,7 +275,7 @@ const Booking = () => {
           <CustomButton
             buttonText={"+ Add Contact"}
             buttonStyles={{ backgroundColor: "#D9D9D9", border: "none" }}
-            textClassName="black-text font-light"
+            textClassName="black-text"
             buttonClassName="col-span-6"
           />
 
@@ -447,7 +456,9 @@ const Booking = () => {
               <CustomText textClassName="font-bold pr-2">
                 Total Move-in Cost
               </CustomText>
-              <CustomText textClassName="primary-text">RM2,656.00</CustomText>
+              <CustomText textClassName="primary-text font-bold">
+                RM2,656.00
+              </CustomText>
             </div>
 
             <div className="flex justify-between items-center pt-2">
@@ -499,6 +510,8 @@ const Booking = () => {
             apply.
           </CustomText>
         </div>
+
+        <AgentSection t={t} onClickBooking={onClickBooking} />
       </div>
     </CustomHeader>
   );

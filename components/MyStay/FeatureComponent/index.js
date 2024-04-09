@@ -3,9 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { useEffect, useRef, useState } from "react";
 
-const FeatureComponent = ({ item }) => {
-  const name = _.get(item, ["name"], "");
-  const icon = _.get(item, ["icon"], "");
+const FeatureComponent = ({ name, icon, onClickToNextPage }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -16,7 +14,7 @@ const FeatureComponent = ({ item }) => {
   }, [targetRef]);
 
   return (
-    <div className="feature-container" ref={targetRef}>
+    <div className="feature-container" ref={targetRef} onClick={onClickToNextPage}>
       <div
         className="feature-icon-container"
         style={{ width: dimensions, height: dimensions, minHeight: dimensions }}

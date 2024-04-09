@@ -8,6 +8,8 @@ $power-on-color: #41c0be;
 $error-color: #b71c1c;
 $not-available-color: #D9D9D9;
 
+$pending-color: #ff8a00;
+$completed-color: #03b78c;
 
 .primaryWhite-bg-color {
   background-color: $primary-white-color;
@@ -23,4 +25,20 @@ $not-available-color: #D9D9D9;
 
 .secondary-bg-color {
   background-color: $secondary-color;
+}
+
+.tertiary-bg-color {
+  background-color: $tertiary-bg-color;
+}
+
+.disable-bg-color {
+  background-color: #94a1a6;
+}
+
+.pending-bg-color {
+  background-color: $pending-color;
+}
+
+.completed-bg-color {
+  background-color: $completed-color;
 }

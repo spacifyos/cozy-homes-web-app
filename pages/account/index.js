@@ -21,7 +21,7 @@ const Account = () => {
       hideRightSecondButton
       padding
     >
-      <div className="body-container">
+      <div className="body-container pb-24">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
           <ProfileCard />
           <RoomzCoins t={t} />
