@@ -135,7 +135,8 @@
     "payNow": "Bayar Sekarang",
     "bookingCreatedAt": "Tempahan dicipta pada ",
     "paymentAuthorizedAt": "Pembayaran diluluskan pada",
-    "memberSince": "Ahli sejak"
+    "memberSince": "Ahli sejak",
+    "total": "Jumlah"
   },
   "eAgreement": {
     "landlord": "Pemilik",

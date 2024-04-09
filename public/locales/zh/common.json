@@ -135,7 +135,8 @@
     "payNow": "立即支付",
     "bookingCreatedAt": "预订创建于",
     "paymentAuthorizedAt": "支付授权于",
-    "memberSince": "会员自"
+    "memberSince": "会员自",
+    "total": "总数"
   },
   "eAgreement": {
     "landlord": "房东",

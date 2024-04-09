@@ -135,7 +135,8 @@
     "payNow": "Pay Now",
     "bookingCreatedAt": "Booking created at ",
     "paymentAuthorizedAt": "Payment authorized at",
-    "memberSince": "Member since"
+    "memberSince": "Member since",
+    "total": "Total"
   },
   "eAgreement": {
     "landlord": "Landlord",

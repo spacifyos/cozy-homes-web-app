@@ -32,7 +32,7 @@ const OverviewModal = ({ t }) => {
       </div>
       <div className="divider divider-bookingOverview"></div>
       <div className="payment-details-fee">
-        <CustomText textClassName="modal-font-primary">Total</CustomText>
+        <CustomText textClassName="modal-font-primary"> {t("bookingOverview.total")}</CustomText>
         <CustomText textClassName="modal-font-main">RM1,600.00</CustomText>
       </div>
     </CustomModal>
