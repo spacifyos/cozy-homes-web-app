@@ -1,6 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import _ from "lodash";
 
 const CustomHeader = ({
   children,
@@ -8,8 +9,7 @@ const CustomHeader = ({
   hideGoBackButton = false,
   hideBgImage = false,
   onClickGoBack,
-  hideRightButton = false,
-  rightButton,
+  onClickRightButton,
   rightButtonIcon,
   padding = false,
 }) => {
@@ -35,19 +35,21 @@ const CustomHeader = ({
               <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon} />
             </div>
           )}
+
           <CustomText textClassName={"font-bold"} styles={{ fontSize: 18 }}>
             {pageTitle}
           </CustomText>
         </div>
-        {hideRightButton ? (
+
+        {_.isEmpty(rightButtonIcon) ? (
           false
         ) : (
-          <div onClick={rightButton}>
-            <CustomImage
-              src={rightButtonIcon}
-              imageStyle={{ width: 20, height: 20 }}
-            />
-          </div>
+          <CustomImage
+            src={rightButtonIcon}
+            imageStyle={{ width: 20, height: 20 }}
+            onClick={onClickRightButton}
+            className="cursor-pointer"
+          />
         )}
       </div>
       {children}

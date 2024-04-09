@@ -11,6 +11,7 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import Image from "@/src/utils/Image";
 import { useState } from "react";
+import AgentSection from "@/components/Detail/AgentSection";
 
 export { getServerSideProps };
 
@@ -47,6 +48,10 @@ const Booking = () => {
     router.back();
   };
 
+  const onClickBooking = () => {
+    router.push(`/booking/1/overview`);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -54,7 +59,7 @@ const Booking = () => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
-      <div className="body-container">
+      <div className="body-container pb-36">
         <div className="flex justify-center pb-4">
           <CustomImage
             src={Images.filterDefaultImage}
@@ -505,6 +510,8 @@ const Booking = () => {
             apply.
           </CustomText>
         </div>
+
+        <AgentSection t={t} onClickBooking={onClickBooking} />
       </div>
     </CustomHeader>
   );

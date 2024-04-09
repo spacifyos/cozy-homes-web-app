@@ -15,6 +15,7 @@
 @import "carousel.scss";
 @import "page/booking.scss";
 @import "page/e-agreement.scss";
+@import "page/booking-overview.scss";
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
@@ -98,6 +99,21 @@ body {
   width: 100%;
   background-color: #e0ecff !important;
   margin: 25px 0;
+}
+
+.divider-custom:before {
+  height: 6px;
+  width: 30%;
+  max-width: 30%;
+  border-radius: 99px;
+}
+
+.divider-custom:after {
+  display: none;
+}
+
+.modal-box {
+  padding-top: 0;
 }
 
 .section-title {

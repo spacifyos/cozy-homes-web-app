@@ -52,12 +52,16 @@ function Home() {
     }, 1000);
   }, []);
 
+  const onChangeCity = (value) => {
+    console.log(value.target.value);
+  };
+
   const onClickToFilter = () => {
     router.push("/search");
   };
 
   const onClickToPropertyDetail = () => {
-    router.push("/property-detail");
+    router.push("/property-detail/1");
   };
 
   const onClickOpenSwitcher = () => {

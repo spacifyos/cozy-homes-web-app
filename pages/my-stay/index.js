@@ -22,7 +22,7 @@ const MyStay = () => {
   };
 
   const onClickTopUp = () => {
-    router.push("/my-meter");
+    router.push("/my-meter/123");
   };
 
   const onClickToAgreement = () => {

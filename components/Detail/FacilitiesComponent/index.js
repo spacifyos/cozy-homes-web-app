@@ -8,7 +8,7 @@ const FacilitiesComponent = ({ item }) => {
     const icon = _.get(item, ["icon"], "");
 
     return (
-        <div className="flex flex-row gap-2 p-2 w-1/2">
+        <div className="flex gap-2 p-2 w-1/2">
 
                 <CustomImage src={icon} imageStyle={{width: 20, height: 20}}/>
 
