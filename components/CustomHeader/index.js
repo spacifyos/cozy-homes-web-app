@@ -44,12 +44,12 @@ const CustomHeader = ({
         {_.isEmpty(rightButtonIcon) ? (
           false
         ) : (
-          <div onClick={onClickRightButton}>
-            <CustomImage
-              src={rightButtonIcon}
-              imageStyle={{ width: 20, height: 20 }}
-            />
-          </div>
+          <CustomImage
+            src={rightButtonIcon}
+            imageStyle={{ width: 20, height: 20 }}
+            onClick={onClickRightButton}
+            className="cursor-pointer"
+          />
         )}
       </div>
       {children}

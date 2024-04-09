@@ -48,9 +48,9 @@ const Booking = () => {
     router.back();
   };
 
-  const onClickBooking=()=>{
-    router.push(`/booking-overview/1`)
-  }
+  const onClickBooking = () => {
+    router.push(`/booking/1/overview`);
+  };
 
   return (
     <CustomHeader

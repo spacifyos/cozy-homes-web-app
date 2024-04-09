@@ -10,6 +10,7 @@
     "account": "Akaun",
     "propertyDetail": "Perincian Hartanah",
     "search": "Cari",
+    "bookingOverview": "预订概览",
     "booking": "Tempahan"
   },
   "general": {},
@@ -103,6 +104,37 @@
     "queen": "Queen",
     "squareFt": "Kaki Persegi",
     "rentalFee": "Yuran Sewaan (sebulan)",
+    "memberSince": "Ahli sejak",
+    "cancellationPolicy": "Polisi Pembatalan",
+    "tenancy": "Sewa",
+    "totalMoveInCost": "Kos Pemindahan Keseluruhan",
+    "bookNow": "Tempah Sekarang"
+  },
+  "payment": {
+    "viewBooking": "Lihat Tempahan",
+    "paymentSuccessful": "Pembayaran Berjaya",
+    "paymentFailed": "Pembayaran Gagal"
+  },
+  "bookingOverview": {
+    "bookingCode": "Kod Tempahan",
+    "viewMore": "Lihat Lebih",
+    "roomForRent": "Bilik untuk Disewa",
+    "paymentDetail": "Butiran Pembayaran",
+    "moveInFee": "Yuran Pemindahan Masuk",
+    "tenancyAgreementFee": "Yuran Perjanjian Sewa",
+    "securityDeposit": "Deposit Keselamatan",
+    "step1": "Langkah 1",
+    "step2": "Langkah 2",
+    "step3": "Langkah 3",
+    "booking": "Tempahan",
+    "payment": "Pembayaran",
+    "agencyReview": "Ulasan Agensi",
+    "completed": "Selesai",
+    "pending": "Tertunda",
+    "status": "Status:",
+    "payNow": "Bayar Sekarang",
+    "bookingCreatedAt": "Tempahan dicipta pada ",
+    "paymentAuthorizedAt": "Pembayaran diluluskan pada",
     "memberSince": "Ahli sejak"
   },
   "eAgreement": {

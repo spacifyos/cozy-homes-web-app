@@ -5,7 +5,7 @@ const CustomModal = ({ children }) => {
         className="modal-box absolute"
         style={{ width: "100%", maxWidth: 500 }}
       >
-        <div className="divider divider-custom"></div>
+        <div className="divider divider-custom justify-center"></div>
 
         {children}
       </div>

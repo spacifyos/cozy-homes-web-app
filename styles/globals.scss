@@ -100,18 +100,22 @@ body {
   background-color: #e0ecff !important;
   margin: 25px 0;
 }
+
 .divider-custom:before {
   height: 6px;
-  margin-left: 140px;
-  margin-right: 140px;
-  border-radius: 10px;
+  width: 30%;
+  max-width: 30%;
+  border-radius: 99px;
 }
+
 .divider-custom:after {
   display: none;
 }
+
 .modal-box {
   padding-top: 0;
 }
+
 .section-title {
   @apply font-size-xlarge font-bold pb-2;
 }
