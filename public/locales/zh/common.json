@@ -123,6 +123,10 @@
     "tenantName": "租户姓名",
     "rentalFee": "租金费用",
     "period": "周期",
-    "notActivated": "未激活"
+    "notActivated": "未激活",
+    "noInsuranceAvailable": "没有可用的保险",
+    "noEagreementAvailable": "没有可用的电子协议",
+    "eAgreement": "电子协议",
+    "insurance": "保险"
   }
 }

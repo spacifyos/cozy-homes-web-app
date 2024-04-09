@@ -34,26 +34,25 @@ const Detail = ({}) => {
                           onClickRightButton={rightButton}
                           rightButtonIcon={isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive}
                           imageStyle={{width: "30px", height: "30px"}}
-        >
-            <div className="body-container" style={{paddingBottom: 0}}>
+    >
+        <div className="body-container" style={{paddingBottom: 0}}>
 
-                <RoomPicCarousel t={t}
-                />
+            <RoomPicCarousel t={t}/>
 
-                <DetailComponent t={t}/>
+            <DetailComponent t={t}/>
 
-                <DetailFeatureSection t={t}/>
+            <DetailFeatureSection t={t}/>
 
-                <Facilities t={t}/>
+            <Facilities t={t}/>
 
-                <RoomzMap t={t}/>
+            <RoomzMap t={t}/>
 
-                <RecommendSection t={t}/>
+            <RecommendSection t={t}/>
 
-                <AgentSection t={t}/>
+            <AgentSection t={t}/>
 
-            </div>
-        </CustomHeader>);
+        </div>
+    </CustomHeader>);
 };
 
 export default withTranslation("common")(Detail);

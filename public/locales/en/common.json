@@ -124,7 +124,11 @@
     "tenantName": "Tenant Name",
     "rentalFee": "Rental Fee",
     "period": "Period",
-    "notActivated": "Not Activated"
+    "notActivated": "Not Activated",
+    "noInsuranceAvailable": "No Insurance Available",
+    "noEagreementAvailable": "No E-agreement Available",
+    "eAgreement": "E-Agreement",
+    "insurance": "Insurance"
   }
 
 }

@@ -123,6 +123,10 @@
     "tenantName": "Nama Penyewa",
     "rentalFee": "Yuran Sewa",
     "period": "Tempoh",
-    "notActivated":"tidak diaktifkan"
+    "notActivated":"tidak diaktifkan",
+    "noInsuranceAvailable": "Tiada Insurans Yang Tersedia",
+    "noEagreementAvailable": "Tiada Perjanjian Elektronik Yang Tersedia",
+    "eAgreement": "Perjanjian Elektronik",
+    "insurance": "Insurans"
   }
 }

@@ -100,6 +100,13 @@ body {
   margin: 25px 0;
 }
 
+.divider-step-section {
+  &:before,
+  &:after {
+    height: 1px;
+  }
+}
+
 .section-title {
   @apply font-size-xlarge font-bold pb-2;
 }
