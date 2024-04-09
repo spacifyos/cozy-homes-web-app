@@ -134,7 +134,7 @@
     "status": "状态:",
     "payNow": "立即支付",
     "bookingCreatedAt": "预订创建于",
-    "paymentAuthorizedAt": "支付授权于"
+    "paymentAuthorizedAt": "支付授权于",
     "memberSince": "会员自"
   },
   "eAgreement": {
