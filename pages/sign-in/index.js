@@ -36,6 +36,10 @@ const SignIn = () => {
     router.push("/sign-up");
   };
 
+  const onClickToLogin = () => {
+    router.push("/explore");
+  };
+
   return (
     <CustomHeader hideGoBackButton>
       <div className="body-container py-4">
@@ -124,6 +128,7 @@ const SignIn = () => {
               <CustomButton
                 buttonClassName="primary-btn w-2/4 mb-2"
                 buttonText="Sign In"
+                onClick={onClickToLogin}
               />
             </div>
 
