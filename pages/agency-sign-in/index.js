@@ -1,39 +1,20 @@
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+import { useRouter } from "next/router";
 import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import { useRouter } from "next/router";
-import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
-import { useEffect, useState } from "react";
-import _ from "lodash";
 
 export { getServerSideProps };
 
-const SignIn = () => {
+const AgencySignIn = () => {
   const router = useRouter();
-  const role = _.get(router, ["query", "role"], "");
-
-  const [selectedRole, setSelectedRole] = useState("");
-
-  useEffect(() => {
-    if (!_.isEmpty(role)) {
-      setSelectedRole(role);
-    } else {
-      setSelectedRole("tenant");
-    }
-  }, [role]);
-
-  const onClickChangeRole = (selectedRole) => {
-    router.push(`/sign-in?role=${selectedRole}`);
-    // setSelectedRole(selectedRole);
-  };
-
-  const onClickToAgencySignIn = () => {
-    router.push("/agency-sign-in");
-  };
-
   const onClickToSignUp = () => {
-    router.push("/sign-up");
+    router.push("/agency-sign-up");
+  };
+
+  const onClickToUserSignIn = (role) => {
+    router.push(`/sign-in?role=${role}`);
   };
 
   return (
@@ -86,33 +67,23 @@ const SignIn = () => {
 
             <div className="grid grid-cols-3 gap-2 mb-8">
               <CustomButton
-                buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
+                buttonClassName="default-btn-outline"
                 buttonText="Tenant"
-                onClick={() => onClickChangeRole("tenant")}
-              />
-              <CustomButton
-                buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText="Owner"
-                onClick={() => onClickChangeRole("owner")}
+                onClick={() => onClickToUserSignIn("tenant")}
               />
               <CustomButton
                 buttonClassName="default-btn-outline"
-                buttonText="Agency"
-                onClick={onClickToAgencySignIn}
+                buttonText="Owner"
+                onClick={() => onClickToUserSignIn("owner")}
               />
+              <CustomButton buttonClassName="primary-btn" buttonText="Agency" />
             </div>
 
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color">
-                <option selected>+60 Malaysia</option>
-              </select>
-
-              <input
-                type="text"
-                placeholder="Phone Number"
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2"
-              />
-            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+            />
 
             <input
               type="password"
@@ -149,4 +120,4 @@ const SignIn = () => {
   );
 };
 
-export default withTranslation("common")(SignIn);
+export default withTranslation("common")(AgencySignIn);
