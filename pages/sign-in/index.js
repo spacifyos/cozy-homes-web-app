@@ -81,7 +81,7 @@ const SignIn = () => {
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-2 font-bold font-size-large">
-              I'm ...
+              I am ...
             </CustomText>
 
             <div className="grid grid-cols-3 gap-2 mb-8">
