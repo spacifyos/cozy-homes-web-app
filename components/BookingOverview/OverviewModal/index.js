@@ -3,7 +3,7 @@ import CustomModal from "@/components/CustomModal";
 
 const OverviewModal = ({ t }) => {
   return (
-    <CustomModal>
+    <CustomModal id="booking_overview_modal">
       <CustomText textClassName="modal-title-font pb-2 ">
         {t("bookingOverview.paymentDetail")}
       </CustomText>
@@ -32,7 +32,10 @@ const OverviewModal = ({ t }) => {
       </div>
       <div className="divider divider-bookingOverview"></div>
       <div className="payment-details-fee">
-        <CustomText textClassName="modal-font-primary"> {t("bookingOverview.total")}</CustomText>
+        <CustomText textClassName="modal-font-primary">
+          {" "}
+          {t("bookingOverview.total")}
+        </CustomText>
         <CustomText textClassName="modal-font-main">RM1,600.00</CustomText>
       </div>
     </CustomModal>
