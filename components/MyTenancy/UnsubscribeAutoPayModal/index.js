@@ -17,7 +17,7 @@ const SubscribeAutoPayModal = ({t}) => {
                     src={Images.dangerIcon}
                     width={60}
                 />
-                <CustomText textClassName="font-bold font-size-normal pt-4">{t("myTenancy.askingUnsubscribe")}</CustomText>
+                <CustomText textClassName="font-bold font-size-normal pt-4">{t("myTenancy.askingUnsubscribeAutoPay")}</CustomText>
             </div>
             <div className="flex-row grid grid-cols-6 gap-4 items-center pt-4">
                 <form method="dialog" className="col-span-3">
