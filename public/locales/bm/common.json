@@ -11,7 +11,10 @@
     "propertyDetail": "Perincian Hartanah",
     "search": "Cari",
     "bookingOverview": "预订概览",
-    "booking": "Tempahan"
+    "booking": "Tempahan",
+    "eAgreement": "Perjanjian Elektronik",
+    "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
+    "viewAgreement": "Lihat Perjanjian"
   },
   "general": {},
   "explore": {
@@ -144,7 +147,7 @@
     "agreed": "Bersetuju",
     "signed": "Ditandatangani"
   },
-  "eAgreementDetail": {
+  "eAgreementOverview": {
     "referenceNumber": "Nombor Rujukan",
     "status": "Status",
     "service": "Perkhidmatan",
@@ -157,12 +160,24 @@
     "stampingStatus": "Status Cap",
     "insurance": "Insurans",
     "viewAndAgree": "Lihat & Setuju",
-    "viewAndSign": "Lihat & Tandatangan"
+    "viewAndSign": "Lihat & Tandatangan",
+    "agreed": "Bersetuju",
+    "signed": "Ditandatangani"
   },
   "viewAgreement": {
     "page": "Halaman",
     "previous": "Sebelumnya",
-    "next": "Seterusnya"
+    "next": "Seterusnya",
+    "reject": "Tolak",
+    "agree": "Setuju",
+    "sign": "Hantar Tandatangan",
+    "cancel": "Batal",
+    "submit": "Hantar",
+    "insertPinNumber": "Masukkan Nombor PIN",
+    "pinNUmber": "Nombor PIN",
+    "enterSixDigitNumber": "Masukkan nombor PIN 6 digit",
+    "pleaseSignBelow": "Sila Tandatangan Di Bawah",
+    "reset": "Set Semula"
   },
   "signIn": {
     "welcomeBack": "Selamat Datang Kembali",

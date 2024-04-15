@@ -11,7 +11,10 @@
     "propertyDetail": "Property Detail",
     "search": "Search",
     "bookingOverview": "Booking Overview",
-    "booking": "Booking"
+    "booking": "Booking",
+    "eAgreement": "E-Agreement",
+    "eAgreementOverview": "E-Agreement Overview",
+    "viewAgreement": "View Agreement"
   },
   "general": {},
   "explore": {
@@ -144,7 +147,7 @@
     "agreed": "Agreed",
     "signed": "Signed"
   },
-  "eAgreementDetail": {
+  "eAgreementOverview": {
     "referenceNumber": "Reference Number",
     "status": "Status",
     "service": "Service",
@@ -157,12 +160,24 @@
     "stampingStatus": "Stamping Status",
     "insurance": "Insurance",
     "viewAndAgree": "View & Agree",
-    "viewAndSign": "View & Sign"
+    "viewAndSign": "View & Sign",
+    "agreed": "Agreed",
+    "signed": "Signed"
   },
   "viewAgreement": {
     "page": "Page",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "reject": "Reject",
+    "agree": "Agree",
+    "sign": "Submit Signature",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "insertPinNumber": "Insert PIN Number",
+    "pinNUmber": "PIN Number",
+    "enterSixDigitNumber": "Enter the 6-digit pin number",
+    "pleaseSignBelow": "Please Sign Below",
+    "reset": "Reset"
   },
   "signIn": {
     "welcomeBack": "Welcome<br>Back",

@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
-const EAgreementCard = ({ item, onClickToDetail }) => {
+const EAgreementCard = ({ item, onClickToDetail, t }) => {
   return (
     <div
       className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center mb-4"
@@ -28,7 +28,7 @@ const EAgreementCard = ({ item, onClickToDetail }) => {
 
         <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col">
-            <CustomText textClassName="font-size-small">Landlord</CustomText>
+            <CustomText textClassName="font-size-small">{t("eAgreement.landlord")}</CustomText>
             <div className="flex">
               <div className="flex mr-3 items-center">
                 <CustomImage
@@ -38,7 +38,7 @@ const EAgreementCard = ({ item, onClickToDetail }) => {
                   width={15}
                 />
                 <CustomText textClassName="font-size-xsmall disable-text">
-                  Agreed
+                  {t("eAgreement.agreed")}
                 </CustomText>
               </div>
               <div className="flex">
@@ -49,14 +49,14 @@ const EAgreementCard = ({ item, onClickToDetail }) => {
                   width={15}
                 />
                 <CustomText textClassName="font-size-xsmall disable-text">
-                  Signed
+                  {t("eAgreement.signed")}
                 </CustomText>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col">
-            <CustomText textClassName="font-size-small">Tenant</CustomText>
+            <CustomText textClassName="font-size-small">{t("eAgreement.tenant")}</CustomText>
             <div className="flex">
               <div className="flex mr-3">
                 <CustomImage
@@ -66,7 +66,7 @@ const EAgreementCard = ({ item, onClickToDetail }) => {
                   width={15}
                 />
                 <CustomText textClassName="font-size-xsmall disable-text">
-                  Agreed
+                  {t("eAgreement.agreed")}
                 </CustomText>
               </div>
               <div className="flex">
@@ -77,7 +77,7 @@ const EAgreementCard = ({ item, onClickToDetail }) => {
                   width={15}
                 />
                 <CustomText textClassName="font-size-xsmall disable-text">
-                  Signed
+                  {t("eAgreement.signed")}
                 </CustomText>
               </div>
             </div>

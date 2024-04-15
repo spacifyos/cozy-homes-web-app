@@ -32,7 +32,7 @@ const EAgreement = () => {
     <CustomHeader
       hideRightButton
       hideBgImage
-      pageTitle={"E-Agreement"}
+      pageTitle={t("pageTitle.eAgreement")}
       onClickGoBack={onClickGoBack}
     >
       <div className="body-container">
@@ -58,7 +58,7 @@ const EAgreement = () => {
         </div>
 
         {_.map(statusList, (item) => (
-          <EAgreementCard item={item} onClickToDetail={onClickToDetail} />
+          <EAgreementCard item={item} onClickToDetail={onClickToDetail} t={t}/>
         ))}
       </div>
     </CustomHeader>

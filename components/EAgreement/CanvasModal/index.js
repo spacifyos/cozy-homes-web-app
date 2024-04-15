@@ -6,7 +6,7 @@ import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useRef, useState } from "react";
 
-const CanvasModal = ({ onClickReadSign, readSign }) => {
+const CanvasModal = ({ onClickReadSign, readSign, t }) => {
   let canvasRef;
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
@@ -24,14 +24,14 @@ const CanvasModal = ({ onClickReadSign, readSign }) => {
   return (
     <CustomModal id="canvas_modal">
       <CustomText textClassName="font-bold font-size-large pb-5">
-        Please Sign Below
+          {t("viewAgreement.pleaseSignBelow")}
       </CustomText>
       <div
         className="flex justify-end cursor-pointer"
         onClick={onClickResetCanvas}
       >
         <CustomText textClassName="primary-text font-size-small">
-          Reset
+            {t("viewAgreement.reset")}
         </CustomText>
       </div>
       <div
@@ -66,11 +66,11 @@ const CanvasModal = ({ onClickReadSign, readSign }) => {
 
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
-          buttonText="Reject"
+          buttonText={t("viewAgreement.reject")}
           buttonClassName="default-btn-outline"
         />
         <CustomButton
-          buttonText="Submit Signature"
+          buttonText={t("viewAgreement.sign")}
           buttonClassName="primary-btn"
         />
       </div>

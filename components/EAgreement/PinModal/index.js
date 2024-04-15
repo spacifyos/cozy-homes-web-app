@@ -7,23 +7,23 @@ const PinModal = ({ t }) => {
   return (
     <CustomModal id="pin_modal">
       <CustomText textClassName="font-size-large font-bold pb-5">
-        Insert Pin Number
+        {t("viewAgreement.insertPinNumber")}
       </CustomText>
 
       <CustomInput
-        label="Pin Number"
+        label={t("viewAgreement.pinNUmber")}
         required
         labelClassName="font-bold"
-        placeholder="Enter the 6-digit pin number"
+        placeholder={t("viewAgreement.enterSixDigitNumber")}
       />
 
       <div className="grid grid-cols-2 gap-2 pt-10">
         <CustomButton
-          buttonText="Cancel"
+          buttonText={t("viewAgreement.cancel")}
           buttonClassName="default-btn-outline"
         />
         <CustomButton
-          buttonText="Submit"
+          buttonText={t("viewAgreement.submit")}
           buttonClassName="primary-btn"
           onClick={() => {
             document.getElementById("canvas_modal").showModal();

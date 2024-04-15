@@ -27,7 +27,7 @@ const EAgreementOverview = () => {
     <CustomHeader
       onClickGoBack={onClickGoBack}
       hideBgImage
-      pageTitle="E-Agreement Overview"
+      pageTitle={t("pageTitle.eAgreementOverview")}
       rightButtonIcon={Images.downloadIcon}
     >
       <div className="body-container relative pt-6 pb-4 flex justify-center">
@@ -39,10 +39,10 @@ const EAgreementOverview = () => {
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
           <div className="flex justify-between">
-            <CustomLabelValue value="XXXXXXXXXXX" label="Reference Number" />
+            <CustomLabelValue value="XXXXXXXXXXX" label={t("eAgreementOverview.referenceNumber")} />
             <div className="pb-2">
               <CustomText textClassName="font-size-xxsmall disable-text">
-                Status
+                {t("eAgreementOverview.status")}
               </CustomText>
               <StatusLabel status="pending" />
             </div>
@@ -53,24 +53,24 @@ const EAgreementOverview = () => {
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <CustomLabelValue value="E-Sign & E-Stamp" label="Service" />
+          <CustomLabelValue value="E-Sign & E-Stamp" label={t("eAgreementOverview.service")} />
           <CustomLabelValue
             value="M Vertica, A-01-01, Room 1"
-            label="Property"
+            label={t("eAgreementOverview.property")}
           />
-          <CustomLabelValue value="19 Aug 2023" label="Agreement Date" />
-          <CustomLabelValue value="19 Aug 2023 -18 Aug 2023" label="Tenure" />
+          <CustomLabelValue value="19 Aug 2023" label={t("eAgreementOverview.agreementDate")} />
+          <CustomLabelValue value="19 Aug 2023 -18 Aug 2023" label={t("eAgreementOverview.tenure")} />
 
           <div
             className="divider-line"
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <CustomLabelValue value="M Vertica" label="Landlord" />
+          <CustomLabelValue value="M Vertica" label={t("eAgreementOverview.landlord")} />
 
           <div className="pb-2">
             <CustomText textClassName="font-size-xxsmall disable-text">
-              Activity
+              {t("eAgreementOverview.activity")}
             </CustomText>
             <div className="pt-1 grid grid-cols-2 gap-2">
               <div className="flex mr-3 items-start">
@@ -82,7 +82,7 @@ const EAgreementOverview = () => {
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
-                    Agreed
+                    {t("eAgreementOverview.agreed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
                     on 19 Aug 03:46 pm
@@ -98,7 +98,7 @@ const EAgreementOverview = () => {
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
-                    Signed
+                    {t("eAgreementOverview.signed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
                     on 19 Aug 03:46 pm
@@ -113,11 +113,11 @@ const EAgreementOverview = () => {
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <CustomLabelValue value="John Doe" label="Tenant" />
+          <CustomLabelValue value="John Doe" label={t("eAgreementOverview.tenant")} />
 
           <div className="pb-2">
             <CustomText textClassName="font-size-xxsmall disable-text">
-              Activity
+              {t("eAgreementOverview.activity")}
             </CustomText>
             <div className="pt-1 grid grid-cols-2 gap-2">
               <div className="flex mr-3 items-start">
@@ -129,7 +129,7 @@ const EAgreementOverview = () => {
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
-                    Agreed
+                    {t("eAgreementOverview.agreed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
                     on 19 Aug 03:46 pm
@@ -145,7 +145,7 @@ const EAgreementOverview = () => {
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
-                    Signed
+                    {t("eAgreementOverview.signed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
                     on 19 Aug 03:46 pm
@@ -161,14 +161,14 @@ const EAgreementOverview = () => {
           ></div>
 
           <div className="grid grid-cols-2 gap-2">
-            <CustomLabelValue value="Pending" label="Stamping Status" />
-            <CustomLabelValue value="No" label="Insurance" />
+            <CustomLabelValue value="Pending" label= {t("eAgreementOverview.stampingStatus")} />
+            <CustomLabelValue value="No" label= {t("eAgreementOverview.insurance")} />
           </div>
 
           <div className="flex justify-center pt-5 w-full">
             <CustomButton
               onClick={() => onClickToViewAgreement(1)}
-              buttonText="View & Agree"
+              buttonText={t("eAgreementOverview.viewAndAgree")}
               buttonClassName="primary-btn w-3/5"
             />
           </div>
