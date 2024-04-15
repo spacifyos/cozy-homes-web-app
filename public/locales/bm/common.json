@@ -11,7 +11,7 @@
     "propertyDetail": "Perincian Hartanah",
     "search": "Cari",
     "myTenancy": "Penyewaan Saya",
-    "bookingOverview": "预订概览",
+    "bookingOverview": "Gambaran Tempahan",
     "booking": "Tempahan",
     "eAgreement": "Perjanjian Elektronik",
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
@@ -90,7 +90,6 @@
     "availableUnit": "Unit Tersedia"
   },
   "propertyDetail": {
-    "overView": "Gambaran Keseluruhan",
     "policy": "Dasar",
     "facilities": "Kemudahan",
     "aircond": "Penghawa Dingin",
@@ -207,8 +206,7 @@
     "yourPassword": "Kata Laluan Anda",
     "confirmYourPassword": "Sahkan Kata Laluan Anda",
     "signUpForFree": "Daftar secara PERCUMA",
-    "next": "Seterusnya",
-    "memberSince": "Ahli sejak"
+    "next": "Seterusnya"
   },
   "myTenancy": {
     "address": "Alamak",

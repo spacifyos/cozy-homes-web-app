@@ -7,9 +7,9 @@ import TenancyUserSection from "@/components/MyTenancy/TenancyUserSection";
 import TenancyDetail from "@/components/MyTenancy/TenancyDetail";
 import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
 import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
-import Eagreement from "@/components/MyTenancy/E-AgreementSection";
+import EAgreement from "@/components/MyTenancy/E-AgreementSection";
 import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
-import {useState} from "react";
+import { useState } from "react";
 import UnsubscribeAutoPayModal from "@/components/MyTenancy/UnsubscribeAutoPayModal";
 
 export { getServerSideProps };
@@ -26,8 +26,8 @@ const MyTenancy = ({}) => {
     setIsChecked(!isChecked);
     if (isChecked) {
       document.getElementById("myTenancy_Unsubscribe_modal").showModal();
-    }else {
-      document.getElementById("myTenancy_Subscribe_modal").showModal();
+    } else {
+      document.getElementById("canvas_modal").showModal();
     }
   };
   return (
@@ -40,17 +40,17 @@ const MyTenancy = ({}) => {
     >
       <div className="body-container pb-9">
         <TenancyUserSection t={t} />
-        <TenancyDetail t={t}
-        onClickChangeAutoPay={onClickChangeAutoPay}
-                       isChecked={isChecked}
+        <TenancyDetail
+          t={t}
+          onClickChangeAutoPay={onClickChangeAutoPay}
+          isChecked={isChecked}
         />
         <TenancyFeeDetail t={t} />
-        <Eagreement t={t} />
+        <EAgreement t={t} />
         <InsuranceSection t={t} />
+        <UnsubscribeAutoPayModal t={t} />
+        <SubscribeAutoPayModal t={t} />
       </div>
-
-      <UnsubscribeAutoPayModal t={t}/>
-      <SubscribeAutoPayModal t={t}/>
     </CustomHeader>
   );
 };

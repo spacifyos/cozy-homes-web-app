@@ -90,7 +90,6 @@
     "availableUnit": "可用单位"
   },
   "propertyDetail": {
-    "overView": "概述",
     "policy": "政策",
     "facilities": "设施",
     "aircond": "冷气",
@@ -207,8 +206,7 @@
     "yourPassword": "您的密码",
     "confirmYourPassword": "确认您的密码",
     "signUpForFree": "免费注册",
-    "next": "下一页",
-    "memberSince": "会员自"
+    "next": "下一页"
   },
   "myTenancy": {
     "address": "地址",
