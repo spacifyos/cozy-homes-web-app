@@ -109,7 +109,8 @@
     "cancellationPolicy": "Polisi Pembatalan",
     "tenancy": "Sewa",
     "totalMoveInCost": "Kos Pemindahan Keseluruhan",
-    "bookNow": "Tempah Sekarang"
+    "bookNow": "Tempah Sekarang",
+    "description": "Penerangan"
   },
   "payment": {
     "viewBooking": "Lihat Tempahan",

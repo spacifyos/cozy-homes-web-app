@@ -25,9 +25,9 @@ const MyTenancy = ({}) => {
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
-      document.getElementById("isUnSubscribe").showModal();
+      document.getElementById("myTenancy_Unsubscribe_modal").showModal();
     }else {
-      document.getElementById("isSubscribe").showModal();
+      document.getElementById("myTenancy_Subscribe_modal").showModal();
     }
   };
   return (

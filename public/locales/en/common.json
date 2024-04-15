@@ -107,9 +107,9 @@
     "rentalFee": "Rental Fee (per month)",
     "memberSince": "Member since",
     "cancellationPolicy": "Cancellation Policy",
-    "tenancy": "tenancy",
     "totalMoveInCost": "Total move in cost",
-    "bookNow": "Book Now"
+    "bookNow": "Book Now",
+    "description": "Description"
   },
   "payment": {
     "viewBooking": "View Booking",

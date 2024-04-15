@@ -109,7 +109,8 @@
     "cancellationPolicy": "取消政策",
     "tenancy": "租赁",
     "totalMoveInCost": "总入住费用",
-    "bookNow": "立即预订"
+    "bookNow": "立即预订",
+    "description": "描述"
   },
   "payment": {
     "viewBooking": "查看预订",

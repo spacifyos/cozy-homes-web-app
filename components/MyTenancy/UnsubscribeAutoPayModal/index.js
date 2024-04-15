@@ -9,7 +9,7 @@ import {useState} from "react";
 const SubscribeAutoPayModal = ({t}) => {
 
     return (
-        <CustomModal id="isUnSubscribe">
+        <CustomModal id="myTenancy_Unsubscribe_modal">
             <CustomText textClassName="font-bold font-size-large pb-3">{t("myTenancy.unsubscribeAutoPay")}</CustomText>
 
             <div className="flex flex-col justify-center items-center p-6">
