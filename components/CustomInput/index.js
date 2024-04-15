@@ -11,6 +11,7 @@ const CustomInput = ({
   className,
   required = false,
   labelClassName,
+  autoFocus = false,
 }) => {
   return (
     <label className={`flex flex-col ${className}`}>
@@ -35,6 +36,7 @@ const CustomInput = ({
           type={inputType}
           className="grow input-primary primaryWhite-bg-color"
           placeholder={placeholder}
+          autoFocus={autoFocus}
         />
         {!_.isEmpty(rightIcon) ? (
           <CustomImage src={rightIcon} height={20} width={20} />

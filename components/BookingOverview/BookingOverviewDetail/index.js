@@ -28,7 +28,9 @@ const BookingOverviewDetail = ({ t }) => {
           <CustomButton
             buttonClassName="booking-overview-btn font-size-normal"
             buttonText={t("bookingOverview.viewMore")}
-            onClick={() => document.getElementById("isOverview").showModal()}
+            onClick={() =>
+              document.getElementById("booking_overview_modal").showModal()
+            }
           />
         </div>
       </div>

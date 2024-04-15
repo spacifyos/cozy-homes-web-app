@@ -3,7 +3,7 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import EAgreementCard from "@/components/EAgreementCard";
+import EAgreementCard from "@/components/EAgreement/EAgreementCard";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 

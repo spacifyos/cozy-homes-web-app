@@ -14,7 +14,7 @@ function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("/explore");
+      router.replace("/sign-in");
     }, 1000);
   });
 

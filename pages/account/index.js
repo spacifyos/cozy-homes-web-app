@@ -7,11 +7,17 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
 const Account = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
+
+  const onClickLogout = () => {
+    router.push("/sign-in");
+  };
 
   return (
     <CustomHeader
@@ -66,7 +72,10 @@ const Account = () => {
         <div className="divider-line"></div>
 
         <div className="flex justify-between items-center pb-3">
-          <div className="logout-container">
+          <div
+            className="logout-container cursor-pointer"
+            onClick={onClickLogout}
+          >
             <CustomImage
               src={Images.primaryLogoutIcon}
               width={25}

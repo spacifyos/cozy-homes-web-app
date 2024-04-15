@@ -12,6 +12,7 @@ import _ from "lodash";
 import Image from "@/src/utils/Image";
 import { useState } from "react";
 import AgentSection from "@/components/Detail/AgentSection";
+import CustomModal from "@/components/CustomModal";
 
 export { getServerSideProps };
 
@@ -393,10 +394,19 @@ const Booking = () => {
               </div>
               <div className="collapse-content p-0">
                 <div className="flex items-center pt-1">
-                  <CustomImage src={Images.infoIcon} height={20} width={20} />
+                  <CustomImage
+                    src={Images.infoIcon}
+                    height={20}
+                    width={20}
+                    onClick={() =>
+                      document
+                        .getElementById("rent_charges_details")
+                        .showModal()
+                    }
+                  />
                   <CustomText
                     styles={{ color: "#1E1E1E" }}
-                    textClassName="pl-2 font-light"
+                    textClassName="pl-2 font-light font-size-small"
                   >
                     Inclusion of:
                   </CustomText>
@@ -411,7 +421,7 @@ const Booking = () => {
                       <li className="flex justify-between">
                         <CustomText
                           styles={{ color: "#1E1E1E" }}
-                          textClassName="font-light"
+                          textClassName="font-light font-size-small"
                         >
                           - {title}
                         </CustomText>
@@ -513,6 +523,21 @@ const Booking = () => {
 
         <AgentSection t={t} onClickBooking={onClickBooking} />
       </div>
+
+      <CustomModal id="rent_charges_details">
+        <CustomText textClassName="font-size-large font-bold pb-2">
+          Rent Charges Details
+        </CustomText>
+        <CustomText textClassName="grey-text font-size-xsmall text-justify">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
+          dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
+          pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
+          porttitor quis nisi. Phasellus sodales tincidunt lacus, nec dignissim
+          nulla blandit in. Donec vel turpis id augue dignissim hendrerit vitae
+          eu nulla.  Should you have any inquiries, please contact the owner or
+          agent before proceeding with your payment.
+        </CustomText>
+      </CustomModal>
     </CustomHeader>
   );
 };
