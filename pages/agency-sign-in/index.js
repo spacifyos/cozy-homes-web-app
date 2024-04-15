@@ -8,7 +8,9 @@ import CustomButton from "@/components/CustomButton";
 export { getServerSideProps };
 
 const AgencySignIn = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
+
   const onClickToSignUp = () => {
     router.push("/agency-sign-up");
   };
@@ -25,13 +27,7 @@ const AgencySignIn = () => {
             textClassName="primary-text font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
-            Welcome
-          </CustomText>
-          <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
-          >
-            Back
+            {t("signIn.welcomeBack")}
           </CustomText>
         </div>
 
@@ -41,7 +37,7 @@ const AgencySignIn = () => {
               textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
-              Sign In
+              {t("signIn.signIn")}
             </CustomText>
 
             <div onClick={onClickToSignUp} className="cursor-pointer">
@@ -53,7 +49,7 @@ const AgencySignIn = () => {
                   color: "#C3C4C6",
                 }}
               >
-                Sign Up
+                {t("signIn.signUp")}
               </CustomText>
             </div>
           </div>
@@ -62,44 +58,44 @@ const AgencySignIn = () => {
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-2 font-bold font-size-large">
-              I am ...
+              {t("signIn.iAm")} ...
             </CustomText>
 
             <div className="grid grid-cols-3 gap-2 mb-8">
               <CustomButton
                 buttonClassName="default-btn-outline"
-                buttonText="Tenant"
+                buttonText={t("signIn.tenant")}
                 onClick={() => onClickToUserSignIn("tenant")}
               />
               <CustomButton
                 buttonClassName="default-btn-outline"
-                buttonText="Owner"
+                buttonText={t("signIn.owner")}
                 onClick={() => onClickToUserSignIn("owner")}
               />
-              <CustomButton buttonClassName="primary-btn" buttonText="Agency" />
+              <CustomButton buttonClassName="primary-btn" buttonText={t("signIn.agency")} />
             </div>
 
             <input
               type="email"
-              placeholder="Email"
+              placeholder={t("signIn.email")}
               className="input input-bordered w-full primaryWhite-bg-color mb-4"
             />
 
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t("signIn.password")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8"
             />
 
             <div className="flex justify-center">
               <CustomButton
                 buttonClassName="primary-btn w-2/4 mb-2"
-                buttonText="Sign In"
+                buttonText={t("signIn.signIn")}
               />
             </div>
 
             <CustomText textClassName="text-center mb-5">
-              Forgot Password?
+              {t("signIn.forgotPassword")}?
             </CustomText>
 
             <CustomText textClassName="font-size-small mb-5">

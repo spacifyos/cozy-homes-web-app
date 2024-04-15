@@ -155,7 +155,7 @@
 .pdf-previous-btn:hover {
   border: 1px solid #1e1e1e;
   background-color: #1e1e1e !important;
-  width: 80px;
+  min-width: 80px;
   @include custom-button;
 
   p {
@@ -167,7 +167,7 @@
 .pdf-previous-btn {
   border: 1px solid #1e1e1e;
   background-color: #1e1e1e !important;
-  width: 80px;
+  min-width: 80px;
   @include custom-button;
 
   p {
@@ -179,7 +179,7 @@
 .pdf-next-btn:hover {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color !important;
-  width: 80px;
+  min-width: 80px;
   @include custom-button;
 
   p {
@@ -191,7 +191,7 @@
 .pdf-next-btn {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color !important;
-  width: 80px;
+  min-width: 80px;
   @include custom-button;
 
   p {

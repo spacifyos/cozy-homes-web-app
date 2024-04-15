@@ -12,7 +12,10 @@
     "search": "Search",
     "myTenancy": "My Tenancy",
     "bookingOverview": "Booking Overview",
-    "booking": "Booking"
+    "booking": "Booking",
+    "eAgreement": "E-Agreement",
+    "eAgreementOverview": "E-Agreement Overview",
+    "viewAgreement": "View Agreement"
   },
   "general": {},
   "explore": {
@@ -145,7 +148,7 @@
     "agreed": "Agreed",
     "signed": "Signed"
   },
-  "eAgreementDetail": {
+  "eAgreementOverview": {
     "referenceNumber": "Reference Number",
     "status": "Status",
     "service": "Service",
@@ -158,11 +161,51 @@
     "stampingStatus": "Stamping Status",
     "insurance": "Insurance",
     "viewAndAgree": "View & Agree",
-    "viewAndSign": "View & Sign"
+    "viewAndSign": "View & Sign",
+    "agreed": "Agreed",
+    "signed": "Signed"
   },
   "viewAgreement": {
     "page": "Page",
     "previous": "Previous",
+    "next": "Next",
+    "reject": "Reject",
+    "agree": "Agree",
+    "sign": "Submit Signature",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "insertPinNumber": "Insert PIN Number",
+    "pinNUmber": "PIN Number",
+    "enterSixDigitNumber": "Enter the 6-digit pin number",
+    "pleaseSignBelow": "Please Sign Below",
+    "reset": "Reset"
+  },
+  "signIn": {
+    "welcomeBack": "Welcome<br>Back",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "iAm": "I am",
+    "tenant": "Tenant",
+    "owner": "Owner",
+    "agency": "Agency",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "forgotPassword": "Forgot Password"
+  },
+  "signUp": {
+    "letGetStarted": "Let's Get Started",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "companyEmail": "Company Email",
+    "companyName": "Company Name",
+    "yourName": "Your Name",
+    "phoneNumber": "Your Phone Number",
+    "companyDomain": "Company Domain",
+    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Roomz, I will enter RZ",
+    "yourPassword": "Your Password",
+    "confirmYourPassword": "Confirm Your Password",
+    "signUpForFree": "Sign Up for FREE",
     "next": "Next"
   },
   "myTenancy":{

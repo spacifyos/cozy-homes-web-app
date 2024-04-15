@@ -58,7 +58,7 @@ const ViewAgreement = () => {
   return (
     <CustomHeader
       onClickGoBack={onClickGoBack}
-      pageTitle={"View Agreement"}
+      pageTitle={t("pageTitle.viewAgreement")}
       hideBgImage
       rightButtonIcon={Images.downloadIcon}
     >
@@ -92,17 +92,17 @@ const ViewAgreement = () => {
           </Document>
 
           <CustomText textClassName="white-text font-size-xsmall pt-2">
-            Page {pageNumber} of {numPages}
+            {t("viewAgreement.page")} {pageNumber} of {numPages}
           </CustomText>
 
           <div className="flex gap-2 pt-2">
             <CustomButton
-              buttonText="Previous"
+              buttonText={t("viewAgreement.previous")}
               buttonClassName={`btn-sm ${pageNumber !== 1 ? "pdf-next-btn" : "pdf-previous-btn"}`}
               onClick={onClickPrevious}
             />
             <CustomButton
-              buttonText="Next"
+              buttonText={t("viewAgreement.next")}
               buttonClassName={`btn-sm ${pageNumber !== numPages ? "pdf-next-btn" : "pdf-previous-btn"}`}
               onClick={onClickNext}
             />
@@ -127,18 +127,18 @@ const ViewAgreement = () => {
 
         <div className="grid grid-cols-2 gap-2 pt-5 ">
           <CustomButton
-            buttonText="Reject"
+            buttonText={t("viewAgreement.reject")}
             buttonClassName="default-btn-outline"
           />
           <CustomButton
-            buttonText="Agree"
+            buttonText={t("viewAgreement.agree")}
             buttonClassName="primary-btn"
             onClick={() => document.getElementById("pin_modal").showModal()}
           />
         </div>
       </div>
 
-      <CanvasModal onClickReadSign={onClickReadSign} readSign={readSign} />
+      <CanvasModal onClickReadSign={onClickReadSign} readSign={readSign} t={t}/>
 
       <PinModal t={t} />
     </CustomHeader>

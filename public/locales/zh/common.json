@@ -9,9 +9,12 @@
     "myMeter": "我的计量器",
     "account": "账户",
     "propertyDetail": "房子信息",
+    "search": "搜索",
     "bookingOverview": "预订概览",
     "booking": "预订",
-    "search": "搜索",
+    "eAgreement": "电子协议",
+    "eAgreementOverview": "电子协议概览",
+    "viewAgreement": "查看协议",
     "myTenancy": "我的租期"
   },
   "general": {},
@@ -146,7 +149,7 @@
     "agreed": "同意",
     "signed": "签署"
   },
-  "eAgreementDetail": {
+  "eAgreementOverview": {
     "referenceNumber": "参考编号",
     "status": "状态",
     "service": "服务",
@@ -159,11 +162,51 @@
     "stampingStatus": "盖章状态",
     "insurance": "保险",
     "viewAndAgree": "查看并同意",
-    "viewAndSign": "查看并签署"
+    "viewAndSign": "查看并签署",
+    "agreed": "同意",
+    "signed": "签署"
   },
   "viewAgreement": {
     "page": "页",
     "previous": "上一页",
+    "next": "下一页",
+    "reject": "拒绝",
+    "agree": "同意",
+    "sign": "提交签名",
+    "cancel": "取消",
+    "submit": "提交",
+    "insertPinNumber": "输入PIN码",
+    "pinNUmber": "PIN码",
+    "enterSixDigitNumber": "输入6位数字的PIN码",
+    "pleaseSignBelow": "请在下方签名",
+    "reset": "重置"
+  },
+  "signIn": {
+    "welcomeBack": "欢迎回来",
+    "signIn": "登录",
+    "signUp": "注册",
+    "iAm": "我是",
+    "tenant": "租户",
+    "owner": "业主",
+    "agency": "中介",
+    "email": "电子邮件",
+    "phoneNumber": "电话号码",
+    "password": "密码",
+    "forgotPassword": "忘记密码"
+  },
+  "signUp": {
+    "letGetStarted": "让我们开始吧",
+    "signIn": "登录",
+    "signUp": "注册",
+    "companyEmail": "公司邮箱",
+    "companyName": "公司名称",
+    "yourName": "您的姓名",
+    "phoneNumber": "您的电话号码",
+    "companyDomain": "您的公司域名",
+    "domainInfo": "您公司的唯一域名。最小：2，最大：12，只能使用字母。例如：我的公司名是 Roomz，我将输入 RZ",
+    "yourPassword": "您的密码",
+    "confirmYourPassword": "确认您的密码",
+    "signUpForFree": "免费注册",
     "next": "下一页",
     "memberSince": "会员自"
   },

@@ -12,7 +12,10 @@
     "search": "Cari",
     "myTenancy": "Penyewaan Saya",
     "bookingOverview": "预订概览",
-    "booking": "Tempahan"
+    "booking": "Tempahan",
+    "eAgreement": "Perjanjian Elektronik",
+    "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
+    "viewAgreement": "Lihat Perjanjian"
   },
   "general": {},
   "explore": {
@@ -146,7 +149,7 @@
     "agreed": "Bersetuju",
     "signed": "Ditandatangani"
   },
-  "eAgreementDetail": {
+  "eAgreementOverview": {
     "referenceNumber": "Nombor Rujukan",
     "status": "Status",
     "service": "Perkhidmatan",
@@ -159,11 +162,51 @@
     "stampingStatus": "Status Cap",
     "insurance": "Insurans",
     "viewAndAgree": "Lihat & Setuju",
-    "viewAndSign": "Lihat & Tandatangan"
+    "viewAndSign": "Lihat & Tandatangan",
+    "agreed": "Bersetuju",
+    "signed": "Ditandatangani"
   },
   "viewAgreement": {
     "page": "Halaman",
     "previous": "Sebelumnya",
+    "next": "Seterusnya",
+    "reject": "Tolak",
+    "agree": "Setuju",
+    "sign": "Hantar Tandatangan",
+    "cancel": "Batal",
+    "submit": "Hantar",
+    "insertPinNumber": "Masukkan Nombor PIN",
+    "pinNUmber": "Nombor PIN",
+    "enterSixDigitNumber": "Masukkan nombor PIN 6 digit",
+    "pleaseSignBelow": "Sila Tandatangan Di Bawah",
+    "reset": "Set Semula"
+  },
+  "signIn": {
+    "welcomeBack": "Selamat Datang Kembali",
+    "signIn": "Log Masuk",
+    "signUp": "Daftar",
+    "iAm": "Saya",
+    "tenant": "Penyewa",
+    "owner": "Pemilik",
+    "agency": "Agensi",
+    "email": "Emel",
+    "phoneNumber": "Nombor Telefon",
+    "password": "Kata Laluan",
+    "forgotPassword": "Lupa Kata Laluan"
+  },
+  "signUp": {
+    "letGetStarted": "Mari Bermula",
+    "signIn": "Log Masuk",
+    "signUp": "Daftar",
+    "companyEmail": "Emel Syarikat",
+    "companyName": "Nama Syarikat",
+    "yourName": "Nama Anda",
+    "phoneNumber": "Nombor Telefon Anda",
+    "companyDomain": "Domain Syarikat Anda",
+    "domainInfo": "Domain unik untuk syarikat anda. Min: 2, Maks: 12 huruf sahaja. contoh: Nama syarikat saya adalah Roomz, saya akan masukkan RZ",
+    "yourPassword": "Kata Laluan Anda",
+    "confirmYourPassword": "Sahkan Kata Laluan Anda",
+    "signUpForFree": "Daftar secara PERCUMA",
     "next": "Seterusnya",
     "memberSince": "Ahli sejak"
   },
