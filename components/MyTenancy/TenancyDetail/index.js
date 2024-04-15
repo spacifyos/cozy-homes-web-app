@@ -9,35 +9,34 @@ import Images from "@/src/utils/Image";
 const TenancyLabel = () => {
     return (
         <div className={"pl-2"}>
-        <CustomText textClassName="font-bold font-size-small primary-text">
-            M Vertica
-        </CustomText>
-        <CustomText textClassName="font-size-xsmall">A-01-01, Room 1</CustomText>
-    </div>
+            <CustomText textClassName="font-bold font-size-small primary-text">
+                M Vertica
+            </CustomText>
+            <CustomText textClassName="font-size-xsmall">A-01-01, Room 1</CustomText>
+        </div>
     );
 };
 const AutoPayButton = ({isChecked = false, onClickChangeAutoPay}) => {
-    return (<div className="tenancy-auto-pay-button">
-        <CustomText
-            textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold font-size-xsmall pr-3`}
-        >
-            AutoPay
-        </CustomText>
-        <input
-            type="checkbox"
-            className={`toggle default-toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
-            checked={isChecked}
-            onClick={onClickChangeAutoPay}
-        />
-    </div>);
+    return (
+        <div className="tenancy-auto-pay-button">
+            <CustomText
+                textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold font-size-xsmall pr-3`}
+            >
+                AutoPay
+            </CustomText>
+            <input
+                type="checkbox"
+                className={`toggle default-toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
+                checked={isChecked}
+                onClick={onClickChangeAutoPay}
+            />
+        </div>);
 };
-const TenancyDetail = ({t}) => {
-    const [isChecked, setIsChecked] = useState(true);
+const TenancyDetail = ({t,onClickChangeAutoPay, isChecked}) => {
     const targetRef = useRef();
     const [dimensions, setDimensions] = useState(0);
-    const onClickChangeAutoPay = () => {
-        setIsChecked(!isChecked);
-    };
+
+
     useEffect(() => {
         if (targetRef.current) {
             setDimensions(targetRef.current.offsetWidth);

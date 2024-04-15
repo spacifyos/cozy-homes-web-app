@@ -68,7 +68,17 @@
   }
 }
 
-.terminate-btn{
+.disable-btn {
+  @include custom-button;
+  @include custom-text($primary-white-color);
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.terminate-btn:hover {
   border: 1px solid $primary-color;
   background-color: $primary-white-color !important;
   @include custom-button;
@@ -79,13 +89,14 @@
   }
 }
 
-.disable-btn {
+.terminate-btn{
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color !important;
   @include custom-button;
-  @include custom-text($primary-white-color);
 
-  p {
+  p{
     font-weight: bold !important;
-    @extend .white-text;
+    @extend .primary-text;
   }
 }
 
@@ -220,4 +231,9 @@
   outline: none;
   outline-offset: unset;
   border: none;
+}
+
+.default-btn-outline:focus-visible,{
+  outline: none;
+  outline-offset: unset;
 }

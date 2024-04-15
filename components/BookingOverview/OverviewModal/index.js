@@ -3,7 +3,7 @@ import CustomModal from "@/components/CustomModal";
 
 const OverviewModal = ({ t }) => {
   return (
-    <CustomModal>
+    <CustomModal id="isOverview">
       <CustomText textClassName="modal-title-font pb-2 ">
         {t("bookingOverview.paymentDetail")}
       </CustomText>

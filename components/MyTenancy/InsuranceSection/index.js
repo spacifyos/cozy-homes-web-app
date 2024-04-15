@@ -6,9 +6,9 @@ const InsuranceSection = ({t}) => {
 
     return (
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
-            <CustomText textClassName="disable-text font-size-small">{t("myTenancy.insurance")}</CustomText>
-            <div className="divider divider-step-section" style={{margin: 0}}></div>
-            <div className="flex flex-col justify-center items-center">
+            <CustomText textClassName="disable-text font-size-small pb-2">{t("myTenancy.insurance")}</CustomText>
+            <div className="divider-line" style={{margin: 0}}></div>
+            <div className="flex flex-col justify-center items-center pt-2">
                 <CustomImage
                     className="m-2"
                     src={Images.noDataIcon}

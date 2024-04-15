@@ -66,8 +66,7 @@
     "days": "天",
     "paid": "已付款",
     "unpaid": "未付款",
-    "smartLock": "电子锁",
-    "address": "地址"
+    "smartLock": "电子锁"
   },
   "myMeter": {
     "todayUsage": "今天的用量",
@@ -188,6 +187,12 @@
     "noInsuranceAvailable": "没有可用的保险",
     "noEagreementAvailable": "没有可用的电子协议",
     "eAgreement": "电子协议",
-    "insurance": "保险"
+    "insurance": "保险",
+    "unsubscribeAutoPay": "取消自动付款",
+    "submit": "提交",
+    "cancel": "取消",
+    "yes": "是",
+    "No": "否",
+    "askingUnsubscribeAutoPay": "确定要取消自动付款吗？"
   }
 }

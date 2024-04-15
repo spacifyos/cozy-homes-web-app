@@ -9,33 +9,48 @@ import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
 import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
 import Eagreement from "@/components/MyTenancy/E-AgreementSection";
 import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
+import {useState} from "react";
+import UnsubscribeAutoPayModal from "@/components/MyTenancy/UnsubscribeAutoPayModal";
 
 export { getServerSideProps };
 
 const MyTenancy = ({}) => {
   const { t } = useTranslation("common");
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
 
   const onClickGoBack = () => {
     router.back();
+  };
+  const onClickChangeAutoPay = () => {
+    setIsChecked(!isChecked);
+    if (isChecked) {
+      document.getElementById("isUnSubscribe").showModal();
+    }else {
+      document.getElementById("isSubscribe").showModal();
+    }
   };
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myTenancy")}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      rightButtonIcon={Images.shareIcon}
-      rightSecondButtonIcon={Images.saveIcon}
-      imageStyle={{ width: "25px", height: "25px" }}
+      rightButtonIcon={Images.saveIcon}
+      rightSecondButtonIcon={Images.shareIcon}
     >
-      <div className="body-container" style={{paddingBottom:"35px"}}>
+      <div className="body-container pb-9">
         <TenancyUserSection t={t} />
-        <TenancyDetail t={t} />
+        <TenancyDetail t={t}
+        onClickChangeAutoPay={onClickChangeAutoPay}
+                       isChecked={isChecked}
+        />
         <TenancyFeeDetail t={t} />
-        {/*<SubscribeAutoPayModal t={t}/>*/}
         <Eagreement t={t} />
         <InsuranceSection t={t} />
       </div>
+
+      <UnsubscribeAutoPayModal t={t}/>
+      <SubscribeAutoPayModal t={t}/>
     </CustomHeader>
   );
 };

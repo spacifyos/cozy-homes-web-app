@@ -66,8 +66,7 @@
     "days": "hari",
     "paid": "Dibayar",
     "unpaid": "Belum Dibayar",
-    "smartLock": "kunci pintar",
-    "address": "Alamat"
+    "smartLock": "kunci pintar"
   },
   "myMeter": {
     "todayUsage": "Penggunaan Hari Ini",
@@ -188,6 +187,12 @@
     "noInsuranceAvailable": "Tiada Insurans Yang Tersedia",
     "noEagreementAvailable": "Tiada Perjanjian Elektronik Yang Tersedia",
     "eAgreement": "Perjanjian Elektronik",
-    "insurance": "Insurans"
+    "insurance": "Insurans",
+    "unsubscribeAutoPay": "Batal Langgan Bayaran Auto",
+    "submit": "Hantar",
+    "cancel": "Batal",
+    "yes": "Ya",
+    "No": "Tidak",
+    "askingUnsubscribeAutoPay": "Adakah anda pasti untuk membatalkan langganan bayaran auto?"
   }
 }

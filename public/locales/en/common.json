@@ -66,8 +66,7 @@
     "days": "days",
     "paid": "Paid",
     "unpaid": "Unpaid",
-    "smartLock": "Smart Lock",
-    "address": "Address"
+    "smartLock": "Smart Lock"
   },
   "myMeter": {
     "todayUsage": "Today Usage",
@@ -187,7 +186,13 @@
     "noInsuranceAvailable": "No Insurance Available",
     "noEagreementAvailable": "No E-agreement Available",
     "eAgreement": "E-Agreement",
-    "insurance": "Insurance"
+    "insurance": "Insurance",
+    "unsubscribeAutoPay": "Unsubscribe Auto Pay",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "No": "No",
+    "askingUnsubscribeAutoPay": "Are you sure to unsubscribe Auto Pay?"
   }
 
 }

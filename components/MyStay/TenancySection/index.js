@@ -68,7 +68,7 @@ const TenancySection = ({ t }) => {
           className="absolute right-4 top-3"
         />
         <div className="flex flex-col items-start">
-          <div className="primary-bg-color p-2 global-border-radius mb-1">
+          <div className="primary-bg-color p-2 global-border-radius mb-1" style={{ cursor: 'pointer' }}>
             <CustomImage src={Images.buildingIcon} width={30} height={30}
             onClick={onClickGoToMyTenancy}
             />

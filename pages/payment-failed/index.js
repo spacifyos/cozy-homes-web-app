@@ -16,7 +16,7 @@ const PaymentFailed = ({}) => {
 
   const onClickPaymentFail = () => {
     router.push({
-      pathname: "/booking-overview/123",
+      pathname: "/booking/1/overview",
       query: { paymentSuccess: false },
     });
   };

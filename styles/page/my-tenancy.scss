@@ -2,7 +2,10 @@
   @apply flex justify-center items-center secondary-bg-color px-2 py-2 global-border-radius;
 }
 
-.auto-pay-btn{
-  min-height: 40px !important;
-  height: 40px;
+
+
+.auto-pay-btn:focus-visible{
+  outline: none;
+  outline-offset: unset;
+  border: none;
 }
