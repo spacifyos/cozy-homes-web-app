@@ -163,5 +163,32 @@
     "page": "Page",
     "previous": "Previous",
     "next": "Next"
+  },
+  "signIn": {
+    "welcomeBack": "Welcome<br>Back",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "iAm": "I am",
+    "tenant": "Tenant",
+    "owner": "Owner",
+    "agency": "Agency",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "forgotPassword": "Forgot Password"
+  },
+  "signUp": {
+    "letGetStarted": "Let's Get Started",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "companyEmail": "Company Email",
+    "companyName": "Company Name",
+    "yourName": "Your Name",
+    "phoneNumber": "Your Phone Number",
+    "companyDomain": "Company Domain",
+    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Roomz, I will enter RZ",
+    "yourPassword": "Your Password",
+    "confirmYourPassword": "Confirm Your Password",
+    "signUpForFree": "Sign Up for FREE"
   }
 }

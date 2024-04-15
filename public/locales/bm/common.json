@@ -163,5 +163,32 @@
     "page": "Halaman",
     "previous": "Sebelumnya",
     "next": "Seterusnya"
+  },
+  "signIn": {
+    "welcomeBack": "Selamat Datang Kembali",
+    "signIn": "Log Masuk",
+    "signUp": "Daftar",
+    "iAm": "Saya",
+    "tenant": "Penyewa",
+    "owner": "Pemilik",
+    "agency": "Agensi",
+    "email": "Emel",
+    "phoneNumber": "Nombor Telefon",
+    "password": "Kata Laluan",
+    "forgotPassword": "Lupa Kata Laluan"
+  },
+  "signUp": {
+    "letGetStarted": "Mari Bermula",
+    "signIn": "Log Masuk",
+    "signUp": "Daftar",
+    "companyEmail": "Emel Syarikat",
+    "companyName": "Nama Syarikat",
+    "yourName": "Nama Anda",
+    "phoneNumber": "Nombor Telefon Anda",
+    "companyDomain": "Domain Syarikat Anda",
+    "domainInfo": "Domain unik untuk syarikat anda. Min: 2, Maks: 12 huruf sahaja. contoh: Nama syarikat saya adalah Roomz, saya akan masukkan RZ",
+    "yourPassword": "Kata Laluan Anda",
+    "confirmYourPassword": "Sahkan Kata Laluan Anda",
+    "signUpForFree": "Daftar secara PERCUMA"
   }
 }

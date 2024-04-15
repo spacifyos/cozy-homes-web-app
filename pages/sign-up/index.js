@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 export { getServerSideProps };
 
 const SignUp = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
   const onClickToSignIn = () => {
     router.push("/sign-in");
@@ -21,13 +22,7 @@ const SignUp = () => {
               textClassName="primary-text font-bold leading-10"
               styles={{ fontSize: 34 }}
           >
-            Let’s Get
-          </CustomText>
-          <CustomText
-              textClassName="primary-text font-bold leading-10"
-              styles={{ fontSize: 34 }}
-          >
-            Started
+            {t("signUp.letGetStarted")}
           </CustomText>
         </div>
 
@@ -42,7 +37,7 @@ const SignUp = () => {
                   color: "#C3C4C6",
                 }}
               >
-                Sign In
+                {t("signUp.signIn")}
               </CustomText>
             </div>
 
@@ -50,7 +45,7 @@ const SignUp = () => {
               textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
-              Sign Up
+              {t("signUp.signUp")}
             </CustomText>
           </div>
           <div
@@ -59,7 +54,7 @@ const SignUp = () => {
           >
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder={t("signUp.yourName")}
               className="input input-bordered w-full primaryWhite-bg-color mb-4"
             />
 
@@ -70,27 +65,27 @@ const SignUp = () => {
 
               <input
                 type="text"
-                placeholder="Phone Number"
+                placeholder={t("signUp.phoneNumber")}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2"
               />
             </div>
 
             <input
               type="password"
-              placeholder="Your Password"
+              placeholder={t("signUp.yourPassword")}
               className="input input-bordered w-full primaryWhite-bg-color mb-4"
             />
 
             <input
               type="password"
-              placeholder="Confirm Your Password"
+              placeholder={t("signUp.confirmYourPassword")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8"
             />
 
             <div className="flex justify-center mb-8">
               <CustomButton
                 buttonClassName="primary-btn w-2/4 mb-2"
-                buttonText="Sign Up for FREE"
+                buttonText={t("signUp.signUpForFree")}
               />
             </div>
 

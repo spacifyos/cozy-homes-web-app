@@ -163,5 +163,32 @@
     "page": "页",
     "previous": "上一页",
     "next": "下一页"
+  },
+  "signIn": {
+    "welcomeBack": "欢迎回来",
+    "signIn": "登录",
+    "signUp": "注册",
+    "iAm": "我是",
+    "tenant": "租户",
+    "owner": "业主",
+    "agency": "中介",
+    "email": "电子邮件",
+    "phoneNumber": "电话号码",
+    "password": "密码",
+    "forgotPassword": "忘记密码"
+  },
+  "signUp": {
+    "letGetStarted": "让我们开始吧",
+    "signIn": "登录",
+    "signUp": "注册",
+    "companyEmail": "公司邮箱",
+    "companyName": "公司名称",
+    "yourName": "您的姓名",
+    "phoneNumber": "您的电话号码",
+    "companyDomain": "您的公司域名",
+    "domainInfo": "您公司的唯一域名。最小：2，最大：12，只能使用字母。例如：我的公司名是 Roomz，我将输入 RZ",
+    "yourPassword": "您的密码",
+    "confirmYourPassword": "确认您的密码",
+    "signUpForFree": "免费注册"
   }
 }

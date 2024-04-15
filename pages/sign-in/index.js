@@ -10,6 +10,7 @@ import _ from "lodash";
 export { getServerSideProps };
 
 const SignIn = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
   const role = _.get(router, ["query", "role"], "");
 
@@ -25,7 +26,6 @@ const SignIn = () => {
 
   const onClickChangeRole = (selectedRole) => {
     router.push(`/sign-in?role=${selectedRole}`);
-    // setSelectedRole(selectedRole);
   };
 
   const onClickToAgencySignIn = () => {
@@ -48,13 +48,7 @@ const SignIn = () => {
             textClassName="primary-text font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
-            Welcome
-          </CustomText>
-          <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
-          >
-            Back
+            {t("signIn.welcomeBack")}
           </CustomText>
         </div>
 
@@ -64,7 +58,7 @@ const SignIn = () => {
               textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
-              Sign In
+              {t("signIn.signIn")}
             </CustomText>
 
             <div onClick={onClickToSignUp} className="cursor-pointer">
@@ -76,7 +70,7 @@ const SignIn = () => {
                   color: "#C3C4C6",
                 }}
               >
-                Sign Up
+                {t("signIn.signUp")}
               </CustomText>
             </div>
           </div>
@@ -85,23 +79,23 @@ const SignIn = () => {
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-2 font-bold font-size-large">
-              I am ...
+              {t("signIn.iAm")} ...
             </CustomText>
 
             <div className="grid grid-cols-3 gap-2 mb-8">
               <CustomButton
                 buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText="Tenant"
+                buttonText={t("signIn.tenant")}
                 onClick={() => onClickChangeRole("tenant")}
               />
               <CustomButton
                 buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText="Owner"
+                buttonText={t("signIn.owner")}
                 onClick={() => onClickChangeRole("owner")}
               />
               <CustomButton
                 buttonClassName="default-btn-outline"
-                buttonText="Agency"
+                buttonText={t("signIn.agency")}
                 onClick={onClickToAgencySignIn}
               />
             </div>
@@ -113,27 +107,27 @@ const SignIn = () => {
 
               <input
                 type="text"
-                placeholder="Phone Number"
+                placeholder={t("signIn.phoneNumber")}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2"
               />
             </div>
 
             <input
               type="password"
-              placeholder="Password"
+              placeholder={t("signIn.password")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8"
             />
 
             <div className="flex justify-center">
               <CustomButton
                 buttonClassName="primary-btn w-2/4 mb-2"
-                buttonText="Sign In"
+                buttonText={t("signIn.signIn")}
                 onClick={onClickToLogin}
               />
             </div>
 
-            <CustomText textClassName="text-center mb-5">
-              Forgot Password?
+            <CustomText textClassName="text-center mb-5 underline cursor-pointer">
+              {t("signIn.forgotPassword")}
             </CustomText>
 
             <CustomText textClassName="font-size-small mb-5">
