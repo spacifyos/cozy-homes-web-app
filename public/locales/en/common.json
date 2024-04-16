@@ -10,6 +10,7 @@
     "account": "Account",
     "propertyDetail": "Property Detail",
     "search": "Search",
+    "myTenancy": "My Tenancy",
     "bookingOverview": "Booking Overview",
     "booking": "Booking",
     "eAgreement": "E-Agreement",
@@ -110,7 +111,8 @@
     "memberSince": "Member since",
     "cancellationPolicy": "Cancellation Policy",
     "totalMoveInCost": "Total move in cost",
-    "bookNow": "Book Now"
+    "bookNow": "Book Now",
+    "description": "Description"
   },
   "payment": {
     "viewBooking": "View Booking",
@@ -203,6 +205,36 @@
     "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Roomz, I will enter RZ",
     "yourPassword": "Your Password",
     "confirmYourPassword": "Confirm Your Password",
-    "signUpForFree": "Sign Up for FREE"
+    "signUpForFree": "Sign Up for FREE",
+    "next": "Next"
+  },
+  "myTenancy":{
+    "address": "Address",
+    "createdAt": "Created At",
+    "otherInformation": "Other Information",
+    "electricityPricePerUnit": "Electricity Price Per Unit",
+    "rentalDeposit": "Rental Deposit",
+    "utilityDeposit": "Utility Deposit",
+    "keyDeposit": "Key Deposit",
+    "fitUpDeposit": "Fit Up Deposit",
+    "restorationDeposit": "Restoration Deposit",
+    "otherDeposit": "Other Deposit",
+    "subscribeAutoPay": "Subsribe Auto Pay",
+    "referenceNumber": "Reference Number",
+    "applicationStatus": "Application Status",
+    "tenantName": "Tenant Name",
+    "rentalFee": "Rental Fee",
+    "period": "Period",
+    "notActivated": "Not Activated",
+    "noInsuranceAvailable": "No Insurance Available",
+    "noEagreementAvailable": "No E-agreement Available",
+    "eAgreement": "E-Agreement",
+    "insurance": "Insurance",
+    "unsubscribeAutoPay": "Unsubscribe Auto Pay",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "askingUnsubscribeAutoPay": "Are you sure to unsubscribe Auto Pay?"
   }
 }

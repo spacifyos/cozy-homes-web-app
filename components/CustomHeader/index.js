@@ -12,6 +12,8 @@ const CustomHeader = ({
   onClickRightButton,
   rightButtonIcon,
   padding = false,
+  onClickRightSecondButton,
+  rightSecondButtonIcon,
 }) => {
   return (
     <div className="flex-1 relative bg-color overflow-hidden">
@@ -40,17 +42,27 @@ const CustomHeader = ({
             {pageTitle}
           </CustomText>
         </div>
-
-        {_.isEmpty(rightButtonIcon) ? (
-          false
-        ) : (
-          <CustomImage
-            src={rightButtonIcon}
-            imageStyle={{ width: 20, height: 20 }}
-            onClick={onClickRightButton}
-            className="cursor-pointer"
-          />
-        )}
+        <div className="flex justify-center items-center gap-7">
+          {_.isEmpty(rightSecondButtonIcon) ? (
+            false
+          ) : (
+            <CustomImage
+              src={rightSecondButtonIcon}
+              imageStyle={{ width: 20, height: 20 }}
+              onClick={onClickRightSecondButton}
+            />
+          )}
+          {_.isEmpty(rightButtonIcon) ? (
+            false
+          ) : (
+            <CustomImage
+              src={rightButtonIcon}
+              imageStyle={{ width: 20, height: 20 }}
+              onClick={onClickRightButton}
+              className="cursor-pointer"
+            />
+          )}
+        </div>
       </div>
       {children}
     </div>

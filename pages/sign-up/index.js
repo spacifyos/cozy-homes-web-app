@@ -19,8 +19,8 @@ const SignUp = () => {
       <div className="body-container py-4">
         <div className="py-6 mb-4">
           <CustomText
-              textClassName="primary-text font-bold leading-10"
-              styles={{ fontSize: 34 }}
+            textClassName="primary-text font-bold leading-10"
+            styles={{ fontSize: 34 }}
           >
             {t("signUp.letGetStarted")}
           </CustomText>
