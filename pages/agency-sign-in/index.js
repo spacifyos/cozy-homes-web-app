@@ -72,19 +72,22 @@ const AgencySignIn = () => {
                 buttonText={t("signIn.owner")}
                 onClick={() => onClickToUserSignIn("owner")}
               />
-              <CustomButton buttonClassName="primary-btn" buttonText={t("signIn.agency")} />
+              <CustomButton
+                buttonClassName="primary-btn"
+                buttonText={t("signIn.agency")}
+              />
             </div>
 
             <input
               type="email"
               placeholder={t("signIn.email")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <input
               type="password"
               placeholder={t("signIn.password")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8"
+              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
             />
 
             <div className="flex justify-center">

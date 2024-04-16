@@ -56,37 +56,37 @@ const AgencySignUp = () => {
             <input
               type="email"
               placeholder={t("signUp.companyEmail")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <input
               type="text"
               placeholder={t("signUp.companyName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <input
               type="text"
               placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color">
+              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input">
                 <option selected>+60 Malaysia</option>
               </select>
 
               <input
                 type="text"
                 placeholder={t("signUp.phoneNumber")}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2"
+                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
               />
             </div>
 
             <input
               type="text"
               placeholder={t("signUp.conmpanyDomain")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-1"
+              className="input input-bordered w-full primaryWhite-bg-color mb-1 user-input"
             />
 
             <CustomText textClassName="disable-text font-size-xsmall mb-4">
@@ -96,13 +96,13 @@ const AgencySignUp = () => {
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8"
+              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
             />
 
             <div className="flex justify-center mb-8">

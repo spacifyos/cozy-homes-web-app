@@ -47,7 +47,7 @@ const EAgreement = () => {
             buttonText="Completed"
             buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Completed") ? "primary-btn" : "default-btn"} mr-2`}
             textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Completed")}
+            onClick={() => onClickSelectCategory("Completed")}yes
           />
           <CustomButton
             buttonText="Pending"

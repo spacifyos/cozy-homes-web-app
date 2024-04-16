@@ -106,21 +106,21 @@ const Image = {
   icFront: "/images/ic_front_sample.png",
   icBack: "/images/ic_back_sample.png",
   uploadIcon: "/images/icon/upload_icon.png",
-  infoIcon: "/images/icon/info_icon.png",
+  infoIcon: "/images/icon/information.png",
   upIcon: "/images/icon/up_icon.png",
   checkIcon: "/images/icon/check_icon.png",
   checkGreyIcon: "/images/icon/check_grey_icon.png",
   checkGreenIcon: "/images/icon/check_green_icon.png",
-  downloadIcon: "/images/icon/download_icon.png",
+  downloadIcon: "/images/icon/download.png",
   uncheckIcon: "/images/icon/uncheck_icon.png",
-  scheduleIcon:"/images/icon/schedule_icon.png",
-  inforIconActive:"/images/icon/infor_icon.png",
+  scheduleIcon:"/images/icon/booking_icon.png",
   cancelIcon:"/images/icon/x_icon.png",
-  successIcon:"/images/icon/success_icon.png",
-  failIcon:"/images/icon/fail_icon.png",
-  stepCompleteIcon:"/images/icon/stepComplete_icon.png",
-  step2Icon:"/images/icon/step2_icon.png",
-  step3Icon:"/images/icon/step3_icon.png"
+  successIcon:"/images/icon/payment_success.png",
+  failIcon:"/images/icon/failed.png",
+  stepCompleteIcon:"/images/icon/Step_success.png",
+  step1Icon:"/images/icon/Step_step1.png",
+  step2Icon:"/images/icon/Step_step2.png",
+  step3Icon:"/images/icon/Step_step3.png"
 };
 
 export default Image;
