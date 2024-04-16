@@ -2,7 +2,7 @@ import Images from "@/src/utils/Image";
 import _ from "lodash";
 import FeatureComponent from "@/components/MyStay/FeatureComponent";
 
-const FeatureSection = ({ t, onClickToAgreement}) => {
+const FeatureSection = ({ t, onClickToAgreement, }) => {
   const featureLists = [
     { name: t("myStay.scan"), icon: Images.qrIcon },
     { name: t("myStay.smartLock"), icon: Images.lockIcon },

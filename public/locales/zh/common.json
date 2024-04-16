@@ -14,7 +14,8 @@
     "booking": "预订",
     "eAgreement": "电子协议",
     "eAgreementOverview": "电子协议概览",
-    "viewAgreement": "查看协议"
+    "viewAgreement": "查看协议",
+    "topUpMeter": "充值仪表"
   },
   "general": {},
   "explore": {
@@ -205,5 +206,9 @@
     "yourPassword": "您的密码",
     "confirmYourPassword": "确认您的密码",
     "signUpForFree": "免费注册"
+  },
+  "topUpMeter": {
+    "cancel": "取消",
+    "payNow": "立即支付"
   }
 }

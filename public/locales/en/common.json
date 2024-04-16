@@ -14,7 +14,8 @@
     "booking": "Booking",
     "eAgreement": "E-Agreement",
     "eAgreementOverview": "E-Agreement Overview",
-    "viewAgreement": "View Agreement"
+    "viewAgreement": "View Agreement",
+    "topUpMeter": "Top Up Meter"
   },
   "general": {},
   "explore": {
@@ -205,5 +206,9 @@
     "yourPassword": "Your Password",
     "confirmYourPassword": "Confirm Your Password",
     "signUpForFree": "Sign Up for FREE"
+  },
+  "topUpMeter": {
+    "cancel": "Cancel",
+    "payNow": "Pay Now"
   }
 }

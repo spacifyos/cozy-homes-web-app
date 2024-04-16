@@ -14,7 +14,8 @@
     "booking": "Tempahan",
     "eAgreement": "Perjanjian Elektronik",
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
-    "viewAgreement": "Lihat Perjanjian"
+    "viewAgreement": "Lihat Perjanjian",
+    "topUpMeter": "Top Up Meter"
   },
   "general": {},
   "explore": {
@@ -205,5 +206,9 @@
     "yourPassword": "Kata Laluan Anda",
     "confirmYourPassword": "Sahkan Kata Laluan Anda",
     "signUpForFree": "Daftar secara PERCUMA"
+  },
+  "topUpMeter": {
+    "cancel": "Batal",
+    "payNow": "Bayar Sekarang"
   }
 }

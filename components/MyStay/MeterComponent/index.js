@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 
-const MeterComponent = ({ t, onClickTopUp }) => {
+const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
   return (
     <div className="meter-container">
       <CustomImage
@@ -18,6 +18,7 @@ const MeterComponent = ({ t, onClickTopUp }) => {
           <CustomImage
             src={Images.meterIcon}
             imageStyle={{ width: 30, height: 30 }}
+            onClick={onClickToMyMeter}
           />
         </div>
 
