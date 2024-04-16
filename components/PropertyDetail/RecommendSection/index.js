@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import RecommendComponent from "@/components/Detail/RecommendComponent";
+import RecommendComponent from "@/components/PropertyDetail/RecommendComponent";
 
 const RecommendSection = ({ t }) => {
   return (

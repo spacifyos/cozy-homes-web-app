@@ -23,15 +23,15 @@
   }
 }
 
-.user-input{
+.user-input {
   color: #94a1a6;
-    border-color:  oklch(27.8078% 0.029596 256.847952 / .2);
+  border-color: $grey-color;
 }
-.user-input:focus,
-  .user-input:focus-within{
-  border: 1px solid oklch(27.8078% 0.029596 256.847952 / .2);
-  outline: none;
 
+.user-input:focus,
+.user-input:focus-within {
+  border: 1px solid $grey-color;
+  outline: none;
 }
 
 .default-input:focus,

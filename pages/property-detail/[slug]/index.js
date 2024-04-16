@@ -1,17 +1,17 @@
 import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import RoomPicCarousel from "@/components/Detail/RoomPicCarousel";
-import DetailComponent from "@/components/Detail/DetailComponent";
-import DetailFeatureSection from "@/components/Detail/DetailFeatureSection";
-import Facilities from "@/components/Detail/Facilities";
-import AgentSection from "@/components/Detail/AgentSection";
-import RoomzMap from "@/components/Detail/RoomzMap";
-import RecommendSection from "@/components/Detail/RecommendSection";
+import RoomPicCarousel from "@/components/PropertyDetail/RoomPicCarousel";
+import DetailComponent from "@/components/PropertyDetail/DetailComponent";
+import DetailFeatureSection from "@/components/PropertyDetail/DetailFeatureSection";
+import Facilities from "@/components/PropertyDetail/Facilities";
+import AgentSection from "@/components/PropertyDetail/AgentSection";
+import RoomzMap from "@/components/PropertyDetail/RoomzMap";
+import RecommendSection from "@/components/PropertyDetail/RecommendSection";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
-import PolicyDetail from "@/components/Detail/PolicyDetail";
+import PolicyDetail from "@/components/PropertyDetail/PolicyDetail";
 import _ from "lodash";
 
 export { getServerSideProps };

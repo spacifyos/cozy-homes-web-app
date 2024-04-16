@@ -47,7 +47,7 @@ const EAgreement = () => {
             buttonText="Completed"
             buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Completed") ? "primary-btn" : "default-btn"} mr-2`}
             textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Completed")}yes
+            onClick={() => onClickSelectCategory("Completed")}
           />
           <CustomButton
             buttonText="Pending"
@@ -58,7 +58,7 @@ const EAgreement = () => {
         </div>
 
         {_.map(statusList, (item) => (
-          <EAgreementCard item={item} onClickToDetail={onClickToDetail} t={t}/>
+          <EAgreementCard item={item} onClickToDetail={onClickToDetail} t={t} />
         ))}
       </div>
     </CustomHeader>

@@ -82,7 +82,7 @@ const Image = {
   deskChairIcon: "/images/icon/desk-chair_icon.png",
   gasStoveIcon: "/images/icon/gas-stove_icon.png",
   mailboxIcon: "/images/icon/mailbox_icon.png",
-  vectorIcon: "/images/icon/Vector_icon.png",
+  laundryIconBlack: "/images/icon/Laundry_icon_black.png",
   wardrobeIcon: "/images/icon/wardrobe_icon.png",
   wifiIcon: "/images/icon/wifi_icon.png",
   whatsappIcon: "/images/icon/whatsapp.png",
@@ -96,7 +96,7 @@ const Image = {
   callIcon: "/images/icon/call.png",
   room: "/images/room.png",
   roomView: "/images/roomview.png",
-  workspaceIcon: "/images/icon/worspace_icon.png",
+  workspaceIcon: "/images/icon/workspace_icon.png",
   shortStayIcon: "/images/icon/short_stay_icon.png",
   eventIcon: "/images/icon/event_icon.png",
   carParkIcon: "/images/icon/carpark_icon.png",
@@ -117,10 +117,10 @@ const Image = {
   cancelIcon:"/images/icon/x_icon.png",
   successIcon:"/images/icon/payment_success.png",
   failIcon:"/images/icon/failed.png",
-  stepCompleteIcon:"/images/icon/Step_success.png",
-  step1Icon:"/images/icon/Step_step1.png",
-  step2Icon:"/images/icon/Step_step2.png",
-  step3Icon:"/images/icon/Step_step3.png"
+  stepCompleteIcon:"/images/icon/step_success.png",
+  step1Icon:"/images/icon/step_step1.png",
+  step2Icon:"/images/icon/step_step2.png",
+  step3Icon:"/images/icon/step_step3.png"
 };
 
 export default Image;
