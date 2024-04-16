@@ -17,7 +17,7 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
         <CustomText textClassName="font-bold">
           M Vertica, A-01-01, Room 1
         </CustomText>
-        <CustomText textClassName="grey-text font-size-xsmall">
+        <CustomText textClassName="disable-text font-size-xsmall">
           15 Dec 2022 - 14 Dec 2023
         </CustomText>
 

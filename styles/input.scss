@@ -23,6 +23,17 @@
   }
 }
 
+.user-input {
+  color: #94a1a6;
+  border-color: $grey-color;
+}
+
+.user-input:focus,
+.user-input:focus-within {
+  border: 1px solid $grey-color;
+  outline: none;
+}
+
 .default-input:focus,
 .default-input:focus-within {
   outline: none;

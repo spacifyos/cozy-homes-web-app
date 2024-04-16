@@ -58,7 +58,7 @@ const EAgreement = () => {
         </div>
 
         {_.map(statusList, (item) => (
-          <EAgreementCard item={item} onClickToDetail={onClickToDetail} t={t}/>
+          <EAgreementCard item={item} onClickToDetail={onClickToDetail} t={t} />
         ))}
       </div>
     </CustomHeader>

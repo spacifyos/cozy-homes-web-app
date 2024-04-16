@@ -42,13 +42,13 @@ const CustomHeader = ({
             {pageTitle}
           </CustomText>
         </div>
-        <div className="flex justify-center items-center gap-7">
+        <div className="flex justify-center items-center gap-5">
           {_.isEmpty(rightSecondButtonIcon) ? (
             false
           ) : (
             <CustomImage
               src={rightSecondButtonIcon}
-              imageStyle={{ width: 20, height: 20 }}
+              imageStyle={{ width: 25, height: 25 }}
               onClick={onClickRightSecondButton}
             />
           )}
@@ -57,7 +57,7 @@ const CustomHeader = ({
           ) : (
             <CustomImage
               src={rightButtonIcon}
-              imageStyle={{ width: 20, height: 20 }}
+              imageStyle={{ width: 25, height: 25 }}
               onClick={onClickRightButton}
               className="cursor-pointer"
             />
