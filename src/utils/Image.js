@@ -115,7 +115,6 @@ const Image = {
   uncheckIcon: "/images/icon/uncheck_icon.png",
   scheduleIcon:"/images/icon/booking_icon.png",
   cancelIcon:"/images/icon/x_icon.png",
-  saveIcon:"/images/icon/save_icon.png",
   shareIcon:"/images/icon/share_icon.png",
   noDataIcon:"/images/icon/no_data_icon.png",
   dangerIcon:"/images/icon/danger_icon.png",

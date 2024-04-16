@@ -38,7 +38,7 @@ const MyTenancy = ({}) => {
       pageTitle={t("pageTitle.myTenancy")}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      rightButtonIcon={Images.saveIcon}
+      rightButtonIcon={Images.downloadIcon}
       rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container pb-5">
