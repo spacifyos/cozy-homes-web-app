@@ -341,7 +341,7 @@ const Booking = () => {
                 <CustomText textClassName="font-bold primary-text font-size-large">
                   Room for Rent
                 </CustomText>
-                <CustomText textClassName="font-light font-size-small grey-text">
+                <CustomText textClassName="font-light font-size-small disable-text">
                   Hosted by Sky Sanctuary
                 </CustomText>
               </div>
@@ -353,7 +353,7 @@ const Booking = () => {
             ></div>
 
             <CustomText textClassName="font-bold pb-1">Move In Cost</CustomText>
-            <CustomText textClassName="font-size-xsmall font-light leading-4 grey-text">
+            <CustomText textClassName="font-size-xsmall font-light leading-4 disable-text">
               Please check the payment breakdown below. Should you have any
               inquiries, please contact the owner or agent before proceeding
               with your payment.
@@ -494,7 +494,7 @@ const Booking = () => {
 
           <div className="col-span-6 flex items-start px-2 pt-3">
             <CustomImage src={Images.checkIcon} width={25} height={25} />
-            <CustomText textClassName="pl-2 font-bold grey-text">
+            <CustomText textClassName="pl-2 font-bold disable-text">
               I understand and agree to give Roomz and CTOS the consent to
               process my personal data as per PDPA Act.
             </CustomText>
@@ -518,7 +518,7 @@ const Booking = () => {
         <CustomText textClassName="font-size-large font-bold pb-2">
           Rent Charges Details
         </CustomText>
-        <CustomText textClassName="grey-text font-size-xsmall text-justify">
+        <CustomText textClassName="disable-text font-size-xsmall text-justify">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
           dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
           pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
