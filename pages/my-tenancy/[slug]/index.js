@@ -16,20 +16,23 @@ export { getServerSideProps };
 
 const MyTenancy = ({}) => {
   const { t } = useTranslation("common");
-  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
+
+  const [isChecked, setIsChecked] = useState(false);
 
   const onClickGoBack = () => {
     router.back();
   };
+
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
       document.getElementById("myTenancy_Unsubscribe_modal").showModal();
     } else {
-      document.getElementById("canvas_modal").showModal();
+      document.getElementById("myTenancy_Subscribe_modal").showModal();
     }
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myTenancy")}
@@ -38,7 +41,7 @@ const MyTenancy = ({}) => {
       rightButtonIcon={Images.saveIcon}
       rightSecondButtonIcon={Images.shareIcon}
     >
-      <div className="body-container pb-9">
+      <div className="body-container pb-5">
         <TenancyUserSection t={t} />
         <TenancyDetail
           t={t}
