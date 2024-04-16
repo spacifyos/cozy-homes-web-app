@@ -4,10 +4,12 @@ $primary-bg-color: #f5f8fd;
 $primary-black-color: #000000;
 $primary-white-color: #ffffff;
 $disable-color: #94a1a6;
-$grey-color: #939ca2;
 $power-on-color: #41c0be;
-$tertiary-bg-color: #0379B7;
 $error-color: #b71c1c;
+$not-available-color: #d9d9d9;
+$tertiary-bg-color: #0379b7;
+$grey-color: #939ca2;
+
 $pending-color: #ff8a00;
 $completed-color: #03b78c;
 
@@ -16,7 +18,7 @@ $completed-color: #03b78c;
 }
 
 .primary-bg-color {
-  background-color: $primary-color;
+  background-color: $primary-color !important;
 }
 
 .bg-color {
@@ -25,6 +27,10 @@ $completed-color: #03b78c;
 
 .secondary-bg-color {
   background-color: $secondary-color;
+}
+
+.primaryWhite-text-color{
+  color: $primary-white-color;
 }
 
 .tertiary-bg-color {

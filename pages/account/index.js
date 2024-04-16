@@ -24,6 +24,7 @@ const Account = () => {
       pageTitle={t("pageTitle.account")}
       hideGoBackButton
       hideRightButton
+      hideRightSecondButton
       padding
     >
       <div className="body-container pb-24">

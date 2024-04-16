@@ -43,7 +43,7 @@ const StepSection = ({ t, paymentSuccess }) => {
           </div>
         </div>
       </div>
-      <div className="divider divider-step-section"></div>
+      <div className="divider-line"></div>
       <div className="flex gap-2">
         <CustomImage
           src={
@@ -89,7 +89,7 @@ const StepSection = ({ t, paymentSuccess }) => {
           )}
         </div>
       </div>
-      <div className="divider divider-step-section"></div>
+      <div className="divider-line"></div>
       <div className="flex gap-2">
         <CustomImage
           src={Images.step3Icon}

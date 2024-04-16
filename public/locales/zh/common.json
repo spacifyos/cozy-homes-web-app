@@ -14,7 +14,8 @@
     "booking": "预订",
     "eAgreement": "电子协议",
     "eAgreementOverview": "电子协议概览",
-    "viewAgreement": "查看协议"
+    "viewAgreement": "查看协议",
+    "myTenancy": "我的租期"
   },
   "general": {},
   "explore": {
@@ -89,7 +90,6 @@
     "availableUnit": "可用单位"
   },
   "propertyDetail": {
-    "overView": "概述",
     "policy": "政策",
     "facilities": "设施",
     "aircond": "冷气",
@@ -111,7 +111,8 @@
     "cancellationPolicy": "取消政策",
     "tenancy": "租赁",
     "totalMoveInCost": "总入住费用",
-    "bookNow": "立即预订"
+    "bookNow": "立即预订",
+    "description": "描述"
   },
   "payment": {
     "viewBooking": "查看预订",
@@ -204,6 +205,36 @@
     "domainInfo": "您公司的唯一域名。最小：2，最大：12，只能使用字母。例如：我的公司名是 Roomz，我将输入 RZ",
     "yourPassword": "您的密码",
     "confirmYourPassword": "确认您的密码",
-    "signUpForFree": "免费注册"
+    "signUpForFree": "免费注册",
+    "next": "下一页"
+  },
+  "myTenancy": {
+    "address": "地址",
+    "createdAt": "创建于",
+    "otherInformation": "其他信息",
+    "electricityPricePerUnit": "每单位电价",
+    "rentalDeposit": "租金押金",
+    "utilityDeposit": "公用事业押金",
+    "keyDeposit": "钥匙押金",
+    "fitUpDeposit": "装修押金",
+    "restorationDeposit": "修复押金",
+    "otherDeposit": "其他押金",
+    "subscribeAutoPay": "订阅自动支付",
+    "referenceNumber": "参考号码",
+    "applicationStatus": "应用状态",
+    "tenantName": "租户姓名",
+    "rentalFee": "租金费用",
+    "period": "周期",
+    "notActivated": "未激活",
+    "noInsuranceAvailable": "没有可用的保险",
+    "noEagreementAvailable": "没有可用的电子协议",
+    "eAgreement": "电子协议",
+    "insurance": "保险",
+    "unsubscribeAutoPay": "取消自动付款",
+    "submit": "提交",
+    "cancel": "取消",
+    "yes": "是",
+    "No": "否",
+    "askingUnsubscribeAutoPay": "确定要取消自动付款吗？"
   }
 }

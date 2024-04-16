@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/Detail/PolicyDetail";
 import _ from "lodash";
+import Description from "@/components/Detail/Description";
 
 export { getServerSideProps };
 
@@ -66,6 +67,7 @@ const Detail = ({}) => {
         {_.isEqual(showPolicy, true) ? (
           <div>
             <DetailFeatureSection t={t} />
+            <Description t={t}/>
             <Facilities t={t} />
             <RoomzMap t={t} />
             <RecommendSection t={t} />

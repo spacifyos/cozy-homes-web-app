@@ -120,7 +120,11 @@ const Image = {
   failIcon:"/images/icon/fail_icon.png",
   stepCompleteIcon:"/images/icon/stepComplete_icon.png",
   step2Icon:"/images/icon/step2_icon.png",
-  step3Icon:"/images/icon/step3_icon.png"
+  step3Icon:"/images/icon/step3_icon.png",
+  saveIcon:"/images/icon/save_icon.png",
+  shareIcon:"/images/icon/share_icon.png",
+  noDataIcon:"/images/icon/no_data_icon.png",
+  dangerIcon:"/images/icon/danger_icon.png"
 };
 
 export default Image;
