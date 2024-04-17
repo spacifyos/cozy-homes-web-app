@@ -44,7 +44,7 @@ const TopUpMeter = () => {
           {t("topUpMeter.topUpUnit")}
         </CustomText>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
-          <div className="grid grid-cols-3 gap-2 justify-center items-center pb-8">
+          <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8">
             <CustomButton
               buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "25") ? "primary-btn" : "pending-btn"}`}
               buttonText="25"
@@ -93,7 +93,7 @@ const TopUpMeter = () => {
                 {t("topUpMeter.totalPrice")}
               </CustomText>
               <CustomText
-                textClassName="font-bold font-size-large p-2"
+                textClassName="font-bold font-size-large py-2"
                 styles={{ height: 35 }}
               >
                 RM 0.00
