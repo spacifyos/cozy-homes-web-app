@@ -1,6 +1,5 @@
 import CustomText from "@/components/CustomText";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
-import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import Skeleton from "@/components/Skeleton";
 import Carousel from "react-multi-carousel";

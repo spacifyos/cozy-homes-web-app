@@ -1,5 +1,4 @@
 import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import _ from "lodash";
