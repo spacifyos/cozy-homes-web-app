@@ -31,7 +31,7 @@ const TopUpMeter = () => {
       onClickGoBack={onClickGoBack}
       hideRightButton
     >
-      <div className="body-container pb-9">
+      <div className="body-container pb-4">
         <div className="radial-container pb-7">
           <MeterRadialProgressComponent t={t} />
         </div>
@@ -82,16 +82,16 @@ const TopUpMeter = () => {
                 {t("topUpMeter.otherUnit")}
               </CustomText>
               <input
-                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal"
+                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal default-input"
                 placeholder={t("topUpMeter.unit")}
-                style={{ width: 110 }}
+                style={{ width: 110 , height:35}}
               />
             </div>
             <div className="flex-col pr-16">
-              <CustomText textClassName="primary-text font-bold font-size-large">
+              <CustomText textClassName="primary-text font-bold font-size-normal">
                 {t("topUpMeter.totalPrice")}
               </CustomText>
-              <CustomText textClassName="font-bold font-size-xlarge pt-1">
+              <CustomText textClassName="font-bold font-size-large p-2" styles={{height:35}}>
                 RM 0.00
               </CustomText>
             </div>
