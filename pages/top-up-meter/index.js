@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
+import CustomInput from "@/components/CustomInput";
 
 export { getServerSideProps };
 
@@ -79,10 +80,11 @@ const TopUpMeter = () => {
                             <CustomText textClassName="disable-text font-size-normal">
                                 {t("topUpMeter.otherUnit")}
                             </CustomText>
-                            <CustomText
-                                textClassName="bg-color global-box-shadow global-border-radius disable-text p-2 pr-9">
-                                0.00{t("topUpMeter.unit")}
-                            </CustomText>
+                            <input
+                                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal"
+                                placeholder={t("topUpMeter.unit")}
+                                style={{width:110}}
+                            />
                         </div>
                         <div className="flex-col pr-16">
                             <CustomText textClassName="primary-text font-bold font-size-large">

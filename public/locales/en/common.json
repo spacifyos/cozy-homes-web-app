@@ -210,7 +210,7 @@
   "topUpMeter": {
     "topUpUnit": "Top Up Unit",
     "otherUnit": "Other Unit",
-    "unit": " unit",
+    "unit": "0.00 unit",
     "totalPrice": "Total Price",
     "cancel": "Cancel",
     "payNow": "Pay Now"

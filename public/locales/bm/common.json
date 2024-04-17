@@ -210,7 +210,7 @@
   "topUpMeter": {
     "topUpUnit": "Unit Isi Semula",
     "otherUnit": "Unit Lain",
-    "unit": " unit",
+    "unit": "0.00 unit",
     "totalPrice": "Harga Total",
     "cancel": "Batal",
     "payNow": "Bayar Sekarang"

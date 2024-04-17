@@ -210,7 +210,7 @@
   "topUpMeter": {
     "topUpUnit": "充值单位",
     "otherUnit": "其他单位",
-    "unit": " 单位",
+    "unit": "0.00 单位",
     "totalPrice": "总价",
     "cancel": "取消",
     "payNow": "立即支付"
