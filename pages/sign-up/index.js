@@ -19,8 +19,8 @@ const SignUp = () => {
       <div className="body-container py-4">
         <div className="py-6 mb-4">
           <CustomText
-              textClassName="primary-text font-bold leading-10"
-              styles={{ fontSize: 34 }}
+            textClassName="primary-text font-bold leading-10"
+            styles={{ fontSize: 34 }}
           >
             {t("signUp.letGetStarted")}
           </CustomText>
@@ -55,31 +55,32 @@ const SignUp = () => {
             <input
               type="text"
               placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color">
+              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input">
                 <option selected>+60 Malaysia</option>
               </select>
 
               <input
                 type="text"
                 placeholder={t("signUp.phoneNumber")}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2"
+                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
               />
             </div>
 
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
             />
 
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8"
+              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
             />
 
             <div className="flex justify-center mb-8">

@@ -5,7 +5,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import { useEffect, useRef, useState } from "react";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
 import _ from "lodash";
-
+import { useRouter } from "next/router";
 const TenancyLabel = () => {
   return (
     <div className={"pb-2"}>
@@ -35,8 +35,12 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
   );
 };
 
-const TenancySection = ({ t }) => {
-  const [isChecked, setIsChecked] = useState(true);
+const TenancySection = ({
+  t,
+  onClickGoToMyTenancy,
+  onClickChangeAutoPay,
+  isChecked,
+}) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -45,10 +49,6 @@ const TenancySection = ({ t }) => {
       setDimensions(targetRef.current.offsetWidth);
     }
   }, [targetRef]);
-
-  const onClickChangeAutoPay = () => {
-    setIsChecked(!isChecked);
-  };
 
   return (
     <div className="pb-7 ">
@@ -64,8 +64,16 @@ const TenancySection = ({ t }) => {
           className="absolute right-4 top-3"
         />
         <div className="flex flex-col items-start">
-          <div className="primary-bg-color p-2 global-border-radius mb-1">
-            <CustomImage src={Images.buildingIcon} width={30} height={30} />
+          <div
+            className="primary-bg-color p-2 global-border-radius mb-1"
+            style={{ cursor: "pointer" }}
+          >
+            <CustomImage
+              src={Images.buildingIcon}
+              width={30}
+              height={30}
+              onClick={onClickGoToMyTenancy}
+            />
           </div>
 
           <TenancyLabel />

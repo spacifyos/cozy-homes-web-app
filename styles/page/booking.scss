@@ -4,7 +4,7 @@
 .booking-input {
   background-color: $primary-bg-color;
   width: 100%;
-  border: 1px solid #939ca2;
+  border: 1px solid $disable-color;
   border-radius: 10px;
   padding: 10px;
   margin: 3px 0;
@@ -14,13 +14,13 @@
 }
 
 .booking-input::placeholder {
-  color: #939ca2;
+  color: $disable-color;
 }
 
 .booking-select {
   background-color: $primary-bg-color;
   width: 100%;
-  border: 1px solid #939ca2;
+  border: 1px solid $disable-color;
   border-radius: 10px;
   padding: 10px;
   margin: 3px 0;
@@ -31,7 +31,7 @@
 
   option[value=""][disabled] {
     display: none;
-    color: #939ca2;
+    color: $disable-color;
   }
 
   option {

@@ -10,6 +10,7 @@
     "account": "Akaun",
     "propertyDetail": "Perincian Hartanah",
     "search": "Cari",
+    "myTenancy": "Penyewaan Saya",
     "bookingOverview": "Gambaran Tempahan",
     "booking": "Tempahan",
     "eAgreement": "Perjanjian Elektronik",
@@ -90,7 +91,6 @@
     "availableUnit": "Unit Tersedia"
   },
   "propertyDetail": {
-    "overView": "Gambaran Keseluruhan",
     "policy": "Dasar",
     "facilities": "Kemudahan",
     "aircond": "Penghawa Dingin",
@@ -112,7 +112,8 @@
     "cancellationPolicy": "Polisi Pembatalan",
     "tenancy": "Sewa",
     "totalMoveInCost": "Kos Pemindahan Keseluruhan",
-    "bookNow": "Tempah Sekarang"
+    "bookNow": "Tempah Sekarang",
+    "description": "Penerangan"
   },
   "payment": {
     "viewBooking": "Lihat Tempahan",
@@ -205,6 +206,37 @@
     "domainInfo": "Domain unik untuk syarikat anda. Min: 2, Maks: 12 huruf sahaja. contoh: Nama syarikat saya adalah Roomz, saya akan masukkan RZ",
     "yourPassword": "Kata Laluan Anda",
     "confirmYourPassword": "Sahkan Kata Laluan Anda",
+    "signUpForFree": "Daftar secara PERCUMA",
+    "next": "Seterusnya"
+  },
+  "myTenancy": {
+    "address": "Alamak",
+    "createdAt": "Dicipta pada",
+    "otherInformation": "Maklumat lain",
+    "electricityPricePerUnit": "Harga Elektrik Per Unit",
+    "rentalDeposit": "Deposit Sewa",
+    "utilityDeposit": "Deposit Utiliti",
+    "keyDeposit": "Deposit Kunci",
+    "fitUpDeposit": "Deposit Penyesuaian",
+    "restorationDeposit": "Deposit Pemulihan",
+    "otherDeposit": "Deposit Lain",
+    "subscribeAutoPay": "Langgan Pembayaran Auto",
+    "referenceNumber": "Nombor Rujukan",
+    "applicationStatus": "Status Permohonan",
+    "tenantName": "Nama Penyewa",
+    "rentalFee": "Yuran Sewa",
+    "period": "Tempoh",
+    "notActivated":"tidak diaktifkan",
+    "noInsuranceAvailable": "Tiada Insurans Yang Tersedia",
+    "noEagreementAvailable": "Tiada Perjanjian Elektronik Yang Tersedia",
+    "eAgreement": "Perjanjian Elektronik",
+    "insurance": "Insurans",
+    "unsubscribeAutoPay": "Batal Langgan Bayaran Auto",
+    "submit": "Hantar",
+    "cancel": "Batal",
+    "yes": "Ya",
+    "No": "Tidak",
+    "askingUnsubscribeAutoPay": "Adakah anda pasti untuk membatalkan langganan bayaran auto?",
     "signUpForFree": "Daftar secara PERCUMA"
   },
   "topUpMeter": {

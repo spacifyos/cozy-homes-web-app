@@ -29,7 +29,3 @@
 .error-text {
   @include custom-text($error-color);
 }
-
-.grey-text {
-  @include custom-text($grey-color);
-}

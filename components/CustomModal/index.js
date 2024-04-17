@@ -1,6 +1,6 @@
 const CustomModal = ({ children, id }) => {
   return (
-    <dialog id={id} className="modal modal-bottom flex justify-center">
+    <dialog id={id} className="modal modal-bottom flex justify-center" >
       <div
         className="modal-box absolute bg-color"
         style={{ width: "100%", maxWidth: 500 }}

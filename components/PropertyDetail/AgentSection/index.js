@@ -38,10 +38,10 @@ const AgentSection = ({ t, onClickBooking }) => {
           </div>
 
           <div className="flex gap-3 items-center flex-2 pr-1">
-            <div className="p-2 global-box-shadow global-border-radius agent-section-icon">
+            <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
               <CustomImage src={Images.scheduleIcon} width={28} />
             </div>
-            <div className="p-2 global-box-shadow global-border-radius agent-section-icon">
+            <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
               <CustomImage src={Images.callIcon} width={28} />
             </div>
             <div className="global-box-shadow global-border-radius agent-section-icon">
@@ -61,7 +61,7 @@ const AgentSection = ({ t, onClickBooking }) => {
               </CustomText>
             </div>
 
-            <CustomImage src={Images.inforIconActive} width={15} />
+            <CustomImage src={Images.infoIcon} width={25} height={25} />
           </div>
           <div
             className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
@@ -70,7 +70,7 @@ const AgentSection = ({ t, onClickBooking }) => {
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}
             </CustomText>
-            <CustomImage src={Images.righWhiteIcon} width={6} />
+            <CustomImage src={Images.righWhiteIcon} width={8} height={8} />
           </div>
         </div>
       </div>
