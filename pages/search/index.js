@@ -263,13 +263,16 @@ const Filter = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 ">
-              {_.map(Array(12), (item) =>
-                listingLoading ? (
-                  <Skeleton width="100%" height={140} />
-                ) : (
-                  <ListingCardComponent listingLoading={listingLoading} t={t} />
-                ),
-              )}
+              {listingLoading
+                ? _.map(Array(4), (item) => (
+                    <Skeleton width="100%" height={140} />
+                  ))
+                : _.map(Array(12), (item) => (
+                    <ListingCardComponent
+                      listingLoading={listingLoading}
+                      t={t}
+                    />
+                  ))}
             </div>
           </div>
         </div>
