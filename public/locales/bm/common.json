@@ -208,6 +208,10 @@
     "signUpForFree": "Daftar secara PERCUMA"
   },
   "topUpMeter": {
+    "topUpUnit": "Unit Isi Semula",
+    "otherUnit": "Unit Lain",
+    "unit": " unit",
+    "totalPrice": "Harga Total",
     "cancel": "Batal",
     "payNow": "Bayar Sekarang"
   }

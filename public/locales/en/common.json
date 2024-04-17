@@ -208,6 +208,10 @@
     "signUpForFree": "Sign Up for FREE"
   },
   "topUpMeter": {
+    "topUpUnit": "Top Up Unit",
+    "otherUnit": "Other Unit",
+    "unit": " unit",
+    "totalPrice": "Total Price",
     "cancel": "Cancel",
     "payNow": "Pay Now"
   }

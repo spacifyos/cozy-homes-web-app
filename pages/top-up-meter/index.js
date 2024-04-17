@@ -40,7 +40,7 @@ const TopUpMeter = () => {
 
                 <BalanceUnit t={t}/>
 
-                <CustomText textClassName="section-title">Top Up Unit</CustomText>
+                <CustomText textClassName="section-title">{t("topUpMeter.topUpUnit")}</CustomText>
                 <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
                     <div className="grid grid-cols-3 gap-2 justify-center items-center pb-8">
                         <CustomButton
@@ -77,16 +77,16 @@ const TopUpMeter = () => {
                     <div className="flex justify-between">
                         <div className="flex-col">
                             <CustomText textClassName="disable-text font-size-normal">
-                                Other Unit
+                                {t("topUpMeter.otherUnit")}
                             </CustomText>
                             <CustomText
                                 textClassName="bg-color global-box-shadow global-border-radius disable-text p-2 pr-9">
-                                0.00 unit
+                                0.00{t("topUpMeter.unit")}
                             </CustomText>
                         </div>
                         <div className="flex-col pr-16">
                             <CustomText textClassName="primary-text font-bold font-size-large">
-                                Total Price
+                                {t("topUpMeter.totalPrice")}
                             </CustomText>
                             <CustomText textClassName="font-bold font-size-xlarge pt-1">
                                 RM 0.00
