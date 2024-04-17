@@ -16,6 +16,7 @@ const MyStay = () => {
   const { t } = useTranslation("common");
 
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+  const [isChecked, setIsChecked] = useState(true);
 
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
@@ -29,6 +30,14 @@ const MyStay = () => {
     router.push("/e-agreement");
   };
 
+  const onClickGoToMyTenancy = () => {
+    router.push("/my-tenancy/123");
+  };
+
+  const onClickChangeAutoPay = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myStay")}
@@ -39,7 +48,12 @@ const MyStay = () => {
       <div className="body-container pb-24">
         <UserSection t={t} />
 
-        <TenancySection t={t} />
+        <TenancySection
+          t={t}
+          onClickGoToMyTenancy={onClickGoToMyTenancy}
+          onClickChangeAutoPay={onClickChangeAutoPay}
+          isChecked={isChecked}
+        />
 
         <FeatureSection t={t} onClickToAgreement={onClickToAgreement} />
 
