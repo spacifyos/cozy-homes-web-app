@@ -9,6 +9,7 @@
   input {
     width: 100%;
     color: $primary-black-color;
+    -moz-appearance: textfield;
   }
 
   ::placeholder {
@@ -17,10 +18,30 @@
     opacity: 1;
   }
 
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   input:focus {
     outline: none;
     outline-offset: unset;
   }
+}
+
+.meter-input::placeholder {
+  @extend .font-size-small;
+}
+
+.meter-input {
+  -moz-appearance: textfield;
+}
+
+.meter-input::-webkit-outer-spin-button,
+.meter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .user-input {
@@ -35,7 +56,9 @@
 }
 
 .default-input:focus,
-.default-input:focus-within {
+.default-input:focus-within,
+.meter-input:focus,
+.meter-input:focus-within {
   outline: none;
   outline-offset: unset;
   border: none;
@@ -44,14 +67,4 @@
 
 .default-input {
   @include custom-input($primary-white-color);
-}
-
-.no-spinners {
-  -moz-appearance: textfield;
-}
-
-.no-spinners::-webkit-outer-spin-button,
-.no-spinners::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }

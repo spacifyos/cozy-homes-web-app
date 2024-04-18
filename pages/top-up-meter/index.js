@@ -76,33 +76,33 @@ const TopUpMeter = () => {
               onClick={() => onClickTopUp("100")}
             />
           </div>
-          <div className="flex justify-between">
-            <div className="flex-col">
-              <CustomText textClassName="disable-text font-size-normal">
-                {t("topUpMeter.otherUnit")}
-              </CustomText>
-              <input
-                type="number"
-                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal default-input no-spinners"
-                placeholder={t("topUpMeter.unit")}
-                style={{ width: 110, height: 35 }}
 
-              />
-            </div>
-            <div className="flex-col pr-16">
-              <CustomText textClassName="primary-text font-bold font-size-normal">
-                {t("topUpMeter.totalPrice")}
-              </CustomText>
-              <CustomText
-                textClassName="font-bold font-size-large py-2"
-                styles={{ height: 35 }}
-              >
-                RM 0.00
-              </CustomText>
-            </div>
+          <div className="grid grid-cols-2 gap-1">
+            <CustomText textClassName="disable-text">
+              {t("topUpMeter.otherUnit")}
+            </CustomText>
+
+            <CustomText textClassName="primary-text font-bold">
+              {t("topUpMeter.totalPrice")}
+            </CustomText>
+
+            <input
+              type="number"
+              className="input w-4/5 bg-color global-box-shadow meter-input"
+              style={{ height: 40 }}
+              placeholder={t("topUpMeter.unit")}
+            />
+
+            <CustomText
+              textClassName="font-bold flex items-center"
+              style={{ height: 40 }}
+            >
+              RM 0.00
+            </CustomText>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-2 pt-5 ">
+
+        <div className="grid grid-cols-2 gap-2 pt-7 ">
           <CustomButton
             buttonText={t("topUpMeter.cancel")}
             buttonClassName="default-btn-outline"

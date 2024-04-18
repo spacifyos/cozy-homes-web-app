@@ -14,7 +14,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
       />
 
       <div className="flex items-center pb-1">
-        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2">
+        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer">
           <CustomImage
             src={Images.meterIcon}
             imageStyle={{ width: 30, height: 30 ,cursor:"pointer"}}

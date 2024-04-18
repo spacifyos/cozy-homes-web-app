@@ -8,9 +8,10 @@ const MeterSection = ({ t, onClickTopUp, onClickToMyMeter }) => {
         {t("myStay.myMeter")}
       </CustomText>
 
-      <MeterComponent t={t}
-                      onClickTopUp={onClickTopUp}
-                      onClickToMyMeter={onClickToMyMeter}
+      <MeterComponent
+        t={t}
+        onClickTopUp={onClickTopUp}
+        onClickToMyMeter={onClickToMyMeter}
       />
     </div>
   );
