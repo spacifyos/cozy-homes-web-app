@@ -83,9 +83,10 @@ const TopUpMeter = () => {
               </CustomText>
               <input
                 type="number"
-                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal default-input"
+                className="bg-color global-box-shadow global-border-radius disable-text p-2 font-size-normal default-input no-spinners"
                 placeholder={t("topUpMeter.unit")}
                 style={{ width: 110, height: 35 }}
+
               />
             </div>
             <div className="flex-col pr-16">
