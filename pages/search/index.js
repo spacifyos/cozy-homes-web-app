@@ -234,8 +234,8 @@ const Filter = () => {
         <TagComponent lists={tagList2} onClickSelectTag={onClickSelectTag2} />
       </div>
 
-      <div className="body-container" style={{ paddingBottom: 0 }}>
-        <div className="w-full pb-7 flex gap-5">
+      <div className="body-container pb-4">
+        <div className="w-full flex gap-5">
           <div className="w-1/5" ref={amenitiesTarget}>
             <div
               className="fixed"

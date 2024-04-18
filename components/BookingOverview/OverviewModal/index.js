@@ -39,19 +39,6 @@ const OverviewModal = ({ t }) => {
               </CustomText>
               <CustomText textClassName="modal-font-main">RM1,600.00</CustomText>
           </div>
-          <div className="grid grid-cols-2 gap-2">
-              <CustomButton
-                  buttonClassName="default-btn-outline"
-                  buttonText={t("myTenancy.no")}
-                  onClick={() => {
-                      document.getElementById("myTenancy_Unsubscribe_modal").close();
-                  }}
-              />
-              <CustomButton
-                  buttonClassName="primary-btn"
-                  buttonText={t("myTenancy.yes")}
-              />
-          </div>
       </CustomModal>
   );
 };

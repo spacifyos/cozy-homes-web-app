@@ -82,7 +82,7 @@ const Image = {
   deskChairIcon: "/images/icon/desk-chair_icon.png",
   gasStoveIcon: "/images/icon/gas-stove_icon.png",
   mailboxIcon: "/images/icon/mailbox_icon.png",
-  laundryIconBlack: "/images/icon/Laundry_icon_black.png",
+  laundryIconBlack: "/images/icon/laundry_icon_black.png",
   wardrobeIcon: "/images/icon/wardrobe_icon.png",
   wifiIcon: "/images/icon/wifi_icon.png",
   whatsappIcon: "/images/icon/whatsapp.png",

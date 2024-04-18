@@ -235,7 +235,7 @@
     "submit": "提交",
     "cancel": "取消",
     "yes": "是",
-    "No": "否",
+    "no": "否",
     "askingUnsubscribeAutoPay": "确定要取消自动付款吗？",
     "signUpForFree": "免费注册"
   },
