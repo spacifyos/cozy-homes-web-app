@@ -19,17 +19,26 @@ const cityListing = [
 ];
 
 const universityListing = [
-  { image: "/images/building/image5.png", title: "UTAR" },
-  { image: "/images/building/image6.png", title: "TARUMT" },
-  { image: "/images/building/image7.png", title: "INTI" },
-  { image: "/images/building/image8.png", title: "ALFA" },
+  { image: "/images/college_university/Inti.png", title: "INTI" },
+  { image: "/images/college_university/mia.png", title: "MIA" },
+  { image: "/images/college_university/Saito.png", title: "SAITO" },
+  { image: "/images/college_university/TARUMT.png", title: "TARUNT" },
+  { image: "/images/college_university/UCSI.png", title: "UCSI" },
+  { image: "/images/college_university/Uni_KL.png", title: "UNI KL" },
+  { image: "/images/college_university/UTAR.png", title: "UTAR" },
+  { image: "/images/college_university/UTM.png", title: "UTM" },
+  {
+    image: "/images/college_university/Victori_Malaysia.png",
+    title: "Victori Malaysia",
+  },
 ];
 
 const condoListing = [
-  { image: "/images/building/image9.png", title: "M Vertica" },
-  { image: "/images/building/image10.png", title: "M Adora" },
-  { image: "/images/building/image11.png", title: "Granito" },
-  { image: "/images/building/image12.png", title: "Sinaran Residence" },
+  { image: "/images/condo/M_Vertica.png", title: "M Vertica" },
+  { image: "/images/condo/MAdora.png", title: "M Adora" },
+  { image: "/images/condo/granito.png", title: "Granito" },
+  { image: "/images/condo/Sinaran_Residence.png", title: "Sinaran Residence" },
+  { image: "/images/condo/Anggun_Residence.png", title: "Anggun Residence" },
 ];
 
 function Home() {

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import _ from "lodash";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
@@ -92,6 +92,30 @@ const amenitiesList = [
 const Filter = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+
+  const amenitiesTarget = useRef();
+  const [dimensions, setDimensions] = useState(0);
+
+  useEffect(() => {
+    if (amenitiesTarget.current) {
+      setDimensions(amenitiesTarget.current.offsetWidth);
+    }
+  }, [amenitiesTarget]);
+
+  const [scrollTop, setScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY || window.pageYOffset;
+      setScrollTop(currentPosition);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const [tagList, setTagList] = useState([
     { name: "Verified Room", isActive: false },
@@ -212,11 +236,19 @@ const Filter = () => {
 
       <div className="body-container" style={{ paddingBottom: 0 }}>
         <div className="w-full pb-7 flex gap-5">
-          <div className="w-1/5">
-            <AmenitiesComponent
-              list={iconList}
-              onClickSelectAmenities={onClickSelectAmenities}
-            />
+          <div className="w-1/5" ref={amenitiesTarget}>
+            <div
+              className="fixed"
+              style={{
+                width: dimensions,
+                top: scrollTop >= 235 ? 10 : 235 - scrollTop,
+              }}
+            >
+              <AmenitiesComponent
+                list={iconList}
+                onClickSelectAmenities={onClickSelectAmenities}
+              />
+            </div>
           </div>
 
           <div className="w-4/5">
@@ -231,13 +263,16 @@ const Filter = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 ">
-              {_.map(Array(12), (item) =>
-                listingLoading ? (
-                  <Skeleton width="100%" height={140} />
-                ) : (
-                  <ListingCardComponent listingLoading={listingLoading} t={t} />
-                ),
-              )}
+              {listingLoading
+                ? _.map(Array(4), (item) => (
+                    <Skeleton width="100%" height={140} />
+                  ))
+                : _.map(Array(12), (item) => (
+                    <ListingCardComponent
+                      listingLoading={listingLoading}
+                      t={t}
+                    />
+                  ))}
             </div>
           </div>
         </div>
