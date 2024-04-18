@@ -29,3 +29,8 @@
 .error-text {
   @include custom-text($error-color);
 }
+
+.completed-text {
+  @include custom-text($completed-color);
+}
+

@@ -5,6 +5,8 @@
 @mixin custom-button {
   padding: 5px 10px;
   border-radius: 10px;
+  min-height: 2.5rem;
+  height: 2.5rem;
   @extend .global-box-shadow;
 
   p {
@@ -59,8 +61,9 @@
 }
 
 .disable-btn:hover {
+  border: 1px solid $disable-color;
+  background-color: $disable-color;
   @include custom-button;
-  @include custom-text($primary-white-color);
 
   p {
     font-weight: bold !important;
@@ -69,8 +72,9 @@
 }
 
 .disable-btn {
+  border: 1px solid $disable-color;
+  background-color: $disable-color;
   @include custom-button;
-  @include custom-text($primary-white-color);
 
   p {
     font-weight: bold !important;
@@ -83,18 +87,18 @@
   background-color: $primary-white-color !important;
   @include custom-button;
 
-  p{
+  p {
     font-weight: bold !important;
     @extend .primary-text;
   }
 }
 
-.terminate-btn{
+.terminate-btn {
   border: 1px solid $primary-color;
   background-color: $primary-white-color !important;
   @include custom-button;
 
-  p{
+  p {
     font-weight: bold !important;
     @extend .primary-text;
   }
@@ -222,7 +226,7 @@
   }
 }
 
-.pending-btn:hover{
+.pending-btn:hover {
   border: 1px solid $primary-bg-color;
   background-color: $primary-bg-color;
   @include custom-button;
@@ -231,7 +235,7 @@
   }
 }
 
-.pending-btn{
+.pending-btn {
   border: 1px solid $primary-bg-color;
   background-color: $primary-bg-color;
   @include custom-button;
@@ -240,19 +244,87 @@
   }
 }
 
+.appointment-cancelled-btn:hover {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .error-text;
+  }
+}
+
+.appointment-cancelled-btn {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .error-text;
+  }
+}
+
+.appointment-reschedule-btn:hover {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .primary-text;
+  }
+}
+
+.appointment-reschedule-btn {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .primary-text;
+  }
+}
+
+.appointment-confirmed-btn:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.appointment-confirmed-btn {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
 
 .default-btn:focus-visible,
 .primary-btn:focus-visible,
 .disable-btn:focus-visible,
 .disable-btn:focus-visible,
 .tag-button:focus-visible,
-.tag-button-active:focus-visible {
+.tag-button-active:focus-visible,
+appointment-cancelled-btn:focus-visible,
+appointment-reschedule-btn:focus-visible,
+appointment-confirmed-btn:focus-visible {
   outline: none;
   outline-offset: unset;
   border: none;
 }
 
-.default-btn-outline:focus-visible,{
+.default-btn-outline:focus-visible {
   outline: none;
   outline-offset: unset;
 }

@@ -13,7 +13,7 @@
 }
 
 .meter-response {
-  @apply flex p-5 global-border-radius global-box-shadow primaryWhite-bg-color justify-between;
+  @apply flex p-4 global-border-radius global-box-shadow primaryWhite-bg-color justify-between;
 }
 
 .balance-container {
@@ -26,9 +26,9 @@
 }
 
 .meter-usage-component {
-  @apply p-3 mb-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col;
+  @apply p-4 mb-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col;
 }
 
 .meter-usage-inside-container {
-  @apply flex items-center primary-bg-color p-3 global-border-radius mb-1 mr-2;
+  @apply flex items-center primary-bg-color p-2 global-border-radius;
 }
