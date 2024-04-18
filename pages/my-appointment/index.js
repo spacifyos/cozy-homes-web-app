@@ -36,6 +36,15 @@ const MyAppointment = () => {
           value={date}
           className="custom-calendar"
           monthYearSeparator="|"
+          mapDays={({ date, today }) => {
+            let color;
+
+            if ([4, 5, 6, 7].includes(date.day)) color = "pending";
+            if ([11, 12, 13, 14].includes(date.day)) color = "cancelled";
+            if ([21, 22, 23, 24].includes(date.day)) color = "confirmed";
+
+            if (color) return { className: "selected-color-" + color };
+          }}
         />
 
         <div className="flex items-center pb-3 overflow-x-scroll pt-7">
@@ -65,12 +74,9 @@ const MyAppointment = () => {
           />
         </div>
 
-        {_.map(
-          ["Pending Confirmation", "Confirmed", "Cancelled"],
-          (item) => {
-            return <AppointmentCard t={t} item={item} />;
-          },
-        )}
+        {_.map(["Pending Confirmation", "Confirmed", "Cancelled"], (item) => {
+          return <AppointmentCard t={t} item={item} />;
+        })}
       </div>
     </CustomHeader>
   );

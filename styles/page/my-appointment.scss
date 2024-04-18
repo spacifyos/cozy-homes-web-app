@@ -68,3 +68,18 @@
     }
   }
 }
+
+.selected-color-pending {
+  background-color: $tertiary-bg-color !important;
+  color: $primary-white-color;
+}
+
+.selected-color-cancelled {
+  background-color: $error-color !important;
+  color: $primary-white-color;
+}
+
+.selected-color-confirmed {
+  background-color: $primary-color !important;
+  color: $primary-white-color;
+}
