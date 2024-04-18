@@ -5,6 +5,8 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 
 const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
+
+
   const lists = [
     {
       name: t("root.explore"),

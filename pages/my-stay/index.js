@@ -14,7 +14,6 @@ export { getServerSideProps };
 const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
-
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
   const [isChecked, setIsChecked] = useState(true);
 
@@ -22,8 +21,11 @@ const MyStay = () => {
     setSelectedCategory(category);
   };
 
-  const onClickTopUp = () => {
+  const onClickToMyMeter = () => {
     router.push("/my-meter/123");
+  };
+  const onClickTopUp = () => {
+    router.push("/top-up-meter");
   };
 
   const onClickToAgreement = () => {
@@ -57,7 +59,11 @@ const MyStay = () => {
 
         <FeatureSection t={t} onClickToAgreement={onClickToAgreement} />
 
-        <MeterSection t={t} onClickTopUp={onClickTopUp} />
+        <MeterSection
+          t={t}
+          onClickTopUp={onClickTopUp}
+          onClickToMyMeter={onClickToMyMeter}
+        />
 
         <InvoiceSection
           t={t}

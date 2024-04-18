@@ -222,6 +222,25 @@
   }
 }
 
+.pending-btn:hover{
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+  p {
+    @apply primary-text;
+  }
+}
+
+.pending-btn{
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+  p {
+    @apply primary-text;
+  }
+}
+
+
 .default-btn:focus-visible,
 .primary-btn:focus-visible,
 .disable-btn:focus-visible,

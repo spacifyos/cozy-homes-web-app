@@ -15,7 +15,8 @@
     "eAgreement": "电子协议",
     "eAgreementOverview": "电子协议概览",
     "viewAgreement": "查看协议",
-    "myTenancy": "我的租期"
+    "myTenancy": "我的租期",
+    "topUpMeter": "充值仪表"
   },
   "general": {},
   "explore": {
@@ -235,6 +236,15 @@
     "cancel": "取消",
     "yes": "是",
     "No": "否",
-    "askingUnsubscribeAutoPay": "确定要取消自动付款吗？"
+    "askingUnsubscribeAutoPay": "确定要取消自动付款吗？",
+    "signUpForFree": "免费注册"
+  },
+  "topUpMeter": {
+    "topUpUnit": "充值单位",
+    "otherUnit": "其他单位",
+    "unit": "0.00 单位",
+    "totalPrice": "总价",
+    "cancel": "取消",
+    "payNow": "立即支付"
   }
 }

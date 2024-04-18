@@ -15,7 +15,8 @@
     "booking": "Booking",
     "eAgreement": "E-Agreement",
     "eAgreementOverview": "E-Agreement Overview",
-    "viewAgreement": "View Agreement"
+    "viewAgreement": "View Agreement",
+    "topUpMeter": "Top Up Meter"
   },
   "general": {},
   "explore": {
@@ -235,6 +236,15 @@
     "cancel": "Cancel",
     "yes": "Yes",
     "no": "No",
-    "askingUnsubscribeAutoPay": "Are you sure to unsubscribe Auto Pay?"
+    "askingUnsubscribeAutoPay": "Are you sure to unsubscribe Auto Pay?",
+    "signUpForFree": "Sign Up for FREE"
+  },
+  "topUpMeter": {
+    "topUpUnit": "Top Up Unit",
+    "otherUnit": "Other Unit",
+    "unit": "0.00 unit",
+    "totalPrice": "Total Price",
+    "cancel": "Cancel",
+    "payNow": "Pay Now"
   }
 }

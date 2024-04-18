@@ -15,7 +15,8 @@
     "booking": "Tempahan",
     "eAgreement": "Perjanjian Elektronik",
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
-    "viewAgreement": "Lihat Perjanjian"
+    "viewAgreement": "Lihat Perjanjian",
+    "topUpMeter": "Isi Meter"
   },
   "general": {},
   "explore": {
@@ -235,6 +236,15 @@
     "cancel": "Batal",
     "yes": "Ya",
     "No": "Tidak",
-    "askingUnsubscribeAutoPay": "Adakah anda pasti untuk membatalkan langganan bayaran auto?"
+    "askingUnsubscribeAutoPay": "Adakah anda pasti untuk membatalkan langganan bayaran auto?",
+    "signUpForFree": "Daftar secara PERCUMA"
+  },
+  "topUpMeter": {
+    "topUpUnit": "Unit Isi Semula",
+    "otherUnit": "Unit Lain",
+    "unit": "0.00 unit",
+    "totalPrice": "Harga Total",
+    "cancel": "Batal",
+    "payNow": "Bayar Sekarang"
   }
 }
