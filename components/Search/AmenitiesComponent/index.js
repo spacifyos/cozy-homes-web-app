@@ -4,7 +4,10 @@ import CustomText from "@/components/CustomText";
 
 const AmenitiesComponent = ({ list, onClickSelectAmenities }) => {
   return (
-    <div className="amenities-nav-container" style={{ height: 450, top: 10 }}>
+    <div
+      className="amenities-nav-container"
+      style={{ height: 500, top: 10, borderRadius: "0 10px 10px 0" }}
+    >
       {_.map(list, (item) => {
         const name = _.get(item, ["name"], "");
         const icon = _.get(item, ["icon"], "");

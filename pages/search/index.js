@@ -95,6 +95,7 @@ const Filter = () => {
 
   const amenitiesTarget = useRef();
   const [dimensions, setDimensions] = useState(0);
+  const [scrollTop, setScrollTop] = useState(235);
 
   useEffect(() => {
     if (amenitiesTarget.current) {
@@ -102,13 +103,11 @@ const Filter = () => {
     }
   }, [amenitiesTarget]);
 
-  const [scrollTop, setScrollTop] = useState(0);
-
   useEffect(() => {
-    const handleScroll = () => {
-      const currentPosition = window.scrollY || window.pageYOffset;
-      setScrollTop(currentPosition);
-    };
+    const handleScroll = _.debounce(() => {
+      const currentPosition = window.scrollY;
+      setScrollTop(currentPosition >= 223 ? 10 : 235 - currentPosition);
+    }, 1);
 
     window.addEventListener("scroll", handleScroll);
 
@@ -234,14 +233,14 @@ const Filter = () => {
         <TagComponent lists={tagList2} onClickSelectTag={onClickSelectTag2} />
       </div>
 
-      <div className="body-container pb-4">
+      <div className="pb-4">
         <div className="w-full flex gap-5">
           <div className="w-1/5" ref={amenitiesTarget}>
             <div
               className="fixed"
               style={{
                 width: dimensions,
-                top: scrollTop >= 235 ? 10 : 235 - scrollTop,
+                top: scrollTop,
               }}
             >
               <AmenitiesComponent
@@ -251,7 +250,7 @@ const Filter = () => {
             </div>
           </div>
 
-          <div className="w-4/5">
+          <div className="w-4/5 pr-4">
             <div className="flex pb-5 justify-end">
               <CustomSelect
                 styles={{ width: "75%" }}
@@ -262,7 +261,7 @@ const Filter = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3 ">
+            <div className="grid grid-cols-2 gap-3">
               {listingLoading
                 ? _.map(Array(4), (item) => (
                     <Skeleton width="100%" height={140} />
