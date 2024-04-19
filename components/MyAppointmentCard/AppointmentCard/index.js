@@ -7,7 +7,13 @@ import _ from "lodash";
 
 const AppointmentCard = ({ t, item }) => {
   return (
-    <div className="global-box-shadow primaryWhite-bg-color global-border-radius p-4 mb-3">
+    <div className="global-box-shadow primaryWhite-bg-color global-border-radius p-4 mb-3 relative">
+      {_.isEqual(item, "Confirmed") ? (
+        <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>
+      ) : (
+        false
+      )}
+
       <div className="flex items-center pb-2">
         <div className="primary-bg-color p-2 global-border-radius">
           <CustomImage

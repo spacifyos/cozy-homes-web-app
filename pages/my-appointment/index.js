@@ -47,7 +47,7 @@ const MyAppointment = () => {
           }}
         />
 
-        <div className="flex items-center pb-3 overflow-x-scroll pt-7">
+        <div className="flex items-center pb-3 overflow-x-scroll pt-7 hide-scroll-bar">
           <CustomButton
             buttonText="All"
             buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}

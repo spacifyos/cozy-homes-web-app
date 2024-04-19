@@ -145,3 +145,12 @@ body {
 .collapse-arrow > .collapse-title:after {
   top: 25px !important;
 }
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
