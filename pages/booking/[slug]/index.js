@@ -39,6 +39,7 @@ const Booking = () => {
   const router = useRouter();
 
   const [openCharges, setOpenCharges] = useState(false);
+  const [emergencyContactNumber, setEmergencyContactNumber] = useState([0]);
 
   const onClickOpenCharges = () => {
     setOpenCharges(!openCharges);
@@ -50,6 +51,22 @@ const Booking = () => {
 
   const onClickBooking = () => {
     router.push(`/booking/1/overview`);
+  };
+
+  const onClickAddEmergencyContact = () => {
+    setEmergencyContactNumber((prevState) =>
+      _.concat(prevState, _.size(emergencyContactNumber)),
+    );
+  };
+
+  const onClickRemoveContact = (number) => {
+    if (_.size(emergencyContactNumber) !== 1) {
+      const newArray = _.pull(
+        emergencyContactNumber,
+        _.size(emergencyContactNumber) - 1,
+      );
+      setEmergencyContactNumber((prevState) => _.union(prevState, newArray));
+    }
   };
 
   return (
@@ -91,15 +108,15 @@ const Booking = () => {
             Tenancy Period
           </CustomText>
           <BookingInput
-            className="col-span-3"
+            inputClassName="col-span-3"
             placeholder="2023-02-13"
             title="Check in date"
             name="check_in"
           />
 
           <BookingSelect
-            className="col-span-3"
-            placeholder="Select period"
+            inputClassName="col-span-3"
+            placeholder="Tenure Period"
             title="Tenure Period"
             lists={[
               { name: "3 months", value: "3" },
@@ -115,13 +132,13 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            className="col-span-6"
-            placeholder="name"
+            inputClassName="col-span-6"
+            placeholder="Name"
             title="Name"
           />
 
           <BookingSelect
-            className="col-span-2"
+            inputClassName="col-span-2"
             placeholder="Select ID type"
             title="ID Type"
             lists={[
@@ -132,15 +149,15 @@ const Booking = () => {
           />
 
           <BookingInput
-            className="col-span-4"
+            inputClassName="col-span-4"
             placeholder="ID Number"
             title="ID Number"
             name="id_number"
           />
 
           <BookingSelect
-            className="col-span-6"
-            placeholder="Select race"
+            inputClassName="col-span-6"
+            placeholder="Select Race"
             title="Race"
             name="race"
             lists={[
@@ -151,8 +168,8 @@ const Booking = () => {
           />
 
           <BookingSelect
-            className="col-span-6"
-            placeholder="Select gender"
+            inputClassName="col-span-6"
+            placeholder="Select Gnder"
             title="Gender"
             lists={[
               { name: "Male", value: "male" },
@@ -162,30 +179,30 @@ const Booking = () => {
           />
 
           <BookingInput
-            className="col-span-6"
-            placeholder="xxx@gmail.com"
+            inputClassName="col-span-6"
+            placeholder="Email"
             title="Email"
             name="name"
           />
 
           <BookingSelect
-            className="col-span-2"
-            placeholder="Select area code"
+            inputClassName="col-span-2"
+            placeholder="Select Area Code"
             title="Area Code"
             lists={[{ name: "+60", value: "+60" }]}
             name="area_code"
           />
 
           <BookingInput
-            className="col-span-4"
-            placeholder="0123456789"
+            inputClassName="col-span-4"
+            placeholder="Phone Number"
             title="Phone Number"
             name="phone_number"
           />
 
           <BookingSelect
-            className="col-span-6"
-            placeholder="Select nationality"
+            inputClassName="col-span-6"
+            placeholder="Select Nationality"
             title="Nationality"
             lists={[{ name: "Malaysian", value: "malaysian" }]}
             name="nationality"
@@ -196,37 +213,37 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            className="col-span-6"
-            placeholder="your address"
+            inputClassName="col-span-6"
+            placeholder="Your Address"
             title="Your Address"
             name="address"
           />
 
           <BookingInput
-            className="col-span-3"
-            placeholder="city"
+            inputClassName="col-span-3"
+            placeholder="City"
             title="City"
             name="city"
           />
 
           <BookingInput
-            className="col-span-3"
-            placeholder="postcode"
+            inputClassName="col-span-3"
+            placeholder="Postcode"
             title="PostCode"
             name="postcode"
           />
 
           <BookingSelect
-            className="col-span-3"
-            placeholder="Select country"
+            inputClassName="col-span-3"
+            placeholder="Select Country"
             title="Country"
             lists={[{ name: "Malaysia", value: "malaysia" }]}
             name="country"
           />
 
           <BookingSelect
-            className="col-span-3"
-            placeholder="Select state"
+            inputClassName="col-span-3"
+            placeholder="Select State"
             title="State"
             lists={[{ name: "Johor", value: "johor" }]}
             name="state"
@@ -236,47 +253,69 @@ const Booking = () => {
             Emergency Contact Information
           </CustomText>
 
-          <BookingInput
-            className="col-span-6"
-            placeholder="your name"
-            title="Your Name"
-            name="name"
-          />
+          {_.map(emergencyContactNumber, (item, index) => {
+            return (
+              <div className="col-span-6 grid grid-cols-6 gap-2 pt-2">
+                <CustomText textClassName="font-bold col-span-3">
+                  {`Contact ${index + 1}`}
+                </CustomText>
 
-          <BookingInput
-            className="col-span-6"
-            placeholder="enter relationship"
-            title="Enter Relationship"
-            name="relationship"
-          />
+                {index === 0 && _.size(emergencyContactNumber) !== 1 ? (
+                  <div
+                    className="col-span-3 cursor-pointer flex justify-end"
+                    onClick={() => onClickRemoveContact(index)}
+                  >
+                    <CustomText textClassName="error-text">Remove</CustomText>
+                  </div>
+                ) : (
+                  false
+                )}
 
-          <BookingSelect
-            className="col-span-2"
-            placeholder="Select area code"
-            title="Area Code"
-            lists={[{ name: "+60", value: "+60" }]}
-            name="area code"
-          />
+                <BookingInput
+                  inputClassName="col-span-6"
+                  placeholder="your Name"
+                  title="Your Name"
+                  name="name"
+                />
 
-          <BookingInput
-            className="col-span-4"
-            placeholder="0123456789"
-            title="Phone Number"
-            name="phone_number"
-          />
+                <BookingInput
+                  inputClassName="col-span-6"
+                  placeholder="Enter Relationship"
+                  title="Enter Relationship"
+                  name="relationship"
+                />
 
-          <BookingInput
-            className="col-span-6"
-            placeholder="xxx@gmail.com"
-            title="Your Email"
-            name="email"
-          />
+                <BookingSelect
+                  inputClassName="col-span-2"
+                  placeholder="Select Area Code"
+                  title="Area Code"
+                  lists={[{ name: "+60", value: "+60" }]}
+                  name="area code"
+                />
+
+                <BookingInput
+                  inputClassName="col-span-4"
+                  placeholder="Phone Number"
+                  title="Phone Number"
+                  name="phone_number"
+                />
+
+                <BookingInput
+                  inputClassName="col-span-6"
+                  placeholder="Your Email"
+                  title="Your Email"
+                  name="email"
+                />
+              </div>
+            );
+          })}
 
           <CustomButton
             buttonText={"+ Add Contact"}
-            buttonStyles={{ backgroundColor: "#D9D9D9", border: "none" }}
-            textClassName="black-text"
-            buttonClassName="col-span-6"
+            // buttonStyles={{ backgroundColor: "#D9D9D9", border: "none" }}
+            // textClassName="black-text"
+            buttonClassName="col-span-6 primary-btn"
+            onClick={onClickAddEmergencyContact}
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
@@ -284,7 +323,7 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            className="col-span-6"
+            inputClassName="col-span-6"
             placeholder="000000"
             title="Code"
             name="code"

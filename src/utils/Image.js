@@ -125,6 +125,8 @@ const Image = {
   step1Icon: "/images/icon/step_step1.png",
   step2Icon: "/images/icon/step_step2.png",
   step3Icon: "/images/icon/step_step3.png",
+  appointmentIconActive: "/images/icon/appointment_icon_active.png",
+  appointmentIconWhite: "/images/icon/appointment_icon_white.png",
   calendarIcon:"/images/icon/calender_icon.png",
   ellipseGreenIcon:"/images/icon/ellipse_green_icon.png",
   ellipseRedIcon:"/images/icon/ellipse_red_icon.png",

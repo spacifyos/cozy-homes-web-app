@@ -19,6 +19,10 @@ const Account = () => {
     router.push("/sign-in");
   };
 
+  const onClickToMyAppointment = () => {
+    router.push("/my-appointment");
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -49,6 +53,15 @@ const Account = () => {
           title={t("account.myInvoice")}
           icon={Images.primaryInvoiceIcon}
           pb={3}
+        />
+
+        <FeatureComponent
+          title={t("account.myAppointment")}
+          icon={Images.appointmentIconActive}
+          imageHeight={23}
+          imageWidth={23}
+          pb={3}
+          onClick={onClickToMyAppointment}
         />
 
         <FeatureComponent

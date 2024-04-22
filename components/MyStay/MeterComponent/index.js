@@ -17,7 +17,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
         <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer">
           <CustomImage
             src={Images.meterIcon}
-            imageStyle={{ width: 30, height: 30 ,cursor:"pointer"}}
+            imageStyle={{ width: 30, height: 30, cursor: "pointer" }}
             onClick={onClickToMyMeter}
           />
         </div>
@@ -72,7 +72,8 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
         </div>
 
         <CustomButton
-          buttonClassName="col-span-4 primary-btn h-14"
+          buttonClassName="col-span-4 primary-btn"
+          buttonStyles={{ height: "100%" }}
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
           onClick={onClickTopUp}

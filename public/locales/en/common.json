@@ -7,6 +7,7 @@
   "pageTitle": {
     "myStay": "My Stay",
     "myMeter": "My Meter",
+    "myAppointment": "My Appointment",
     "account": "Account",
     "propertyDetail": "Property Detail",
     "search": "Search",
@@ -34,6 +35,7 @@
     "roomzCoins": "Roomz Coins",
     "smartMeterPairing": "Smart Meter Pairing",
     "myInvoice": "My Invoice",
+    "myAppointment": "My Appointment",
     "latestUpdate": "Latest Update",
     "setPinNumber": "Set PIN Number",
     "termAndCondition": "Terms & Conditions",

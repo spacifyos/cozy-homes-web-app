@@ -9,7 +9,7 @@ const MeterUsageComponent = ({ t }) => {
       <div className="flex items-center">
         <div className="meter-usage-inside-container">
           <CustomImage src={Images.meterIcon} width={35} height={35} />
-          <div className="flex flex-col pl-2">
+          <div className="flex flex-col px-2">
             <CustomText textClassName="font-size-xxsmall white-text">
               {t("myMeter.availableUnit")}
             </CustomText>

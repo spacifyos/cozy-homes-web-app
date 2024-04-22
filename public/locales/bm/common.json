@@ -7,6 +7,7 @@
   "pageTitle": {
     "myStay": "Penginapan Saya",
     "myMeter": "Meter Saya",
+    "myAppointment": "Lantikan Saya",
     "account": "Akaun",
     "propertyDetail": "Perincian Hartanah",
     "search": "Cari",
@@ -34,6 +35,7 @@
     "roomzCoins": "Koin Roomz",
     "smartMeterPairing": "Penjodohan Meter Pintar",
     "myInvoice": "Invois Saya",
+    "myAppointment": "Lantikan Saya",
     "latestUpdate": "Kemas kini Terkini",
     "setPinNumber": "Tetapkan Nombor PIN",
     "termAndCondition": "Terma & Syarat",

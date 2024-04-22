@@ -7,6 +7,12 @@ const StatusLabel = ({ status }) => {
         return "pending-bg-color";
       case "completed":
         return "completed-bg-color";
+      case "Pending Confirmation":
+        return "tertiary-bg-color";
+      case "Confirmed":
+        return "primary-bg-color";
+      case "Cancelled":
+        return "error-bg-color";
       default:
         return "pending-bg-color";
     }
