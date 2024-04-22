@@ -113,7 +113,8 @@ const Image = {
   checkGreenIcon: "/images/icon/check_green_icon.png",
   downloadIcon: "/images/icon/download.png",
   uncheckIcon: "/images/icon/uncheck_icon.png",
-  scheduleIcon: "/images/icon/booking_icon.png",
+  bookingIconActive: "/images/icon/booking_icon_active.png",
+  bookingIcon:"/images/icon/booking_icon.png",
   cancelIcon: "/images/icon/x_icon.png",
   shareIcon: "/images/icon/share_icon.png",
   noDataIcon: "/images/icon/no_data_icon.png",
@@ -124,6 +125,9 @@ const Image = {
   step1Icon: "/images/icon/step_step1.png",
   step2Icon: "/images/icon/step_step2.png",
   step3Icon: "/images/icon/step_step3.png",
+  calendarIcon:"/images/icon/calender_icon.png",
+  ellipseGreenIcon:"/images/icon/ellipse_green_icon.png",
+  ellipseRedIcon:"/images/icon/ellipse_red_icon.png",
 };
 
 export default { ...Image };

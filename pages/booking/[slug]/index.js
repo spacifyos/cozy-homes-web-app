@@ -91,14 +91,14 @@ const Booking = () => {
             Tenancy Period
           </CustomText>
           <BookingInput
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="2023-02-13"
             title="Check in date"
             name="check_in"
           />
 
           <BookingSelect
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="Select period"
             title="Tenure Period"
             lists={[
@@ -115,13 +115,13 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="name"
             title="Name"
           />
 
           <BookingSelect
-            inputClassName="col-span-2"
+            className="col-span-2"
             placeholder="Select ID type"
             title="ID Type"
             lists={[
@@ -132,14 +132,14 @@ const Booking = () => {
           />
 
           <BookingInput
-            inputClassName="col-span-4"
+            className="col-span-4"
             placeholder="ID Number"
             title="ID Number"
             name="id_number"
           />
 
           <BookingSelect
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="Select race"
             title="Race"
             name="race"
@@ -151,7 +151,7 @@ const Booking = () => {
           />
 
           <BookingSelect
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="Select gender"
             title="Gender"
             lists={[
@@ -162,14 +162,14 @@ const Booking = () => {
           />
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="xxx@gmail.com"
             title="Email"
             name="name"
           />
 
           <BookingSelect
-            inputClassName="col-span-2"
+            className="col-span-2"
             placeholder="Select area code"
             title="Area Code"
             lists={[{ name: "+60", value: "+60" }]}
@@ -177,14 +177,14 @@ const Booking = () => {
           />
 
           <BookingInput
-            inputClassName="col-span-4"
+            className="col-span-4"
             placeholder="0123456789"
             title="Phone Number"
             name="phone_number"
           />
 
           <BookingSelect
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="Select nationality"
             title="Nationality"
             lists={[{ name: "Malaysian", value: "malaysian" }]}
@@ -196,28 +196,28 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="your address"
             title="Your Address"
             name="address"
           />
 
           <BookingInput
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="city"
             title="City"
             name="city"
           />
 
           <BookingInput
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="postcode"
             title="PostCode"
             name="postcode"
           />
 
           <BookingSelect
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="Select country"
             title="Country"
             lists={[{ name: "Malaysia", value: "malaysia" }]}
@@ -225,7 +225,7 @@ const Booking = () => {
           />
 
           <BookingSelect
-            inputClassName="col-span-3"
+            className="col-span-3"
             placeholder="Select state"
             title="State"
             lists={[{ name: "Johor", value: "johor" }]}
@@ -237,21 +237,21 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="your name"
             title="Your Name"
             name="name"
           />
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="enter relationship"
             title="Enter Relationship"
             name="relationship"
           />
 
           <BookingSelect
-            inputClassName="col-span-2"
+            className="col-span-2"
             placeholder="Select area code"
             title="Area Code"
             lists={[{ name: "+60", value: "+60" }]}
@@ -259,14 +259,14 @@ const Booking = () => {
           />
 
           <BookingInput
-            inputClassName="col-span-4"
+            className="col-span-4"
             placeholder="0123456789"
             title="Phone Number"
             name="phone_number"
           />
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="xxx@gmail.com"
             title="Your Email"
             name="email"
@@ -284,7 +284,7 @@ const Booking = () => {
           </CustomText>
 
           <BookingInput
-            inputClassName="col-span-6"
+            className="col-span-6"
             placeholder="000000"
             title="Code"
             name="code"

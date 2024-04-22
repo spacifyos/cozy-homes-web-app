@@ -16,7 +16,9 @@
     "eAgreement": "E-Agreement",
     "eAgreementOverview": "E-Agreement Overview",
     "viewAgreement": "View Agreement",
-    "topUpMeter": "Top Up Meter"
+    "topUpMeter": "Top Up Meter",
+    "bookAppointment": "Book Appointment",
+    "appointmentDetail": "Appointment Detail"
   },
   "general": {},
   "explore": {
@@ -246,5 +248,19 @@
     "totalPrice": "Total Price",
     "cancel": "Cancel",
     "payNow": "Pay Now"
+  },
+  "bookAppointment": {
+    "myAppointment": "My Appointment",
+    "appointmentWith": "Appointment With",
+    "date": "Date",
+    "selectDate": "Select Date",
+    "time": "Time",
+    "selectTime": "Select Time",
+    "message": "Message",
+    "yourMessageHere": "Your Message Here",
+    "bookAppointment": "Book Appointment",
+    "thankyou": "Thank You!",
+    "viewAppointment": "View Appointment",
+    "chat": "Chat"
   }
 }

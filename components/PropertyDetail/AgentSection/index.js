@@ -39,7 +39,7 @@ const AgentSection = ({ t, onClickBooking }) => {
 
           <div className="flex gap-3 items-center flex-2 pr-1">
             <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
-              <CustomImage src={Images.scheduleIcon} width={28} />
+              <CustomImage src={Images.bookingIconActive} width={28} />
             </div>
             <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
               <CustomImage src={Images.callIcon} width={28} />

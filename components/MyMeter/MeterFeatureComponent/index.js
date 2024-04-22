@@ -17,7 +17,7 @@ const MeterFeatureComponent = ({ item }) => {
 
   return (
     <div
-      className="flex flex-col justify-center items-center text-center"
+      className="flex flex-col justify-center itemFs-center text-center"
       ref={targetRef}
     >
       <div

@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import _ from "lodash";
 
 const BookingSelect = ({
-  inputClassName,
+  className,
   placeholder,
   errorMessage,
   title,
@@ -10,7 +10,7 @@ const BookingSelect = ({
   name,
 }) => {
   return (
-    <label className={`form-control w-full ${inputClassName}`}>
+    <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className="booking-wrapper">
         <select className="booking-select" name={name} required>

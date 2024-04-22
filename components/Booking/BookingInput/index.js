@@ -1,28 +1,45 @@
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
+import CustomImage from "@/components/CustomImage";
 
 const BookingInput = ({
-  inputClassName,
+  className,
   placeholder,
   errorMessage,
   title,
   name,
+  inputClassName = "bg-color",
+  rightIcon = "",
+  type = "text",
+  value,
+  onChange,
 }) => {
   return (
-    <label className={`form-control w-full ${inputClassName}`}>
+    <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
-      <input
-        type="text"
-        placeholder={placeholder}
-        className="booking-input"
-        name={name}
-        required
-      />
-      {_.isEmpty(errorMessage) ? (
-        false
-      ) : (
-        <CustomText textClassName="error-message">* {errorMessage}</CustomText>
-      )}
+      <div className=" flex items-center gap-2 booking-input">
+        <input
+          type={type}
+          placeholder={placeholder}
+          className={` ${inputClassName}`}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required
+        />
+        {_.isEmpty(errorMessage) ? (
+          false
+        ) : (
+          <CustomText textClassName="error-message">
+            * {errorMessage}
+          </CustomText>
+        )}
+        {!_.isEmpty(rightIcon) ? (
+          <CustomImage src={rightIcon} height={20} width={20} />
+        ) : (
+          false
+        )}
+      </div>
     </label>
   );
 };

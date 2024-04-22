@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
-import CustomInput from "@/components/CustomInput";
 
 export { getServerSideProps };
 

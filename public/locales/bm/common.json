@@ -16,7 +16,9 @@
     "eAgreement": "Perjanjian Elektronik",
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
     "viewAgreement": "Lihat Perjanjian",
-    "topUpMeter": "Isi Meter"
+    "topUpMeter": "Isi Meter",
+    "bookingAppointment": "Tempah Temujanji",
+    "appointmentDetail": "Butiran Temujanji"
   },
   "general": {},
   "explore": {
@@ -246,5 +248,19 @@
     "totalPrice": "Harga Total",
     "cancel": "Batal",
     "payNow": "Bayar Sekarang"
+  },
+  "bookAppointment": {
+    "myAppointment": "Temujanji Saya",
+    "appointmentWith": "Temujanji Dengan",
+    "date": "Tarikh",
+    "selectDate": "Pilih Tarikh",
+    "time": "Masa",
+    "selectTime": "Pilih Masa",
+    "message": "Mesej",
+    "yourMessageHere": "Mesej Anda Di Sini",
+    "bookAppointment": "Tempah Temujanji",
+    "thankyou": "Terima kasih!",
+    "viewAppointment": "Lihat Temujanji",
+    "chat": "Sembang"
   }
 }

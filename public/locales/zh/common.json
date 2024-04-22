@@ -16,7 +16,9 @@
     "eAgreementOverview": "电子协议概览",
     "viewAgreement": "查看协议",
     "myTenancy": "我的租期",
-    "topUpMeter": "充值仪表"
+    "topUpMeter": "充值仪表",
+    "bookingAppointment": "预约",
+    "appointmentDetail": "预约详情"
   },
   "general": {},
   "explore": {
@@ -246,5 +248,19 @@
     "totalPrice": "总价",
     "cancel": "取消",
     "payNow": "立即支付"
+  },
+  "bookAppointment": {
+    "myAppointment": "我的预约",
+    "appointmentWith": "与谁预约",
+    "date": "日期",
+    "selectDate": "选择日期",
+    "time": "时间",
+    "selectTime": "选择时间",
+    "message": "留言",
+    "yourMessageHere": "请输入您的留言",
+    "bookAppointment": "预约",
+    "thankyou": "谢谢！",
+    "viewAppointment": "查看预约",
+    "chat": "消息"
   }
 }
