@@ -17,7 +17,9 @@
     "eAgreement": "E-Agreement",
     "eAgreementOverview": "E-Agreement Overview",
     "viewAgreement": "View Agreement",
-    "topUpMeter": "Top Up Meter"
+    "topUpMeter": "Top Up Meter",
+    "myInvoice": "My Invoice",
+    "myInvoiceOverview": "My Invoice Overview"
   },
   "general": {},
   "explore": {
@@ -266,5 +268,10 @@
     "cancel": "Cancel",
     "downloadInvoice": "Download Invoice",
     "downloadReceipt": "Download Receipt"
+  },
+  "invoiceSuccessful": {
+    "roomzCoinsEarned": "Roomz Coins earned",
+    "paymentCompleted": "Payment Completed",
+    "congratulations": "Congratulations!"
   }
 }

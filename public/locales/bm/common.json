@@ -17,7 +17,9 @@
     "eAgreement": "Perjanjian Elektronik",
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
     "viewAgreement": "Lihat Perjanjian",
-    "topUpMeter": "Isi Meter"
+    "topUpMeter": "Isi Meter",
+    "myInvoice": "Invois Saya",
+    "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya"
   },
   "general": {},
   "explore": {
@@ -228,7 +230,7 @@
     "tenantName": "Nama Penyewa",
     "rentalFee": "Yuran Sewa",
     "period": "Tempoh",
-    "notActivated":"tidak diaktifkan",
+    "notActivated": "tidak diaktifkan",
     "noInsuranceAvailable": "Tiada Insurans Yang Tersedia",
     "noEagreementAvailable": "Tiada Perjanjian Elektronik Yang Tersedia",
     "eAgreement": "Perjanjian Elektronik",
@@ -266,5 +268,10 @@
     "cancel": "Batal",
     "downloadInvoice": "Muat Turun Invois",
     "downloadReceipt": "Muat Turun Resit"
+  },
+  "invoiceSuccessful": {
+    "roomzCoinsEarned": "Diperolehi Koin Roomz",
+    "paymentCompleted": "Pembayaran Berjaya",
+    "congratulations": "Tahniah!"
   }
 }

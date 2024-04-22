@@ -17,7 +17,9 @@
     "eAgreementOverview": "电子协议概览",
     "viewAgreement": "查看协议",
     "myTenancy": "我的租期",
-    "topUpMeter": "充值仪表"
+    "topUpMeter": "充值仪表",
+    "myInvoice": "我的发票",
+    "myInvoiceOverview": "我的发票概览"
   },
   "general": {},
   "explore": {
@@ -266,5 +268,10 @@
     "cancel": "取消",
     "downloadInvoice": "下载发票",
     "downloadReceipt": "下载收据"
+  },
+  "invoiceSuccessful": {
+    "roomzCoinsEarned": "获得 Roomz 币",
+    "paymentCompleted": "支付完成",
+    "congratulations": "恭喜！"
   }
 }

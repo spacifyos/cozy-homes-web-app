@@ -23,7 +23,7 @@ const PaymentSuccessful = ({}) => {
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <CustomImage
         src={Images.cancelIcon}
-        imageStyle={{ width: "20px" }}
+        imageStyle={{ width: 20 }}
         className=" absolute top-5 right-5 cursor-pointer"
         onClick={onClickGoMainPage}
       />

@@ -71,7 +71,7 @@ const MyInvoice = () => {
 
   return (
     <CustomHeader
-      pageTitle="My Invoice"
+      pageTitle={t("pageTitle.myInvoice")}
       rightButtonIcon={Images.filterProIcon}
       hideBgImage
       onClickGoBack={onClickGoBack}

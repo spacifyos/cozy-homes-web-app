@@ -17,7 +17,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
         <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer">
           <CustomImage
             src={Images.meterIcon}
-            imageStyle={{ width: 30, height: 30, cursor: "pointer" }}
+            imageStyle={{ width: 35, height: 35, cursor: "pointer" }}
             onClick={onClickToMyMeter}
           />
         </div>
