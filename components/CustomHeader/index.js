@@ -14,6 +14,7 @@ const CustomHeader = ({
   padding = false,
   onClickRightSecondButton,
   rightSecondButtonIcon,
+  rightContent,
 }) => {
   return (
     <div className="flex-1 relative bg-color overflow-hidden">
@@ -53,7 +54,9 @@ const CustomHeader = ({
             />
           )}
           {_.isEmpty(rightButtonIcon) ? (
-            false
+            <div style={{ width: 25, height: 25 }} onClick={onClickRightButton}>
+              {rightContent}
+            </div>
           ) : (
             <CustomImage
               src={rightButtonIcon}

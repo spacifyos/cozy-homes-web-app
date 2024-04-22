@@ -248,5 +248,23 @@
     "totalPrice": "总价",
     "cancel": "取消",
     "payNow": "立即支付"
+  },
+  "invoiceOverview": {
+    "invoiceNumber": "发票号码",
+    "status": "状态",
+    "billTo": "账单寄往",
+    "property": "物业",
+    "invoiceDate": "发票日期",
+    "dueDate": "到期日期",
+    "tenancyCode": "租赁代码",
+    "schedule": "时间表",
+    "items": "项目",
+    "subtotal": "小计",
+    "tax": "税额",
+    "totalAmount": "总金额",
+    "payNow": "立即付款",
+    "cancel": "取消",
+    "downloadInvoice": "下载发票",
+    "downloadReceipt": "下载收据"
   }
 }

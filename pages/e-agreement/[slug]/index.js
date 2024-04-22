@@ -31,10 +31,10 @@ const EAgreementOverview = () => {
       rightButtonIcon={Images.downloadIcon}
     >
       <div className="body-container relative pt-6 pb-4 flex justify-center">
-        <div className="primary-bg-color p-3 global-border-radius absolute top-0">
+        <div className="primary-bg-color p-2 global-border-radius absolute top-0">
           <CustomImage
             src={Images.agreementIcon}
-            imageStyle={{ width: 25, height: 25 }}
+            imageStyle={{ width: 30, height: 30 }}
           />
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">

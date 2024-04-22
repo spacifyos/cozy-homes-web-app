@@ -5,11 +5,11 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import StatusLabel from "@/components/StatusLabel";
 import _ from "lodash";
 
-const InvoiceComponent = ({ t, item }) => {
+const InvoiceComponent = ({ t, item, onClick }) => {
   const status = _.get(item, ["status"], "");
 
   return (
-    <div className="invoice-container">
+    <div className="invoice-container" onClick={onClick}>
       <div className="flex items-center">
         <div className="invoice-icon-container">
           <CustomImage

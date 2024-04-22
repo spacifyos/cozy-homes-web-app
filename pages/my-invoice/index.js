@@ -65,6 +65,10 @@ const MyInvoice = () => {
     router.back();
   };
 
+  const onClickToOverView = () => {
+    router.push("my-invoice/1");
+  };
+
   return (
     <CustomHeader
       pageTitle="My Invoice"
@@ -99,7 +103,11 @@ const MyInvoice = () => {
               <CustomText textClassName="section-title">{date}</CustomText>
 
               {_.map(lists, (list) => (
-                <InvoiceComponent item={list} t={t} />
+                <InvoiceComponent
+                  item={list}
+                  t={t}
+                  onClick={onClickToOverView}
+                />
               ))}
             </div>
           );
