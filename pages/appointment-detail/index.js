@@ -27,7 +27,7 @@ const Booking = () => {
     {
       date: "10 Sep 21, 11.35am",
       img: Images.agentIcon,
-      name: "Razak bin Oszak",
+      name: "Razak bin Osman",
       chat: "Hi Joan, sure,see you soon.",
       identity: "agent",
     },
