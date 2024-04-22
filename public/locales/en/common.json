@@ -213,7 +213,7 @@
     "signUpForFree": "Sign Up for FREE",
     "next": "Next"
   },
-  "myTenancy":{
+  "myTenancy": {
     "address": "Address",
     "createdAt": "Created At",
     "otherInformation": "Other Information",
@@ -250,6 +250,24 @@
     "totalPrice": "Total Price",
     "cancel": "Cancel",
     "payNow": "Pay Now"
+  },
+  "invoiceOverview": {
+    "invoiceNumber": "Invoice Number",
+    "status": "Status",
+    "billTo": "Bill To",
+    "property": "Property",
+    "invoiceDate": "Invoice Date",
+    "dueDate": "Due Date",
+    "tenancyCode": "Tenancy Code",
+    "schedule": "Schedule",
+    "items": "Items",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "totalAmount": "Total Amount",
+    "payNow": "Pay Now",
+    "cancel": "Cancel",
+    "downloadInvoice": "Download Invoice",
+    "downloadReceipt": "Download Receipt"
   },
   "bookAppointment": {
     "myAppointment": "My Appointment",

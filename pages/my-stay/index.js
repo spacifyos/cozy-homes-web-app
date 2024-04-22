@@ -11,6 +11,12 @@ import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
+const list = [
+  { status: "Paid" },
+  { status: "Paid" },
+  { status: "Paid" },
+];
+
 const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -38,6 +44,10 @@ const MyStay = () => {
 
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
+  };
+
+  const onClickToInvoiceList = () => {
+    router.push("/my-invoice");
   };
 
   return (
@@ -69,6 +79,8 @@ const MyStay = () => {
           t={t}
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
+          onClickToInvoiceList={onClickToInvoiceList}
+          list={list}
         />
       </div>
     </CustomHeader>

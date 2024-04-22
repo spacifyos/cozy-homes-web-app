@@ -509,7 +509,6 @@ const Booking = () => {
                   type="radio"
                   name="radio-1"
                   className="radio booking-radio mr-2"
-                  checked
                 />
                 <CustomText>Pay in Full</CustomText>
               </div>

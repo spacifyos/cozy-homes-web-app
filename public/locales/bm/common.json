@@ -251,6 +251,24 @@
     "cancel": "Batal",
     "payNow": "Bayar Sekarang"
   },
+  "invoiceOverview": {
+    "invoiceNumber": "Nombor Invois",
+    "status": "Status",
+    "billTo": "Dibayar Kepada",
+    "property": "Harta",
+    "invoiceDate": "Tarikh Invois",
+    "dueDate": "Tarikh Jatuh Tempo",
+    "tenancyCode": "Kod Penyewaan",
+    "schedule": "Jadual",
+    "items": "Barangan",
+    "subtotal": "Jumlah Bahagian",
+    "tax": "Cukai",
+    "totalAmount": "Jumlah Keseluruhan",
+    "payNow": "Bayar Sekarang",
+    "cancel": "Batal",
+    "downloadInvoice": "Muat Turun Invois",
+    "downloadReceipt": "Muat Turun Resit"
+  },
   "bookAppointment": {
     "myAppointment": "Temujanji Saya",
     "appointmentWith": "Temujanji Dengan",

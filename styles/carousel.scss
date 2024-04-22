@@ -1,4 +1,4 @@
-
+@import "utils/color";
 
 .react-multi-carousel-dot button{
   width: 6px !important;
@@ -10,6 +10,7 @@
 
 .react-multi-carousel-dot--active button{
   background-color: $primary-color !important;
+  border: 1px solid $primary-color !important;
   width: 15px !important;
   height: 7px !important;
   border-radius: 20px !important;
