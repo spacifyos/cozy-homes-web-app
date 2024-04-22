@@ -34,3 +34,6 @@
   @include custom-text($completed-color);
 }
 
+.pending-text {
+  @include custom-text($pending-color);
+}

@@ -126,6 +126,7 @@ const Image = {
   step3Icon: "/images/icon/step_step3.png",
   appointmentIconActive: "/images/icon/appointment_icon_active.png",
   appointmentIconWhite: "/images/icon/appointment_icon_white.png",
+  filterProIcon:"/images/icon/filter_pro.png"
 };
 
 export default { ...Image };

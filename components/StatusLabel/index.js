@@ -5,6 +5,8 @@ const StatusLabel = ({ status }) => {
     switch (status) {
       case "pending":
         return "pending-bg-color";
+      case "Due Soon":
+        return "pending-bg-color";
       case "completed":
         return "completed-bg-color";
       case "Pending Confirmation":
@@ -13,6 +15,10 @@ const StatusLabel = ({ status }) => {
         return "primary-bg-color";
       case "Cancelled":
         return "error-bg-color";
+      case "Overdue":
+        return "error-bg-color";
+      case "Paid":
+        return "completed-bg-color";
       default:
         return "pending-bg-color";
     }

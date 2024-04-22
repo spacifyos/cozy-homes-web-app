@@ -5,8 +5,6 @@
 @mixin custom-button {
   padding: 5px 10px;
   border-radius: 10px;
-  min-height: 2.5rem;
-  height: 2.5rem;
   @extend .global-box-shadow;
 
   p {

@@ -1,48 +1,55 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import CustomLabelValue from "@/components/CustomLabelValue";
+import StatusLabel from "@/components/StatusLabel";
+import _ from "lodash";
 
-const InvoiceComponent = ({ t }) => {
+const InvoiceComponent = ({ t, item }) => {
+  const status = _.get(item, ["status"], "");
+
   return (
     <div className="invoice-container">
       <div className="flex items-center">
         <div className="invoice-icon-container">
           <CustomImage
             src={Images.invoiceIcon}
-            imageStyle={{ width: 30, height: 30 }}
+            imageStyle={{ width: 35, height: 35 }}
           />
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="black-text font-size-small font-bold pb-1.5 line-clamp-1">
-            {t("myStay.invoice")} #: SP-210000222
-          </CustomText>
+          <div className="flex items-center pb-1">
+            <CustomText textClassName="black-text font-size-small font-bold line-clamp-1 pr-2">
+              {t("myStay.invoice")} #: SP-210000222
+            </CustomText>
+            <StatusLabel status={status} />
+          </div>
 
-          <div className="flex items-center pb-1.5">
+          <div className="flex items-start">
             <div className="pr-12">
-              <CustomText textClassName="primary-text font-size-xsmall font-bold leading-4">
-                RM 750
-              </CustomText>
-              <CustomText textClassName="disable-text font-size-xxsmall">
-                {t("myStay.rentalFee")}
-              </CustomText>
+              <CustomLabelValue
+                className="pb-1"
+                label={t("myStay.rentalFee")}
+                value="RM 750"
+              />
             </div>
             <div>
+              <CustomText textClassName="font-size-xxsmall disable-text">
+                {t("myStay.status")}
+              </CustomText>
+
               <div className="flex items-center">
                 <CustomImage
-                  src={Images.unpaidIcon}
-                  width={13}
-                  height={13}
+                  src={Images.paidIcon}
+                  width={15}
+                  height={15}
                   className="mr-1"
                 />
                 <CustomText textClassName="disable-text font-size-xsmall leading-4">
                   {t("myStay.unpaid")}
                 </CustomText>
               </div>
-
-              <CustomText textClassName="disable-text font-size-xxsmall">
-                {t("myStay.status")}
-              </CustomText>
             </div>
           </div>
 
