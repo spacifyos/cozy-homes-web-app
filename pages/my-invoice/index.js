@@ -9,6 +9,8 @@ import { useRouter } from "next/router";
 import CustomText from "@/components/CustomText";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
+import CustomModal from "@/components/CustomModal";
+import BookingInput from "@/components/Booking/BookingInput";
 
 export { getServerSideProps };
 
@@ -75,6 +77,9 @@ const MyInvoice = () => {
       rightButtonIcon={Images.filterProIcon}
       hideBgImage
       onClickGoBack={onClickGoBack}
+      onClickRightButton={() =>
+        document.getElementById("invoice_filter_modal").showModal()
+      }
     >
       <div className="body-container pb-1">
         <MyInvoiceComponent list={typeList} />
@@ -112,6 +117,36 @@ const MyInvoice = () => {
             </div>
           );
         })}
+
+        <CustomModal id="invoice_filter_modal">
+          <CustomText textClassName="font-bold font-size-large pb-4">
+            Search Filter
+          </CustomText>
+
+          <div className="grid grid-cols-2 gap-2">
+            <div className="col-span-2 pb-2">
+              <CustomText textClassName="font-size-small pb-1">
+                Invoice Number
+              </CustomText>
+
+              <BookingInput
+                inputClassName=""
+                placeholder="XXXX-InvXXXXXXXX"
+                name="name"
+              />
+            </div>
+
+            <CustomButton
+              buttonText="No"
+              buttonClassName="default-btn-outline"
+            />
+
+            <CustomButton
+              buttonText="Yes"
+              buttonClassName="primary-btn"
+            />
+          </div>
+        </CustomModal>
       </div>
     </CustomHeader>
   );
