@@ -23,11 +23,12 @@ const MyStay = () => {
     setSelectedCategory(category);
   };
 
-  const onClickToMyMeter = () => {
-    router.push("/my-meter/123");
+  const onClickToMeterOverview = () => {
+    router.push("/my-meter/1");
   };
+
   const onClickTopUp = () => {
-    router.push("/top-up-meter");
+    router.push("/my-meter/1/top-up-meter");
   };
 
   const onClickToAgreement = () => {
@@ -35,7 +36,7 @@ const MyStay = () => {
   };
 
   const onClickGoToMyTenancy = () => {
-    router.push("/my-tenancy/123");
+    router.push("/my-tenancy/1");
   };
 
   const onClickChangeAutoPay = () => {
@@ -48,6 +49,10 @@ const MyStay = () => {
 
   const onClickToOverviewPage = () => {
     router.push(`/my-invoice/1`);
+  };
+
+  const onClickToMeterList = () => {
+    router.push("/my-meter");
   };
 
   return (
@@ -72,7 +77,8 @@ const MyStay = () => {
         <MeterSection
           t={t}
           onClickTopUp={onClickTopUp}
-          onClickToMyMeter={onClickToMyMeter}
+          onClickToMeterOverview={onClickToMeterOverview}
+          onClickToMeterList={onClickToMeterList}
         />
 
         <InvoiceSection

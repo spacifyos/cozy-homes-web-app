@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 
-const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
+const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
   return (
     <div className="meter-container">
       <CustomImage
@@ -14,11 +14,13 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMyMeter }) => {
       />
 
       <div className="flex items-center pb-1">
-        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer">
+        <div
+          className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer"
+          onClick={onClickToMeterOverview}
+        >
           <CustomImage
             src={Images.meterIcon}
-            imageStyle={{ width: 35, height: 35, cursor: "pointer" }}
-            onClick={onClickToMyMeter}
+            imageStyle={{ width: 35, height: 35 }}
           />
         </div>
 

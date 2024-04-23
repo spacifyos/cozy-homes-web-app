@@ -6,7 +6,8 @@
   },
   "pageTitle": {
     "myStay": "我的住宿",
-    "myMeter": "我的计量器",
+    "myMeter": "我的电子表",
+    "myMeterOverview": "我的电子表概览",
     "account": "账户",
     "myAppointment": "我的预约",
     "propertyDetail": "房子信息",
@@ -61,7 +62,7 @@
     "scan": "扫描",
     "eAgreement": "电子协议",
     "helpCenter": "帮助中心",
-    "myMeter": "我的数码电表",
+    "myMeter": "我的电子表",
     "meterStatus": "电表状态",
     "wifi": "网络",
     "power": "电力",

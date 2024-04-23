@@ -3,15 +3,15 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
 
-const MeterUsageComponent = ({ t }) => {
+const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
   return (
-    <div className="meter-usage-component">
+    <div className="meter-usage-component" onClick={onClickToMeterOverview}>
       <div className="flex items-center">
         <div className="meter-usage-inside-container">
           <CustomImage src={Images.meterIcon} width={35} height={35} />
           <div className="flex flex-col px-2">
             <CustomText textClassName="font-size-xxsmall white-text">
-              {t("myMeter.availableUnit")}
+              {t("myMeterOverview.availableUnit")}
             </CustomText>
             <div className="flex flex-row justify-center items-end">
               <CustomText textClassName="font-size-large white-text">
@@ -31,10 +31,13 @@ const MeterUsageComponent = ({ t }) => {
 
           <div className="flex items-center pt-1 gap-5">
             <CustomLabelValue
-              label={t("myMeter.totalUsage(Unit)")}
+              label={t("myMeterOverview.totalUsage(Unit)")}
               value={"0.55"}
             />
-            <CustomLabelValue label={t("myMeter.totalUnit")} value={"5.00"} />
+            <CustomLabelValue
+              label={t("myMeterOverview.totalUnit")}
+              value={"5.00"}
+            />
           </div>
         </div>
       </div>

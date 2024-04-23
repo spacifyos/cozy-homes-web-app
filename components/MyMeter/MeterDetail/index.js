@@ -23,11 +23,11 @@ const MeterDetail = ({ t }) => {
 
       <div className="flex flex-col items-start flex-1">
         <CustomLabelValue
-          label={t("myMeter.serialNumber")}
+          label={t("myMeterOverview.serialNumber")}
           value={"BeLive-SM123456789"}
         />
         <CustomText textClassName="font-size-xxsmall disable-text">
-          {t("myMeter.meterStatus")}
+          {t("myMeterOverview.meterStatus")}
         </CustomText>
 
         <div className="flex items-center pt-1 gap-5">
@@ -46,8 +46,8 @@ const MeterDetail = ({ t }) => {
         </div>
 
         <div className="flex items-center gap-5 pt-2">
-          <CustomLabelValue label={t("myMeter.usedUnit")} value={"28.9"} />
-          <CustomLabelValue label={t("myMeter.unitPrice")} value={"RM0.80"} />
+          <CustomLabelValue label={t("myMeterOverview.usedUnit")} value={"28.9"} />
+          <CustomLabelValue label={t("myMeterOverview.unitPrice")} value={"RM0.80"} />
         </div>
       </div>
     </div>

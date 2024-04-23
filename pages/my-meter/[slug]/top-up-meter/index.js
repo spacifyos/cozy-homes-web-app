@@ -17,8 +17,9 @@ const TopUpMeter = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [topUpUnitChange, setTopUpUnit] = useState("");
+
   const onClickGoBack = () => {
-    router.push("/my-stay");
+    router.back();
   };
 
   const onClickTopUp = (topUpUnit) => {
