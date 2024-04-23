@@ -22,7 +22,9 @@ const Detail = ({}) => {
   const router = useRouter();
   const [selectDetail, setSelectedDetail] = useState("Tenancy");
   const [showPolicy, setShowPolicy] = useState(true);
-
+  const onClickToBookAppointment =()=>{
+    router.push("/property-detail/1/book-appointment")
+  }
   const onClickGoBack = () => {
     router.back();
   };
@@ -78,7 +80,7 @@ const Detail = ({}) => {
           </div>
         )}
 
-        <AgentSection t={t} onClickBooking={onClickBooking} />
+        <AgentSection t={t} onClickBooking={onClickBooking} onClickToBookAppointment={onClickToBookAppointment}/>
       </div>
     </CustomHeader>
   );

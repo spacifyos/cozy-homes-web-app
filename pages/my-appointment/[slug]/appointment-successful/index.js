@@ -13,6 +13,9 @@ const AppointmentThankyou = ({}) => {
     const onClickGoMainPage = () => {
         router.push("/explore");
     };
+    const onClickToMyAppointment = ()=>{
+        router.push("/my-appointment")
+    }
     return (
         <div className="flex flex-col justify-center items-center pt-32 relative">
             <CustomImage
@@ -39,6 +42,7 @@ const AppointmentThankyou = ({}) => {
                 buttonClassName="primary-btn"
                 buttonStyles={{ padding: "5px 30px" }}
                 buttonText={t("bookAppointment.viewAppointment")}
+                onClick={onClickToMyAppointment}
             />
         </div>
     );

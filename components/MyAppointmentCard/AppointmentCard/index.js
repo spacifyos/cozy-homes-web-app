@@ -5,7 +5,7 @@ import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 
-const AppointmentCard = ({ t, item }) => {
+const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
   return (
     <div className="global-box-shadow primaryWhite-bg-color global-border-radius p-4 mb-3 relative">
       {_.isEqual(item, "Confirmed") ? (
@@ -19,6 +19,7 @@ const AppointmentCard = ({ t, item }) => {
           <CustomImage
             src={Images.appointmentIconWhite}
             imageStyle={{ width: 35, height: 35 }}
+            onClick={() => onClickToAppointmentOverview(1)}
           />
         </div>
         <div className="pl-2">

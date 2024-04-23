@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
-const TimeLine = ({ t, item }) => {
+const MessageTimeLine = ({ t, item }) => {
   const date = _.get(item, ["date"], "");
   const img = _.get(item, ["img"], "");
   const name = _.get(item, ["name"], "");
@@ -18,11 +18,11 @@ const TimeLine = ({ t, item }) => {
   return (
     <div className="grid grid-cols-12 h-full pb-3">
       <div className="col-span-2">
-        <CustomText textClassName="font-size-xsmall disable-text">
+        <CustomText textClassName="font-size-xxsmall disable-text">
           {date}
         </CustomText>
       </div>
-      <div className="flex flex-col pt-2 col-span-1">
+      <div className="flex flex-col col-span-1">
         <CustomImage src={getIconByRole(item)} width={15} height={15} />
         <div className="divider divider-horizontal pt-1 h-full"></div>
       </div>
@@ -39,4 +39,4 @@ const TimeLine = ({ t, item }) => {
   );
 };
 
-export default TimeLine;
+export default MessageTimeLine;

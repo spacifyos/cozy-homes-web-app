@@ -7,9 +7,11 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useState, useRef, useEffect } from "react";
-import TimeLine from "@/components/AppointmentDetail/TimeLine";
+import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
+import TimePicker from "react-time-picker";
+import DatePicker from "react-date-picker";
 import BookingInput from "@/components/Booking/BookingInput";
-import moment from "moment";
+
 export { getServerSideProps };
 
 const Booking = () => {
@@ -41,12 +43,8 @@ const Booking = () => {
     },
   ];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const onChangeDate = (event) => {
-    const date = moment(event.target.value);
-    setSelectedDate(date);
-  };
+  const [value, onChange] = useState(new Date());
+  const [valueTime, onChangeTime] = useState(new Date());
 
   const onClickGoBack = () => {
     router.back();
@@ -105,7 +103,7 @@ const Booking = () => {
             )}
 
             <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
-              <CustomImage src={Images.bookingIcon} width={20} />
+              <CustomImage src={Images.bookingIcon} width={25} height={25} />
             </div>
             <CustomText textClassName="font-bold font-size-xlarge primary-text">
               {t("bookAppointment.myAppointment")}
@@ -115,7 +113,7 @@ const Booking = () => {
           <CustomText textClassName="pb-2">
             {t("bookAppointment.appointmentWith")}
           </CustomText>
-          <div className="flex gap-2 items-center pb-4">
+          <div className="flex gap-2 items-center pb-5">
             <CustomImage
               src={Images.agentIcon}
               width={43}
@@ -129,27 +127,52 @@ const Booking = () => {
             {t("bookAppointment.date")}
           </CustomText>
 
-          <BookingInput
-            inputClassName="primaryWhite-bg-color resize-input-icon"
-            value={moment(selectedDate).format("YYYY-MM-DD")}
-            type="date"
-            onChange={onChangeDate}
+          <DatePicker
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date"
+            yearAriaLabel="Year"
+            onChange={onChange}
+            value={value}
+            className=" flex items-center gap-2 booking-input"
+            clearIcon
+            format="dd MMMy"
+            calendarClassName="custom-date-picker"
+            locale="en"
+            calendarIcon={
+              <img
+                src="/images/icon/calender_icon.png"
+                alt="Calendar"
+                style={{ width: "25px", height: "25px" }}
+              />
+            }
           />
 
           <CustomText textClassName="pb-1 pt-5">
             {t("bookAppointment.time")}
           </CustomText>
-          <BookingInput
-            inputClassName="primaryWhite-bg-color resize-input-icon"
-            type="time"
-            placeholder={t("bookAppointment.selectTime")}
-          />
-          <CustomText textClassName="pb-1 pt-5">
+
+          <div className="flex booking-input">
+            <input
+              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
+              type="time"
+            />
+            <CustomImage
+              src={Images.clockIcon}
+              width={25}
+              height={25}
+              className="pr-2"
+            />
+          </div>
+
+          <CustomText textClassName="pb-2 pt-5">
             {t("bookAppointment.message")}
           </CustomText>
 
           {_.map(chatList, (item) => {
-            return <TimeLine item={item} />;
+            return <MessageTimeLine item={item} />;
           })}
 
           <div className="flex justify-center pt-3 w-full">

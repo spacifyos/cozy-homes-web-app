@@ -24,6 +24,9 @@ const MyAppointment = () => {
   const onClickGoBack = () => {
     router.back();
   };
+  const onClickToAppointmentOverview= (id) => {
+    router.push(`/my-appointment/${id}`);
+  };
 
   return (
     <CustomHeader
@@ -75,7 +78,7 @@ const MyAppointment = () => {
         </div>
 
         {_.map(["Pending Confirmation", "Confirmed", "Cancelled"], (item) => {
-          return <AppointmentCard t={t} item={item} />;
+          return <AppointmentCard t={t} item={item} onClickToAppointmentOverview={onClickToAppointmentOverview}/>;
         })}
       </div>
     </CustomHeader>

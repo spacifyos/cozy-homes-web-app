@@ -6,7 +6,7 @@
   border: 1px solid $disable-color;
   border-radius: 10px;
   padding: 10px;
-  margin: 3px 0;
+  margin: 4px 0;
   color: $primary-black-color;
   height: 100px;
   resize: none;
@@ -22,9 +22,9 @@
   border: 1px solid $disable-color;
   border-radius: 10px;
   padding: 10px;
-  margin: 3px 0;
+  margin: 4px 0;
   color: $primary-black-color;
-  height: 39px;
+  height: 40px;
   @apply font-size-xsmall;
 }
 
@@ -38,10 +38,10 @@
   border: 1px solid $disable-color;
   border-radius: 10px;
   padding: 10px;
-  margin: 3px 0;
+  margin: 4px 0;
   color: $primary-black-color;
   -webkit-appearance: menulist;
-  height: 39px;
+  height: 40px;
   @apply font-size-xsmall;
 
   option[value=""][disabled] {
