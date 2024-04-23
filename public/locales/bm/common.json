@@ -75,9 +75,10 @@
     "days": "hari",
     "paid": "Dibayar",
     "unpaid": "Belum Dibayar",
-    "smartLock": "kunci pintar"
+    "smartLock": "kunci pintar",
+    "viewMore": "Lihat Lebih Banyak"
   },
-  "myMeter": {
+  "myMeterOverview": {
     "todayUsage": "Penggunaan Hari Ini",
     "unit": "unit",
     "serialNumber": "Nombor Siri",

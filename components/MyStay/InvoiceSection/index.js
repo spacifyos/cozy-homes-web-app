@@ -43,7 +43,7 @@ const InvoiceSection = ({
           textClassName="font-size-small cursor-pointer"
           onClick={onClickToInvoiceList}
         >
-          {"View more"}
+          {t("myStay.viewMore")}
         </CustomText>
       </div>
 

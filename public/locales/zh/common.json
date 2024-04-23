@@ -75,9 +75,10 @@
     "days": "天",
     "paid": "已付款",
     "unpaid": "未付款",
-    "smartLock": "电子锁"
+    "smartLock": "电子锁",
+    "viewMore": "查看更多"
   },
-  "myMeter": {
+  "myMeterOverview": {
     "todayUsage": "今天的用量",
     "unit": "单位",
     "serialNumber": "编号",

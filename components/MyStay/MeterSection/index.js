@@ -18,7 +18,7 @@ const MeterSection = ({
           textClassName="font-size-small pb-2 cursor-pointer"
           onClick={onClickToMeterList}
         >
-          {"View more"}
+          {t("myStay.viewMore")}
         </CustomText>
       </div>
 

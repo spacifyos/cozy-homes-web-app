@@ -75,7 +75,8 @@
     "days": "days",
     "paid": "Paid",
     "unpaid": "Unpaid",
-    "smartLock": "Smart Lock"
+    "smartLock": "Smart Lock",
+    "viewMore": "View More"
   },
   "myMeterOverview": {
     "todayUsage": "Today Usage",

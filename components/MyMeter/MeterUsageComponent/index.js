@@ -18,7 +18,7 @@ const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
                 99999
               </CustomText>
               <CustomText textClassName="font-size-xxsmall white-text pl-1">
-                unit
+                {t("myMeterOverview.unit")}
               </CustomText>
             </div>
           </div>

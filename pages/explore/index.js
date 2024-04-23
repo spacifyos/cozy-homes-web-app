@@ -52,7 +52,7 @@ function Home() {
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
     setOpenSwitcher(false);
-    router.push({ pathname, query }, asPath, { locale: newLocale });
+    router.replace({ pathname, query }, asPath, { locale: newLocale });
   };
 
   useEffect(() => {
