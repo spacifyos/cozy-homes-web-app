@@ -5,7 +5,10 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 
 const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
   return (
-    <div className="meter-usage-component" onClick={onClickToMeterOverview}>
+    <div
+      className="meter-usage-component cursor-pointer"
+      onClick={onClickToMeterOverview}
+    >
       <div className="flex items-center">
         <div className="meter-usage-inside-container">
           <CustomImage src={Images.meterIcon} width={35} height={35} />

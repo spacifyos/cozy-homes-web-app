@@ -70,7 +70,7 @@ function Home() {
   };
 
   const onClickToPropertyDetail = () => {
-    router.push("/property-detail/1");
+    router.push("/property-overview/1");
   };
 
   const onClickOpenSwitcher = () => {
