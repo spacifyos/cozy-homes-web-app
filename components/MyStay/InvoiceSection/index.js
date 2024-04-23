@@ -9,6 +9,7 @@ const InvoiceSection = ({
   onClickSelectCategory,
   onClickToInvoiceList,
   list,
+  onClickToOverviewPage,
 }) => {
   return (
     <div>
@@ -47,7 +48,7 @@ const InvoiceSection = ({
       </div>
 
       {_.map(list, (item) => (
-        <InvoiceComponent t={t} item={item} />
+        <InvoiceComponent t={t} item={item} onClick={onClickToOverviewPage} />
       ))}
     </div>
   );

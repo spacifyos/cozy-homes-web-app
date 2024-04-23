@@ -11,11 +11,7 @@ import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
-const list = [
-  { status: "Paid" },
-  { status: "Paid" },
-  { status: "Paid" },
-];
+const list = [{ status: "Paid" }, { status: "Paid" }, { status: "Paid" }];
 
 const MyStay = () => {
   const router = useRouter();
@@ -50,6 +46,10 @@ const MyStay = () => {
     router.push("/my-invoice");
   };
 
+  const onClickToOverviewPage = () => {
+    router.push(`/my-invoice/1`);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myStay")}
@@ -81,6 +81,7 @@ const MyStay = () => {
           selectedCategory={selectedCategory}
           onClickToInvoiceList={onClickToInvoiceList}
           list={list}
+          onClickToOverviewPage={onClickToOverviewPage}
         />
       </div>
     </CustomHeader>
