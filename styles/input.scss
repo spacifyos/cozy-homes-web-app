@@ -61,6 +61,10 @@
   border-color: $disable-color;
 }
 
+.default-input {
+  @include custom-input($primary-white-color);
+}
+
 .user-input:focus,
 .user-input:focus-within {
   border: 1px solid $disable-color;
@@ -77,12 +81,16 @@
   @include custom-input($primary-white-color);
 }
 
-.default-input {
-  @include custom-input($primary-white-color);
+.resize-input-icon{
+  -webkit-appearance: none;
 }
 
 .resize-input-icon::-webkit-calendar-picker-indicator {
-  width: 20px;
-  height: 20px;
-  display: none;
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
 }

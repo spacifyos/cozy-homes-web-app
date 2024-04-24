@@ -9,6 +9,7 @@ import CustomButton from "@/components/CustomButton";
 import BookingTextArea from "@/components/BookingTextArea";
 import { useState } from "react";
 import DatePicker from "react-date-picker";
+import moment from "moment";
 
 export { getServerSideProps };
 
@@ -17,10 +18,14 @@ const Booking = () => {
   const router = useRouter();
 
   const [dateValue, setDateValue] = useState(new Date());
-  const [valueTime, setValueTime] = useState(new Date());
+  const [timeValue, setTimeValue] = useState(moment(new Date()).format("HH:mm"));
 
   const onChangeDate = (value) => {
     setDateValue(value);
+  };
+
+  const onChangeTime = (e) => {
+    setTimeValue(e.target.value);
   };
 
   const onClickGoBack = () => {
@@ -60,7 +65,6 @@ const Booking = () => {
           </CustomText>
         </div>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
-
           <div className="flex gap-2 items-center pb-5">
             <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
               <CustomImage src={Images.bookingIcon} width={25} height={25} />
@@ -105,10 +109,9 @@ const Booking = () => {
             calendarClassName="custom-date-picker"
             locale="en"
             calendarIcon={
-              <img
-                src="/images/icon/calender_icon.png"
-                alt="Calendar"
-                style={{ width: "25px", height: "25px" }}
+              <CustomImage
+                src={Images.calendarIcon}
+                imageStyle={{ width: 25, height: 25 }}
               />
             }
           />
@@ -117,17 +120,17 @@ const Booking = () => {
             {t("bookAppointment.time")}
           </CustomText>
 
-          <div className="flex booking-input">
+          <div className="flex items-center booking-input relative">
             <input
               className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
               type="time"
+              value={timeValue}
+              onChange={onChangeTime}
             />
 
             <CustomImage
               src={Images.clockIcon}
-              width={25}
-              height={25}
-              className="pr-2"
+              imageStyle={{ width: 25, height: 25, marginRight: 4 }}
             />
           </div>
 
