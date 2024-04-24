@@ -24,6 +24,10 @@ const MyTenancy = ({}) => {
     router.back();
   };
 
+  const onClickToAgreementOverview = (id) => {
+    router.push(`/e-agreement/${id}`);
+  };
+
   const onClickChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
@@ -52,7 +56,10 @@ const MyTenancy = ({}) => {
 
         <TenancyFeeDetail t={t} />
 
-        <EAgreement t={t} />
+        <EAgreement
+          t={t}
+          onClickToAgreementOverview={onClickToAgreementOverview}
+        />
 
         <InsuranceSection t={t} />
 
