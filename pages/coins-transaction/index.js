@@ -6,6 +6,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import ListingCoinsTransaction from "@/components/CoinsTransaction/ListingCoinsTransaction";
+import _ from "lodash";
 
 export { getServerSideProps };
 
