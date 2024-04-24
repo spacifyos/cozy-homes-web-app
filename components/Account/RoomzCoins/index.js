@@ -2,9 +2,10 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 
-const RoomzCoins = ({ t }) => {
+const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
   return (
     <div className="profile-coin-container">
+
       <CustomImage
         src={Images.moreIcon}
         height={25}
@@ -13,7 +14,12 @@ const RoomzCoins = ({ t }) => {
       />
 
       <div className="profile-coin-icon-container">
-        <CustomImage src={Images.logoImage} height={30} width={30} />
+        <CustomImage
+          src={Images.logoImage}
+          height={30}
+          width={30}
+          onClick={onClickToCoinsTransaction}
+        />
       </div>
 
       <CustomText textClassName="disable-text font-size-small">

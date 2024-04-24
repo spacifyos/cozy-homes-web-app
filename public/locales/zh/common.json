@@ -22,7 +22,8 @@
     "myInvoice": "我的发票",
     "myInvoiceOverview": "我的发票概览",
     "bookAppointment": "预约",
-    "appointmentOverview": "预约详情"
+    "appointmentOverview": "预约详情",
+    "coinsTransaction": "钱币交易"
   },
   "general": {},
   "explore": {
@@ -291,5 +292,9 @@
     "thankyou": "谢谢！",
     "viewAppointment": "查看预约",
     "chat": "消息"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "付房租",
+    "paymentForUtility": "付水电费"
   }
 }

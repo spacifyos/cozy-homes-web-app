@@ -22,7 +22,8 @@
     "myInvoice": "Invois Saya",
     "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya",
     "bookAppointment": "Tempah Temujanji",
-    "appointmentOverview": "Butiran Temujanji"
+    "appointmentOverview": "Butiran Temujanji",
+    "coinsTransaction": "Transaksi Syiling"
   },
   "general": {},
   "explore": {
@@ -291,5 +292,9 @@
     "thankyou": "Terima kasih!",
     "viewAppointment": "Lihat Temujanji",
     "chat": "Sembang"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "Bayaran sewa",
+    "paymentForUtility": "Bayaran utiliti"
   }
 }
