@@ -35,7 +35,7 @@ const CustomHeader = ({
             false
           ) : (
             <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage className={"me-5 w-2.5"} src={Images.leftIcon} />
+              <CustomImage className={"me-5 w-2.5 cursor-pointer"} src={Images.leftIcon} />
             </div>
           )}
 

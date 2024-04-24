@@ -7,22 +7,30 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import BookingTextArea from "@/components/BookingTextArea";
-import {useState} from "react";
-import DatePicker from 'react-date-picker';
-import TimePicker from 'react-time-picker'
+import { useState } from "react";
+import DatePicker from "react-date-picker";
+
 export { getServerSideProps };
 
 const Booking = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const [value, onChange] = useState(new Date());
-  const [valueTime, onChangeTime] = useState(new Date());
+
+  const [dateValue, setDateValue] = useState(new Date());
+  const [valueTime, setValueTime] = useState(new Date());
+
+  const onChangeDate = (value) => {
+    setDateValue(value);
+  };
+
   const onClickGoBack = () => {
     router.back();
   };
-  const onClickBookSuccess = ()=>{
-    router.push("/my-appointment/1/appointment-successful")
-  }
+
+  const onClickBookSuccess = () => {
+    router.push("/property-overview/1/appointment-successful");
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.bookAppointment")}
@@ -52,10 +60,12 @@ const Booking = () => {
           </CustomText>
         </div>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
+
           <div className="flex gap-2 items-center pb-5">
             <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
-              <CustomImage src={Images.bookingIcon} width={25} height={25}/>
+              <CustomImage src={Images.bookingIcon} width={25} height={25} />
             </div>
+
             <CustomText textClassName="font-bold font-size-xlarge primary-text">
               {t("bookAppointment.myAppointment")}
             </CustomText>
@@ -66,68 +76,76 @@ const Booking = () => {
           </CustomText>
           <div className="flex gap-2 items-center pb-5">
             <CustomImage
-                src={Images.agentIcon}
-                width={43}
-                className="global-border-radius"
+              src={Images.agentIcon}
+              width={43}
+              className="global-border-radius"
             />
+
             <CustomText textClassName="font-bold font-size-large">
               Razak bin Osman
             </CustomText>
           </div>
+
           <CustomText textClassName="pb-1">
             {t("bookAppointment.date")}
           </CustomText>
+
           <DatePicker
-              calendarAriaLabel="Toggle calendar"
-              clearAriaLabel="Clear value"
-              dayAriaLabel="Day"
-              monthAriaLabel="Month"
-              nativeInputAriaLabel="Date"
-              yearAriaLabel="Year"
-              onChange={onChange}
-              value={value}
-              className=" flex items-center gap-2 booking-input"
-              clearIcon
-              format="dd MMMy"
-              calendarClassName="custom-date-picker"
-              locale="en"
-              calendarIcon={
-                <img
-                    src="/images/icon/calender_icon.png"
-                    alt="Calendar"
-                    style={{ width: "25px", height: "25px" }}
-                />
-              }
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date"
+            yearAriaLabel="Year"
+            onChange={onChangeDate}
+            value={dateValue}
+            className="flex items-center gap-2 booking-input"
+            clearIcon
+            format="dd MMMy"
+            calendarClassName="custom-date-picker"
+            locale="en"
+            calendarIcon={
+              <img
+                src="/images/icon/calender_icon.png"
+                alt="Calendar"
+                style={{ width: "25px", height: "25px" }}
+              />
+            }
           />
 
           <CustomText textClassName="pb-1 pt-5">
             {t("bookAppointment.time")}
           </CustomText>
+
           <div className="flex booking-input">
             <input
-                className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
-                type="time"
+              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
+              type="time"
             />
+
             <CustomImage
-                src={Images.clockIcon}
-                width={25}
-                height={25}
-                className="pr-2"
+              src={Images.clockIcon}
+              width={25}
+              height={25}
+              className="pr-2"
             />
           </div>
+
           <CustomText textClassName="pb-1 pt-5">
             {t("bookAppointment.message")}
           </CustomText>
+
           <BookingTextArea
-              className="pb-3"
-              textareaClassName="primaryWhite-bg-color"
-              placeholder={t("bookAppointment.yourMessageHere")}
+            className="pb-5"
+            textareaClassName="primaryWhite-bg-color"
+            placeholder={t("bookAppointment.yourMessageHere")}
           />
+
           <div className="flex justify-center w-full">
             <CustomButton
-                buttonText={t("bookAppointment.bookAppointment")}
-                buttonClassName="primary-btn w-3/5"
-                onClick={onClickBookSuccess}
+              buttonText={t("bookAppointment.bookAppointment")}
+              buttonClassName="primary-btn w-3/5"
+              onClick={onClickBookSuccess}
             />
           </div>
         </div>

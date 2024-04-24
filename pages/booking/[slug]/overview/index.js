@@ -20,11 +20,12 @@ const BookingOverview = () => {
     if (_.isEqual(paymentSuccess, "true")) {
       setPaymentSuccess(paymentSuccess);
     }
-  }, [router.query]);
+  }, []);
 
   const onClickGoBack = () => {
     router.back();
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.bookingOverview")}

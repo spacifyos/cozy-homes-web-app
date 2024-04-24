@@ -6,9 +6,8 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
-import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
 import BookingInput from "@/components/Booking/BookingInput";
 
@@ -42,9 +41,15 @@ const Booking = () => {
       identity: "other",
     },
   ];
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [value, onChange] = useState(new Date());
+
+  const [dateValue, setDateValue] = useState(new Date());
   const [valueTime, onChangeTime] = useState(new Date());
+
+  const onChangeDate = (value) => {
+    setDateValue(value);
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -134,8 +139,8 @@ const Booking = () => {
             monthAriaLabel="Month"
             nativeInputAriaLabel="Date"
             yearAriaLabel="Year"
-            onChange={onChange}
-            value={value}
+            onChange={onChangeDate}
+            value={dateValue}
             className=" flex items-center gap-2 booking-input"
             clearIcon
             format="dd MMMy"
@@ -175,7 +180,7 @@ const Booking = () => {
             return <MessageTimeLine item={item} />;
           })}
 
-          <div className="flex justify-center pt-3 w-full">
+          <div className="flex justify-center pt-5 w-full">
             <CustomButton
               buttonText={t("bookAppointment.chat")}
               buttonClassName="primary-btn w-3/5"
