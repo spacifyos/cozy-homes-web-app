@@ -22,7 +22,9 @@ const Account = () => {
   const onClickToMyAppointment = () => {
     router.push("/my-appointment");
   };
-
+  const onClickToCoinsTransaction = () => {
+    router.push("/coins-transaction");
+  };
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -34,7 +36,10 @@ const Account = () => {
       <div className="body-container pb-24">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
           <ProfileCard />
-          <RoomzCoins t={t} />
+          <RoomzCoins
+            t={t}
+            onClickToCoinsTransaction={onClickToCoinsTransaction}
+          />
         </div>
 
         <FeatureComponent

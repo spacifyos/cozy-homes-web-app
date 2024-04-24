@@ -20,7 +20,8 @@
     "viewAgreement": "View Agreement",
     "topUpMeter": "Top Up Meter",
     "myInvoice": "My Invoice",
-    "myInvoiceOverview": "My Invoice Overview"
+    "myInvoiceOverview": "My Invoice Overview",
+    "coinsTransaction": "Coins Transaction"
   },
   "general": {},
   "explore": {

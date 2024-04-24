@@ -20,7 +20,8 @@
     "myTenancy": "我的租期",
     "topUpMeter": "充值仪表",
     "myInvoice": "我的发票",
-    "myInvoiceOverview": "我的发票概览"
+    "myInvoiceOverview": "我的发票概览",
+    "coinsTransaction": "钱币交易"
   },
   "general": {},
   "explore": {
