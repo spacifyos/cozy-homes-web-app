@@ -6,7 +6,7 @@ import StatusLabel from "@/components/StatusLabel";
 import StatusBorder from "@/components/StatusBorder";
 import Images from "@/src/utils/Image";
 
-const HelpCenterListingCard = ({ item }) => {
+const HelpCenterListingCard = ({t, item }) => {
   const router = useRouter();
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
@@ -28,7 +28,7 @@ const HelpCenterListingCard = ({ item }) => {
       <div className="flex justify-between">
         <div>
           <CustomText textClassName="font-bold font-size-small primary-text">
-            Request #: {requestNum}
+              {t("helpCenter.request")} #: {requestNum}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xxsmall">
             {request}

@@ -292,5 +292,19 @@
     "thankyou": "Thank You!",
     "viewAppointment": "View Appointment",
     "chat": "Chat"
+  },
+  "helpCenter": {
+    "all": "All",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "new": "New",
+    "critical": "CRITICAL",
+    "request": "Request",
+    "room": "Room 1",
+    "yard": "Yard",
+    "kitchen": "Kitchen",
+    "normal": "NORMAL",
+    "low": "LOW"
   }
 }

@@ -292,5 +292,19 @@
     "thankyou": "Terima kasih!",
     "viewAppointment": "Lihat Temujanji",
     "chat": "Sembang"
+  },
+  "helpCenter": {
+    "all": "Semua",
+    "inProgress": "Sedang Berjalan",
+    "completed": "Selesai",
+    "cancelled": "Dibatalkan",
+    "new": "Baru",
+    "critical": "KRITIS",
+    "request": "Permintaan",
+    "room": "Bilik 1",
+    "yard": "Halaman",
+    "kitchen": "Dapur",
+    "normal": "NORMAL",
+    "low": "RENDAH"
   }
 }
