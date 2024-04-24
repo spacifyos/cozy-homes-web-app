@@ -8,7 +8,8 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useState } from "react";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
-import DatePicker from "react-date-picker";
+import moment from "moment";
+import _ from "lodash";
 
 export { getServerSideProps };
 
@@ -42,13 +43,6 @@ const Booking = () => {
   ];
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const [dateValue, setDateValue] = useState(new Date());
-  const [valueTime, onChangeTime] = useState(new Date());
-
-  const onChangeDate = (value) => {
-    setDateValue(value);
-  };
 
   const onClickGoBack = () => {
     router.back();
@@ -95,7 +89,7 @@ const Booking = () => {
               className="absolute right-0"
               onClick={onClickDropdown}
             />
-            {isDropdownOpen && (
+            {isDropdownOpen ? (
               <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 primaryWhite-bg-color absolute right-0 top-10">
                 <li>
                   <a className="font-size-small primary-text">Reschedule</a>
@@ -104,6 +98,8 @@ const Booking = () => {
                   <a className="font-size-small">Cancel</a>
                 </li>
               </ul>
+            ) : (
+              false
             )}
 
             <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
@@ -131,45 +127,21 @@ const Booking = () => {
             {t("bookAppointment.date")}
           </CustomText>
 
-          <DatePicker
-            calendarAriaLabel="Toggle calendar"
-            clearAriaLabel="Clear value"
-            dayAriaLabel="Day"
-            monthAriaLabel="Month"
-            nativeInputAriaLabel="Date"
-            yearAriaLabel="Year"
-            onChange={onChangeDate}
-            value={dateValue}
-            className=" flex items-center gap-2 booking-input"
-            clearIcon
-            format="dd MMMy"
-            calendarClassName="custom-date-picker"
-            locale="en"
-            calendarIcon={
-              <img
-                src="/images/icon/calender_icon.png"
-                alt="Calendar"
-                style={{ width: "25px", height: "25px" }}
-              />
-            }
+          <input
+            value={moment(new Date()).format("DD MMM YYYY")}
+            className="booking-input bg-color"
+            disabled
           />
 
           <CustomText textClassName="pb-1 pt-5">
             {t("bookAppointment.time")}
           </CustomText>
 
-          <div className="flex booking-input">
-            <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
-              type="time"
-            />
-            <CustomImage
-              src={Images.clockIcon}
-              width={25}
-              height={25}
-              className="pr-2"
-            />
-          </div>
+          <input
+            value={moment(new Date()).format("hh:mm A")}
+            className="booking-input bg-color"
+            disabled
+          />
 
           <CustomText textClassName="pb-2 pt-5">
             {t("bookAppointment.message")}
@@ -179,7 +151,7 @@ const Booking = () => {
             return <MessageTimeLine item={item} />;
           })}
 
-          <div className="flex justify-center pt-5 w-full">
+          <div className="flex justify-center pt-2 w-full">
             <CustomButton
               buttonText={t("bookAppointment.chat")}
               buttonClassName="primary-btn w-3/5"

@@ -18,7 +18,9 @@ const Booking = () => {
   const router = useRouter();
 
   const [dateValue, setDateValue] = useState(new Date());
-  const [timeValue, setTimeValue] = useState(moment(new Date()).format("HH:mm"));
+  const [timeValue, setTimeValue] = useState(
+    moment(new Date()).format("hh:mm"),
+  );
 
   const onChangeDate = (value) => {
     setDateValue(value);

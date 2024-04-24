@@ -7,14 +7,8 @@ const MessageTimeLine = ({ t, item }) => {
   const img = _.get(item, ["img"], "");
   const name = _.get(item, ["name"], "");
   const chat = _.get(item, ["chat"], "");
-  const getIconByRole = (item) => {
-    const identity = _.get(item, ["identity"], "");
-    if (identity === "agent") {
-      return Images.ellipseRedIcon;
-    } else {
-      return Images.ellipseGreenIcon;
-    }
-  };
+  const identity = _.get(item, ["identity"], "");
+
   return (
     <div className="grid grid-cols-12 h-full pb-3">
       <div className="col-span-2">
@@ -23,7 +17,15 @@ const MessageTimeLine = ({ t, item }) => {
         </CustomText>
       </div>
       <div className="flex flex-col col-span-1">
-        <CustomImage src={getIconByRole(item)} width={15} height={15} />
+        <CustomImage
+          src={
+            _.isEqual(identity, "agent")
+              ? Images.ellipseRedIcon
+              : Images.ellipseGreenIcon
+          }
+          width={15}
+          height={15}
+        />
         <div className="divider divider-horizontal pt-1 h-full"></div>
       </div>
       <div className="flex-col flex w-full col-span-9">
@@ -31,7 +33,7 @@ const MessageTimeLine = ({ t, item }) => {
           <CustomImage src={img} width={30} className="rounded-3xl" />
           <CustomText textClassName="w-full">{name}</CustomText>
         </div>
-        <CustomText textClassName="bg-color p-1 px-3 global-border-radius disable-text">
+        <CustomText textClassName="bg-color p-1 px-3 global-border-radius disable-text font-size-small">
           {chat}
         </CustomText>
       </div>
