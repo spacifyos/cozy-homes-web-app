@@ -1,12 +1,8 @@
 import CustomText from "@/components/CustomText";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
-import CustomLabelValue from "@/components/CustomLabelValue";
-import StatusLabel from "@/components/StatusLabel";
 import _ from "lodash";
 import EAgreementCard from "@/components/EAgreement/EAgreementCard";
 
-const EAgreement = ({ t }) => {
+const EAgreement = ({ t, onClickToAgreementOverview }) => {
   return (
     <div className="global-box-shadow global-border-radius primaryWhite-bg-color mb-7 pt-4 pb-1 px-4">
       <CustomText textClassName="disable-text font-size-small">
@@ -19,7 +15,7 @@ const EAgreement = ({ t }) => {
       ></div>
 
       {_.map(Array(2), (item) => (
-        <EAgreementCard t={t} />
+        <EAgreementCard t={t} onClickToDetail={onClickToAgreementOverview} />
       ))}
     </div>
   );

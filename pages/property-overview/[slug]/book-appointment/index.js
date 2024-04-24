@@ -17,11 +17,15 @@ const Booking = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
 
-  const [dateValue, setDateValue] = useState(new Date());
-  const [timeValue, setTimeValue] = useState(moment(new Date()).format("HH:mm"));
+  const [dateValue, setDateValue] = useState(
+    moment(new Date()).format("YYYY-MM-DD"),
+  );
+  const [timeValue, setTimeValue] = useState(
+    moment(new Date()).format("hh:mm"),
+  );
 
-  const onChangeDate = (value) => {
-    setDateValue(value);
+  const onChangeDate = (e) => {
+    setDateValue(e.target.value);
   };
 
   const onChangeTime = (e) => {
@@ -94,27 +98,19 @@ const Booking = () => {
             {t("bookAppointment.date")}
           </CustomText>
 
-          <DatePicker
-            calendarAriaLabel="Toggle calendar"
-            clearAriaLabel="Clear value"
-            dayAriaLabel="Day"
-            monthAriaLabel="Month"
-            nativeInputAriaLabel="Date"
-            yearAriaLabel="Year"
-            onChange={onChangeDate}
-            value={dateValue}
-            className="flex items-center gap-2 booking-input"
-            clearIcon
-            format="dd MMMy"
-            calendarClassName="custom-date-picker"
-            locale="en"
-            calendarIcon={
-              <CustomImage
-                src={Images.calendarIcon}
-                imageStyle={{ width: 25, height: 25 }}
-              />
-            }
-          />
+          <div className="flex items-center booking-input relative">
+            <input
+              className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
+              type="date"
+              value={dateValue}
+              onChange={onChangeDate}
+            />
+
+            <CustomImage
+              src={Images.calendarIcon}
+              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
+            />
+          </div>
 
           <CustomText textClassName="pb-1 pt-5">
             {t("bookAppointment.time")}
@@ -130,7 +126,7 @@ const Booking = () => {
 
             <CustomImage
               src={Images.clockIcon}
-              imageStyle={{ width: 25, height: 25, marginRight: 4 }}
+              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
 

@@ -3,7 +3,7 @@ import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 
 const BookingInput = ({
-  className,
+  className = "",
   placeholder,
   errorMessage,
   title,
@@ -13,6 +13,7 @@ const BookingInput = ({
   type = "text",
   value,
   onChange,
+  disabled = false,
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
@@ -25,6 +26,7 @@ const BookingInput = ({
           name={name}
           value={value}
           onChange={onChange}
+          disabled={disabled}
           required
         />
         {_.isEmpty(errorMessage) ? (

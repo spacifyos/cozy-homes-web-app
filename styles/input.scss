@@ -16,31 +16,29 @@
     outline: none;
     outline-offset: unset;
   }
-
 }
-  input {
-    width: 100%;
-    color: $primary-black-color;
-    -moz-appearance: textfield;
-  }
+input {
+  width: 100%;
+  color: $primary-black-color;
+  -moz-appearance: textfield;
+}
 
-  ::placeholder {
-    @extend .font-size-small;
-    font-style: italic;
-    opacity: 1;
-  }
+::placeholder {
+  @extend .font-size-small;
+  font-style: italic;
+  opacity: 1;
+}
 
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-  input:focus {
-    outline: none;
-    outline-offset: unset;
-  }
-
+input:focus {
+  outline: none;
+  outline-offset: unset;
+}
 
 .meter-input::placeholder {
   @extend .font-size-small;
@@ -81,8 +79,12 @@
   @include custom-input($primary-white-color);
 }
 
-.resize-input-icon{
+.resize-input-icon {
   -webkit-appearance: none;
+}
+
+.resize-input-icon::-webkit-date-and-time-value {
+  text-align: left;
 }
 
 .resize-input-icon::-webkit-calendar-picker-indicator {
@@ -93,4 +95,5 @@
   width: 100%;
   position: absolute;
   background: transparent;
+  z-index: 999;
 }
