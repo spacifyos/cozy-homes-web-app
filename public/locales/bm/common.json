@@ -276,5 +276,9 @@
     "roomzCoinsEarned": "Diperolehi Koin Roomz",
     "paymentCompleted": "Pembayaran Berjaya",
     "congratulations": "Tahniah!"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "Bayaran sewa",
+    "paymentForUtility": "Bayaran utiliti"
   }
 }

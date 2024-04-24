@@ -276,5 +276,9 @@
     "roomzCoinsEarned": "获得 Roomz 币",
     "paymentCompleted": "支付完成",
     "congratulations": "恭喜！"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "付房租",
+    "paymentForUtility": "付水电费"
   }
 }

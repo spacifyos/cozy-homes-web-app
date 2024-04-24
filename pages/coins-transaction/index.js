@@ -9,35 +9,36 @@ import ListingCoinsTransaction from "@/components/CoinsTransaction/ListingCoinsT
 
 export { getServerSideProps };
 
-const lists = [
-  {
-    date: "15 Dec 2022, 2.33pm",
-    title: "Payment for rent",
-    price: "RM760.00",
-    coins: "380",
-  },
-  {
-    date: "15 Dec 2022, 1.48pm",
-    title: "Payment for utility",
-    price: "RM120.00",
-    coins: "60",
-  },
-  {
-    date: "15 Dec 2022, 2.33pm",
-    title: "Payment for rent",
-    price: "RM760.00",
-    coins: "380",
-  },
-  {
-    date: "15 Dec 2022, 1.48pm",
-    title: "Payment for utility",
-    price: "RM120.00",
-    coins: "60",
-  },
-];
+
 
 const CoinsTransaction = () => {
   const { t } = useTranslation("common");
+  const lists = [
+    {
+      date: "15 Dec 2022, 2.33pm",
+      title: t("coinsTransaction.paymentForRent"),
+      price: "RM760.00",
+      coins: "380",
+    },
+    {
+      date: "15 Dec 2022, 1.48pm",
+      title: t("coinsTransaction.paymentForUtility"),
+      price: "RM120.00",
+      coins: "60",
+    },
+    {
+      date: "15 Dec 2022, 2.33pm",
+      title: t("coinsTransaction.paymentForRent"),
+      price: "RM760.00",
+      coins: "380",
+    },
+    {
+      date: "15 Dec 2022, 1.48pm",
+      title: t("coinsTransaction.paymentForUtility"),
+      price: "RM120.00",
+      coins: "60",
+    },
+  ];
   const router = useRouter();
   const onClickGoBack = () => {
     router.back();

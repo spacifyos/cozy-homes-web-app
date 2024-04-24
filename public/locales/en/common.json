@@ -276,5 +276,9 @@
     "roomzCoinsEarned": "Roomz Coins earned",
     "paymentCompleted": "Payment Completed",
     "congratulations": "Congratulations!"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "Payment for rent",
+    "paymentForUtility": "Payment for utility"
   }
 }
