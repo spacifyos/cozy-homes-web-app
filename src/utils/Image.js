@@ -131,7 +131,10 @@ const Image = {
   calendarIcon:"/images/icon/calender_icon.png",
   ellipseGreenIcon:"/images/icon/ellipse_green_icon.png",
   ellipseRedIcon:"/images/icon/ellipse_red_icon.png",
-  clockIcon:"/images/icon/clock_icon.png"
+  clockIcon:"/images/icon/clock_icon.png",
+  plusIcon:"/images/icon/plus_icon.png",
+  buildingIconActive:"/images/icon/building_icon_active.png",
+  spaceIcon:"/images/icon/space_icon.png"
 };
 
 export default { ...Image };
