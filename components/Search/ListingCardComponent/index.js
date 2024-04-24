@@ -5,16 +5,17 @@ import {useRouter} from "next/router";
 
 const ListingCardComponent = ({ t }) => {
   const router = useRouter();
-  const onClickToPropertyDetail = () => {
+  const onClickToPropertyOverview = () => {
     router.push("/property-overview/1");
   };
+
   return (
     <div className="">
       <CustomImage
         src={Images.filterDefaultImage}
         width="100%"
         className="rounded-2xl mb-1 global-box-shadow"
-        onClick={onClickToPropertyDetail}
+        onClick={onClickToPropertyOverview}
       />
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
         M Vertica
