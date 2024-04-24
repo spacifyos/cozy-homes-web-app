@@ -11,53 +11,37 @@ import MeterFeature from "@/components/MyMeter/MeterFeature";
 import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import _ from "lodash";
+import MeterUsageComponent from "@/components/MyMeter/MeterUsageComponent";
 
 export { getServerSideProps };
 
 const MyMeter = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+
   const onClickGoBack = () => {
-    router.push("/my-stay");
+    router.back();
   };
-  const [selectChange, setSelectChange] = useState("Daily");
-  const onClickChange = (selected) => {
-    setSelectChange(selected);
+
+  const onClickToMeterOverview = () => {
+    router.push(`/my-meter/1`);
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myMeter")}
       hideBgImage
       onClickGoBack={onClickGoBack}
+      rightButtonIcon={Images.filterProIcon}
     >
       <div className="pb-1 global-horizontal-padding">
-        <div className="flex flex-row justify-between">
-          <CustomText textClassName="section-title">
-            {t("myMeter.todayUsage")}
-          </CustomText>
-          <CustomImage
-            className="mr-4"
-            src={Images.refreshIcon}
-            height={30}
-            width={30}
+        {_.map(Array(12), (item) => (
+          <MeterUsageComponent
+            t={t}
+            onClickToMeterOverview={onClickToMeterOverview}
           />
-        </div>
-
-        <div className="radial-container pb-7">
-          <MeterRadialProgressComponent t={t} />
-        </div>
-
-        <MeterDetail t={t} />
-
-        <BalanceUnit t={t} />
-
-        <MeterFeature t={t} />
-
-        <MeterUsageSection
-          t={t}
-          onClickChange={onClickChange}
-          selectChange={selectChange}
-        />
+        ))}
       </div>
     </CustomHeader>
   );

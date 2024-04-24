@@ -26,9 +26,13 @@ const InvoiceOverview = () => {
     setOpenDownloadModal(!openDownloadModal);
   };
 
+  const onClickToPayment = () => {
+    router.push(`/my-invoice/1/payment-successful`);
+  };
+
   return (
     <CustomHeader
-      pageTitle="My Invoice Overview"
+      pageTitle={t("pageTitle.myInvoiceOverview")}
       onClickGoBack={onClickGoBack}
       hideBgImage
       rightContent={
@@ -42,7 +46,7 @@ const InvoiceOverview = () => {
         <div className="primary-bg-color p-2 global-border-radius absolute top-0">
           <CustomImage
             src={Images.invoiceIcon}
-            imageStyle={{ width: 30, height: 30 }}
+            imageStyle={{ width: 35, height: 35 }}
           />
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
@@ -65,23 +69,31 @@ const InvoiceOverview = () => {
           ></div>
 
           <CustomLabelValue
-            value="E-Sign & E-Stamp"
+            value="John Doe"
             label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
             value="M Vertica, A-01-01, Room 1"
             label={t("invoiceOverview.property")}
           />
+
+          <div className="flex justify-between items-center">
+            <CustomLabelValue
+              value="19 Aug 2023"
+              label={t("invoiceOverview.invoiceDate")}
+            />
+            <CustomLabelValue
+              value="30 Nov 2023"
+              label={t("invoiceOverview.dueDate")}
+            />
+          </div>
+
           <CustomLabelValue
-            value="19 Aug 2023"
-            label={t("invoiceOverview.invoiceDate")}
-          />
-          <CustomLabelValue
-            value="19 Aug 2023 -18 Aug 2023"
+            value="ABCXXXXXXXXXXXXXXX"
             label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
-            value="19 Aug 2023 -18 Aug 2023"
+            value="Scheduled Manual Pay"
             label={t("invoiceOverview.schedule")}
           />
 
@@ -142,9 +154,11 @@ const InvoiceOverview = () => {
             <CustomButton
               buttonText={t("invoiceOverview.payNow")}
               buttonClassName="primary-btn"
+              onClick={onClickToPayment}
             />
           </div>
         </div>
+
         {openDownloadModal ? (
           <div
             className="absolute right-4 global-border-radius global-box-shadow primaryWhite-bg-color max-w-36 min-w-10 z-50 global-border"

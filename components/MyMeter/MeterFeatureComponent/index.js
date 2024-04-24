@@ -3,9 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { useEffect, useRef, useState } from "react";
 
-const MeterFeatureComponent = ({ item }) => {
-  const name = _.get(item, ["name"], "");
-  const icon = _.get(item, ["icon"], "");
+const MeterFeatureComponent = ({ name, icon, onClick }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -17,7 +15,8 @@ const MeterFeatureComponent = ({ item }) => {
 
   return (
     <div
-      className="flex flex-col justify-center itemFs-center text-center"
+      className="flex flex-col justify-center items-center text-center cursor-pointer"
+      onClick={onClick}
       ref={targetRef}
     >
       <div

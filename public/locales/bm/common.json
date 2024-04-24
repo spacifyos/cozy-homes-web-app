@@ -7,6 +7,7 @@
   "pageTitle": {
     "myStay": "Penginapan Saya",
     "myMeter": "Meter Saya",
+    "myMeterOverview": "Gambaran Meter Saya",
     "myAppointment": "Lantikan Saya",
     "account": "Akaun",
     "propertyDetail": "Gambaran Hartanah",
@@ -18,6 +19,8 @@
     "eAgreementOverview": "Gambaran Keseluruhan Perjanjian Elektronik",
     "viewAgreement": "Lihat Perjanjian",
     "topUpMeter": "Isi Meter",
+    "myInvoice": "Invois Saya",
+    "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya",
     "bookAppointment": "Tempah Temujanji",
     "appointmentOverview": "Butiran Temujanji"
   },
@@ -74,9 +77,10 @@
     "days": "hari",
     "paid": "Dibayar",
     "unpaid": "Belum Dibayar",
-    "smartLock": "kunci pintar"
+    "smartLock": "kunci pintar",
+    "viewMore": "Lihat Lebih Banyak"
   },
-  "myMeter": {
+  "myMeterOverview": {
     "todayUsage": "Penggunaan Hari Ini",
     "unit": "unit",
     "serialNumber": "Nombor Siri",
@@ -230,7 +234,7 @@
     "tenantName": "Nama Penyewa",
     "rentalFee": "Yuran Sewa",
     "period": "Tempoh",
-    "notActivated":"tidak diaktifkan",
+    "notActivated": "tidak diaktifkan",
     "noInsuranceAvailable": "Tiada Insurans Yang Tersedia",
     "noEagreementAvailable": "Tiada Perjanjian Elektronik Yang Tersedia",
     "eAgreement": "Perjanjian Elektronik",
@@ -268,6 +272,11 @@
     "cancel": "Batal",
     "downloadInvoice": "Muat Turun Invois",
     "downloadReceipt": "Muat Turun Resit"
+  },
+  "invoiceSuccessful": {
+    "roomzCoinsEarned": "Diperolehi Koin Roomz",
+    "paymentCompleted": "Pembayaran Berjaya",
+    "congratulations": "Tahniah!"
   },
   "bookAppointment": {
     "myAppointment": "Temujanji Saya",

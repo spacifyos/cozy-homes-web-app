@@ -14,14 +14,14 @@ const TenancyFeeDetail = ({ t }) => {
   ];
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-5">
-      <CustomText textClassName="disable-text font-size-small pb-2">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color px-4 pt-4 pb-2 mb-7">
+      <CustomText textClassName="disable-text font-size-small">
         {t("myTenancy.otherInformation")}
       </CustomText>
 
       <div className="divider-line" style={{ marginTop:10, marginBottom:10 }}></div>
 
-      <div className="flex flex-col justify-between items-center pt-2">
+      <div className="flex flex-col justify-between items-center">
         {_.map(FeeLists, (item) => {
           return <TenancyFeeComponent item={item} />;
         })}

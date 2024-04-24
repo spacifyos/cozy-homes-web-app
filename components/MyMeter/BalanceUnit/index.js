@@ -6,7 +6,7 @@ const BalanceUnit = ({ t }) => {
     <div className="balance-container">
       <div className="flex justify-center items-center">
         <CustomText textClassName="font-size-normal">
-          {t("myMeter.balanceUnit")}:
+          {t("myMeterOverview.balanceUnit")}:
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold pl-2">
           9999999
@@ -14,7 +14,7 @@ const BalanceUnit = ({ t }) => {
       </div>
 
       <CustomText textClassName="disable-text font-size-xxsmall italic">
-        {t("myMeter.lastConnectedAt")}: 15 Dec 2022, 2:15pm
+        {t("myMeterOverview.lastConnectedAt")}: 15 Dec 2022, 2:15pm
       </CustomText>
     </div>
   );

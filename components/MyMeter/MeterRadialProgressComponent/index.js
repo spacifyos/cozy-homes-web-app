@@ -38,7 +38,7 @@ const MeterRadialProgressComponent = ({ t }) => {
           </CustomText>
 
           <CustomText textClassName="font-size-xxsmall disable-text line-clamp-1">
-            {t("myMeter.unit")}
+            {t("myMeterOverview.unit")}
           </CustomText>
         </div>
 

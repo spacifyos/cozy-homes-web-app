@@ -14,30 +14,34 @@ import { useState } from "react";
 
 export { getServerSideProps };
 
-const MyMeter = () => {
+const MyMeterOverview = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const [selectChange, setSelectChange] = useState("Daily");
 
   const onClickGoBack = () => {
     router.push("/my-stay");
   };
 
+  const [selectChange, setSelectChange] = useState("Daily");
+
   const onClickChange = (selected) => {
     setSelectChange(selected);
   };
 
+  const onClickToTopUpMeter = () => {
+    router.push("/my-meter/1/top-up-meter");
+  };
+
   return (
     <CustomHeader
-      pageTitle={t("pageTitle.myMeter")}
+      pageTitle={t("pageTitle.myMeterOverview")}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      hideRightButton
     >
-      <div className="pb-5 global-horizontal-padding">
-        <div className="flex justify-between">
+      <div className="pb-1 global-horizontal-padding">
+        <div className="flex flex-row justify-between">
           <CustomText textClassName="section-title">
-            {t("myMeter.todayUsage")}
+            {t("myMeterOverview.todayUsage")}
           </CustomText>
           <CustomImage
             className="mr-4"
@@ -55,7 +59,7 @@ const MyMeter = () => {
 
         <BalanceUnit t={t} />
 
-        <MeterFeature t={t} />
+        <MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />
 
         <MeterUsageSection
           t={t}
@@ -67,4 +71,4 @@ const MyMeter = () => {
   );
 };
 
-export default withTranslation("common")(MyMeter);
+export default withTranslation("common")(MyMeterOverview);

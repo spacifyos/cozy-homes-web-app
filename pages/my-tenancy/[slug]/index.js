@@ -41,17 +41,23 @@ const MyTenancy = ({}) => {
       rightButtonIcon={Images.downloadIcon}
       rightSecondButtonIcon={Images.shareIcon}
     >
-      <div className="body-container pb-5">
+      <div className="body-container pb-4">
         <TenancyUserSection t={t} />
+
         <TenancyDetail
           t={t}
           onClickChangeAutoPay={onClickChangeAutoPay}
           isChecked={isChecked}
         />
+
         <TenancyFeeDetail t={t} />
+
         <EAgreement t={t} />
+
         <InsuranceSection t={t} />
+
         <UnsubscribeAutoPayModal t={t} />
+
         <SubscribeAutoPayModal t={t} />
       </div>
     </CustomHeader>

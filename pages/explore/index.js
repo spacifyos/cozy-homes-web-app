@@ -52,7 +52,7 @@ function Home() {
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
     setOpenSwitcher(false);
-    router.push({ pathname, query }, asPath, { locale: newLocale });
+    router.replace({ pathname, query }, asPath, { locale: newLocale });
   };
 
   useEffect(() => {
@@ -69,8 +69,9 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyDetail = () => {
+  const onClickToPropertyOverview = () => {
     router.push("/property-overview/1");
+  };
 
   const onClickOpenSwitcher = () => {
     setOpenSwitcher(!openSwitcher);

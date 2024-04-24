@@ -9,9 +9,9 @@ const InvoiceComponent = ({ t, item, onClick }) => {
   const status = _.get(item, ["status"], "");
 
   return (
-    <div className="invoice-container" onClick={onClick}>
+    <div className="invoice-container">
       <div className="flex items-center">
-        <div className="invoice-icon-container">
+        <div className="invoice-icon-container cursor-pointer" onClick={onClick}>
           <CustomImage
             src={Images.invoiceIcon}
             imageStyle={{ width: 35, height: 35 }}

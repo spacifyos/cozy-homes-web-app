@@ -9,6 +9,7 @@ const InvoiceSection = ({
   onClickSelectCategory,
   onClickToInvoiceList,
   list,
+  onClickToOverviewPage,
 }) => {
   return (
     <div>
@@ -42,12 +43,12 @@ const InvoiceSection = ({
           textClassName="font-size-small cursor-pointer"
           onClick={onClickToInvoiceList}
         >
-          {"View more"}
+          {t("myStay.viewMore")}
         </CustomText>
       </div>
 
       {_.map(list, (item) => (
-        <InvoiceComponent t={t} item={item} />
+        <InvoiceComponent t={t} item={item} onClick={onClickToOverviewPage} />
       ))}
     </div>
   );

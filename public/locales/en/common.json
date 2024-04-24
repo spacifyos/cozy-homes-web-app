@@ -7,6 +7,7 @@
   "pageTitle": {
     "myStay": "My Stay",
     "myMeter": "My Meter",
+    "myMeterOverview": "My Meter Overview",
     "myAppointment": "My Appointment",
     "account": "Account",
     "propertyDetail": "Property Overview",
@@ -18,6 +19,8 @@
     "eAgreementOverview": "E-Agreement Overview",
     "viewAgreement": "View Agreement",
     "topUpMeter": "Top Up Meter",
+    "myInvoice": "My Invoice",
+    "myInvoiceOverview": "My Invoice Overview",
     "bookAppointment": "Book Appointment",
     "appointmentOverview": "Appointment Overview"
   },
@@ -74,9 +77,10 @@
     "days": "days",
     "paid": "Paid",
     "unpaid": "Unpaid",
-    "smartLock": "Smart Lock"
+    "smartLock": "Smart Lock",
+    "viewMore": "View More"
   },
-  "myMeter": {
+  "myMeterOverview": {
     "todayUsage": "Today Usage",
     "unit": "unit",
     "serialNumber": "Serial Number",
@@ -268,6 +272,11 @@
     "cancel": "Cancel",
     "downloadInvoice": "Download Invoice",
     "downloadReceipt": "Download Receipt"
+  },
+  "invoiceSuccessful": {
+    "roomzCoinsEarned": "Roomz Coins earned",
+    "paymentCompleted": "Payment Completed",
+    "congratulations": "Congratulations!"
   },
   "bookAppointment": {
     "myAppointment": "My Appointment",
