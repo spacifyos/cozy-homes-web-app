@@ -10,7 +10,7 @@
     "myMeterOverview": "Gambaran Meter Saya",
     "myAppointment": "Lantikan Saya",
     "account": "Akaun",
-    "propertyDetail": "Perincian Hartanah",
+    "propertyDetail": "Gambaran Hartanah",
     "search": "Cari",
     "myTenancy": "Penyewaan Saya",
     "bookingOverview": "Gambaran Tempahan",
@@ -21,6 +21,8 @@
     "topUpMeter": "Isi Meter",
     "myInvoice": "Invois Saya",
     "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya",
+    "bookAppointment": "Tempah Temujanji",
+    "appointmentOverview": "Butiran Temujanji",
     "coinsTransaction": "Transaksi Syiling"
   },
   "general": {},
@@ -276,6 +278,20 @@
     "roomzCoinsEarned": "Diperolehi Koin Roomz",
     "paymentCompleted": "Pembayaran Berjaya",
     "congratulations": "Tahniah!"
+  },
+  "bookAppointment": {
+    "myAppointment": "Temujanji Saya",
+    "appointmentWith": "Temujanji Dengan",
+    "date": "Tarikh",
+    "selectDate": "Pilih Tarikh",
+    "time": "Masa",
+    "selectTime": "Pilih Masa",
+    "message": "Mesej",
+    "yourMessageHere": "Mesej Anda Di Sini",
+    "bookAppointment": "Tempah Temujanji",
+    "thankyou": "Terima kasih!",
+    "viewAppointment": "Lihat Temujanji",
+    "chat": "Sembang"
   },
   "coinsTransaction": {
     "paymentForRent": "Bayaran sewa",

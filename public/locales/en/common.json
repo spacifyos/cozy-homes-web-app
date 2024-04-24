@@ -10,7 +10,7 @@
     "myMeterOverview": "My Meter Overview",
     "myAppointment": "My Appointment",
     "account": "Account",
-    "propertyDetail": "Property Detail",
+    "propertyDetail": "Property Overview",
     "search": "Search",
     "myTenancy": "My Tenancy",
     "bookingOverview": "Booking Overview",
@@ -21,6 +21,8 @@
     "topUpMeter": "Top Up Meter",
     "myInvoice": "My Invoice",
     "myInvoiceOverview": "My Invoice Overview",
+    "bookAppointment": "Book Appointment",
+    "appointmentOverview": "Appointment Overview",
     "coinsTransaction": "Coins Transaction"
   },
   "general": {},
@@ -276,6 +278,20 @@
     "roomzCoinsEarned": "Roomz Coins earned",
     "paymentCompleted": "Payment Completed",
     "congratulations": "Congratulations!"
+  },
+  "bookAppointment": {
+    "myAppointment": "My Appointment",
+    "appointmentWith": "Appointment With",
+    "date": "Date",
+    "selectDate": "Select Date",
+    "time": "Time",
+    "selectTime": "Select Time",
+    "message": "Message",
+    "yourMessageHere": "Your Message Here",
+    "bookAppointment": "Book Appointment",
+    "thankyou": "Thank You!",
+    "viewAppointment": "View Appointment",
+    "chat": "Chat"
   },
   "coinsTransaction": {
     "paymentForRent": "Payment for rent",

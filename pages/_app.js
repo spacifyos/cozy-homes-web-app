@@ -12,6 +12,8 @@ import "@/styles/globals.scss";
 import "react-multi-carousel/lib/styles.css";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-date-picker/dist/DatePicker.css';
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");

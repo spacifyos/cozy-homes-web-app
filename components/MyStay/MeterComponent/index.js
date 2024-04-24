@@ -74,8 +74,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
         </div>
 
         <CustomButton
-          buttonClassName="col-span-4 primary-btn"
-          buttonStyles={{ height: "100%" }}
+          buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
           onClick={onClickTopUp}

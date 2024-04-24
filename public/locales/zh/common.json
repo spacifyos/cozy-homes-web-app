@@ -10,7 +10,7 @@
     "myMeterOverview": "我的电子表概览",
     "account": "账户",
     "myAppointment": "我的预约",
-    "propertyDetail": "房子信息",
+    "propertyDetail": "房子概览",
     "search": "搜索",
     "bookingOverview": "预订概览",
     "booking": "预订",
@@ -18,9 +18,11 @@
     "eAgreementOverview": "电子协议概览",
     "viewAgreement": "查看协议",
     "myTenancy": "我的租期",
-    "topUpMeter": "充值仪表",
+    "topUpMeter": "充值电子表",
     "myInvoice": "我的发票",
     "myInvoiceOverview": "我的发票概览",
+    "bookAppointment": "预约",
+    "appointmentOverview": "预约详情",
     "coinsTransaction": "钱币交易"
   },
   "general": {},
@@ -276,6 +278,20 @@
     "roomzCoinsEarned": "获得 Roomz 币",
     "paymentCompleted": "支付完成",
     "congratulations": "恭喜！"
+  },
+  "bookAppointment": {
+    "myAppointment": "我的预约",
+    "appointmentWith": "与谁预约",
+    "date": "日期",
+    "selectDate": "选择日期",
+    "time": "时间",
+    "selectTime": "选择时间",
+    "message": "留言",
+    "yourMessageHere": "请输入您的留言",
+    "bookAppointment": "预约",
+    "thankyou": "谢谢！",
+    "viewAppointment": "查看预约",
+    "chat": "消息"
   },
   "coinsTransaction": {
     "paymentForRent": "付房租",

@@ -3,7 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import propertyDetail from "@/pages/property-overview/[slug]";
 
-const AgentSection = ({ t, onClickBooking }) => {
+const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
   return (
     <div className="agent-section-container">
       <div
@@ -38,13 +38,15 @@ const AgentSection = ({ t, onClickBooking }) => {
           </div>
 
           <div className="flex gap-3 items-center flex-2 pr-1">
-            <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
-              <CustomImage src={Images.scheduleIcon} width={28} />
+            <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
+              <CustomImage src={Images.bookingIconActive} width={28}
+              onClick={onClickToBookAppointment}
+              />
             </div>
-            <div className="p-1 global-box-shadow global-border-radius agent-section-icon">
+            <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
               <CustomImage src={Images.callIcon} width={28} />
             </div>
-            <div className="global-box-shadow global-border-radius agent-section-icon">
+            <div className="global-box-shadow global-border-radius agent-section-icon cursor-pointer">
               <CustomImage src={Images.whatsappIcon} width={45} />
             </div>
           </div>
