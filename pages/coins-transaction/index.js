@@ -9,8 +9,6 @@ import ListingCoinsTransaction from "@/components/CoinsTransaction/ListingCoinsT
 
 export { getServerSideProps };
 
-
-
 const CoinsTransaction = () => {
   const { t } = useTranslation("common");
   const lists = [
@@ -39,10 +37,13 @@ const CoinsTransaction = () => {
       coins: "60",
     },
   ];
+
   const router = useRouter();
+
   const onClickGoBack = () => {
     router.back();
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.coinsTransaction")}
@@ -50,23 +51,21 @@ const CoinsTransaction = () => {
       rightButtonIcon={Images.filterProIcon}
       onClickGoBack={onClickGoBack}
     >
-      <div className="body-container pb-24">
-        <div className="flex justify-center items-center pb-10">
-          <div className="profile-coin-container w-48">
-            <div className="profile-coin-icon-container">
-              <CustomImage src={Images.logoImage} height={30} width={30} />
-            </div>
+      <div className="body-container flex flex-col justify-center items-center">
+        <div className="profile-coin-container w-1/2 mb-7">
+          <div className="profile-coin-icon-container">
+            <CustomImage src={Images.logoImage} height={30} width={30} />
+          </div>
 
-            <CustomText textClassName="disable-text font-size-small">
-              {t("account.roomzCoins")}
+          <CustomText textClassName="disable-text font-size-small">
+            {t("account.roomzCoins")}
+          </CustomText>
+
+          <div className="flex items-center">
+            <CustomText textClassName="primary-text font-size-xxlarge font-bold pr-2">
+              5,123
             </CustomText>
-
-            <div className="flex items-center">
-              <CustomText textClassName="primary-text font-size-xxlarge font-bold pr-2">
-                5,123
-              </CustomText>
-              <CustomImage src={Images.refreshIcon} height={20} width={20} />
-            </div>
+            <CustomImage src={Images.refreshIcon} height={20} width={20} />
           </div>
         </div>
 
