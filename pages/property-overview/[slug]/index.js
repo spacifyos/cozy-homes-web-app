@@ -23,7 +23,7 @@ const Detail = ({}) => {
   const [selectDetail, setSelectedDetail] = useState("Tenancy");
   const [showPolicy, setShowPolicy] = useState(true);
   const onClickToBookAppointment =()=>{
-    router.push("/property-detail/1/book-appointment")
+    router.push("/property-overview/1/book-appointment")
   }
   const onClickGoBack = () => {
     router.back();

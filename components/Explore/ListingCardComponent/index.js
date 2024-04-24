@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import _ from "lodash";
 
-const ListingCardComponent = ({ item, onClickToPropertyDetail }) => {
+const ListingCardComponent = ({ item, onClickToPropertyOverview }) => {
   const router = useRouter();
   const image = _.get(item, ["image"], "");
   const title = _.get(item, ["title"], "");
@@ -11,7 +11,7 @@ const ListingCardComponent = ({ item, onClickToPropertyDetail }) => {
   return (
     <div
       className="flex flex-col items-center px-1 cursor-pointer"
-      onClick={onClickToPropertyDetail}
+      onClick={onClickToPropertyOverview}
     >
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"

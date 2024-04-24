@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
-import propertyDetail from "@/pages/property-detail/[slug]";
+import propertyDetail from "@/pages/property-overview/[slug]";
 
 const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
   return (

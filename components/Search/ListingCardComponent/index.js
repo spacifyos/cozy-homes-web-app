@@ -5,8 +5,8 @@ import {useRouter} from "next/router";
 
 const ListingCardComponent = ({ t }) => {
   const router = useRouter();
-  const onClickToPropertyDetail = () => {
-    router.push("/property-detail/123");
+  const onClickToPropertyOverview= () => {
+    router.push("/property-overview/123");
   };
   return (
     <div className="">
@@ -14,7 +14,7 @@ const ListingCardComponent = ({ t }) => {
         src={Images.filterDefaultImage}
         width="100%"
         className="rounded-2xl mb-1 global-box-shadow"
-        onClick={onClickToPropertyDetail}
+        onClick={onClickToPropertyOverview}
       />
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
         M Vertica

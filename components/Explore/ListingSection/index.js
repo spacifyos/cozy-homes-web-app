@@ -10,7 +10,7 @@ const ListingSection = ({
   title,
   listingLoading,
   onClickViewMore,
-  onClickToPropertyDetail,
+  onClickToPropertyOverview,
   className,
 }) => {
   const responsive = {
@@ -114,7 +114,7 @@ const ListingSection = ({
             ) : (
               <ListingCardComponent
                 item={item}
-                onClickToPropertyDetail={onClickToPropertyDetail}
+                onClickToPropertyOverview={onClickToPropertyOverview}
               />
             );
           })}

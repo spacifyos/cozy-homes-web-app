@@ -69,8 +69,8 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyDetail = () => {
-    router.push("/property-detail/1");
+  const onClickToPropertyOverview = () => {
+    router.push("/property-overview/1");
   };
 
   const onClickOpenSwitcher = () => {
@@ -123,7 +123,7 @@ function Home() {
           listingLoading={listingLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyDetail={onClickToPropertyDetail}
+          onClickToPropertyOverview={onClickToPropertyOverview}
         />
 
         <ListingSection
@@ -133,7 +133,7 @@ function Home() {
           listingLoading={listingLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyDetail={onClickToPropertyDetail}
+          onClickToPropertyOverview={onClickToPropertyOverview}
         />
 
         <ListingSection
@@ -142,7 +142,7 @@ function Home() {
           lists={condoListing}
           listingLoading={listingLoading}
           onClickViewMore={onClickToFilter}
-          onClickToPropertyDetail={onClickToPropertyDetail}
+          onClickToPropertyOverview={onClickToPropertyOverview}
         />
       </div>
     </CustomHeader>

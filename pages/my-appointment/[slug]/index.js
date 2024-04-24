@@ -8,9 +8,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useState, useRef, useEffect } from "react";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
-import TimePicker from "react-time-picker";
 import DatePicker from "react-date-picker";
-import BookingInput from "@/components/Booking/BookingInput";
 
 export { getServerSideProps };
 
@@ -56,7 +54,7 @@ const Booking = () => {
 
   return (
     <CustomHeader
-      pageTitle={t("pageTitle.appointmentDetail")}
+      pageTitle={t("pageTitle.appointmentOverview")}
       hideBgImage
       hideRightButton
       onClickGoBack={onClickGoBack}
