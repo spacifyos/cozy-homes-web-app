@@ -23,6 +23,7 @@
     "myInvoiceOverview": "My Invoice Overview",
     "bookAppointment": "Book Appointment",
     "appointmentOverview": "Appointment Overview",
+    "coinsTransaction": "Coins Transaction",
     "helpCenter": "Help Center"
   },
   "general": {},
@@ -292,6 +293,10 @@
     "thankyou": "Thank You!",
     "viewAppointment": "View Appointment",
     "chat": "Chat"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "Payment for rent",
+    "paymentForUtility": "Payment for utility"
   },
   "helpCenter": {
     "all": "All",

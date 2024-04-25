@@ -100,7 +100,7 @@ const Booking = () => {
 
           <div className="flex items-center booking-input relative">
             <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
+              className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
               type="date"
               value={dateValue}
               onChange={onChangeDate}
@@ -108,7 +108,7 @@ const Booking = () => {
 
             <CustomImage
               src={Images.calendarIcon}
-              imageStyle={{ width: 25, height: 25, marginRight: 4 }} 
+              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
 
@@ -126,7 +126,7 @@ const Booking = () => {
 
             <CustomImage
               src={Images.clockIcon}
-              imageStyle={{ width: 25, height: 25, marginRight: 4 }}
+              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
 

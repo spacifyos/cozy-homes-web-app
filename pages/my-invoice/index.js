@@ -11,6 +11,8 @@ import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import CustomModal from "@/components/CustomModal";
 import BookingInput from "@/components/Booking/BookingInput";
+import FilterModal from "@/components/MyInvoice/FilterModal";
+import moment from "moment/moment";
 
 export { getServerSideProps };
 
@@ -58,6 +60,20 @@ const MyInvoice = () => {
   const { t } = useTranslation("common");
 
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+  const [dateFromValue, setDateFromValue] = useState(
+    moment(new Date()).format("YYYY-MM-DD"),
+  );
+  const [dateToValue, setDateToValue] = useState(
+    moment(new Date()).format("YYYY-MM-DD"),
+  );
+
+  const onChangeDateFrom = (e) => {
+    setDateFromValue(e.target.value);
+  };
+
+  const onChangeDateTo = (e) => {
+    setDateToValue(e.target.value);
+  };
 
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
@@ -118,35 +134,13 @@ const MyInvoice = () => {
           );
         })}
 
-        <CustomModal id="invoice_filter_modal">
-          <CustomText textClassName="font-bold font-size-large pb-4">
-            Search Filter
-          </CustomText>
-
-          <div className="grid grid-cols-2 gap-2">
-            <div className="col-span-2 pb-2">
-              <CustomText textClassName="font-size-small pb-1">
-                Invoice Number
-              </CustomText>
-
-              <BookingInput
-                inputClassName=""
-                placeholder="XXXX-InvXXXXXXXX"
-                name="name"
-              />
-            </div>
-
-            <CustomButton
-              buttonText="No"
-              buttonClassName="default-btn-outline"
-            />
-
-            <CustomButton
-              buttonText="Yes"
-              buttonClassName="primary-btn"
-            />
-          </div>
-        </CustomModal>
+        <FilterModal
+          t={t}
+          dateFromValue={dateFromValue}
+          onChangeDateFrom={onChangeDateFrom}
+          dateToValue={dateToValue}
+          onChangeDateTo={onChangeDateTo}
+        />
       </div>
     </CustomHeader>
   );

@@ -23,6 +23,7 @@
     "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya",
     "bookAppointment": "Tempah Temujanji",
     "appointmentOverview": "Butiran Temujanji",
+    "coinsTransaction": "Transaksi Syiling",
     "helpCenter": "Pusat Bantuan"
   },
   "general": {},
@@ -292,6 +293,10 @@
     "thankyou": "Terima kasih!",
     "viewAppointment": "Lihat Temujanji",
     "chat": "Sembang"
+  },
+  "coinsTransaction": {
+    "paymentForRent": "Bayaran sewa",
+    "paymentForUtility": "Bayaran utiliti"
   },
   "helpCenter": {
     "all": "Semua",
