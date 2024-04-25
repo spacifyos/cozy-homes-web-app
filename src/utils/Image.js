@@ -114,7 +114,7 @@ const Image = {
   downloadIcon: "/images/icon/download.png",
   uncheckIcon: "/images/icon/uncheck_icon.png",
   bookingIconActive: "/images/icon/booking_icon_active.png",
-  bookingIcon:"/images/icon/booking_icon.png",
+  bookingIcon: "/images/icon/booking_icon.png",
   cancelIcon: "/images/icon/x_icon.png",
   shareIcon: "/images/icon/share_icon.png",
   noDataIcon: "/images/icon/no_data_icon.png",
@@ -127,15 +127,14 @@ const Image = {
   step3Icon: "/images/icon/step_step3.png",
   appointmentIconActive: "/images/icon/appointment_icon_active.png",
   appointmentIconWhite: "/images/icon/appointment_icon_white.png",
-  filterProIcon:"/images/icon/filter_pro.png",
-  calendarIcon:"/images/icon/calender_icon.png",
-  ellipseGreenIcon:"/images/icon/ellipse_green_icon.png",
-  ellipseRedIcon:"/images/icon/ellipse_red_icon.png",
-  clockIcon:"/images/icon/clock_icon.png",
-  plusIcon:"/images/icon/plus_icon.png",
-  buildingIconActive:"/images/icon/building_icon_active.png",
-  spaceIcon:"/images/icon/space_icon.png",
-  redPointIcon:"/images/icon/redpoint_icon.png"
+  filterProIcon: "/images/icon/filter_pro.png",
+  calendarIcon: "/images/icon/calender_icon.png",
+  ellipseGreenIcon: "/images/icon/ellipse_green_icon.png",
+  ellipseRedIcon: "/images/icon/ellipse_red_icon.png",
+  clockIcon: "/images/icon/clock_icon.png",
+  plusIcon: "/images/icon/plus_icon.png",
+  buildingIconActive: "/images/icon/building_icon_active.png",
+  spaceIcon: "/images/icon/space_icon_active.png",
 };
 
 export default { ...Image };

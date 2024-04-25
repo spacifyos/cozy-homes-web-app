@@ -3,8 +3,8 @@ import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import StatusLabel from "@/components/StatusLabel";
-import StatusBorder from "@/components/StatusBorder";
 import Images from "@/src/utils/Image";
+import StatusLabelOutline from "@/components/StatusLabelOutline";
 
 const HelpCenterListingCard = ({ t, item }) => {
   const router = useRouter();
@@ -17,53 +17,63 @@ const HelpCenterListingCard = ({ t, item }) => {
   const state = _.get(item, ["state"], "");
 
   return (
-    <div className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-4 cursor-pointer relative">
+    <div className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-3 cursor-pointer relative">
       <div className="flex items-center gap-2 pb-2">
         <StatusLabel status={status} />
-        <StatusBorder status={secondStatus} />
+        <StatusLabelOutline status={secondStatus} />
       </div>
-      <CustomText textClassName="font-bold font-size-small pb-1">
-        {date}
-      </CustomText>
-      <div className="flex justify-between">
-        <div>
-          <CustomText textClassName="font-bold font-size-small primary-text">
+
+      <div className="flex justify-between items-center">
+        <div className="pr-2">
+          <CustomText textClassName="font-bold font-size-small">
+            {date}
+          </CustomText>
+
+          <CustomText textClassName="font-bold primary-text">
             {t("helpCenter.request")} #: {requestNum}
           </CustomText>
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            {request}
+
+          <CustomText
+            textClassName="disable-text font-size-xxsmall"
+            lineClamp={2}
+          >
+            {request} {request}
           </CustomText>
         </div>
-        <CustomImage src={Images.rightIcon} width={13} height={13} />
+
+        <CustomImage
+          src={Images.rightIcon}
+          imageStyle={{ width: 18, height: 18 }}
+        />
       </div>
+
       <div
         className="divider-line"
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
-      <div className="flex items-center">
-        <CustomImage
-          src={Images.buildingIconActive}
-          width={15}
-          height={15}
-          className="mr-2"
-        />
-        <CustomText textClassName="font-size-small mr-10">{address}</CustomText>
 
-        <CustomImage
-          src={Images.spaceIcon}
-          width={20}
-          height={20}
-          className="mr-2"
-        />
-        <CustomText textClassName="font-size-small">{state}</CustomText>
+      <div className="grid grid-cols-2 gap-2">
+        <div className="flex items-center col-span-1">
+          <CustomImage
+            src={Images.buildingIconActive}
+            className="mr-2"
+            imageStyle={{ width: 18, height: 18 }}
+          />
+          <CustomText textClassName="font-size-small">{address}</CustomText>
+        </div>
+
+        <div className="flex items-center col-span-1">
+          <CustomImage
+            src={Images.spaceIcon}
+            className="mr-2"
+            imageStyle={{ width: 18, height: 18 }}
+          />
+          <CustomText textClassName="font-size-small">{state}</CustomText>
+        </div>
       </div>
+
       {_.isEqual(item.status, "In Progress") ? (
-        <CustomImage
-          src={Images.redPointIcon}
-          width={15}
-          height={15}
-          className="absolute right-0 top-0"
-        />
+        <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>
       ) : (
         false
       )}

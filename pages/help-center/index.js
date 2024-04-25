@@ -16,7 +16,7 @@ const lists = [
     date: "10 Dec 2022",
     requestNum: "RQ-230000007",
     request: "Maintenance / Amenities / Air-conditioner / Not Cold",
-    address:"Icon City, A-01-01",
+    address: "Icon City, A-01-01",
     state: "Room 1",
   },
   {
@@ -25,7 +25,7 @@ const lists = [
     date: "10 Dec 2022",
     requestNum: "RQ-230000006",
     request: "Maintenance / Amenities / Washer / Not Working",
-    address:"Icon City, A-01-01",
+    address: "Icon City, A-01-01",
     state: "Yard",
   },
   {
@@ -34,7 +34,7 @@ const lists = [
     date: "07 Dec 2022",
     requestNum: "RQ-230000005",
     request: "Maintenance / Electrical / Light / Not Working",
-    address:"Icon City, A-01-01",
+    address: "Icon City, A-01-01",
     state: "Kitchen",
   },
   {
@@ -43,7 +43,7 @@ const lists = [
     date: "07 Dec 2022",
     requestNum: "RQ-230000004",
     request: "Maintenance / Electrical / Light / Not Working",
-    address:"Icon City, A-01-01",
+    address: "Icon City, A-01-01",
     state: "Kitchen",
   },
 ];
@@ -59,48 +59,52 @@ const HelpCenter = () => {
   };
 
   return (
-      <CustomHeader
-          pageTitle={t("pageTitle.helpCenter")}
-          hideBgImage
-          rightButtonIcon={Images.plusIcon}
-          onClickGoBack={onClickGoBack}
-      >
-        <div className="body-container">
-          <div className="flex justify-between items-end pb-4">
-            <div className="flex items-center">
-              <CustomButton
-                  buttonText={t("helpCenter.all")}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "All") ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() => onClickSelectStatusCategory("All")}
-              />
-              <CustomButton
-                  buttonText={t("helpCenter.inProgress")}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "In Progress") ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() => onClickSelectStatusCategory("In Progress")}
-              />
-              <CustomButton
-                  buttonText={t("helpCenter.completed")}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "Completed") ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() => onClickSelectStatusCategory("Completed")}
-              />
-              <CustomButton
-                  buttonText={t("helpCenter.cancelled")}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "Cancelled") ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() => onClickSelectStatusCategory("Cancelled")}
-              />
-            </div>
+    <CustomHeader
+      pageTitle={t("pageTitle.helpCenter")}
+      hideBgImage
+      rightButtonIcon={Images.plusIcon}
+      onClickGoBack={onClickGoBack}
+    >
+      <div className="body-container pb-1">
+        <div className="flex justify-between items-end pb-4">
+          <div className="flex items-center">
+            <CustomButton
+              buttonText={t("helpCenter.all")}
+              buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "All") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectStatusCategory("All")}
+            />
+            <CustomButton
+              buttonText={t("helpCenter.inProgress")}
+              buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "In Progress") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectStatusCategory("In Progress")}
+            />
+            <CustomButton
+              buttonText={t("helpCenter.completed")}
+              buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "Completed") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectStatusCategory("Completed")}
+            />
+            <CustomButton
+              buttonText={t("helpCenter.cancelled")}
+              buttonClassName={`btn-sm ${_.isEqual(selectedStatus, "Cancelled") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectStatusCategory("Cancelled")}
+            />
           </div>
-          {_.map(lists, (item) => {
-            if (_.isEqual(selectedStatus, "All") || _.isEqual(item.status, selectedStatus)) {
-              return <HelpCenterListingCard t={t} item={item}/>
-            }
-          })}
         </div>
-      </CustomHeader>
+
+        {_.map(lists, (item) => {
+          if (
+            _.isEqual(selectedStatus, "All") ||
+            _.isEqual(item.status, selectedStatus)
+          ) {
+            return <HelpCenterListingCard t={t} item={item} />;
+          }
+        })}
+      </div>
+    </CustomHeader>
   );
 };
 
