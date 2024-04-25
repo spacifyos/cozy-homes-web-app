@@ -23,7 +23,8 @@
     "myInvoiceOverview": "Gambaran Keseluruhan Invois Saya",
     "bookAppointment": "Tempah Temujanji",
     "appointmentOverview": "Butiran Temujanji",
-    "coinsTransaction": "Transaksi Syiling"
+    "coinsTransaction": "Transaksi Syiling",
+    "helpCenter": "Pusat Bantuan"
   },
   "general": {},
   "explore": {
@@ -296,5 +297,19 @@
   "coinsTransaction": {
     "paymentForRent": "Bayaran sewa",
     "paymentForUtility": "Bayaran utiliti"
+  },
+  "helpCenter": {
+    "all": "Semua",
+    "inProgress": "Sedang Berjalan",
+    "completed": "Selesai",
+    "cancelled": "Dibatalkan",
+    "new": "Baru",
+    "critical": "KRITIS",
+    "request": "Permintaan",
+    "room": "Bilik 1",
+    "yard": "Halaman",
+    "kitchen": "Dapur",
+    "normal": "NORMAL",
+    "low": "RENDAH"
   }
 }

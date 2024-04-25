@@ -23,7 +23,8 @@
     "myInvoiceOverview": "My Invoice Overview",
     "bookAppointment": "Book Appointment",
     "appointmentOverview": "Appointment Overview",
-    "coinsTransaction": "Coins Transaction"
+    "coinsTransaction": "Coins Transaction",
+    "helpCenter": "Help Center"
   },
   "general": {},
   "explore": {
@@ -296,5 +297,19 @@
   "coinsTransaction": {
     "paymentForRent": "Payment for rent",
     "paymentForUtility": "Payment for utility"
+  },
+  "helpCenter": {
+    "all": "All",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "new": "New",
+    "critical": "CRITICAL",
+    "request": "Request",
+    "room": "Room 1",
+    "yard": "Yard",
+    "kitchen": "Kitchen",
+    "normal": "NORMAL",
+    "low": "LOW"
   }
 }

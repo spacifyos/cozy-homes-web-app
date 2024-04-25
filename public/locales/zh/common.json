@@ -23,7 +23,8 @@
     "myInvoiceOverview": "我的发票概览",
     "bookAppointment": "预约",
     "appointmentOverview": "预约详情",
-    "coinsTransaction": "钱币交易"
+    "coinsTransaction": "钱币交易",
+    "helpCenter": "帮助中心"
   },
   "general": {},
   "explore": {
@@ -296,5 +297,19 @@
   "coinsTransaction": {
     "paymentForRent": "付房租",
     "paymentForUtility": "付水电费"
+  },
+  "helpCenter": {
+    "all": "全部",
+    "inProgress": "进行中",
+    "completed": "已完成",
+    "cancelled": "已取消",
+    "new": "新建",
+    "critical": "关键",
+    "request": "请求",
+    "room": "房间 1",
+    "yard": "院子",
+    "kitchen": "厨房",
+    "normal": "正常",
+    "low": "低"
   }
 }
