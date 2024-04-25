@@ -134,7 +134,8 @@ const Image = {
   clockIcon:"/images/icon/clock_icon.png",
   plusIcon:"/images/icon/plus_icon.png",
   buildingIconActive:"/images/icon/building_icon_active.png",
-  spaceIcon:"/images/icon/space_icon.png"
+  spaceIcon:"/images/icon/space_icon.png",
+  redPointIcon:"/images/icon/redpoint_icon.png"
 };
 
 export default { ...Image };

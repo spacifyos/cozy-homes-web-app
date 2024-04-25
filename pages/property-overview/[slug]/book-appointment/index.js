@@ -108,7 +108,7 @@ const Booking = () => {
 
             <CustomImage
               src={Images.calendarIcon}
-              imageStyle={{ width: 25, height: 25, marginRight: 4 }}
+              imageStyle={{ width: 25, height: 25, marginRight: 4 }} 
             />
           </div>
 

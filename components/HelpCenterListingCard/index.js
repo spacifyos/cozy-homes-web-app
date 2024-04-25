@@ -6,7 +6,7 @@ import StatusLabel from "@/components/StatusLabel";
 import StatusBorder from "@/components/StatusBorder";
 import Images from "@/src/utils/Image";
 
-const HelpCenterListingCard = ({t, item }) => {
+const HelpCenterListingCard = ({ t, item }) => {
   const router = useRouter();
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
@@ -17,7 +17,7 @@ const HelpCenterListingCard = ({t, item }) => {
   const state = _.get(item, ["state"], "");
 
   return (
-    <div className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-4 cursor-pointer">
+    <div className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-4 cursor-pointer relative">
       <div className="flex items-center gap-2 pb-2">
         <StatusLabel status={status} />
         <StatusBorder status={secondStatus} />
@@ -28,7 +28,7 @@ const HelpCenterListingCard = ({t, item }) => {
       <div className="flex justify-between">
         <div>
           <CustomText textClassName="font-bold font-size-small primary-text">
-              {t("helpCenter.request")} #: {requestNum}
+            {t("helpCenter.request")} #: {requestNum}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xxsmall">
             {request}
@@ -57,6 +57,16 @@ const HelpCenterListingCard = ({t, item }) => {
         />
         <CustomText textClassName="font-size-small">{state}</CustomText>
       </div>
+      {_.isEqual(item.status, "In Progress") ? (
+        <CustomImage
+          src={Images.redPointIcon}
+          width={15}
+          height={15}
+          className="absolute right-0 top-0"
+        />
+      ) : (
+        false
+      )}
     </div>
   );
 };

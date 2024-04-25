@@ -94,17 +94,11 @@ const HelpCenter = () => {
               />
             </div>
           </div>
-
           {_.map(lists, (item) => {
             if (_.isEqual(selectedStatus, "All") || _.isEqual(item.status, selectedStatus)) {
-
               return <HelpCenterListingCard t={t} item={item}/>
-
             }
-
-
           })}
-
         </div>
       </CustomHeader>
   );
