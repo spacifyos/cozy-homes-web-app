@@ -1,8 +1,50 @@
-.carousel-container {
-  @apply carousel;
-  @apply carousel-center;
-  @apply max-w-lg;
-  @apply p-4;
-  @apply space-x-1;
-  @apply rounded-box;
+@import "../utils/color";
+
+.swiper {
+  width: 280px;
+  //height: 320px;
+}
+
+@media screen and (max-width: 450px) {
+  .swiper {
+    width: 260px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .swiper {
+    width: 240px;
+  }
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-3d .swiper-slide-shadow {
+  background-color: transparent !important;
+}
+
+.banner-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  margin-right: 6px;
+  border-radius: 999px;
+}
+
+.banner-dot-active {
+  width: 15px !important;
+  height: 7px !important;
+  background-color: #f65626 !important;
+  border: 1px solid #f65626 !important;
+  margin-right: 6px;
+  border-radius: 999px;
 }
