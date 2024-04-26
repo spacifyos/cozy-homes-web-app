@@ -54,7 +54,9 @@ const MyStay = () => {
   const onClickToMeterList = () => {
     router.push("/my-meter");
   };
-
+  const onClickToHelpCenter = () => {
+    router.push("/help-center");
+  };
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myStay")}
@@ -72,7 +74,11 @@ const MyStay = () => {
           isChecked={isChecked}
         />
 
-        <FeatureSection t={t} onClickToAgreement={onClickToAgreement} />
+        <FeatureSection
+          t={t}
+          onClickToAgreement={onClickToAgreement}
+          onClickToHelpCenter={onClickToHelpCenter}
+        />
 
         <MeterSection
           t={t}

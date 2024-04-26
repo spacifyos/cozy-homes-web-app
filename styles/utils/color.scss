@@ -5,7 +5,7 @@ $primary-black-color: #000000;
 $primary-white-color: #ffffff;
 $disable-color: #94a1a6;
 $power-on-color: #41c0be;
-$error-color: #FF2E2E;
+$error-color: #ff2e2e;
 $tertiary-bg-color: #0379b7;
 
 $pending-color: #ff8a00;
@@ -49,4 +49,32 @@ $completed-color: #03b78c;
 
 .error-bg-color {
   background-color: $error-color;
+}
+
+.cancelled-bg-color {
+  background-color: $disable-color;
+}
+
+.pending-border-color {
+  border: 1px solid $pending-color;
+  background-color: $primary-white-color;
+  color: $pending-color;
+}
+
+.critical-border-color {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  color: $primary-color;
+}
+
+.completed-border-color {
+  border: 1px solid $completed-color;
+  background-color: $primary-white-color;
+  color: $completed-color;
+}
+
+.low-border-color {
+  border: 1px solid $tertiary-bg-color;
+  background-color: $primary-white-color;
+  color: $tertiary-bg-color;
 }

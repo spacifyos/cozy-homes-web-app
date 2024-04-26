@@ -114,7 +114,7 @@ const Image = {
   downloadIcon: "/images/icon/download.png",
   uncheckIcon: "/images/icon/uncheck_icon.png",
   bookingIconActive: "/images/icon/booking_icon_active.png",
-  bookingIcon:"/images/icon/booking_icon.png",
+  bookingIcon: "/images/icon/booking_icon.png",
   cancelIcon: "/images/icon/x_icon.png",
   shareIcon: "/images/icon/share_icon.png",
   noDataIcon: "/images/icon/no_data_icon.png",
@@ -139,7 +139,10 @@ const Image = {
   enquiryIconActive:"/images/icon/enquiry_icon_active.png",
   enquiryIcon:"/images/icon/enquiry_icon.png",
   feedbackIconActive:"/images/icon/feedback_icon_active.png",
-  feedbackIcon:"/images/icon/feedback_icon.png"
+  feedbackIcon:"/images/icon/feedback_icon.png",
+  plusIcon: "/images/icon/plus_icon.png",
+  buildingIconActive: "/images/icon/building_icon_active.png",
+  spaceIcon: "/images/icon/space_icon_active.png",
 };
 
 export default { ...Image };
