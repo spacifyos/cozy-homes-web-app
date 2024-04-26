@@ -44,7 +44,7 @@ const BannerCarousel = () => {
         })}
       </Swiper>
 
-      <div className="my-4 flex justify-center">
+      <div className="my-4 flex justify-center items-center">
         {_.map(imageList, (item, index) => {
           return (
             <div
