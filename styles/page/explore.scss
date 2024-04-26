@@ -1,8 +1,14 @@
 @import "../utils/color";
 
 .swiper {
-  width: 280px;
+  width: 300px;
   //height: 320px;
+}
+
+@media screen and (max-width: 470px) {
+  .swiper {
+    width: 280px;
+  }
 }
 
 @media screen and (max-width: 450px) {
