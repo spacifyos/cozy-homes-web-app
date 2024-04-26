@@ -23,7 +23,8 @@
     "myInvoiceOverview": "My Invoice Overview",
     "bookAppointment": "Book Appointment",
     "appointmentOverview": "Appointment Overview",
-    "coinsTransaction": "Coins Transaction"
+    "coinsTransaction": "Coins Transaction",
+    "newRequest": "New Request"
   },
   "general": {},
   "explore": {

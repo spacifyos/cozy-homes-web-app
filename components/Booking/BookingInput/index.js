@@ -14,6 +14,7 @@ const BookingInput = ({
   value,
   onChange,
   disabled = false,
+  style,
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
@@ -28,6 +29,7 @@ const BookingInput = ({
           onChange={onChange}
           disabled={disabled}
           required
+          style={style}
         />
         {_.isEmpty(errorMessage) ? (
           false

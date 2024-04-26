@@ -75,6 +75,7 @@ const Detail = ({}) => {
             <RecommendSection t={t} />
           </div>
         ) : (
+
           <div>
             <PolicyDetail t={t} />
           </div>

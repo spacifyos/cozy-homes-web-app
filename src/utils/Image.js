@@ -131,7 +131,15 @@ const Image = {
   calendarIcon:"/images/icon/calender_icon.png",
   ellipseGreenIcon:"/images/icon/ellipse_green_icon.png",
   ellipseRedIcon:"/images/icon/ellipse_red_icon.png",
-  clockIcon:"/images/icon/clock_icon.png"
+  clockIcon:"/images/icon/clock_icon.png",
+  generalEnquiriesIconActive:"/images/icon/general_enquiries_icon_active.png",
+  generalEnquiriesIcon:"/images/icon/general_enquiries_icon.png",
+  maintenanceIconActive:"/images/icon/maintenance_icon_active.png",
+  maintenanceIcon:"/images/icon/maintenance_icon.png",
+  enquiryIconActive:"/images/icon/enquiry_icon_active.png",
+  enquiryIcon:"/images/icon/enquiry_icon.png",
+  feedbackIconActive:"/images/icon/feedback_icon_active.png",
+  feedbackIcon:"/images/icon/feedback_icon.png"
 };
 
 export default { ...Image };

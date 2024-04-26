@@ -23,7 +23,8 @@
     "myInvoiceOverview": "我的发票概览",
     "bookAppointment": "预约",
     "appointmentOverview": "预约详情",
-    "coinsTransaction": "钱币交易"
+    "coinsTransaction": "钱币交易",
+    "newRequest": "新请求"
   },
   "general": {},
   "explore": {
