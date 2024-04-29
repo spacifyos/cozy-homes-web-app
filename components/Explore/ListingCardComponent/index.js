@@ -1,10 +1,8 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import { useRouter } from "next/router";
 import _ from "lodash";
 
 const ListingCardComponent = ({ item, onClickToPropertyOverview }) => {
-  const router = useRouter();
   const image = _.get(item, ["image"], "");
   const title = _.get(item, ["title"], "");
 

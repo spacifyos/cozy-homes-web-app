@@ -48,6 +48,7 @@ const LanguageSwitcher = ({
 
             return (
               <div
+                key={index}
                 className={`flex items-center cursor-pointer ${index == 2 ? "" : "pb-2"}`}
                 onClick={() => onClickChangeLanguage(value)}
               >

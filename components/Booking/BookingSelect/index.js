@@ -21,7 +21,11 @@ const BookingSelect = ({
             const name = _.get(list, ["name"], "");
             const value = _.get(list, ["value"], "");
 
-            return <option value={value}>{name}</option>;
+            return (
+              <option key={value} value={value}>
+                {name}
+              </option>
+            );
           })}
         </select>
       </div>

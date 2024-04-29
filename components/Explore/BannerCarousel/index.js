@@ -35,9 +35,9 @@ const BannerCarousel = () => {
         modules={[EffectCards]}
         className="mySwiper"
       >
-        {_.map(imageList, (item) => {
+        {_.map(imageList, (item, index) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <CustomImage src={item} width={320} />
             </SwiperSlide>
           );
@@ -48,6 +48,7 @@ const BannerCarousel = () => {
         {_.map(imageList, (item, index) => {
           return (
             <div
+              key={index}
               className={
                 index === selectedSlide ? "banner-dot-active" : "banner-dot"
               }

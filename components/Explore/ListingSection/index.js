@@ -108,11 +108,12 @@ const ListingSection = ({
           slidesToSlide={1}
           swipeable
         >
-          {_.map(lists, (item) => {
+          {_.map(lists, (item, index) => {
             return listingLoading ? (
-              <Skeleton width={100} height={100}  />
+              <Skeleton width={100} height={100} key={index} />
             ) : (
               <ListingCardComponent
+                key={index}
                 item={item}
                 onClickToPropertyOverview={onClickToPropertyOverview}
               />

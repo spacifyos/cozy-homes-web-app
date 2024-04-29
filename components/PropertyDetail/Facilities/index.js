@@ -22,8 +22,8 @@ const Facilities = ({ t }) => {
       </CustomText>
 
       <div className="flex flex-row justify-between items-center flex-wrap pr-15">
-        {_.map(facilitiesLists, (item) => {
-          return <FacilitiesComponent item={item} />;
+        {_.map(facilitiesLists, (item, index) => {
+          return <FacilitiesComponent item={item} key={index} />;
         })}
       </div>
     </div>
