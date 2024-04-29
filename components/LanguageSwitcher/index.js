@@ -25,7 +25,7 @@ const LanguageSwitcher = ({
       <div
         onClick={onClickOpenSwitcher}
         className={`collapse collapse-arrow primaryWhite-bg-color absolute right-7 global-box-shadow  ${openSwitcher ? "collapse-open" : ""}`}
-        style={{ width: 90 }}
+        style={{ width: 90, zIndex: 999 }}
       >
         <div
           className="collapse-title flex items-center"

@@ -263,7 +263,7 @@ const Filter = () => {
 
             <div className="grid grid-cols-2 gap-3">
               {listingLoading
-                ? _.map(Array(4), (item, index) => (
+                ? _.map(Array(6), (item, index) => (
                     <Skeleton width="100%" height={140} key={index} />
                   ))
                 : _.map(Array(12), (item, index) => (
