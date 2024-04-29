@@ -77,8 +77,8 @@ const MyAppointment = () => {
           />
         </div>
 
-        {_.map(["Pending Confirmation", "Confirmed", "Cancelled"], (item) => {
-          return <AppointmentCard t={t} item={item} onClickToAppointmentOverview={onClickToAppointmentOverview}/>;
+        {_.map(["Pending Confirmation", "Confirmed", "Cancelled"], (item, index) => {
+          return <AppointmentCard t={t} key={index} item={item} onClickToAppointmentOverview={onClickToAppointmentOverview}/>;
         })}
       </div>
     </CustomHeader>

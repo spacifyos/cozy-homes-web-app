@@ -15,7 +15,7 @@ const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
       )}
 
       <div className="flex items-center pb-2">
-        <div className="primary-bg-color p-2 global-border-radius">
+        <div className="primary-bg-color p-2 global-border-radius cursor-pointer">
           <CustomImage
             src={Images.appointmentIconWhite}
             imageStyle={{ width: 35, height: 35 }}

@@ -16,7 +16,7 @@ const TenancyLabel = () => {
     </div>
   );
 };
-const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
+const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="tenancy-auto-pay-button">
       <CustomText
@@ -28,12 +28,12 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
         type="checkbox"
         className={`toggle default-toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
         checked={isChecked}
-        onClick={onClickChangeAutoPay}
+        onChange={onChangeAutoPay}
       />
     </div>
   );
 };
-const TenancyDetail = ({ t, onClickChangeAutoPay, isChecked }) => {
+const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -51,7 +51,7 @@ const TenancyDetail = ({ t, onClickChangeAutoPay, isChecked }) => {
           value={"Roomz-T123456789"}
         />
         <AutoPayButton
-          onClickChangeAutoPay={onClickChangeAutoPay}
+          onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
         />
       </div>

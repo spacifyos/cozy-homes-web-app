@@ -9,8 +9,6 @@ import { useRouter } from "next/router";
 import CustomText from "@/components/CustomText";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
-import CustomModal from "@/components/CustomModal";
-import BookingInput from "@/components/Booking/BookingInput";
 import FilterModal from "@/components/MyInvoice/FilterModal";
 import moment from "moment/moment";
 
@@ -115,16 +113,17 @@ const MyInvoice = () => {
           />
         </div>
 
-        {_.map(invoice, (item) => {
+        {_.map(invoice, (item, index) => {
           const date = _.get(item, ["date"], "");
           const lists = _.get(item, ["list"], []);
 
           return (
-            <div>
+            <div key={index}>
               <CustomText textClassName="section-title">{date}</CustomText>
 
-              {_.map(lists, (list) => (
+              {_.map(lists, (list, index) => (
                 <InvoiceComponent
+                  key={index}
                   item={list}
                   t={t}
                   onClick={onClickToOverView}

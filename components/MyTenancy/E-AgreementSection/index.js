@@ -14,8 +14,8 @@ const EAgreement = ({ t, onClickToAgreementOverview }) => {
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
-      {_.map(Array(2), (item) => (
-        <EAgreementCard t={t} onClickToDetail={onClickToAgreementOverview} />
+      {_.map(Array(2), (item, index) => (
+        <EAgreementCard t={t} key={index} onClickToDetail={onClickToAgreementOverview} />
       ))}
     </div>
   );

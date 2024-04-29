@@ -25,8 +25,8 @@ const InvoiceSection = ({ t, selectChange, onClickChange }) => {
         />
       </div>
 
-      {_.map(Array(3), (item) => (
-        <MeterUsageComponent t={t} />
+      {_.map(Array(3), (item, index) => (
+        <MeterUsageComponent t={t} key={index} />
       ))}
     </div>
   );
