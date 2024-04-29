@@ -9,6 +9,7 @@ const CustomImage = ({
   return (
     <img
       className={`object-contain ${className}`}
+      alt={"image"}
       src={src}
       width={width}
       height={height}

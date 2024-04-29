@@ -1,5 +1,7 @@
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 const BookingSelect = ({
   className,
@@ -12,7 +14,7 @@ const BookingSelect = ({
   return (
     <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
-      <div className="booking-wrapper">
+      <div className="booking-wrapper booking-select-container flex justify-between">
         <select className="booking-select" name={name} required>
           <option disabled selected value="">
             {placeholder}
@@ -28,6 +30,8 @@ const BookingSelect = ({
             );
           })}
         </select>
+
+        <CustomImage src={Images.downIcon} width={10} height={10} />
       </div>
       {_.isEmpty(errorMessage) ? (
         false

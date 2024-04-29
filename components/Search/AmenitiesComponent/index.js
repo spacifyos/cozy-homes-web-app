@@ -8,7 +8,7 @@ const AmenitiesComponent = ({ list, onClickSelectAmenities }) => {
       className="amenities-nav-container"
       style={{ height: 500, top: 10, borderRadius: "0 10px 10px 0" }}
     >
-      {_.map(list, (item) => {
+      {_.map(list, (item, index) => {
         const name = _.get(item, ["name"], "");
         const icon = _.get(item, ["icon"], "");
         const iconActive = _.get(item, ["iconActive"], "");
@@ -16,6 +16,7 @@ const AmenitiesComponent = ({ list, onClickSelectAmenities }) => {
 
         return (
           <div
+            key={index}
             className="flex flex-col justify-center items-center"
             onClick={() => onClickSelectAmenities(name)}
           >
