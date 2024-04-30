@@ -93,32 +93,27 @@ const Booking = () => {
               Razak bin Osman
             </CustomText>
           </div>
-
-          <CustomText textClassName="pb-1">
-            {t("bookAppointment.date")}
-          </CustomText>
-
-          <div className="flex items-center booking-input relative">
+          <CustomText textClassName="pb-1"> {t("bookAppointment.date")}</CustomText>
+          <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
-              type="date"
-              value={dateValue}
-              onChange={onChangeDate}
+                className="bg-color flex-1 w-full resize-input-icon"
+                type="date"
+                value={dateValue}
+                onChange={onChangeDate}
             />
-
             <CustomImage
-              src={Images.calendarIcon}
-              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
+                src={Images.calendarIcon}
+                imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.time")}
           </CustomText>
 
-          <div className="flex items-center booking-input relative">
+          <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
+              className="bg-color flex-1 w-full resize-input-icon "
               type="time"
               value={timeValue}
               onChange={onChangeTime}
@@ -130,13 +125,12 @@ const Booking = () => {
             />
           </div>
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.message")}
           </CustomText>
 
           <BookingTextArea
             className="pb-5"
-            textareaClassName="primaryWhite-bg-color"
             placeholder={t("bookAppointment.yourMessageHere")}
           />
 

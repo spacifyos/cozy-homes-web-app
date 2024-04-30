@@ -12,7 +12,7 @@ const BookingSelect = ({
   return (
     <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
-      <div className="booking-wrapper">
+      <div className="booking-wrapper pb-1">
         <select className="booking-select" name={name} required>
           <option disabled selected value="">
             {placeholder}

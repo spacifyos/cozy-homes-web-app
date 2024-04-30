@@ -143,6 +143,23 @@ const Image = {
   plusIcon: "/images/icon/plus_icon.png",
   buildingIconActive: "/images/icon/building_icon_active.png",
   spaceIcon: "/images/icon/space_icon_active.png",
+  amenitiesIcon:"/images/icon/amenities_icon.png",
+  amenitiesIconActive:"/images/icon/amenities_icon_active.png",
+  electricalIcon:"/images/icon/electrical_icon.png",
+  electricalIconActive:"/images/icon/electrical_icon_active.png",
+  plumbingIcon:"/images/icon/plumbing_icon.png",
+  plumbingIconActive:"/images/icon/plumbing_icon_active.png",
+  exteriorInteriorIcon:"/images/icon/exterior_interior_icon.png",
+  exteriorInteriorIconActive:"/images/icon/exterior_interior_icon_active.png",
+  cleaningIcon:"/images/icon/cleaning_icon.png",
+  cleaningIconActive:"/images/icon/cleaning_icon_active.png",
+  cameraIcon:"/images/icon/camera_icon.png",
+  albumIcon:"/images/icon/album_icon.png",
+  chatIcon:"/images/icon/chat_icon.png",
+  washer:"/images/washer.png",
+  washerVideoImages:"/images/washer_video.png",
+  refreshIconActive:"/images/icon/refresh_icon_active.png",
+  adminIcon:"/images/icon/admin_icon.png"
 };
 
 export default { ...Image };

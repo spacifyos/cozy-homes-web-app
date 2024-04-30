@@ -7,10 +7,9 @@ import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
 
 const NestedGeneralEnquiriesComponents = ({
   t,
-  onClickChangeThirdSection,
+  onClickChangeSecondSection,
+  showSecondSection,
   onClickCheckFeedbackMatters,
-  showThirdSection,
-  selectSection,
   checkFeedbackMatters,
 }) => {
   return (
@@ -18,33 +17,34 @@ const NestedGeneralEnquiriesComponents = ({
       <div className="grid grid-cols-4 pb-4">
         <DividerSection
           className="col-span-4"
-          title="What Is This Enquiry About?"
-          subtitle="Choose the category to specify the enquiry."
+          title={t("newRequest.whatIsThisEnquiryAbout")}
+          subtitle={t("newRequest.chooseTheCategoryToSpecifyTheEnquiry")}
         />
 
         <div className="col-span-2">
           <div className=" flex flex-col justify-center items-center">
             <div
-              className={`${_.isEqual(showThirdSection, "Enquiry") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
+              className={`${_.isEqual(showSecondSection, "Enquiry") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
               style={{ borderRadius: 100 }}
             >
               <CustomImage
+                className="cursor-pointer"
                 src={
-                  _.isEqual(showThirdSection, "Enquiry")
+                  _.isEqual(showSecondSection, "Enquiry")
                     ? Images.enquiryIcon
                     : Images.enquiryIconActive
                 }
                 width={30}
                 height={30}
-                onClick={() => onClickChangeThirdSection("Enquiry")}
+                onClick={() => onClickChangeSecondSection("Enquiry")}
               />
             </div>
 
             <CustomText textClassName="font-bold font-size-xsmall">
-              Enquiries
+              {t("newRequest.enquiry")}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-              Have a question?
+              {t("newRequest.haveAQuestion")}
             </CustomText>
           </div>
         </div>
@@ -52,33 +52,37 @@ const NestedGeneralEnquiriesComponents = ({
         <div className="col-span-2">
           <div className=" flex flex-col justify-center items-center">
             <div
-              className={`${_.isEqual(showThirdSection, "Feedback") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
+              className={`${_.isEqual(showSecondSection, "Feedback") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
               style={{ borderRadius: 100 }}
             >
               <CustomImage
-                src={`${_.isEqual(showThirdSection, "Feedback") ? Images.feedbackIcon : Images.feedbackIconActive}`}
+                className="cursor-pointer"
+                src={`${_.isEqual(showSecondSection, "Feedback") ? Images.feedbackIcon : Images.feedbackIconActive}`}
                 width={30}
                 height={30}
-                onClick={() => onClickChangeThirdSection("Feedback")}
+                onClick={() => onClickChangeSecondSection("Feedback")}
               />
             </div>
 
             <CustomText textClassName="font-bold font-size-xsmall">
-              Feedback
+              {t("newRequest.feedback")}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall text-center">
-              Write us your feedback.
+              {t("newRequest.writeUsYourFeedback")}
             </CustomText>
           </div>
         </div>
       </div>
-      {showThirdSection ? (
-        <EnquiriesForm
-          t={t}
-          showThirdSection={showThirdSection}
-          onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-          checkFeedbackMatters={checkFeedbackMatters}
-        />
+      {showSecondSection === "Enquiry" || showSecondSection === "Feedback" ? (
+        <div>
+          <EnquiriesForm
+            t={t}
+            onClickChangeSecondSection={onClickChangeSecondSection}
+            showSecondSection={showSecondSection}
+            onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
+            checkFeedbackMatters={checkFeedbackMatters}
+          />
+        </div>
       ) : (
         false
       )}

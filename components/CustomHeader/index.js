@@ -51,6 +51,7 @@ const CustomHeader = ({
               src={rightSecondButtonIcon}
               imageStyle={{ width: 25, height: 25 }}
               onClick={onClickRightSecondButton}
+              className="cursor-pointer"
             />
           )}
           {_.isEmpty(rightButtonIcon) ? (

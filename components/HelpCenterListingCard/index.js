@@ -37,7 +37,7 @@ const HelpCenterListingCard = ({ t, item }) => {
             textClassName="disable-text font-size-xxsmall"
             lineClamp={2}
           >
-            {request} {request}
+            {request}
           </CustomText>
         </div>
 

@@ -57,6 +57,9 @@ const HelpCenter = () => {
   const onClickGoBack = () => {
     router.back();
   };
+  const onClickToNewRequest = () => {
+    router.push("/help-center/new-request-help-center");
+  };
 
   return (
     <CustomHeader
@@ -64,6 +67,7 @@ const HelpCenter = () => {
       hideBgImage
       rightButtonIcon={Images.plusIcon}
       onClickGoBack={onClickGoBack}
+      onClickRightButton={onClickToNewRequest}
     >
       <div className="body-container pb-1">
         <div className="flex justify-between items-end pb-4">

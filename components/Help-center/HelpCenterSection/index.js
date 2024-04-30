@@ -8,12 +8,18 @@ import NestedGeneralEnquiriesComponents from "@/components/Help-center/NestedGen
 const HelpCenterSection = ({
   t,
   onClickChangeSection,
-  onClickChangeThirdSection,
   selectSection,
   showSecondSection,
-  showThirdSection,
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
+  onClickDisplayAmenitiesComponent,
+  displayAmenitiesComponent,
+  onChangeDate,
+  dateValue,
+  onChangeTime,
+  timeValue,
+  onClickChangeSecondSection,
+  onClickToRequestOverview,
 }) => {
   return (
     <div>
@@ -25,6 +31,7 @@ const HelpCenterSection = ({
               style={{ borderRadius: 100 }}
             >
               <CustomImage
+                className="cursor-pointer"
                 src={`${_.isEqual(selectSection, "GeneralEnquiries") ? Images.generalEnquiriesIcon : Images.generalEnquiriesIconActive}`}
                 width={30}
                 height={30}
@@ -33,10 +40,10 @@ const HelpCenterSection = ({
             </div>
 
             <CustomText textClassName="font-bold font-size-xsmall">
-              General Enquiries
+              {t("newRequest.generalEnquiries")}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-              Have a question or want to send feedback?
+              {t("newRequest.haveAQuestionOrWantToSendFeedback")}
             </CustomText>
           </div>
         </div>
@@ -48,6 +55,7 @@ const HelpCenterSection = ({
               style={{ borderRadius: 100 }}
             >
               <CustomImage
+                className="cursor-pointer"
                 src={`${_.isEqual(selectSection, "Maintenance") ? Images.maintenanceIcon : Images.maintenanceIconActive}`}
                 width={30}
                 height={30}
@@ -56,10 +64,10 @@ const HelpCenterSection = ({
             </div>
 
             <CustomText textClassName="font-bold font-size-xsmall">
-              Maintenance Requests
+              {t("newRequest.maintenanceRequests")}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall text-center">
-              Submit maintenance requests for issue resolution.
+              {t("newRequest.submitMaintenanceRequestsForIssueResolution")}
             </CustomText>
           </div>
         </div>
@@ -67,12 +75,25 @@ const HelpCenterSection = ({
       {showSecondSection ? (
         <div>
           {selectSection === "Maintenance" ? (
-            <NestedMaintenanceRequestComponents t={t} />
+            <NestedMaintenanceRequestComponents
+              t={t}
+              showSecondSection={showSecondSection}
+              onClickChangeSecondSection={onClickChangeSecondSection}
+              onClickDisplayAmenitiesComponent={
+                onClickDisplayAmenitiesComponent
+              }
+              displayAmenitiesComponent={displayAmenitiesComponent}
+              onChangeDate={onChangeDate}
+              dateValue={dateValue}
+              onChangeTime={onChangeTime}
+              timeValue={timeValue}
+              onClickToRequestOverview={onClickToRequestOverview}
+            />
           ) : (
             <NestedGeneralEnquiriesComponents
               t={t}
-              onClickChangeThirdSection={onClickChangeThirdSection}
-              showThirdSection={showThirdSection}
+              onClickChangeSecondSection={onClickChangeSecondSection}
+              showSecondSection={showSecondSection}
               onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
               checkFeedbackMatters={checkFeedbackMatters}
             />
