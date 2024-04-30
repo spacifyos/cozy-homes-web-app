@@ -28,7 +28,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
     },
   ];
   return (
-    <div className="fixed bottom-0 w-full" style={{ maxWidth: 500 }}>
+    <div id="bottom_navbar" className="fixed bottom-0 w-full" style={{ maxWidth: 500 }}>
       <div
         className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
         style={{ margin: 10 }}
