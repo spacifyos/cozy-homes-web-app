@@ -14,6 +14,8 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-date-picker/dist/DatePicker.css';
+import '@/src/lib/swiper/swiper.css';
+import '@/src/lib/swiper/modules/effect-cards.css';
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");

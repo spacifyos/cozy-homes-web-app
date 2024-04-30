@@ -23,7 +23,7 @@ const CustomSelect = ({
           const name = _.get(item, ["name"], "");
           const value = _.get(item, ["value"], "");
 
-          return <option value={value}>{name}</option>;
+          return <option key={name} value={value}>{name}</option>;
         })}
       </select>
     </label>

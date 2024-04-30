@@ -10,10 +10,10 @@ const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
         src={Images.moreIcon}
         height={25}
         width={25}
-        className="absolute right-5 top-5"
+        className="absolute right-5 top-5 cursor-pointer"
       />
 
-      <div className="profile-coin-icon-container">
+      <div className="profile-coin-icon-container cursor-pointer">
         <CustomImage
           src={Images.logoImage}
           height={30}

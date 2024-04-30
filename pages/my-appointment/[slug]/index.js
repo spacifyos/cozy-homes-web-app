@@ -147,8 +147,8 @@ const Booking = () => {
             {t("bookAppointment.message")}
           </CustomText>
 
-          {_.map(chatList, (item) => {
-            return <MessageTimeLine item={item} />;
+          {_.map(chatList, (item, index) => {
+            return <MessageTimeLine item={item} key={index} />;
           })}
 
           <div className="flex justify-center pt-2 w-full">

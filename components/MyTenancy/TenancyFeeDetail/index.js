@@ -19,11 +19,14 @@ const TenancyFeeDetail = ({ t }) => {
         {t("myTenancy.otherInformation")}
       </CustomText>
 
-      <div className="divider-line" style={{ marginTop:10, marginBottom:10 }}></div>
+      <div
+        className="divider-line"
+        style={{ marginTop: 10, marginBottom: 10 }}
+      ></div>
 
       <div className="flex flex-col justify-between items-center">
-        {_.map(FeeLists, (item) => {
-          return <TenancyFeeComponent item={item} />;
+        {_.map(FeeLists, (item, index) => {
+          return <TenancyFeeComponent item={item} key={index} />;
         })}
       </div>
     </div>

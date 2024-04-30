@@ -39,7 +39,7 @@ const MyStay = () => {
     router.push("/my-tenancy/1");
   };
 
-  const onClickChangeAutoPay = () => {
+  const onChangeAutoPay = () => {
     setIsChecked(!isChecked);
   };
 
@@ -70,7 +70,7 @@ const MyStay = () => {
         <TenancySection
           t={t}
           onClickGoToMyTenancy={onClickGoToMyTenancy}
-          onClickChangeAutoPay={onClickChangeAutoPay}
+          onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
         />
 

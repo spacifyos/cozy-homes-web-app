@@ -28,7 +28,7 @@ const MyTenancy = ({}) => {
     router.push(`/e-agreement/${id}`);
   };
 
-  const onClickChangeAutoPay = () => {
+  const onChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
       document.getElementById("myTenancy_Unsubscribe_modal").showModal();
@@ -50,7 +50,7 @@ const MyTenancy = ({}) => {
 
         <TenancyDetail
           t={t}
-          onClickChangeAutoPay={onClickChangeAutoPay}
+          onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
         />
 

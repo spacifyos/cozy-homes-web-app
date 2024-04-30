@@ -47,8 +47,13 @@ const InvoiceSection = ({
         </CustomText>
       </div>
 
-      {_.map(list, (item) => (
-        <InvoiceComponent t={t} item={item} onClick={onClickToOverviewPage} />
+      {_.map(list, (item, index) => (
+        <InvoiceComponent
+          key={index}
+          t={t}
+          item={item}
+          onClick={onClickToOverviewPage}
+        />
       ))}
     </div>
   );

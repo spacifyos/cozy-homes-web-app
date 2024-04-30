@@ -15,7 +15,7 @@
   select:required:invalid {
     @extend .font-size-small;
     color: $disable-color;
-    font-style: italic !important;
+    //font-style: italic !important;
   }
 
   option[value=""][disabled] {

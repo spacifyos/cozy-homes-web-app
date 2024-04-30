@@ -34,15 +34,23 @@
   color: $disable-color;
 }
 
-.booking-select {
+.booking-select-container {
   background-color: $primary-bg-color;
   width: 100%;
   border: 1px solid $disable-color;
   border-radius: 10px;
-  padding: 10px;
   margin: 4px 0;
+  padding-right: 10px;
   color: $primary-black-color;
-  -webkit-appearance: menulist;
+}
+
+.booking-select {
+  background-color: $primary-bg-color;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 0 10px 10px;
+  color: $primary-black-color;
+  -webkit-appearance: none;
   height: 40px;
   @apply font-size-xsmall;
 

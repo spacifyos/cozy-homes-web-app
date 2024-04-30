@@ -17,7 +17,7 @@ const TenancyLabel = () => {
   );
 };
 
-const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
+const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="auto-pay-button">
       <CustomText
@@ -29,7 +29,7 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
         type="checkbox"
         className={`toggle default-toggle ${isChecked ? "toggle-primary-color" : "toggle-disable-color"} [--tglbg:#E8E8E8]`}
         checked={isChecked}
-        onClick={onClickChangeAutoPay}
+        onChange={onChangeAutoPay}
       />
     </div>
   );
@@ -38,7 +38,7 @@ const AutoPayButton = ({ isChecked = false, onClickChangeAutoPay }) => {
 const TenancySection = ({
   t,
   onClickGoToMyTenancy,
-  onClickChangeAutoPay,
+  onChangeAutoPay,
   isChecked,
 }) => {
   const targetRef = useRef();
@@ -91,7 +91,7 @@ const TenancySection = ({
           <CustomLabelValue label={t("myStay.rentalFee")} value={"RM750"} />
 
           <AutoPayButton
-            onClickChangeAutoPay={onClickChangeAutoPay}
+            onChangeAutoPay={onChangeAutoPay}
             isChecked={isChecked}
           />
         </div>

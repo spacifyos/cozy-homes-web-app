@@ -25,7 +25,7 @@ const LanguageSwitcher = ({
       <div
         onClick={onClickOpenSwitcher}
         className={`collapse collapse-arrow primaryWhite-bg-color absolute right-7 global-box-shadow  ${openSwitcher ? "collapse-open" : ""}`}
-        style={{ width: 90 }}
+        style={{ width: 90, zIndex: 999 }}
       >
         <div
           className="collapse-title flex items-center"
@@ -48,6 +48,7 @@ const LanguageSwitcher = ({
 
             return (
               <div
+                key={index}
                 className={`flex items-center cursor-pointer ${index == 2 ? "" : "pb-2"}`}
                 onClick={() => onClickChangeLanguage(value)}
               >

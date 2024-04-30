@@ -12,6 +12,9 @@ import _ from "lodash";
 import { useState } from "react";
 import AgentSection from "@/components/PropertyDetail/AgentSection";
 import CustomModal from "@/components/CustomModal";
+import UploadIcButton from "@/components/Booking/UploadIcButton";
+import { value } from "lodash/seq";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
@@ -40,6 +43,8 @@ const Booking = () => {
 
   const [openCharges, setOpenCharges] = useState(false);
   const [emergencyContactNumber, setEmergencyContactNumber] = useState([0]);
+  const [icFrontBase64, setIcFrontBase64] = useState("");
+  const [icBackBase64, setIcBackBase64] = useState("");
 
   const onClickOpenCharges = () => {
     setOpenCharges(!openCharges);
@@ -53,9 +58,9 @@ const Booking = () => {
     router.push(`/booking/1/overview`);
   };
 
-  const onClickToBookAppointment=()=>{
-    router.push("/book-appointment/1")
-  }
+  const onClickToBookAppointment = () => {
+    router.push("/book-appointment/1");
+  };
   const onClickAddEmergencyContact = () => {
     setEmergencyContactNumber((prevState) =>
       _.concat(prevState, _.size(emergencyContactNumber)),
@@ -69,6 +74,40 @@ const Booking = () => {
         _.size(emergencyContactNumber) - 1,
       );
       setEmergencyContactNumber((prevState) => _.union(prevState, newArray));
+    }
+  };
+
+  const onChangeFrontICImage = (value) => {
+    convertToBase64("front", value.target.files[0]);
+  };
+
+  const onChangeBackICImage = (value) => {
+    convertToBase64("back", value.target.files[0]);
+  };
+
+  const convertToBase64 = (type, file) => {
+    const isLt2M = file && file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      Toast.error("Image must smaller than 2MB");
+      return;
+    }
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (_.isEqual(type, "front")) {
+          setIcFrontBase64(_.get(e, ["target", "result"], ""));
+        } else {
+          setIcBackBase64(_.get(e, ["target", "result"], ""));
+        }
+      };
+      reader.readAsDataURL(file);
+    } else {
+      if (_.isEqual(type, "front")) {
+        setIcFrontBase64("");
+      } else {
+        setIcBackBase64("");
+      }
     }
   };
 
@@ -258,7 +297,10 @@ const Booking = () => {
 
           {_.map(emergencyContactNumber, (item, index) => {
             return (
-              <div className="col-span-6 grid grid-cols-6 gap-2 pt-2">
+              <div
+                className="col-span-6 grid grid-cols-6 gap-2 pt-2"
+                key={index}
+              >
                 <CustomText textClassName="font-bold col-span-3">
                   {`Contact ${index + 1}`}
                 </CustomText>
@@ -353,20 +395,37 @@ const Booking = () => {
           </CustomText>
 
           <div className="col-span-3 flex flex-col items-center">
-            <CustomImage src={Images.icFront} imageStyle={{ width: "100%" }} />
-            <CustomButton
+            <CustomImage
+              src={_.isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
+              imageStyle={{ width: "100%", height: 155, objectFit: "contain" }}
+            />
+            <UploadIcButton
+              name="front_image"
               icon={Images.uploadIcon}
               buttonText="Front Image"
               buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
+              onChangeImage={onChangeFrontICImage}
+              onClickSelectImage={() =>
+                document.getElementById("front_image").click()
+              }
             />
           </div>
 
           <div className="col-span-3 flex flex-col items-center">
-            <CustomImage src={Images.icBack} imageStyle={{ width: "100%" }} />
-            <CustomButton
+            <CustomImage
+              src={_.isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
+              imageStyle={{ width: "100%", height: 155, objectFit: "contain" }}
+            />
+
+            <UploadIcButton
+              name="back_image"
               icon={Images.uploadIcon}
               buttonText="Back Image"
               buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
+              onChangeImage={onChangeBackICImage}
+              onClickSelectImage={() =>
+                document.getElementById("back_image").click()
+              }
             />
           </div>
 
@@ -450,7 +509,7 @@ const Booking = () => {
                   const value = _.get(item, ["value"], "");
 
                   return (
-                    <ul className="pl-7">
+                    <ul className="pl-7" key={index}>
                       <li className="flex justify-between">
                         <CustomText
                           styles={{ color: "#1E1E1E" }}
@@ -550,7 +609,11 @@ const Booking = () => {
           </CustomText>
         </div>
 
-        <AgentSection t={t} onClickBooking={onClickBooking} onClickToBookAppointment={onClickToBookAppointment}/>
+        <AgentSection
+          t={t}
+          onClickBooking={onClickBooking}
+          onClickToBookAppointment={onClickToBookAppointment}
+        />
       </div>
 
       <CustomModal id="rent_charges_details">

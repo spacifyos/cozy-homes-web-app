@@ -71,13 +71,13 @@ const MyInvoiceComponent = ({ list }) => {
         slidesToSlide={1}
         swipeable
       >
-        {_.map(list, (item) => {
+        {_.map(list, (item, index) => {
           const title = _.get(item, ["title"], "");
           const value = _.get(item, ["value"], "");
           const date = _.get(item, ["date"], "");
 
           return (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center" key={index}>
               <CustomText>{title}</CustomText>
               <CustomText
                 textClassName={`${textColor(title)} font-bold`}
