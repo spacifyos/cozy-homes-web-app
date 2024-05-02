@@ -2,7 +2,9 @@
 @import "../utils/scaling";
 @import "../text";
 .carousel-img{
+  object-fit: cover;
   height: 300px;
+  width: 100%;
   border-radius: 10px;
 }
 
