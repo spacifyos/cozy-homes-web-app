@@ -84,7 +84,7 @@ const AmenitiesSection = ({
           />
         </div>
       </div>
-      {displayAmenitiesComponent ? (
+      {displayAmenitiesComponent==="Amenities" ? (
         <div>
           <AmenitiesComponent
             t={t}
@@ -101,7 +101,7 @@ const AmenitiesSection = ({
             buttonStyles={{ padding: "5px 30px" }}
             buttonClassName="primary-btn"
             buttonText={t("newRequest.continue")}
-            onClick={onClickDisplayAmenitiesComponent}
+            onClick={()=>onClickDisplayAmenitiesComponent("Amenities")}
           />
         </div>
       )}

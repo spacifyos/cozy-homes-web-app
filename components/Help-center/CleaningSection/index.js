@@ -9,7 +9,16 @@ import AmenitiesComponent from "@/components/Help-center/AmenitiesComponent";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import RequestComponent from "@/components/Help-center/RequestComponent";
-const CleaningSection = ({ t }) => {
+const CleaningSection = ({
+  t,
+  onClickDisplayAmenitiesComponent,
+  displayAmenitiesComponent,
+  onChangeDate,
+  dateValue,
+  onChangeTime,
+  timeValue,
+  onClickToRequestOverview,
+}) => {
   return (
     <div>
       <DividerSection
@@ -21,13 +30,27 @@ const CleaningSection = ({ t }) => {
         placeholder={t("newRequest.describeTheRequest")}
         className="mb-3"
       />
-      <div className="flex justify-center">
-        <CustomButton
-          buttonStyles={{ padding: "5px 30px" }}
-          buttonClassName="primary-btn"
-          buttonText="Submit"
-        />
-      </div>
+      {displayAmenitiesComponent==="Cleaning" ? (
+        <div>
+          <AmenitiesComponent
+            t={t}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
+        </div>
+      ) : (
+        <div className="flex justify-center">
+          <CustomButton
+            buttonStyles={{ padding: "5px 30px" }}
+            buttonClassName="primary-btn"
+            buttonText={t("newRequest.continue")}
+            onClick={()=>onClickDisplayAmenitiesComponent("Cleaning")}
+          />
+        </div>
+      )}
     </div>
   );
 };

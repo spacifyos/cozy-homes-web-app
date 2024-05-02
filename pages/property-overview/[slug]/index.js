@@ -22,14 +22,35 @@ const Detail = ({}) => {
   const router = useRouter();
   const [selectDetail, setSelectedDetail] = useState("Tenancy");
   const [isBookMarks, setIsBookMarks] = useState(true);
-
-  const onClickToBookAppointment =()=>{
-    router.push("/property-overview/1/book-appointment")
-  }
+  const FeatureLists = [
+    {
+      icon: Images.bathAmenitiesIcon,
+      name: t("propertyDetail.bathRoom"),
+      detail: t("propertyDetail.shared"),
+    },
+    {
+      icon: Images.bedInactiveIcon,
+      name: t("propertyDetail.bed"),
+      detail: t("propertyDetail.queen"),
+    },
+    {
+      icon: Images.squareIcon,
+      name: t("propertyDetail.squareFt"),
+      detail: "150",
+    },
+    {
+      icon: Images.rentalFeeIcon,
+      name: t("propertyDetail.rentalFee"),
+      detail: "RM750",
+      bgColor: "secondary-bg-color",
+    },
+  ];
+  const onClickToBookAppointment = () => {
+    router.push("/property-overview/1/book-appointment");
+  };
   const onClickGoBack = () => {
     router.back();
   };
-
 
   const onClickRightButton = () => {
     setIsBookMarks(!isBookMarks);
@@ -64,20 +85,27 @@ const Detail = ({}) => {
 
         {_.isEqual(selectDetail, "Tenancy") ? (
           <div>
-            <DetailFeatureSection t={t} />
-            <Description t={t}/>
+            <div className="grid grid-cols-4 gap-2 pb-7">
+              {_.map(FeatureLists, (item, index) => {
+                return <DetailFeatureSection t={t} item={item} key={index} />;
+              })}
+            </div>
+            <Description t={t} />
             <Facilities t={t} />
             <RoomzMap t={t} />
             <RecommendSection t={t} />
           </div>
         ) : (
-
           <div>
             <PolicyDetail t={t} />
           </div>
         )}
 
-        <AgentSection t={t} onClickBooking={onClickBooking} onClickToBookAppointment={onClickToBookAppointment}/>
+        <AgentSection
+          t={t}
+          onClickBooking={onClickBooking}
+          onClickToBookAppointment={onClickToBookAppointment}
+        />
       </div>
     </CustomHeader>
   );

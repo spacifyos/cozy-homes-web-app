@@ -184,19 +184,55 @@ const NestedMaintenanceRequestComponents = ({
         </div>
       ) : showSecondSection === "Electrical" ? (
         <div>
-          <ElectricalSection t={t} />
+          <ElectricalSection
+            t={t}
+            onClickDisplayAmenitiesComponent={onClickDisplayAmenitiesComponent}
+            displayAmenitiesComponent={displayAmenitiesComponent}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
         </div>
       ) : showSecondSection === "Plumbing" ? (
         <div>
-          <PlumbingSection t={t} />
+          <PlumbingSection
+            t={t}
+            onClickDisplayAmenitiesComponent={onClickDisplayAmenitiesComponent}
+            displayAmenitiesComponent={displayAmenitiesComponent}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
         </div>
       ) : showSecondSection === "Exterior&Interior" ? (
         <div>
-          <ExteriorInteriorSection t={t} />
+          <ExteriorInteriorSection
+            t={t}
+            onClickDisplayAmenitiesComponent={onClickDisplayAmenitiesComponent}
+            displayAmenitiesComponent={displayAmenitiesComponent}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
         </div>
       ) : showSecondSection === "Cleaning" ? (
         <div>
-          <CleaningSection t={t} />
+          <CleaningSection
+            t={t}
+            onClickDisplayAmenitiesComponent={onClickDisplayAmenitiesComponent}
+            displayAmenitiesComponent={displayAmenitiesComponent}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
         </div>
       ) : (
         false

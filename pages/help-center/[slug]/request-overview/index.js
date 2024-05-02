@@ -56,24 +56,28 @@ const RequestOverview = () => {
   const onChangeTime = (e) => {
     setTimeValue(e.target.value);
   };
-
-  const onClickGoBack = () => {
-    router.back();
+  const onClickToHelpCenter = () => {
+    router.push("/help-center");
   };
-
   return (
     <CustomHeader
       pageTitle={t("pageTitle.requestOverview")}
       hideBgImage
       rightButtonIcon={Images.downloadIcon}
       rightSecondButtonIcon={Images.chatIcon}
-      onClickGoBack={onClickGoBack}
+      onClickGoBack={onClickToHelpCenter}
     >
       <div className="body-container pb-4">
         <div className=" global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
           <div className="flex justify-between">
-            <CustomLabelValue label={t("requestOverview.requestNumber")} value="RQ-230000007" />
-            <CustomLabelValue label={t("requestOverview.status")} value={t("requestOverview.newRequest")} />
+            <CustomLabelValue
+              label={t("requestOverview.requestNumber")}
+              value="RQ-230000007"
+            />
+            <CustomLabelValue
+              label={t("requestOverview.status")}
+              value={t("requestOverview.newRequest")}
+            />
           </div>
           <div
             className="divider divider-line"
@@ -84,7 +88,7 @@ const RequestOverview = () => {
             <CustomText textClassName="disable-text font-size-xxsmall">
               {t("requestOverview.basicInformation")}
             </CustomText>
-            <StatusLabelOutline status={t("requestOverview.critical")}/>
+            <StatusLabelOutline status={t("requestOverview.critical")} />
           </div>
           <div
             className="divider divider-line"
@@ -100,7 +104,10 @@ const RequestOverview = () => {
                 Joan Lim
               </CustomText>
             </div>
-            <CustomLabelValue label={t("requestOverview.requestDate")} value="10 DEC 2023" />
+            <CustomLabelValue
+              label={t("requestOverview.requestDate")}
+              value="10 DEC 2023"
+            />
           </div>
           <CustomText textClassName="disable-text font-size-xxsmall">
             {t("requestOverview.property")}
@@ -163,8 +170,8 @@ const RequestOverview = () => {
             </CustomText>
             <CustomImage
               src={Images.refreshIconActive}
-              width={20}
-              height={20}
+              width={15}
+              height={15}
               className="cursor-pointer"
             />
           </div>
@@ -177,7 +184,9 @@ const RequestOverview = () => {
             placeholder={t("requestOverview.selectTechnician")}
             lists={[{ name: "Daniel", value: "daniel" }]}
           />
-          <CustomText textClassName="input-title">{t("requestOverview.date")}</CustomText>
+          <CustomText textClassName="input-title">
+            {t("requestOverview.date")}
+          </CustomText>
           <div className="flex items-center global-border-radius p-2 relative mb-3 booking-input pb-1">
             <input
               className="bg-color flex-1 w-full resize-input-icon"
@@ -203,7 +212,9 @@ const RequestOverview = () => {
               buttonText={t("requestOverview.assign")}
             />
             <CustomText textClassName="disable-text font-size-xxsmall">
-              {t("requestOverview.maintenanceScheduleInformationWillBeUpdatedSoon")}
+              {t(
+                "requestOverview.maintenanceScheduleInformationWillBeUpdatedSoon",
+              )}
             </CustomText>
           </div>
         </div>

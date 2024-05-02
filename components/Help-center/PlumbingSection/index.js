@@ -9,7 +9,16 @@ import AmenitiesComponent from "@/components/Help-center/AmenitiesComponent";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import RequestComponent from "@/components/Help-center/RequestComponent";
-const PlumbingSection = ({ t }) => {
+const PlumbingSection = ({
+  t,
+  onClickDisplayAmenitiesComponent,
+  displayAmenitiesComponent,
+  onChangeDate,
+  dateValue,
+  onChangeTime,
+  timeValue,
+  onClickToRequestOverview,
+}) => {
   return (
     <div>
       <RequestComponent
@@ -22,6 +31,27 @@ const PlumbingSection = ({ t }) => {
           { name: t("newRequest.pumps"), value: "pumps" },
         ]}
       />
+      {displayAmenitiesComponent==="Plumbing" ? (
+        <div>
+          <AmenitiesComponent
+            t={t}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
+        </div>
+      ) : (
+        <div className="flex justify-center">
+          <CustomButton
+            buttonStyles={{ padding: "5px 30px" }}
+            buttonClassName="primary-btn"
+            buttonText={t("newRequest.continue")}
+            onClick={()=>onClickDisplayAmenitiesComponent("Plumbing")}
+          />
+        </div>
+      )}
     </div>
   );
 };

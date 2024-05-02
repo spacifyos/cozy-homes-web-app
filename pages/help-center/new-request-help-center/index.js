@@ -18,8 +18,7 @@ const NewRequest = ({}) => {
   const [selectSection, setSelectSection] = useState(false);
   const [showSecondSection, setShowSecondSection] = useState(false);
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
-  const [displayAmenitiesComponent, setDisplayAmenitiesComponent] =
-    useState(false);
+  const [displayAmenitiesComponent, setDisplayAmenitiesComponent] = useState(false);
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
@@ -41,24 +40,24 @@ const NewRequest = ({}) => {
   const onClickChangeSection = (selectSection) => {
     setSelectSection(selectSection);
   };
-
   const onClickChangeSecondSection = (showSecondSection) => {
     setShowSecondSection(showSecondSection);
   };
   const onClickGoBack = () => {
     router.back();
   };
-  const onClickToRequestOverview = () => {
-    router.push("/help-center/new-request-help-center/requestOverview");
+  const onClickToHelpCenter = () => {
+    router.push("/help-center");
   };
-
+  const onClickToRequestOverview = () => {
+    router.push("/help-center/1/request-overview");
+  };
   useEffect(() => {
     setShowSecondSection(
       _.isEqual(selectSection, "GeneralEnquiries") ||
         _.isEqual(selectSection, "Maintenance"),
     );
   }, [selectSection]);
-
   return (
     <CustomHeader
       pageTitle={t("pageTitle.newRequest")}
@@ -74,10 +73,18 @@ const NewRequest = ({}) => {
             {t("newRequest.requester")}
           </CustomText>
           <CustomText textClassName="font-bold pb-2">Joan Lim</CustomText>
-          <BookingInput disabled title={t("newRequest.property")} value="Icon City" />
+          <BookingInput
+            disabled
+            title={t("newRequest.property")}
+            value="Icon City"
+          />
           <div className="grid grid-cols-2 gap-2">
             <div className="col-span-1">
-              <BookingInput disabled title={t("newRequest.unit")} value="A-01-01" />
+              <BookingInput
+                disabled
+                title={t("newRequest.unit")}
+                value="A-01-01"
+              />
             </div>
             <div className="col-span-1">
               <BookingSelect

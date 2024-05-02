@@ -55,14 +55,15 @@ const HelpCenter = () => {
     setSelectedStatus(status);
   };
   const onClickGoBack = () => {
-    router.back();
+    router.push("/my-stay");
   };
   const onClickToNewRequest = () => {
     router.push("/help-center/new-request-help-center");
   };
-
+const onClickToRequestOverview = ()=>{
+  router.push("/help-center/1/request-overview")
+}
   const formattedList = () => {
-
     if(_.isEqual(selectedStatus,'All')){
       return lists
     }
@@ -111,7 +112,7 @@ const HelpCenter = () => {
         </div>
 
         {_.map(formattedList(), (item) => {
-            return <HelpCenterListingCard t={t} item={item} />;
+            return <HelpCenterListingCard t={t} item={item} onClickToRequestOverview={onClickToRequestOverview } />;
         })}
       </div>
     </CustomHeader>
