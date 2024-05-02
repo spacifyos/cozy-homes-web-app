@@ -61,6 +61,17 @@ const HelpCenter = () => {
     router.push("/help-center/new-request-help-center");
   };
 
+  const formattedList = () => {
+
+    if(_.isEqual(selectedStatus,'All')){
+      return lists
+    }
+
+    return _.filter(lists,item=>{
+      return _.isEqual(item.status, selectedStatus)
+    })
+  }
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.helpCenter")}
@@ -99,13 +110,8 @@ const HelpCenter = () => {
           </div>
         </div>
 
-        {_.map(lists, (item) => {
-          if (
-            _.isEqual(selectedStatus, "All") ||
-            _.isEqual(item.status, selectedStatus)
-          ) {
+        {_.map(formattedList(), (item) => {
             return <HelpCenterListingCard t={t} item={item} />;
-          }
         })}
       </div>
     </CustomHeader>

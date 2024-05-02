@@ -8,8 +8,28 @@ import UploadModal from "@/components/Help-center/UploadModal";
 import AmenitiesComponent from "@/components/Help-center/AmenitiesComponent";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
+import RequestComponent from "@/components/Help-center/RequestComponent";
 const CleaningSection = ({ t }) => {
-  return <div></div>;
+  return (
+    <div>
+      <DividerSection
+        title={t("newRequest.pleaseSpecificTheRequest")}
+        subtitle={t("newRequest.chooseToSpecifyTheIssue")}
+      />
+      <BookingTextArea
+        title={t("newRequest.describeTheRequest")}
+        placeholder={t("newRequest.describeTheRequest")}
+        className="mb-3"
+      />
+      <div className="flex justify-center">
+        <CustomButton
+          buttonStyles={{ padding: "5px 30px" }}
+          buttonClassName="primary-btn"
+          buttonText="Submit"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default CleaningSection;

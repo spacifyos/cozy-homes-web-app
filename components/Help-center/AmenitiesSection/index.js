@@ -8,6 +8,7 @@ import UploadModal from "@/components/Help-center/UploadModal";
 import AmenitiesComponent from "@/components/Help-center/AmenitiesComponent";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
+import RequestComponent from "@/components/Help-center/RequestComponent";
 const AmenitiesSection = ({
   t,
   onClickDisplayAmenitiesComponent,
@@ -20,54 +21,29 @@ const AmenitiesSection = ({
 }) => {
   return (
     <div>
-      <DividerSection
-        title={t("newRequest.pleaseSpecificTheRequest")}
-        subtitle={t("newRequest.chooseToSpecifyTheIssue")}
+      <RequestComponent
+        t={t}
+        title={t("newRequest.selectAmenities")}
+        lists={[
+          { name: t("newRequest.washer"), value: "washer" },
+          { name: t("newRequest.dryer"), value: "dryer" },
+          { name: t("newRequest.oven"), value: "oven" },
+          { name: t("newRequest.airConditioner"), value: "airConditioner" },
+          { name: t("newRequest.waterHeater"), value: "waterHeater" },
+          { name: t("newRequest.cellingFan"), value: "cellingFan" },
+        ]}
       />
 
-   <BookingSelect
-   title={t("newRequest.selectAmenities")}
-   placeholder={t("newRequest.selectAmenities")}
-   lists={[
-       {name:t("newRequest.washer"), value:"washer"},
-       {name:t("newRequest.dryer"), value:"dryer"},
-       {name:t("newRequest.oven"), value:"oven"},
-       {name:t("newRequest.airConditioner"), value:"airConditioner"},
-       {name:t("newRequest.waterHeater"), value:"waterHeater"},
-       {name:t("newRequest.cellingFan"), value:"cellingFan"},
-   ]}
-   />
-    <BookingSelect
-    title={t("newRequest.selectIssue")}
-    placeholder={t("newRequest.selectIssue")}
-    lists={[
-        {name:t("newRequest.notWorking"), value:"not working"}
-    ]}
-    />
-    <BookingSelect
-    title={t("newRequest.selectPriority")}
-    placeholder={t("newRequest.selectPriority")}
-    lists={[
-        {name:t("newRequest.critical"), value:"critical"},
-        {name:t("newRequest.high"), value:"high"},
-        {name:t("newRequest.medium"), value:"medium"},
-        {name:t("newRequest.low"), value:"low"},
-    ]}
-    />
-
-      <BookingTextArea
-          title={t("newRequest.describeTheIssue")}
-          placeholder={t("newRequest.enterYourMessage")}className="mb-3" />
       <CustomText textClassName="pb-2 font-size-xsmall">
-          {t("newRequest.uploadPhoto")}
+        {t("newRequest.uploadPhoto")}
       </CustomText>
       <div className=" flex flex-row items-center gap-2 pb-3">
-          <CustomImage
+        <CustomImage
           src={Images.washer}
           width={55}
           height={55}
           className="global-border-radius"
-          />
+        />
         <div
           className="bg-color p-2 global-border-radius relative cursor-pointer"
           style={{ width: 55, height: 55 }}
@@ -84,15 +60,15 @@ const AmenitiesSection = ({
         </div>
       </div>
       <CustomText textClassName="pb-2 font-size-xsmall">
-          {t("newRequest.uploadVideo")}
+        {t("newRequest.uploadVideo")}
       </CustomText>
       <div className=" flex flex-row items-center gap-2  pb-3">
-          <CustomImage
+        <CustomImage
           src={Images.washerVideoImages}
           width={55}
           height={55}
           className="global-border-radius"
-          />
+        />
         <div
           className="bg-color p-2 global-border-radius relative cursor-pointer"
           style={{ width: 55, height: 55 }}
@@ -120,7 +96,7 @@ const AmenitiesSection = ({
           />
         </div>
       ) : (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center">
           <CustomButton
             buttonStyles={{ padding: "5px 30px" }}
             buttonClassName="primary-btn"
@@ -130,7 +106,7 @@ const AmenitiesSection = ({
         </div>
       )}
 
-      <UploadModal t={t}/>
+      <UploadModal t={t} />
     </div>
   );
 };

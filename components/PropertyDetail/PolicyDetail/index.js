@@ -8,14 +8,14 @@ const PolicyDetail = ({t}) => {
 
                 {t("propertyDetail.cancellationPolicy")}
             </CustomText>
-            <CustomText textClassName="font-size-small disable-text text-justify break-all tracking-tight">
+            <CustomText textClassName="font-size-small disable-text text-justify  tracking-tight">
                 <ul className="list-disc pl-6">
                     <li>
-                        If, as a Guest, you wish to cancel a booking, either prior to or after arriving at the
+                        <p>If, as a Guest, you wish to cancel a booking, either prior to or after arriving at the
                         accommodation, the Company’s Cancellation & Refund Rules which is available in
                         <a href=" https://www.belive.asia/short_term_rentals/guide"
                            className="underline"> https://www.belive.asia/short_term_rentals/guide</a> shall be
-                        applicable.
+                            applicable.</p>
                     </li>
                     <li>
                         If a Host cancels a booking, (i) the Company will refund the Total Fees for such booking to the

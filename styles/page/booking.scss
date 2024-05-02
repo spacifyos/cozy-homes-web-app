@@ -10,7 +10,7 @@
   color: $primary-black-color;
   height: 100px;
   resize: none;
-  @apply font-size-xsmall;
+  @apply font-size-xsmall mb-2;
 }
 
 .booking-textarea::placeholder {
@@ -26,8 +26,8 @@
   margin: 4px 0;
   color: $primary-black-color;
   height: 40px;
-  margin-bottom: 10px;
-  @apply font-size-xsmall;
+
+  @apply font-size-xsmall mb-2;
 }
 
 .booking-input::placeholder {
@@ -42,6 +42,7 @@
   margin: 4px 0;
   padding-right: 10px;
   color: $primary-black-color;
+  @apply mb-2;
 }
 
 .booking-select {

@@ -21,7 +21,8 @@ const Detail = ({}) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const [selectDetail, setSelectedDetail] = useState("Tenancy");
-  const [showPolicy, setShowPolicy] = useState(true);
+  const [isBookMarks, setIsBookMarks] = useState(true);
+
   const onClickToBookAppointment =()=>{
     router.push("/property-overview/1/book-appointment")
   }
@@ -29,7 +30,6 @@ const Detail = ({}) => {
     router.back();
   };
 
-  const [isBookMarks, setIsBookMarks] = useState(true);
 
   const onClickRightButton = () => {
     setIsBookMarks(!isBookMarks);
@@ -38,10 +38,6 @@ const Detail = ({}) => {
   const onClickSelectDetail = (select) => {
     setSelectedDetail(select);
   };
-
-  useEffect(() => {
-    setShowPolicy(selectDetail === "Tenancy");
-  }, [selectDetail]);
 
   const onClickBooking = () => {
     router.push(`/booking/1`);
@@ -66,7 +62,7 @@ const Detail = ({}) => {
           selectDetail={selectDetail}
         />
 
-        {_.isEqual(showPolicy, true) ? (
+        {_.isEqual(selectDetail, "Tenancy") ? (
           <div>
             <DetailFeatureSection t={t} />
             <Description t={t}/>

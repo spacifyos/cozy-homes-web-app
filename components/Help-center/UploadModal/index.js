@@ -7,8 +7,8 @@ const UploadModal = ({ t }) => {
     return (
         <CustomModal id="help_center_upload_modal">
             <CustomText textClassName="font-bold mb-5">{t("newRequest.uploadPhotoTitle")}</CustomText>
-            <div className="flex pb-5">
-                <div className="flex flex-col items-center pr-10">
+            <div className="grid grid-cols-9">
+                <div className="col-span-3 flex flex-col items-center">
                     <CustomImage
                         className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
                         src={Images.cameraIcon}
@@ -16,13 +16,21 @@ const UploadModal = ({ t }) => {
                     />
                     <CustomText textClassName="font-bold">{t("newRequest.camera")}</CustomText>
                 </div>
-                <div className="flex flex-col items-center pr-10">
+                <div className="col-span-3 flex flex-col items-center">
                     <CustomImage
                         className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
                         src={Images.albumIcon}
                         imageStyle={{borderRadius: 100}}
                     />
                     <CustomText textClassName="font-bold">{t("newRequest.album")}</CustomText>
+                </div>
+                <div className="col-span-3 flex flex-col items-center">
+                    <CustomImage
+                        className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
+                        src={Images.primaryTermAndConditionIcon}
+                        imageStyle={{borderRadius: 100}}
+                    />
+                    <CustomText textClassName="font-bold">{t("newRequest.document")}</CustomText>
                 </div>
             </div>
         </CustomModal>

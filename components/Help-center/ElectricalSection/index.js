@@ -8,8 +8,21 @@ import UploadModal from "@/components/Help-center/UploadModal";
 import AmenitiesComponent from "@/components/Help-center/AmenitiesComponent";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
+import RequestComponent from "@/components/Help-center/RequestComponent";
 const ElectricalSection = ({ t }) => {
-    return <div></div>;
+  return (
+    <div>
+      <RequestComponent t={t}
+        title={t("newRequest.selectElectrical")}
+        lists={[
+          { name: t("newRequest.lights"), value: "lights" },
+          { name: t("newRequest.wellSocket"), value: "well socket" },
+          { name: t("newRequest.wiring"), value: "wiring" },
+          { name: t("newRequest.smartMeter"), value: "smart meter" },
+        ]}
+      />
+    </div>
+  );
 };
 
 export default ElectricalSection;
