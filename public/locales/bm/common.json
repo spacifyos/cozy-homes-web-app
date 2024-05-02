@@ -437,6 +437,7 @@
     "maintenanceAmenitiesWasherNotWorking": "Penyelenggaraan / Kemudahan / Pencuci Tidak Berfungsi",
     "notWorkingFor2Weeks": "Tidak berfungsi selama 2 minggu.",
     "selectTechnician": "Pilih Juruteknik",
-    "selectTime": "Pilih Masa"
+    "selectTime": "Pilih Masa",
+    "newRequest": "Permintaan Baru"
   }
 }

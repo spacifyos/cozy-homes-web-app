@@ -13,7 +13,7 @@ const PolicyDetail = ({t}) => {
                     <li>
                         <p>If, as a Guest, you wish to cancel a booking, either prior to or after arriving at the
                         accommodation, the Company’s Cancellation & Refund Rules which is available in
-                        <a href=" https://www.belive.asia/short_term_rentals/guide"
+                        <a href="https://www.belive.asia/short_term_rentals/guide"
                            className="underline"> https://www.belive.asia/short_term_rentals/guide</a> shall be
                             applicable.</p>
                     </li>
@@ -36,7 +36,7 @@ const PolicyDetail = ({t}) => {
                     <li>
                         If, as a Host, your Guest cancels a booking, and the Company issues a refund to the Guest in
                         accordance with the Company’s Cancellation & Refund Rules <a
-                        href=" https://www.belive.asia/short_term_rentals/guide"
+                        href="https://www.belive.asia/short_term_rentals/guide"
                         className="underline">https://www.belive.asia/short_term_rentals/guide</a>
                         , you agree that in the event you have already
                         been paid the Company shall be entitled to recover the amount of any such Guest refund from you,

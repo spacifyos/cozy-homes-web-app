@@ -73,7 +73,7 @@ const RequestOverview = () => {
         <div className=" global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
           <div className="flex justify-between">
             <CustomLabelValue label={t("requestOverview.requestNumber")} value="RQ-230000007" />
-            <CustomLabelValue label={t("requestOverview.status")} value="New Rwquest" />
+            <CustomLabelValue label={t("requestOverview.status")} value={t("requestOverview.newRequest")} />
           </div>
           <div
             className="divider divider-line"
@@ -109,7 +109,7 @@ const RequestOverview = () => {
             Icon City, A-01-01, Room 1
           </CustomText>
           <CustomText textClassName="disable-text font-size-xxsmall">
-            {t("requestOverview.linkEnquipment")}
+            {t("requestOverview.linkEquipment")}
           </CustomText>
           <CustomText textClassName="font-size-small font-bold pb-2">
             {t("requestOverview.none")}

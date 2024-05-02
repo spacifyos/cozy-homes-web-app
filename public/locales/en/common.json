@@ -437,6 +437,7 @@
     "maintenanceAmenitiesWasherNotWorking": "Maintenance / Amenities / Washer / Not Working",
     "notWorkingFor2Weeks": "Not working for 2 weeks.",
     "selectTechnician": "Select Technician",
-    "selectTime": "Select Time"
+    "selectTime": "Select Time",
+    "newRequest": "New Request"
   }
 }

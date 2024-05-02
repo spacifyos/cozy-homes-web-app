@@ -437,6 +437,7 @@
     "maintenanceAmenitiesWasherNotWorking": "维护/设施/洗衣机/未工作",
     "notWorkingFor2Weeks": "未工作2周。",
     "selectTechnician": "选择技术人员",
-    "selectTime": "选择时间"
+    "selectTime": "选择时间",
+    "newRequest": "新请求"
   }
 }
