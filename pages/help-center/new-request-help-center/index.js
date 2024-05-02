@@ -71,14 +71,13 @@ const NewRequest = ({}) => {
             {t("newRequest.generalInformation")}
           </CustomText>
           <CustomText textClassName="font-size-xxsmall">
-            {" "}
             {t("newRequest.requester")}
           </CustomText>
           <CustomText textClassName="font-bold pb-2">Joan Lim</CustomText>
           <BookingInput disabled title={t("newRequest.property")} value="Icon City" />
           <div className="grid grid-cols-2 gap-2">
             <div className="col-span-1">
-              <BookingInput title={t("newRequest.unit")} value="A-01-01" />
+              <BookingInput disabled title={t("newRequest.unit")} value="A-01-01" />
             </div>
             <div className="col-span-1">
               <BookingSelect
