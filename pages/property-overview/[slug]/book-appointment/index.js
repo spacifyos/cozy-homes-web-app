@@ -36,8 +36,8 @@ const Booking = () => {
     router.back();
   };
 
-  const onClickBookSuccess = () => {
-    router.push("/property-overview/1/appointment-successful");
+  const onClickBookSuccess = (id) => {
+    router.push(`/property-overview/${id}/appointment-successful`);
   };
 
   return (

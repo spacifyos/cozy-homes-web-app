@@ -26,8 +26,8 @@ const InvoiceOverview = () => {
     setOpenDownloadModal(!openDownloadModal);
   };
 
-  const onClickToPayment = () => {
-    router.push(`/my-invoice/1/payment-successful`);
+  const onClickToPayment = (id) => {
+    router.push(`/my-invoice/${id}/payment-successful`);
   };
 
   return (

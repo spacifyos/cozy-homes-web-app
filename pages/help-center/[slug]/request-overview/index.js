@@ -15,35 +15,35 @@ import _ from "lodash";
 import BookingSelect from "@/components/Booking/BookingSelect";
 
 export { getServerSideProps };
-
+const chatList = [
+  {
+    date: "10 Dec 23, 10.02am",
+    img: Images.filterDefaultImage,
+    name: "Joan Lim",
+    chat: "Hi, may I know when the technician can come?",
+    icon: Images.ellipseGreenIcon,
+    identity: "other",
+  },
+  {
+    date: "10 Dec 23,  10.11am",
+    img: Images.agentIcon,
+    name: "Admin",
+    chat: "Hi Joan, we're currently arranging a technician for you. We'll provide an update on the status soon.",
+    identity: "agent",
+  },
+  {
+    date: "10 Dec 23, 11.36am",
+    img: Images.filterDefaultImage,
+    name: "Joan Lim",
+    chat: "Thank you for the reply.",
+    icon: Images.ellipseGreenIcon,
+    identity: "other",
+  },
+];
 const RequestOverview = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const chatList = [
-    {
-      date: "10 Dec 23, 10.02am",
-      img: Images.filterDefaultImage,
-      name: "Joan Lim",
-      chat: "Hi, may I know when the technician can come?",
-      icon: Images.ellipseGreenIcon,
-      identity: "other",
-    },
-    {
-      date: "10 Dec 23,  10.11am",
-      img: Images.agentIcon,
-      name: "Admin",
-      chat: "Hi Joan, we're currently arranging a technician for you. We'll provide an update on the status soon.",
-      identity: "agent",
-    },
-    {
-      date: "10 Dec 23, 11.36am",
-      img: Images.filterDefaultImage,
-      name: "Joan Lim",
-      chat: "Thank you for the reply.",
-      icon: Images.ellipseGreenIcon,
-      identity: "other",
-    },
-  ];
+
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );

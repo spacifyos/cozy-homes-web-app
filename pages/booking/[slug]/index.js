@@ -54,12 +54,12 @@ const Booking = () => {
     router.back();
   };
 
-  const onClickBooking = () => {
-    router.push(`/booking/1/overview`);
+  const onClickBooking = (id) => {
+    router.push(`/booking/${id}/overview`);
   };
 
-  const onClickToBookAppointment = () => {
-    router.push("/book-appointment/1");
+  const onClickToBookAppointment = (id) => {
+    router.push(`/book-appointment/${id}`);
   };
   const onClickAddEmergencyContact = () => {
     setEmergencyContactNumber((prevState) =>

@@ -11,7 +11,14 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 
 export { getServerSideProps };
-
+const topUpUnit = [
+  { unit: "25" },
+  { unit: "30" },
+  { unit: "35" },
+  { unit: "45" },
+  { unit: "50" },
+  { unit: "100" },
+];
 const TopUpMeter = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
@@ -45,36 +52,16 @@ const TopUpMeter = () => {
         </CustomText>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
           <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8">
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "25") ? "primary-btn" : "pending-btn"}`}
-              buttonText="25"
-              onClick={() => onClickTopUp("25")}
-            />
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "30") ? "primary-btn" : "pending-btn"}`}
-              buttonText="30"
-              onClick={() => onClickTopUp("30")}
-            />
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "35") ? "primary-btn" : "pending-btn"}`}
-              buttonText="35"
-              onClick={() => onClickTopUp("35")}
-            />
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "45") ? "primary-btn" : "pending-btn"}`}
-              buttonText="45"
-              onClick={() => onClickTopUp("45")}
-            />
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "50") ? "primary-btn" : "pending-btn"}`}
-              buttonText="50"
-              onClick={() => onClickTopUp("50")}
-            />
-            <CustomButton
-              buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, "100") ? "primary-btn" : "pending-btn"}`}
-              buttonText="100"
-              onClick={() => onClickTopUp("100")}
-            />
+            {_.map(topUpUnit, (item, index) => {
+              return (
+                <CustomButton
+                  key={index}
+                  buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, _.get(item, ["unit"], "")) ? "primary-btn" : "pending-btn"}`}
+                  buttonText={_.get(item, ["unit"], "")}
+                  onClick={() => onClickTopUp(_.get(item, ["unit"], ""))}
+                />
+              );
+            })}
           </div>
 
           <div className="grid grid-cols-2 gap-1">

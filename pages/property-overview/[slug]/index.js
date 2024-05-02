@@ -45,8 +45,8 @@ const Detail = ({}) => {
       bgColor: "secondary-bg-color",
     },
   ];
-  const onClickToBookAppointment = () => {
-    router.push("/property-overview/1/book-appointment");
+  const onClickToBookAppointment = (id) => {
+    router.push(`/property-overview/${id}/book-appointment`);
   };
   const onClickGoBack = () => {
     router.back();
@@ -60,8 +60,8 @@ const Detail = ({}) => {
     setSelectedDetail(select);
   };
 
-  const onClickBooking = () => {
-    router.push(`/booking/1`);
+  const onClickBooking = (id) => {
+    router.push(`/booking/${id}`);
   };
 
   return (

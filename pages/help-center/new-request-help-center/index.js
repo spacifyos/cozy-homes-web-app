@@ -49,8 +49,8 @@ const NewRequest = ({}) => {
   const onClickToHelpCenter = () => {
     router.push("/help-center");
   };
-  const onClickToRequestOverview = () => {
-    router.push("/help-center/1/request-overview");
+  const onClickToRequestOverview = (id) => {
+    router.push(`/help-center/${id}/request-overview`);
   };
   useEffect(() => {
     setShowSecondSection(
