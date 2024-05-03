@@ -2,8 +2,9 @@ import Image from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
+import Constant from "@/src/utils/Constant";
 
-const FeaturesSection = () => {
+const FeaturesSection = ({ onClickToPropertyOverview }) => {
   return (
     <div className="grid grid-cols-12 gap-3 pb-7">
       <div className="col-span-6">
@@ -15,6 +16,9 @@ const FeaturesSection = () => {
           icon={Image.bedAmenitiesIconActive}
           imageHeight={25}
           imageWidth={25}
+          onClick={() =>
+            onClickToPropertyOverview("rental_type", Constant.ROOM_FOR_RENT)
+          }
         />
       </div>
       <div className="col-span-6">
@@ -26,6 +30,9 @@ const FeaturesSection = () => {
           icon={Image.unitAmenitiesIconActive}
           imageHeight={25}
           imageWidth={25}
+          onClick={() =>
+            onClickToPropertyOverview("rental_type", Constant.HOME_FOR_RENT)
+          }
         />
       </div>
       <div className="col-span-3">

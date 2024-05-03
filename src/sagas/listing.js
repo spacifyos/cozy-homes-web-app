@@ -15,8 +15,21 @@ function* getRequestListingBanner({}) {
   }
 }
 
+function* getRequestListing({}) {
+  try {
+    const response = yield call(api.getListing);
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getListingSuccess(data));
+  } catch (error) {
+    yield call(httpErrorHelpers, error, listingAction.getListingFailure);
+  }
+}
+
 function* listingSaga() {
   yield all([
+    takeLatest("GET_LISTING_REQUEST", getRequestListing),
     takeLatest("GET_LISTING_BANNER_REQUEST", getRequestListingBanner),
   ]);
 }

@@ -78,48 +78,54 @@ const ListingSection = ({
       {/*/>*/}
 
       <div className="gap-1">
-        <Carousel
-          additionalTransfrom={0}
-          autoPlay
-          arrows={false}
-          autoPlaySpeed={2000}
-          centerMode={false}
-          className=""
-          containerClass="container"
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          infinite
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          partialVisible
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
-          responsive={responsive}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots={false}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
-        >
-          {_.map(lists, (item, index) => {
-            return listingLoading ? (
+        {listingLoading ? (
+          <div className="flex pb-7">
+            {_.map(Array(4), (item, index) => (
               <Skeleton width={100} height={100} key={index} />
-            ) : (
-              <ListingCardComponent
-                key={index}
-                item={item}
-                onClickToPropertyOverview={onClickToPropertyOverview}
-              />
-            );
-          })}
-        </Carousel>
+            ))}
+          </div>
+        ) : (
+          <Carousel
+            additionalTransfrom={0}
+            autoPlay
+            arrows={false}
+            autoPlaySpeed={2000}
+            centerMode={false}
+            className=""
+            containerClass="container"
+            dotListClass=""
+            draggable
+            focusOnSelect={false}
+            infinite
+            itemClass=""
+            keyBoardControl
+            minimumTouchDrag={80}
+            partialVisible
+            pauseOnHover
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={responsive}
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass=""
+            slidesToSlide={1}
+            swipeable
+          >
+            {_.map(lists, (item, index) => {
+              return (
+                <ListingCardComponent
+                  key={index}
+                  item={item}
+                  onClickToPropertyOverview={onClickToPropertyOverview}
+                />
+              );
+            })}
+          </Carousel>
+        )}
       </div>
     </div>
   );

@@ -25,6 +25,8 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const getUserProfile = () => apiInstance.get("/self");
 
+const getListing = () => apiInstance.get("/listing");
+
 const getListingBanner = () => apiInstance.get("/listing/banner");
 
 export default {
@@ -33,5 +35,6 @@ export default {
   getCommonData,
   getUserProfile,
   loginAccount,
+  getListing,
   getListingBanner,
 };

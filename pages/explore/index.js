@@ -22,28 +22,28 @@ const cityListing = [
   { image: "/images/building/image4.png", title: "Puchong" },
 ];
 
-const universityListing = [
-  { image: "/images/college_university/Inti.png", title: "INTI" },
-  { image: "/images/college_university/mia.png", title: "MIA" },
-  { image: "/images/college_university/Saito.png", title: "SAITO" },
-  { image: "/images/college_university/TARUMT.png", title: "TARUNT" },
-  { image: "/images/college_university/UCSI.png", title: "UCSI" },
-  { image: "/images/college_university/Uni_KL.png", title: "UNI KL" },
-  { image: "/images/college_university/UTAR.png", title: "UTAR" },
-  { image: "/images/college_university/UTM.png", title: "UTM" },
-  {
-    image: "/images/college_university/Victori_Malaysia.png",
-    title: "Victori Malaysia",
-  },
-];
+// const universityListing = [
+//   { image: "/images/college_university/Inti.png", title: "INTI" },
+//   { image: "/images/college_university/mia.png", title: "MIA" },
+//   { image: "/images/college_university/Saito.png", title: "SAITO" },
+//   { image: "/images/college_university/TARUMT.png", title: "TARUNT" },
+//   { image: "/images/college_university/UCSI.png", title: "UCSI" },
+//   { image: "/images/college_university/Uni_KL.png", title: "UNI KL" },
+//   { image: "/images/college_university/UTAR.png", title: "UTAR" },
+//   { image: "/images/college_university/UTM.png", title: "UTM" },
+//   {
+//     image: "/images/college_university/Victori_Malaysia.png",
+//     title: "Victori Malaysia",
+//   },
+// ];
 
-const condoListing = [
-  { image: "/images/condo/M_Vertica.png", title: "M Vertica" },
-  { image: "/images/condo/MAdora.png", title: "M Adora" },
-  { image: "/images/condo/granito.png", title: "Granito" },
-  { image: "/images/condo/Sinaran_Residence.png", title: "Sinaran Residence" },
-  { image: "/images/condo/Anggun_Residence.png", title: "Anggun Residence" },
-];
+// const condoListing = [
+//   { image: "/images/condo/M_Vertica.png", title: "M Vertica" },
+//   { image: "/images/condo/MAdora.png", title: "M Adora" },
+//   { image: "/images/condo/granito.png", title: "Granito" },
+//   { image: "/images/condo/Sinaran_Residence.png", title: "Sinaran Residence" },
+//   { image: "/images/condo/Anggun_Residence.png", title: "Anggun Residence" },
+// ];
 
 function Home() {
   const { t } = useTranslation("common");
@@ -51,18 +51,28 @@ function Home() {
   const dispatch = useDispatch();
   const locale = _.get(router, ["locale"], "en");
 
-  const [listingLoading, setListingLoading] = useState(true);
-  const [openSwitcher, setOpenSwitcher] = useState(false);
+  const getListingRequest = () => dispatch(listingAction.getListingRequest());
+  const listingData = useSelector((state) =>
+    listingSelector.getListingData(state),
+  );
+  const listingDataLoading = useSelector((state) =>
+    listingSelector.getListingDataLoading(state),
+  );
 
   const getListingBannerRequest = () =>
     dispatch(listingAction.getListingBannerRequest());
-
   const listingBannerData = useSelector((state) =>
     listingSelector.getListingBannerData(state),
   );
   const listingBannerDataLoading = useSelector((state) =>
     listingSelector.getListingBannerDataLoading(state),
   );
+
+  const universityListing = listingSelector.getPopularUniCollege(listingData);
+  const condoListing = listingSelector.getPopularCondo(listingData);
+
+  const [listingLoading, setListingLoading] = useState(true);
+  const [openSwitcher, setOpenSwitcher] = useState(false);
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
@@ -77,23 +87,27 @@ function Home() {
   }, []);
 
   useEffect(() => {
+    fetchListingData();
     fetchListingBannerData();
   }, []);
 
-  const fetchListingBannerData = () => {
-    getListingBannerRequest();
+  const fetchListingData = () => {
+    getListingRequest();
   };
 
-  const onChangeCity = (value) => {
-    console.log(value.target.value);
+  const fetchListingBannerData = () => {
+    getListingBannerRequest();
   };
 
   const onClickToFilter = () => {
     router.push("/search");
   };
 
-  const onClickToPropertyOverview = () => {
-    router.push("/property-overview/1");
+  const onClickToPropertyOverview = (key, id) => {
+    router.push({
+      pathname: `/property-overview/${id}`,
+      query: { key: key, id: id },
+    });
   };
 
   const onClickOpenSwitcher = () => {
@@ -115,48 +129,25 @@ function Home() {
       />
 
       <div className="body-container pb-24">
-        <FeaturesSection />
-        {/*<div className="grid grid-cols-6 gap-4 pb-7">*/}
-        {/*  <CustomInput*/}
-        {/*    rightIcon={Images.searchOutlineActiveIcon}*/}
-        {/*    className="col-span-5"*/}
-        {/*    placeholder={t("explore.keyword")}*/}
-        {/*  />*/}
-
-        {/*  <CustomButton*/}
-        {/*    buttonClassName="default-btn"*/}
-        {/*    icon={Images.filterIcon}*/}
-        {/*    onClick={onClickToFilter}*/}
-        {/*  />*/}
-
-        {/*  <CustomInput*/}
-        {/*    className="col-span-3"*/}
-        {/*    placeholder={t("explore.state")}*/}
-        {/*  />*/}
-
-        {/*  <CustomSelect*/}
-        {/*    className="col-span-3"*/}
-        {/*    placeholder={t("explore.city")}*/}
-        {/*    optionList={cityList}*/}
-        {/*    onChange={onChangeCity}*/}
-        {/*  />*/}
-        {/*</div>*/}
-
-        <ListingSection
-          t={t}
-          title={t("explore.popularCity")}
-          lists={cityListing}
-          listingLoading={listingLoading}
-          className="pb-7"
-          onClickViewMore={onClickToFilter}
+        <FeaturesSection
           onClickToPropertyOverview={onClickToPropertyOverview}
         />
+
+        {/*<ListingSection*/}
+        {/*  t={t}*/}
+        {/*  title={t("explore.popularCity")}*/}
+        {/*  lists={cityListing}*/}
+        {/*  listingLoading={listingLoading}*/}
+        {/*  className="pb-7"*/}
+        {/*  onClickViewMore={onClickToFilter}*/}
+        {/*  onClickToPropertyOverview={onClickToPropertyOverview}*/}
+        {/*/>*/}
 
         <ListingSection
           t={t}
           title={t("explore.popularUniversity")}
           lists={universityListing}
-          listingLoading={listingLoading}
+          listingLoading={listingDataLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
           onClickToPropertyOverview={onClickToPropertyOverview}
@@ -166,13 +157,11 @@ function Home() {
           t={t}
           title={t("explore.popularCondo")}
           lists={condoListing}
-          listingLoading={listingLoading}
+          listingLoading={listingDataLoading}
           onClickViewMore={onClickToFilter}
           onClickToPropertyOverview={onClickToPropertyOverview}
         />
       </div>
-
-      {/*<LoadingOverlay loading={true} />*/}
     </CustomHeader>
   );
 }
