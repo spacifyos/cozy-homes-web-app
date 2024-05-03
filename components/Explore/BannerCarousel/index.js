@@ -4,20 +4,9 @@ import _ from "lodash";
 import { Swiper, SwiperSlide } from "@/src/lib/swiper/swiper-react";
 import { EffectCards } from "@/src/lib/swiper/modules/index.mjs";
 import { useState } from "react";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
-const imageList = [
-  Images.banner1Image,
-  Images.banner2Image,
-  Images.banner3Image,
-  Images.banner1Image,
-  Images.banner2Image,
-  Images.banner3Image,
-  Images.banner1Image,
-  Images.banner2Image,
-  Images.banner3Image,
-];
-
-const BannerCarousel = () => {
+const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
   const onSlideChange = (value) => {
@@ -28,34 +17,45 @@ const BannerCarousel = () => {
 
   return (
     <div className="my-3">
-      <Swiper
-        onSlideChange={onSlideChange}
-        effect={"cards"}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        {_.map(imageList, (item, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <CustomImage src={item} width={320} />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {_.isEmpty(listingBannerData) ? (
+        <div className="flex justify-center items-center relative">
+          <LoadingOverlay loading={listingBannerDataLoading} />
+          <CustomImage src={Images.banner1Image} width={300} />
+        </div>
+      ) : (
+        <div>
+          <Swiper
+            onSlideChange={onSlideChange}
+            effect={"cards"}
+            grabCursor={true}
+            modules={[EffectCards]}
+            className="mySwiper"
+          >
+            {_.map(listingBannerData, (item, index) => {
+              const image = _.get(item, ["image_url"], "");
 
-      <div className="my-4 flex justify-center items-center">
-        {_.map(imageList, (item, index) => {
-          return (
-            <div
-              key={index}
-              className={
-                index === selectedSlide ? "banner-dot-active" : "banner-dot"
-              }
-            ></div>
-          );
-        })}
-      </div>
+              return (
+                <SwiperSlide key={index}>
+                  <CustomImage src={image} width={320} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+
+          <div className="my-4 flex justify-center items-center">
+            {_.map(listingBannerData, (item, index) => {
+              return (
+                <div
+                  key={index}
+                  className={
+                    index === selectedSlide ? "banner-dot-active" : "banner-dot"
+                  }
+                ></div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

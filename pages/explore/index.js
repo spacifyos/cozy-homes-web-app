@@ -8,6 +8,10 @@ import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
 import _ from "lodash";
+import * as listingAction from "@/src/actions/listing";
+import * as listingSelector from "@/src/selectors/listing";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
@@ -44,10 +48,21 @@ const condoListing = [
 function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
   const locale = _.get(router, ["locale"], "en");
 
   const [listingLoading, setListingLoading] = useState(true);
   const [openSwitcher, setOpenSwitcher] = useState(false);
+
+  const getListingBannerRequest = () =>
+    dispatch(listingAction.getListingBannerRequest());
+
+  const listingBannerData = useSelector((state) =>
+    listingSelector.getListingBannerData(state),
+  );
+  const listingBannerDataLoading = useSelector((state) =>
+    listingSelector.getListingBannerDataLoading(state),
+  );
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
@@ -60,6 +75,14 @@ function Home() {
       setListingLoading(false);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    fetchListingBannerData();
+  }, []);
+
+  const fetchListingBannerData = () => {
+    getListingBannerRequest();
+  };
 
   const onChangeCity = (value) => {
     console.log(value.target.value);
@@ -79,14 +102,17 @@ function Home() {
 
   return (
     <CustomHeader hideGoBackButton hideRightButton padding>
-      <LanguageSwitcher
-        locale={locale}
-        openSwitcher={openSwitcher}
-        onClickOpenSwitcher={onClickOpenSwitcher}
-        onClickChangeLanguage={onClickChangeLanguage}
-      />
+      {/*<LanguageSwitcher*/}
+      {/*  locale={locale}*/}
+      {/*  openSwitcher={openSwitcher}*/}
+      {/*  onClickOpenSwitcher={onClickOpenSwitcher}*/}
+      {/*  onClickChangeLanguage={onClickChangeLanguage}*/}
+      {/*/>*/}
 
-      <BannerCarousel />
+      <BannerCarousel
+        listingBannerData={listingBannerData}
+        listingBannerDataLoading={listingBannerDataLoading}
+      />
 
       <div className="body-container pb-24">
         <FeaturesSection />
@@ -145,6 +171,8 @@ function Home() {
           onClickToPropertyOverview={onClickToPropertyOverview}
         />
       </div>
+
+      {/*<LoadingOverlay loading={true} />*/}
     </CustomHeader>
   );
 }

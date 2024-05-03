@@ -3,7 +3,6 @@ import apiInstance, {
   AUTH_AGENT_TOKEN_HEADER,
 } from "./httpManager";
 import _ from "lodash";
-import httpManager from "./httpManager";
 
 const version = "v1";
 
@@ -26,10 +25,13 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const getUserProfile = () => apiInstance.get("/self");
 
+const getListingBanner = () => apiInstance.get("/listing/banner");
+
 export default {
   signUpAccount,
   setHeaderLanguage,
   getCommonData,
   getUserProfile,
   loginAccount,
+  getListingBanner,
 };

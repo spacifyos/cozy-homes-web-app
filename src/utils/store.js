@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import Immutable from "seamless-immutable";
 import createSagaMiddleware from "redux-saga";
 import { createWhitelistFilter } from "redux-persist-transform-filter";
@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { rootReducers } from "@/src/reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
+import rootSaga from "@/src/sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -29,4 +30,7 @@ export const store = createStore(
   persistedReducer,
   bindMiddleware([sagaMiddleware]),
 );
+
+store.sagaTask = sagaMiddleware.run(rootSaga);
+
 export const persistor = persistStore(store);

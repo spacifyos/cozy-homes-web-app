@@ -14,7 +14,6 @@ function createInstance() {
     timeout: 30000 /** HttpTimeout:30sec **/,
     headers: {
       "Content-Type": "application/json",
-      "x-ibilik-profile-id": process.env.PROFILE_ID,
     },
   });
   instance.interceptors.request.use(async (config) => {
@@ -35,7 +34,7 @@ function createInstance() {
         // Toast.error(I18n.t("general.errorMsg.networkTimeoutError"));
       }
       return Promise.reject(error);
-    }
+    },
   );
   return instance;
 }

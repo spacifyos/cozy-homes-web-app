@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   i18n,
   env: {
-    DOMAIN: process.env.DOMAIN,
+    API_DOMAIN: process.env.API_DOMAIN,
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
