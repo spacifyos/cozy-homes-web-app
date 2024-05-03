@@ -16,41 +16,8 @@ const NestedMaintenanceRequestComponents = ({
   onChangeTime,
   timeValue,
   onClickToRequestOverview,
+  maintenanceSection,
 }) => {
-  const maintenanceSection = [
-    {
-      name: t("newRequest.amenities"),
-      icon: Images.amenitiesIcon,
-      iconActive: Images.amenitiesIconActive,
-      description: t(
-        "newRequest.washerDryerOvenAirConditionerWaterHeaterCellingFan",
-      ),
-    },
-    {
-      name: t("newRequest.electrical"),
-      icon: Images.feedbackIcon,
-      iconActive: Images.feedbackIconActive,
-      description: t("newRequest.lightsWellSocketWiringSmartMeter"),
-    },
-    {
-      name: t("newRequest.plumbing"),
-      icon: Images.plumbingIcon,
-      iconActive: Images.plumbingIconActive,
-      description: t("newRequest.leakingFaucetsPipesPumps"),
-    },
-    {
-      name: t("newRequest.exterior&Interior"),
-      icon: Images.exteriorInteriorIcon,
-      iconActive: Images.exteriorInteriorIconActive,
-      description: t("newRequest.doorsWindowsFlooringWall"),
-    },
-    {
-      name: t("newRequest.cleaning"),
-      icon: Images.cleaningIcon,
-      iconActive: Images.cleaningIconActive,
-      description: t("newRequest.submitACleaningServiceRequest"),
-    },
-  ];
   return (
     <div>
       <div className="grid grid-cols-4">
@@ -64,29 +31,29 @@ const NestedMaintenanceRequestComponents = ({
             <div className="col-span-2" key={index}>
               <div className=" flex flex-col justify-center items-center pb-6">
                 <div
-                  className={`${_.isEqual(selectSecondSection, _.get(item, ["name"],"")) ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
+                  className={`${_.isEqual(selectSecondSection, _.get(item, ["name"], "")) ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
                   style={{ borderRadius: 100 }}
                 >
                   <CustomImage
                     className="cursor-pointer"
                     src={
-                      _.isEqual(selectSecondSection, _.get(item, ["name"],""))
-                        ? _.get(item, ["icon"],"")
-                        : _.get(item, ["iconActive"],"")
+                      _.isEqual(selectSecondSection, _.get(item, ["name"], ""))
+                        ? _.get(item, ["icon"], "")
+                        : _.get(item, ["iconActive"], "")
                     }
                     width={30}
                     height={30}
                     onClick={() =>
-                      onClickChangeSecondSection(_.get(item, ["name"],""))
+                      onClickChangeSecondSection(_.get(item, ["name"], ""))
                     }
                   />
                 </div>
 
                 <CustomText textClassName="font-bold font-size-xsmall">
-                  {_.get(item, ["name"],"")}
+                  {_.get(item, ["name"], "")}
                 </CustomText>
                 <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-                  {_.get(item, ["description"],"")}
+                  {_.get(item, ["description"], "")}
                 </CustomText>
               </div>
             </div>

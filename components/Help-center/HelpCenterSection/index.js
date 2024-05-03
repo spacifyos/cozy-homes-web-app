@@ -20,6 +20,7 @@ const HelpCenterSection = ({
   timeValue,
   onClickChangeSecondSection,
   onClickToRequestOverview,
+  maintenanceSection,
 }) => {
   const displayComponent = (value) => {
     switch (value) {
@@ -29,13 +30,16 @@ const HelpCenterSection = ({
             t={t}
             selectSecondSection={selectSecondSection}
             onClickChangeSecondSection={onClickChangeSecondSection}
-            onClickDisplayAuthorizationComponent={onClickDisplayAuthorizationComponent}
+            onClickDisplayAuthorizationComponent={
+              onClickDisplayAuthorizationComponent
+            }
             displayAuthorizationComponent={displayAuthorizationComponent}
             onChangeDate={onChangeDate}
             dateValue={dateValue}
             onChangeTime={onChangeTime}
             timeValue={timeValue}
             onClickToRequestOverview={onClickToRequestOverview}
+            maintenanceSection={maintenanceSection}
           />
         );
       case "GeneralEnquiries":

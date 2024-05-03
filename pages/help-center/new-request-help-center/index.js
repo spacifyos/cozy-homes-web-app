@@ -11,6 +11,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import BookingInput from "@/components/Booking/BookingInput";
 import UploadModal from "@/components/Help-center/UploadModal";
 import CustomLabelValue from "@/components/CustomLabelValue";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -28,13 +29,49 @@ const NewRequest = ({}) => {
   const [timeValue, setTimeValue] = useState(
     moment(new Date()).format("hh:mm"),
   );
+  const maintenanceSection = [
+    {
+      name: t("newRequest.amenities"),
+      icon: Images.amenitiesIcon,
+      iconActive: Images.amenitiesIconActive,
+      description: t(
+        "newRequest.washerDryerOvenAirConditionerWaterHeaterCellingFan",
+      ),
+    },
+    {
+      name: t("newRequest.electrical"),
+      icon: Images.feedbackIcon,
+      iconActive: Images.feedbackIconActive,
+      description: t("newRequest.lightsWellSocketWiringSmartMeter"),
+    },
+    {
+      name: t("newRequest.plumbing"),
+      icon: Images.plumbingIcon,
+      iconActive: Images.plumbingIconActive,
+      description: t("newRequest.leakingFaucetsPipesPumps"),
+    },
+    {
+      name: t("newRequest.exterior&Interior"),
+      icon: Images.exteriorInteriorIcon,
+      iconActive: Images.exteriorInteriorIconActive,
+      description: t("newRequest.doorsWindowsFlooringWall"),
+    },
+    {
+      name: t("newRequest.cleaning"),
+      icon: Images.cleaningIcon,
+      iconActive: Images.cleaningIconActive,
+      description: t("newRequest.submitACleaningServiceRequest"),
+    },
+  ];
   const onChangeDate = (e) => {
     setDateValue(e.target.value);
   };
   const onChangeTime = (e) => {
     setTimeValue(e.target.value);
   };
-  const onClickDisplayAuthorizationComponent = (displayAuthorizationComponent) => {
+  const onClickDisplayAuthorizationComponent = (
+    displayAuthorizationComponent,
+  ) => {
     setDisplayAuthorizationComponent(displayAuthorizationComponent);
   };
   const onClickCheckFeedbackMatters = (checkFeedbackMatters) => {
@@ -106,7 +143,6 @@ const NewRequest = ({}) => {
               subtitle={t("newRequest.howCanWeHelpYou")}
               hideLine
             />
-
             <HelpCenterSection
               t={t}
               onClickChangeSection={onClickChangeSection}
@@ -124,6 +160,7 @@ const NewRequest = ({}) => {
               timeValue={timeValue}
               onClickChangeSecondSection={onClickChangeSecondSection}
               onClickToRequestOverview={onClickToRequestOverview}
+              maintenanceSection={maintenanceSection}
             />
           </div>
         </div>
