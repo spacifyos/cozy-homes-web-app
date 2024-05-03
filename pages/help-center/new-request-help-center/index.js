@@ -40,8 +40,8 @@ const NewRequest = ({}) => {
     },
     {
       name: t("newRequest.electrical"),
-      icon: Images.feedbackIcon,
-      iconActive: Images.feedbackIconActive,
+      icon: Images.electricalIcon,
+      iconActive: Images.electricalIconActive,
       description: t("newRequest.lightsWellSocketWiringSmartMeter"),
     },
     {
