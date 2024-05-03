@@ -27,10 +27,60 @@ function* getRequestListing({}) {
   }
 }
 
+function* getTagOptionRequest({}) {
+  try {
+    const response = yield call(api.getListingTagOption);
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getListingTagOptionSuccess(data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      listingAction.getListingTagOptionFailure,
+    );
+  }
+}
+
+function* getListingPropertyRequest({}) {
+  try {
+    const response = yield call(api.getListingProperty);
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getListingPropertySuccess(data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      listingAction.getListingPropertyFailure,
+    );
+  }
+}
+
+function* getListingPropertyDetailRequest({ id }) {
+  try {
+    const response = yield call(api.getListingPropertyDetail(id));
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getListingPropertyDetailSuccess(id, data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      listingAction.getListingPropertyFailure,
+    );
+  }
+}
+
 function* listingSaga() {
   yield all([
     takeLatest("GET_LISTING_REQUEST", getRequestListing),
     takeLatest("GET_LISTING_BANNER_REQUEST", getRequestListingBanner),
+    takeLatest("GET_LISTING_TAG_OPTION_REQUEST", getTagOptionRequest),
+    takeLatest("GET_LISTING_PROPERTY_REQUEST", getListingPropertyRequest),
   ]);
 }
 

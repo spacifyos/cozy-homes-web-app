@@ -132,7 +132,7 @@ body {
 }
 
 .body-container {
-  @apply global-horizontal-padding;
+  @apply global-horizontal-padding relative;
 }
 
 .feature-button {

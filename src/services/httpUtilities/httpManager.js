@@ -15,6 +15,7 @@ function createInstance() {
     headers: {
       "Content-Type": "application/json",
     },
+    withXSRFToken:true
   });
   instance.interceptors.request.use(async (config) => {
     config.headers["x-merchant-token"] = await AuthManager.retrieveToken();

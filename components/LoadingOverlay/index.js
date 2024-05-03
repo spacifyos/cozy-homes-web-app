@@ -2,7 +2,7 @@ const LoadingOverlay = ({ loading }) => {
   return loading ? (
     <div
       className={
-        "absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center overflow-hidden"
+        "absolute top-0 bottom-0 right-0 left-0 flex justify-center items-center overflow-hidden h-screen"
       }
       style={{ backgroundColor: "rgba(256,256,256,0.5)", zIndex: 9999 }}
     >

@@ -14,22 +14,45 @@ import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyDetail/PolicyDetail";
 import _ from "lodash";
 import Description from "@/components/Detail/Description";
+import * as listingSelector from "@/src/selectors/listing";
+import * as listingAction from "@/src/actions/listing";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
-const Detail = ({}) => {
+const PropertyDetail = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const getListingPropertyDetailRequest = () =>
+    dispatch(listingAction.getListingPropertyDetailRequest());
+  const listingPropertyDetailData = useSelector((state) =>
+    listingSelector.getListingPropertyDetailData(state),
+  );
+  const listingPropertyDetailDataLoading = useSelector((state) =>
+    listingSelector.getListingPropertyDetailDataLoading(state),
+  );
+
   const [selectDetail, setSelectedDetail] = useState("Tenancy");
   const [showPolicy, setShowPolicy] = useState(true);
-  const onClickToBookAppointment =()=>{
-    router.push("/property-overview/1/book-appointment")
-  }
+  const [isBookMarks, setIsBookMarks] = useState(true);
+
+  useEffect(() => {
+    fetchListingPropertyDetail();
+  }, []);
+
+  const fetchListingPropertyDetail = () => {
+    getListingPropertyDetailRequest();
+  };
+
+  const onClickToBookAppointment = () => {
+    router.push("/property-overview/1/book-appointment");
+  };
   const onClickGoBack = () => {
     router.back();
   };
-
-  const [isBookMarks, setIsBookMarks] = useState(true);
 
   const onClickRightButton = () => {
     setIsBookMarks(!isBookMarks);
@@ -69,7 +92,7 @@ const Detail = ({}) => {
         {_.isEqual(showPolicy, true) ? (
           <div>
             <DetailFeatureSection t={t} />
-            <Description t={t}/>
+            <Description t={t} />
             <Facilities t={t} />
             <RoomzMap t={t} />
             <RecommendSection t={t} />
@@ -80,10 +103,16 @@ const Detail = ({}) => {
           </div>
         )}
 
-        <AgentSection t={t} onClickBooking={onClickBooking} onClickToBookAppointment={onClickToBookAppointment}/>
+        <AgentSection
+          t={t}
+          onClickBooking={onClickBooking}
+          onClickToBookAppointment={onClickToBookAppointment}
+        />
+
+        {/*<LoadingOverlay loading={true} />*/}
       </div>
     </CustomHeader>
   );
 };
 
-export default withTranslation("common")(Detail);
+export default withTranslation("common")(PropertyDetail);

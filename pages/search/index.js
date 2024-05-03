@@ -11,6 +11,9 @@ import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import TagComponent from "@/components/Search/TagComponent";
+import * as listingSelector from "@/src/selectors/listing";
+import * as listingAction from "@/src/actions/listing";
+import { useDispatch, useSelector } from "react-redux";
 
 export { getServerSideProps };
 
@@ -91,7 +94,26 @@ const amenitiesList = [
 
 const Filter = () => {
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
   const router = useRouter();
+
+  const getListingTagOptionRequest = () =>
+    dispatch(listingAction.getListingTagOptionRequest());
+  const listingTagOptionData = useSelector((state) =>
+    listingSelector.getListingTagOptionData(state),
+  );
+  const listingTagOptionDataLoading = useSelector((state) =>
+    listingSelector.getListingTagOptionDataLoading(state),
+  );
+
+  const getListingPropertyRequest = () =>
+    dispatch(listingAction.getListingPropertyRequest());
+  const listingPropertyData = useSelector((state) =>
+    listingSelector.getListingPropertyData(state),
+  );
+  const listingPropertyDataLoading = useSelector((state) =>
+    listingSelector.getListingPropertyDataLoading(state),
+  );
 
   const amenitiesTarget = useRef();
   const [dimensions, setDimensions] = useState(0);
@@ -115,6 +137,19 @@ const Filter = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    fetchListingTagOption();
+    fetchListingProperty();
+  }, []);
+
+  const fetchListingTagOption = () => {
+    getListingTagOptionRequest();
+  };
+
+  const fetchListingProperty = () => {
+    getListingPropertyRequest();
+  };
 
   const [tagList, setTagList] = useState([
     { name: "Verified Room", isActive: false },

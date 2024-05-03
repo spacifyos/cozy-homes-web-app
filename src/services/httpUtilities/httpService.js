@@ -29,6 +29,13 @@ const getListing = () => apiInstance.get("/listing");
 
 const getListingBanner = () => apiInstance.get("/listing/banner");
 
+const getListingTagOption = () => apiInstance.post("/listing/tag-options");
+
+const getListingProperty = () => apiInstance.post("/listing/property-listings");
+
+const getListingPropertyDetail = (id) =>
+  apiInstance.post(`/listing/property-details/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -37,4 +44,7 @@ export default {
   loginAccount,
   getListing,
   getListingBanner,
+  getListingTagOption,
+  getListingProperty,
+  getListingPropertyDetail,
 };
