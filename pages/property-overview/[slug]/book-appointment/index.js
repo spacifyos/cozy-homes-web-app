@@ -8,7 +8,6 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import BookingTextArea from "@/components/BookingTextArea";
 import { useState } from "react";
-import DatePicker from "react-date-picker";
 import moment from "moment";
 
 export { getServerSideProps };
@@ -138,7 +137,7 @@ const Booking = () => {
             <CustomButton
               buttonText={t("bookAppointment.bookAppointment")}
               buttonClassName="primary-btn w-3/5"
-              onClick={onClickBookSuccess}
+              onClick={()=>onClickBookSuccess(1)}
             />
           </div>
         </div>

@@ -9,11 +9,11 @@ const HelpCenterSection = ({
   t,
   onClickChangeSection,
   selectSection,
-  showSecondSection,
+  selectSecondSection,
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
-  onClickDisplayAmenitiesComponent,
-  displayAmenitiesComponent,
+  onClickDisplayAuthorizationComponent,
+  displayAuthorizationComponent,
   onChangeDate,
   dateValue,
   onChangeTime,
@@ -21,6 +21,37 @@ const HelpCenterSection = ({
   onClickChangeSecondSection,
   onClickToRequestOverview,
 }) => {
+  const displayComponent = (value) => {
+    switch (value) {
+      case "Maintenance":
+        return (
+          <NestedMaintenanceRequestComponents
+            t={t}
+            selectSecondSection={selectSecondSection}
+            onClickChangeSecondSection={onClickChangeSecondSection}
+            onClickDisplayAuthorizationComponent={onClickDisplayAuthorizationComponent}
+            displayAuthorizationComponent={displayAuthorizationComponent}
+            onChangeDate={onChangeDate}
+            dateValue={dateValue}
+            onChangeTime={onChangeTime}
+            timeValue={timeValue}
+            onClickToRequestOverview={onClickToRequestOverview}
+          />
+        );
+      case "GeneralEnquiries":
+        return (
+          <NestedGeneralEnquiriesComponents
+            t={t}
+            onClickChangeSecondSection={onClickChangeSecondSection}
+            selectSecondSection={selectSecondSection}
+            onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
+            checkFeedbackMatters={checkFeedbackMatters}
+          />
+        );
+      default:
+        return false;
+    }
+  };
   return (
     <div>
       <div className="grid grid-cols-2 pb-4">
@@ -72,36 +103,7 @@ const HelpCenterSection = ({
           </div>
         </div>
       </div>
-      {showSecondSection ? (
-        <div>
-          {selectSection === "Maintenance" ? (
-            <NestedMaintenanceRequestComponents
-              t={t}
-              showSecondSection={showSecondSection}
-              onClickChangeSecondSection={onClickChangeSecondSection}
-              onClickDisplayAmenitiesComponent={
-                onClickDisplayAmenitiesComponent
-              }
-              displayAmenitiesComponent={displayAmenitiesComponent}
-              onChangeDate={onChangeDate}
-              dateValue={dateValue}
-              onChangeTime={onChangeTime}
-              timeValue={timeValue}
-              onClickToRequestOverview={onClickToRequestOverview}
-            />
-          ) : (
-            <NestedGeneralEnquiriesComponents
-              t={t}
-              onClickChangeSecondSection={onClickChangeSecondSection}
-              showSecondSection={showSecondSection}
-              onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-              checkFeedbackMatters={checkFeedbackMatters}
-            />
-          )}
-        </div>
-      ) : (
-        false
-      )}
+      {displayComponent(selectSection)}
     </div>
   );
 };

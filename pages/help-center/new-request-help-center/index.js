@@ -9,16 +9,19 @@ import DividerSection from "@/components/Help-center/DividerSection";
 import moment from "moment/moment";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import BookingInput from "@/components/Booking/BookingInput";
+import UploadModal from "@/components/Help-center/UploadModal";
+import CustomLabelValue from "@/components/CustomLabelValue";
 
 export { getServerSideProps };
 
 const NewRequest = ({}) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const [selectSection, setSelectSection] = useState(false);
-  const [showSecondSection, setShowSecondSection] = useState(false);
+  const [selectSection, setSelectSection] = useState("");
+  const [selectSecondSection, setSelectSecondSection] = useState("");
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
-  const [displayAmenitiesComponent, setDisplayAmenitiesComponent] = useState(false);
+  const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
+    useState("");
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
@@ -31,8 +34,8 @@ const NewRequest = ({}) => {
   const onChangeTime = (e) => {
     setTimeValue(e.target.value);
   };
-  const onClickDisplayAmenitiesComponent = (displayAmenitiesComponent) => {
-    setDisplayAmenitiesComponent(displayAmenitiesComponent);
+  const onClickDisplayAuthorizationComponent = (displayAuthorizationComponent) => {
+    setDisplayAuthorizationComponent(displayAuthorizationComponent);
   };
   const onClickCheckFeedbackMatters = (checkFeedbackMatters) => {
     setCheckFeedbackMatter(checkFeedbackMatters);
@@ -40,24 +43,15 @@ const NewRequest = ({}) => {
   const onClickChangeSection = (selectSection) => {
     setSelectSection(selectSection);
   };
-  const onClickChangeSecondSection = (showSecondSection) => {
-    setShowSecondSection(showSecondSection);
+  const onClickChangeSecondSection = (selectSecondSection) => {
+    setSelectSecondSection(selectSecondSection);
   };
   const onClickGoBack = () => {
     router.back();
   };
-  const onClickToHelpCenter = () => {
-    router.push("/help-center");
-  };
   const onClickToRequestOverview = (id) => {
     router.push(`/help-center/${id}/request-overview`);
   };
-  useEffect(() => {
-    setShowSecondSection(
-      _.isEqual(selectSection, "GeneralEnquiries") ||
-        _.isEqual(selectSection, "Maintenance"),
-    );
-  }, [selectSection]);
   return (
     <CustomHeader
       pageTitle={t("pageTitle.newRequest")}
@@ -69,10 +63,10 @@ const NewRequest = ({}) => {
           <CustomText textClassName="second-section-title primary-text pb-2">
             {t("newRequest.generalInformation")}
           </CustomText>
-          <CustomText textClassName="font-size-xxsmall">
-            {t("newRequest.requester")}
-          </CustomText>
-          <CustomText textClassName="font-bold pb-2">Joan Lim</CustomText>
+          <CustomLabelValue
+            label={t("newRequest.requester")}
+            value="Joan Lim"
+          />
           <BookingInput
             disabled
             title={t("newRequest.property")}
@@ -117,13 +111,13 @@ const NewRequest = ({}) => {
               t={t}
               onClickChangeSection={onClickChangeSection}
               selectSection={selectSection}
-              showSecondSection={showSecondSection}
+              selectSecondSection={selectSecondSection}
               onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
               checkFeedbackMatters={checkFeedbackMatters}
-              onClickDisplayAmenitiesComponent={
-                onClickDisplayAmenitiesComponent
+              onClickDisplayAuthorizationComponent={
+                onClickDisplayAuthorizationComponent
               }
-              displayAmenitiesComponent={displayAmenitiesComponent}
+              displayAuthorizationComponent={displayAuthorizationComponent}
               onChangeDate={onChangeDate}
               dateValue={dateValue}
               onChangeTime={onChangeTime}
@@ -133,6 +127,8 @@ const NewRequest = ({}) => {
             />
           </div>
         </div>
+
+        <UploadModal t={t} />
       </div>
     </CustomHeader>
   );

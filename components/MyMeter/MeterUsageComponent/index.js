@@ -7,7 +7,7 @@ const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
   return (
     <div
       className="meter-usage-component cursor-pointer"
-      onClick={onClickToMeterOverview}
+      onClick={()=>onClickToMeterOverview(1)}
     >
       <div className="flex items-center">
         <div className="meter-usage-inside-container">

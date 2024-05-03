@@ -45,7 +45,7 @@ const PaymentFailed = ({}) => {
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={onClickPaymentFail}
+        onClick={()=>onClickPaymentFail(1)}
       />
     </div>
   );

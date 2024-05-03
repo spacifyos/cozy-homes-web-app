@@ -6,7 +6,7 @@ import StatusLabel from "@/components/StatusLabel";
 import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 
-const HelpCenterListingCard = ({ t, item,onClickToRequestOverview  }) => {
+const HelpCenterListingCard = ({ t, item, onClickToRequestOverview }) => {
   const router = useRouter();
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
@@ -17,7 +17,10 @@ const HelpCenterListingCard = ({ t, item,onClickToRequestOverview  }) => {
   const state = _.get(item, ["state"], "");
 
   return (
-    <div className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-3 cursor-pointer relative" onClick={onClickToRequestOverview }>
+    <div
+      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-3 cursor-pointer relative"
+      onClick={() => onClickToRequestOverview(1)}
+    >
       <div className="flex items-center gap-2 pb-2">
         <StatusLabel status={status} />
         <StatusLabelOutline status={secondStatus} />

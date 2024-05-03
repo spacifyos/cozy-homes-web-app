@@ -408,7 +408,11 @@
     "wall": "Wall",
     "selectPlumbing": "Select Plumbing",
     "selectExterior&Interior": "Select Exterior & Interior",
-    "describeTheRequest": "Describe the request"
+    "selectCleaning": "Select Cleaning",
+    "bedroom": "Bedroom",
+    "washroom": "Washroom"
+
+
   },
   "requestOverview": {
     "requestNumber": "Request Number",

@@ -8,7 +8,7 @@ import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
 const NestedGeneralEnquiriesComponents = ({
   t,
   onClickChangeSecondSection,
-  showSecondSection,
+  selectSecondSection,
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
 }) => {
@@ -24,13 +24,13 @@ const NestedGeneralEnquiriesComponents = ({
         <div className="col-span-2">
           <div className=" flex flex-col justify-center items-center">
             <div
-              className={`${_.isEqual(showSecondSection, "Enquiry") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
+              className={`${_.isEqual(selectSecondSection, "Enquiry") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
               style={{ borderRadius: 100 }}
             >
               <CustomImage
                 className="cursor-pointer"
                 src={
-                  _.isEqual(showSecondSection, "Enquiry")
+                  _.isEqual(selectSecondSection, "Enquiry")
                     ? Images.enquiryIcon
                     : Images.enquiryIconActive
                 }
@@ -52,12 +52,12 @@ const NestedGeneralEnquiriesComponents = ({
         <div className="col-span-2">
           <div className=" flex flex-col justify-center items-center">
             <div
-              className={`${_.isEqual(showSecondSection, "Feedback") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
+              className={`${_.isEqual(selectSecondSection, "Feedback") ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
               style={{ borderRadius: 100 }}
             >
               <CustomImage
                 className="cursor-pointer"
-                src={`${_.isEqual(showSecondSection, "Feedback") ? Images.feedbackIcon : Images.feedbackIconActive}`}
+                src={`${_.isEqual(selectSecondSection, "Feedback") ? Images.feedbackIcon : Images.feedbackIconActive}`}
                 width={30}
                 height={30}
                 onClick={() => onClickChangeSecondSection("Feedback")}
@@ -73,12 +73,12 @@ const NestedGeneralEnquiriesComponents = ({
           </div>
         </div>
       </div>
-      {showSecondSection === "Enquiry" || showSecondSection === "Feedback" ? (
+      {selectSecondSection === "Enquiry" || selectSecondSection === "Feedback" ? (
         <div>
           <EnquiriesForm
             t={t}
             onClickChangeSecondSection={onClickChangeSecondSection}
-            showSecondSection={showSecondSection}
+            selectSecondSection={selectSecondSection}
             onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
             checkFeedbackMatters={checkFeedbackMatters}
           />

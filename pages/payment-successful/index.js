@@ -45,7 +45,7 @@ const PaymentSuccessful = ({}) => {
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={onClickGoToBookingOverview}
+        onClick={()=>onClickGoToBookingOverview(1)}
       />
     </div>
   );

@@ -154,7 +154,7 @@ const InvoiceOverview = () => {
             <CustomButton
               buttonText={t("invoiceOverview.payNow")}
               buttonClassName="primary-btn"
-              onClick={onClickToPayment}
+              onClick={()=>onClickToPayment(1)}
             />
           </div>
         </div>

@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import DividerSection from "@/components/Help-center/DividerSection";
 import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
-const AmenitiesComponent = ({
+const AuthorizationComponent = ({
   t,
   dateValue,
   onChangeDate,
@@ -47,11 +47,11 @@ const AmenitiesComponent = ({
           buttonStyles={{ padding: "5px 30px" }}
           buttonClassName="primary-btn"
           buttonText={t("newRequest.createARequest")}
-          onClick={onClickToRequestOverview}
+          onClick={()=>onClickToRequestOverview(1)}
         />
       </div>
     </div>
   );
 };
 
-export default AmenitiesComponent;
+export default AuthorizationComponent;

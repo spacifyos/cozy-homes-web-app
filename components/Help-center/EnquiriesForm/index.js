@@ -8,84 +8,91 @@ import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 const EnquiriesForm = ({
   t,
-  showSecondSection,
+  selectSecondSection,
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
 }) => {
-  return (
-    <div>
-      {showSecondSection === "Enquiry" ? (
-        <div>
-          <DividerSection
-            title={t("newRequest.describeYourEnquiry")}
-            subtitle={t("newRequest.tellUsHowWeCanAssistYou")}
-          />
-          <BookingInput placeholder={t("newRequest.subject")} />
-        </div>
-      ) : showSecondSection === "Feedback" ? (
-        <div className="flex flex-col justify-center items-center pb-4">
-          <DividerSection
-            title={t("newRequest.yourFeedbackMatters")}
-            subtitle={t("newRequest.shareYourThoughtsWithUs")}
-          />
-          <div className="flex items-center justify-center">
-            <div className="flex gap-2 pr-4 items-center">
-              <CustomImage
-                className="cursor-pointer"
-                src={
-                  _.isEqual(checkFeedbackMatters, "Suggestion")
-                    ? Images.checkGreenIcon
-                    : Images.uncheckIcon
-                }
-                height={23}
-                width={23}
-                onClick={() => onClickCheckFeedbackMatters("Suggestion")}
-              />
-              <CustomText textClassName="font-size-xsmall">
-                {t("newRequest.suggestion")}
-              </CustomText>
-            </div>
-            <div className="flex gap-2 pr-4 items-center">
-              <CustomImage
-                className="cursor-pointer"
-                src={
-                  _.isEqual(checkFeedbackMatters, "Review")
-                    ? Images.checkGreenIcon
-                    : Images.uncheckIcon
-                }
-                height={23}
-                width={23}
-                onClick={() => onClickCheckFeedbackMatters("Review")}
-              />
-              <CustomText textClassName="font-size-xsmall">
-                {t("newRequest.review")}
-              </CustomText>
-            </div>
-            <div className="flex gap-2 pr-4 items-center">
-              <CustomImage
-                className="cursor-pointer"
-                src={
-                  _.isEqual(checkFeedbackMatters, "Complaint")
-                    ? Images.checkGreenIcon
-                    : Images.uncheckIcon
-                }
-                height={23}
-                width={23}
-                onClick={() => onClickCheckFeedbackMatters("Complaint")}
-              />
-              <CustomText textClassName="font-size-xsmall">
-                {t("newRequest.complaint")}
-              </CustomText>
+  const displayForm = (value) => {
+    switch (value) {
+      case "Enquiry":
+        return (
+          <div>
+            <DividerSection
+              title={t("newRequest.describeYourEnquiry")}
+              subtitle={t("newRequest.tellUsHowWeCanAssistYou")}
+            />
+            <BookingInput placeholder={t("newRequest.subject")} />
+          </div>
+        );
+      case "Feedback":
+        return (
+          <div className="flex flex-col justify-center items-center pb-4">
+            <DividerSection
+              title={t("newRequest.yourFeedbackMatters")}
+              subtitle={t("newRequest.shareYourThoughtsWithUs")}
+            />
+            <div className="flex items-center justify-center">
+              <div className="flex gap-2 pr-4 items-center">
+                <CustomImage
+                  className="cursor-pointer"
+                  src={
+                    _.isEqual(checkFeedbackMatters, "Suggestion")
+                      ? Images.checkGreenIcon
+                      : Images.uncheckIcon
+                  }
+                  height={23}
+                  width={23}
+                  onClick={() => onClickCheckFeedbackMatters("Suggestion")}
+                />
+                <CustomText textClassName="font-size-xsmall">
+                  {t("newRequest.suggestion")}
+                </CustomText>
+              </div>
+              <div className="flex gap-2 pr-4 items-center">
+                <CustomImage
+                  className="cursor-pointer"
+                  src={
+                    _.isEqual(checkFeedbackMatters, "Review")
+                      ? Images.checkGreenIcon
+                      : Images.uncheckIcon
+                  }
+                  height={23}
+                  width={23}
+                  onClick={() => onClickCheckFeedbackMatters("Review")}
+                />
+                <CustomText textClassName="font-size-xsmall">
+                  {t("newRequest.review")}
+                </CustomText>
+              </div>
+              <div className="flex gap-2 pr-4 items-center">
+                <CustomImage
+                  className="cursor-pointer"
+                  src={
+                    _.isEqual(checkFeedbackMatters, "Complaint")
+                      ? Images.checkGreenIcon
+                      : Images.uncheckIcon
+                  }
+                  height={23}
+                  width={23}
+                  onClick={() => onClickCheckFeedbackMatters("Complaint")}
+                />
+                <CustomText textClassName="font-size-xsmall">
+                  {t("newRequest.complaint")}
+                </CustomText>
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        false
-      )}
+        );
+      default:
+        return false;
+    }
+  };
+  return (
+    <div>
+      {displayForm(selectSecondSection)}
 
       <BookingTextArea
         placeholder={t("newRequest.enterYourMessage")}
-        className="mb-4"
       />
 
       <div className="grid grid-cols-2 gap-2">
