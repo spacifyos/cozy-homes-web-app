@@ -31,3 +31,6 @@ export const getPopularCondo = (state) => _.get(state, ["popular_condo"], []);
 export const getName = (state) => _.get(state, ["name"], "");
 export const getImageUrl = (state) => _.get(state, ["image_url"], "");
 export const getPropertyId = (state) => _.get(state, ["property_id"], 0);
+export const getFacilityTag = (state) => _.get(state, ["facility_tags"], []);
+export const getGeneralTag = (state) => _.get(state, ["facility_tags"], []);
+export const getCode = (state) => _.get(state, ["code"], "");

@@ -23,79 +23,22 @@ const cityList = [
   { name: "Batu Pahat", value: "batu pahat" },
 ];
 
-const amenitiesList = [
-  {
-    name: "Whole Unit",
-    icon: Images.unitAmenitiesIcon,
-    iconActive: Images.unitAmenitiesIconActive,
-    isActive: false,
-  },
-  {
-    name: "Room City",
-    icon: Images.bedAmenitiesIcon,
-    iconActive: Images.bedAmenitiesIconActive,
-    isActive: true,
-  },
-  {
-    name: "Window",
-    icon: Images.windowAmenitiesIcon,
-    iconActive: Images.windowAmenitiesIconActive,
-    isActive: true,
-  },
-  {
-    name: "Female Unit",
-    icon: Images.femaleAmenitiesIcon,
-    iconActive: Images.femaleAmenitiesIconActive,
-    isActive: true,
-  },
-  {
-    name: "Private Bathroom",
-    icon: Images.bathAmenitiesIcon,
-    iconActive: Images.bathAmenitiesIconActive,
-    isActive: false,
-  },
-  {
-    name: "Air-conditioner",
-    icon: Images.aircornAmenitiesIcon,
-    iconActive: Images.aircornAmenitiesIconActive,
-    isActive: false,
-  },
-  {
-    name: "WiFi",
-    icon: Images.wifiAmenitiesIcon,
-    iconActive: Images.wifiAmenitiesIconActive,
-    isActive: false,
-  },
-  {
-    name: "Laundry Area",
-    icon: Images.laundryAmenitiesIcon,
-    iconActive: Images.laundryAmenitiesIconActive,
-    isActive: true,
-  },
-  {
-    name: "Kitchen",
-    icon: Images.cookAmenitiesIcon,
-    iconActive: Images.cookAmenitiesIconActive,
-    isActive: true,
-  },
-  {
-    name: "Swimming Pool",
-    icon: Images.swimmingAmenitiesIcon,
-    iconActive: Images.swimmingAmenitiesIconActive,
-    isActive: false,
-  },
-  {
-    name: "GYM Room",
-    icon: Images.gymAmenitiesIcon,
-    iconActive: Images.gymAmenitiesIconActive,
-    isActive: false,
-  },
-];
-
-const Filter = () => {
+const Search = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
+  const amenitiesTarget = useRef();
+
+  const optionList = [
+    {
+      name: t("search.sortBy") + ": " + t("search.priceLowToHigh"),
+      value: "Sort by: Price (Low to High)",
+    },
+    {
+      name: t("search.sortBy") + ": " + t("search.priceHighToLow"),
+      value: "Sort by: Price (High to Low)",
+    },
+  ];
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -115,9 +58,39 @@ const Filter = () => {
     listingSelector.getListingPropertyDataLoading(state),
   );
 
-  const amenitiesTarget = useRef();
   const [dimensions, setDimensions] = useState(0);
   const [scrollTop, setScrollTop] = useState(235);
+  const [newAmenitiesTag, setNewAmenitiesTag] = useState([]);
+  const [newGeneralTag, setNewGeneralTag] = useState([]);
+
+  const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
+  const generalTag = listingSelector.getGeneralTag(listingTagOptionData);
+
+  useEffect(() => {
+    if (!_.isEmpty(amenitiesTag)) {
+      const formatFacilityTag = _.map(amenitiesTag, (item) => {
+        return {
+          ...item,
+          ...{ isActive: false },
+        };
+      });
+
+      setNewAmenitiesTag(formatFacilityTag);
+    }
+  }, [amenitiesTag]);
+
+  useEffect(() => {
+    if (!_.isEmpty(amenitiesTag)) {
+      const formatGeneralTag = _.map(generalTag, (item) => {
+        return {
+          ...item,
+          ...{ isActive: false },
+        };
+      });
+
+      setNewGeneralTag(formatGeneralTag);
+    }
+  }, [generalTag]);
 
   useEffect(() => {
     if (amenitiesTarget.current) {
@@ -151,13 +124,7 @@ const Filter = () => {
     getListingPropertyRequest();
   };
 
-  const [tagList, setTagList] = useState([
-    { name: "Verified Room", isActive: false },
-    { name: "Verified Host", isActive: false },
-    { name: "Zero Deposit", isActive: false },
-    { name: "6 months", isActive: false },
-  ]);
-  const [tagList2, setTagList2] = useState([
+  const [generalTag2, setGeneralTag2] = useState([
     { name: "TARUMT", isActive: false },
     { name: "UTAR", isActive: false },
     { name: "ALFA", isActive: false },
@@ -166,25 +133,11 @@ const Filter = () => {
     { name: "INTI", isActive: false },
     { name: "UTM", isActive: false },
   ]);
-  const [iconList, setIconList] = useState(amenitiesList);
-  const [listingLoading, setListingLoading] = useState(true);
-
-  const optionList = [
-    {
-      name: t("search.sortBy") + ": " + t("search.priceLowToHigh"),
-      value: "Sort by: Price (Low to High)",
-    },
-    {
-      name: t("search.sortBy") + ": " + t("search.priceHighToLow"),
-      value: "Sort by: Price (High to Low)",
-    },
-  ];
 
   const onClickSelectTag = (tag) => {
-    setTagList((prevState) => {
+    setNewGeneralTag((prevState) => {
       return _.map(prevState, (item) => {
         if (_.get(item, ["name"], "") === tag) {
-          console.log(tag);
           return {
             ...item,
             ...{ isActive: !_.get(item, ["isActive"], false) },
@@ -198,36 +151,29 @@ const Filter = () => {
     });
   };
 
-  const onClickSelectTag2 = (tag) => {
-    setTagList2((prevState) => {
-      return _.map(prevState, (item) => {
-        if (_.get(item, ["name"], "") === tag) {
-          console.log(tag);
-          return {
-            ...item,
-            ...{ isActive: !_.get(item, ["isActive"], false) },
-          };
-        } else {
-          return {
-            ...item,
-          };
-        }
-      });
-    });
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setListingLoading(false);
-    }, 1000);
-  }, []);
+  // const onClickSelectTag2 = (tag) => {
+  //   setGeneralTag2((prevState) => {
+  //     return _.map(prevState, (item) => {
+  //       if (_.get(item, ["name"], "") === tag) {
+  //         return {
+  //           ...item,
+  //           ...{ isActive: !_.get(item, ["isActive"], false) },
+  //         };
+  //       } else {
+  //         return {
+  //           ...item,
+  //         };
+  //       }
+  //     });
+  //   });
+  // };
 
   const onClickGoBack = () => {
     router.back();
   };
 
   const onClickSelectAmenities = (name) => {
-    setIconList((prevState) => {
+    setNewAmenitiesTag((prevState) => {
       return _.map(prevState, (item) => {
         if (_.get(item, ["name"], "") === name) {
           return {
@@ -263,9 +209,12 @@ const Filter = () => {
       </div>
 
       <div className="pb-3 pl-4">
-        <TagComponent lists={tagList} onClickSelectTag={onClickSelectTag} />
+        <TagComponent
+          lists={newGeneralTag}
+          onClickSelectTag={onClickSelectTag}
+        />
 
-        <TagComponent lists={tagList2} onClickSelectTag={onClickSelectTag2} />
+        {/*<TagComponent lists={generalTag2} onClickSelectTag={onClickSelectTag2} />*/}
       </div>
 
       <div className="pb-4">
@@ -279,7 +228,7 @@ const Filter = () => {
               }}
             >
               <AmenitiesComponent
-                list={iconList}
+                list={newAmenitiesTag}
                 onClickSelectAmenities={onClickSelectAmenities}
               />
             </div>
@@ -297,14 +246,14 @@ const Filter = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              {listingLoading
+              {listingPropertyDataLoading
                 ? _.map(Array(6), (item, index) => (
                     <Skeleton width="100%" height={140} key={index} />
                   ))
                 : _.map(Array(12), (item, index) => (
                     <ListingCardComponent
                       key={index}
-                      listingLoading={listingLoading}
+                      listingLoading={listingPropertyDataLoading}
                       t={t}
                     />
                   ))}
@@ -316,4 +265,4 @@ const Filter = () => {
   );
 };
 
-export default withTranslation("common")(Filter);
+export default withTranslation("common")(Search);

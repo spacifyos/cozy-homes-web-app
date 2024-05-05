@@ -71,7 +71,6 @@ function Home() {
   const universityListing = listingSelector.getPopularUniCollege(listingData);
   const condoListing = listingSelector.getPopularCondo(listingData);
 
-  const [listingLoading, setListingLoading] = useState(true);
   const [openSwitcher, setOpenSwitcher] = useState(false);
 
   const onClickChangeLanguage = (newLocale) => {
@@ -79,12 +78,6 @@ function Home() {
     setOpenSwitcher(false);
     router.replace({ pathname, query }, asPath, { locale: newLocale });
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setListingLoading(false);
-    }, 1000);
-  }, []);
 
   useEffect(() => {
     fetchListingData();
@@ -103,9 +96,9 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyOverview = (key, id) => {
+  const onClickToPropertyListing = (key, id) => {
     router.push({
-      pathname: `/property-overview/${id}`,
+      pathname: `/search`,
       query: { key: key, id: id },
     });
   };
@@ -129,9 +122,7 @@ function Home() {
       />
 
       <div className="body-container pb-24">
-        <FeaturesSection
-          onClickToPropertyOverview={onClickToPropertyOverview}
-        />
+        <FeaturesSection onClickToPropertyListing={onClickToPropertyListing} />
 
         {/*<ListingSection*/}
         {/*  t={t}*/}
@@ -140,7 +131,7 @@ function Home() {
         {/*  listingLoading={listingLoading}*/}
         {/*  className="pb-7"*/}
         {/*  onClickViewMore={onClickToFilter}*/}
-        {/*  onClickToPropertyOverview={onClickToPropertyOverview}*/}
+        {/*  onClickToPropertyListing={onClickToPropertyListing}*/}
         {/*/>*/}
 
         <ListingSection
@@ -150,7 +141,7 @@ function Home() {
           listingLoading={listingDataLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyOverview={onClickToPropertyOverview}
+          onClickToPropertyListing={onClickToPropertyListing}
         />
 
         <ListingSection
@@ -159,7 +150,7 @@ function Home() {
           lists={condoListing}
           listingLoading={listingDataLoading}
           onClickViewMore={onClickToFilter}
-          onClickToPropertyOverview={onClickToPropertyOverview}
+          onClickToPropertyListing={onClickToPropertyListing}
         />
       </div>
     </CustomHeader>

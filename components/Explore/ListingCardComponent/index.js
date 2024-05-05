@@ -3,7 +3,7 @@ import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const ListingCardComponent = ({ item, onClickToPropertyOverview }) => {
+const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
   const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
@@ -11,7 +11,7 @@ const ListingCardComponent = ({ item, onClickToPropertyOverview }) => {
   return (
     <div
       className="flex flex-col items-center px-1 cursor-pointer"
-      onClick={() => onClickToPropertyOverview("property_id", propertyId)}
+      onClick={() => onClickToPropertyListing("property_id", propertyId)}
     >
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
