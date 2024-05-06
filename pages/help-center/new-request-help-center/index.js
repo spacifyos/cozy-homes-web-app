@@ -32,6 +32,7 @@ const NewRequest = ({}) => {
   const maintenanceSection = [
     {
       name: t("newRequest.amenities"),
+      onClickName:"Amenities",
       icon: Images.amenitiesIcon,
       iconActive: Images.amenitiesIconActive,
       description: t(
@@ -40,24 +41,28 @@ const NewRequest = ({}) => {
     },
     {
       name: t("newRequest.electrical"),
+      onClickName: "Electrical",
       icon: Images.electricalIcon,
       iconActive: Images.electricalIconActive,
       description: t("newRequest.lightsWellSocketWiringSmartMeter"),
     },
     {
       name: t("newRequest.plumbing"),
+      onClickName: "Plumbing",
       icon: Images.plumbingIcon,
       iconActive: Images.plumbingIconActive,
       description: t("newRequest.leakingFaucetsPipesPumps"),
     },
     {
       name: t("newRequest.exterior&Interior"),
+      onClickName:"Exterior&Interior",
       icon: Images.exteriorInteriorIcon,
       iconActive: Images.exteriorInteriorIconActive,
       description: t("newRequest.doorsWindowsFlooringWall"),
     },
     {
       name: t("newRequest.cleaning"),
+      onClickName: "Cleaning",
       icon: Images.cleaningIcon,
       iconActive: Images.cleaningIconActive,
       description: t("newRequest.submitACleaningServiceRequest"),

@@ -6,7 +6,7 @@ import StatusLabel from "@/components/StatusLabel";
 import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 
-const HelpCenterListingCard = ({ t, item, onClickToRequestOverview }) => {
+const HelpCenterListingCard = ({ t, item, onClickToRequestOverview,key }) => {
   const router = useRouter();
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
@@ -18,6 +18,7 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview }) => {
 
   return (
     <div
+        key={key}
       className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-3 cursor-pointer relative"
       onClick={() => onClickToRequestOverview(1)}
     >

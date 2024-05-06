@@ -19,7 +19,7 @@ const MyMeterOverview = () => {
   const { t } = useTranslation("common");
 
   const onClickGoBack = () => {
-    router.push("/my-stay");
+   router.back();
   };
 
   const [selectChange, setSelectChange] = useState("Daily");

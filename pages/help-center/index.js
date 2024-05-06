@@ -107,10 +107,11 @@ const HelpCenter = () => {
           </div>
         </div>
 
-        {_.map(formattedList(), (item) => {
+        {_.map(formattedList(), (item,index) => {
           return (
             <HelpCenterListingCard
               t={t}
+              key={index}
               item={item}
               onClickToRequestOverview={onClickToRequestOverview}
             />

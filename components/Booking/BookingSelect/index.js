@@ -15,8 +15,8 @@ const BookingSelect = ({
     <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className="booking-wrapper booking-select-container flex justify-between">
-        <select className="booking-select" name={name} required>
-          <option disabled selected value="">
+        <select className="booking-select" name={name} required >
+          <option disabled  value="">
             {placeholder}
           </option>
           {_.map(lists, (list) => {
@@ -31,7 +31,7 @@ const BookingSelect = ({
           })}
         </select>
 
-        <CustomImage src={Images.downIcon} width={10} height={10} />
+        {/*<CustomImage src={Images.downIcon} width={10} height={10} />*/}
       </div>
       {_.isEmpty(errorMessage) ? (
         false

@@ -408,9 +408,9 @@
     "wall": "墙",
     "selectPlumbing": "选择水暖",
     "selectExterior&Interior": "选择外部和内部",
+    "selectCleaning": "选择清洁",
     "bedroom": "卧室",
     "washroom": "厕所"
-
   },
   "requestOverview": {
     "requestNumber": "请求编号",
