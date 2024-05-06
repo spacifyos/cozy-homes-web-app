@@ -14,6 +14,7 @@ import TagComponent from "@/components/Search/TagComponent";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 export { getServerSideProps };
 
@@ -59,7 +60,7 @@ const Search = () => {
   );
 
   const [dimensions, setDimensions] = useState(0);
-  const [scrollTop, setScrollTop] = useState(235);
+  const [scrollTop, setScrollTop] = useState(187); //235
   const [newAmenitiesTag, setNewAmenitiesTag] = useState([]);
   const [newGeneralTag, setNewGeneralTag] = useState([]);
 
@@ -101,7 +102,7 @@ const Search = () => {
   useEffect(() => {
     const handleScroll = _.debounce(() => {
       const currentPosition = window.scrollY;
-      setScrollTop(currentPosition >= 223 ? 10 : 235 - currentPosition);
+      setScrollTop(currentPosition >= 187 ? 10 : 187 - currentPosition);
     }, 1);
 
     window.addEventListener("scroll", handleScroll);
@@ -208,14 +209,16 @@ const Search = () => {
         <CustomSelect placeholder={t("search.city")} optionList={cityList} />
       </div>
 
-      <div className="pb-3 pl-4">
+      {_.isEmpty(newGeneralTag) ? (
+        false
+      ) : (
         <TagComponent
           lists={newGeneralTag}
           onClickSelectTag={onClickSelectTag}
         />
+      )}
 
-        {/*<TagComponent lists={generalTag2} onClickSelectTag={onClickSelectTag2} />*/}
-      </div>
+      {/*<TagComponent lists={generalTag2} onClickSelectTag={onClickSelectTag2} />*/}
 
       <div className="pb-4">
         <div className="w-full flex gap-5">
@@ -245,19 +248,26 @@ const Search = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {listingPropertyDataLoading
-                ? _.map(Array(6), (item, index) => (
-                    <Skeleton width="100%" height={140} key={index} />
-                  ))
-                : _.map(Array(12), (item, index) => (
-                    <ListingCardComponent
-                      key={index}
-                      listingLoading={listingPropertyDataLoading}
-                      t={t}
-                    />
-                  ))}
-            </div>
+            {listingPropertyDataLoading ? (
+              <div className="grid grid-cols-2 gap-3">
+                {_.map(Array(6), (item, index) => (
+                  <Skeleton width="100%" height={140} key={index} />
+                ))}
+              </div>
+            ) : _.isEmpty(listingPropertyData) ? (
+              <div
+                className="flex items-center justify-center"
+                style={{ height: "200%" }}
+              >
+                <CustomEmptyBox />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-3">
+                {_.map(listingPropertyData, (item, index) => (
+                  <ListingCardComponent key={index} item={item} t={t} />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -118,14 +118,14 @@ export default function (state = initialState, action) {
     case "GET_LISTING_PROPERTY_DETAIL_REQUEST":
       return {
         ...state,
-        listingProperty: {
+        listingPropertyDetail: {
           loading: true,
         },
       };
     case "GET_LISTING_PROPERTY_DETAIL_SUCCESS":
       return {
         ...state,
-        listingProperty: {
+        listingPropertyDetail: {
           [action.id]: { data: action.data },
           loading: false,
         },
@@ -133,7 +133,7 @@ export default function (state = initialState, action) {
     case "GET_LISTING_PROPERTY_DETAIL_FAILURE":
       return {
         ...state,
-        listingProperty: {
+        listingPropertyDetail: {
           loading: false,
         },
       };

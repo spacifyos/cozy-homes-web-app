@@ -2,6 +2,7 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import api from "@/src/services/httpUtilities/httpService";
 import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
 import * as listingAction from "@/src/actions/listing";
+import { getListingPropertyDetailFailure } from "@/src/actions/listing";
 
 function* getRequestListingBanner({}) {
   try {
@@ -61,7 +62,7 @@ function* getListingPropertyRequest({}) {
 
 function* getListingPropertyDetailRequest({ id }) {
   try {
-    const response = yield call(api.getListingPropertyDetail(id));
+    const response = yield call(api.getListingPropertyDetail, id);
 
     const { data, code, message } = response.data;
 
@@ -70,7 +71,7 @@ function* getListingPropertyDetailRequest({ id }) {
     yield call(
       httpErrorHelpers,
       error,
-      listingAction.getListingPropertyFailure,
+      listingAction.getListingPropertyDetailFailure,
     );
   }
 }
@@ -81,6 +82,10 @@ function* listingSaga() {
     takeLatest("GET_LISTING_BANNER_REQUEST", getRequestListingBanner),
     takeLatest("GET_LISTING_TAG_OPTION_REQUEST", getTagOptionRequest),
     takeLatest("GET_LISTING_PROPERTY_REQUEST", getListingPropertyRequest),
+    takeLatest(
+      "GET_LISTING_PROPERTY_DETAIL_REQUEST",
+      getListingPropertyDetailRequest,
+    ),
   ]);
 }
 

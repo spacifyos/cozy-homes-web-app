@@ -3,6 +3,8 @@ import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 import _ from "lodash";
 import Skeleton from "@/components/Skeleton";
 import Carousel from "react-multi-carousel";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
+import Images from "@/src/utils/Image";
 
 const ListingSection = ({
   t,
@@ -77,13 +79,15 @@ const ListingSection = ({
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
 
-      <div className="gap-1">
+      <div className="gap-1 w-full flex justify-center">
         {listingLoading ? (
           <div className="flex pb-7">
             {_.map(Array(4), (item, index) => (
               <Skeleton width={100} height={100} key={index} />
             ))}
           </div>
+        ) : _.isEmpty(lists) ? (
+          <CustomEmptyBox emptyTitle="Property not available now." />
         ) : (
           <Carousel
             additionalTransfrom={0}

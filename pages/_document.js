@@ -22,7 +22,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body id="root-body">
         <Main />
         <NextScript />
       </body>

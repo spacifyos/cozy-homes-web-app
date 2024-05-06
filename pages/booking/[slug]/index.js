@@ -10,7 +10,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import { useState } from "react";
-import AgentSection from "@/components/PropertyDetail/AgentSection";
+import AgentSection from "@/components/PropertyOverview/AgentSection";
 import CustomModal from "@/components/CustomModal";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
 import { value } from "lodash/seq";

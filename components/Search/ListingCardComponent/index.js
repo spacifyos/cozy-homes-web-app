@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 
 const ListingCardComponent = ({ t }) => {
   const router = useRouter();
@@ -27,7 +27,9 @@ const ListingCardComponent = ({ t }) => {
         <CustomText textClassName="font-size-small font-bold mr-2">
           RM 750
         </CustomText>
-        <CustomText textClassName="font-size-xsmall disable-text">/ month</CustomText>
+        <CustomText textClassName="font-size-xsmall disable-text">
+          / month
+        </CustomText>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ const getListingTagOption = () => apiInstance.post("/listing/tag-options");
 const getListingProperty = () => apiInstance.post("/listing/property-listings");
 
 const getListingPropertyDetail = (id) =>
-  apiInstance.post(`/listing/property-details/${id}`);
+  apiInstance.get(`/listing/property-details/${id}`);
 
 export default {
   signUpAccount,
