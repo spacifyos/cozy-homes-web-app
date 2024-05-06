@@ -23,6 +23,7 @@ const NewRequest = ({}) => {
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState("");
+  const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
@@ -32,7 +33,7 @@ const NewRequest = ({}) => {
   const maintenanceSection = [
     {
       name: t("newRequest.amenities"),
-      onClickName:"Amenities",
+      onClickName: "Amenities",
       icon: Images.amenitiesIcon,
       iconActive: Images.amenitiesIconActive,
       description: t(
@@ -55,7 +56,7 @@ const NewRequest = ({}) => {
     },
     {
       name: t("newRequest.exterior&Interior"),
-      onClickName:"Exterior&Interior",
+      onClickName: "Exterior&Interior",
       icon: Images.exteriorInteriorIcon,
       iconActive: Images.exteriorInteriorIconActive,
       description: t("newRequest.doorsWindowsFlooringWall"),
@@ -68,6 +69,9 @@ const NewRequest = ({}) => {
       description: t("newRequest.submitACleaningServiceRequest"),
     },
   ];
+  const onClickChangeUploadModalTitle = (changeUploadModalTitle) => {
+    setChangUploadModalTitle(changeUploadModalTitle);
+  };
   const onChangeDate = (e) => {
     setDateValue(e.target.value);
   };
@@ -166,11 +170,13 @@ const NewRequest = ({}) => {
               onClickChangeSecondSection={onClickChangeSecondSection}
               onClickToRequestOverview={onClickToRequestOverview}
               maintenanceSection={maintenanceSection}
+              onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
+              changeUploadModalTitle={changeUploadModalTitle}
             />
           </div>
         </div>
 
-        <UploadModal t={t} />
+        <UploadModal t={t} changeUploadModalTitle={changeUploadModalTitle} />
       </div>
     </CustomHeader>
   );

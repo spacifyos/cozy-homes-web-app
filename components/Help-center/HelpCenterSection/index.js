@@ -21,6 +21,7 @@ const HelpCenterSection = ({
   onClickChangeSecondSection,
   onClickToRequestOverview,
   maintenanceSection,
+  onClickChangeUploadModalTitle,
 }) => {
   const displayComponent = (value) => {
     switch (value) {
@@ -40,6 +41,7 @@ const HelpCenterSection = ({
             timeValue={timeValue}
             onClickToRequestOverview={onClickToRequestOverview}
             maintenanceSection={maintenanceSection}
+            onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
           />
         );
       case "GeneralEnquiries":

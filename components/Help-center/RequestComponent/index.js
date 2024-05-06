@@ -18,6 +18,7 @@ const RequestComponent = ({
   timeValue,
   onClickToRequestOverview,
   selectSecondSection,
+  onClickChangeUploadModalTitle,
 }) => {
   const displayComponent = (value) => {
     switch (value) {
@@ -87,7 +88,7 @@ const RequestComponent = ({
             placeholder={t("newRequest.selectCleaning")}
             lists={[
               { name: t("newRequest.bedroom"), value: "bedroom" },
-              { name: t("newRequest.washroom"), value: "washroom" }
+              { name: t("newRequest.washroom"), value: "washroom" },
             ]}
           />
         );
@@ -137,9 +138,10 @@ const RequestComponent = ({
             <div
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
-              onClick={() =>
-                document.getElementById("help_center_upload_modal").showModal()
-              }
+              onClick={() => {
+                  document.getElementById("help_center_upload_modal").showModal();
+                  onClickChangeUploadModalTitle(true);
+              }}
             >
               <CustomImage
                 src={Images.plusIcon}
@@ -162,9 +164,10 @@ const RequestComponent = ({
             <div
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
-              onClick={() =>
-                document.getElementById("help_center_upload_modal").showModal()
-              }
+              onClick={() => {
+                  document.getElementById("help_center_upload_modal").showModal();
+                  onClickChangeUploadModalTitle(false);
+              }}
             >
               <CustomImage
                 src={Images.plusIcon}

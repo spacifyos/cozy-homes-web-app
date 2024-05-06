@@ -16,6 +16,7 @@ const NestedMaintenanceRequestComponents = ({
   timeValue,
   onClickToRequestOverview,
   maintenanceSection,
+  onClickChangeUploadModalTitle,
 }) => {
   return (
     <div>
@@ -26,8 +27,8 @@ const NestedMaintenanceRequestComponents = ({
           subtitle={t("newRequest.chooseTheCategoryToSpecifyTheIssue")}
         />
         {_.map(maintenanceSection, (item, index) => {
-            const name = _.get(item,['name'],"")
-            const onClickName=_.get(item,['onClickName'],"")
+          const name = _.get(item, ["name"], "");
+          const onClickName = _.get(item, ["onClickName"], "");
           return (
             <div className="col-span-2" key={index}>
               <div className=" flex flex-col justify-center items-center pb-6">
@@ -44,9 +45,7 @@ const NestedMaintenanceRequestComponents = ({
                     }
                     width={30}
                     height={30}
-                    onClick={() =>
-                      onClickChangeSecondSection(onClickName)
-                    }
+                    onClick={() => onClickChangeSecondSection(onClickName)}
                   />
                 </div>
 
@@ -73,6 +72,7 @@ const NestedMaintenanceRequestComponents = ({
         timeValue={timeValue}
         onClickToRequestOverview={onClickToRequestOverview}
         selectSecondSection={selectSecondSection}
+        onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
       />
     </div>
   );

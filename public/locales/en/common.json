@@ -410,7 +410,8 @@
     "selectExterior&Interior": "Select Exterior & Interior",
     "selectCleaning": "Select Cleaning",
     "bedroom": "Bedroom",
-    "washroom": "Washroom"
+    "washroom": "Washroom",
+    "uploadVideoTitle": "Upload Video"
   },
   "requestOverview": {
     "requestNumber": "Request Number",
