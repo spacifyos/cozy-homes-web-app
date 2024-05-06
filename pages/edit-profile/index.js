@@ -25,12 +25,12 @@ const EditProfile = () => {
       onClickGoBack={onClickGoBack}
     >
       <div className="body-container pb-3">
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center">
           <CustomImage
             src={Images.profilePic}
             width={100}
             height={100}
-            className="rounded-2xl mb-5"
+            className="rounded-2xl my-2"
           />
         </div>
         <BookingInput title={t("editProfile.name")} placeholder="John Doe" />
