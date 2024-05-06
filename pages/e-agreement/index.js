@@ -10,7 +10,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 export { getServerSideProps };
 
 const statusList = ["pending", "completed", "pending", "pending", "completed"];
-
+const btnList = [{ btn: "All" }, { btn: "Completed" }, { btn: "Pending" }];
 const EAgreement = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -37,24 +37,17 @@ const EAgreement = () => {
     >
       <div className="body-container">
         <div className="flex items-center pb-3">
-          <CustomButton
-            buttonText="All"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("All")}
-          />
-          <CustomButton
-            buttonText="Completed"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Completed") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Completed")}
-          />
-          <CustomButton
-            buttonText="Pending"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Pending") ? "primary-btn" : "default-btn"}`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Pending")}
-          />
+          {_.map(btnList, (item, index) => {
+            const btn = _.get(item, ["btn"], "");
+            return (
+              <CustomButton
+                buttonText={btn}
+                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btn) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => onClickSelectCategory(btn)}
+              />
+            );
+          })}
         </div>
 
         {_.map(statusList, (item, index) => (

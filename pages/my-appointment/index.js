@@ -16,7 +16,12 @@ const MyAppointment = () => {
 
   const [date, setDate] = useState(new Date());
   const [selectedCategory, setSelectedCategory] = useState("All");
-
+  const appointmentBtnList = [
+    { btn: "All" },
+    { btn: "Upcoming Appointments" },
+    { btn: "Pending Confirmation" },
+    { btn: "Cancelled" },
+  ];
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
   };
@@ -24,7 +29,7 @@ const MyAppointment = () => {
   const onClickGoBack = () => {
     router.back();
   };
-  const onClickToAppointmentOverview= (id) => {
+  const onClickToAppointmentOverview = (id) => {
     router.push(`/my-appointment/${id}`);
   };
 
@@ -51,35 +56,32 @@ const MyAppointment = () => {
         />
 
         <div className="flex items-center pb-3 overflow-x-scroll pt-7 hide-scroll-bar">
-          <CustomButton
-            buttonText="All"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("All")}
-          />
-          <CustomButton
-            buttonText="Upcoming Appointments"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Upcoming Appointments") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Upcoming Appointments")}
-          />
-          <CustomButton
-            buttonText="Pending Confirmation"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Pending Confirmation") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Pending Confirmation")}
-          />
-          <CustomButton
-            buttonText="Cancelled"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Cancelled") ? "primary-btn" : "default-btn"}`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Cancelled")}
-          />
+          {_.map(appointmentBtnList, (item, index) => {
+            const btn = _.get(item, ["btn"], "");
+            return (
+              <CustomButton
+                buttonText={btn}
+                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btn) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => onClickSelectCategory(btn)}
+              />
+            );
+          })}
         </div>
 
-        {_.map(["Pending Confirmation", "Confirmed", "Cancelled"], (item, index) => {
-          return <AppointmentCard t={t} key={index} item={item} onClickToAppointmentOverview={onClickToAppointmentOverview}/>;
-        })}
+        {_.map(
+          ["Pending Confirmation", "Confirmed", "Cancelled"],
+          (item, index) => {
+            return (
+              <AppointmentCard
+                t={t}
+                key={index}
+                item={item}
+                onClickToAppointmentOverview={onClickToAppointmentOverview}
+              />
+            );
+          },
+        )}
       </div>
     </CustomHeader>
   );

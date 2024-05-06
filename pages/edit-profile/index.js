@@ -33,7 +33,7 @@ const EditProfile = () => {
             className="rounded-2xl my-2"
           />
         </div>
-        <BookingInput title={t("editProfile.name")} placeholder="John Doe" />
+        <BookingInput title={t("editProfile.name")} placeholder={t("editProfile.name")}  />
         <CustomLabelValue
           label={t("editProfile.email")}
           changelabel
