@@ -1,14 +1,33 @@
 import CustomText from "@/components/CustomText";
 
-const CustomLabelValue = ({ label, value, className = "pb-2" }) => {
+const CustomLabelValue = ({
+  label,
+  changelabel = false,
+  value,
+  className = "pb-2",
+  hideSecondValue = false,
+  highlight = false,
+  secondValue,
+}) => {
   return (
     <div className={`${className}`}>
-      <CustomText textClassName="font-size-xxsmall disable-text">
+      <CustomText
+        textClassName={`font-size-xxsmall ${changelabel ? "black-text" : "disable-text"}`}
+      >
         {label}
       </CustomText>
-      <CustomText textClassName="primary-text font-size-small font-bold">
+      <CustomText
+        textClassName={`font-size-small font-bold ${highlight ? "primary-text" : "black-text"}`}
+      >
         {value}
       </CustomText>
+      {hideSecondValue ? (
+        false
+      ) : (
+        <CustomText textClassName="font-size-xxsmall primary-text">
+          {secondValue}
+        </CustomText>
+      )}
     </div>
   );
 };

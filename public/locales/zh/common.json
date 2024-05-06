@@ -24,7 +24,8 @@
     "bookAppointment": "预约",
     "appointmentOverview": "预约详情",
     "coinsTransaction": "钱币交易",
-    "helpCenter": "帮助中心"
+    "helpCenter": "帮助中心",
+    "editProfile": "编辑个人资料"
   },
   "general": {},
   "explore": {
@@ -311,5 +312,14 @@
     "kitchen": "厨房",
     "normal": "正常",
     "low": "低"
+  },
+  "editProfile": {
+    "name": "姓名",
+    "email": "电子邮件",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "pinNumber": "PIN 码",
+    "setPinNumber": "设置PIN码",
+    "phoneNumber": "手机号码"
   }
 }

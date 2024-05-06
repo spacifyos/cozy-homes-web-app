@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const ProfileCard = () => {
+const ProfileCard = ({ onClickToEditProfile }) => {
   return (
     <div className="profile-user-info-container">
       <CustomImage
@@ -10,9 +10,10 @@ const ProfileCard = () => {
         height={25}
         width={25}
         className="absolute right-5 top-5"
+        onClick={onClickToEditProfile}
       />
 
-      <CustomImage src={Images.userIcon} height={40} width={40} className="" />
+      <CustomImage src={Images.profilePic} height={46} width={46} className="rounded-2xl" />
 
       <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2">
         John Doe
