@@ -24,7 +24,9 @@
     "bookAppointment": "预约",
     "appointmentOverview": "预约详情",
     "coinsTransaction": "钱币交易",
-    "helpCenter": "帮助中心"
+    "helpCenter": "帮助中心",
+    "latestUpdate": "最新更新",
+    "title": "标题"
   },
   "general": {},
   "explore": {

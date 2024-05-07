@@ -24,7 +24,9 @@
     "bookAppointment": "Book Appointment",
     "appointmentOverview": "Appointment Overview",
     "coinsTransaction": "Coins Transaction",
-    "helpCenter": "Help Center"
+    "helpCenter": "Help Center",
+    "latestUpdate": "Latest Update",
+    "title": "Title"
   },
   "general": {},
   "explore": {

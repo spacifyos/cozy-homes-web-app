@@ -25,6 +25,9 @@ const Account = () => {
   const onClickToCoinsTransaction = () => {
     router.push("/coins-transaction");
   };
+  const onClickToLatestUpdate=()=>{
+    router.push("/latest-update");
+  }
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -73,6 +76,7 @@ const Account = () => {
           title={t("account.latestUpdate")}
           icon={Images.primaryRingIcon}
           pb={3}
+          onClickToLatestUpdate={onClickToLatestUpdate}
         />
 
         <FeatureComponent

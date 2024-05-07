@@ -29,6 +29,7 @@ const Image = {
   primaryLogoutIcon: "/images/icon/logout_icon_active.png",
   primaryMeterIcon: "/images/icon/meter_icon_active.png",
   primaryRingIcon: "/images/icon/ring_icon_active.png",
+  ringIcon:"/images/icon/ring_icon.png",
   primaryTermAndConditionIcon: "/images/icon/term_icon_active.png",
   unpaidIcon: "/images/icon/unpaid_icon.png",
   paidIcon: "/images/icon/paid_icon.png",
