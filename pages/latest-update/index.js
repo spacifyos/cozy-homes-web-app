@@ -1,4 +1,3 @@
-import Images from "@/src/utils/Image";
 import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";

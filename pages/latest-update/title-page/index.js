@@ -3,7 +3,6 @@ import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import CustomButton from "@/components/CustomButton";
 import { useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
@@ -13,7 +12,6 @@ export { getServerSideProps };
 const TitlePage = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const [selectBtn, setSelectBtn] = useState("All");
 
   const onClickGoBack = () => {
     router.back();
