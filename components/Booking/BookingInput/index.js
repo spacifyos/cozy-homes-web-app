@@ -3,7 +3,7 @@ import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 
 const BookingInput = ({
-  className = "",
+  className = "mb-4",
   placeholder,
   errorMessage,
   title,
