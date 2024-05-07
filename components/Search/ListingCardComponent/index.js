@@ -2,19 +2,22 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as listingSelector from "@/src/selectors/listing";
+import _ from "lodash";
 
 const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
   const propertyName = listingSelector.getPropertyName(item);
   const unitRoomName = listingSelector.getUnitRoomName(item);
   const rental = listingSelector.getRental(item);
   const propertyId = listingSelector.getId(item);
+  const imageUrl = listingSelector.getImageUrl(item);
 
   return (
     <div className="cursor-pointer">
       <CustomImage
-        src={Images.filterDefaultImage}
+        src={_.isEmpty(imageUrl) ? Images.filterDefaultImage : imageUrl}
         width="100%"
         className="rounded-2xl mb-1 global-box-shadow"
+        imageStyle={{ objectFit: "cover", height: 150 }}
         onClick={() => onClickToPropertyOverview(propertyId)}
       />
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
