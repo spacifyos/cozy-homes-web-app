@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import propertyDetail from "@/pages/property-overview/[slug]";
 import * as listingSelector from "@/src/selectors/listing";
 import moment from "moment";
+import _ from "lodash";
 
 const AgentSection = ({
   t,
@@ -13,6 +14,8 @@ const AgentSection = ({
   onClickOpenMoveInCostModal,
 }) => {
   const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
+  const picName = listingSelector.getPicName(data);
+  const picContactNumber = listingSelector.getContactNumber(data);
 
   return (
     <div className="agent-section-container">
@@ -37,7 +40,7 @@ const AgentSection = ({
 
           <div className="flex flex-col items-start pl-2 flex-1">
             <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
-              Razak bin Osman
+              {_.isEmpty(picName) ? "-" : picName}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall">
               {t("propertyDetail.memberSince")}{" "}
@@ -86,7 +89,7 @@ const AgentSection = ({
           </div>
           <div
             className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
-            onClick={() => onClickBooking("+60 19-276 7008")}
+            onClick={() => onClickBooking(picContactNumber)}
           >
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}

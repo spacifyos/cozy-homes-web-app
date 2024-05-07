@@ -82,6 +82,7 @@ const PropertyDetail = ({ id }) => {
   );
   const bedType = listingSelector.getBedType(listingPropertyDetailData);
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
+  const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
 
   useEffect(() => {
     fetchListingPropertyDetail(id);
@@ -116,7 +117,9 @@ const PropertyDetail = ({ id }) => {
 
   const onClickBooking = (contactNumber) => {
     window.open(
-      `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
+      _.isEmpty(contactNumber)
+        ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
+        : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
       "_blank",
     );
     // router.push(`/booking/1`);
@@ -142,7 +145,7 @@ const PropertyDetail = ({ id }) => {
       // }
     >
       <div className="body-container pb-32">
-        <RoomPicCarousel t={t} />
+        <RoomPicCarousel imageUrl={imageUrl} />
 
         <DetailComponent
           propertyName={propertyName}
@@ -209,8 +212,6 @@ const PropertyDetail = ({ id }) => {
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
         />
 
-        <LoadingOverlay loading={listingPropertyDetailDataLoading} />
-
         <MoveInCostModal
           openCharges={openCharges}
           onClickOpenCharges={onClickOpenCharges}
@@ -232,6 +233,8 @@ const PropertyDetail = ({ id }) => {
             payment.
           </CustomText>
         </CustomModal>
+
+        <LoadingOverlay loading={listingPropertyDetailDataLoading} />
       </div>
     </CustomHeader>
   );

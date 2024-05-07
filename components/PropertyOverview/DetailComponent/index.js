@@ -5,7 +5,7 @@ import _ from "lodash";
 
 const DetailComponent = ({ propertyName, unitRoomName, address }) => {
   return (
-    <div className="pb-4 pt-7">
+    <div className="pb-4 pt-3">
       <div className=" flex flex-col items-start">
         <CustomText textClassName="font-size-large font-bold">
           {propertyName}

@@ -1,35 +1,57 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import Carousel from "react-multi-carousel";
 import _ from "lodash";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useState } from "react";
 
-const RoomPicCarousel = () => {
-  const imageUrls = [Images.listingDefaultImage, Images.room, Images.roomView];
-  const imageList = [];
+const RoomPicCarousel = ({ imageUrl }) => {
+  const [selectedSlide, setSelectedSlide] = useState(0);
+
+  const onSlideChange = (value) => {
+    const activeIndex = _.get(value, ["activeIndex"], 0);
+
+    setSelectedSlide(activeIndex);
+  };
 
   return (
-    <Swiper className="mySwiper" style={{ margin: 0, width: "100%" }}>
-      {_.isEmpty(imageList) ? (
-        <SwiperSlide>
-          <CustomImage
-            src={Images.listingDefaultImage}
-            className="carousel-img"
-          />
-        </SwiperSlide>
-      ) : (
-        _.map(imageList, (item) => {
-          const imageUrl = "";
+    <div>
+      <Swiper
+        onSlideChange={onSlideChange}
+        className="mySwiper"
+        style={{ margin: 0, width: "100%", cursor: "grabbing" }}
+      >
+        {_.isEmpty(imageUrl) ? (
+          <SwiperSlide>
+            <CustomImage src={Images.listingDefaultImage} className="w-full" />
+          </SwiperSlide>
+        ) : (
+          _.map(imageUrl, (item) => {
+            return (
+              <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
+                <CustomImage
+                  src={item}
+                  className="w-full"
+                  imageStyle={{ maxHeight: 300, objectFit: "cover" }}
+                />
+              </SwiperSlide>
+            );
+          })
+        )}
+      </Swiper>
 
+      <div className="my-4 flex justify-center items-center">
+        {_.map(imageUrl, (item, index) => {
           return (
-            <SwiperSlide>
-              <CustomImage src={imageUrl} className="carousel-img" />
-            </SwiperSlide>
+            <div
+              key={index}
+              className={
+                index === selectedSlide ? "banner-dot-active" : "banner-dot"
+              }
+            ></div>
           );
-        })
-      )}
-    </Swiper>
+        })}
+      </div>
+    </div>
   );
 };
 

@@ -54,7 +54,7 @@ const Search = () => {
   const [stateValue, setStateValue] = useState("");
   const [sortValue, setSortValue] = useState("asc");
   const [selectedFilterParams, setSelectedFilterParams] = useState({
-    // sort: "render",
+    sort: "render",
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
