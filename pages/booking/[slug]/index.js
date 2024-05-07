@@ -59,7 +59,7 @@ const Booking = () => {
   };
 
   const onClickToBookAppointment = () => {
-    router.push("/book-appointment/1");
+    router.push(`/property-overview/1/book-appointment`);
   };
   const onClickAddEmergencyContact = () => {
     setEmergencyContactNumber((prevState) =>

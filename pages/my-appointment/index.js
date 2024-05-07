@@ -60,6 +60,7 @@ const MyAppointment = () => {
             const btn = _.get(item, ["btn"], "");
             return (
               <CustomButton
+                key={index}
                 buttonText={btn}
                 buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btn) ? "primary-btn" : "default-btn"} mr-2`}
                 textClassName="font-size-xsmall"

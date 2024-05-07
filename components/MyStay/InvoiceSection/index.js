@@ -13,13 +13,13 @@ const InvoiceSection = ({
 }) => {
   const invoiceBtn = [
     {
+      btnText: "All",
+    },
+    {
       btnText: "Unpaid",
     },
     {
       btnText: "Paid",
-    },
-    {
-      btnText: "All",
     },
   ];
   return (
@@ -34,6 +34,7 @@ const InvoiceSection = ({
             const btnText = _.get(item, ["btnText"], "");
             return (
               <CustomButton
+                key={index}
                 buttonText={btnText}
                 buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btnText) ? "primary-btn" : "default-btn"} mr-2`}
                 textClassName="font-size-xsmall"
@@ -51,14 +52,21 @@ const InvoiceSection = ({
         </CustomText>
       </div>
 
-      {_.map(list, (item, index) => (
-        <InvoiceComponent
-          key={index}
-          t={t}
-          item={item}
-          onClick={onClickToOverviewPage}
-        />
-      ))}
+      {_.map(list, (item, index) => {
+        if (
+          _.isEqual(selectedCategory, "All") ||
+          _.isEqual(item.status, selectedCategory)
+        ) {
+          return (
+            <InvoiceComponent
+              key={index}
+              t={t}
+              item={item}
+              onClick={onClickToOverviewPage}
+            />
+          );
+        }
+      })}
     </div>
   );
 };

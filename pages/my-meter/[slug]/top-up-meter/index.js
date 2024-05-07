@@ -56,6 +56,7 @@ const TopUpMeter = () => {
               const btn = _.get(item, ["btn"], "");
               return (
                 <CustomButton
+                    key={index}
                   buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, btn) ? "primary-btn" : "pending-btn"}`}
                   buttonText={btn}
                   onClick={() => onClickTopUp(btn)}

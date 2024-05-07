@@ -112,7 +112,7 @@ const Booking = () => {
             />
           </div>
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.time")}
           </CustomText>
 
@@ -130,7 +130,7 @@ const Booking = () => {
             />
           </div>
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.message")}
           </CustomText>
 

@@ -93,6 +93,7 @@ const HelpCenter = () => {
               const status = _.get(item, ["status"], "");
               return (
                 <CustomButton
+                  key={index}
                   buttonText={btnText}
                   buttonClassName={`btn-sm ${_.isEqual(selectedStatus, status) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="font-size-xsmall"

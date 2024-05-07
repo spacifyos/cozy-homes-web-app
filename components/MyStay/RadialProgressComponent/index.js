@@ -21,7 +21,6 @@ const RadialProgressComponent = ({ t, dimensions }) => {
     return () => clearInterval(interval);
   }, [remainingDay]);
 
-
   return (
     <div
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color"
