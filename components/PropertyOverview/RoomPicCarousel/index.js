@@ -21,8 +21,12 @@ const RoomPicCarousel = ({ imageUrl }) => {
         style={{ margin: 0, width: "100%", cursor: "grabbing" }}
       >
         {_.isEmpty(imageUrl) ? (
-          <SwiperSlide>
-            <CustomImage src={Images.listingDefaultImage} className="w-full" />
+          <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
+            <CustomImage
+              src={Images.listingDefaultImage}
+              className="w-full"
+              imageStyle={{ height: 300, objectFit: "cover" }}
+            />
           </SwiperSlide>
         ) : (
           _.map(imageUrl, (item) => {
@@ -31,7 +35,7 @@ const RoomPicCarousel = ({ imageUrl }) => {
                 <CustomImage
                   src={item}
                   className="w-full"
-                  imageStyle={{ maxHeight: 300, objectFit: "cover" }}
+                  imageStyle={{ height: 300, objectFit: "cover" }}
                 />
               </SwiperSlide>
             );
@@ -39,18 +43,22 @@ const RoomPicCarousel = ({ imageUrl }) => {
         )}
       </Swiper>
 
-      <div className="my-4 flex justify-center items-center">
-        {_.map(imageUrl, (item, index) => {
-          return (
-            <div
-              key={index}
-              className={
-                index === selectedSlide ? "banner-dot-active" : "banner-dot"
-              }
-            ></div>
-          );
-        })}
-      </div>
+      {_.isEmpty(imageUrl) ? (
+        false
+      ) : (
+        <div className="my-4 flex justify-center items-center">
+          {_.map(imageUrl, (item, index) => {
+            return (
+              <div
+                key={index}
+                className={
+                  index === selectedSlide ? "banner-dot-active" : "banner-dot"
+                }
+              ></div>
+            );
+          })}{" "}
+        </div>
+      )}
     </div>
   );
 };
