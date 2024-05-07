@@ -2,8 +2,18 @@ import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import propertyDetail from "@/pages/property-overview/[slug]";
+import * as listingSelector from "@/src/selectors/listing";
+import moment from "moment";
 
-const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
+const AgentSection = ({
+  t,
+  onClickBooking,
+  onClickToBookAppointment,
+  data,
+  onClickOpenMoveInCostModal,
+}) => {
+  const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
+
   return (
     <div className="agent-section-container">
       <div
@@ -17,12 +27,12 @@ const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
               width={43}
               className="rounded-2xl"
             />
-            <div
-              className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"
-              style={{ right: -3 }}
-            >
-              <CustomImage src={Images.paidIcon} width={14} />
-            </div>
+            {/*<div*/}
+            {/*  className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"*/}
+            {/*  style={{ right: -3 }}*/}
+            {/*>*/}
+            {/*  <CustomImage src={Images.paidIcon} width={14} />*/}
+            {/*</div>*/}
           </div>
 
           <div className="flex flex-col items-start pl-2 flex-1">
@@ -30,26 +40,29 @@ const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
               Razak bin Osman
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall">
-              {t("propertyDetail.memberSince")} 2023-08-08
+              {t("propertyDetail.memberSince")}{" "}
+              {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
-            <CustomText textClassName="font-size-xxsmall power-on-text">
-              15 Active Listing
-            </CustomText>
+            {/*<CustomText textClassName="font-size-xxsmall power-on-text">*/}
+            {/*  15 Active Listing*/}
+            {/*</CustomText>*/}
           </div>
 
-          <div className="flex gap-3 items-center flex-2 pr-1">
-            <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
-              <CustomImage src={Images.bookingIconActive} width={28}
-              onClick={onClickToBookAppointment}
-              />
-            </div>
-            <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
-              <CustomImage src={Images.callIcon} width={28} />
-            </div>
-            <div className="global-box-shadow global-border-radius agent-section-icon cursor-pointer">
-              <CustomImage src={Images.whatsappIcon} width={45} />
-            </div>
-          </div>
+          {/*<div className="flex gap-3 items-center flex-2 pr-1">*/}
+          {/*  <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
+          {/*    <CustomImage*/}
+          {/*      src={Images.bookingIconActive}*/}
+          {/*      width={28}*/}
+          {/*      onClick={onClickToBookAppointment}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*  <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
+          {/*    <CustomImage src={Images.callIcon} width={28} />*/}
+          {/*  </div>*/}
+          {/*  <div className="global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
+          {/*    <CustomImage src={Images.whatsappIcon} width={45} />*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
 
         <div className="grid grid-cols-2 justify-center items-center ">
@@ -63,11 +76,17 @@ const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
               </CustomText>
             </div>
 
-            <CustomImage src={Images.infoIcon} width={25} height={25} />
+            <CustomImage
+              className="cursor-pointer"
+              src={Images.infoIcon}
+              width={25}
+              height={25}
+              onClick={onClickOpenMoveInCostModal}
+            />
           </div>
           <div
             className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
-            onClick={onClickBooking}
+            onClick={() => onClickBooking("+60 19-276 7008")}
           >
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}

@@ -1,23 +1,16 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { useRouter } from "next/router";
 import * as listingSelector from "@/src/selectors/listing";
 
-const ListingCardComponent = ({ t, item }) => {
-  const router = useRouter();
-
+const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
   const propertyName = listingSelector.getPropertyName(item);
   const unitRoomName = listingSelector.getUnitRoomName(item);
   const rental = listingSelector.getRental(item);
-  const propertyId = listingSelector.getPropertyId(item);
-
-  const onClickToPropertyOverview = () => {
-    router.push("/property-overview/1");
-  };
+  const propertyId = listingSelector.getId(item);
 
   return (
-    <div className="">
+    <div className="cursor-pointer">
       <CustomImage
         src={Images.filterDefaultImage}
         width="100%"

@@ -30,7 +30,9 @@ export const getPopularUniCollege = (state) =>
 export const getPopularCondo = (state) => _.get(state, ["popular_condo"], []);
 export const getName = (state) => _.get(state, ["name"], "");
 export const getImageUrl = (state) => _.get(state, ["image_url"], "");
+export const getId = (state) => _.get(state, ["id"], 0);
 export const getPropertyId = (state) => _.get(state, ["property_id"], 0);
+export const getProfileId = (state) => _.get(state, ["profile_id"], "");
 export const getFacilityTag = (state) => _.get(state, ["facility_tags"], []);
 export const getGeneralTag = (state) => _.get(state, ["general_tags"], []);
 export const getCode = (state) => _.get(state, ["code"], "");
@@ -44,3 +46,6 @@ export const getBedType = (state) => _.get(state, ["bed_type"], "");
 export const getPropertyName = (state) => _.get(state, ["property_name"], "");
 export const getUnitRoomName = (state) => _.get(state, ["unit_room_name"], "");
 export const getGender = (state) => _.get(state, ["gender"], "");
+export const getAddress = (state) => _.get(state, ["address"], "");
+export const getPicMemberStartDate = (state) =>
+  _.get(state, ["pic_member_start_date"], new Date());

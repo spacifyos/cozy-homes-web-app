@@ -54,8 +54,7 @@ const Search = () => {
   const [stateValue, setStateValue] = useState("");
   const [sortValue, setSortValue] = useState("asc");
   const [selectedFilterParams, setSelectedFilterParams] = useState({
-    sort: "price",
-    tags: [],
+    // sort: "render",
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
@@ -66,11 +65,7 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: _.isEqual(queryKey, "rental_type")
-            ? queryId
-            : _.isEqual(queryKey, "property_id")
-              ? [queryId]
-              : "",
+          [queryKey]: queryId,
         };
       });
     }
@@ -137,16 +132,6 @@ const Search = () => {
     getListingPropertyRequest(postData);
   };
 
-  // const [generalTag2, setGeneralTag2] = useState([
-  //   { name: "TARUMT", isActive: false },
-  //   { name: "UTAR", isActive: false },
-  //   { name: "ALFA", isActive: false },
-  //   { name: "CATS", isActive: false },
-  //   { name: "SUNWAY", isActive: false },
-  //   { name: "INTI", isActive: false },
-  //   { name: "UTM", isActive: false },
-  // ]);
-
   const onClickGeneralTag = (name, code) => {
     setSelectedFilterParams((prevState) => {
       const preTags = _.get(prevState, ["tags"], []);
@@ -174,23 +159,6 @@ const Search = () => {
       });
     });
   };
-
-  // const onClickSelectTag2 = (tag) => {
-  //   setGeneralTag2((prevState) => {
-  //     return _.map(prevState, (item) => {
-  //       if (_.get(item, ["name"], "") === tag) {
-  //         return {
-  //           ...item,
-  //           ...{ isActive: !_.get(item, ["isActive"], false) },
-  //         };
-  //       } else {
-  //         return {
-  //           ...item,
-  //         };
-  //       }
-  //     });
-  //   });
-  // };
 
   const onClickGoBack = () => {
     router.back();
@@ -270,6 +238,10 @@ const Search = () => {
         direction: e.target.value,
       };
     });
+  };
+
+  const onClickToPropertyOverview = (id) => {
+    router.push(`/property-overview/${id}`);
   };
 
   return (
@@ -374,7 +346,12 @@ const Search = () => {
             ) : (
               <div className="grid grid-cols-2 gap-3">
                 {_.map(listingPropertyData, (item, index) => (
-                  <ListingCardComponent key={index} item={item} t={t} />
+                  <ListingCardComponent
+                    key={index}
+                    item={item}
+                    t={t}
+                    onClickToPropertyOverview={onClickToPropertyOverview}
+                  />
                 ))}
               </div>
             )}

@@ -7,11 +7,15 @@ const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
   const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
+  const profileId = listingSelector.getProfileId(item);
+
+  const key = _.isEmpty(profileId) ? "property_id" : "profile_id";
+  const value = _.isEmpty(profileId) ? propertyId : profileId;
 
   return (
     <div
       className="flex flex-col items-center px-1 cursor-pointer"
-      onClick={() => onClickToPropertyListing("property_id", propertyId)}
+      onClick={() => onClickToPropertyListing(key, value)}
     >
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"

@@ -5,7 +5,7 @@ import Carousel from "react-multi-carousel";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const RoomPicCarousel = ({ recommendedList }) => {
+const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
   return (
     <Carousel
       additionalTransfrom={0}
@@ -66,11 +66,13 @@ const RoomPicCarousel = ({ recommendedList }) => {
         const unitRoomName = listingSelector.getUnitRoomName(item);
         const rental = listingSelector.getRental(item);
         const genderImage = listingSelector.getGender(item);
+        const propertyId = listingSelector.getId(item);
 
         return (
           <div
             key={index}
             className="carousel-item relative flex flex-col px-1 cursor-pointer"
+            onClick={() => onClickToPropertyOverview(propertyId)}
           >
             {/*<div className="flex flex-col left-3 top-3 absolute">*/}
             {/*  <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">*/}
@@ -95,10 +97,16 @@ const RoomPicCarousel = ({ recommendedList }) => {
             />
 
             <div className="pt-2">
-              <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1"></CustomText>
-              <CustomText textClassName="font-size-xsmall primary-text leading-4 line-clamp-1"></CustomText>
+              <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">
+                {propertyName}
+              </CustomText>
+              <CustomText textClassName="font-size-xsmall primary-text leading-4 line-clamp-1">
+                {unitRoomName}
+              </CustomText>
               <div className="flex items-end">
-                <CustomText textClassName="font-size-large font-bold mr-2"></CustomText>
+                <CustomText textClassName="font-size-large font-bold mr-2">
+                  RM{rental}
+                </CustomText>
                 <CustomText textClassName="disable-text font-size-xsmall">
                   / month
                 </CustomText>

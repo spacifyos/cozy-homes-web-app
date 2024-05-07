@@ -5,9 +5,17 @@
   //height: 320px;
 }
 
+.banner-default-image {
+  width: 310px;
+}
+
 @media screen and (max-width: 470px) {
   .swiper {
     width: 280px;
+  }
+
+  .banner-default-image {
+    width: 290px;
   }
 }
 
@@ -15,11 +23,19 @@
   .swiper {
     width: 260px;
   }
+
+  .banner-default-image {
+    width: 270px;
+  }
 }
 
 @media screen and (max-width: 400px) {
   .swiper {
     width: 240px;
+  }
+
+  .banner-default-image {
+    width: 250px;
   }
 }
 

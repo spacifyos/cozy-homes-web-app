@@ -79,11 +79,11 @@ const ListingSection = ({
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
 
-      <div className="gap-1 w-full flex justify-center">
+      <div className="gap-1">
         {listingLoading ? (
           <div className="flex pb-7">
             {_.map(Array(4), (item, index) => (
-              <Skeleton width={100} height={100} key={index} />
+              <Skeleton width={105} height={105} key={index} />
             ))}
           </div>
         ) : _.isEmpty(lists) ? (
