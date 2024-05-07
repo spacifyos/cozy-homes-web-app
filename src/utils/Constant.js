@@ -1,4 +1,22 @@
 const Constant = {
+  STATE_CODE: [
+    { name: "Johor", value: "MY-01" },
+    { name: "Kedah", value: "MY-02" },
+    { name: "Kelantan", value: "MY-03" },
+    { name: "Kuala Lumpur", value: "MY-14" },
+    { name: "Melaka", value: "MY-04" },
+    { name: "Negeri Sembilan", value: "MY-05" },
+    { name: "Perak", value: "MY-08" },
+    { name: "Perlis", value: "MY-09" },
+    { name: "Pulau Pinang", value: "MY-07" },
+    { name: "Pahang", value: "MY-06" },
+    { name: "Sabah", value: "MY-12" },
+    { name: "Sarawak", value: "MY-13" },
+    { name: "Selangor", value: "MY-10" },
+    { name: "Terengganu", value: "MY-11" },
+    { name: "WP Labuan", value: "MY-15" },
+  ],
+
   HOME_FOR_RENT: "whole-unit",
   ROOM_FOR_RENT: "sublet",
   DEFAULT_PDF:

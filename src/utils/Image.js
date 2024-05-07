@@ -135,6 +135,7 @@ const Image = {
   plusIcon: "/images/icon/plus_icon.png",
   buildingIconActive: "/images/icon/building_icon_active.png",
   spaceIcon: "/images/icon/space_icon_active.png",
+  questionMarkIcon: "/images/icon/question_mark_icon.png",
 };
 
 export default { ...Image };

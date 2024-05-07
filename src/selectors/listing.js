@@ -32,7 +32,7 @@ export const getName = (state) => _.get(state, ["name"], "");
 export const getImageUrl = (state) => _.get(state, ["image_url"], "");
 export const getPropertyId = (state) => _.get(state, ["property_id"], 0);
 export const getFacilityTag = (state) => _.get(state, ["facility_tags"], []);
-export const getGeneralTag = (state) => _.get(state, ["facility_tags"], []);
+export const getGeneralTag = (state) => _.get(state, ["general_tags"], []);
 export const getCode = (state) => _.get(state, ["code"], "");
 export const getDescription = (state) => _.get(state, ["description"], "");
 export const getRental = (state) => _.get(state, ["rental"], "");

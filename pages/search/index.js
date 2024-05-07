@@ -15,31 +15,17 @@ import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
-
-const cityList = [
-  { name: "Skudai", value: "skudai" },
-  { name: "Kluang", value: "kluang" },
-  { name: "Batu Pahat", value: "batu pahat" },
-];
 
 const Search = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
-
-  const optionList = [
-    {
-      name: t("search.sortBy") + ": " + t("search.priceLowToHigh"),
-      value: "Sort by: Price (Low to High)",
-    },
-    {
-      name: t("search.sortBy") + ": " + t("search.priceHighToLow"),
-      value: "Sort by: Price (High to Low)",
-    },
-  ];
+  const queryId = _.get(router, ["query", "id"], "");
+  const queryKey = _.get(router, ["query", "key"], "");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -50,8 +36,8 @@ const Search = () => {
     listingSelector.getListingTagOptionDataLoading(state),
   );
 
-  const getListingPropertyRequest = () =>
-    dispatch(listingAction.getListingPropertyRequest());
+  const getListingPropertyRequest = (postData) =>
+    dispatch(listingAction.getListingPropertyRequest(postData));
   const listingPropertyData = useSelector((state) =>
     listingSelector.getListingPropertyData(state),
   );
@@ -63,9 +49,32 @@ const Search = () => {
   const [scrollTop, setScrollTop] = useState(187); //235
   const [newAmenitiesTag, setNewAmenitiesTag] = useState([]);
   const [newGeneralTag, setNewGeneralTag] = useState([]);
+  const [keywordValue, setKeywordValue] = useState("");
+  const [cityValue, setCityValue] = useState("");
+  const [stateValue, setStateValue] = useState("");
+  const [sortValue, setSortValue] = useState("asc");
+  const [selectedFilterParams, setSelectedFilterParams] = useState({
+    sort: "price",
+    tags: [],
+  });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
   const generalTag = listingSelector.getGeneralTag(listingTagOptionData);
+
+  useEffect(() => {
+    if (!_.isEmpty(queryKey) && !_.isEmpty(queryId)) {
+      setSelectedFilterParams((prevState) => {
+        return {
+          ...prevState,
+          [queryKey]: _.isEqual(queryKey, "rental_type")
+            ? queryId
+            : _.isEqual(queryKey, "property_id")
+              ? [queryId]
+              : "",
+        };
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!_.isEmpty(amenitiesTag)) {
@@ -81,7 +90,7 @@ const Search = () => {
   }, [amenitiesTag]);
 
   useEffect(() => {
-    if (!_.isEmpty(amenitiesTag)) {
+    if (!_.isEmpty(generalTag)) {
       const formatGeneralTag = _.map(generalTag, (item) => {
         return {
           ...item,
@@ -114,39 +123,53 @@ const Search = () => {
 
   useEffect(() => {
     fetchListingTagOption();
-    fetchListingProperty();
   }, []);
+
+  useEffect(() => {
+    fetchListingProperty(selectedFilterParams);
+  }, [selectedFilterParams]);
 
   const fetchListingTagOption = () => {
     getListingTagOptionRequest();
   };
 
-  const fetchListingProperty = () => {
-    getListingPropertyRequest();
+  const fetchListingProperty = (postData) => {
+    getListingPropertyRequest(postData);
   };
 
-  const [generalTag2, setGeneralTag2] = useState([
-    { name: "TARUMT", isActive: false },
-    { name: "UTAR", isActive: false },
-    { name: "ALFA", isActive: false },
-    { name: "CATS", isActive: false },
-    { name: "SUNWAY", isActive: false },
-    { name: "INTI", isActive: false },
-    { name: "UTM", isActive: false },
-  ]);
+  // const [generalTag2, setGeneralTag2] = useState([
+  //   { name: "TARUMT", isActive: false },
+  //   { name: "UTAR", isActive: false },
+  //   { name: "ALFA", isActive: false },
+  //   { name: "CATS", isActive: false },
+  //   { name: "SUNWAY", isActive: false },
+  //   { name: "INTI", isActive: false },
+  //   { name: "UTM", isActive: false },
+  // ]);
 
-  const onClickSelectTag = (tag) => {
+  const onClickGeneralTag = (name, code) => {
+    setSelectedFilterParams((prevState) => {
+      const preTags = _.get(prevState, ["tags"], []);
+
+      const updatedTags = _.includes(preTags, code)
+        ? _.filter(preTags, (tag) => !_.isEqual(tag, code))
+        : [...preTags, code];
+
+      return {
+        ...prevState,
+        tags: updatedTags,
+      };
+    });
+
     setNewGeneralTag((prevState) => {
       return _.map(prevState, (item) => {
-        if (_.get(item, ["name"], "") === tag) {
+        if (_.get(item, ["name"], "") === name) {
           return {
             ...item,
             ...{ isActive: !_.get(item, ["isActive"], false) },
           };
         } else {
-          return {
-            ...item,
-          };
+          return item;
         }
       });
     });
@@ -173,7 +196,20 @@ const Search = () => {
     router.back();
   };
 
-  const onClickSelectAmenities = (name) => {
+  const onClickSelectAmenities = (name, code) => {
+    setSelectedFilterParams((prevState) => {
+      const preTags = _.get(prevState, ["tags"], []);
+
+      const updatedTags = _.includes(preTags, code)
+        ? _.filter(preTags, (tag) => !_.isEqual(tag, code))
+        : [...preTags, code];
+
+      return {
+        ...prevState,
+        tags: updatedTags,
+      };
+    });
+
     setNewAmenitiesTag((prevState) => {
       return _.map(prevState, (item) => {
         if (_.get(item, ["name"], "") === name) {
@@ -182,11 +218,57 @@ const Search = () => {
             ...{ isActive: !_.get(item, ["isActive"], false) },
           };
         } else {
-          return {
-            ...item,
-          };
+          return item;
         }
       });
+    });
+  };
+
+  const onChangeKeywordValue = (e) => {
+    setKeywordValue(e.target.value);
+  };
+
+  const onClickSubmitKeyword = () => {
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        search: keywordValue,
+      };
+    });
+  };
+
+  const onChangeStateValue = (e) => {
+    setStateValue(e.target.value);
+
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        state: e.target.value,
+      };
+    });
+  };
+
+  const onChangeCityValue = (e) => {
+    setCityValue(e.target.value);
+  };
+
+  const onClickSubmitCity = () => {
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        city: cityValue,
+      };
+    });
+  };
+
+  const onChangeSortValue = (e) => {
+    setSortValue(e.target.value);
+
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        direction: e.target.value,
+      };
     });
   };
 
@@ -202,11 +284,24 @@ const Search = () => {
           rightIcon={Images.searchOutlineActiveIcon}
           className="col-span-2"
           placeholder={t("search.keyword")}
+          value={keywordValue}
+          onChange={onChangeKeywordValue}
+          onClickRightIcon={onClickSubmitKeyword}
         />
 
-        <CustomInput placeholder={t("search.state")} />
+        <CustomSelect
+          placeholder={t("search.state")}
+          optionList={Constant.STATE_CODE}
+          onChange={onChangeStateValue}
+          value={stateValue}
+        />
 
-        <CustomSelect placeholder={t("search.city")} optionList={cityList} />
+        <CustomInput
+          placeholder={t("search.city")}
+          value={cityValue}
+          onChange={onChangeCityValue}
+          onClickRightIcon={onClickSubmitCity}
+        />
       </div>
 
       {_.isEmpty(newGeneralTag) ? (
@@ -214,11 +309,11 @@ const Search = () => {
       ) : (
         <TagComponent
           lists={newGeneralTag}
-          onClickSelectTag={onClickSelectTag}
+          onClickGeneralTag={onClickGeneralTag}
         />
       )}
 
-      {/*<TagComponent lists={generalTag2} onClickSelectTag={onClickSelectTag2} />*/}
+      {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
 
       <div className="pb-4">
         <div className="w-full flex gap-5">
@@ -232,6 +327,7 @@ const Search = () => {
             >
               <AmenitiesComponent
                 list={newAmenitiesTag}
+                loading={listingTagOptionDataLoading}
                 onClickSelectAmenities={onClickSelectAmenities}
               />
             </div>
@@ -240,11 +336,25 @@ const Search = () => {
           <div className="w-4/5 pr-4">
             <div className="flex pb-5 justify-end">
               <CustomSelect
+                hideDefaultOption
                 styles={{ width: "75%" }}
-                optionList={optionList}
-                placeholder={
-                  t("search.sortBy") + ": " + t("search.priceLowToHigh")
-                }
+                optionList={[
+                  {
+                    name:
+                      t("search.sortBy") + ": " + t("search.priceLowToHigh"),
+                    value: "asc",
+                  },
+                  {
+                    name:
+                      t("search.sortBy") + ": " + t("search.priceHighToLow"),
+                    value: "desc",
+                  },
+                ]}
+                onChange={onChangeSortValue}
+                value={sortValue}
+                // placeholder={
+                //   t("search.sortBy") + ": " + t("search.priceLowToHigh")
+                // }
               />
             </div>
 

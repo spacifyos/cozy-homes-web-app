@@ -44,9 +44,9 @@ function* getTagOptionRequest({}) {
   }
 }
 
-function* getListingPropertyRequest({}) {
+function* getListingPropertyRequest({ postData }) {
   try {
-    const response = yield call(api.getListingProperty);
+    const response = yield call(api.getListingProperty, postData);
 
     const { data, code, message } = response.data;
 

@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
+import { useRef } from "react";
 
 const CustomInput = ({
   leftIcon = "",
@@ -12,7 +13,19 @@ const CustomInput = ({
   required = false,
   labelClassName,
   autoFocus = false,
+  value,
+  onChange,
+  onClickRightIcon,
 }) => {
+  const inputRef = useRef(null);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      onClickRightIcon();
+    }
+  };
+
   return (
     <label className={`flex flex-col ${className}`}>
       <div className="flex">
@@ -33,13 +46,23 @@ const CustomInput = ({
       >
         {!_.isEmpty(leftIcon) ? leftIcon : false}
         <input
+          ref={inputRef}
           type={inputType}
           className="grow input-primary primaryWhite-bg-color"
           placeholder={placeholder}
           autoFocus={autoFocus}
+          value={value}
+          onChange={onChange}
+          onKeyPress={handleKeyPress}
         />
         {!_.isEmpty(rightIcon) ? (
-          <CustomImage src={rightIcon} height={20} width={20} />
+          <CustomImage
+            className="cursor-pointer"
+            src={rightIcon}
+            height={20}
+            width={20}
+            onClick={onClickRightIcon}
+          />
         ) : (
           false
         )}

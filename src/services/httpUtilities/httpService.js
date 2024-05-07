@@ -31,7 +31,8 @@ const getListingBanner = () => apiInstance.get("/listing/banner");
 
 const getListingTagOption = () => apiInstance.post("/listing/tag-options");
 
-const getListingProperty = () => apiInstance.post("/listing/property-listings");
+const getListingProperty = (postData) =>
+  apiInstance.post("/listing/property-listings", postData);
 
 const getListingPropertyDetail = (id) =>
   apiInstance.get(`/listing/property-details/${id}`);
