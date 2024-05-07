@@ -121,7 +121,7 @@ function Home() {
         listingBannerDataLoading={listingBannerDataLoading}
       />
 
-      <div className="body-container pb-24">
+      <div className="body-container pb-4">
         <FeaturesSection onClickToPropertyListing={onClickToPropertyListing} />
 
         {/*<ListingSection*/}

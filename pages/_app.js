@@ -44,17 +44,17 @@ function App({ Component, pageProps }) {
             <Toaster />
             <Component {...pageProps} />
 
-            {_.isEqual(routeName, "/explore") ||
-            _.isEqual(routeName, "/my-stay") ||
-            _.isEqual(routeName, "/account") ? (
-              <BottomNavigate
-                t={t}
-                routeName={routeName}
-                onClickChangeTab={onClickChangeTab}
-              />
-            ) : (
-              false
-            )}
+            {/*{_.isEqual(routeName, "/explore") ||*/}
+            {/*_.isEqual(routeName, "/my-stay") ||*/}
+            {/*_.isEqual(routeName, "/account") ? (*/}
+            {/*  <BottomNavigate*/}
+            {/*    t={t}*/}
+            {/*    routeName={routeName}*/}
+            {/*    onClickChangeTab={onClickChangeTab}*/}
+            {/*  />*/}
+            {/*) : (*/}
+            {/*  false*/}
+            {/*)}*/}
           </div>
         </div>
 
