@@ -19,6 +19,10 @@ const initialState = {
     data: null,
     loading: false,
   },
+  listingCancellation: {
+    data: null,
+    loading: false,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -134,6 +138,29 @@ export default function (state = initialState, action) {
       return {
         ...state,
         listingPropertyDetail: {
+          loading: false,
+        },
+      };
+
+    case "GET_LISTING_CANCELLATION_REQUEST":
+      return {
+        ...state,
+        listingCancellation: {
+          loading: true,
+        },
+      };
+    case "GET_LISTING_CANCELLATION_SUCCESS":
+      return {
+        ...state,
+        listingCancellation: {
+          data: action.data,
+          loading: false,
+        },
+      };
+    case "GET_LISTING_CANCELLATION_FAILURE":
+      return {
+        ...state,
+        listingCancellation: {
           loading: false,
         },
       };

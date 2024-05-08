@@ -74,15 +74,12 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
             className="carousel-item relative flex flex-col px-1 cursor-pointer"
             onClick={() => onClickToPropertyOverview(propertyId)}
           >
-            {/*<div className="flex flex-col left-3 top-3 absolute">*/}
-            {/*  <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">*/}
-            {/*    <CustomImage*/}
-            {/*      src={Images.femaleUnitIcon}*/}
-            {/*      width={20}*/}
-            {/*      height={20}*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*</div>*/}
+            <div
+              className="flex flex-col left-3 top-3 absolute primaryWhite-bg-color p-1"
+              style={{ borderRadius:15 }}
+            >
+              <CustomImage src={Images.femaleUnitIcon} width={20} height={20} />
+            </div>
 
             {/*<div className="flex flex-col left-3 top-12 absolute">*/}
             {/*  <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">*/}

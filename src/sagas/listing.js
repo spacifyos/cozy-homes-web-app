@@ -76,6 +76,22 @@ function* getListingPropertyDetailRequest({ id }) {
   }
 }
 
+function* getRequestListingCancellation({}) {
+  try {
+    const response = yield call(api.getListingCancellation);
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getListingCancellationSuccess(data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      listingAction.getListingCancellationFailure,
+    );
+  }
+}
+
 function* listingSaga() {
   yield all([
     takeLatest("GET_LISTING_REQUEST", getRequestListing),
@@ -85,6 +101,10 @@ function* listingSaga() {
     takeLatest(
       "GET_LISTING_PROPERTY_DETAIL_REQUEST",
       getListingPropertyDetailRequest,
+    ),
+    takeLatest(
+      "GET_LISTING_CANCELLATION_REQUEST",
+      getRequestListingCancellation,
     ),
   ]);
 }

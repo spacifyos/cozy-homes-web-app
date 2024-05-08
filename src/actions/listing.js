@@ -70,3 +70,17 @@ export const getListingPropertyDetailFailure = (messages) => ({
   type: "GET_LISTING_PROPERTY_DETAIL_FAILURE",
   messages,
 });
+
+export const getListingCancellationRequest = () => ({
+  type: "GET_LISTING_CANCELLATION_REQUEST",
+});
+
+export const getListingCancellationSuccess = (data) => ({
+  type: "GET_LISTING_CANCELLATION_SUCCESS",
+  data,
+});
+
+export const getListingCancellationFailure = (messages) => ({
+  type: "GET_LISTING_CANCELLATION_FAILURE",
+  messages,
+});

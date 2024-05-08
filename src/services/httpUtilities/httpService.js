@@ -37,6 +37,8 @@ const getListingProperty = (postData) =>
 const getListingPropertyDetail = (id) =>
   apiInstance.get(`/listing/property-details/${id}`);
 
+const getListingCancellation = () => apiInstance.get(`/listing/cancellation`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -48,4 +50,5 @@ export default {
   getListingTagOption,
   getListingProperty,
   getListingPropertyDetail,
+  getListingCancellation,
 };

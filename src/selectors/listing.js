@@ -25,11 +25,18 @@ export const getListingPropertyDetailData = (state, id) =>
 export const getListingPropertyDetailDataLoading = (state) =>
   _.get(state, ["listing", "listingPropertyDetail", "loading"], false);
 
+export const getListingCancellationData = (state) =>
+  _.get(state, ["listing", "listingCancellation", "data"], null);
+export const getListingCancellationDataLoading = (state) =>
+  _.get(state, ["listing", "listingCancellation", "loading"], false);
+
 export const getPopularUniCollege = (state) =>
   _.get(state, ["uni_college_profile"], []);
 export const getPopularCondo = (state) => _.get(state, ["popular_condo"], []);
 export const getName = (state) => _.get(state, ["name"], "");
 export const getImageUrl = (state) => _.get(state, ["image_url"], "");
+export const getImageUrlActive = (state) =>
+  _.get(state, ["image_url_active"], "");
 export const getImagesUrl = (state) => _.get(state, ["images_url"], []);
 export const getId = (state) => _.get(state, ["id"], 0);
 export const getPropertyId = (state) => _.get(state, ["property_id"], 0);
@@ -50,7 +57,6 @@ export const getGender = (state) => _.get(state, ["gender"], "");
 export const getAddress = (state) => _.get(state, ["address"], "");
 export const getPicMemberStartDate = (state) =>
   _.get(state, ["pic_member_start_date"], new Date());
-export const getPicName = (state) =>
-    _.get(state, ["pic_name"], "");
-export const getContactNumber = (state) =>
-    _.get(state, ["contact_number"], "");
+export const getPicName = (state) => _.get(state, ["pic_name"], "");
+export const getContactNumber = (state) => _.get(state, ["contact_number"], "");
+export const getHtmlContent = (state) => _.get(state, ["html_content"], "");

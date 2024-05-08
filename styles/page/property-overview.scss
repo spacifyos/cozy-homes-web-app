@@ -42,3 +42,10 @@
   display: flex;
   align-items: center;
 }
+
+.cancellation-policy {
+  ol {
+    background-color: $primary-bg-color !important;
+    margin: 0 !important;
+  }
+}

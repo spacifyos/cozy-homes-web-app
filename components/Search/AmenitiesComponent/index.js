@@ -18,7 +18,7 @@ const AmenitiesComponent = ({ list, loading, onClickSelectAmenities }) => {
           const name = listingSelector.getName(item);
           const icon = listingSelector.getImageUrl(item);
           const code = listingSelector.getCode(item);
-          const iconActive = _.get(item, ["iconActive"], "");
+          const iconActive = listingSelector.getImageUrlActive(item);
           const isActive = _.get(item, ["isActive"], false);
 
           return (

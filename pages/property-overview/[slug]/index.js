@@ -23,6 +23,7 @@ import CustomModal from "@/components/CustomModal";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
 
@@ -59,8 +60,16 @@ const PropertyDetail = ({ id }) => {
     listingSelector.getListingPropertyDetailDataLoading(state),
   );
 
-  const [selectDetail, setSelectedDetail] = useState("Tenancy");
-  const [showPolicy, setShowPolicy] = useState(true);
+  const getListingCancellationRequest = () =>
+    dispatch(listingAction.getListingCancellationRequest());
+  const listingCancellationData = useSelector((state) =>
+    listingSelector.getListingCancellationData(state),
+  );
+  const listingCancellationDataLoading = useSelector((state) =>
+    listingSelector.getListingCancellationDataLoading(state),
+  );
+
+  const [selectDetail, setSelectedDetail] = useState(Constant.TENANCY);
   // const [isBookMarks, setIsBookMarks] = useState(true);
   const [openCharges, setOpenCharges] = useState(false);
 
@@ -107,13 +116,17 @@ const PropertyDetail = ({ id }) => {
   //   setIsBookMarks(!isBookMarks);
   // };
 
-  const onClickSelectDetail = (select) => {
-    setSelectedDetail(select);
+  const fetchListingCancellation = () => {
+    getListingCancellationRequest();
   };
 
-  useEffect(() => {
-    setShowPolicy(selectDetail === "Tenancy");
-  }, [selectDetail]);
+  const onClickSelectDetail = (select) => {
+    setSelectedDetail(select);
+
+    if (_.isEqual(select, Constant.POLICY)) {
+      fetchListingCancellation();
+    }
+  };
 
   const onClickBooking = (contactNumber) => {
     window.open(
@@ -156,32 +169,32 @@ const PropertyDetail = ({ id }) => {
         <div className="grid grid-cols-6 gap-3 items-center pb-7">
           <CustomButton
             icon={
-              _.isEqual(selectDetail, "Tenancy")
+              _.isEqual(selectDetail, Constant.TENANCY)
                 ? Images.tenancyIconActive
                 : Images.tenancyIcon
             }
-            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, "Tenancy") ? "primary-btn" : "default-btn"} flex-row-reverse`}
+            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal"
             buttonText={t("propertyDetail.tenancy")}
             imageStyle={{ width: "20px", height: "20px" }}
-            onClick={() => onClickSelectDetail("Tenancy")}
+            onClick={() => onClickSelectDetail(Constant.TENANCY)}
           />
 
           <CustomButton
             icon={
-              _.isEqual(selectDetail, "Tenancy")
+              _.isEqual(selectDetail, Constant.TENANCY)
                 ? Images.policyIcon
                 : Images.policyIconActive
             }
             imageStyle={{ width: "20px", height: "20px" }}
-            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, "Policy") ? "primary-btn" : "default-btn"} flex-row-reverse`}
+            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal disable-text"
             buttonText={t("propertyDetail.policy")}
-            onClick={() => onClickSelectDetail("Policy")}
+            onClick={() => onClickSelectDetail(Constant.POLICY)}
           />
         </div>
 
-        {_.isEqual(showPolicy, true) ? (
+        {_.isEqual(selectDetail, Constant.TENANCY) ? (
           <div>
             <DetailFeatureSection
               t={t}
@@ -199,9 +212,11 @@ const PropertyDetail = ({ id }) => {
             />
           </div>
         ) : (
-          <div>
-            <PolicyDetail t={t} />
-          </div>
+          <PolicyDetail
+            t={t}
+            loading={listingCancellationDataLoading}
+            data={listingCancellationData}
+          />
         )}
 
         <AgentSection

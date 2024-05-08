@@ -17,6 +17,9 @@ const Constant = {
     { name: "WP Labuan", value: "MY-15" },
   ],
 
+  TENANCY: "Tenancy",
+  POLICY: "Policy",
+
   HOME_FOR_RENT: "whole-unit",
   ROOM_FOR_RENT: "sublet",
   DEFAULT_PDF:
