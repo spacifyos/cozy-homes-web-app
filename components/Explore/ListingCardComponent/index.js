@@ -2,6 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
+import Images from "@/src/utils/Image"
 
 const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
   const name = listingSelector.getName(item);
@@ -20,7 +21,7 @@ const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
         src={
-          _.isEmpty(imageUrl) ? "/images/college_university/Inti.png" : imageUrl
+          _.isEmpty(imageUrl) ? Images.imageNotFound : imageUrl
         }
         imageStyle={{ height: 100, width: 100 }}
       />

@@ -93,7 +93,7 @@ const ListingSection = ({
             additionalTransfrom={0}
             autoPlay
             arrows={false}
-            autoPlaySpeed={2000}
+            autoPlaySpeed={3000}
             centerMode={false}
             className=""
             containerClass="container"

@@ -26,7 +26,7 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
       <CustomText textClassName="font-size-xxsmall primary-text leading-4 line-clamp-1">
         {unitRoomName}
       </CustomText>
-      <div className="flex items-center">
+      <div className="flex items-center flex-wrap">
         <CustomText textClassName="font-size-small font-bold mr-2">
           RM {rental}
         </CustomText>

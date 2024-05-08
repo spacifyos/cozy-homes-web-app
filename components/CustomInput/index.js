@@ -23,6 +23,7 @@ const CustomInput = ({
     if (event.key === "Enter") {
       event.preventDefault();
       onClickRightIcon();
+      inputRef.current.blur();
     }
   };
 
