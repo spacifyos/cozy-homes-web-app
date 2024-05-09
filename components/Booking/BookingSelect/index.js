@@ -31,7 +31,7 @@ const BookingSelect = ({
           })}
         </select>
 
-        {/*<CustomImage src={Images.downIcon} width={10} height={10} />*/}
+       <CustomImage src={Images.downIcon} width={10} height={10} />
       </div>
       {_.isEmpty(errorMessage) ? (
         false
