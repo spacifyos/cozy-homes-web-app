@@ -65,7 +65,7 @@ const HelpCenter = () => {
     router.push("/my-stay");
   };
   const onClickToNewRequest = () => {
-    router.push("/help-center/new-request-help-center");
+    router.push("/help-center/new-request");
   };
   const onClickToRequestOverview = (id) => {
     router.push(`/help-center/${id}/request-overview`);

@@ -2,62 +2,13 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import CustomText from "@/components/CustomText";
-import NestedMaintenanceRequestComponents from "@/components/Help-center/NestedMaintenanceRequestComponents";
-import NestedGeneralEnquiriesComponents from "@/components/Help-center/NestedGeneralEnquiriesComponents";
 
 const HelpCenterSection = ({
   t,
   onClickChangeSection,
   selectSection,
-  selectSecondSection,
-  onClickCheckFeedbackMatters,
-  checkFeedbackMatters,
-  onClickDisplayAuthorizationComponent,
-  displayAuthorizationComponent,
-  onChangeDate,
-  dateValue,
-  onChangeTime,
-  timeValue,
-  onClickChangeSecondSection,
-  onClickToRequestOverview,
-  maintenanceSection,
-  onClickChangeUploadModalTitle,
+  displayComponent,
 }) => {
-  const displayComponent = (value) => {
-    switch (value) {
-      case "Maintenance":
-        return (
-          <NestedMaintenanceRequestComponents
-            t={t}
-            selectSecondSection={selectSecondSection}
-            onClickChangeSecondSection={onClickChangeSecondSection}
-            onClickDisplayAuthorizationComponent={
-              onClickDisplayAuthorizationComponent
-            }
-            displayAuthorizationComponent={displayAuthorizationComponent}
-            onChangeDate={onChangeDate}
-            dateValue={dateValue}
-            onChangeTime={onChangeTime}
-            timeValue={timeValue}
-            onClickToRequestOverview={onClickToRequestOverview}
-            maintenanceSection={maintenanceSection}
-            onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
-          />
-        );
-      case "GeneralEnquiries":
-        return (
-          <NestedGeneralEnquiriesComponents
-            t={t}
-            onClickChangeSecondSection={onClickChangeSecondSection}
-            selectSecondSection={selectSecondSection}
-            onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-            checkFeedbackMatters={checkFeedbackMatters}
-          />
-        );
-      default:
-        return false;
-    }
-  };
   return (
     <div>
       <div className="grid grid-cols-2 pb-4">

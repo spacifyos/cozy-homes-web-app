@@ -6,12 +6,17 @@ import CustomHeader from "@/components/CustomHeader";
 import HelpCenterSection from "@/components/Help-center/HelpCenterSection";
 import { useEffect, useState } from "react";
 import DividerSection from "@/components/Help-center/DividerSection";
-import moment from "moment/moment";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import BookingInput from "@/components/Booking/BookingInput";
 import UploadModal from "@/components/Help-center/UploadModal";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import Images from "@/src/utils/Image";
+import RequestComponent from "@/components/Help-center/RequestComponent";
+import _ from "lodash";
+import NestedMaintenanceRequestComponents from "@/components/Help-center/NestedMaintenanceRequestComponents";
+import NestedGeneralEnquiriesComponents from "@/components/Help-center/NestedGeneralEnquiriesComponents";
+import AuthorizationComponent from "@/components/Help-center/AuthorizationComponent";
+import CustomButton from "@/components/CustomButton";
 
 export { getServerSideProps };
 
@@ -19,21 +24,15 @@ const NewRequest = ({}) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [selectSection, setSelectSection] = useState("");
-  const [selectSecondSection, setSelectSecondSection] = useState("");
+  const [selectSecondSection, setSelectSecondSection] = useState(false);
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
-    useState("");
+    useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
-  const [dateValue, setDateValue] = useState(
-    moment(new Date()).format("YYYY-MM-DD"),
-  );
-  const [timeValue, setTimeValue] = useState(
-    moment(new Date()).format("hh:mm"),
-  );
   const maintenanceSection = [
     {
       name: t("newRequest.amenities"),
-      onClickName: "Amenities",
+      value: "Amenities",
       icon: Images.amenitiesIcon,
       iconActive: Images.amenitiesIconActive,
       description: t(
@@ -42,28 +41,28 @@ const NewRequest = ({}) => {
     },
     {
       name: t("newRequest.electrical"),
-      onClickName: "Electrical",
+      value: "Electrical",
       icon: Images.electricalIcon,
       iconActive: Images.electricalIconActive,
       description: t("newRequest.lightsWellSocketWiringSmartMeter"),
     },
     {
       name: t("newRequest.plumbing"),
-      onClickName: "Plumbing",
+      value: "Plumbing",
       icon: Images.plumbingIcon,
       iconActive: Images.plumbingIconActive,
       description: t("newRequest.leakingFaucetsPipesPumps"),
     },
     {
       name: t("newRequest.exterior&Interior"),
-      onClickName: "Exterior&Interior",
+      value: "Exterior&Interior",
       icon: Images.exteriorInteriorIcon,
       iconActive: Images.exteriorInteriorIconActive,
       description: t("newRequest.doorsWindowsFlooringWall"),
     },
     {
       name: t("newRequest.cleaning"),
-      onClickName: "Cleaning",
+      value: "Cleaning",
       icon: Images.cleaningIcon,
       iconActive: Images.cleaningIconActive,
       description: t("newRequest.submitACleaningServiceRequest"),
@@ -71,12 +70,6 @@ const NewRequest = ({}) => {
   ];
   const onClickChangeUploadModalTitle = (changeUploadModalTitle) => {
     setChangUploadModalTitle(changeUploadModalTitle);
-  };
-  const onChangeDate = (e) => {
-    setDateValue(e.target.value);
-  };
-  const onChangeTime = (e) => {
-    setTimeValue(e.target.value);
   };
   const onClickDisplayAuthorizationComponent = (
     displayAuthorizationComponent,
@@ -88,15 +81,42 @@ const NewRequest = ({}) => {
   };
   const onClickChangeSection = (selectSection) => {
     setSelectSection(selectSection);
+    setSelectSecondSection(false);
   };
   const onClickChangeSecondSection = (selectSecondSection) => {
     setSelectSecondSection(selectSecondSection);
+    setDisplayAuthorizationComponent(false);
   };
   const onClickGoBack = () => {
     router.back();
   };
   const onClickToRequestOverview = (id) => {
     router.push(`/help-center/${id}/request-overview`);
+  };
+  const displayComponent = (value) => {
+    switch (value) {
+      case "Maintenance":
+        return (
+          <NestedMaintenanceRequestComponents
+            t={t}
+            selectSecondSection={selectSecondSection}
+            onClickChangeSecondSection={onClickChangeSecondSection}
+            maintenanceSection={maintenanceSection}
+          />
+        );
+      case "GeneralEnquiries":
+        return (
+          <NestedGeneralEnquiriesComponents
+            t={t}
+            onClickChangeSecondSection={onClickChangeSecondSection}
+            selectSecondSection={selectSecondSection}
+            onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
+            checkFeedbackMatters={checkFeedbackMatters}
+          />
+        );
+      default:
+        return false;
+    }
   };
   return (
     <CustomHeader
@@ -156,26 +176,48 @@ const NewRequest = ({}) => {
               t={t}
               onClickChangeSection={onClickChangeSection}
               selectSection={selectSection}
-              selectSecondSection={selectSecondSection}
-              onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-              checkFeedbackMatters={checkFeedbackMatters}
-              onClickDisplayAuthorizationComponent={
-                onClickDisplayAuthorizationComponent
-              }
-              displayAuthorizationComponent={displayAuthorizationComponent}
-              onChangeDate={onChangeDate}
-              dateValue={dateValue}
-              onChangeTime={onChangeTime}
-              timeValue={timeValue}
-              onClickChangeSecondSection={onClickChangeSecondSection}
-              onClickToRequestOverview={onClickToRequestOverview}
-              maintenanceSection={maintenanceSection}
-              onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
-              changeUploadModalTitle={changeUploadModalTitle}
+              displayComponent={displayComponent}
             />
           </div>
-        </div>
 
+          {maintenanceSection.some((item) =>
+            _.isEqual(selectSecondSection, item.value),
+          ) ? (
+            <RequestComponent
+              t={t}
+              selectSecondSection={selectSecondSection}
+              onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
+            />
+          ) : (
+            false
+          )}
+
+          {maintenanceSection.some((item) =>
+            _.isEqual(selectSecondSection, item.value),
+          ) ? (
+            displayAuthorizationComponent ? (
+              <div>
+                <AuthorizationComponent
+                  t={t}
+                  onClickToRequestOverview={onClickToRequestOverview}
+                />
+              </div>
+            ) : (
+              <div className="flex justify-center">
+                <CustomButton
+                  buttonStyles={{ padding: "5px 30px" }}
+                  buttonClassName="primary-btn"
+                  buttonText={t("newRequest.continue")}
+                  onClick={() =>
+                    onClickDisplayAuthorizationComponent(selectSecondSection)
+                  }
+                />
+              </div>
+            )
+          ) : (
+            false
+          )}
+        </div>
         <UploadModal t={t} changeUploadModalTitle={changeUploadModalTitle} />
       </div>
     </CustomHeader>

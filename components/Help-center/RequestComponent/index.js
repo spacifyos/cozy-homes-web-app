@@ -5,96 +5,70 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import AuthorizationComponent from "@/components/Help-center/AuthorizationComponent";
-import CustomButton from "@/components/CustomButton";
 
 const RequestComponent = ({
   t,
-  onClickDisplayAuthorizationComponent,
-  displayAuthorizationComponent,
-  onChangeDate,
-  dateValue,
-  onChangeTime,
-  timeValue,
-  onClickToRequestOverview,
   selectSecondSection,
   onClickChangeUploadModalTitle,
 }) => {
   const displayComponent = (value) => {
+    const requestSelect = {
+      t: t,
+      placeholder: t(`newRequest.select${value}`),
+      lists: [],
+    };
+
     switch (value) {
       case "Amenities":
-        return (
-          <BookingSelect
-            t={t}
-            title={t("newRequest.selectAmenities")}
-            placeholder={t("newRequest.selectAmenities")}
-            lists={[
-              { name: t("newRequest.washer"), value: "washer" },
-              { name: t("newRequest.dryer"), value: "dryer" },
-              { name: t("newRequest.oven"), value: "oven" },
-              { name: t("newRequest.airConditioner"), value: "airConditioner" },
-              { name: t("newRequest.waterHeater"), value: "waterHeater" },
-              { name: t("newRequest.cellingFan"), value: "cellingFan" },
-            ]}
-          />
-        );
+        requestSelect.title = t("newRequest.selectAmenities");
+        requestSelect.lists = [
+          { name: t("newRequest.washer"), value: "washer" },
+          { name: t("newRequest.dryer"), value: "dryer" },
+          { name: t("newRequest.oven"), value: "oven" },
+          { name: t("newRequest.airConditioner"), value: "airConditioner" },
+          { name: t("newRequest.waterHeater"), value: "waterHeater" },
+          { name: t("newRequest.cellingFan"), value: "cellingFan" },
+        ];
+        break;
       case "Electrical":
-        return (
-          <BookingSelect
-            t={t}
-            title={t("newRequest.selectElectrical")}
-            placeholder={t("newRequest.selectElectrical")}
-            lists={[
-              { name: t("newRequest.lights"), value: "lights" },
-              { name: t("newRequest.wellSocket"), value: "well socket" },
-              { name: t("newRequest.wiring"), value: "wiring" },
-              { name: t("newRequest.smartMeter"), value: "smart meter" },
-            ]}
-          />
-        );
+        requestSelect.title = t("newRequest.selectElectrical");
+        requestSelect.lists = [
+          { name: t("newRequest.lights"), value: "lights" },
+          { name: t("newRequest.wellSocket"), value: "well socket" },
+          { name: t("newRequest.wiring"), value: "wiring" },
+          { name: t("newRequest.smartMeter"), value: "smart meter" },
+        ];
+        break;
       case "Plumbing":
-        return (
-          <BookingSelect
-            t={t}
-            title={t("newRequest.selectPlumbing")}
-            placeholder={t("newRequest.selectPlumbing")}
-            lists={[
-              { name: t("newRequest.leaking"), value: "leaking" },
-              { name: t("newRequest.faucets"), value: "faucets" },
-              { name: t("newRequest.pipes"), value: "pipes" },
-              { name: t("newRequest.pumps"), value: "pumps" },
-            ]}
-          />
-        );
+        requestSelect.title = t("newRequest.selectPlumbing");
+        requestSelect.lists = [
+          { name: t("newRequest.leaking"), value: "leaking" },
+          { name: t("newRequest.faucets"), value: "faucets" },
+          { name: t("newRequest.pipes"), value: "pipes" },
+          { name: t("newRequest.pumps"), value: "pumps" },
+        ];
+        break;
       case "Exterior&Interior":
-        return (
-          <BookingSelect
-            t={t}
-            title={t("newRequest.selectExterior&Interior")}
-            placeholder={t("newRequest.selectExterior&Interior")}
-            lists={[
-              { name: t("newRequest.doors"), value: "doors" },
-              { name: t("newRequest.windows"), value: "windows" },
-              { name: t("newRequest.flooring"), value: "flooring" },
-              { name: t("newRequest.wall"), value: "wall" },
-            ]}
-          />
-        );
+        requestSelect.title = t("newRequest.selectExterior&Interior");
+        requestSelect.lists = [
+          { name: t("newRequest.doors"), value: "doors" },
+          { name: t("newRequest.windows"), value: "windows" },
+          { name: t("newRequest.flooring"), value: "flooring" },
+          { name: t("newRequest.wall"), value: "wall" },
+        ];
+        break;
       case "Cleaning":
-        return (
-          <BookingSelect
-            t={t}
-            title={t("newRequest.selectCleaning")}
-            placeholder={t("newRequest.selectCleaning")}
-            lists={[
-              { name: t("newRequest.bedroom"), value: "bedroom" },
-              { name: t("newRequest.washroom"), value: "washroom" },
-            ]}
-          />
-        );
+        requestSelect.title = t("newRequest.selectCleaning");
+        requestSelect.lists = [
+          { name: t("newRequest.bedroom"), value: "bedroom" },
+          { name: t("newRequest.washroom"), value: "washroom" },
+        ];
+        break;
       default:
         return null;
     }
+
+    return <BookingSelect {...requestSelect} />;
   };
 
   return (
@@ -139,8 +113,8 @@ const RequestComponent = ({
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
               onClick={() => {
-                  document.getElementById("help_center_upload_modal").showModal();
-                  onClickChangeUploadModalTitle(true);
+                document.getElementById("help_center_upload_modal").showModal();
+                onClickChangeUploadModalTitle(true);
               }}
             >
               <CustomImage
@@ -165,8 +139,8 @@ const RequestComponent = ({
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
               onClick={() => {
-                  document.getElementById("help_center_upload_modal").showModal();
-                  onClickChangeUploadModalTitle(false);
+                document.getElementById("help_center_upload_modal").showModal();
+                onClickChangeUploadModalTitle(false);
               }}
             >
               <CustomImage
@@ -177,30 +151,6 @@ const RequestComponent = ({
               />
             </div>
           </div>
-
-          {_.isEqual(displayAuthorizationComponent, selectSecondSection) ? (
-            <div>
-              <AuthorizationComponent
-                t={t}
-                onChangeDate={onChangeDate}
-                dateValue={dateValue}
-                onChangeTime={onChangeTime}
-                timeValue={timeValue}
-                onClickToRequestOverview={onClickToRequestOverview}
-              />
-            </div>
-          ) : (
-            <div className="flex justify-center">
-              <CustomButton
-                buttonStyles={{ padding: "5px 30px" }}
-                buttonClassName="primary-btn"
-                buttonText={t("newRequest.continue")}
-                onClick={() =>
-                  onClickDisplayAuthorizationComponent(selectSecondSection)
-                }
-              />
-            </div>
-          )}
         </div>
       ) : (
         false

@@ -4,12 +4,18 @@ import CustomText from "@/components/CustomText";
 import DividerSection from "@/components/Help-center/DividerSection";
 import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
+import {useState} from "react";
+import moment from "moment";
 const AuthorizationComponent = ({
   t,
-  dateValue,
-  onChangeDate,
   onClickToRequestOverview,
 }) => {
+    const [dateValue, setDateValue] = useState(
+        moment(new Date()).format("YYYY-MM-DD"),
+    );
+    const onChangeDate = (e) => {
+        setDateValue(e.target.value);
+    };
   return (
     <div>
       <DividerSection
