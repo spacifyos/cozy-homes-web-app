@@ -10,9 +10,10 @@ const BookingSelect = ({
   title,
   lists,
   name,
+    rightIcon=Images.downIcon
 }) => {
   return (
-    <label className={`form-control w-full ${className}`}>
+    <label className={`form-control w-full mb-2 ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className="booking-wrapper booking-select-container flex justify-between">
         <select className="booking-select" name={name} required >
@@ -31,7 +32,7 @@ const BookingSelect = ({
           })}
         </select>
 
-       <CustomImage src={Images.downIcon} width={10} height={10} />
+       <CustomImage src={rightIcon} width={10} height={10} />
       </div>
       {_.isEmpty(errorMessage) ? (
         false

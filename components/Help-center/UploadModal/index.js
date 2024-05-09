@@ -3,7 +3,12 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomModal from "@/components/CustomModal";
 
-const UploadModal = ({ t, changeUploadModalTitle }) => {
+const UploadModal = ({
+  t,
+  changeUploadModalTitle,
+  onClickOpenCamera,
+  onClickSelectFile,
+}) => {
   return (
     <CustomModal id="help_center_upload_modal">
       <CustomText textClassName="font-bold mb-5">
@@ -17,6 +22,7 @@ const UploadModal = ({ t, changeUploadModalTitle }) => {
             className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
             src={Images.cameraIcon}
             imageStyle={{ borderRadius: 100 }}
+            onClick={onClickOpenCamera}
           />
           <CustomText textClassName="font-bold">
             {t("newRequest.camera")}
@@ -27,6 +33,7 @@ const UploadModal = ({ t, changeUploadModalTitle }) => {
             className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
             src={Images.albumIcon}
             imageStyle={{ borderRadius: 100 }}
+            onClick={onClickSelectFile}
           />
           <CustomText textClassName="font-bold">
             {t("newRequest.album")}
@@ -37,6 +44,7 @@ const UploadModal = ({ t, changeUploadModalTitle }) => {
             className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
             src={Images.primaryTermAndConditionIcon}
             imageStyle={{ borderRadius: 100 }}
+            onClick={onClickSelectFile}
           />
           <CustomText textClassName="font-bold">
             {t("newRequest.document")}

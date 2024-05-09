@@ -4,18 +4,15 @@ import CustomText from "@/components/CustomText";
 import DividerSection from "@/components/Help-center/DividerSection";
 import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
-import {useState} from "react";
+import { useState } from "react";
 import moment from "moment";
-const AuthorizationComponent = ({
-  t,
-  onClickToRequestOverview,
-}) => {
-    const [dateValue, setDateValue] = useState(
-        moment(new Date()).format("YYYY-MM-DD"),
-    );
-    const onChangeDate = (e) => {
-        setDateValue(e.target.value);
-    };
+const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
+  const [dateValue, setDateValue] = useState(
+    moment(new Date()).format("YYYY-MM-DD"),
+  );
+  const onChangeDate = (e) => {
+    setDateValue(e.target.value);
+  };
   return (
     <div>
       <DividerSection
@@ -30,8 +27,10 @@ const AuthorizationComponent = ({
           { name: t("newRequest.no"), value: "no" },
         ]}
       />
-      <CustomText textClassName="input-title">{t("newRequest.date")}</CustomText>
-      <div className="flex items-center global-border-radius p-2 relative mb-3 booking-input pb-1">
+      <CustomText textClassName="input-title">
+        {t("newRequest.date")}
+      </CustomText>
+      <div className="flex items-center global-border-radius p-2 relative booking-input ">
         <input
           className="bg-color flex-1 w-full resize-input-icon"
           type="date"
@@ -40,10 +39,11 @@ const AuthorizationComponent = ({
         />
         <CustomImage
           src={Images.calendarIcon}
-          imageStyle={{ width: 20, height: 20, marginRight: 4 }}
+          imageStyle={{ width: 20, height: 20 }}
         />
       </div>
       <BookingSelect
+        className="mt-3"
         title={t("newRequest.time")}
         placeholder={t("newRequest.selectTime")}
         lists={[{ name: "8:30am - 12.00pm", value: "8:30am - 12.00pm" }]}
@@ -53,7 +53,7 @@ const AuthorizationComponent = ({
           buttonStyles={{ padding: "5px 30px" }}
           buttonClassName="primary-btn"
           buttonText={t("newRequest.createARequest")}
-          onClick={()=>onClickToRequestOverview(1)}
+          onClick={() => onClickToRequestOverview(1)}
         />
       </div>
     </div>

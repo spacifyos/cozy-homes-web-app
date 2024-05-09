@@ -4,7 +4,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomHeader from "@/components/CustomHeader";
 import HelpCenterSection from "@/components/Help-center/HelpCenterSection";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DividerSection from "@/components/Help-center/DividerSection";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import BookingInput from "@/components/Booking/BookingInput";
@@ -17,18 +17,24 @@ import NestedMaintenanceRequestComponents from "@/components/Help-center/NestedM
 import NestedGeneralEnquiriesComponents from "@/components/Help-center/NestedGeneralEnquiriesComponents";
 import AuthorizationComponent from "@/components/Help-center/AuthorizationComponent";
 import CustomButton from "@/components/CustomButton";
+import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
 const NewRequest = ({}) => {
   const router = useRouter();
+  const uploadImageRef = useRef(null);
+  const uploadVideoRef = useRef(null);
   const { t } = useTranslation("common");
   const [selectSection, setSelectSection] = useState("");
-  const [selectSecondSection, setSelectSecondSection] = useState(false);
+  const [selectSecondSection, setSelectSecondSection] = useState("");
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
+  const [imageBase64, setImageBase64] = useState("");
+  const [videoBase64, setVideoBase64] = useState("");
   const maintenanceSection = [
     {
       name: t("newRequest.amenities"),
@@ -81,7 +87,7 @@ const NewRequest = ({}) => {
   };
   const onClickChangeSection = (selectSection) => {
     setSelectSection(selectSection);
-    setSelectSecondSection(false);
+    setSelectSecondSection("");
   };
   const onClickChangeSecondSection = (selectSecondSection) => {
     setSelectSecondSection(selectSecondSection);
@@ -92,6 +98,14 @@ const NewRequest = ({}) => {
   };
   const onClickToRequestOverview = (id) => {
     router.push(`/help-center/${id}/request-overview`);
+  };
+
+  const onClickOpenCamera = () => {
+    uploadImageRef && uploadImageRef.current.click();
+  };
+
+  const onClickSelectFile= () => {
+    uploadVideoRef && uploadVideoRef.current.click();
   };
   const displayComponent = (value) => {
     switch (value) {
@@ -183,42 +197,65 @@ const NewRequest = ({}) => {
           {maintenanceSection.some((item) =>
             _.isEqual(selectSecondSection, item.value),
           ) ? (
-            <RequestComponent
-              t={t}
-              selectSecondSection={selectSecondSection}
-              onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
-            />
+            <>
+              <RequestComponent
+                t={t}
+                selectSecondSection={selectSecondSection}
+                onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
+              />
+              {displayAuthorizationComponent ? (
+                <div>
+                  <AuthorizationComponent
+                    t={t}
+                    onClickToRequestOverview={onClickToRequestOverview}
+                  />
+                </div>
+              ) : (
+                <div className="flex justify-center">
+                  <CustomButton
+                    buttonStyles={{ padding: "5px 30px" }}
+                    buttonClassName="primary-btn"
+                    buttonText={t("newRequest.continue")}
+                    onClick={() =>
+                      onClickDisplayAuthorizationComponent(selectSecondSection)
+                    }
+                  />
+                </div>
+              )}
+            </>
           ) : (
             false
           )}
 
-          {maintenanceSection.some((item) =>
-            _.isEqual(selectSecondSection, item.value),
-          ) ? (
-            displayAuthorizationComponent ? (
-              <div>
-                <AuthorizationComponent
-                  t={t}
-                  onClickToRequestOverview={onClickToRequestOverview}
-                />
-              </div>
-            ) : (
-              <div className="flex justify-center">
-                <CustomButton
-                  buttonStyles={{ padding: "5px 30px" }}
-                  buttonClassName="primary-btn"
-                  buttonText={t("newRequest.continue")}
-                  onClick={() =>
-                    onClickDisplayAuthorizationComponent(selectSecondSection)
-                  }
-                />
-              </div>
-            )
+          {["Enquiry", "Feedback"].includes(selectSecondSection) ? (
+            <div>
+              <EnquiriesForm
+                t={t}
+                selectSecondSection={selectSecondSection}
+                onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
+                checkFeedbackMatters={checkFeedbackMatters}
+              />
+            </div>
           ) : (
             false
           )}
         </div>
-        <UploadModal t={t} changeUploadModalTitle={changeUploadModalTitle} />
+        <UploadModal
+          t={t}
+          changeUploadModalTitle={changeUploadModalTitle}
+          imageBase={imageBase64}
+          onClickOpenCamera={onClickOpenCamera}
+          onClickSelectFile={onClickSelectFile}
+          videoBase64={videoBase64}
+        />
+        <input
+          capture="environment"
+          accept="image/*"
+          type="file"
+          hidden
+          ref={uploadImageRef}
+        ></input>
+        <input accept="video/*" type="file" hidden ref={uploadVideoRef}></input>
       </div>
     </CustomHeader>
   );

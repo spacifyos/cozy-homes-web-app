@@ -12,6 +12,11 @@ const EnquiriesForm = ({
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
 }) => {
+  const formList = [
+    { name: t("newRequest.suggestion"), value: "Suggestion" },
+    { name: t("newRequest.review"), value: "Review" },
+    { name: t("newRequest.complaint"), value: "Complaint" },
+  ];
   const displayForm = (value) => {
     switch (value) {
       case "Enquiry":
@@ -32,68 +37,39 @@ const EnquiriesForm = ({
               subtitle={t("newRequest.shareYourThoughtsWithUs")}
             />
             <div className="flex items-center justify-center">
-              <div className="flex gap-2 pr-4 items-center">
-                <CustomImage
-                  className="cursor-pointer"
-                  src={
-                    _.isEqual(checkFeedbackMatters, "Suggestion")
-                      ? Images.checkGreenIcon
-                      : Images.uncheckIcon
-                  }
-                  height={23}
-                  width={23}
-                  onClick={() => onClickCheckFeedbackMatters("Suggestion")}
-                />
-                <CustomText textClassName="font-size-xsmall">
-                  {t("newRequest.suggestion")}
-                </CustomText>
-              </div>
-              <div className="flex gap-2 pr-4 items-center">
-                <CustomImage
-                  className="cursor-pointer"
-                  src={
-                    _.isEqual(checkFeedbackMatters, "Review")
-                      ? Images.checkGreenIcon
-                      : Images.uncheckIcon
-                  }
-                  height={23}
-                  width={23}
-                  onClick={() => onClickCheckFeedbackMatters("Review")}
-                />
-                <CustomText textClassName="font-size-xsmall">
-                  {t("newRequest.review")}
-                </CustomText>
-              </div>
-              <div className="flex gap-2 pr-4 items-center">
-                <CustomImage
-                  className="cursor-pointer"
-                  src={
-                    _.isEqual(checkFeedbackMatters, "Complaint")
-                      ? Images.checkGreenIcon
-                      : Images.uncheckIcon
-                  }
-                  height={23}
-                  width={23}
-                  onClick={() => onClickCheckFeedbackMatters("Complaint")}
-                />
-                <CustomText textClassName="font-size-xsmall">
-                  {t("newRequest.complaint")}
-                </CustomText>
-              </div>
+              {_.map(formList, (item, index) => (
+                <div key={index}>
+                  <div className="flex gap-2 pr-4 items-center">
+                    <CustomImage
+                      className="cursor-pointer"
+                      src={
+                        _.isEqual(checkFeedbackMatters, item.value)
+                          ? Images.checkGreenIcon
+                          : Images.uncheckIcon
+                      }
+                      height={23}
+                      width={23}
+                      onClick={() => onClickCheckFeedbackMatters(item.value)}
+                    />
+                    <CustomText textClassName="font-size-xsmall">
+                      {item.name}
+                    </CustomText>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         );
       default:
-        return false;
+        return null;
     }
   };
+
   return (
     <div>
       {displayForm(selectSecondSection)}
 
-      <BookingTextArea
-        placeholder={t("newRequest.enterYourMessage")}
-      />
+      <BookingTextArea placeholder={t("newRequest.enterYourMessage")} />
 
       <div className="grid grid-cols-2 gap-2">
         <CustomButton

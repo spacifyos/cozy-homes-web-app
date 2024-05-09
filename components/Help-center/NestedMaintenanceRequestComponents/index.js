@@ -20,6 +20,9 @@ const NestedMaintenanceRequestComponents = ({
         {_.map(maintenanceSection, (item, index) => {
           const name = _.get(item, ["name"], "");
           const value = _.get(item, ["value"], "");
+          const icon = _.get(item, ["icon"], "");
+          const iconActive = _.get(item, ["iconActive"]);
+          const description = _.get(item, ["description"], "");
           return (
             <div className="col-span-2" key={index}>
               <div className=" flex flex-col justify-center items-center pb-6">
@@ -30,21 +33,18 @@ const NestedMaintenanceRequestComponents = ({
                   <CustomImage
                     className="cursor-pointer"
                     src={
-                      _.isEqual(selectSecondSection, value)
-                        ? _.get(item, ["icon"], "")
-                        : _.get(item, ["iconActive"], "")
+                      _.isEqual(selectSecondSection, value) ? icon : iconActive
                     }
                     width={30}
                     height={30}
                     onClick={() => onClickChangeSecondSection(value)}
                   />
                 </div>
-
                 <CustomText textClassName="font-bold font-size-xsmall">
                   {name}
                 </CustomText>
                 <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-                  {_.get(item, ["description"], "")}
+                  {description}
                 </CustomText>
               </div>
             </div>

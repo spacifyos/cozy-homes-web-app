@@ -9,8 +9,6 @@ const NestedGeneralEnquiriesComponents = ({
   t,
   onClickChangeSecondSection,
   selectSecondSection,
-  onClickCheckFeedbackMatters,
-  checkFeedbackMatters,
 }) => {
   return (
     <div>
@@ -73,19 +71,6 @@ const NestedGeneralEnquiriesComponents = ({
           </div>
         </div>
       </div>
-      {selectSecondSection === "Enquiry" || selectSecondSection === "Feedback" ? (
-        <div>
-          <EnquiriesForm
-            t={t}
-            onClickChangeSecondSection={onClickChangeSecondSection}
-            selectSecondSection={selectSecondSection}
-            onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-            checkFeedbackMatters={checkFeedbackMatters}
-          />
-        </div>
-      ) : (
-        false
-      )}
     </div>
   );
 };
