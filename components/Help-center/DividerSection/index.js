@@ -1,7 +1,6 @@
 import CustomText from "@/components/CustomText";
 
 const DividerSection = ({
-  t,
   className,
   hideLine = false,
   title,

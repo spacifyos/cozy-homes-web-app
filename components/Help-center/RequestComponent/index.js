@@ -1,4 +1,3 @@
-import _ from "lodash";
 import DividerSection from "@/components/Help-center/DividerSection";
 import BookingTextArea from "@/components/BookingTextArea";
 import BookingSelect from "@/components/Booking/BookingSelect";
@@ -6,9 +5,9 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
-const RequestComponent = ({
+const SpecificRequestComponent = ({
   t,
-  selectSecondSection,
+  selectNestedHelpCenterSection,
   onClickChangeUploadModalTitle,
 }) => {
   const displayComponent = (value) => {
@@ -73,13 +72,13 @@ const RequestComponent = ({
 
   return (
     <div>
-      {selectSecondSection ? (
+      {selectNestedHelpCenterSection ? (
         <div>
           <DividerSection
             title={t("newRequest.pleaseSpecificTheRequest")}
             subtitle={t("newRequest.chooseToSpecifyTheIssue")}
           />
-          {displayComponent(selectSecondSection)}
+          {displayComponent(selectNestedHelpCenterSection)}
           <BookingSelect
             title={t("newRequest.selectIssue")}
             placeholder={t("newRequest.selectIssue")}
@@ -128,7 +127,7 @@ const RequestComponent = ({
           <CustomText textClassName="pb-2 font-size-xsmall">
             {t("newRequest.uploadVideo")}
           </CustomText>
-          <div className=" flex flex-row items-center gap-2  pb-3">
+          <div className=" flex flex-row items-center gap-2  pb-4">
             <CustomImage
               src={Images.washerVideoImages}
               width={55}
@@ -159,4 +158,4 @@ const RequestComponent = ({
   );
 };
 
-export default RequestComponent;
+export default SpecificRequestComponent;

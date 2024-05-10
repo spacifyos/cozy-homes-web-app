@@ -8,7 +8,7 @@ import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 const EnquiriesForm = ({
   t,
-  selectSecondSection,
+  selectNestedHelpCenterSection,
   onClickCheckFeedbackMatters,
   checkFeedbackMatters,
 }) => {
@@ -67,7 +67,7 @@ const EnquiriesForm = ({
 
   return (
     <div>
-      {displayForm(selectSecondSection)}
+      {displayForm(selectNestedHelpCenterSection)}
 
       <BookingTextArea placeholder={t("newRequest.enterYourMessage")} />
 
