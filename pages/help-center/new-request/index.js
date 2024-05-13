@@ -13,6 +13,7 @@ import CustomButton from "@/components/CustomButton";
 import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
 import SpecificRequestComponent from "@/components/Help-center/RequestComponent";
 import GeneralInformationSection from "@/components/Help-center/GenerallnformationSection";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
 
@@ -21,6 +22,7 @@ const NewRequest = ({}) => {
   const uploadImageRef = useRef(null);
   const uploadVideoRef = useRef(null);
   const { t } = useTranslation("common");
+
   const [selectSection, setSelectSection] = useState("");
   const [selectNestedHelpCenterSection, setSelectNestedHelpCenterSection] =
     useState("");
@@ -28,30 +30,37 @@ const NewRequest = ({}) => {
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
+
   const onClickChangeUploadModalTitle = (changeUploadModalTitle) => {
     setChangUploadModalTitle(changeUploadModalTitle);
   };
+
   const onClickDisplayAuthorizationComponent = (
     displayAuthorizationComponent,
   ) => {
     setDisplayAuthorizationComponent(displayAuthorizationComponent);
   };
+
   const onClickCheckFeedbackMatters = (checkFeedbackMatters) => {
     setCheckFeedbackMatter(checkFeedbackMatters);
   };
+
   const onClickChangeSection = (selectSection) => {
     setSelectSection(selectSection);
     setSelectNestedHelpCenterSection("");
   };
+
   const onClickSelectNestedHelpCenterSection = (
     selectNestedHelpCenterSection,
   ) => {
     setSelectNestedHelpCenterSection(selectNestedHelpCenterSection);
     setDisplayAuthorizationComponent(false);
   };
+
   const onClickGoBack = () => {
     router.back();
   };
+
   const onClickToRequestOverview = (id) => {
     router.push(`/help-center/${id}/request-overview`);
   };
@@ -63,9 +72,10 @@ const NewRequest = ({}) => {
   const onClickSelectFile = () => {
     uploadVideoRef && uploadVideoRef.current.click();
   };
+
   const NestedHelpCenterSection = (value) => {
     switch (value) {
-      case "Maintenance":
+      case Constant.MAINTENANCE_REQUESTS:
         return (
           <NestedMaintenanceRequestComponents
             t={t}
@@ -75,7 +85,7 @@ const NewRequest = ({}) => {
             }
           />
         );
-      case "GeneralEnquiries":
+      case Constant.GENERAL_ENQUIRIES:
         return (
           <NestedGeneralEnquiriesComponents
             t={t}
@@ -91,6 +101,7 @@ const NewRequest = ({}) => {
         return false;
     }
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.newRequest")}
@@ -106,18 +117,16 @@ const NewRequest = ({}) => {
             style={{ marginTop: 20, marginBottom: 20 }}
           ></div>
 
-          <div>
-            <DividerSection
-              title={t("newRequest.welcomeToHelpCenter")}
-              subtitle={t("newRequest.howCanWeHelpYou")}
-              hideLine
-            />
-            <HelpCenterSection
-              t={t}
-              onClickChangeSection={onClickChangeSection}
-              selectSection={selectSection}
-            />
-          </div>
+          <DividerSection
+            title={t("newRequest.welcomeToHelpCenter")}
+            subtitle={t("newRequest.howCanWeHelpYou")}
+            hideLine
+          />
+          <HelpCenterSection
+            t={t}
+            onClickChangeSection={onClickChangeSection}
+            selectSection={selectSection}
+          />
 
           {NestedHelpCenterSection(selectSection)}
 

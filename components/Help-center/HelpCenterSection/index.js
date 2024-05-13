@@ -2,13 +2,14 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import CustomText from "@/components/CustomText";
+import Constant from "@/src/utils/Constant";
 
 const HelpCenterSection = ({ t, onClickChangeSection, selectSection }) => {
   const btnList = [
     {
       btnText: t("newRequest.generalEnquiries"),
       btnDescription: t("newRequest.haveAQuestionOrWantToSendFeedback"),
-      value: "GeneralEnquiries",
+      value: Constant.GENERAL_ENQUIRIES,
       icon: Images.generalEnquiriesIcon,
       iconActive: Images.generalEnquiriesIconActive,
     },
@@ -17,7 +18,7 @@ const HelpCenterSection = ({ t, onClickChangeSection, selectSection }) => {
       btnDescription: t(
         "newRequest.submitMaintenanceRequestsForIssueResolution",
       ),
-      value: "Maintenance",
+      value: Constant.MAINTENANCE_REQUESTS,
       icon: Images.maintenanceIcon,
       iconActive: Images.maintenanceIconActive,
     },
@@ -31,6 +32,7 @@ const HelpCenterSection = ({ t, onClickChangeSection, selectSection }) => {
           const value = _.get(item, "value", "");
           const icon = _.get(item, "icon", "");
           const iconActive = _.get(item, "iconActive", "");
+
           return (
             <div className="col-span-1" key={index}>
               <div className=" flex flex-col justify-center items-center">

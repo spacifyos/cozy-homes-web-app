@@ -62,6 +62,7 @@ const NestedMaintenanceRequestComponents = ({
           const icon = _.get(item, ["icon"], "");
           const iconActive = _.get(item, ["iconActive"]);
           const description = _.get(item, ["description"], "");
+
           return (
             <div className="col-span-2" key={index}>
               <div className=" flex flex-col justify-center items-center pb-6">
