@@ -31,6 +31,7 @@ const AgentSection = ({
               width={43}
               className="rounded-2xl"
             />
+
             {/*<div*/}
             {/*  className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"*/}
             {/*  style={{ right: -3 }}*/}
