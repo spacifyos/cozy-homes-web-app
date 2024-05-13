@@ -12,6 +12,7 @@ const AgentSection = ({
   onClickToBookAppointment,
   data,
   onClickOpenMoveInCostModal,
+  totalMoveInCost,
 }) => {
   const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
   const picName = listingSelector.getPicName(data);
@@ -26,7 +27,7 @@ const AgentSection = ({
         <div className=" flex-row flex p-2 pl-3 justify-between items-center">
           <div className="relative ">
             <CustomImage
-              src={Images.agentIcon}
+              src={Images.userIcon}
               width={43}
               className="rounded-2xl"
             />
@@ -75,7 +76,7 @@ const AgentSection = ({
                 {t("propertyDetail.totalMoveInCost")}
               </CustomText>
               <CustomText textClassName="font-size-small primary-text font-bold">
-                RM1,020
+                RM{_.isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
               </CustomText>
             </div>
 

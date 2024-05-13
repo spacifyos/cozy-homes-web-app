@@ -1,7 +1,9 @@
 import * as listingSelector from "@/src/selectors/listing";
+import CustomText from "@/components/CustomText";
 
 const PolicyDetail = ({ t, loading, data }) => {
   const htmlContent = listingSelector.getHtmlContent(data);
+  const title = listingSelector.getTitle(data);
 
   return loading ? (
     <div className="flex justify-center items-center" style={{ height: 100 }}>
@@ -9,10 +11,10 @@ const PolicyDetail = ({ t, loading, data }) => {
     </div>
   ) : (
     <div>
-      <div
-        className="cancellation-policy"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      ></div>
+      <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+        {title}
+      </CustomText>
+      <CustomText textClassName="font-size-small disable-text text-justify">{htmlContent}</CustomText>
     </div>
   );
 };

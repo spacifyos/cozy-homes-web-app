@@ -24,6 +24,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
+import { getSquareFeet } from "@/src/selectors/listing";
 
 export { getServerSideProps };
 
@@ -82,7 +83,6 @@ const PropertyDetail = ({ id }) => {
   const address = listingSelector.getAddress(listingPropertyDetailData);
   const description = listingSelector.getDescription(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
-  const fees = listingSelector.getFees(listingPropertyDetailData);
   const recommendedList = listingSelector.getRecommended(
     listingPropertyDetailData,
   );
@@ -91,7 +91,10 @@ const PropertyDetail = ({ id }) => {
   );
   const bedType = listingSelector.getBedType(listingPropertyDetailData);
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
+  const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
+  const fees = listingSelector.getFees(listingPropertyDetailData);
+  const totalMoveInCost = listingSelector.getFeesTotalCostFull(listingPropertyDetailData);
 
   useEffect(() => {
     fetchListingPropertyDetail(id);
@@ -201,10 +204,15 @@ const PropertyDetail = ({ id }) => {
               rental={rental}
               bedType={bedType}
               bathroom={bathroom}
+              squareFeet={squareFeet}
             />
+
             <Description t={t} description={description} />
+
             <Facilities t={t} facilitiesList={facilitiesList} />
+
             {/*<RoomzMap t={t} />*/}
+
             <RecommendSection
               t={t}
               recommendedList={recommendedList}
@@ -225,12 +233,13 @@ const PropertyDetail = ({ id }) => {
           onClickToBookAppointment={onClickToBookAppointment}
           data={listingPropertyDetailData}
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+          totalMoveInCost={totalMoveInCost}
         />
 
         <MoveInCostModal
           openCharges={openCharges}
           onClickOpenCharges={onClickOpenCharges}
-          lists={lists}
+          lists={fees}
         />
 
         <CustomModal id="rent_charges_details">

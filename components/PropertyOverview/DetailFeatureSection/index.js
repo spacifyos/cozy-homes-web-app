@@ -3,7 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 
-const DetailFeatureSection = ({ t, rental, bedType, bathroom }) => {
+const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
   return (
     <div className="grid grid-cols-4 gap-2 pb-7">
       <div className="detail-feature-container">
@@ -12,7 +12,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom }) => {
           {t("propertyDetail.bathRoom")}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small font-bold">
-          {_.isEmpty(bathroom) ? "" : bathroom}
+          {_.isEmpty(bathroom) ? "-" : bathroom}
         </CustomText>
       </div>
       <div className="detail-feature-container">
@@ -21,7 +21,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom }) => {
           {t("propertyDetail.bed")}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small font-bold">
-          {_.isEmpty(bedType) ? "" : bedType}
+          {_.isEmpty(bedType) ? "-" : bedType}
         </CustomText>
       </div>
       <div className="detail-feature-container">
@@ -30,7 +30,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom }) => {
           {t("propertyDetail.squareFt")}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small font-bold">
-          150
+          {_.isEmpty(squareFeet) ? "-" : squareFeet}
         </CustomText>
       </div>
       <div className="detail-feature-container secondary-bg-color">
