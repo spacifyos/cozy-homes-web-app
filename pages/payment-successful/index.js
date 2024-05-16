@@ -13,9 +13,9 @@ const PaymentSuccessful = ({}) => {
   const onClickGoMainPage = () => {
     router.push("/explore");
   };
-  const onClickGoToBookingOverview = () => {
+  const onClickGoToBookingOverview = (id) => {
     router.push({
-      pathname: "/booking/1/overview",
+      pathname: `/booking/${id}/overview`,
       query: { paymentSuccess: true },
     });
   };
@@ -45,7 +45,7 @@ const PaymentSuccessful = ({}) => {
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={onClickGoToBookingOverview}
+        onClick={()=>onClickGoToBookingOverview(1)}
       />
     </div>
   );

@@ -6,7 +6,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
 import moment from "moment";
 import _ from "lodash";
@@ -43,7 +43,7 @@ const Booking = () => {
   ];
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const dropdownRef = useRef("");
   const onClickGoBack = () => {
     router.back();
   };
@@ -51,7 +51,18 @@ const Booking = () => {
   const onClickDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const onClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsDropdownOpen(false);
+    }
+  };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", onClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+    };
+  }, []);
   return (
     <CustomHeader
       pageTitle={t("pageTitle.appointmentOverview")}
@@ -81,33 +92,34 @@ const Booking = () => {
           </CustomText>
         </div>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
-          <div className="flex gap-2 items-center pb-5 relative">
-            <CustomImage
-              src={Images.moreIcon}
-              width={25}
-              height={25}
-              className="absolute right-0"
-              onClick={onClickDropdown}
-            />
-            {isDropdownOpen ? (
-              <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 primaryWhite-bg-color absolute right-0 top-10">
-                <li>
-                  <a className="font-size-small primary-text">Reschedule</a>
-                </li>
-                <li>
-                  <a className="font-size-small">Cancel</a>
-                </li>
-              </ul>
-            ) : (
-              false
-            )}
-
-            <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
-              <CustomImage src={Images.bookingIcon} width={25} height={25} />
+          <div className="flex items-center pb-5 relative">
+            <div ref={dropdownRef}>
+              <CustomImage
+                src={Images.moreIcon}
+                width={25}
+                height={25}
+                className="absolute right-0 top-0"
+                onClick={onClickDropdown}
+              />
+              {isDropdownOpen ? (
+                <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 primaryWhite-bg-color absolute right-2 top-7">
+                  <li>
+                    <a className="font-size-small primary-text">Reschedule</a>
+                  </li>
+                  <li>
+                    <a className="font-size-small">Cancel</a>
+                  </li>
+                </ul>
+              ) : (
+                false
+              )}
             </div>
-            <CustomText textClassName="font-bold font-size-xlarge primary-text">
-              {t("bookAppointment.myAppointment")}
-            </CustomText>
+              <div className="p-2 global-box-shadow global-border-radius primary-bg-color mr-2">
+                <CustomImage src={Images.bookingIcon} width={25} height={25} />
+              </div>
+              <CustomText textClassName="font-bold font-size-xlarge primary-text">
+                {t("bookAppointment.myAppointment")}
+              </CustomText>
           </div>
 
           <CustomText textClassName="pb-2">
@@ -133,7 +145,7 @@ const Booking = () => {
             disabled
           />
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.time")}
           </CustomText>
 
@@ -143,7 +155,7 @@ const Booking = () => {
             disabled
           />
 
-          <CustomText textClassName="pb-2 pt-5">
+          <CustomText textClassName="pb-2">
             {t("bookAppointment.message")}
           </CustomText>
 

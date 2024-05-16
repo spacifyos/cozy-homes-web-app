@@ -12,7 +12,11 @@ const FeatureSection = ({ t, onClickToAgreement, onClickToHelpCenter }) => {
         icon={Images.agreementIconActive}
         onClickToNextPage={onClickToAgreement}
       />
-      <FeatureComponent name={t("myStay.helpCenter")} icon={Images.helpIcon} onClickToHelpCenter={onClickToHelpCenter}/>
+      <FeatureComponent
+        name={t("myStay.helpCenter")}
+        icon={Images.helpIcon}
+        onClickToHelpCenter={onClickToHelpCenter}
+      />
     </div>
   );
 };

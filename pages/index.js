@@ -8,6 +8,7 @@ import _ from "lodash";
 
 export { getServerSideProps };
 
+
 function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();

@@ -1,7 +1,6 @@
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
-import propertyDetail from "@/pages/property-overview/[slug]";
 
 const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
   return (
@@ -40,7 +39,7 @@ const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
           <div className="flex gap-3 items-center flex-2 pr-1">
             <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
               <CustomImage src={Images.bookingIconActive} width={28}
-              onClick={onClickToBookAppointment}
+              onClick={()=>onClickToBookAppointment(1)}
               />
             </div>
             <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">
@@ -67,7 +66,7 @@ const AgentSection = ({ t, onClickBooking, onClickToBookAppointment }) => {
           </div>
           <div
             className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
-            onClick={onClickBooking}
+            onClick={()=>onClickBooking(1)}
           >
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}

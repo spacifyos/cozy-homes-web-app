@@ -18,7 +18,9 @@ const Account = () => {
   const onClickLogout = () => {
     router.push("/sign-in");
   };
-
+  const onClickToEditProfile = () => {
+    router.push("/edit-profile");
+  };
   const onClickToMyAppointment = () => {
     router.push("/my-appointment");
   };
@@ -38,7 +40,7 @@ const Account = () => {
     >
       <div className="body-container pb-24">
         <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
-          <ProfileCard />
+          <ProfileCard onClickToEditProfile={onClickToEditProfile} />
           <RoomzCoins
             t={t}
             onClickToCoinsTransaction={onClickToCoinsTransaction}

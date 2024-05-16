@@ -16,7 +16,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
       <div className="flex items-center pb-1">
         <div
           className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer"
-          onClick={onClickToMeterOverview}
+          onClick={()=>onClickToMeterOverview(1)}
         >
           <CustomImage
             src={Images.meterIcon}
@@ -77,7 +77,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
-          onClick={onClickTopUp}
+          onClick={()=>onClickTopUp(1)}
         />
       </div>
     </div>

@@ -6,7 +6,7 @@ const UserSection = ({ t }) => {
   return (
     <div className="flex justify-between pb-5">
       <div className="user-info-container">
-        <CustomImage src={Images.userIcon} height={25} width={55} />
+        <CustomImage src={Images.profilePic} height={25} width={55} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name">John Doe</CustomText>

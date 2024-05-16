@@ -1,12 +1,17 @@
 import CustomText from "@/components/CustomText";
 
-const CustomLabelValue = ({ label, value, className = "pb-2" }) => {
+const CustomLabelValue = ({
+  label,
+  value,
+  className = "",
+  highlight = false,
+}) => {
   return (
-    <div className={`${className}`}>
-      <CustomText textClassName="font-size-xxsmall disable-text">
-        {label}
-      </CustomText>
-      <CustomText textClassName="primary-text font-size-small font-bold">
+    <div className={`pb-2 ${className}`}>
+      <CustomText textClassName={`font-size-xxsmall`}>{label}</CustomText>
+      <CustomText
+        textClassName={`font-size-small font-bold ${highlight ? "primary-text" : "black-text"}`}
+      >
         {value}
       </CustomText>
     </div>

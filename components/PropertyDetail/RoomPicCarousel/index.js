@@ -1,16 +1,12 @@
-import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import CustomText from "@/components/CustomText";
-import CustomButton from "@/components/CustomButton";
-import { useState, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import _ from "lodash";
-import Image from "next/image";
+import CustomImage from "@/components/CustomImage";
 
 const RoomPicCarousel = () => {
   const imageUrls = [Images.listingDefaultImage, Images.room, Images.roomView];
   const imageList = _.map(imageUrls, (url, index) => (
-    <img src={url} className="w-full carousel-img" key={index} />
+    <CustomImage src={url} className="w-full carousel-img" key={index} />
   ));
 
   return (
