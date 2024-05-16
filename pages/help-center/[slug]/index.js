@@ -36,9 +36,11 @@ const chatList = [
 const RequestOverview = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+
   const onClickToHelpCenter = () => {
     router.push("/help-center");
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.requestOverview")}
@@ -49,7 +51,9 @@ const RequestOverview = () => {
     >
       <div className="body-container pb-4">
         <RequestOverviewDetail t={t} />
+
         <MaintenanceScheduleInformationComponent t={t} />
+
         <CommentComponent t={t} chatList={chatList} />
       </div>
     </CustomHeader>

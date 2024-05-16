@@ -62,7 +62,7 @@ const NewRequest = ({}) => {
   };
 
   const onClickToRequestOverview = (id) => {
-    router.push(`/help-center/${id}/request-overview`);
+    router.push(`/help-center/${id}`);
   };
 
   const onClickOpenCamera = () => {
@@ -130,39 +130,37 @@ const NewRequest = ({}) => {
 
           {NestedHelpCenterSection(selectSection)}
 
-          {["Enquiry", "Feedback"].includes(selectNestedHelpCenterSection) ? (
-            <div>
-              <EnquiriesForm
-                t={t}
-                selectNestedHelpCenterSection={selectNestedHelpCenterSection}
-                onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
-                checkFeedbackMatters={checkFeedbackMatters}
-              />
-            </div>
+          {[Constant.FEEDBACK, Constant.ENQUIRY].includes(
+            selectNestedHelpCenterSection,
+          ) ? (
+            <EnquiriesForm
+              t={t}
+              selectNestedHelpCenterSection={selectNestedHelpCenterSection}
+              onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
+              checkFeedbackMatters={checkFeedbackMatters}
+            />
           ) : (
             false
           )}
 
           {[
-            "Amenities",
-            "Electrical",
-            "Plumbing",
-            "Exterior&Interior",
-            "Cleaning",
+            Constant.AMENITIES,
+            Constant.ELECTRICAL,
+            Constant.PLUMBING,
+            Constant.EXTERIOR_INTERIOR,
+            Constant.CLEANING,
           ].includes(selectNestedHelpCenterSection) ? (
-            <>
+            <div>
               <SpecificRequestComponent
                 t={t}
                 selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                 onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
               />
               {displayAuthorizationComponent ? (
-                <div>
-                  <AuthorizationComponent
-                    t={t}
-                    onClickToRequestOverview={onClickToRequestOverview}
-                  />
-                </div>
+                <AuthorizationComponent
+                  t={t}
+                  onClickToRequestOverview={onClickToRequestOverview}
+                />
               ) : (
                 <div className="flex justify-center">
                   <CustomButton
@@ -177,7 +175,7 @@ const NewRequest = ({}) => {
                   />
                 </div>
               )}
-            </>
+            </div>
           ) : (
             false
           )}

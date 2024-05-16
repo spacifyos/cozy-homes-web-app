@@ -16,7 +16,7 @@ const MessageTimeLine = ({ t, item }) => {
           {date}
         </CustomText>
       </div>
-      <div className="flex flex-col col-span-1">
+      <div className="flex flex-col justify-center items-center col-span-1">
         <CustomImage
           src={
             _.isEqual(identity, "agent")
@@ -26,8 +26,9 @@ const MessageTimeLine = ({ t, item }) => {
           width={15}
           height={15}
         />
-        <div className="divider divider-horizontal pt-1 h-full"></div>
+        <div className="divider divider-horizontal pt-1 w-full h-full"></div>
       </div>
+
       <div className="flex-col flex w-full col-span-9">
         <div className="flex gap-2 items-center pb-2">
           <CustomImage src={img} width={30} className="rounded-3xl" />

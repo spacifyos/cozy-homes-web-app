@@ -43,7 +43,7 @@ const CustomHeader = ({
             {pageTitle}
           </CustomText>
         </div>
-        <div className="flex justify-center items-center gap-5">
+        <div className="flex justify-center items-center gap-4">
           {_.isEmpty(rightSecondButtonIcon) ? (
             false
           ) : (

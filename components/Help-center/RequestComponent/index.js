@@ -78,12 +78,15 @@ const SpecificRequestComponent = ({
             title={t("newRequest.pleaseSpecificTheRequest")}
             subtitle={t("newRequest.chooseToSpecifyTheIssue")}
           />
+
           {displayComponent(selectNestedHelpCenterSection)}
+
           <BookingSelect
             title={t("newRequest.selectIssue")}
             placeholder={t("newRequest.selectIssue")}
             lists={[{ name: t("newRequest.notWorking"), value: "not working" }]}
           />
+
           <BookingSelect
             title={t("newRequest.selectPriority")}
             placeholder={t("newRequest.selectPriority")}
@@ -94,13 +97,16 @@ const SpecificRequestComponent = ({
               { name: t("newRequest.low"), value: "low" },
             ]}
           />
+
           <BookingTextArea
             title={t("newRequest.describeTheIssue")}
             placeholder={t("newRequest.describeTheIssue")}
           />
+
           <CustomText textClassName="pb-2 font-size-xsmall">
             {t("newRequest.uploadPhoto")}
           </CustomText>
+
           <div className=" flex flex-row items-center gap-2 pb-3">
             <CustomImage
               src={Images.washer}
@@ -124,9 +130,11 @@ const SpecificRequestComponent = ({
               />
             </div>
           </div>
+
           <CustomText textClassName="pb-2 font-size-xsmall">
             {t("newRequest.uploadVideo")}
           </CustomText>
+
           <div className=" flex flex-row items-center gap-2  pb-4">
             <CustomImage
               src={Images.washerVideoImages}
@@ -134,6 +142,7 @@ const SpecificRequestComponent = ({
               height={55}
               className="global-border-radius"
             />
+
             <div
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}

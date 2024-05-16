@@ -9,15 +9,18 @@ const RequestOverviewDetail = ({ t }) => {
       <div className="flex justify-between">
         <CustomLabelValue
           label={t("requestOverview.requestNumber")}
-          value="RQ-230000007" highlight
+          value="RQ-230000007"
+          highlight
         />
         <CustomLabelValue
           label={t("requestOverview.status")}
-          value={t("requestOverview.newRequest")} highlight
+          value={t("requestOverview.newRequest")}
+          highlight
         />
       </div>
+
       <div
-        className="divider divider-line"
+        className="divider-line"
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
@@ -27,8 +30,9 @@ const RequestOverviewDetail = ({ t }) => {
         </CustomText>
         <StatusLabelOutline status={t("requestOverview.critical")} />
       </div>
+
       <div
-        className="divider divider-line"
+        className="divider-line"
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
@@ -42,25 +46,31 @@ const RequestOverviewDetail = ({ t }) => {
           value="10 DEC 2023"
         />
       </div>
+
       <CustomLabelValue
         label={t("requestOverview.property")}
         value="Icon City, A-01-01, Room 1"
       />
+
       <CustomLabelValue
         label={t("requestOverview.linkEquipment")}
         value={t("requestOverview.none")}
       />
+
       <CustomLabelValue
         label={t("requestOverview.none")}
         value={t("requestOverview.maintenanceAmenitiesWasherNotWorking")}
       />
+
       <CustomLabelValue
         label={t("requestOverview.requestDetails")}
         value={t("requestOverview.notWorkingFor2Weeks")}
       />
+
       <CustomText textClassName="disable-text font-size-xxsmall pb-1">
         {t("requestOverview.photosOrVideos")}
       </CustomText>
+
       <div className="flex items-start gap-2 pb-2">
         <CustomImage
           src={Images.washer}
@@ -75,10 +85,12 @@ const RequestOverviewDetail = ({ t }) => {
           className="global-border-radius"
         />
       </div>
+
       <CustomLabelValue
         label={t("requestOverview.authorizedEntryWhenRequesterIsAbsent")}
         value={t("requestOverview.yes")}
       />
+
       <CustomLabelValue
         label={t("requestOverview.availability")}
         value="12 Dec 2023, 8.30am -12.00pm"

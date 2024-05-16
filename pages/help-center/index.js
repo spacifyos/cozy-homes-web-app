@@ -58,18 +58,23 @@ const HelpCenter = () => {
     { btnText: t("helpCenter.completed"), status: "Completed" },
     { btnText: t("helpCenter.cancelled"), status: "Cancelled" },
   ];
+
   const onClickSelectStatusCategory = (status) => {
     setSelectedStatus(status);
   };
+
   const onClickGoBack = () => {
     router.push("/my-stay");
   };
+
   const onClickToNewRequest = () => {
     router.push("/help-center/new-request");
   };
+
   const onClickToRequestOverview = (id) => {
-    router.push(`/help-center/${id}/request-overview`);
+    router.push(`/help-center/${id}`);
   };
+
   const formattedList = () => {
     if (_.isEqual(selectedStatus, "All")) {
       return lists;
@@ -88,35 +93,35 @@ const HelpCenter = () => {
       onClickGoBack={onClickGoBack}
       onClickRightButton={onClickToNewRequest}
     >
-      <div className="body-container pb-1">
-        <div className="flex justify-between items-end pb-4">
-          <div className="flex items-center">
-            {_.map(BtnLists, (item, index) => {
-              return (
-                <CustomButton
-                  key={index}
-                  buttonText={_.get(item, ["btnText"], "")}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, _.get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() =>
-                    onClickSelectStatusCategory(_.get(item, ["status"], ""))
-                  }
-                />
-              );
-            })}
-          </div>
+      <div className="body-container pb-4">
+        <div className="flex items-center pb-4">
+          {_.map(BtnLists, (item, index) => {
+            return (
+              <CustomButton
+                key={index}
+                buttonText={_.get(item, ["btnText"], "")}
+                buttonClassName={`btn-sm ${_.isEqual(selectedStatus, _.get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() =>
+                  onClickSelectStatusCategory(_.get(item, ["status"], ""))
+                }
+              />
+            );
+          })}
         </div>
 
-        {_.map(formattedList(), (item,index) => {
-          return (
-            <HelpCenterListingCard
-              t={t}
-              key={index}
-              item={item}
-              onClickToRequestOverview={onClickToRequestOverview}
-            />
-          );
-        })}
+        <div className="flex flex-col gap-4">
+          {_.map(formattedList(), (item, index) => {
+            return (
+              <HelpCenterListingCard
+                t={t}
+                key={index}
+                item={item}
+                onClickToRequestOverview={onClickToRequestOverview}
+              />
+            );
+          })}
+        </div>
       </div>
     </CustomHeader>
   );

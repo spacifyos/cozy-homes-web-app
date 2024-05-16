@@ -1,13 +1,11 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import { useRouter } from "next/router";
 import _ from "lodash";
 import StatusLabel from "@/components/StatusLabel";
 import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 
-const HelpCenterListingCard = ({ t, item, onClickToRequestOverview,key }) => {
-  const router = useRouter();
+const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
   const date = _.get(item, ["date"], "");
@@ -18,8 +16,8 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview,key }) => {
 
   return (
     <div
-        key={key}
-      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color mb-3 cursor-pointer relative"
+      key={key}
+      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color cursor-pointer relative"
       onClick={() => onClickToRequestOverview(1)}
     >
       <div className="flex items-center gap-2 pb-2">

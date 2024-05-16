@@ -6,6 +6,7 @@ import DividerSection from "@/components/Help-center/DividerSection";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
+import Constant from "@/src/utils/Constant";
 const EnquiriesForm = ({
   t,
   selectNestedHelpCenterSection,
@@ -13,13 +14,14 @@ const EnquiriesForm = ({
   checkFeedbackMatters,
 }) => {
   const formList = [
-    { name: t("newRequest.suggestion"), value: "Suggestion" },
-    { name: t("newRequest.review"), value: "Review" },
-    { name: t("newRequest.complaint"), value: "Complaint" },
+    { name: t("newRequest.suggestion"), value: "suggestion" },
+    { name: t("newRequest.review"), value: "review" },
+    { name: t("newRequest.complaint"), value: "complaint" },
   ];
+
   const displayForm = (value) => {
     switch (value) {
-      case "Enquiry":
+      case Constant.ENQUIRY:
         return (
           <div>
             <DividerSection
@@ -29,7 +31,7 @@ const EnquiriesForm = ({
             <BookingInput placeholder={t("newRequest.subject")} />
           </div>
         );
-      case "Feedback":
+      case Constant.FEEDBACK:
         return (
           <div className="flex flex-col justify-center items-center pb-4">
             <DividerSection
@@ -37,26 +39,31 @@ const EnquiriesForm = ({
               subtitle={t("newRequest.shareYourThoughtsWithUs")}
             />
             <div className="flex items-center justify-center">
-              {_.map(formList, (item, index) => (
-                <div key={index}>
-                  <div className="flex gap-2 pr-4 items-center">
-                    <CustomImage
-                      className="cursor-pointer"
-                      src={
-                        _.isEqual(checkFeedbackMatters, item.value)
-                          ? Images.checkGreenIcon
-                          : Images.uncheckIcon
-                      }
-                      height={23}
-                      width={23}
-                      onClick={() => onClickCheckFeedbackMatters(item.value)}
-                    />
-                    <CustomText textClassName="font-size-xsmall">
-                      {item.name}
-                    </CustomText>
+              {_.map(formList, (item, index) => {
+                const name = _.get(item, ["name"], "");
+                const value = _.get(item, ["value"], "");
+
+                return (
+                  <div key={index}>
+                    <div className="flex gap-2 pr-4 items-center">
+                      <CustomImage
+                        className="cursor-pointer"
+                        src={
+                          _.isEqual(checkFeedbackMatters, value)
+                            ? Images.checkGreenIcon
+                            : Images.uncheckIcon
+                        }
+                        height={20}
+                        width={20}
+                        onClick={() => onClickCheckFeedbackMatters(value)}
+                      />
+                      <CustomText textClassName="font-size-xsmall">
+                        {name}
+                      </CustomText>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         );
