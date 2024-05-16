@@ -52,7 +52,7 @@ const InvoiceSection = ({
           key={index}
           t={t}
           item={item}
-          onClick={onClickToOverviewPage}
+          onClick={()=>onClickToOverviewPage(1)}
         />
       ))}
     </div>

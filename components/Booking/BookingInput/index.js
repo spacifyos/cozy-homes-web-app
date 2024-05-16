@@ -14,9 +14,10 @@ const BookingInput = ({
   value,
   onChange,
   disabled = false,
+  style,
 }) => {
   return (
-    <label className={`form-control w-full ${className}`}>
+    <label className={`form-control w-full mb-2 ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className=" flex items-center gap-2 booking-input">
         <input
@@ -28,6 +29,7 @@ const BookingInput = ({
           onChange={onChange}
           disabled={disabled}
           required
+          style={style}
         />
         {_.isEmpty(errorMessage) ? (
           false

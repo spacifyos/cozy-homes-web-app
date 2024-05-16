@@ -10,7 +10,7 @@
   color: $primary-black-color;
   height: 100px;
   resize: none;
-  @apply font-size-xsmall;
+  @apply font-size-xsmall mb-4;
 }
 
 .booking-textarea::placeholder {
@@ -20,11 +20,13 @@
 .booking-input {
   width: 100%;
   border: 1px solid $disable-color;
+  background-color: $primary-bg-color;
   border-radius: 10px;
   padding: 10px;
   margin: 4px 0;
   color: $primary-black-color;
   height: 40px;
+
   @apply font-size-xsmall;
 }
 

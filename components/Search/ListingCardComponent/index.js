@@ -5,8 +5,8 @@ import {useRouter} from "next/router";
 
 const ListingCardComponent = ({ t }) => {
   const router = useRouter();
-  const onClickToPropertyOverview = () => {
-    router.push("/property-overview/1");
+  const onClickToPropertyOverview = (id) => {
+    router.push(`/property-overview/${id}`);
   };
 
   return (

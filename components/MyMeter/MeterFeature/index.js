@@ -8,7 +8,7 @@ const MeterFeature = ({ t, onClickToTopUpMeter }) => {
       <MeterFeatureComponent
         name={t("myMeterOverview.topUp")}
         icon={Images.topUpIcon}
-        onClick={onClickToTopUpMeter}
+        onClick={()=>onClickToTopUpMeter(1)}
       />
 
       <MeterFeatureComponent

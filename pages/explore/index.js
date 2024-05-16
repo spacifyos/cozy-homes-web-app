@@ -69,8 +69,8 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyOverview = () => {
-    router.push("/property-overview/1");
+  const onClickToPropertyOverview = (id) => {
+    router.push(`/property-overview/${id}`);
   };
 
   const onClickOpenSwitcher = () => {

@@ -11,7 +11,7 @@ const InvoiceComponent = ({ t, item, onClick }) => {
   return (
     <div className="invoice-container">
       <div className="flex items-center">
-        <div className="invoice-icon-container cursor-pointer" onClick={onClick}>
+        <div className="invoice-icon-container cursor-pointer" onClick={()=>onClick(1)}>
           <CustomImage
             src={Images.invoiceIcon}
             imageStyle={{ width: 35, height: 35 }}
