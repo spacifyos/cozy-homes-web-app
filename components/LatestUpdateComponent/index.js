@@ -6,14 +6,15 @@ import CustomText from "@/components/CustomText";
 const LatestUpdate = ({ t, item, onClickToTitle }) => {
   const date = _.get(item, "date", "");
   return (
-    <div className="global-box-shadow primaryWhite-bg-color global-border-radius relative mb-3 p-3">
+    <div
+      className="global-box-shadow primaryWhite-bg-color global-border-radius relative p-3"
+      onClick={onClickToTitle}
+    >
       <div className="flex items-center">
         <div className="global-border-radius primary-bg-color p-3 mr-3">
           <CustomImage
             src={Images.ringIcon}
-            width={25}
-            height={25}
-            onClick={onClickToTitle}
+            imageStyle={{ width: 30, height: 30 }}
           />
         </div>
         <div className="flex-col flex-1">
