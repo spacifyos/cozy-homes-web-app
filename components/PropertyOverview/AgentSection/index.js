@@ -20,6 +20,7 @@ const AgentSection = ({
 
   return (
     <div className="agent-section-container">
+
       <div
         className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
         style={{ overflow: "hidden" }}
