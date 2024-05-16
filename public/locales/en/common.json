@@ -26,7 +26,8 @@
     "coinsTransaction": "Coins Transaction",
     "newRequest": "New Request",
     "helpCenter": "Help Center",
-    "requestOverview": "Request Overview"
+    "requestOverview": "Request Overview",
+    "editProfile": "Edit Profile"
   },
   "general": {},
   "explore": {
@@ -442,5 +443,14 @@
     "selectTechnician": "Select Technician",
     "selectTime": "Select Time",
     "newRequest": "New Request"
+  },
+  "editProfile": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "pinNumber": "Pin Number",
+    "setPinNumber": "Set Pin Number",
+    "phoneNumber": "Phone Number"
   }
 }

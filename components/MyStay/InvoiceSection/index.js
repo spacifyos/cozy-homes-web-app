@@ -11,6 +11,17 @@ const InvoiceSection = ({
   list,
   onClickToOverviewPage,
 }) => {
+  const invoiceBtn = [
+    {
+      btnText: "All",
+    },
+    {
+      btnText: "Unpaid",
+    },
+    {
+      btnText: "Paid",
+    },
+  ];
   return (
     <div>
       <CustomText textClassName="section-title">
@@ -19,24 +30,18 @@ const InvoiceSection = ({
 
       <div className="flex justify-between items-end pb-3">
         <div className="flex items-center">
-          <CustomButton
-            buttonText="Unpaid"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Unpaid")}
-          />
-          <CustomButton
-            buttonText="Paid"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Paid")}
-          />
-          <CustomButton
-            buttonText="All"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"}`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("All")}
-          />
+          {_.map(invoiceBtn, (item, index) => {
+            const btnText = _.get(item, ["btnText"], "");
+            return (
+              <CustomButton
+                key={index}
+                buttonText={btnText}
+                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btnText) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => onClickSelectCategory(btnText)}
+              />
+            );
+          })}
         </div>
 
         <CustomText
@@ -47,14 +52,21 @@ const InvoiceSection = ({
         </CustomText>
       </div>
 
-      {_.map(list, (item, index) => (
-        <InvoiceComponent
-          key={index}
-          t={t}
-          item={item}
-          onClick={()=>onClickToOverviewPage(1)}
-        />
-      ))}
+      {_.map(list, (item, index) => {
+        if (
+          _.isEqual(selectedCategory, "All") ||
+          _.isEqual(item.status, selectedCategory)
+        ) {
+          return (
+            <InvoiceComponent
+              key={index}
+              t={t}
+              item={item}
+              onClick={onClickToOverviewPage}
+            />
+          );
+        }
+      })}
     </div>
   );
 };

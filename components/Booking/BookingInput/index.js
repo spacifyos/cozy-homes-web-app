@@ -8,28 +8,27 @@ const BookingInput = ({
   errorMessage,
   title,
   name,
-  inputClassName = "bg-color",
+  inputClassName,
   rightIcon = "",
   type = "text",
   value,
   onChange,
   disabled = false,
-  style,
+  bgColor = "bg-color",
 }) => {
   return (
-    <label className={`form-control w-full mb-2 ${className}`}>
+    <label className={`form-control w-full ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
-      <div className=" flex items-center gap-2 booking-input">
+      <div className={`flex items-center gap-2 booking-input ${bgColor}`}>
         <input
           type={type}
           placeholder={placeholder}
-          className={` ${inputClassName}`}
+          className={`${bgColor} ${inputClassName}`}
           name={name}
           value={value}
           onChange={onChange}
           disabled={disabled}
           required
-          style={style}
         />
         {_.isEmpty(errorMessage) ? (
           false

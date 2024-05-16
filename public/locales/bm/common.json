@@ -24,9 +24,10 @@
     "bookAppointment": "Tempah Temujanji",
     "appointmentOverview": "Butiran Temujanji",
     "coinsTransaction": "Transaksi Syiling",
-    "newRequest": "Permintaan Baru",
     "helpCenter": "Pusat Bantuan",
-    "requestOverview": "Gambaran Permintaan"
+    "newRequest": "Permintaan Baru",
+    "requestOverview": "Gambaran Permintaan",
+    "editProfile": "Sunting Profil"
   },
   "general": {},
   "explore": {
@@ -313,6 +314,15 @@
     "kitchen": "Dapur",
     "normal": "NORMAL",
     "low": "RENDAH"
+  },
+  "editProfile": {
+    "name": "Nama",
+    "email": "Emel",
+    "password": "Kata Laluan",
+    "confirmPassword": "Sahkan Kata Laluan",
+    "pinNumber": "Nombor PIN",
+    "setPinNumber": "Tetapkan Nombor PIN",
+    "phoneNumber": "Nombor Telefon"
   },
   "newRequest": {
     "generalInformation": "Maklumat Am",

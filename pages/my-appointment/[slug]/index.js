@@ -145,7 +145,7 @@ const Booking = () => {
             disabled
           />
 
-          <CustomText textClassName="pb-1 pt-5">
+          <CustomText textClassName="pb-1">
             {t("bookAppointment.time")}
           </CustomText>
 
@@ -155,7 +155,7 @@ const Booking = () => {
             disabled
           />
 
-          <CustomText textClassName="pb-2 pt-5">
+          <CustomText textClassName="pb-2">
             {t("bookAppointment.message")}
           </CustomText>
 

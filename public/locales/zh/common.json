@@ -26,7 +26,8 @@
     "coinsTransaction": "钱币交易",
     "newRequest": "新请求",
     "helpCenter": "帮助中心",
-    "requestOverview": "请求概览"
+    "requestOverview": "请求概览",
+    "editProfile": "编辑个人资料"
   },
   "general": {},
   "explore": {
@@ -441,5 +442,14 @@
     "selectTechnician": "选择技术人员",
     "selectTime": "选择时间",
     "newRequest": "新请求"
+  },
+  "editProfile": {
+    "name": "姓名",
+    "email": "电子邮件",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "pinNumber": "PIN 码",
+    "setPinNumber": "设置PIN码",
+    "phoneNumber": "手机号码"
   }
 }

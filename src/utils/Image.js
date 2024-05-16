@@ -159,7 +159,8 @@ const Image = {
   washer:"/images/washer.png",
   washerVideoImages:"/images/washer_video.png",
   refreshIconActive:"/images/icon/refresh_icon_active.png",
-  adminIcon:"/images/icon/admin_icon.png"
+  adminIcon:"/images/icon/admin_icon.png",
+  profilePic:"/images/profile.png"
 };
 
 export default { ...Image };

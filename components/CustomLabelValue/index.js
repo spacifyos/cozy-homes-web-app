@@ -3,16 +3,14 @@ import CustomText from "@/components/CustomText";
 const CustomLabelValue = ({
   label,
   value,
-  className = "pb-2",
+  className = "",
   highlight = false,
 }) => {
   return (
-    <div className={`${className}`}>
-      <CustomText textClassName="font-size-xxsmall disable-text">
-        {label}
-      </CustomText>
+    <div className={`pb-2 ${className}`}>
+      <CustomText textClassName={`font-size-xxsmall`}>{label}</CustomText>
       <CustomText
-        textClassName={`font-size-small font-bold ${_.isEqual(highlight, true) ? "primary-text" : "black-text"}`}
+        textClassName={`font-size-small font-bold ${highlight ? "primary-text" : "black-text"}`}
       >
         {value}
       </CustomText>

@@ -23,7 +23,14 @@ const TopUpMeter = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const [topUpUnitChange, setTopUpUnit] = useState("");
-
+  const btnUnit = [
+    { btn: "25" },
+    { btn: "30" },
+    { btn: "35" },
+    { btn: "45" },
+    { btn: "50" },
+    { btn: "100" },
+  ];
   const onClickGoBack = () => {
     router.back();
   };
@@ -52,13 +59,14 @@ const TopUpMeter = () => {
         </CustomText>
         <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
           <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8">
-            {_.map(topUpUnit, (item, index) => {
+            {_.map(btnUnit, (item, index) => {
+              const btn = _.get(item, ["btn"], "");
               return (
                 <CustomButton
-                  key={index}
-                  buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, _.get(item, ["unit"], "")) ? "primary-btn" : "pending-btn"}`}
-                  buttonText={_.get(item, ["unit"], "")}
-                  onClick={() => onClickTopUp(_.get(item, ["unit"], ""))}
+                    key={index}
+                  buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, btn) ? "primary-btn" : "pending-btn"}`}
+                  buttonText={btn}
+                  onClick={() => onClickTopUp(btn)}
                 />
               );
             })}

@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
-const list = [{ status: "Paid" }, { status: "Paid" }, { status: "Paid" }];
+const list = [{ status: "Paid" }, { status: "Unpaid" }, { status: "Paid" }];
 
 const MyStay = () => {
   const router = useRouter();

@@ -52,11 +52,23 @@ const HelpCenter = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState("All");
-  const BtnLists = [
-    { btnText: t("helpCenter.all"), status: "All" },
-    { btnText: t("helpCenter.inProgress"), status: "In Progress" },
-    { btnText: t("helpCenter.completed"), status: "Completed" },
-    { btnText: t("helpCenter.cancelled"), status: "Cancelled" },
+  const btnLists = [
+    {
+      btnText: t("helpCenter.all"),
+      status: "All",
+    },
+    {
+      btnText: t("helpCenter.inProgress"),
+      status: "In Progress",
+    },
+    {
+      btnText: t("helpCenter.completed"),
+      status: "Completed",
+    },
+    {
+      btnText: t("helpCenter.cancelled"),
+      status: "Cancelled",
+    },
   ];
 
   const onClickSelectStatusCategory = (status) => {
@@ -95,7 +107,7 @@ const HelpCenter = () => {
     >
       <div className="body-container pb-4">
         <div className="flex items-center pb-4">
-          {_.map(BtnLists, (item, index) => {
+          {_.map(btnLists, (item, index) => {
             return (
               <CustomButton
                 key={index}
