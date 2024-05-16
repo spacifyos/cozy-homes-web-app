@@ -45,6 +45,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
             </CustomText>
             <CustomText
               textClassName={`primary-text font-size-small font-bold`}
+              lineClamp={2}
             >
               {isRentalFee ? "RM" : ""} {_.get(list, ["value"], "")}
             </CustomText>
