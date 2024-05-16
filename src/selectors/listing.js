@@ -33,6 +33,7 @@ export const getListingCancellationDataLoading = (state) =>
 export const getPopularUniCollege = (state) =>
   _.get(state, ["uni_college_profile"], []);
 export const getPopularCondo = (state) => _.get(state, ["popular_condo"], []);
+export const getTags = (state) => _.get(state, ["tags"], []);
 export const getName = (state) => _.get(state, ["name"], "");
 export const getImageUrl = (state) => _.get(state, ["image_url"], "");
 export const getImageUrlActive = (state) =>

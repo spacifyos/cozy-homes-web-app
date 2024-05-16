@@ -1,10 +1,10 @@
 import Image from "@/src/utils/Image";
-import CustomImage from "@/components/CustomImage";
-import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import Constant from "@/src/utils/Constant";
+import _ from "lodash";
+import * as listingSelector from "@/src/selectors/listing";
 
-const FeaturesSection = ({ onClickToPropertyListing }) => {
+const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
   return (
     <div className="grid grid-cols-12 gap-3 pb-7">
       <div className="col-span-6">
@@ -35,46 +35,26 @@ const FeaturesSection = ({ onClickToPropertyListing }) => {
           }
         />
       </div>
-      <div className="col-span-3">
-        <CustomButton
-          buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
-          buttonText="Short Stay"
-          icon={Image.shortStayIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
-      <div className="col-span-3">
-        <CustomButton
-          buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
-          buttonText="Event Space"
-          icon={Image.eventIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
-      <div className="col-span-3">
-        <CustomButton
-          buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
-          buttonText="Car park"
-          icon={Image.carParkIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
-      <div className="col-span-3">
-        <CustomButton
-          buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
-          textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
-          buttonText="Workspace"
-          icon={Image.workspaceIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
+
+      {_.map(tags, (item) => {
+        const icon = listingSelector.getImageUrl(item);
+        const name = listingSelector.getName(item);
+        const code = listingSelector.getCode(item);
+
+        return (
+          <div className="col-span-3">
+            <CustomButton
+              buttonStyles={{ height: 60, width: "100%" }}
+              buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"
+              textClassName="black-text font-normal font-size-xsmall line-clamp-1 mt-1.5"
+              buttonText={name}
+              icon={icon}
+              imageStyle={{ width: 20, height: 20 }}
+              onClick={() => onClickToPropertyListing("tags", code)}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
