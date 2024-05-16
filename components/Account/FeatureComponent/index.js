@@ -8,12 +8,12 @@ const FeatureComponent = ({
   pb,
   imageWidth = 30,
   imageHeight = 30,
-  onClick,
+  onClickToLatestUpdate,
 }) => {
   return (
     <div
       className={`flex justify-between items-center cursor-pointer pb-${pb}`}
-      onClick={onClick}
+      onClick={onClickToLatestUpdate}
     >
       <div className="flex items-center">
         <div

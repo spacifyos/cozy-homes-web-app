@@ -27,7 +27,9 @@
     "newRequest": "New Request",
     "helpCenter": "Help Center",
     "requestOverview": "Request Overview",
-    "editProfile": "Edit Profile"
+    "editProfile": "Edit Profile",
+    "latestUpdate": "Latest Update",
+    "title": "Title"
   },
   "general": {},
   "explore": {

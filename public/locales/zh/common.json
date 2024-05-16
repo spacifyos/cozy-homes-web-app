@@ -27,7 +27,9 @@
     "newRequest": "新请求",
     "helpCenter": "帮助中心",
     "requestOverview": "请求概览",
-    "editProfile": "编辑个人资料"
+    "editProfile": "编辑个人资料",
+    "latestUpdate": "最新更新",
+    "title": "标题"
   },
   "general": {},
   "explore": {
