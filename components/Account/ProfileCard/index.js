@@ -9,7 +9,7 @@ const ProfileCard = ({ onClickToEditProfile }) => {
         src={Images.editIcon}
         height={25}
         width={25}
-        className="absolute right-5 top-5"
+        className="absolute right-5 top-5 cursor-pointer"
         onClick={onClickToEditProfile}
       />
 

@@ -8,6 +8,7 @@ import BookingInput from "@/components/Booking/BookingInput";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
+
 export { getServerSideProps };
 
 const EditProfile = () => {
@@ -33,13 +34,20 @@ const EditProfile = () => {
             className="rounded-2xl my-2"
           />
         </div>
-        <BookingInput title={t("editProfile.name")} placeholder={t("editProfile.name")}  />
+
+        <BookingInput
+          bgColor="primaryWhite-bg-color"
+          title={t("editProfile.name")}
+          placeholder={t("editProfile.name")}
+        />
+
         <CustomLabelValue
           label={t("editProfile.email")}
           changelabel
           value="john.doe@abccompany.com"
           className="pb-4"
         />
+
         <CustomLabelValue
           label={t("editProfile.phoneNumber")}
           changelabel
@@ -47,26 +55,35 @@ const EditProfile = () => {
           secondValue="Use this phone number to login system"
           className="pb-4"
         />
+
         <BookingInput
           title={t("editProfile.password")}
           placeholder={t("editProfile.password")}
+          bgColor="primaryWhite-bg-color"
         />
+
         <BookingInput
           title={t("editProfile.confirmPassword")}
           placeholder={t("editProfile.confirmPassword")}
+          bgColor="primaryWhite-bg-color"
         />
+
         <CustomText textClassName="font-size-xxsmall mb-1">
           {t("editProfile.pinNumber")}
         </CustomText>
+
         <CustomButton
-          buttonClassName="terminate-btn mb-20"
+          buttonClassName="default-btn-outline btn-sm mb-20"
+          buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}
           buttonText={t("editProfile.setPinNumber")}
         />
+
         <div className="grid grid-cols-2 gap-4">
           <CustomButton
-            buttonClassName=" default-btn-outline"
+            buttonClassName="default-btn-outline"
             buttonText={t("myTenancy.cancel")}
           />
+
           <CustomButton
             buttonClassName=" primary-btn"
             buttonText={t("myTenancy.submit")}
