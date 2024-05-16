@@ -39,33 +39,37 @@ const EditProfile = () => {
           bgColor="primaryWhite-bg-color"
           title={t("editProfile.name")}
           placeholder={t("editProfile.name")}
+          className="pb-3"
         />
 
         <CustomLabelValue
           label={t("editProfile.email")}
-          changelabel
           value="john.doe@abccompany.com"
           className="pb-4"
         />
 
         <CustomLabelValue
           label={t("editProfile.phoneNumber")}
-          changelabel
           value="+6012 - 3456 789"
-          secondValue="Use this phone number to login system"
-          className="pb-4"
+          className="pb-0"
         />
+
+        <CustomText textClassName="primary-text font-size-xxsmall pb-4">
+          Use this phone number to login system
+        </CustomText>
 
         <BookingInput
           title={t("editProfile.password")}
           placeholder={t("editProfile.password")}
           bgColor="primaryWhite-bg-color"
+          className="pb-3"
         />
 
         <BookingInput
           title={t("editProfile.confirmPassword")}
           placeholder={t("editProfile.confirmPassword")}
           bgColor="primaryWhite-bg-color"
+          className="pb-3"
         />
 
         <CustomText textClassName="font-size-xxsmall mb-1">
