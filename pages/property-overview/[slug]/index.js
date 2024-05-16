@@ -94,7 +94,9 @@ const PropertyDetail = ({ id }) => {
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
   const fees = listingSelector.getFees(listingPropertyDetailData);
-  const totalMoveInCost = listingSelector.getFeesTotalCostFull(listingPropertyDetailData);
+  const totalMoveInCost = listingSelector.getFeesTotalCostFull(
+    listingPropertyDetailData,
+  );
 
   useEffect(() => {
     fetchListingPropertyDetail(id);

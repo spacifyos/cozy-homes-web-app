@@ -70,6 +70,7 @@ function Home() {
 
   const universityListing = listingSelector.getPopularUniCollege(listingData);
   const condoListing = listingSelector.getPopularCondo(listingData);
+  const tagsListing = listingSelector.getTags(listingData);
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
 
@@ -122,7 +123,7 @@ function Home() {
       />
 
       <div className="body-container pb-4">
-        <FeaturesSection onClickToPropertyListing={onClickToPropertyListing} />
+        <FeaturesSection onClickToPropertyListing={onClickToPropertyListing} tags={tagsListing} />
 
         {/*<ListingSection*/}
         {/*  t={t}*/}

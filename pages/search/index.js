@@ -65,7 +65,7 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: queryId,
+          [queryKey]: _.isEqual(queryKey, "tags") ? [queryId] : queryId,
         };
       });
     }
