@@ -14,9 +14,9 @@ const PaymentFailed = ({}) => {
     router.push("/explore");
   };
 
-  const onClickPaymentFail = () => {
+  const onClickPaymentFail = (id) => {
     router.push({
-      pathname: "/booking/1/overview",
+      pathname: `/booking/${id}/overview`,
       query: { paymentSuccess: false },
     });
   };
@@ -45,7 +45,7 @@ const PaymentFailed = ({}) => {
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={onClickPaymentFail}
+        onClick={()=>onClickPaymentFail(1)}
       />
     </div>
   );

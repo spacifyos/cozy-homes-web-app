@@ -11,7 +11,14 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 
 export { getServerSideProps };
-
+const topUpUnit = [
+  { unit: "25" },
+  { unit: "30" },
+  { unit: "35" },
+  { unit: "45" },
+  { unit: "50" },
+  { unit: "100" },
+];
 const TopUpMeter = () => {
   const router = useRouter();
   const { t } = useTranslation("common");

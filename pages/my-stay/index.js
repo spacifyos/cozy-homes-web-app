@@ -23,20 +23,20 @@ const MyStay = () => {
     setSelectedCategory(category);
   };
 
-  const onClickToMeterOverview = () => {
-    router.push("/my-meter/1");
+  const onClickToMeterOverview = (id) => {
+    router.push(`/my-meter/${id}`);
   };
 
-  const onClickTopUp = () => {
-    router.push("/my-meter/1/top-up-meter");
+  const onClickTopUp = (id) => {
+    router.push(`/my-meter/${id}/top-up-meter`);
   };
 
   const onClickToAgreement = () => {
     router.push("/e-agreement");
   };
 
-  const onClickGoToMyTenancy = () => {
-    router.push("/my-tenancy/1");
+  const onClickGoToMyTenancy = (id) => {
+    router.push(`/my-tenancy/${id}`);
   };
 
   const onChangeAutoPay = () => {
@@ -47,8 +47,8 @@ const MyStay = () => {
     router.push("/my-invoice");
   };
 
-  const onClickToOverviewPage = () => {
-    router.push(`/my-invoice/1`);
+  const onClickToOverviewPage = (id) => {
+    router.push(`/my-invoice/${id}`);
   };
 
   const onClickToMeterList = () => {

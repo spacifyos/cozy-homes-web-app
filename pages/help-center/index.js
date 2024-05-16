@@ -52,7 +52,7 @@ const HelpCenter = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState("All");
-  const btnlist = [
+  const btnLists = [
     {
       btnText: t("helpCenter.all"),
       status: "All",
@@ -74,8 +74,27 @@ const HelpCenter = () => {
   const onClickSelectStatusCategory = (status) => {
     setSelectedStatus(status);
   };
+
   const onClickGoBack = () => {
-    router.back();
+    router.push("/my-stay");
+  };
+
+  const onClickToNewRequest = () => {
+    router.push("/help-center/new-request");
+  };
+
+  const onClickToRequestOverview = (id) => {
+    router.push(`/help-center/${id}`);
+  };
+
+  const formattedList = () => {
+    if (_.isEqual(selectedStatus, "All")) {
+      return lists;
+    }
+
+    return _.filter(lists, (item) => {
+      return _.isEqual(item.status, selectedStatus);
+    });
   };
 
   return (
@@ -84,34 +103,37 @@ const HelpCenter = () => {
       hideBgImage
       rightButtonIcon={Images.plusIcon}
       onClickGoBack={onClickGoBack}
+      onClickRightButton={onClickToNewRequest}
     >
-      <div className="body-container pb-1">
-        <div className="flex justify-between items-end pb-4">
-          <div className="flex items-center">
-            {_.map(btnlist, (item, index) => {
-              const btnText = _.get(item, ["btnText"], "");
-              const status = _.get(item, ["status"], "");
-              return (
-                <CustomButton
-                  key={index}
-                  buttonText={btnText}
-                  buttonClassName={`btn-sm ${_.isEqual(selectedStatus, status) ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
-                  onClick={() => onClickSelectStatusCategory(status)}
-                />
-              );
-            })}
-          </div>
+      <div className="body-container pb-4">
+        <div className="flex items-center pb-4">
+          {_.map(btnLists, (item, index) => {
+            return (
+              <CustomButton
+                key={index}
+                buttonText={_.get(item, ["btnText"], "")}
+                buttonClassName={`btn-sm ${_.isEqual(selectedStatus, _.get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() =>
+                  onClickSelectStatusCategory(_.get(item, ["status"], ""))
+                }
+              />
+            );
+          })}
         </div>
 
-        {_.map(lists, (item) => {
-          if (
-            _.isEqual(selectedStatus, "All") ||
-            _.isEqual(item.status, selectedStatus)
-          ) {
-            return <HelpCenterListingCard t={t} item={item} />;
-          }
-        })}
+        <div className="flex flex-col gap-4">
+          {_.map(formattedList(), (item, index) => {
+            return (
+              <HelpCenterListingCard
+                t={t}
+                key={index}
+                item={item}
+                onClickToRequestOverview={onClickToRequestOverview}
+              />
+            );
+          })}
+        </div>
       </div>
     </CustomHeader>
   );

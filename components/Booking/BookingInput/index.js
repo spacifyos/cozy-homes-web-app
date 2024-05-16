@@ -3,7 +3,7 @@ import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 
 const BookingInput = ({
-  className = "mb-4",
+  className = "",
   placeholder,
   errorMessage,
   title,
@@ -15,9 +15,10 @@ const BookingInput = ({
   onChange,
   disabled = false,
   bgColor = "bg-color",
+  style,
 }) => {
   return (
-    <label className={`form-control w-full ${className}`}>
+    <label className={`form-control w-full mb-2 ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className={`flex items-center gap-2 booking-input ${bgColor}`}>
         <input
@@ -29,6 +30,7 @@ const BookingInput = ({
           onChange={onChange}
           disabled={disabled}
           required
+          style={style}
         />
         {_.isEmpty(errorMessage) ? (
           false

@@ -8,7 +8,6 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import BookingTextArea from "@/components/BookingTextArea";
 import { useState } from "react";
-import DatePicker from "react-date-picker";
 import moment from "moment";
 
 export { getServerSideProps };
@@ -36,8 +35,8 @@ const Booking = () => {
     router.back();
   };
 
-  const onClickBookSuccess = () => {
-    router.push("/property-overview/1/appointment-successful");
+  const onClickBookSuccess = (id) => {
+    router.push(`/property-overview/${id}/appointment-successful`);
   };
 
   return (
@@ -93,22 +92,17 @@ const Booking = () => {
               Razak bin Osman
             </CustomText>
           </div>
-
-          <CustomText textClassName="pb-1">
-            {t("bookAppointment.date")}
-          </CustomText>
-
-          <div className="flex items-center booking-input relative">
+          <CustomText textClassName="pb-1"> {t("bookAppointment.date")}</CustomText>
+          <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
-              type="date"
-              value={dateValue}
-              onChange={onChangeDate}
+                className="bg-color flex-1 w-full resize-input-icon"
+                type="date"
+                value={dateValue}
+                onChange={onChangeDate}
             />
-
             <CustomImage
-              src={Images.calendarIcon}
-              imageStyle={{ width: 20, height: 20, marginRight: 4 }}
+                src={Images.calendarIcon}
+                imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
 
@@ -116,9 +110,9 @@ const Booking = () => {
             {t("bookAppointment.time")}
           </CustomText>
 
-          <div className="flex items-center booking-input relative">
+          <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-              className="primaryWhite-bg-color flex-1 w-full resize-input-icon "
+              className="bg-color flex-1 w-full resize-input-icon "
               type="time"
               value={timeValue}
               onChange={onChangeTime}
@@ -136,7 +130,6 @@ const Booking = () => {
 
           <BookingTextArea
             className="pb-5"
-            textareaClassName="primaryWhite-bg-color"
             placeholder={t("bookAppointment.yourMessageHere")}
           />
 
@@ -144,7 +137,7 @@ const Booking = () => {
             <CustomButton
               buttonText={t("bookAppointment.bookAppointment")}
               buttonClassName="primary-btn w-3/5"
-              onClick={onClickBookSuccess}
+              onClick={()=>onClickBookSuccess(1)}
             />
           </div>
         </div>

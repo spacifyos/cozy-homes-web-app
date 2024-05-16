@@ -16,8 +16,8 @@ const MyMeter = () => {
     router.back();
   };
 
-  const onClickToMeterOverview = () => {
-    router.push(`/my-meter/1`);
+  const onClickToMeterOverview = (id) => {
+    router.push(`/my-meter/${id}`);
   };
 
   return (

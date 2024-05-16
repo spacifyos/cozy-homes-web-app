@@ -72,7 +72,7 @@ const TenancySection = ({
               src={Images.buildingIcon}
               width={35}
               height={35}
-              onClick={onClickGoToMyTenancy}
+              onClick={()=>onClickGoToMyTenancy(1)}
             />
           </div>
 

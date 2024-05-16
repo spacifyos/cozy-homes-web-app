@@ -115,7 +115,7 @@ const ListingSection = ({
               <ListingCardComponent
                 key={index}
                 item={item}
-                onClickToPropertyOverview={onClickToPropertyOverview}
+                onClickToPropertyOverview={()=>onClickToPropertyOverview(1)}
               />
             );
           })}
