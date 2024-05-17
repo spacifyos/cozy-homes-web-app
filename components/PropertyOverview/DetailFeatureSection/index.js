@@ -39,10 +39,12 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
           <div
             className={`detail-feature-container ${isRentalFee ? "secondary-bg-color" : ""}`}
           >
-            <CustomImage src={_.get(list, ["icon"], "")} width={20} />
-            <CustomText textClassName="disable-text font-size-xxsmall h-9 leading-3 mb-1">
-              {_.get(list, ["title"], "")}
-            </CustomText>
+            <div>
+              <CustomImage src={_.get(list, ["icon"], "")} width={20} />
+              <CustomText textClassName="disable-text font-size-xxsmall max-h-9 leading-3 my-1">
+                {_.get(list, ["title"], "")}
+              </CustomText>
+            </div>
             <CustomText
               textClassName={`primary-text font-size-small font-bold`}
               lineClamp={2}
