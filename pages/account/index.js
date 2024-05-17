@@ -39,7 +39,7 @@ const Account = () => {
       padding
     >
       <div className="body-container pb-24">
-        <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
+        <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
           <ProfileCard onClickToEditProfile={onClickToEditProfile} />
           <RoomzCoins
             t={t}

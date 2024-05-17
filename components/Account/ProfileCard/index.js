@@ -4,12 +4,12 @@ import CustomText from "@/components/CustomText";
 
 const ProfileCard = ({ onClickToEditProfile }) => {
   return (
-    <div className="profile-user-info-container">
+    <div className="profile-user-info-container col-span-3">
       <CustomImage
         src={Images.editIcon}
-        height={25}
-        width={25}
-        className="absolute right-5 top-5 cursor-pointer"
+        height={23}
+        width={23}
+        className="absolute right-3 top-3 cursor-pointer"
         onClick={onClickToEditProfile}
       />
 
