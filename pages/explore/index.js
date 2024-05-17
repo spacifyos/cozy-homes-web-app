@@ -150,6 +150,7 @@ function Home() {
           title={t("explore.popularCondo")}
           lists={condoListing}
           listingLoading={listingDataLoading}
+          className="pb-3"
           onClickViewMore={onClickToFilter}
           onClickToPropertyListing={onClickToPropertyListing}
         />
