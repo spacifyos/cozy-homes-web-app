@@ -10,13 +10,13 @@ const MessageTimeLine = ({ t, item }) => {
   const identity = _.get(item, ["identity"], "");
 
   return (
-    <div className="grid grid-cols-12 h-full pb-3">
+    <div className="grid grid-cols-12 gap-1 h-full pb-3">
       <div className="col-span-2">
-        <CustomText textClassName="font-size-xxsmall disable-text">
+        <CustomText textClassName="font-size-xxsmall disable-text text-end">
           {date}
         </CustomText>
       </div>
-      <div className="flex flex-col col-span-1">
+      <div className="flex flex-col justify-center items-center col-span-1">
         <CustomImage
           src={
             _.isEqual(identity, "agent")
@@ -26,8 +26,9 @@ const MessageTimeLine = ({ t, item }) => {
           width={15}
           height={15}
         />
-        <div className="divider divider-horizontal pt-1 h-full"></div>
+        <div className="divider divider-horizontal pt-1 w-full h-full"></div>
       </div>
+
       <div className="flex-col flex w-full col-span-9">
         <div className="flex gap-2 items-center pb-2">
           <CustomImage src={img} width={30} className="rounded-3xl" />

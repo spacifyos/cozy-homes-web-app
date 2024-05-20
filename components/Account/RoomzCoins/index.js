@@ -4,13 +4,13 @@ import CustomText from "@/components/CustomText";
 
 const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
   return (
-    <div className="profile-coin-container">
+    <div className="profile-coin-container col-span-2">
 
       <CustomImage
         src={Images.moreIcon}
-        height={25}
-        width={25}
-        className="absolute right-5 top-5 cursor-pointer"
+        height={22}
+        width={22}
+        className="absolute right-1 top-3 cursor-pointer"
       />
 
       <div className="profile-coin-icon-container cursor-pointer">

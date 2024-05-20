@@ -4,6 +4,7 @@ import _ from "lodash";
 import MeterUsageComponent from "@/components/MyMeter/MeterUsageComponent";
 
 const InvoiceSection = ({ t, selectChange, onClickChange }) => {
+  const btnMeterUsage = [{ btn: "Daily" }, { btn: "Monthly" }];
   return (
     <div>
       <CustomText textClassName="section-title">
@@ -11,18 +12,18 @@ const InvoiceSection = ({ t, selectChange, onClickChange }) => {
       </CustomText>
 
       <div className="flex items-center pb-3">
-        <CustomButton
-          buttonText="Daily"
-          buttonClassName={`btn-sm ${_.isEqual(selectChange, "Daily") ? "primary-btn" : "default-btn"} mr-2`}
-          textClassName="font-size-xsmall"
-          onClick={() => onClickChange("Daily")}
-        />
-        <CustomButton
-          buttonText="Monthly"
-          buttonClassName={`btn-sm ${_.isEqual(selectChange, "Monthly") ? "primary-btn" : "default-btn"} mr-2`}
-          textClassName="font-size-xsmall"
-          onClick={() => onClickChange("Monthly")}
-        />
+        {_.map(btnMeterUsage, (item, index) => {
+          const btn = _.get(item, ["btn"], "");
+          return (
+            <CustomButton
+                key={index}
+              buttonText={btn}
+              buttonClassName={`btn-sm ${_.isEqual(selectChange, btn) ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickChange(btn)}
+            />
+          );
+        })}
       </div>
 
       {_.map(Array(3), (item, index) => (

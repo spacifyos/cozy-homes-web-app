@@ -19,7 +19,7 @@ const MyMeterOverview = () => {
   const { t } = useTranslation("common");
 
   const onClickGoBack = () => {
-    router.push("/my-stay");
+   router.back();
   };
 
   const [selectChange, setSelectChange] = useState("Daily");
@@ -28,8 +28,8 @@ const MyMeterOverview = () => {
     setSelectChange(selected);
   };
 
-  const onClickToTopUpMeter = () => {
-    router.push("/my-meter/1/top-up-meter");
+  const onClickToTopUpMeter = (id) => {
+    router.push(`/my-meter/${id}/top-up-meter`);
   };
 
   return (

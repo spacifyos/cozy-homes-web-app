@@ -80,28 +80,6 @@
   }
 }
 
-.terminate-btn:hover {
-  border: 1px solid $primary-color;
-  background-color: $primary-white-color !important;
-  @include custom-button;
-
-  p {
-    font-weight: bold !important;
-    @extend .primary-text;
-  }
-}
-
-.terminate-btn {
-  border: 1px solid $primary-color;
-  background-color: $primary-white-color !important;
-  @include custom-button;
-
-  p {
-    font-weight: bold !important;
-    @extend .primary-text;
-  }
-}
-
 .tag-button:hover {
   border: none;
   background-color: $primary-white-color;

@@ -47,7 +47,7 @@ const lists = [
   },
 ];
 
-const PropertyDetail = ({ id }) => {
+const PropertyOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -142,6 +142,10 @@ const PropertyDetail = ({ id }) => {
     );
     // router.push(`/booking/1`);
   };
+
+  const onClickBooking = (id) => {
+    router.push(`/booking/${id}`);
+  }
 
   const onClickToPropertyOverview = (id) => {
     router.push(`/property-overview/${id}`);
@@ -266,4 +270,4 @@ const PropertyDetail = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(PropertyDetail);
+export default withTranslation("common")(PropertyOverview);

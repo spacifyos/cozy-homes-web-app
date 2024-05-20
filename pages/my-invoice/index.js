@@ -81,8 +81,8 @@ const MyInvoice = () => {
     router.back();
   };
 
-  const onClickToOverView = () => {
-    router.push("my-invoice/1");
+  const onClickToOverView = (id) => {
+    router.push(`my-invoice/${id}`);
   };
 
   return (

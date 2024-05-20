@@ -18,13 +18,18 @@ const Account = () => {
   const onClickLogout = () => {
     router.push("/sign-in");
   };
-
+  const onClickToEditProfile = () => {
+    router.push("/edit-profile");
+  };
   const onClickToMyAppointment = () => {
     router.push("/my-appointment");
   };
   const onClickToCoinsTransaction = () => {
     router.push("/coins-transaction");
   };
+  const onClickToLatestUpdate=()=>{
+    router.push("/latest-update");
+  }
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -34,8 +39,8 @@ const Account = () => {
       padding
     >
       <div className="body-container pb-24">
-        <div className="grid grid-cols-2 gap-3 flex-1 mb-10">
-          <ProfileCard />
+        <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
+          <ProfileCard onClickToEditProfile={onClickToEditProfile} />
           <RoomzCoins
             t={t}
             onClickToCoinsTransaction={onClickToCoinsTransaction}
@@ -73,6 +78,7 @@ const Account = () => {
           title={t("account.latestUpdate")}
           icon={Images.primaryRingIcon}
           pb={3}
+          onClickToLatestUpdate={onClickToLatestUpdate}
         />
 
         <FeatureComponent
