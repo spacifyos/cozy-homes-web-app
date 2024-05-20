@@ -10,9 +10,9 @@ const MessageTimeLine = ({ t, item }) => {
   const identity = _.get(item, ["identity"], "");
 
   return (
-    <div className="grid grid-cols-12 h-full pb-3">
+    <div className="grid grid-cols-12 gap-1 h-full pb-3">
       <div className="col-span-2">
-        <CustomText textClassName="font-size-xxsmall disable-text">
+        <CustomText textClassName="font-size-xxsmall disable-text text-end">
           {date}
         </CustomText>
       </div>
