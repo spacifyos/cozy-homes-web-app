@@ -143,10 +143,6 @@ const PropertyOverview = ({ id }) => {
     // router.push(`/booking/1`);
   };
 
-  const onClickBooking = (id) => {
-    router.push(`/booking/${id}`);
-  }
-
   const onClickToPropertyOverview = (id) => {
     router.push(`/property-overview/${id}`);
   };
