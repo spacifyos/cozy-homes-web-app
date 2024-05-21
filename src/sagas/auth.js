@@ -41,23 +41,17 @@ function* watcherSignUpAccountRequest({ data, referrerCode }) {
 //         yield call(httpErrorHelpers, error, authActions.forgetPasswordFailure, effects);
 //     }
 // }
-//
-function* loginRequest({ loginData }) {
+
+function* signInRequest({ signInData }) {
   try {
-    const response = yield call(api.loginAccount, loginData);
+    const response = yield call(api.signInAccount, signInData);
 
     const { data, code, message } = response.data;
-    // if (code === 200) {
-    //   const { access_token } = data;
-    //   yield put(authActions.updateAccessToken(access_token));
+    const { token } = data;
 
-    yield put(authActions.loginAccountSuccess(data.access_token));
-    // } else {
-    //   Toast.error(message);
-    //   yield put(authActions.loginAccountFailure());
-    // }
+    yield put(authActions.signInAccountSuccess(token));
   } catch (error) {
-    yield call(httpErrorHelpers, error, authActions.loginAccountFailure);
+    yield call(httpErrorHelpers, error, authActions.signInAccountFailure);
   }
 }
 
@@ -161,7 +155,7 @@ function* clearAccessToken() {
 
 function* authSaga() {
   yield all([
-    takeLatest("LOGIN_ACCOUNT_REQUEST", loginRequest),
+    takeLatest("SIGN_IN_ACCOUNT_REQUEST", signInRequest),
     takeLatest("LOG_OUT_ACCOUNT_REQUEST", logoutAccountRequest),
     takeLatest("CLEAR_ACCESS_TOKEN", clearAccessToken),
     takeLatest("SIGN_UP_ACCOUNT_REQUEST", watcherSignUpAccountRequest),

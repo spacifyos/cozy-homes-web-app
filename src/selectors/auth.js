@@ -1,11 +1,12 @@
 import _ from "lodash";
 
 export const getAuthToken = (auth) =>
-  _.get(auth, ["loginRequest", "token"], "");
-export const getAuthLoginLoading = (state) =>
-  _.get(state, ["loginRequest", "loading"], false);
-export const getAuthLoginStatus = (state) =>
-  _.get(state, ["loginRequest", "status"], false);
+  _.get(auth, ["auth", "signInRequest", "token"], "");
+export const getAuthSignInLoading = (state) =>
+  _.get(state, ["auth", "signInRequest", "loading"], false);
+export const getAuthSignInStatus = (state) =>
+  _.get(state, ["auth", "signInRequest", "status"], false);
+
 export const getForgetPasswordStatus = (auth) =>
   _.get(auth, ["forgetPasswordStatus"], "");
 export const getUpdatePasswordStatus = (auth) =>
@@ -33,3 +34,4 @@ export const getPostResetPasswordWithEmailStatus = (state) =>
 export const getPostResetPasswordWithEmailLoading = (state) =>
   _.get(state, ["auth", "resetPasswordWithEmail", "loading"], false);
 
+export const getToken = (state) => _.get(state, ["token"], "");

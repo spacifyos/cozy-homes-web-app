@@ -17,8 +17,7 @@ function createInstance() {
     },
   });
   instance.interceptors.request.use(async (config) => {
-    config.headers["x-merchant-token"] = await AuthManager.retrieveToken();
-    return AuthManager.retrieveTenantUserToken().then((value) => {
+    return AuthManager.retrieveToken().then((value) => {
       config.headers["Authorization"] = value ? `Bearer ${value}` : null;
       return config;
     });

@@ -8,6 +8,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -100,4 +101,4 @@ const MyStay = () => {
   );
 };
 
-export default withTranslation("common")(MyStay);
+export default withTranslation("common")(AuthWrapper(MyStay));

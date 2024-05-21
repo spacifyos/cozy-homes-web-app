@@ -5,9 +5,10 @@ import SplashScreen from "@/pages/splash-screen";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import _ from "lodash";
+import AuthManager from "@/src/utils/AuthManager";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
-
 
 function Home() {
   const { t } = useTranslation("common");

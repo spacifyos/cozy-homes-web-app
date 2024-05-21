@@ -1,5 +1,5 @@
 const initialState = {
-  loginRequest: {
+  signInRequest: {
     token: null,
     loading: false,
     status: false,
@@ -13,27 +13,27 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "LOGIN_ACCOUNT_REQUEST":
+    case "SIGN_IN_ACCOUNT_REQUEST":
       return {
         ...state,
-        loginRequest: {
+        signInRequest: {
           loading: true,
           status: false,
         },
       };
-    case "LOGIN_ACCOUNT_SUCCESS":
+    case "SIGN_IN_ACCOUNT_SUCCESS":
       return {
         ...state,
-        loginRequest: {
+        signInRequest: {
           token: action.token,
           loading: false,
           status: true,
         },
       };
-    case "LOGIN_ACCOUNT_FAILURE":
+    case "SIGN_IN_ACCOUNT_FAILURE":
       return {
         ...state,
-        loginRequest: {
+        signInRequest: {
           loading: false,
           status: false,
         },
@@ -64,9 +64,11 @@ export default function (state = initialState, action) {
           status: false,
         },
       };
-    case "SAVE_AUTH": return {
-      ...state,data:"ssssss"
-    }
+    case "SAVE_AUTH":
+      return {
+        ...state,
+        data: "ssssss",
+      };
     default:
       return state;
   }

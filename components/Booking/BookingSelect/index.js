@@ -10,14 +10,14 @@ const BookingSelect = ({
   title,
   lists,
   name,
-    rightIcon=Images.downIcon
+  rightIcon = Images.downIcon,
 }) => {
   return (
     <label className={`form-control w-full mb-2 ${className}`}>
       <CustomText textClassName="input-title">{title}</CustomText>
       <div className="booking-wrapper booking-select-container flex justify-between">
-        <select className="booking-select" name={name} required >
-          <option disabled  value="">
+        <select className="booking-select" name={name} required>
+          <option disabled value="">
             {placeholder}
           </option>
           {_.map(lists, (list) => {
@@ -32,7 +32,7 @@ const BookingSelect = ({
           })}
         </select>
 
-       <CustomImage src={rightIcon} width={10} height={10} />
+        <CustomImage src={rightIcon} width={10} height={10} />
       </div>
       {_.isEmpty(errorMessage) ? (
         false
