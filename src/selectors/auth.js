@@ -1,11 +1,9 @@
 import _ from "lodash";
 
-export const getAuthToken = (auth) =>
-  _.get(auth, ["auth", "signInRequest", "token"], "");
-export const getAuthSignInLoading = (state) =>
-  _.get(state, ["auth", "signInRequest", "loading"], false);
-export const getAuthSignInStatus = (state) =>
-  _.get(state, ["auth", "signInRequest", "status"], false);
+export const getUserProfileData = (auth) =>
+  _.get(auth, ["auth", "userProfile", "data"], null);
+export const getUserProfileLoading = (state) =>
+  _.get(state, ["auth", "userProfile", "loading"], false);
 
 export const getForgetPasswordStatus = (auth) =>
   _.get(auth, ["forgetPasswordStatus"], "");
@@ -35,3 +33,7 @@ export const getPostResetPasswordWithEmailLoading = (state) =>
   _.get(state, ["auth", "resetPasswordWithEmail", "loading"], false);
 
 export const getToken = (state) => _.get(state, ["token"], "");
+export const getType = (state) => _.get(state, ["type"], "");
+export const getName = (state) => _.get(state, ["name"], "");
+export const getEmail = (state) => _.get(state, ["email"], "");
+export const getPhoneNumber = (state) => _.get(state, ["phone_number"], "");

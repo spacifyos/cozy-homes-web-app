@@ -8,28 +8,60 @@ import CustomText from "@/components/CustomText";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
+import AuthWrapper from "@/components/AuthWrapper";
+import { useDispatch, useSelector } from "react-redux";
+import * as authAction from "@/src/actions/auth";
+import * as authSelector from "@/src/selectors/auth";
+import { useEffect } from "react";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import _ from "lodash";
 
 export { getServerSideProps };
 
 const Account = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
+
+  useEffect(() => {
+    if (_.isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
+  }, [userProfileData]);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
 
   const onClickLogout = () => {
     router.push("/sign-in");
   };
+
   const onClickToEditProfile = () => {
     router.push("/edit-profile");
   };
+
   const onClickToMyAppointment = () => {
     router.push("/my-appointment");
   };
+
   const onClickToCoinsTransaction = () => {
     router.push("/coins-transaction");
   };
-  const onClickToLatestUpdate=()=>{
+
+  const onClickToLatestUpdate = () => {
     router.push("/latest-update");
-  }
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -40,7 +72,10 @@ const Account = () => {
     >
       <div className="body-container pb-24">
         <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
-          <ProfileCard onClickToEditProfile={onClickToEditProfile} />
+          <ProfileCard
+            onClickToEditProfile={onClickToEditProfile}
+            data={userProfileData}
+          />
           <RoomzCoins
             t={t}
             onClickToCoinsTransaction={onClickToCoinsTransaction}
@@ -115,9 +150,11 @@ const Account = () => {
             {t("account.version")} 1.0.0
           </CustomText>
         </div>
+
+        <LoadingOverlay loading={userProfileLoading} />
       </div>
     </CustomHeader>
   );
 };
 
-export default withTranslation("common")(Account);
+export default withTranslation("common")(AuthWrapper(Account));

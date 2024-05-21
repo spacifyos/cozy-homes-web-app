@@ -1,3 +1,17 @@
+export const getUserProfileRequest = () => ({
+  type: "GET_USER_PROFILE_REQUEST",
+});
+
+export const getUserProfileSuccess = (data) => ({
+  type: "GET_USER_PROFILE_SUCCESS",
+  data,
+});
+
+export const getUserProfileFailure = (messages) => ({
+  type: "GET_USER_PROFILE_FAILURE",
+  messages,
+});
+
 export const signUpAccountRequest = (data) => ({
   type: "SIGN_UP_ACCOUNT_REQUEST",
   data,
@@ -22,21 +36,6 @@ export const updateAccessToken = (token) => ({
 export const updateAccessTokenInLocal = (token) => ({
   type: "auth/UPDATE_ACCESS_TOKEN",
   token,
-});
-
-export const signInAccountRequest = (signInData) => ({
-  type: "SIGN_IN_ACCOUNT_REQUEST",
-  signInData,
-});
-
-export const signInAccountSuccess = (token) => ({
-  type: "SIGN_IN_ACCOUNT_SUCCESS",
-  token,
-});
-
-export const signInAccountFailure = (messages) => ({
-  type: "SIGN_IN_ACCOUNT_FAILURE",
-  messages,
 });
 
 export const rehydrateAuthState = (data) => ({
@@ -116,8 +115,4 @@ export const postForgetPasswordSuccess = (data) => ({
 
 export const postForgetPasswordFailure = () => ({
   type: "POST_FORGET_PASSWORD_FAILURE",
-});
-
-export const saveAuth = () => ({
-  type: "SAVE_AUTH",
 });

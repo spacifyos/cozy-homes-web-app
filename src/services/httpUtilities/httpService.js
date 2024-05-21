@@ -23,7 +23,7 @@ const signInAccount = (data) => apiInstance.post("/auth/login", data);
 
 const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
-const getUserProfile = () => apiInstance.get("/self");
+const getUserProfile = () => apiInstance.get("/user-profile");
 
 const getListing = () => apiInstance.get("/listing");
 
