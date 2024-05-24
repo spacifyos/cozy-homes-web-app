@@ -9,12 +9,15 @@ import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
-import CustomModal from "@/components/CustomModal";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
 import { value } from "lodash/seq";
 import Toast from "@/src/utils/Toast";
+import RentChargeModal from "@/components/Booking/RentChargeModal";
+import moment from "moment";
+import RentChargesSection from "@/components/Booking/RentChargesSection";
+import BookingDateInput from "@/components/Booking/BookingDateInput";
 
 export { getServerSideProps };
 
@@ -40,11 +43,15 @@ const lists = [
 const Booking = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const formRef = useRef();
 
   const [openCharges, setOpenCharges] = useState(false);
   const [emergencyContactNumber, setEmergencyContactNumber] = useState([0]);
   const [icFrontBase64, setIcFrontBase64] = useState("");
   const [icBackBase64, setIcBackBase64] = useState("");
+  const [isReadAgree, setIsReadAgree] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [otpToken, setOtpToken] = useState("");
 
   const onClickOpenCharges = () => {
     setOpenCharges(!openCharges);
@@ -55,8 +62,133 @@ const Booking = () => {
   };
 
   const onClickBooking = (id) => {
-    router.push(`/booking/${id}/overview`);
+    const currentForm = formRef && formRef.current;
+    const newErrors = {};
+
+    const requiredFields = [
+      "booking_date_from",
+      "tenure_period",
+      "applicant_name",
+      "applicant_id_type",
+      "applicant_id_value",
+      "applicant_race",
+      "applicant_gender",
+      "applicant_email",
+      "applicant_area_code",
+      "applicant_phone_number",
+      "applicant_nationality",
+      "applicant_line_1",
+      "applicant_city",
+      "applicant_postcode",
+      "applicant_country",
+      "applicant_state",
+      "otp",
+    ];
+
+    _.forEach(requiredFields, (field) => {
+      if (_.isEmpty(currentForm[field].value)) {
+        newErrors[field] = `${currentForm[field].title} is required`;
+      }
+    });
+
+    // Emergency contact validation
+    _.forEach(emergencyContactNumber, (item, index) => {
+      const emergencyFields = [
+        `applicant_emergency_name${index + 1}`,
+        `applicant_emergency_relationship${index + 1}`,
+        `applicant_emergency_area_code${index + 1}`,
+        `applicant_emergency_phone_number${index + 1}`,
+        `applicant_emergency_email${index + 1}`,
+      ];
+
+      emergencyFields.forEach((field) => {
+        if (_.isEmpty(currentForm[field].value)) {
+          newErrors[field] = `${currentForm[field].title} is required`;
+        }
+      });
+    });
+
+    setErrorMessage(newErrors);
+
+    if (!_.isEmpty(newErrors)) {
+      return Toast.error("All fields are required.");
+    }
+
+    if (
+      !_.includes(currentForm.applicant_email.value, "@") ||
+      !_.includes(currentForm.applicant_emergency_email1.value, "@")
+    ) {
+      return Toast.error("Email must be include @.");
+    }
+
+    if (_.isEmpty(otpToken)) {
+      return Toast.error("You must verify your phone number");
+    }
+
+    if (_.isEmpty(icFrontBase64) || _.isEmpty(icBackBase64)) {
+      return Toast.error(
+        "Please upload the supporting document.(IC or Passport)",
+      );
+    }
+
+    if (_.isEmpty(currentForm.is_pay_partial.value)) {
+      return Toast.error(
+        "Please select total move-in cost is pay in full or partial",
+      );
+    }
+
+    if (!isReadAgree) {
+      return Toast.error("Please tick understand and agree policy.");
+    }
+
+    const postData = {
+      listing_id: id,
+      booking_date_from: currentForm.booking_date_from.value,
+      booking_date_to: moment(currentForm.booking_date_from.value)
+        .add(_.toInteger(currentForm.tenure_period.value), "months")
+        .format("YYYY-MM-DD"),
+      applicant_id_type: currentForm.applicant_id_type.value,
+      applicant_id_value: currentForm.applicant_id_value.value,
+      applicant_phone_number:
+        currentForm.applicant_area_code.value +
+        currentForm.applicant_phone_number.value,
+      applicant_email: currentForm.applicant_email.value,
+      applicant_name: currentForm.applicant_name.value,
+      applicant_race: currentForm.applicant_race.value,
+      applicant_gender: currentForm.applicant_gender.value,
+      applicant_nationality: currentForm.applicant_nationality.value,
+      applicant_country: currentForm.applicant_country.value,
+      applicant_state: currentForm.applicant_state.value,
+      applicant_city: currentForm.applicant_city.value,
+      applicant_line_1: currentForm.applicant_line_1.value,
+      applicant_postcode: currentForm.applicant_postcode.value,
+      applicant_document_front: icFrontBase64,
+      applicant_document_back: icBackBase64,
+      applicant_emergency_contacts: JSON.stringify(
+        _.map(emergencyContactNumber, (item, index) => {
+          return {
+            name: currentForm[`applicant_emergency_name${index + 1}`].value,
+            relationship:
+              currentForm[`applicant_emergency_relationship${index + 1}`].value,
+            phone_number:
+              currentForm[`applicant_emergency_area_code${index + 1}`].value +
+              currentForm[`applicant_emergency_phone_number${index + 1}`].value,
+            email: currentForm[`applicant_emergency_email${index + 1}`].value,
+          };
+        }),
+      ),
+      otp: currentForm.otp.value,
+      otp_token: "",
+      is_zero_deposit: false,
+      is_pay_partial: currentForm.is_pay_partial.value,
+      tenure_period: currentForm.tenure_period.value,
+    };
+
+    console.log(postData);
+    // router.push(`/booking/${id}/overview`);
   };
+
+  // console.log(errorMessage);
 
   const onClickToBookAppointment = (id) => {
     router.push(`/property-overview/${id}/book-appointment`);
@@ -111,6 +243,10 @@ const Booking = () => {
     }
   };
 
+  const onClickReadAgree = () => {
+    setIsReadAgree(!isReadAgree);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -145,15 +281,17 @@ const Booking = () => {
           Lumpur, Federal Territory of Kuala Lumpur.
         </CustomText>
 
-        <div className="grid grid-cols-6 gap-2">
+        <form ref={formRef} className="grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-4 font-bold pt-3">
             Tenancy Period
           </CustomText>
-          <BookingInput
+          <BookingDateInput
             className="col-span-3"
             placeholder="2023-02-13"
             title="Check in date"
-            name="check_in"
+            name="booking_date_from"
+            errorMessage={errorMessage.booking_date_from}
+            required
           />
 
           <BookingSelect
@@ -167,16 +305,20 @@ const Booking = () => {
               { name: "2 years", value: "24" },
             ]}
             name="tenure_period"
+            errorMessage={errorMessage.tenure_period}
+            required
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
             Please Fill in The Form
           </CustomText>
-
           <BookingInput
             className="col-span-6"
             placeholder="Name"
+            name="applicant_name"
             title="Name"
+            errorMessage={errorMessage.applicant_name}
+            required
           />
 
           <BookingSelect
@@ -187,26 +329,32 @@ const Booking = () => {
               { name: "NRIC", value: "bric" },
               { name: "Passport", value: "passport" },
             ]}
-            name="type"
+            name="applicant_id_type"
+            errorMessage={errorMessage.applicant_id_type}
+            required
           />
 
           <BookingInput
             className="col-span-4"
             placeholder="ID Number"
             title="ID Number"
-            name="id_number"
+            name="applicant_id_value"
+            errorMessage={errorMessage.applicant_id_value}
+            required
           />
 
           <BookingSelect
             className="col-span-6"
             placeholder="Select Race"
             title="Race"
-            name="race"
+            name="applicant_race"
             lists={[
               { name: "Malay", value: "melay" },
               { name: "Chinese", value: "chinese" },
               { name: "Indian", value: "indian" },
             ]}
+            errorMessage={errorMessage.applicant_race}
+            required
           />
 
           <BookingSelect
@@ -217,14 +365,18 @@ const Booking = () => {
               { name: "Male", value: "male" },
               { name: "Female", value: "female" },
             ]}
-            name="gender"
+            name="applicant_gender"
+            errorMessage={errorMessage.applicant_gender}
+            required
           />
 
           <BookingInput
             className="col-span-6"
             placeholder="Email"
             title="Email"
-            name="name"
+            name="applicant_email"
+            errorMessage={errorMessage.applicant_email}
+            required
           />
 
           <BookingSelect
@@ -232,14 +384,19 @@ const Booking = () => {
             placeholder="Select Area Code"
             title="Area Code"
             lists={[{ name: "+60", value: "+60" }]}
-            name="area_code"
+            name="applicant_area_code"
+            errorMessage={errorMessage.applicant_area_code}
+            required
           />
 
           <BookingInput
             className="col-span-4"
+            type="number"
             placeholder="Phone Number"
             title="Phone Number"
-            name="phone_number"
+            name="applicant_phone_number"
+            errorMessage={errorMessage.applicant_phone_number}
+            required
           />
 
           <BookingSelect
@@ -247,7 +404,9 @@ const Booking = () => {
             placeholder="Select Nationality"
             title="Nationality"
             lists={[{ name: "Malaysian", value: "malaysian" }]}
-            name="nationality"
+            name="applicant_nationality"
+            errorMessage={errorMessage.applicant_nationality}
+            required
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
@@ -258,21 +417,27 @@ const Booking = () => {
             className="col-span-6"
             placeholder="Your Address"
             title="Your Address"
-            name="address"
+            name="applicant_line_1"
+            errorMessage={errorMessage.applicant_line_1}
+            required
           />
 
           <BookingInput
             className="col-span-3"
             placeholder="City"
             title="City"
-            name="city"
+            name="applicant_city"
+            errorMessage={errorMessage.applicant_city}
+            required
           />
 
           <BookingInput
             className="col-span-3"
             placeholder="Postcode"
             title="PostCode"
-            name="postcode"
+            name="applicant_postcode"
+            errorMessage={errorMessage.applicant_postcode}
+            required
           />
 
           <BookingSelect
@@ -280,7 +445,9 @@ const Booking = () => {
             placeholder="Select Country"
             title="Country"
             lists={[{ name: "Malaysia", value: "malaysia" }]}
-            name="country"
+            name="applicant_country"
+            errorMessage={errorMessage.applicant_country}
+            required
           />
 
           <BookingSelect
@@ -288,7 +455,9 @@ const Booking = () => {
             placeholder="Select State"
             title="State"
             lists={[{ name: "Johor", value: "johor" }]}
-            name="state"
+            name="applicant_state"
+            errorMessage={errorMessage.applicant_state}
+            required
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
@@ -320,14 +489,22 @@ const Booking = () => {
                   className="col-span-6"
                   placeholder="your Name"
                   title="Your Name"
-                  name="name"
+                  name={`applicant_emergency_name${index + 1}`}
+                  errorMessage={
+                    errorMessage[`applicant_emergency_name${index + 1}`]
+                  }
+                  required
                 />
 
                 <BookingInput
                   className="col-span-6"
                   placeholder="Enter Relationship"
                   title="Enter Relationship"
-                  name="relationship"
+                  name={`applicant_emergency_relationship${index + 1}`}
+                  errorMessage={
+                    errorMessage[`applicant_emergency_relationship${index + 1}`]
+                  }
+                  required
                 />
 
                 <BookingSelect
@@ -335,21 +512,34 @@ const Booking = () => {
                   placeholder="Select Area Code"
                   title="Area Code"
                   lists={[{ name: "+60", value: "+60" }]}
-                  name="area code"
+                  name={`applicant_emergency_area_code${index + 1}`}
+                  errorMessage={
+                    errorMessage[`applicant_emergency_area_code${index + 1}`]
+                  }
+                  required
                 />
 
                 <BookingInput
                   className="col-span-4"
+                  type="number"
                   placeholder="Phone Number"
                   title="Phone Number"
-                  name="phone_number"
+                  name={`applicant_emergency_phone_number${index + 1}`}
+                  errorMessage={
+                    errorMessage[`applicant_emergency_phone_number${index + 1}`]
+                  }
+                  required
                 />
 
                 <BookingInput
                   className="col-span-6"
                   placeholder="Your Email"
                   title="Your Email"
-                  name="email"
+                  name={`applicant_emergency_email${index + 1}`}
+                  errorMessage={
+                    errorMessage[`applicant_emergency_email${index + 1}`]
+                  }
+                  required
                 />
               </div>
             );
@@ -368,8 +558,11 @@ const Booking = () => {
           <BookingInput
             className="col-span-6"
             placeholder="000000"
+            type="number"
             title="Code"
-            name="code"
+            name="otp"
+            errorMessage={errorMessage.otp}
+            required
           />
 
           <CustomButton
@@ -397,7 +590,11 @@ const Booking = () => {
           <div className="col-span-3 flex flex-col items-center">
             <CustomImage
               src={_.isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
-              imageStyle={{ width: "100%", height: 155, objectFit: "contain" }}
+              imageStyle={{
+                width: "100%",
+                height: 155,
+                objectFit: "contain",
+              }}
             />
             <UploadIcButton
               name="front_image"
@@ -410,11 +607,14 @@ const Booking = () => {
               }
             />
           </div>
-
           <div className="col-span-3 flex flex-col items-center">
             <CustomImage
               src={_.isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
-              imageStyle={{ width: "100%", height: 155, objectFit: "contain" }}
+              imageStyle={{
+                width: "100%",
+                height: 155,
+                objectFit: "contain",
+              }}
             />
 
             <UploadIcButton
@@ -429,170 +629,21 @@ const Booking = () => {
             />
           </div>
 
-          <div
-            className="col-span-6 mt-3 flex flex-col primaryWhite-bg-color p-4 global-box-shadow"
-            style={{ borderRadius: 15 }}
-          >
-            <div className="flex items-center">
-              <CustomImage src={Images.logoImage} width={40} height={40} />
-
-              <div className="flex flex-col pl-2">
-                <CustomText textClassName="font-bold primary-text font-size-large">
-                  Room for Rent
-                </CustomText>
-                <CustomText textClassName="font-light font-size-small disable-text">
-                  Hosted by Sky Sanctuary
-                </CustomText>
-              </div>
-            </div>
-
-            <div
-              className="divider-line"
-              style={{ backgroundColor: "#D9D9D9", margin: "15px 0" }}
-            ></div>
-
-            <CustomText textClassName="font-bold pb-1">Move In Cost</CustomText>
-            <CustomText textClassName="font-size-xsmall font-light leading-4 disable-text">
-              Please check the payment breakdown below. Should you have any
-              inquiries, please contact the owner or agent before proceeding
-              with your payment.
-            </CustomText>
-
-            <div
-              className="divider-line"
-              style={{ backgroundColor: "#D9D9D9" }}
-            ></div>
-
-            <div
-              className={`collapse ${openCharges ? "collapse-open" : ""} pb-1`}
-              style={{ borderRadius: 0 }}
-            >
-              <div
-                className="collapse-title flex justify-between items-center cursor-pointer pb-1"
-                style={{ padding: 0, minHeight: 20 }}
-              >
-                <div className="flex items-center" onClick={onClickOpenCharges}>
-                  <CustomText textClassName="font-bold pr-2">
-                    Rent Charges
-                  </CustomText>
-                  <CustomImage
-                    src={!openCharges ? Images.upIcon : Images.downIcon}
-                    width={13}
-                    height={13}
-                  />
-                </div>
-
-                <CustomText>RM756.00</CustomText>
-              </div>
-              <div className="collapse-content p-0">
-                <div className="flex items-center pt-1">
-                  <CustomImage
-                    src={Images.infoIcon}
-                    height={20}
-                    width={20}
-                    onClick={() =>
-                      document
-                        .getElementById("rent_charges_details")
-                        .showModal()
-                    }
-                  />
-                  <CustomText
-                    styles={{ color: "#1E1E1E" }}
-                    textClassName="pl-2 font-light font-size-small"
-                  >
-                    Inclusion of:
-                  </CustomText>
-                </div>
-
-                {_.map(lists, (item, index) => {
-                  const title = _.get(item, ["title"], "");
-                  const value = _.get(item, ["value"], "");
-
-                  return (
-                    <ul className="pl-7" key={index}>
-                      <li className="flex justify-between">
-                        <CustomText
-                          styles={{ color: "#1E1E1E" }}
-                          textClassName="font-light font-size-small"
-                        >
-                          - {title}
-                        </CustomText>
-                        <CustomText
-                          styles={{ color: "#1E1E1E" }}
-                          textClassName="font-light"
-                        >
-                          {value}
-                        </CustomText>
-                      </li>
-                    </ul>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center pb-1">
-              <CustomText textClassName="font-bold pr-2">
-                Move In Fee
-              </CustomText>
-              <CustomText>RM300.00</CustomText>
-            </div>
-            <div className="flex justify-between items-center pb-1">
-              <CustomText textClassName="font-bold pr-2">
-                Security Deposit
-              </CustomText>
-              <CustomText>RM1,400.00</CustomText>
-            </div>
-            <div className="flex justify-between items-center">
-              <CustomText textClassName="font-bold pr-2">
-                Key Deposit
-              </CustomText>
-              <CustomText>RM200.00</CustomText>
-            </div>
-
-            <div
-              className="divider-line"
-              style={{ backgroundColor: "#D9D9D9" }}
-            ></div>
-
-            <div className="flex justify-between items-center">
-              <CustomText textClassName="font-bold pr-2">
-                Total Move-in Cost
-              </CustomText>
-              <CustomText textClassName="primary-text font-bold">
-                RM2,656.00
-              </CustomText>
-            </div>
-
-            <div className="flex justify-between items-center pt-2">
-              <div className="flex items-center">
-                <input
-                  type="radio"
-                  name="radio-1"
-                  className="radio booking-radio mr-2"
-                />
-                <CustomText>Pay in Full</CustomText>
-              </div>
-
-              <CustomText>RM2,656.00</CustomText>
-            </div>
-
-            <div className="flex justify-between items-center pt-2">
-              <div className="flex items-center">
-                <input
-                  type="radio"
-                  name="radio-1"
-                  className="radio booking-radio mr-2"
-                />
-                <CustomText>Pay in Partial</CustomText>
-              </div>
-
-              <CustomText>RM1,328.00</CustomText>
-            </div>
-          </div>
+          <RentChargesSection
+            openCharges={openCharges}
+            onClickOpenCharges={onClickOpenCharges}
+            lists={lists}
+          />
 
           <div className="col-span-6 flex items-start px-2 pt-3">
-            <CustomImage src={Images.checkIcon} width={25} height={25} />
-            <CustomText textClassName="pl-2 font-bold disable-text">
+            <CustomImage
+              src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+              width={23}
+              height={23}
+              onClick={onClickReadAgree}
+              className="cursor-pointer"
+            />
+            <CustomText textClassName="pl-3 font-bold disable-text">
               I understand and agree to give Roomz and CTOS the consent to
               process my personal data as per PDPA Act.
             </CustomText>
@@ -607,7 +658,7 @@ const Booking = () => {
             </span>{" "}
             apply.
           </CustomText>
-        </div>
+        </form>
 
         <AgentSection
           t={t}
@@ -616,20 +667,7 @@ const Booking = () => {
         />
       </div>
 
-      <CustomModal id="rent_charges_details">
-        <CustomText textClassName="font-size-large font-bold pb-2">
-          Rent Charges Details
-        </CustomText>
-        <CustomText textClassName="disable-text font-size-xsmall text-justify">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
-          dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
-          pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
-          porttitor quis nisi. Phasellus sodales tincidunt lacus, nec dignissim
-          nulla blandit in. Donec vel turpis id augue dignissim hendrerit vitae
-          eu nulla.  Should you have any inquiries, please contact the owner or
-          agent before proceeding with your payment.
-        </CustomText>
-      </CustomModal>
+      <RentChargeModal />
     </CustomHeader>
   );
 };

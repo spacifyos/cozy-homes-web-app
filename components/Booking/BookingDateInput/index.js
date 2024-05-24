@@ -3,14 +3,16 @@ import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
-const BookingSelect = ({
-  className,
+const BookingDateInput = ({
+  className = "",
   placeholder,
   errorMessage,
   title,
-  lists,
   name,
-  rightIcon = Images.downIcon,
+  inputClassName,
+  onChange,
+  disabled = false,
+  bgColor = "bg-color",
   required,
   ...props
 }) => {
@@ -24,24 +26,25 @@ const BookingSelect = ({
         )}
         <CustomText textClassName="input-title">{title}</CustomText>
       </div>
-      <div className="booking-wrapper booking-select-container flex justify-between">
-        <select className="booking-select" name={name} title={title} {...props}>
-          <option disabled value="">
-            {placeholder}
-          </option>
-          {_.map(lists, (list) => {
-            const name = _.get(list, ["name"], "");
-            const value = _.get(list, ["value"], "");
 
-            return (
-              <option key={value} value={value}>
-                {name}
-              </option>
-            );
-          })}
-        </select>
+      <div
+        className={`flex items-center gap-2 booking-input relative ${bgColor}`}
+      >
+        <input
+          type="date"
+          placeholder={placeholder}
+          className={`${bgColor} ${inputClassName} flex-1 w-full resize-input-icon`}
+          name={name}
+          onChange={onChange}
+          disabled={disabled}
+          title={title}
+          {...props}
+        />
 
-        <CustomImage src={rightIcon} width={10} height={10} />
+        <CustomImage
+          src={Images.calendarIcon}
+          imageStyle={{ width: 20, height: 20 }}
+        />
       </div>
       {_.isEmpty(errorMessage) ? (
         false
@@ -52,4 +55,4 @@ const BookingSelect = ({
   );
 };
 
-export default BookingSelect;
+export default BookingDateInput;
