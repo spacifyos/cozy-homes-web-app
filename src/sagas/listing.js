@@ -92,6 +92,22 @@ function* getRequestListingCancellation({}) {
   }
 }
 
+function* getBookingOverviewRequest({ id }) {
+  try {
+    const response = yield call(api.getBookingOverview, id);
+
+    const { data, code, message } = response.data;
+
+    yield put(listingAction.getBookingOverviewSuccess(id, data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      listingAction.getBookingOverviewFailure,
+    );
+  }
+}
+
 function* listingSaga() {
   yield all([
     takeLatest("GET_LISTING_REQUEST", getRequestListing),
@@ -105,6 +121,10 @@ function* listingSaga() {
     takeLatest(
       "GET_LISTING_CANCELLATION_REQUEST",
       getRequestListingCancellation,
+    ),
+    takeLatest(
+        "GET_BOOKING_OVERVIEW_REQUEST",
+        getBookingOverviewRequest,
     ),
   ]);
 }

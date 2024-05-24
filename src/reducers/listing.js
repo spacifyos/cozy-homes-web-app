@@ -23,6 +23,10 @@ const initialState = {
     data: null,
     loading: false,
   },
+  bookingOverview: {
+    data: null,
+    loading: false,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -161,6 +165,29 @@ export default function (state = initialState, action) {
       return {
         ...state,
         listingCancellation: {
+          loading: false,
+        },
+      };
+
+    case "GET_BOOKING_OVERVIEW_REQUEST":
+      return {
+        ...state,
+        bookingOverview: {
+          loading: true,
+        },
+      };
+    case "GET_BOOKING_OVERVIEW_SUCCESS":
+      return {
+        ...state,
+        bookingOverview: {
+          [action.id]: { data: action.data },
+          loading: false,
+        },
+      };
+    case "GET_BOOKING_OVERVIEW_FAILURE":
+      return {
+        ...state,
+        bookingOverview: {
           loading: false,
         },
       };

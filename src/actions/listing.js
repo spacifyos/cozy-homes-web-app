@@ -84,3 +84,19 @@ export const getListingCancellationFailure = (messages) => ({
   type: "GET_LISTING_CANCELLATION_FAILURE",
   messages,
 });
+
+export const getBookingOverviewRequest = (id) => ({
+  type: "GET_BOOKING_OVERVIEW_REQUEST",
+  id,
+});
+
+export const getBookingOverviewSuccess = (id, data) => ({
+  type: "GET_BOOKING_OVERVIEW_SUCCESS",
+  id,
+  data,
+});
+
+export const getBookingOverviewFailure = (messages) => ({
+  type: "GET_BOOKING_OVERVIEW_FAILURE",
+  messages,
+});

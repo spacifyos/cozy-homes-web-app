@@ -39,6 +39,8 @@ const getListingPropertyDetail = (id) =>
 
 const getListingCancellation = () => apiInstance.get(`/listing/cancellation`);
 
+const getBookingOverview = (id) => apiInstance.get(`/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -51,4 +53,5 @@ export default {
   getListingProperty,
   getListingPropertyDetail,
   getListingCancellation,
+  getBookingOverview,
 };

@@ -30,6 +30,11 @@ export const getListingCancellationData = (state) =>
 export const getListingCancellationDataLoading = (state) =>
   _.get(state, ["listing", "listingCancellation", "loading"], false);
 
+export const getBookingOverviewData = (state, id) =>
+  _.get(state, ["listing", "bookingOverview", id, "data"], null);
+export const getBookingOverviewLoading = (state) =>
+  _.get(state, ["listing", "bookingOverview", "loading"], false);
+
 export const getPopularUniCollege = (state) =>
   _.get(state, ["uni_college_profile"], []);
 export const getPopularCondo = (state) => _.get(state, ["popular_condo"], []);

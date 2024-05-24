@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import Images from "@/src/utils/Image";
 
-const BookingOverviewDetail = ({ t }) => {
+const BookingOverviewDetail = ({ t, data }) => {
   return (
     <div className="p-4 pb-7">
       <div className="flex items-center gap-1 pb-4">
