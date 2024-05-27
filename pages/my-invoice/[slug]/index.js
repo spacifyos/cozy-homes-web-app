@@ -21,8 +21,8 @@ const InvoiceOverview = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const getInvoiceOverviewRequest = () =>
-    dispatch(invoiceAction.getInvoiceOverviewRequest());
+  const getInvoiceOverviewRequest = (id) =>
+    dispatch(invoiceAction.getInvoiceOverviewRequest(id));
   const invoiceOverviewData = useSelector((state) =>
     invoiceSelector.getInvoiceOverviewData(state),
   );

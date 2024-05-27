@@ -5,11 +5,24 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
+import {useDispatch, useSelector} from "react-redux";
+import * as invoiceAction from "@/src/actions/invoice";
+import * as invoiceSelector from "@/src/selectors/invoice";
 export { getServerSideProps };
 
 const PaymentSuccessful = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getInvoiceOverviewRequest = (id) =>
+      dispatch(invoiceAction.getInvoiceOverviewRequest(id));
+  const invoiceOverviewData = useSelector((state) =>
+      invoiceSelector.getInvoiceOverviewData(state),
+  );
+  const invoiceOverviewLoading = useSelector((state) =>
+      invoiceSelector.getInvoiceOverviewLoading(state),
+  );
 
   const onClickClose = () => {
     router.back();
