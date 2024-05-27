@@ -19,7 +19,7 @@
 }
 
 .tenancy-container {
-  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 flex justify-between items-center relative;
+  @apply primaryWhite-bg-color px-4 py-3 flex justify-between items-center relative flex-1 global-border-radius;
 }
 
 .auto-pay-button {
@@ -40,7 +40,7 @@
 }
 
 .invoice-container {
-  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative mb-3;
+  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative;
 }
 
 .invoice-icon-container {

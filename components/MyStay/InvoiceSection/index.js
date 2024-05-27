@@ -52,11 +52,8 @@ const InvoiceSection = ({
         </CustomText>
       </div>
 
-      {_.map(list, (item, index) => {
-        if (
-          _.isEqual(selectedCategory, "All") ||
-          _.isEqual(item.status, selectedCategory)
-        ) {
+      <div className="flex flex-col gap-3">
+        {_.map(list, (item, index) => {
           return (
             <InvoiceComponent
               key={index}
@@ -65,8 +62,8 @@ const InvoiceSection = ({
               onClick={onClickToOverviewPage}
             />
           );
-        }
-      })}
+        })}
+      </div>
     </div>
   );
 };

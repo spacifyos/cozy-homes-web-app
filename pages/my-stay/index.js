@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import _ from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import * as tenancyAction from "@/src/actions/tenancy";
+import * as tenancySelector from "@/src/selectors/tenancy";
 
 export { getServerSideProps };
 
@@ -33,7 +35,16 @@ const MyStay = () => {
     authSelector.getUserProfileLoading(state),
   );
 
-  const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+  const getTenancyListingRequest = () =>
+    dispatch(tenancyAction.getTenancyListingRequest());
+  const tenancyListingData = useSelector((state) =>
+    tenancySelector.getTenancyListingData(state),
+  );
+  const tenancyListingLoading = useSelector((state) =>
+    tenancySelector.getTenancyListingLoading(state),
+  );
+
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [isChecked, setIsChecked] = useState(true);
 
   useEffect(() => {
@@ -84,6 +95,7 @@ const MyStay = () => {
   const onClickToHelpCenter = () => {
     router.push("/help-center");
   };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myStay")}
@@ -101,11 +113,11 @@ const MyStay = () => {
           isChecked={isChecked}
         />
 
-        <FeatureSection
-          t={t}
-          onClickToAgreement={onClickToAgreement}
-          onClickToHelpCenter={onClickToHelpCenter}
-        />
+        {/*<FeatureSection*/}
+        {/*  t={t}*/}
+        {/*  onClickToAgreement={onClickToAgreement}*/}
+        {/*  onClickToHelpCenter={onClickToHelpCenter}*/}
+        {/*/>*/}
 
         <MeterSection
           t={t}

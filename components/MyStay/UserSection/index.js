@@ -35,22 +35,22 @@ const UserSection = ({ t, data }) => {
         </div>
       </div>
 
-      <div className="coin-container">
-        <div className="p-2 primary-bg-color rounded-md">
-          <CustomImage src={Images.logoImage} height={30} width={30} />
-        </div>
-        <div className="pl-2">
-          <CustomText textClassName="disable-text font-size-small line-clamp-1">
-            {t("myStay.roomzCoins")}
-          </CustomText>
-          <div className="flex items-center justify-start">
-            <CustomText textClassName="primary-text font-bold font-size-xxlarge pr-2">
-              99,999
-            </CustomText>
-            <CustomImage src={Images.refreshIcon} height={18} width={18} />
-          </div>
-        </div>
-      </div>
+      {/*<div className="coin-container">*/}
+      {/*  <div className="p-2 primary-bg-color rounded-md">*/}
+      {/*    <CustomImage src={Images.logoImage} height={30} width={30} />*/}
+      {/*  </div>*/}
+      {/*  <div className="pl-2">*/}
+      {/*    <CustomText textClassName="disable-text font-size-small line-clamp-1">*/}
+      {/*      {t("myStay.roomzCoins")}*/}
+      {/*    </CustomText>*/}
+      {/*    <div className="flex items-center justify-start">*/}
+      {/*      <CustomText textClassName="primary-text font-bold font-size-xxlarge pr-2">*/}
+      {/*        99,999*/}
+      {/*      </CustomText>*/}
+      {/*      <CustomImage src={Images.refreshIcon} height={18} width={18} />*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   );
 };

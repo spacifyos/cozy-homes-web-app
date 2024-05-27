@@ -9,6 +9,7 @@ import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useState } from "react";
+import CustomDropdown from "@/components/CustomDropdown";
 
 export { getServerSideProps };
 
@@ -154,28 +155,18 @@ const InvoiceOverview = () => {
             <CustomButton
               buttonText={t("invoiceOverview.payNow")}
               buttonClassName="primary-btn"
-              onClick={()=>onClickToPayment(1)}
+              onClick={() => onClickToPayment(1)}
             />
           </div>
         </div>
 
         {openDownloadModal ? (
-          <div
-            className="absolute right-4 global-border-radius global-box-shadow primaryWhite-bg-color max-w-36 min-w-10 z-50 global-border"
-            style={{ top: -16 }}
-          >
-            <div className="flex flex-col justify-center items-center w-36 ">
-              <CustomText textClassName="p-2 cursor-pointer">
-                {t("invoiceOverview.downloadInvoice")}
-              </CustomText>
-
-              <div className="divider-line" style={{ margin: 0 }}></div>
-
-              <CustomText textClassName="p-2 cursor-pointer">
-                {t("invoiceOverview.downloadReceipt")}
-              </CustomText>
-            </div>
-          </div>
+          <CustomDropdown
+            items={[
+              t("invoiceOverview.downloadInvoice"),
+              t("invoiceOverview.downloadReceipt"),
+            ]}
+          />
         ) : (
           false
         )}
