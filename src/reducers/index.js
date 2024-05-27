@@ -4,6 +4,7 @@ import auth from "@/src/reducers/auth";
 import listing from "@/src/reducers/listing";
 import tenancy from "@/src/reducers/tenancy";
 import invoice from "@/src/reducers/invoice";
+import meter from "@/src/reducers/meter";
 
 export const rootReducers = combineReducers({
   auth,
@@ -11,4 +12,5 @@ export const rootReducers = combineReducers({
   listing,
   tenancy,
   invoice,
+  meter,
 });

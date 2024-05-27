@@ -1,6 +1,7 @@
 import Toast from "@/src/utils/Toast";
 import _ from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
+import Router from "next/router"; // Import the Router from next/router
 
 function* httpErrorHelpers(
   error,
@@ -55,8 +56,8 @@ function* handleApiResponseError(
 ) {
   const statusCode = _.get(response, "status", null);
 
-  if (statusCode === 403) {
-    // Router.push("/contact");
+  if (statusCode === 403 || statusCode === 401) {
+    Router.push("/sign-in");
   }
 
   const messages = _.get(response, "data", null);

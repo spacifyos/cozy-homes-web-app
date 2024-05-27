@@ -11,26 +11,39 @@ import MeterFeature from "@/components/MyMeter/MeterFeature";
 import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import * as smartMeterAction from "@/src/actions/meter";
+import * as smartMeterSelector from "@/src/selectors/meter";
+import { useDispatch, useSelector } from "react-redux";
 
 export { getServerSideProps };
 
 const MyMeterOverview = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getSmartMeterOverviewRequest = () =>
+    dispatch(smartMeterAction.getSmartMeterOverviewRequest());
+  const smartMeterOverviewData = useSelector((state) =>
+    smartMeterSelector.getSmartMeterOverviewData(state),
+  );
+  const smartMeterOverviewLoading = useSelector((state) =>
+    smartMeterSelector.getSmartMeterOverviewLoading(state),
+  );
 
   const onClickGoBack = () => {
-   router.back();
+    router.back();
   };
 
-  const [selectChange, setSelectChange] = useState("Daily");
+  // const [selectChange, setSelectChange] = useState("Daily");
 
-  const onClickChange = (selected) => {
-    setSelectChange(selected);
-  };
-
-  const onClickToTopUpMeter = (id) => {
-    router.push(`/my-meter/${id}/top-up-meter`);
-  };
+  // const onClickChange = (selected) => {
+  //   setSelectChange(selected);
+  // };
+  //
+  // const onClickToTopUpMeter = (id) => {
+  //   router.push(`/my-meter/${id}/top-up-meter`);
+  // };
 
   return (
     <CustomHeader
@@ -38,7 +51,7 @@ const MyMeterOverview = () => {
       hideBgImage
       onClickGoBack={onClickGoBack}
     >
-      <div className="pb-1 global-horizontal-padding">
+      <div className="pb-4 global-horizontal-padding">
         <div className="flex flex-row justify-between">
           <CustomText textClassName="section-title">
             {t("myMeterOverview.todayUsage")}
@@ -59,13 +72,13 @@ const MyMeterOverview = () => {
 
         <BalanceUnit t={t} />
 
-        <MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />
+        {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
 
-        <MeterUsageSection
-          t={t}
-          onClickChange={onClickChange}
-          selectChange={selectChange}
-        />
+        {/*<MeterUsageSection*/}
+        {/*  t={t}*/}
+        {/*  onClickChange={onClickChange}*/}
+        {/*  selectChange={selectChange}*/}
+        {/*/>*/}
       </div>
     </CustomHeader>
   );

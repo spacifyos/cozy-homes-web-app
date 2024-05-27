@@ -18,6 +18,8 @@ import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import * as smartMeterAction from "@/src/actions/meter";
+import * as smartMeterSelector from "@/src/selectors/meter";
 
 export { getServerSideProps };
 
@@ -53,6 +55,15 @@ const MyStay = () => {
   );
   const invoiceListingLoading = useSelector((state) =>
     invoiceSelector.getInvoiceListingLoading(state),
+  );
+
+  const getSmartMeterListingRequest = () =>
+    dispatch(smartMeterAction.getSmartMeterListingRequest());
+  const smartMeterListingData = useSelector((state) =>
+    smartMeterSelector.getSmartMeterListingData(state),
+  );
+  const smartMeterListingLoading = useSelector((state) =>
+    smartMeterSelector.getSmartMeterListingLoading(state),
   );
 
   const [selectedCategory, setSelectedCategory] = useState("All");

@@ -16,7 +16,7 @@ const InvoiceSection = ({ t, selectChange, onClickChange }) => {
           const btn = _.get(item, ["btn"], "");
           return (
             <CustomButton
-                key={index}
+              key={index}
               buttonText={btn}
               buttonClassName={`btn-sm ${_.isEqual(selectChange, btn) ? "primary-btn" : "default-btn"} mr-2`}
               textClassName="font-size-xsmall"
@@ -26,9 +26,11 @@ const InvoiceSection = ({ t, selectChange, onClickChange }) => {
         })}
       </div>
 
-      {_.map(Array(3), (item, index) => (
-        <MeterUsageComponent t={t} key={index} />
-      ))}
+      <div className="flex flex-col gap-3">
+        {_.map(Array(3), (item, index) => (
+          <MeterUsageComponent t={t} key={index} />
+        ))}
+      </div>
     </div>
   );
 };
