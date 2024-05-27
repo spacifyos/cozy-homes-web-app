@@ -5,7 +5,6 @@ import CustomText from "@/components/CustomText";
 const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
   return (
     <div className="profile-coin-container col-span-2">
-
       <CustomImage
         src={Images.moreIcon}
         height={22}
@@ -22,15 +21,20 @@ const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
         />
       </div>
 
-      <CustomText textClassName="disable-text font-size-small">
-        {t("account.roomzCoins")}
-      </CustomText>
-
-      <div className="flex items-center">
-        <CustomText textClassName="primary-text font-size-xxlarge font-bold pr-2">
-          5,123
+      <div>
+        <CustomText textClassName="disable-text font-size-small">
+          {t("account.roomzCoins")}
         </CustomText>
-        <CustomImage src={Images.refreshIcon} height={20} width={20} />
+
+        <div className="flex items-center">
+          <CustomText textClassName="primary-text font-size-small">
+            Coming Soon
+          </CustomText>
+          {/*<CustomText textClassName="primary-text font-size-xxlarge font-bold pr-2">*/}
+          {/*  5,123*/}
+          {/*</CustomText>*/}
+          {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}
+        </div>
       </div>
     </div>
   );

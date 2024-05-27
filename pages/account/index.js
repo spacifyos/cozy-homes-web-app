@@ -76,23 +76,24 @@ const Account = () => {
             onClickToEditProfile={onClickToEditProfile}
             data={userProfileData}
           />
+
           <RoomzCoins
             t={t}
             onClickToCoinsTransaction={onClickToCoinsTransaction}
           />
         </div>
 
-        <FeatureComponent
-          title={t("account.smartMeterPairing")}
-          icon={Images.primaryMeterIcon}
-        />
+        {/*<FeatureComponent*/}
+        {/*  title={t("account.smartMeterPairing")}*/}
+        {/*  icon={Images.primaryMeterIcon}*/}
+        {/*/>*/}
 
         {/*<FeatureComponent*/}
         {/*  title="Transfer Lock"*/}
         {/*  icon={Images.lockIcon}*/}
         {/*/>*/}
 
-        <div className="divider-line"></div>
+        {/*<div className="divider-line"></div>*/}
 
         <FeatureComponent
           title={t("account.myInvoice")}
@@ -100,28 +101,28 @@ const Account = () => {
           pb={3}
         />
 
-        <FeatureComponent
-          title={t("account.myAppointment")}
-          icon={Images.appointmentIconActive}
-          imageHeight={23}
-          imageWidth={23}
-          pb={3}
-          onClick={onClickToMyAppointment}
-        />
+        {/*<FeatureComponent*/}
+        {/*  title={t("account.myAppointment")}*/}
+        {/*  icon={Images.appointmentIconActive}*/}
+        {/*  imageHeight={23}*/}
+        {/*  imageWidth={23}*/}
+        {/*  pb={3}*/}
+        {/*  onClick={onClickToMyAppointment}*/}
+        {/*/>*/}
 
-        <FeatureComponent
-          title={t("account.latestUpdate")}
-          icon={Images.primaryRingIcon}
-          pb={3}
-          onClickToLatestUpdate={onClickToLatestUpdate}
-        />
+        {/*<FeatureComponent*/}
+        {/*  title={t("account.latestUpdate")}*/}
+        {/*  icon={Images.primaryRingIcon}*/}
+        {/*  pb={3}*/}
+        {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
+        {/*/>*/}
 
-        <FeatureComponent
-          title={t("account.setPinNumber")}
-          icon={Images.primaryLockIcon}
-        />
+        {/*<FeatureComponent*/}
+        {/*  title={t("account.setPinNumber")}*/}
+        {/*  icon={Images.primaryLockIcon}*/}
+        {/*/>*/}
 
-        <div className="divider-line"></div>
+        {/*<div className="divider-line"></div>*/}
 
         <FeatureComponent
           title={t("account.termAndCondition")}

@@ -3,7 +3,7 @@
 }
 
 .profile-coin-container {
-  @apply p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center relative;
+  @apply p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center justify-between relative;
 }
 
 .profile-coin-icon-container {
