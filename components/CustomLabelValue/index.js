@@ -8,9 +8,11 @@ const CustomLabelValue = ({
 }) => {
   return (
     <div className={`pb-2 ${className}`}>
-      <CustomText textClassName={`disable-text font-size-xxsmall`}>{label}</CustomText>
+      <CustomText textClassName={`disable-text font-size-xxsmall font-normal`}>
+        {label}
+      </CustomText>
       <CustomText
-        textClassName={`font-size-small font-bold ${highlight ? "primary-text" : "black-text"}`}
+        textClassName={`font-size-small ${highlight ? "primary-text" : "black-text"}`}
       >
         {value}
       </CustomText>

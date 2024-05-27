@@ -14,7 +14,7 @@ const CustomDropdown = ({ items, top }) => {
 
           return (
             <CustomText
-              textClassName="p-2 cursor-pointer w-full text-center"
+              textClassName="p-2 cursor-pointer w-full text-center font-normal"
               onClick={onClickHandler}
               styles={{
                 borderBottom:

@@ -37,9 +37,13 @@ const InvoiceOverview = () => {
       onClickGoBack={onClickGoBack}
       hideBgImage
       rightContent={
-        <div className="relative" onClick={onClickDownload}>
-          <CustomImage src={Images.downloadIcon} height={25} width={25} />
-        </div>
+        <CustomImage
+          src={Images.downloadIcon}
+          height={25}
+          width={25}
+          className="cursor-pointer"
+          onClick={onClickDownload}
+        />
       }
       rightSecondButtonIcon={Images.shareIcon}
     >
@@ -162,9 +166,10 @@ const InvoiceOverview = () => {
 
         {openDownloadModal ? (
           <CustomDropdown
+            top={-14}
             items={[
-              t("invoiceOverview.downloadInvoice"),
-              t("invoiceOverview.downloadReceipt"),
+              { title: t("invoiceOverview.downloadInvoice") },
+              { title: t("invoiceOverview.downloadReceipt") },
             ]}
           />
         ) : (
