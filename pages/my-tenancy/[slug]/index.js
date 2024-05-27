@@ -25,10 +25,10 @@ const MyTenancy = ({}) => {
   const getTenancyOverviewRequest = (id) =>
     dispatch(tenancyAction.getTenancyOverviewRequest(id));
   const tenancyOverviewData = useSelector((state) =>
-    tenancySelector.getBookingOverviewData(state),
+    tenancySelector.getTenancyOverviewData(state),
   );
   const tenancyOverviewLoading = useSelector((state) =>
-    tenancySelector.getTenancyListingLoading(state),
+    tenancySelector.getTenancyOverviewLoading(state),
   );
 
   const [isChecked, setIsChecked] = useState(false);

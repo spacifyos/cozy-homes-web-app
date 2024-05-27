@@ -16,6 +16,8 @@ import _ from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
+import * as invoiceAction from "@/src/actions/invoice";
+import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 
@@ -42,6 +44,15 @@ const MyStay = () => {
   );
   const tenancyListingLoading = useSelector((state) =>
     tenancySelector.getTenancyListingLoading(state),
+  );
+
+  const getInvoiceListingRequest = () =>
+    dispatch(invoiceAction.getInvoiceListingRequest());
+  const invoiceListingData = useSelector((state) =>
+    invoiceSelector.getInvoiceListingData(state),
+  );
+  const invoiceListingLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceListingLoading(state),
   );
 
   const [selectedCategory, setSelectedCategory] = useState("All");

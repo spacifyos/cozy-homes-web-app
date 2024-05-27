@@ -17,7 +17,7 @@ const MyInvoiceComponent = ({ list }) => {
   };
 
   return (
-    <div className="pb-7">
+    <div className="pb-5">
       <Carousel
         additionalTransfrom={0}
         arrows={false}

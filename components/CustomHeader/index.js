@@ -15,6 +15,7 @@ const CustomHeader = ({
   onClickRightSecondButton,
   rightSecondButtonIcon,
   rightContent,
+  isFiltered = false,
 }) => {
   return (
     <div className="flex-1 relative bg-color overflow-hidden">
@@ -35,7 +36,10 @@ const CustomHeader = ({
             false
           ) : (
             <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage className={"me-5 w-2.5 cursor-pointer"} src={Images.leftIcon} />
+              <CustomImage
+                className={"me-5 w-2.5 cursor-pointer"}
+                src={Images.leftIcon}
+              />
             </div>
           )}
 
@@ -43,6 +47,7 @@ const CustomHeader = ({
             {pageTitle}
           </CustomText>
         </div>
+
         <div className="flex justify-center items-center gap-4">
           {_.isEmpty(rightSecondButtonIcon) ? (
             false
@@ -54,17 +59,29 @@ const CustomHeader = ({
               className="cursor-pointer"
             />
           )}
+
           {_.isEmpty(rightButtonIcon) ? (
             <div style={{ width: 25, height: 25 }} onClick={onClickRightButton}>
               {rightContent}
             </div>
           ) : (
-            <CustomImage
-              src={rightButtonIcon}
-              imageStyle={{ width: 25, height: 25 }}
-              onClick={onClickRightButton}
-              className="cursor-pointer"
-            />
+            <div className="relative">
+              {isFiltered ? (
+                <div
+                  className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
+                  style={{ top: -10, right: -10 }}
+                ></div>
+              ) : (
+                false
+              )}
+
+              <CustomImage
+                src={rightButtonIcon}
+                imageStyle={{ width: 25, height: 25 }}
+                onClick={onClickRightButton}
+                className="cursor-pointer"
+              />
+            </div>
           )}
         </div>
       </div>

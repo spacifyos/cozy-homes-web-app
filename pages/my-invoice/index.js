@@ -11,6 +11,9 @@ import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import FilterModal from "@/components/MyInvoice/FilterModal";
 import moment from "moment/moment";
+import * as invoiceAction from "@/src/actions/invoice";
+import { useDispatch, useSelector } from "react-redux";
+import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 
@@ -56,6 +59,16 @@ const invoice = [
 const MyInvoice = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getInvoiceListingRequest = () =>
+    dispatch(invoiceAction.getInvoiceListingRequest());
+  const invoiceListingData = useSelector((state) =>
+    invoiceSelector.getInvoiceListingData(state),
+  );
+  const invoiceListingLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceListingLoading(state),
+  );
 
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
   const [dateFromValue, setDateFromValue] = useState(
@@ -118,17 +131,20 @@ const MyInvoice = () => {
           const lists = _.get(item, ["list"], []);
 
           return (
-            <div key={index}>
+            <div key={index} className="pb-4">
               <CustomText textClassName="section-title">{date}</CustomText>
 
-              {_.map(lists, (list, index) => (
-                <InvoiceComponent
-                  key={index}
-                  item={list}
-                  t={t}
-                  onClick={onClickToOverView}
-                />
-              ))}
+              <div className="flex flex-col gap-3">
+                {_.map(lists, (list, index) => (
+                    <InvoiceComponent
+                        key={index}
+                        item={list}
+                        t={t}
+                        onClick={onClickToOverView}
+                    />
+                ))}
+              </div>
+
             </div>
           );
         })}

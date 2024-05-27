@@ -10,12 +10,25 @@ import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
+import * as invoiceAction from "@/src/actions/invoice";
+import { useDispatch, useSelector } from "react-redux";
+import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 
 const InvoiceOverview = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getInvoiceOverviewRequest = () =>
+    dispatch(invoiceAction.getInvoiceOverviewRequest());
+  const invoiceOverviewData = useSelector((state) =>
+    invoiceSelector.getInvoiceOverviewData(state),
+  );
+  const invoiceOverviewLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceOverviewLoading(state),
+  );
 
   const [openDownloadModal, setOpenDownloadModal] = useState(false);
 
@@ -47,7 +60,7 @@ const InvoiceOverview = () => {
       }
       rightSecondButtonIcon={Images.shareIcon}
     >
-      <div className="body-container relative pt-6 pb-4 flex justify-center">
+      <div className="body-container relative py-6 flex justify-center">
         <div className="primary-bg-color p-2 global-border-radius absolute top-0">
           <CustomImage
             src={Images.invoiceIcon}
@@ -59,6 +72,7 @@ const InvoiceOverview = () => {
             <CustomLabelValue
               value="XXXXXXXXXXX"
               label={t("invoiceOverview.invoiceNumber")}
+              highlight
             />
             <div className="pb-2">
               <CustomText textClassName="font-size-xxsmall disable-text">
@@ -90,6 +104,7 @@ const InvoiceOverview = () => {
             <CustomLabelValue
               value="30 Nov 2023"
               label={t("invoiceOverview.dueDate")}
+              highlight
             />
           </div>
 
