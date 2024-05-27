@@ -6,8 +6,14 @@ import MeterSection from "@/components/MyStay/MeterSection";
 import InvoiceSection from "@/components/MyStay/InvoiceSection";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import AuthWrapper from "@/components/AuthWrapper";
+import * as authAction from "@/src/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import * as authSelector from "@/src/selectors/auth";
+import _ from "lodash";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
@@ -16,8 +22,29 @@ const list = [{ status: "Paid" }, { status: "Unpaid" }, { status: "Paid" }];
 const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
+
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
   const [isChecked, setIsChecked] = useState(true);
+
+  useEffect(() => {
+    if (_.isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
+  }, [userProfileData]);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
 
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
@@ -65,7 +92,7 @@ const MyStay = () => {
       padding
     >
       <div className="body-container pb-24">
-        <UserSection t={t} />
+        <UserSection t={t} data={userProfileData} />
 
         <TenancySection
           t={t}
@@ -95,9 +122,11 @@ const MyStay = () => {
           list={list}
           onClickToOverviewPage={onClickToOverviewPage}
         />
+
+        <LoadingOverlay loading={userProfileLoading} />
       </div>
     </CustomHeader>
   );
 };
 
-export default withTranslation("common")(MyStay);
+export default withTranslation("common")(AuthWrapper(MyStay));

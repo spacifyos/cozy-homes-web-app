@@ -41,23 +41,16 @@ function* watcherSignUpAccountRequest({ data, referrerCode }) {
 //         yield call(httpErrorHelpers, error, authActions.forgetPasswordFailure, effects);
 //     }
 // }
-//
-function* loginRequest({ loginData }) {
+
+function* getUserProfileRequest({}) {
   try {
-    const response = yield call(api.loginAccount, loginData);
+    const response = yield call(api.getUserProfile);
 
     const { data, code, message } = response.data;
-    // if (code === 200) {
-    //   const { access_token } = data;
-    //   yield put(authActions.updateAccessToken(access_token));
 
-    yield put(authActions.loginAccountSuccess(data.access_token));
-    // } else {
-    //   Toast.error(message);
-    //   yield put(authActions.loginAccountFailure());
-    // }
+    yield put(authActions.getUserProfileSuccess(data));
   } catch (error) {
-    yield call(httpErrorHelpers, error, authActions.loginAccountFailure);
+    yield call(httpErrorHelpers, error, authActions.getUserProfileFailure);
   }
 }
 
@@ -104,7 +97,7 @@ function* logoutAccountRequest(payload) {
 // }
 //
 function* clearAccessToken() {
-  AuthManager.removeTenantUserToken().then(() => {});
+  AuthManager.removeToken().then(() => {});
 }
 
 //
@@ -161,7 +154,7 @@ function* clearAccessToken() {
 
 function* authSaga() {
   yield all([
-    takeLatest("LOGIN_ACCOUNT_REQUEST", loginRequest),
+    takeLatest("GET_USER_PROFILE_REQUEST", getUserProfileRequest),
     takeLatest("LOG_OUT_ACCOUNT_REQUEST", logoutAccountRequest),
     takeLatest("CLEAR_ACCESS_TOKEN", clearAccessToken),
     takeLatest("SIGN_UP_ACCOUNT_REQUEST", watcherSignUpAccountRequest),

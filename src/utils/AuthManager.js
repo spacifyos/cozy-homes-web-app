@@ -1,7 +1,6 @@
 import Storage from "redux-persist/lib/storage";
 
-const AUTHENTICATION_TOKEN = "MyToken";
-const TENANT_USER_TOKEN = "tenantUserToken";
+const AUTHENTICATION_TOKEN = "RoomzToken";
 
 async function setToken(token) {
   try {
@@ -27,35 +26,8 @@ async function retrieveToken() {
   }
 }
 
-async function setTenantUserToken(token) {
-  try {
-    await Storage.setItem(TENANT_USER_TOKEN, token);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function removeTenantUserToken() {
-  try {
-    await Storage.removeItem(TENANT_USER_TOKEN);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function retrieveTenantUserToken() {
-  try {
-    return await Storage.getItem(TENANT_USER_TOKEN);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export default {
   setToken,
   retrieveToken,
   removeToken,
-  setTenantUserToken,
-  retrieveTenantUserToken,
-  removeTenantUserToken,
 };

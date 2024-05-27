@@ -1,4 +1,12 @@
 const Constant = {
+  PHONE_PREFIX: [
+    { name: "Malaysia +60", value: "+60" },
+    { name: "Singapore +65", value: "+65" },
+    { name: "China +86", value: "+86" },
+    { name: "HongKong +852", value: "+852" },
+    { name: "Taiwan +886", value: "+886" },
+  ],
+
   STATE_CODE: [
     { name: "Johor", value: "MY-01" },
     { name: "Kedah", value: "MY-02" },

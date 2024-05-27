@@ -12,6 +12,7 @@ import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -122,8 +123,11 @@ function Home() {
         listingBannerDataLoading={listingBannerDataLoading}
       />
 
-      <div className="body-container pb-4">
-        <FeaturesSection onClickToPropertyListing={onClickToPropertyListing} tags={tagsListing} />
+      <div className="body-container pb-24">
+        <FeaturesSection
+          onClickToPropertyListing={onClickToPropertyListing}
+          tags={tagsListing}
+        />
 
         {/*<ListingSection*/}
         {/*  t={t}*/}

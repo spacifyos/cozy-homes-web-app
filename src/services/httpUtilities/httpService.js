@@ -19,11 +19,11 @@ const setHeaderLanguage = (locale) => {
  */
 const getCommonData = () => apiInstance.get(`${version}/common`);
 
-const loginAccount = (data) => apiInstance.post("/oauth/token", data);
+const signInAccount = (data) => apiInstance.post("/auth/login", data);
 
 const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
-const getUserProfile = () => apiInstance.get("/self");
+const getUserProfile = () => apiInstance.get("/user-profile");
 
 const getListing = () => apiInstance.get("/listing");
 
@@ -46,7 +46,7 @@ export default {
   setHeaderLanguage,
   getCommonData,
   getUserProfile,
-  loginAccount,
+  signInAccount,
   getListing,
   getListingBanner,
   getListingTagOption,

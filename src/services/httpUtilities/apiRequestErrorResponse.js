@@ -1,14 +1,11 @@
 import _ from "lodash";
 import Toast from "@/src/utils/Toast";
-export const httpFunctionErrorResponse = (
-  err,
-  ignoreToast = false,
-) => {
+
+export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   const response = _.get(err, ["response"], "");
   const message = _.get(err, ["message"], "");
   const statusCode = _.get(response, "status", null);
 
-  // handle api error message
   if (!_.isEmpty(response)) {
     const messages = _.get(response, ["data", "message"], "");
 

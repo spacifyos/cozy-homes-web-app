@@ -6,27 +6,27 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useEffect, useState } from "react";
 import _ from "lodash";
+import Constant from "@/src/utils/Constant";
+import { useSelector } from "react-redux";
+import * as authSelector from "@/src/selectors/auth";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import Toast from "@/src/utils/Toast";
+import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
 const SignIn = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const role = _.get(router, ["query", "role"], "");
 
-  const [selectedRole, setSelectedRole] = useState("");
+  const [signInLoading, setSignInLoading] = useState(false);
+  const [signInStatus, setSignInStatus] = useState(false);
 
-  useEffect(() => {
-    if (!_.isEmpty(role)) {
-      setSelectedRole(role);
-    } else {
-      setSelectedRole("tenant");
-    }
-  }, [role]);
-
-  const onClickChangeRole = (selectedRole) => {
-    router.push(`/sign-in?role=${selectedRole}`);
-  };
+  const [selectedRole, setSelectedRole] = useState("tenant");
+  const [phonePrefix, setPhonePrefix] = useState("+60");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
 
   const onClickToAgencySignIn = () => {
     router.push("/agency-sign-in");
@@ -36,13 +36,58 @@ const SignIn = () => {
     router.push("/sign-up");
   };
 
-  const onClickToLogin = () => {
-    router.push("/explore");
+  const onClickToLogin = async () => {
+    if (_.isEmpty(phoneNumber)) {
+      Toast.error("Phone number is required.");
+      return;
+    }
+
+    if (_.isEmpty(password)) {
+      Toast.error("Password is required.");
+      return;
+    }
+
+    const postData = {
+      type: selectedRole,
+      phone_prefix: phonePrefix,
+      phone_suffix: phoneNumber,
+      password: password,
+    };
+
+    await apiRequest.signInRequest(
+      postData,
+      setSignInLoading,
+      setSignInStatus,
+      signInSuccess,
+    );
+  };
+
+  const signInSuccess = (res) => {
+    const authToken = authSelector.getToken(res);
+    console.log(authToken);
+
+    if (!_.isEmpty(authToken)) {
+      AuthManager.setToken(authToken);
+
+      router.push("/my-stay");
+    }
+  };
+
+  const onChangePhonePrefix = (e) => {
+    setPhonePrefix(e.target.value);
+  };
+
+  const onChangePhoneNumber = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
   };
 
   return (
     <CustomHeader hideGoBackButton>
-      <div className="body-container py-4">
+      <div className="body-container pt-4 pb-24">
         <div className="py-6 mb-4">
           <CustomText
             textClassName="primary-text font-bold leading-10"
@@ -82,37 +127,54 @@ const SignIn = () => {
               {t("signIn.iAm")} ...
             </CustomText>
 
-            <div className="grid grid-cols-3 gap-2 mb-8">
+            <div className="grid grid-cols-2 gap-2 mb-8">
               <CustomButton
                 buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
                 buttonText={t("signIn.tenant")}
-                onClick={() => onClickChangeRole("tenant")}
+                onClick={() => setSelectedRole("tenant")}
               />
               <CustomButton
                 buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
                 buttonText={t("signIn.owner")}
-                onClick={() => onClickChangeRole("owner")}
+                onClick={() => setSelectedRole("owner")}
               />
-              <CustomButton
-                buttonClassName="default-btn-outline"
-                buttonText={t("signIn.agency")}
-                onClick={onClickToAgencySignIn}
-              />
+              {/*<CustomButton*/}
+              {/*  buttonClassName="default-btn-outline"*/}
+              {/*  buttonText={t("signIn.agency")}*/}
+              {/*  onClick={onClickToAgencySignIn}*/}
+              {/*/>*/}
             </div>
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input">
-                <option selected>+60 Malaysia</option>
+              <select
+                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                value={phonePrefix}
+                onChange={onChangePhonePrefix}
+              >
+                {_.map(Constant.PHONE_PREFIX, (list) => {
+                  const name = _.get(list, ["name"], "");
+                  const value = _.get(list, ["value"], "");
+
+                  return (
+                    <option key={value} value={value}>
+                      {name}
+                    </option>
+                  );
+                })}
               </select>
 
               <input
-                type="text"
+                value={phoneNumber}
+                onChange={onChangePhoneNumber}
+                type="number"
                 placeholder={t("signIn.phoneNumber")}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
               />
             </div>
 
             <input
+              value={password}
+              onChange={onChangePassword}
               type="password"
               placeholder={t("signIn.password")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
@@ -143,6 +205,8 @@ const SignIn = () => {
             </CustomText>
           </div>
         </div>
+
+        <LoadingOverlay loading={signInLoading} />
       </div>
     </CustomHeader>
   );

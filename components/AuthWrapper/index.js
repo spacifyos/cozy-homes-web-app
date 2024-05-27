@@ -2,23 +2,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthManager from "@/src/utils/AuthManager";
 import _ from "lodash";
+import Toast from "@/src/utils/Toast";
 
 function AuthWrapper(WrappedComponent) {
   const AuthWrapper = (props) => {
     const router = useRouter();
-    const [authToken, setAuthToken] = useState("");
 
-    useEffect(() => {
-      AuthManager.retrieveTenantUserToken().then((value) => {
-        if (_.isEmpty(value)) {
-          router.push({
-            pathname: "/login",
-          });
-        } else {
-          return setAuthToken(value);
-        }
-      });
-    }, [authToken]);
+    AuthManager.retrieveToken().then((value) => {
+      if (_.isEmpty(value)) {
+        Toast.error("You need sign in account.");
+
+        router.push({
+          pathname: "/sign-in",
+        });
+      }
+    });
 
     return <WrappedComponent {...props} />;
   };

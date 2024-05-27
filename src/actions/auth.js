@@ -1,3 +1,17 @@
+export const getUserProfileRequest = () => ({
+  type: "GET_USER_PROFILE_REQUEST",
+});
+
+export const getUserProfileSuccess = (data) => ({
+  type: "GET_USER_PROFILE_SUCCESS",
+  data,
+});
+
+export const getUserProfileFailure = (messages) => ({
+  type: "GET_USER_PROFILE_FAILURE",
+  messages,
+});
+
 export const signUpAccountRequest = (data) => ({
   type: "SIGN_UP_ACCOUNT_REQUEST",
   data,
@@ -24,61 +38,11 @@ export const updateAccessTokenInLocal = (token) => ({
   token,
 });
 
-export const forgetPasswordRequest = (email) => ({
-  type: "auth/FORGET_PASSWORD_REQUEST",
-  email,
-});
-
-export const forgetPasswordSuccess = (messages) => ({
-  type: "FORGET_PASSWORD_SUCCESS",
-  messages,
-});
-
-export const forgetPasswordFailure = (messages) => ({
-  type: "FORGET_PASSWORD_FAILURE",
-  messages,
-});
-
-export const loginWithFacebookRequest = (
-  fbAccessToken,
-  userID,
-  referrerCode
-) => ({
-  type: "auth/LOGIN_WITH_FACEBOOK_REQUEST",
-  fbAccessToken,
-  userID,
-  referrerCode,
-});
-
-export const loginWithFacebookSuccess = (token) => ({
-  type: "LOGIN_WITH_FACEBOOK_SUCCESS",
-  token,
-});
-
-export const loginWithFacebookFailure = (messages) => ({
-  type: "LOGIN_WITH_FACEBOOK_FAILURE",
-  messages,
-});
-
-export const loginAccountRequest = (loginData) => ({
-  type: "LOGIN_ACCOUNT_REQUEST",
-  loginData,
-});
-
-export const loginAccountSuccess = (token) => ({
-  type: "LOGIN_ACCOUNT_SUCCESS",
-  token,
-});
-
-export const loginAccountFailure = (messages) => ({
-  type: "LOGIN_ACCOUNT_FAILURE",
-  messages,
-});
-
 export const rehydrateAuthState = (data) => ({
   type: "auth/REHYDRATE_AUTH_STATE",
   data,
 });
+
 export const logoutAccountRequest = () => ({
   type: "LOG_OUT_ACCOUNT_REQUEST",
 });
@@ -152,7 +116,3 @@ export const postForgetPasswordSuccess = (data) => ({
 export const postForgetPasswordFailure = () => ({
   type: "POST_FORGET_PASSWORD_FAILURE",
 });
-
-export const saveAuth = () => ({
-  type:"SAVE_AUTH"
-})

@@ -1,8 +1,7 @@
 const initialState = {
-  loginRequest: {
-    token: null,
+  userProfile: {
+    data: null,
     loading: false,
-    status: false,
   },
   signUpRequest: {
     data: null,
@@ -13,29 +12,26 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "LOGIN_ACCOUNT_REQUEST":
+    case "GET_USER_PROFILE_REQUEST":
       return {
         ...state,
-        loginRequest: {
+        userProfile: {
           loading: true,
-          status: false,
         },
       };
-    case "LOGIN_ACCOUNT_SUCCESS":
+    case "GET_USER_PROFILE_SUCCESS":
       return {
         ...state,
-        loginRequest: {
-          token: action.token,
+        userProfile: {
+          data: action.data,
           loading: false,
-          status: true,
         },
       };
-    case "LOGIN_ACCOUNT_FAILURE":
+    case "GET_USER_PROFILE_FAILURE":
       return {
         ...state,
-        loginRequest: {
+        userProfile: {
           loading: false,
-          status: false,
         },
       };
 
@@ -64,9 +60,7 @@ export default function (state = initialState, action) {
           status: false,
         },
       };
-    case "SAVE_AUTH": return {
-      ...state,data:"ssssss"
-    }
+
     default:
       return state;
   }
