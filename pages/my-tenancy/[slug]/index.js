@@ -11,12 +11,25 @@ import EAgreement from "@/components/MyTenancy/E-AgreementSection";
 import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
 import { useState } from "react";
 import UnsubscribeAutoPayModal from "@/components/MyTenancy/UnsubscribeAutoPayModal";
+import * as tenancyAction from "@/src/actions/tenancy";
+import * as tenancySelector from "@/src/selectors/tenancy";
+import { useDispatch, useSelector } from "react-redux";
 
 export { getServerSideProps };
 
 const MyTenancy = ({}) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const getTenancyOverviewRequest = (id) =>
+    dispatch(tenancyAction.getTenancyOverviewRequest(id));
+  const tenancyOverviewData = useSelector((state) =>
+    tenancySelector.getBookingOverviewData(state),
+  );
+  const tenancyOverviewLoading = useSelector((state) =>
+    tenancySelector.getTenancyListingLoading(state),
+  );
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -42,8 +55,8 @@ const MyTenancy = ({}) => {
       pageTitle={t("pageTitle.myTenancy")}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      rightButtonIcon={Images.downloadIcon}
-      rightSecondButtonIcon={Images.shareIcon}
+      // rightButtonIcon={Images.downloadIcon}
+      // rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container pb-4">
         <TenancyUserSection t={t} />
@@ -56,16 +69,16 @@ const MyTenancy = ({}) => {
 
         <TenancyFeeDetail t={t} />
 
-        <EAgreement
-          t={t}
-          onClickToAgreementOverview={onClickToAgreementOverview}
-        />
+        {/*<EAgreement*/}
+        {/*  t={t}*/}
+        {/*  onClickToAgreementOverview={onClickToAgreementOverview}*/}
+        {/*/>*/}
 
-        <InsuranceSection t={t} />
+        {/*<InsuranceSection t={t} />*/}
 
-        <UnsubscribeAutoPayModal t={t} />
+        {/*<UnsubscribeAutoPayModal t={t} />*/}
 
-        <SubscribeAutoPayModal t={t} />
+        {/*<SubscribeAutoPayModal t={t} />*/}
       </div>
     </CustomHeader>
   );

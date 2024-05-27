@@ -16,6 +16,7 @@ const TenancyLabel = () => {
     </div>
   );
 };
+
 const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="tenancy-auto-pay-button">
@@ -33,6 +34,7 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
     </div>
   );
 };
+
 const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
@@ -49,11 +51,13 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
         <CustomLabelValue
           label={t("myStay.tenancyCode")}
           value={"Roomz-T123456789"}
+          highlight
         />
-        <AutoPayButton
-          onChangeAutoPay={onChangeAutoPay}
-          isChecked={isChecked}
-        />
+
+        {/*<AutoPayButton*/}
+        {/*  onChangeAutoPay={onChangeAutoPay}*/}
+        {/*  isChecked={isChecked}*/}
+        {/*/>*/}
       </div>
       <div
         className="flex mx-16 justify-center items-center py-4"

@@ -3,6 +3,10 @@ const initialState = {
     data: null,
     loading: false,
   },
+  tenancyOverview: {
+    data: null,
+    loading: false,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -26,6 +30,29 @@ export default function (state = initialState, action) {
       return {
         ...state,
         tenancyListing: {
+          loading: false,
+        },
+      };
+
+    case "GET_TENANCY_OVERVIEW_REQUEST":
+      return {
+        ...state,
+        tenancyOverview: {
+          loading: true,
+        },
+      };
+    case "GET_TENANCY_OVERVIEW_SUCCESS":
+      return {
+        ...state,
+        tenancyOverview: {
+          [action.id]: { data: action.data },
+          loading: false,
+        },
+      };
+    case "GET_TENANCY_OVERVIEW_FAILURE":
+      return {
+        ...state,
+        tenancyOverview: {
           loading: false,
         },
       };

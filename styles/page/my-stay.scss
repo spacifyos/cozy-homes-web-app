@@ -1,5 +1,5 @@
 .user-info-container {
-  @apply flex items-center pr-3;
+  @apply flex items-end pr-3;
 }
 
 .user-info-content {
@@ -11,7 +11,7 @@
 }
 
 .user-info {
-  @apply disable-text font-size-xsmall pl-2 line-clamp-1;
+  @apply font-size-xsmall pl-2 line-clamp-1;
 }
 
 .coin-container {

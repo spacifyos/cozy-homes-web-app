@@ -15,9 +15,26 @@ function* getTenancyListingRequest({}) {
   }
 }
 
+function* getTenancyOverviewRequest({ id }) {
+  try {
+    const response = yield call(api.getBookingOverview, id);
+
+    const { data, code, message } = response.data;
+
+    yield put(tenancyAction.getTenancyOverviewSuccess(id, data));
+  } catch (error) {
+    yield call(
+      httpErrorHelpers,
+      error,
+      tenancyAction.getTenancyOverviewFailure,
+    );
+  }
+}
+
 function* TenancySaga() {
   yield all([
     takeLatest("GET_TENANCY_LISTING_REQUEST", getTenancyListingRequest),
+    takeLatest("GET_TENANCY_OVERVIEW_REQUEST", getTenancyOverviewRequest),
   ]);
 }
 

@@ -115,10 +115,10 @@ const TenancySection = ({
                   highlight
                 />
 
-                <AutoPayButton
-                  onChangeAutoPay={onChangeAutoPay}
-                  isChecked={isChecked}
-                />
+                {/*<AutoPayButton*/}
+                {/*  onChangeAutoPay={onChangeAutoPay}*/}
+                {/*  isChecked={isChecked}*/}
+                {/*/>*/}
               </div>
 
               <div

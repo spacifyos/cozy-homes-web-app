@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 
-const CustomLabelValue = ({
+const   CustomLabelValue = ({
   label,
   value,
   className = "",
@@ -12,7 +12,7 @@ const CustomLabelValue = ({
         {label}
       </CustomText>
       <CustomText
-        textClassName={`font-size-small ${highlight ? "primary-text" : "black-text"}`}
+        textClassName={`font-size-small ${highlight ? "primary-text" : "black-text"} font-bold`}
       >
         {value}
       </CustomText>
