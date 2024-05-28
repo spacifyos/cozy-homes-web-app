@@ -5,16 +5,14 @@ export const getUserProfileData = (auth) =>
 export const getUserProfileLoading = (state) =>
   _.get(state, ["auth", "userProfile", "loading"], false);
 
+export const getSignOutAccountLoading = (state) =>
+  _.get(state, ["auth", "signOutRequest", "loading"], false);
+
 export const getForgetPasswordStatus = (auth) =>
   _.get(auth, ["forgetPasswordStatus"], "");
 export const getUpdatePasswordStatus = (auth) =>
   _.get(auth, ["updatePasswordStatus"], false);
-export const getAuthSignUpLoading = (state) =>
-  _.get(state, ["signUpRequest", "loading"], false);
-export const getAuthSignUpData = (state) =>
-  _.get(state, ["signUpRequest", "data"], null);
-export const getAuthSignUpStatus = (state) =>
-  _.get(state, ["signUpRequest", "status"], false);
+
 export const getPostForgetPasswordStatus = (state) =>
   _.get(state, ["auth", "forgotPassword", "status"], false);
 export const getPostForgetPasswordLoading = (state) =>

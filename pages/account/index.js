@@ -12,7 +12,7 @@ import AuthWrapper from "@/components/AuthWrapper";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import _ from "lodash";
 
@@ -23,6 +23,9 @@ const Account = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const signOutAccountRequest = () =>
+    dispatch(authAction.signOutAccountRequest());
+
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
   const userProfileData = useSelector((state) =>
@@ -31,6 +34,8 @@ const Account = () => {
   const userProfileLoading = useSelector((state) =>
     authSelector.getUserProfileLoading(state),
   );
+
+  const [signOutLoading, setSignOutLoading] = useState(false);
 
   useEffect(() => {
     if (_.isEmpty(userProfileData)) {
@@ -43,7 +48,12 @@ const Account = () => {
   };
 
   const onClickLogout = () => {
-    router.push("/sign-in");
+    setSignOutLoading(true);
+
+    setTimeout(() => {
+      setSignOutLoading(false);
+      signOutAccountRequest();
+    }, 2000);
   };
 
   const onClickToEditProfile = () => {
@@ -152,7 +162,7 @@ const Account = () => {
           </CustomText>
         </div>
 
-        <LoadingOverlay loading={userProfileLoading} />
+        <LoadingOverlay loading={userProfileLoading || signOutLoading} />
       </div>
     </CustomHeader>
   );

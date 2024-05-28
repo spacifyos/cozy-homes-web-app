@@ -12,22 +12,6 @@ export const getUserProfileFailure = (messages) => ({
   messages,
 });
 
-export const signUpAccountRequest = (data) => ({
-  type: "SIGN_UP_ACCOUNT_REQUEST",
-  data,
-});
-
-export const signUpAccountSuccess = (data, success) => ({
-  type: "SIGN_UP_ACCOUNT_SUCCESS",
-  data,
-  success,
-});
-
-export const signUpAccountFailure = (messages) => ({
-  type: "SIGN_UP_ACCOUNT_FAILURE",
-  messages,
-});
-
 export const updateAccessToken = (token) => ({
   type: "UPDATE_ACCESS_TOKEN",
   token,
@@ -43,16 +27,16 @@ export const rehydrateAuthState = (data) => ({
   data,
 });
 
-export const logoutAccountRequest = () => ({
-  type: "LOG_OUT_ACCOUNT_REQUEST",
+export const signOutAccountRequest = () => ({
+  type: "SIGN_OUT_ACCOUNT_REQUEST",
 });
 
-export const logoutAccountSuccess = () => ({
-  type: "LOG_OUT_ACCOUNT_SUCCESS",
+export const signOutAccountSuccess = () => ({
+  type: "SIGN_OUT_ACCOUNT_SUCCESS",
 });
 
-export const logoutAccountFailure = (messages) => ({
-  type: "LOG_OUT_ACCOUNT_FAILURE",
+export const signOutAccountFailure = (messages) => ({
+  type: "SIGN_OUT_ACCOUNT_FAILURE",
   messages,
 });
 

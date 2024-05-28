@@ -4,25 +4,7 @@ import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
 import * as authActions from "@/src/actions/auth";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
-
-function* watcherSignUpAccountRequest({ data, referrerCode }) {
-  try {
-    const response = yield call(api.signUpAccount, data, referrerCode);
-
-    const { success, code, message } = response.data;
-
-    if (code === 200) {
-      yield put(authActions.signUpAccountSuccess(response.data));
-    } else if (code === 202) {
-      yield put(authActions.signUpAccountSuccess(response.data));
-    } else {
-      Toast.error(message);
-      yield put(authActions.signUpAccountFailure());
-    }
-  } catch (error) {
-    yield call(httpErrorHelpers, error, authActions.signUpAccountFailure);
-  }
-}
+import Router from "next/router";
 
 // function* watcherForgetPasswordRequest({ email }, effects) {
 //     const { call, put } = effects;
@@ -54,13 +36,13 @@ function* getUserProfileRequest({}) {
   }
 }
 
-function* logoutAccountRequest(payload) {
+function* signOutAccountRequest() {
   try {
     yield put(authActions.clearAccessToken());
 
-    yield put(authActions.logoutAccountSuccess());
+    yield put(authActions.signOutAccountSuccess());
   } catch (error) {
-    yield call(httpErrorHelpers, error, authActions.logoutAccountFailure);
+    yield call(httpErrorHelpers, error, authActions.signOutAccountFailure);
   }
 }
 
@@ -97,7 +79,7 @@ function* logoutAccountRequest(payload) {
 // }
 //
 function* clearAccessToken() {
-  AuthManager.removeToken().then(() => {});
+  AuthManager.removeToken().then(() => Router.replace("/sign-in"));
 }
 
 //
@@ -155,9 +137,8 @@ function* clearAccessToken() {
 function* authSaga() {
   yield all([
     takeLatest("GET_USER_PROFILE_REQUEST", getUserProfileRequest),
-    takeLatest("LOG_OUT_ACCOUNT_REQUEST", logoutAccountRequest),
+    takeLatest("SIGN_OUT_ACCOUNT_REQUEST", signOutAccountRequest),
     takeLatest("CLEAR_ACCESS_TOKEN", clearAccessToken),
-    takeLatest("SIGN_UP_ACCOUNT_REQUEST", watcherSignUpAccountRequest),
   ]);
 }
 

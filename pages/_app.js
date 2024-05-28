@@ -8,7 +8,6 @@ import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import "react-multi-carousel/lib/styles.css";
-import "react-multi-carousel/lib/styles.css";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-calendar/dist/Calendar.css";

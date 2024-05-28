@@ -3,10 +3,8 @@ const initialState = {
     data: null,
     loading: false,
   },
-  signUpRequest: {
-    data: null,
+  signOutRequest: {
     loading: false,
-    status: false,
   },
 };
 
@@ -35,29 +33,25 @@ export default function (state = initialState, action) {
         },
       };
 
-    case "SIGN_UP_ACCOUNT_REQUEST":
+    case "SIGN_OUT_ACCOUNT_REQUEST":
       return {
         ...state,
-        signUpRequest: {
+        signOutRequest: {
           loading: true,
-          status: false,
         },
       };
-    case "SIGN_UP_ACCOUNT_SUCCESS":
+    case "SIGN_OUT_ACCOUNT_SUCCESS":
       return {
         ...state,
-        signUpRequest: {
-          token: action.token,
+        signOutRequest: {
           loading: false,
-          status: true,
         },
       };
-    case "SIGN_UP_ACCOUNT_FAILURE":
+    case "SIGN_OUT_ACCOUNT_FAILURE":
       return {
         ...state,
-        signUpRequest: {
+        signOutRequest: {
           loading: false,
-          status: false,
         },
       };
 

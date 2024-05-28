@@ -74,6 +74,7 @@ const TenancySection = ({
       <Swiper
         className="mySwiper global-box-shadow global-border-radius cursor-grab primaryWhite-bg-color"
         onSlideChange={onSlideChange}
+        style={{ width: "100%" }}
       >
         {_.map(Array(3), (item) => (
           <SwiperSlide>
