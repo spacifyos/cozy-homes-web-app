@@ -16,6 +16,7 @@ import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
+import CustomPagination from "@/components/CustomPagination";
 
 export { getServerSideProps };
 
@@ -56,6 +57,8 @@ const Search = () => {
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
   });
+
+  const [currentPagination, setCurrentPagination] = useState(1);
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
   const generalTag = listingSelector.getGeneralTag(listingTagOptionData);
@@ -244,6 +247,10 @@ const Search = () => {
     router.push(`/property-overview/${id}`);
   };
 
+  const onPageChange = (pageNumber) => {
+    setCurrentPagination(pageNumber);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.search")}
@@ -288,7 +295,7 @@ const Search = () => {
       {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
 
       <div className="pb-4">
-        <div className="w-full flex gap-5">
+        <div className="w-full flex gap-5 pb-5">
           <div className="w-1/5" ref={amenitiesTarget}>
             <div
               className="fixed"
@@ -357,6 +364,12 @@ const Search = () => {
             )}
           </div>
         </div>
+
+        <CustomPagination
+          totalPages={15}
+          currentPage={currentPagination}
+          onPageChange={onPageChange}
+        />
       </div>
     </CustomHeader>
   );

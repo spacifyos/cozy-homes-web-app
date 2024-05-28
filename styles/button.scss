@@ -292,9 +292,9 @@
 .disable-btn:focus-visible,
 .tag-button:focus-visible,
 .tag-button-active:focus-visible,
-appointment-cancelled-btn:focus-visible,
-appointment-reschedule-btn:focus-visible,
-appointment-confirmed-btn:focus-visible {
+.appointment-cancelled-btn:focus-visible,
+.appointment-reschedule-btn:focus-visible,
+.appointment-confirmed-btn:focus-visible {
   outline: none;
   outline-offset: unset;
   border: none;

@@ -1,3 +1,5 @@
+@import "../utils/color";
+
 .amenities-container::-webkit-scrollbar {
   display: none !important;
 }
@@ -12,4 +14,42 @@
 
 .tag-container {
   overflow-x: scroll;
+}
+
+.join-item {
+  @apply primaryWhite-bg-color global-box-shadow;
+  border-color: $primary-white-color;
+
+  p {
+    @apply disable-text font-size-xxsmall;
+  }
+}
+
+.join-item:hover {
+  @apply primary-bg-color;
+  border-color: $primary-color;
+
+  p {
+    @apply white-text font-size-xxsmall;
+  }
+}
+
+.join .join-item:not(:first-child):not(:last-child) {
+  border-radius: 5px;
+}
+
+.join-item-active {
+  @apply primary-bg-color white-text;
+  border-color: $primary-color;
+
+  p {
+    @apply white-text font-size-xxsmall;
+  }
+}
+
+.join-item:focus-visible,
+.join-item-active:focus-visible {
+  outline: none;
+  outline-offset: unset;
+  border: none;
 }

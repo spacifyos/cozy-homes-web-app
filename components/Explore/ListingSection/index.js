@@ -91,9 +91,9 @@ const ListingSection = ({
         ) : (
           <Carousel
             additionalTransfrom={0}
-            autoPlay
+            // autoPlay
             arrows={false}
-            autoPlaySpeed={3000}
+            // autoPlaySpeed={3000}
             centerMode={false}
             className=""
             containerClass="container"
@@ -116,7 +116,7 @@ const ListingSection = ({
             shouldResetAutoplay
             showDots={false}
             sliderClass=""
-            slidesToSlide={1}
+            slidesToSlide={3}
             swipeable
           >
             {_.map(lists, (item, index) => {

@@ -17,9 +17,12 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
 
   return (
     <div className="my-3">
-      { _.isEmpty(listingBannerData) ? (
+      {_.isEmpty(listingBannerData) ? (
         <div className="flex justify-center items-center relative">
-          <CustomImage src={Images.banner1Image} className="banner-default-image"/>
+          <CustomImage
+            src={Images.banner1Image}
+            className="banner-default-image"
+          />
         </div>
       ) : (
         <div>

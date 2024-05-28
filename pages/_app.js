@@ -8,14 +8,13 @@ import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import "react-multi-carousel/lib/styles.css";
+import "@/styles/globals.scss";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import "react-calendar/dist/Calendar.css";
 import "react-date-picker/dist/DatePicker.css";
 import "@/src/lib/swiper/swiper.css";
 import "@/src/lib/swiper/modules/effect-cards.css";
-import 'swiper/css';
-import "@/styles/globals.scss";
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");
