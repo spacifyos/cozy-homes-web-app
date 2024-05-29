@@ -37,7 +37,7 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = renderPageNumbers();
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center pt-5">
       <div className="join gap-2">
         <CustomButton
           buttonClassName="join-item btn-sm"

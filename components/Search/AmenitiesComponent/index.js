@@ -3,18 +3,24 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import * as listingSelector from "@/src/selectors/listing";
 
-const AmenitiesComponent = ({ list, loading, onClickSelectAmenities }) => {
+const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
+  const screenHeight = window.innerHeight;
+
   return (
     <div
       className="amenities-nav-container"
-      style={{ height: 500, top: 10, borderRadius: "0 10px 10px 0" }}
+      style={{
+        height: screenHeight * 0.65,
+        top: 10,
+        borderRadius: "0 10px 10px 0",
+      }}
     >
       {loading ? (
         <div className="flex justify-center items-center">
           <span className="loading loading-spinner loading-md primary-text"></span>
         </div>
       ) : (
-        _.map(list, (item, index) => {
+        _.map(data, (item, index) => {
           const name = listingSelector.getName(item);
           const icon = listingSelector.getImageUrl(item);
           const code = listingSelector.getCode(item);

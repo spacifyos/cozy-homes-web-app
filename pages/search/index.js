@@ -295,7 +295,7 @@ const Search = () => {
       {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
 
       <div className="pb-4">
-        <div className="w-full flex gap-5 pb-5">
+        <div className="w-full flex gap-5">
           <div className="w-1/5" ref={amenitiesTarget}>
             <div
               className="fixed"
@@ -305,7 +305,7 @@ const Search = () => {
               }}
             >
               <AmenitiesComponent
-                list={newAmenitiesTag}
+                data={newAmenitiesTag}
                 loading={listingTagOptionDataLoading}
                 onClickSelectAmenities={onClickSelectAmenities}
               />
@@ -316,6 +316,7 @@ const Search = () => {
             <div className="flex pb-5 justify-end">
               <CustomSelect
                 hideDefaultOption
+                selectClassName="select-sm min-h-10"
                 styles={{ width: "75%" }}
                 optionList={[
                   {
@@ -365,11 +366,15 @@ const Search = () => {
           </div>
         </div>
 
-        <CustomPagination
-          totalPages={15}
-          currentPage={currentPagination}
-          onPageChange={onPageChange}
-        />
+        {false ? (
+          <CustomPagination
+            totalPages={15}
+            currentPage={currentPagination}
+            onPageChange={onPageChange}
+          />
+        ) : (
+          false
+        )}
       </div>
     </CustomHeader>
   );
