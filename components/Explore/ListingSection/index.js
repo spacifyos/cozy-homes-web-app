@@ -81,7 +81,7 @@ const ListingSection = ({
 
       <div className="gap-1">
         {listingLoading ? (
-          <div className="flex pb-7">
+          <div className="flex">
             {_.map(Array(4), (item, index) => (
               <Skeleton width={105} height={105} key={index} />
             ))}

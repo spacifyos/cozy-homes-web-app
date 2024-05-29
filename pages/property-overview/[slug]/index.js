@@ -25,6 +25,7 @@ import CustomImage from "@/components/CustomImage";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
 import { getSquareFeet } from "@/src/selectors/listing";
+import ImageModal from "@/components/PropertyOverview/ImageModal";
 
 export { getServerSideProps };
 
@@ -98,6 +99,8 @@ const PropertyOverview = ({ id }) => {
     listingPropertyDetailData,
   );
 
+  const [selectedImage, setSelectedImage] = useState(null);
+
   useEffect(() => {
     fetchListingPropertyDetail(id);
   }, [id]);
@@ -151,6 +154,11 @@ const PropertyOverview = ({ id }) => {
     document.getElementById("move_in_cost_modal").showModal();
   };
 
+  const onClickPopupImage = (selectedImage) => {
+    setSelectedImage(selectedImage);
+    document.getElementById("image_modal").showModal();
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.propertyDetail")}
@@ -163,7 +171,10 @@ const PropertyOverview = ({ id }) => {
       // }
     >
       <div className="body-container pb-32">
-        <RoomPicCarousel imageUrl={imageUrl} />
+        <RoomPicCarousel
+          imageUrl={imageUrl}
+          onClickPopupImage={onClickPopupImage}
+        />
 
         <DetailComponent
           propertyName={propertyName}
@@ -243,6 +254,8 @@ const PropertyOverview = ({ id }) => {
           onClickOpenCharges={onClickOpenCharges}
           lists={fees}
         />
+
+        <ImageModal data={selectedImage} />
 
         <CustomModal id="rent_charges_details">
           <CustomText textClassName="font-size-large font-bold pb-2">

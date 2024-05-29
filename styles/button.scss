@@ -15,7 +15,6 @@
 .default-btn:hover {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color;
-  color: $primary-black-color;
   @include custom-button;
 
   p {
@@ -27,7 +26,6 @@
 .default-btn {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color;
-  color: $primary-black-color;
   @include custom-button;
 
   p {

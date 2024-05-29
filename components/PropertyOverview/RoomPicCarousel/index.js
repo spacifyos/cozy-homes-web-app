@@ -4,7 +4,7 @@ import _ from "lodash";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 
-const RoomPicCarousel = ({ imageUrl }) => {
+const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
   const onSlideChange = (value) => {
@@ -18,7 +18,7 @@ const RoomPicCarousel = ({ imageUrl }) => {
       <Swiper
         onSlideChange={onSlideChange}
         className="mySwiper"
-        style={{ margin: 0, width: "100%", cursor: "grabbing" }}
+        style={{ margin: 0, width: "100%", cursor: "pointer" }}
       >
         {_.isEmpty(imageUrl) ? (
           <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
@@ -36,6 +36,7 @@ const RoomPicCarousel = ({ imageUrl }) => {
                   src={item}
                   className="w-full"
                   imageStyle={{ height: 300, objectFit: "cover" }}
+                  onClick={() => onClickPopupImage(item)}
                 />
               </SwiperSlide>
             );
@@ -56,7 +57,7 @@ const RoomPicCarousel = ({ imageUrl }) => {
                 }
               ></div>
             );
-          })}{" "}
+          })}
         </div>
       )}
     </div>

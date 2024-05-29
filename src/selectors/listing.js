@@ -17,6 +17,8 @@ export const getListingTagOptionDataLoading = (state) =>
 
 export const getListingPropertyData = (state) =>
   _.get(state, ["listing", "listingProperty", "data"], null);
+export const getListingPropertyPagination = (state) =>
+  _.get(state, ["listing", "listingProperty", "pagination"], null);
 export const getListingPropertyDataLoading = (state) =>
   _.get(state, ["listing", "listingProperty", "loading"], false);
 

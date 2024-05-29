@@ -2,6 +2,8 @@ import _ from "lodash";
 
 export const getSmartMeterListingData = (state) =>
   _.get(state, ["meter", "smartMeterListing", "data"], null);
+export const getSmartMeterListingPagination = (state) =>
+    _.get(state, ["meter", "smartMeterListing", "pagination"], null);
 export const getSmartMeterListingLoading = (state) =>
   _.get(state, ["meter", "smartMeterListing", "loading"], false);
 
