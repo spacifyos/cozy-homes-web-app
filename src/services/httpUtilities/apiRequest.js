@@ -50,6 +50,21 @@ const signInRequest = async (
   );
 };
 
+const signUpRequest = async (
+  postData,
+  setLoading,
+  setStatus,
+  successCallback,
+) => {
+  await apiRequest(
+    api.signUpAccount(postData),
+    setLoading,
+    setStatus,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
+  signUpRequest,
 };

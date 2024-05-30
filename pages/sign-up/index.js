@@ -4,9 +4,14 @@ import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
-import { ReCaptchaProvider, useReCaptcha } from "next-recaptcha-v3";
-import { useEffect, useState } from "react";
+import { useReCaptcha } from "next-recaptcha-v3";
 import RecaptchaWrapper from "@/components/RecaptchaWrapper";
+import { useEffect, useState } from "react";
+import _ from "lodash";
+import Toast from "@/src/utils/Toast";
+import Constant from "@/src/utils/Constant";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
@@ -15,13 +20,85 @@ const SignUp = () => {
   const router = useRouter();
   const { executeRecaptcha, loaded } = useReCaptcha();
 
+  const [signUpLoading, setSignUpLoading] = useState(false);
+  const [signUpStatus, setSignUpStatus] = useState(false);
+
+  const [nameValue, setNameValue] = useState("");
+  const [phoneValue, setPhoneValue] = useState("");
+  const [countryCode, setCountryCode] = useState("+60");
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+
+  useEffect(() => {
+    if (signUpStatus) {
+      router.replace("my-stay");
+    }
+  }, [signUpStatus]);
+
   const onClickToSignIn = () => {
     router.push("/sign-in");
   };
 
   const handleSubmit = async () => {
-    const token = await executeRecaptcha("form_submit");
-    console.log(token);
+    if (
+      _.isEmpty(nameValue) ||
+      _.isEmpty(passwordValue) ||
+      _.isEmpty(emailValue) ||
+      _.isEmpty(passwordValue) ||
+      _.isEmpty(confirmPasswordValue)
+    ) {
+      return Toast.error("All fields are required.");
+    }
+
+    if (!_.includes(emailValue, "@")) {
+      return Toast.error("Invalid email format, need '@' symbol.");
+    }
+
+    if (!_.isEqual(passwordValue, confirmPasswordValue)) {
+      return Toast.error("Password and Confirm Password not same.");
+    }
+
+    const recaptchaToken = await executeRecaptcha("form_submit");
+
+    const postData = {
+      name: nameValue,
+      phone_prefix: countryCode,
+      phone_suffix: phoneValue,
+      email: emailValue,
+      password: passwordValue,
+      token: recaptchaToken,
+    };
+
+    console.log(postData);
+  };
+
+  const onChangeNameValue = (e) => {
+    setNameValue(e.target.value);
+  };
+
+  const onChangePhoneValue = (e) => {
+    setPhoneValue(e.target.value);
+  };
+
+  const onChangeEmailValue = (e) => {
+    setEmailValue(e.target.value);
+  };
+
+  const onChangePasswordValue = (e) => {
+    setPasswordValue(e.target.value);
+  };
+
+  const onChangeConfirmPasswordValue = (e) => {
+    setConfirmPasswordValue(e.target.value);
+  };
+
+  const onChangeCountryCode = (e) => {
+    setCountryCode(e.target.value);
+  };
+
+  const signUpRequest = async (postData) => {
+    await apiRequest.signUpRequest(postData, setSignUpLoading, setSignUpStatus);
   };
 
   return (
@@ -66,17 +143,34 @@ const SignUp = () => {
               type="text"
               placeholder={t("signUp.yourName")}
               className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              value={nameValue}
+              onChange={onChangeNameValue}
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input">
-                <option selected>+60 Malaysia</option>
+              <select
+                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                value={countryCode}
+                onChange={onChangeCountryCode}
+              >
+                {_.map(Constant.PHONE_PREFIX, (item) => {
+                  const name = _.get(item, ["name"], "");
+                  const value = _.get(item, ["value"], "");
+
+                  return (
+                    <option key={value} value={value}>
+                      {name}
+                    </option>
+                  );
+                })}
               </select>
 
               <input
-                type="text"
-                placeholder={t("signUp.phoneNumber")}
+                type="number"
+                placeholder={t("signUp.phoneNumber") + " (12 345 6789)"}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                value={phoneValue}
+                onChange={onChangePhoneValue}
               />
             </div>
 
@@ -84,18 +178,24 @@ const SignUp = () => {
               type="email"
               placeholder="Your Email"
               className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              value={emailValue}
+              onChange={onChangeEmailValue}
             />
 
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
               className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              value={passwordValue}
+              onChange={onChangePasswordValue}
             />
 
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+              value={confirmPasswordValue}
+              onChange={onChangeConfirmPasswordValue}
             />
 
             <div className="flex justify-center mb-8">
@@ -119,6 +219,8 @@ const SignUp = () => {
             </CustomText>
           </div>
         </div>
+
+        <LoadingOverlay loading={signUpLoading} />
       </div>
     </CustomHeader>
   );
