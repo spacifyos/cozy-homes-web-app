@@ -136,18 +136,26 @@ const MyInvoice = () => {
 
               <div className="flex flex-col gap-3">
                 {_.map(lists, (list, index) => (
-                    <InvoiceComponent
-                        key={index}
-                        item={list}
-                        t={t}
-                        onClick={onClickToOverView}
-                    />
+                  <InvoiceComponent
+                    key={index}
+                    item={list}
+                    t={t}
+                    onClick={onClickToOverView}
+                  />
                 ))}
               </div>
-
             </div>
           );
         })}
+
+        <div className="flex justify-center pb-3">
+          <CustomButton
+            buttonClassName="primary-btn min-h-9 h-9 w-32"
+            buttonText="Load More"
+            textClassName="font-size-xsmall"
+            loading={false}
+          />
+        </div>
 
         <FilterModal
           t={t}

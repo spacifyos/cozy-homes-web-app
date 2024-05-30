@@ -79,20 +79,21 @@ const TenancySection = ({
         {_.map(Array(3), (item) => (
           <SwiperSlide>
             <div className="tenancy-container">
-              <CustomImage
-                src={Images.moreIcon}
-                width={25}
-                height={25}
-                className="absolute right-4 top-3 cursor-pointer"
-                onClick={onClickTenancyViewMore}
-              />
+              {/*<CustomImage*/}
+              {/*  src={Images.moreIcon}*/}
+              {/*  width={25}*/}
+              {/*  height={25}*/}
+              {/*  className="absolute right-4 top-3 cursor-pointer"*/}
+              {/*  onClick={onClickTenancyViewMore}*/}
+              {/*/>*/}
 
               <div className="flex flex-col items-start pr-3">
-                <div className="primary-bg-color p-2 global-border-radius mb-1">
+                <div className="primary-bg-color p-2 global-border-radius mb-1 cursor-pointer">
                   <CustomImage
                     src={Images.buildingIcon}
                     width={35}
                     height={35}
+                    onClick={onClickGoToMyTenancy}
                   />
                 </div>
 
@@ -129,16 +130,16 @@ const TenancySection = ({
                 <RadialProgressComponent t={t} dimensions={dimensions} />
               </div>
 
-              {tenancyViewMore ? (
-                <CustomDropdown
-                  items={[
-                    { title: "Overview", function: onClickGoToMyTenancy },
-                  ]}
-                  top={40}
-                />
-              ) : (
-                false
-              )}
+              {/*{tenancyViewMore ? (*/}
+              {/*  <CustomDropdown*/}
+              {/*    items={[*/}
+              {/*      { title: "Overview", function: onClickGoToMyTenancy },*/}
+              {/*    ]}*/}
+              {/*    top={40}*/}
+              {/*  />*/}
+              {/*) : (*/}
+              {/*  false*/}
+              {/*)}*/}
             </div>
           </SwiperSlide>
         ))}

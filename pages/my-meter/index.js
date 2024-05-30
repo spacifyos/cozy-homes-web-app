@@ -8,6 +8,7 @@ import MeterUsageComponent from "@/components/MyMeter/MeterUsageComponent";
 import * as smartMeterAction from "@/src/actions/meter";
 import * as smartMeterSelector from "@/src/selectors/meter";
 import { useDispatch, useSelector } from "react-redux";
+import CustomButton from "@/components/CustomButton";
 
 export { getServerSideProps };
 
@@ -40,7 +41,7 @@ const MyMeter = () => {
       onClickGoBack={onClickGoBack}
       rightButtonIcon={Images.filterProIcon}
     >
-      <div className="pb-1 global-horizontal-padding flex flex-col gap-3 pb-4">
+      <div className="body-container flex flex-col gap-3 pb-4">
         {_.map(Array(12), (item, index) => (
           <MeterUsageComponent
             t={t}
@@ -48,6 +49,14 @@ const MyMeter = () => {
             onClickToMeterOverview={onClickToMeterOverview}
           />
         ))}
+
+        <div className="flex justify-center">
+          <CustomButton
+            buttonClassName="primary-btn min-h-9 h-9 w-32"
+            buttonText="Load More"
+            textClassName="font-size-xsmall"
+          />
+        </div>
       </div>
     </CustomHeader>
   );

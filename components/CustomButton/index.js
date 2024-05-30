@@ -22,7 +22,7 @@ const CustomButton = ({
       onClick={onClick}
     >
       {loading ? (
-        <span className="loading loading-spinner"></span>
+        <span className="loading loading-spinner white-text"></span>
       ) : !_.isEmpty(buttonText) ? (
         <p className={textClassName}>{buttonText}</p>
       ) : (

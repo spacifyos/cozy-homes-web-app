@@ -6,12 +6,12 @@ import CustomButton from "@/components/CustomButton";
 const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
   return (
     <div className="meter-container">
-      <CustomImage
-        src={Images.moreIcon}
-        width={25}
-        height={25}
-        className="absolute right-4"
-      />
+      {/*<CustomImage*/}
+      {/*  src={Images.moreIcon}*/}
+      {/*  width={25}*/}
+      {/*  height={25}*/}
+      {/*  className="absolute right-4"*/}
+      {/*/>*/}
 
       <div className="flex items-center pb-1">
         <div
