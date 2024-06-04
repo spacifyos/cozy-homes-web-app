@@ -54,7 +54,7 @@ const CustomInput = ({
           autoFocus={autoFocus}
           value={value}
           onChange={onChange}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
         />
         {!_.isEmpty(rightIcon) ? (
           <CustomImage

@@ -53,11 +53,7 @@ const SignIn = () => {
       password: password,
     };
 
-    await apiRequest.signInRequest(
-      postData,
-      setSignInLoading,
-      signInSuccess,
-    );
+    await apiRequest.signInRequest(postData, setSignInLoading, signInSuccess);
   };
 
   const signInSuccess = (res) => {
@@ -81,6 +77,13 @@ const SignIn = () => {
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
+  };
+
+  const handleKeyDown = async (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      await onClickToLogin();
+    }
   };
 
   return (
@@ -176,6 +179,7 @@ const SignIn = () => {
               type="password"
               placeholder={t("signIn.password")}
               className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+              onKeyDown={handleKeyDown}
             />
 
             <div className="flex justify-center">
