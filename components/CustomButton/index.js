@@ -19,7 +19,7 @@ const CustomButton = ({
     <button
       className={`btn ${disable || loading ? "no-animation" : ""} ${buttonClassName}`}
       style={{ ...buttonStyles }}
-      onClick={onClick}
+      onClick={disable ? () => {} : onClick}
     >
       {loading ? (
         <span className="loading loading-spinner white-text"></span>

@@ -25,6 +25,12 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const getUserProfile = () => apiInstance.get("/user-profile");
 
+const postChangePassword = (postData) =>
+  apiInstance.patch("/user-profile/password", postData);
+
+const postEditProfile = (postData) =>
+  apiInstance.patch("/user-profile", postData);
+
 const getListing = () => apiInstance.get("/listing");
 
 const getListingBanner = () => apiInstance.get("/listing/banner");
@@ -46,6 +52,8 @@ export default {
   setHeaderLanguage,
   getCommonData,
   getUserProfile,
+  postChangePassword,
+  postEditProfile,
   signInAccount,
   getListing,
   getListingBanner,

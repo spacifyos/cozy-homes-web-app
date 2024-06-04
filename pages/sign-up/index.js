@@ -21,7 +21,6 @@ const SignUp = () => {
   const { executeRecaptcha, loaded } = useReCaptcha();
 
   const [signUpLoading, setSignUpLoading] = useState(false);
-  const [signUpStatus, setSignUpStatus] = useState(false);
 
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
@@ -29,12 +28,6 @@ const SignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
-
-  useEffect(() => {
-    if (signUpStatus) {
-      router.replace("my-stay");
-    }
-  }, [signUpStatus]);
 
   const onClickToSignIn = () => {
     router.push("/sign-in");
@@ -98,7 +91,15 @@ const SignUp = () => {
   };
 
   const signUpRequest = async (postData) => {
-    await apiRequest.signUpRequest(postData, setSignUpLoading, setSignUpStatus);
+    await apiRequest.signUpRequest(
+      postData,
+      setSignUpLoading,
+      signUpSuccessCallback,
+    );
+  };
+
+  const signUpSuccessCallback = () => {
+    router.replace("my-stay");
   };
 
   return (

@@ -21,7 +21,6 @@ const SignIn = () => {
   const router = useRouter();
 
   const [signInLoading, setSignInLoading] = useState(false);
-  const [signInStatus, setSignInStatus] = useState(false);
 
   const [selectedRole, setSelectedRole] = useState("tenant");
   const [phonePrefix, setPhonePrefix] = useState("+60");
@@ -57,7 +56,6 @@ const SignIn = () => {
     await apiRequest.signInRequest(
       postData,
       setSignInLoading,
-      setSignInStatus,
       signInSuccess,
     );
   };

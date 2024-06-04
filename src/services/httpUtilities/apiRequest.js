@@ -6,14 +6,13 @@ import { apiRequestErrorResponse } from "@/src/services/httpUtilities/apiRequest
 const apiRequest = async (
   api,
   setLoading,
-  setStatus,
-  successCallback,
+  successCallback = () => {},
+  errorCallback = () => {},
   successMessage = "",
   ignoreSuccessMessage = false,
 ) => {
   try {
     setLoading(true);
-    setStatus(false);
     const res = await api;
 
     const data = _.get(res, ["data", "data"], "");
@@ -22,7 +21,6 @@ const apiRequest = async (
 
     if (code === 200 || code === 204) {
       setLoading(false);
-      setStatus(true);
       successCallback(data);
 
       if (!ignoreSuccessMessage) {
@@ -31,40 +29,38 @@ const apiRequest = async (
     }
   } catch (err) {
     setLoading(false);
-    setStatus(false);
+    errorCallback();
     apiRequestErrorResponse(err, false);
   }
 };
 
-const signInRequest = async (
+const signInRequest = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.signInAccount(postData), setLoading, successCallback);
+};
+
+const signUpRequest = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.signUpAccount(postData), setLoading, successCallback);
+};
+
+const postChangePasswordRequest = async (
   postData,
   setLoading,
-  setStatus,
   successCallback,
 ) => {
   await apiRequest(
-    api.signInAccount(postData),
+    api.postChangePassword(postData),
     setLoading,
-    setStatus,
     successCallback,
   );
 };
 
-const signUpRequest = async (
-  postData,
-  setLoading,
-  setStatus,
-  successCallback,
-) => {
-  await apiRequest(
-    api.signUpAccount(postData),
-    setLoading,
-    setStatus,
-    successCallback,
-  );
+const postEditProfileRequest = async (postData, setLoading) => {
+  await apiRequest(api.postEditProfile(postData), setLoading);
 };
 
 export default {
   signInRequest,
   signUpRequest,
+  postChangePasswordRequest,
+  postEditProfileRequest,
 };
