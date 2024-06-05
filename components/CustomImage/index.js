@@ -4,7 +4,7 @@ const CustomImage = ({
   width = 50,
   height = 50,
   imageStyle,
-  onClick,
+  onClick = () => {},
 }) => {
   return (
     <img
