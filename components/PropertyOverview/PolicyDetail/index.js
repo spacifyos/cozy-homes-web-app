@@ -6,7 +6,7 @@ const PolicyDetail = ({ t, loading, data }) => {
   const title = listingSelector.getTitle(data);
 
   return (
-    <div className="pb-2">
+    <div className="mb-5">
       {loading ? (
         <div
           className="flex justify-center items-center"
@@ -15,7 +15,7 @@ const PolicyDetail = ({ t, loading, data }) => {
           <span className="loading loading-spinner loading-lg primary-text"></span>
         </div>
       ) : (
-        <div>
+        <div className="content-container">
           <CustomText textClassName="font-size-xxlarge font-bold pb-2">
             {title}
           </CustomText>

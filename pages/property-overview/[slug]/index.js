@@ -182,7 +182,7 @@ const PropertyOverview = ({ id }) => {
           address={address}
         />
 
-        <div className="grid grid-cols-6 gap-3 items-center pb-7">
+        <div className="grid grid-cols-6 gap-3 items-center pb-5">
           <CustomButton
             icon={
               _.isEqual(selectDetail, Constant.TENANCY)

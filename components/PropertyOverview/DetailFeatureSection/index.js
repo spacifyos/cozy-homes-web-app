@@ -28,7 +28,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2 pb-7">
+    <div className="grid grid-cols-4 gap-2 pb-5">
       {_.map(lists, (list, index) => {
         return (
           <div

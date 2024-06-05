@@ -5,7 +5,7 @@ import FacilitiesComponent from "@/components/PropertyOverview/FacilitiesCompone
 
 const Facilities = ({ t, facilitiesList }) => {
   return (
-    <div className="pb-7">
+    <div className="mb-5 content-container">
       <CustomText textClassName="section-title">
         {t("propertyDetail.facilities")}
       </CustomText>

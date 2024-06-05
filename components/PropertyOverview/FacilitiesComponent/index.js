@@ -7,7 +7,7 @@ const FacilitiesComponent = ({ item }) => {
   const icon = listingSelector.getImageUrl(item);
 
   return (
-    <div className="flex gap-2 p-2 w-1/2">
+    <div className="flex gap-2 py-2 w-1/2">
       <CustomImage src={icon} imageStyle={{ width: 20, height: 20 }} />
 
       <CustomText textClassName="disable-text font-size-xsmall">
