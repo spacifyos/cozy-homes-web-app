@@ -16,7 +16,7 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
       <CustomImage
         src={_.isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
         width="100%"
-        className="rounded-2xl mb-1 global-box-shadow"
+        className="rounded-2xl mb-1 global-box-shadow primaryWhite-bg-color"
         imageStyle={{ objectFit: "cover", height: 150 }}
         onClick={() => onClickToPropertyOverview(propertyId)}
       />
