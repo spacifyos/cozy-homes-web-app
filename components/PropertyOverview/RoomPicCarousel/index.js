@@ -9,7 +9,6 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
 
   const onSlideChange = (value) => {
     const activeIndex = _.get(value, ["activeIndex"], 0);
-
     setSelectedSlide(activeIndex);
   };
 
