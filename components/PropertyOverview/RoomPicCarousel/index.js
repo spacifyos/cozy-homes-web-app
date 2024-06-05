@@ -23,7 +23,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
         {_.isEmpty(imageUrl) ? (
           <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
             <CustomImage
-              src={Images.listingDefaultImage}
+              src={Images.imageNotFound}
               className="w-full"
               imageStyle={{ height: 300, objectFit: "cover" }}
             />

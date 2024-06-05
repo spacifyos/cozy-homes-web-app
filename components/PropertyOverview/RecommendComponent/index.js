@@ -53,7 +53,7 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
               {/*</div>*/}
 
               <CustomImage
-                src={_.isEmpty(image) ? Images.listingDefaultImage : image}
+                src={_.isEmpty(image) ? Images.imageNotFound : image}
                 imageStyle={{ height: 150, width: "100%", objectFit: "cover" }}
                 className=" rounded-2xl global-box-shadow"
               />
