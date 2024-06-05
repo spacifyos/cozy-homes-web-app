@@ -15,6 +15,8 @@ import "react-calendar/dist/Calendar.css";
 import "react-date-picker/dist/DatePicker.css";
 import "@/src/lib/swiper/swiper.css";
 import "@/src/lib/swiper/modules/effect-cards.css";
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 function App({ Component, pageProps }) {
   const { t } = useTranslation("common");
@@ -35,7 +37,7 @@ function App({ Component, pageProps }) {
           style={{ backgroundColor: Color.primaryBgColor }}
         >
           <div
-            style={{ maxWidth: 500 }}
+            style={{ maxWidth: 500, zIndex: 1 }}
             className={
               "primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
             }

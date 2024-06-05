@@ -19,7 +19,7 @@ const AgentSection = ({
   const picContactNumber = listingSelector.getContactNumber(data);
 
   return (
-    <div className="agent-section-container">
+    <div className="agent-section-container z-10">
 
       <div
         className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "

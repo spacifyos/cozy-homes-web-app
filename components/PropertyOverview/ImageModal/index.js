@@ -19,7 +19,7 @@ const ImageModal = ({ data }) => {
       {/*      <SwiperSlide style={{ display: "flex", justifyContent: "center" }}>*/}
       <CustomImage
         src={data}
-        imageStyle={{ width: "100%", objectFit: "contain" }}
+        imageStyle={{ width: "100%", height: "80vh", objectFit: "contain" }}
       />
       {/*      </SwiperSlide>*/}
       {/*    );*/}

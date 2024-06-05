@@ -1,5 +1,5 @@
 const CustomImage = ({
-  className,
+  className = "",
   src,
   width = 50,
   height = 50,

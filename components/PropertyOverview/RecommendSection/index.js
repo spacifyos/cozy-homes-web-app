@@ -7,7 +7,7 @@ const RecommendSection = ({
   onClickToPropertyOverview,
 }) => {
   return (
-    <div className="pb-2">
+    <div className="pb-1">
       <CustomText textClassName="section-title">
         {t("propertyDetail.recommend")}
       </CustomText>
