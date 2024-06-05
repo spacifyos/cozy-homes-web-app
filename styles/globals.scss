@@ -164,3 +164,7 @@ body {
 .global-border {
   border: 1px solid #e0ecff;
 }
+
+::-webkit-scrollbar-thumb {
+  background: $disable-color;
+}
