@@ -1,7 +1,8 @@
 @import "../utils/color";
 
-.swiper {
+.explore-banner {
   width: 300px;
+  height: 300px;
   //height: 320px;
 }
 
@@ -10,7 +11,7 @@
 }
 
 @media screen and (max-width: 470px) {
-  .swiper {
+  .explore-banner {
     width: 280px;
   }
 
@@ -20,7 +21,7 @@
 }
 
 @media screen and (max-width: 450px) {
-  .swiper {
+  .explore-banner {
     width: 260px;
   }
 
@@ -30,7 +31,7 @@
 }
 
 @media screen and (max-width: 400px) {
-  .swiper {
+  .explore-banner {
     width: 240px;
   }
 
@@ -39,7 +40,7 @@
   }
 }
 
-.swiper-slide {
+.explore-banner .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;

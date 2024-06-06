@@ -31,14 +31,21 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
             effect={"cards"}
             grabCursor={true}
             modules={[EffectCards]}
-            className="mySwiper"
+            className="mySwiper explore-banner"
           >
             {_.map(listingBannerData, (item, index) => {
               const image = _.get(item, ["image_url"], "");
 
               return (
-                <SwiperSlide key={index}>
-                  <CustomImage src={image} width={320} />
+                <SwiperSlide key={index} style={{}}>
+                  <CustomImage
+                    src={image}
+                    imageStyle={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
                 </SwiperSlide>
               );
             })}
