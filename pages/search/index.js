@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import _ from "lodash";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
@@ -46,6 +46,8 @@ const Search = () => {
     listingSelector.getListingPropertyDataLoading(state),
   );
 
+  const [isKeywordTyping, setIsKeywordTyping] = useState(false);
+  const [isCityTyping, setIsCityTyping] = useState(false);
   const [dimensions, setDimensions] = useState(0);
   const [scrollTop, setScrollTop] = useState(187); //235
   const [newAmenitiesTag, setNewAmenitiesTag] = useState([]);
@@ -197,7 +199,25 @@ const Search = () => {
 
   const onChangeKeywordValue = (e) => {
     setKeywordValue(e.target.value);
+    setIsKeywordTyping(true);
   };
+
+  const handleKeywordTypingStopped = useCallback(() => {
+    setIsKeywordTyping(false);
+    onClickSubmitKeyword();
+  }, [keywordValue]);
+
+  useEffect(() => {
+    if (isKeywordTyping) {
+      const handler = setTimeout(() => {
+        handleKeywordTypingStopped();
+      }, 1000);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }
+  }, [keywordValue, isKeywordTyping, handleKeywordTypingStopped]);
 
   const onClickSubmitKeyword = () => {
     setSelectedFilterParams((prevState) => {
@@ -221,7 +241,25 @@ const Search = () => {
 
   const onChangeCityValue = (e) => {
     setCityValue(e.target.value);
+    setIsCityTyping(true);
   };
+
+  const handleCityTypingStopped = useCallback(() => {
+    setIsCityTyping(false);
+    onClickSubmitCity();
+  }, [cityValue]);
+
+  useEffect(() => {
+    if (isCityTyping) {
+      const handler = setTimeout(() => {
+        handleCityTypingStopped();
+      }, 1000);
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }
+  }, [cityValue, isCityTyping, handleCityTypingStopped]);
 
   const onClickSubmitCity = () => {
     setSelectedFilterParams((prevState) => {

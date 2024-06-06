@@ -16,6 +16,7 @@ const CustomInput = ({
   value,
   onChange,
   onClickRightIcon,
+  ...props
 }) => {
   const inputRef = useRef(null);
 
@@ -55,6 +56,7 @@ const CustomInput = ({
           value={value}
           onChange={onChange}
           onKeyDown={handleKeyPress}
+          {...props}
         />
         {!_.isEmpty(rightIcon) ? (
           <CustomImage
