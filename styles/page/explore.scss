@@ -3,7 +3,6 @@
 .explore-banner {
   width: 300px;
   height: 300px;
-  //height: 320px;
 }
 
 .banner-default-image {
@@ -13,6 +12,7 @@
 @media screen and (max-width: 470px) {
   .explore-banner {
     width: 280px;
+    height: 280px;
   }
 
   .banner-default-image {
@@ -23,6 +23,7 @@
 @media screen and (max-width: 450px) {
   .explore-banner {
     width: 260px;
+    height: 260px;
   }
 
   .banner-default-image {
@@ -33,6 +34,7 @@
 @media screen and (max-width: 400px) {
   .explore-banner {
     width: 240px;
+    height: 240px;
   }
 
   .banner-default-image {
