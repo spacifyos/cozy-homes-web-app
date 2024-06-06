@@ -47,7 +47,7 @@ const OtpVerification = () => {
         </CustomText>
 
         <CustomText textClassName="pb-5 text-center">
-          Enter the 4 digit code that we sent you on your mobile number.
+          Enter the 6 digit code that we sent you on your mobile number.
         </CustomText>
 
         <CustomText textClassName="pb-5 font-size-small disable-text text-center">
