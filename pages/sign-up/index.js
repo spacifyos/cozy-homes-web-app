@@ -168,7 +168,7 @@ const SignUp = () => {
 
               <input
                 type="number"
-                placeholder={t("signUp.phoneNumber") + " (12 345 6789)"}
+                placeholder={"12 345 6789"}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
                 value={phoneValue}
                 onChange={onChangePhoneValue}

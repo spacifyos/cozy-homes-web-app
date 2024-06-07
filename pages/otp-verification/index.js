@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
+import { useRouter } from "next/router";
 
 const OtpVerification = () => {
+  const router = useRouter();
   const initialTime = 60;
 
   const [otp, setOtp] = useState("");
@@ -36,11 +38,15 @@ const OtpVerification = () => {
 
   const onClickSubmit = () => {};
 
+  const onClickGoBack = () => {
+    router.back();
+  };
+
   return (
-    <CustomHeader hideGoBackButton>
+    <CustomHeader onClickGoBack={onClickGoBack}>
       <div className="body-container py-4 flex flex-col items-center overflow-hidden">
         <CustomText
-          textClassName="primary-text font-bold leading-10 py-5 text-center"
+          textClassName="primary-text font-bold leading-10 pb-5 text-center"
           styles={{ fontSize: 34 }}
         >
           Otp Verification

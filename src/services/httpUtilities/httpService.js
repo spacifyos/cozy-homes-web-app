@@ -23,6 +23,8 @@ const signInAccount = (data) => apiInstance.post("/auth/login", data);
 
 const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
+const postOtpRequest = (data) => apiInstance.post("/otp", data);
+
 const getUserProfile = () => apiInstance.get("/user-profile");
 
 const postChangePassword = (postData) =>
