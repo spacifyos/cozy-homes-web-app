@@ -2,8 +2,19 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
+import * as listingSelector from "@/src/selectors/listing";
 
-const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
+const RentChargesSection = ({
+  openCharges,
+  onClickOpenCharges,
+  moveInFees,
+  title,
+}) => {
+  const feesLists = listingSelector.getFeesItemOthers(moveInFees);
+  const rentChargesLists = listingSelector.getFeesItemRentCharges(moveInFees);
+  const rentCharges = listingSelector.getTotalCostRentCharges(moveInFees);
+  const totalMoveInCost = listingSelector.getTotalCostFull(moveInFees);
+
   return (
     <div
       className="col-span-6 mt-3 flex flex-col primaryWhite-bg-color p-4 global-box-shadow"
@@ -14,10 +25,10 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
 
         <div className="flex flex-col pl-2">
           <CustomText textClassName="font-bold primary-text font-size-large">
-            Room for Rent
+            {_.isEmpty(title) ? "-" : title}
           </CustomText>
           <CustomText textClassName="font-light font-size-small disable-text">
-            Hosted by Sky Sanctuary
+            Hosted by Spacify
           </CustomText>
         </div>
       </div>
@@ -55,7 +66,7 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
             />
           </div>
 
-          <CustomText>RM756.00</CustomText>
+          <CustomText>RM{rentCharges}</CustomText>
         </div>
         <div className="collapse-content p-0">
           <div className="flex items-center pt-1">
@@ -63,6 +74,7 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
               src={Images.infoIcon}
               height={20}
               width={20}
+              className="cursor-pointer"
               onClick={() =>
                 document.getElementById("rent_charges_details").showModal()
               }
@@ -75,9 +87,9 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
             </CustomText>
           </div>
 
-          {_.map(lists, (item, index) => {
-            const title = _.get(item, ["title"], "");
-            const value = _.get(item, ["value"], "");
+          {_.map(rentChargesLists, (rentChargesList, index) => {
+            const label = listingSelector.getLabel(rentChargesList);
+            const value = listingSelector.getAmount(rentChargesList);
 
             return (
               <ul className="pl-7" key={index}>
@@ -86,7 +98,7 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
                     styles={{ color: "#1E1E1E" }}
                     textClassName="font-light font-size-small"
                   >
-                    - {title}
+                    - {label}
                   </CustomText>
                   <CustomText
                     styles={{ color: "#1E1E1E" }}
@@ -101,18 +113,19 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
         </div>
       </div>
 
-      <div className="flex justify-between items-center pb-1">
-        <CustomText textClassName="font-bold pr-2">Move In Fee</CustomText>
-        <CustomText>RM300.00</CustomText>
-      </div>
-      <div className="flex justify-between items-center pb-1">
-        <CustomText textClassName="font-bold pr-2">Security Deposit</CustomText>
-        <CustomText>RM1,400.00</CustomText>
-      </div>
-      <div className="flex justify-between items-center">
-        <CustomText textClassName="font-bold pr-2">Key Deposit</CustomText>
-        <CustomText>RM200.00</CustomText>
-      </div>
+      {_.isEmpty(feesLists)
+        ? false
+        : _.map(feesLists, (fessList) => {
+            const label = listingSelector.getLabel(fessList);
+            const value = listingSelector.getAmount(fessList);
+
+            return (
+              <div className="flex justify-between items-center pb-1">
+                <CustomText textClassName="font-bold pr-2">{label}</CustomText>
+                <CustomText>RM{value}</CustomText>
+              </div>
+            );
+          })}
 
       <div
         className="divider-line"
@@ -124,7 +137,7 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
           Total Move-in Cost
         </CustomText>
         <CustomText textClassName="primary-text font-bold">
-          RM2,656.00
+          RM{totalMoveInCost}
         </CustomText>
       </div>
 
@@ -134,27 +147,28 @@ const RentChargesSection = ({ openCharges, onClickOpenCharges, lists }) => {
             type="radio"
             name="is_pay_partial"
             value="full"
+            checked
             className="radio booking-radio mr-2"
           />
           <CustomText>Pay in Full</CustomText>
         </div>
 
-        <CustomText>RM2,656.00</CustomText>
+        <CustomText>RM{totalMoveInCost}</CustomText>
       </div>
 
-      <div className="flex justify-between items-center pt-2">
-        <div className="flex items-center">
-          <input
-            type="radio"
-            name="is_pay_partial"
-            value="partial"
-            className="radio booking-radio mr-2"
-          />
-          <CustomText>Pay in Partial</CustomText>
-        </div>
+      {/*<div className="flex justify-between items-center pt-2">*/}
+      {/*  <div className="flex items-center">*/}
+      {/*    <input*/}
+      {/*      type="radio"*/}
+      {/*      name="is_pay_partial"*/}
+      {/*      value="partial"*/}
+      {/*      className="radio booking-radio mr-2"*/}
+      {/*    />*/}
+      {/*    <CustomText>Pay in Partial</CustomText>*/}
+      {/*  </div>*/}
 
-        <CustomText>RM1,328.00</CustomText>
-      </div>
+      {/*  <CustomText>RM1,328.00</CustomText>*/}
+      {/*</div>*/}
     </div>
   );
 };

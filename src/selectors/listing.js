@@ -55,6 +55,7 @@ export const getCode = (state) => _.get(state, ["code"], "");
 export const getDescription = (state) => _.get(state, ["description"], "");
 export const getRental = (state) => _.get(state, ["rental"], "");
 export const getFees = (state) => _.get(state, ["fees"], "");
+export const getMoveInFees = (state) => _.get(state, ["move_in_fees"], null);
 export const getRecommended = (state) => _.get(state, ["recommended"], []);
 export const getFacilities = (state) => _.get(state, ["facilities"], []);
 export const getBathroom = (state) => _.get(state, ["bathroom_type"], "");
@@ -68,6 +69,7 @@ export const getPicMemberStartDate = (state) =>
   _.get(state, ["pic_member_start_date"], new Date());
 export const getPicName = (state) => _.get(state, ["pic_name"], "");
 export const getLabel = (state) => _.get(state, ["label"], "");
+export const getValue = (state) => _.get(state, ["value"], "");
 export const getAmount = (state) => _.get(state, ["amount"], "");
 export const getContactNumber = (state) => _.get(state, ["contact_number"], "");
 export const getHtmlContent = (state) => _.get(state, ["html_content"], "");
@@ -84,4 +86,5 @@ export const getTotalCostRentCharges = (state) =>
 export const getTotalCostFull = (state) =>
   _.get(state, ["total_cost", "full"], "");
 export const getFeesTotalCostFull = (state) =>
-  _.get(state, ["fees", "total_cost", "full"], "");
+  _.get(state, ["move_in_fees", "total_cost", "full"], "");
+export const getTenureOption = (state) => _.get(state, ["tenure_options"], []);

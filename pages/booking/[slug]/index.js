@@ -9,7 +9,7 @@ import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
 import { value } from "lodash/seq";
@@ -18,50 +18,140 @@ import RentChargeModal from "@/components/Booking/RentChargeModal";
 import moment from "moment";
 import RentChargesSection from "@/components/Booking/RentChargesSection";
 import BookingDateInput from "@/components/Booking/BookingDateInput";
+import * as listingAction from "@/src/actions/listing";
+import { useDispatch, useSelector } from "react-redux";
+import * as listingSelector from "@/src/selectors/listing";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
+import * as commonAction from "@/src/actions/common";
+import * as commonSelector from "@/src/selectors/common";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import apiInstance from "@/src/services/httpUtilities/httpManager";
+import { useReCaptcha } from "next-recaptcha-v3";
+import RecaptchaWrapper from "@/components/RecaptchaWrapper";
 
 export { getServerSideProps };
 
-const lists = [
-  {
-    title: "First Month Rental",
-    value: "RM100",
-  },
-  {
-    title: "Insurance Extra Charges",
-    value: "RM100",
-  },
-  {
-    title: "Aircond Charges",
-    value: "RM100",
-  },
-  {
-    title: "Water Bill",
-    value: "RM100",
-  },
-];
+const defaultOption = [{ label: "Not option provided", value: "" }];
 
-const Booking = () => {
+const ImageUploading = ({ loading }) => {
+  return loading ? (
+    <div
+      className="flex justify-center items-center absolute"
+      style={{
+        height: 155,
+        width: "100%",
+        backgroundColor: "rgba(255,255,255,0.7)",
+      }}
+    >
+      <span className="loading loading-spinner loading-lg primary-text"></span>
+    </div>
+  ) : (
+    false
+  );
+};
+
+const Booking = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const formRef = useRef();
+  const dispatch = useDispatch();
+  const { executeRecaptcha, loaded } = useReCaptcha();
 
+  const getListingPropertyDetailRequest = (id) =>
+    dispatch(listingAction.getListingPropertyDetailRequest(id));
+  const listingPropertyDetailData = useSelector((state) =>
+    listingSelector.getListingPropertyDetailData(state, id),
+  );
+  const listingPropertyDetailDataLoading = useSelector((state) =>
+    listingSelector.getListingPropertyDetailDataLoading(state),
+  );
+
+  const getSelectOptionRequest = () =>
+    dispatch(commonAction.getSelectOptionRequest());
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const selectOptionDataLoading = useSelector((state) =>
+    commonSelector.getSelectOptionDateLoading(state),
+  );
+
+  const [getGalleryLinkLoading, setGetGalleryLinkLoading] = useState(false);
+  const [frontIcUploading, setFrontIcUploading] = useState(false);
+  const [backIcUploading, setBackIcUploading] = useState(false);
   const [openCharges, setOpenCharges] = useState(false);
-  const [emergencyContactNumber, setEmergencyContactNumber] = useState([0]);
+  const [openModalCharges, setOpenModalCharges] = useState(false);
+  const [emergencyContactNumber, setEmergencyContactNumber] = useState(
+    Array(2),
+  );
   const [icFrontBase64, setIcFrontBase64] = useState("");
+  const [frontIcData, setFrontIcData] = useState([]);
   const [icBackBase64, setIcBackBase64] = useState("");
+  const [backIcData, setBackIcData] = useState([]);
   const [isReadAgree, setIsReadAgree] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [otpToken, setOtpToken] = useState("");
 
+  const title = listingSelector.getTitle(listingPropertyDetailData);
+  const rental = listingSelector.getRental(listingPropertyDetailData);
+  const propertyName = listingSelector.getPropertyName(
+    listingPropertyDetailData,
+  );
+  const unitRoomName = listingSelector.getUnitRoomName(
+    listingPropertyDetailData,
+  );
+  const address = listingSelector.getAddress(listingPropertyDetailData);
+  const totalMoveInCost = listingSelector.getFeesTotalCostFull(
+    listingPropertyDetailData,
+  );
+  const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
+  const tenureOption = listingSelector.getTenureOption(
+    listingPropertyDetailData,
+  );
+  const feesList = listingSelector.getFees(listingPropertyDetailData);
+
+  const countryOption = commonSelector.getCountry(selectOptionData);
+  const genderOption = commonSelector.getGender(selectOptionData);
+  const idTypeOption = commonSelector.getIdType(selectOptionData);
+  const phonePrefix = commonSelector.getPhonePrefix(selectOptionData);
+  const nationalityOption = commonSelector.getNationality(selectOptionData);
+  const raceOption = commonSelector.getRace(selectOptionData);
+  const stateOption = commonSelector.getState(selectOptionData);
+
+  useEffect(() => {
+    if (_.isEmpty(selectOptionData)) {
+      fetchSelectOption();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (_.isEmpty(listingPropertyDetailData)) {
+      fetchListingPropertyDetail(id);
+    }
+  }, [id]);
+
+  const fetchListingPropertyDetail = (id) => {
+    getListingPropertyDetailRequest(id);
+  };
+
+  const fetchSelectOption = () => {
+    getSelectOptionRequest();
+  };
+
   const onClickOpenCharges = () => {
     setOpenCharges(!openCharges);
+  };
+
+  const onClickOpenModalCharges = () => {
+    setOpenModalCharges(!openModalCharges);
   };
 
   const onClickGoBack = () => {
     router.back();
   };
 
-  const onClickBooking = (id) => {
+  const onClickBooking = async (e, id) => {
+    e.preventDefault();
     const currentForm = formRef && formRef.current;
     const newErrors = {};
 
@@ -82,6 +172,11 @@ const Booking = () => {
       "applicant_postcode",
       "applicant_country",
       "applicant_state",
+      "emergency_contacts_name_1",
+      "emergency_contacts_relationship_1",
+      "emergency_contacts_prefix_1",
+      "emergency_contacts_suffix_1",
+      "emergency_contacts_email_1",
       "otp",
     ];
 
@@ -91,22 +186,26 @@ const Booking = () => {
       }
     });
 
-    // Emergency contact validation
-    _.forEach(emergencyContactNumber, (item, index) => {
-      const emergencyFields = [
-        `applicant_emergency_name${index + 1}`,
-        `applicant_emergency_relationship${index + 1}`,
-        `applicant_emergency_area_code${index + 1}`,
-        `applicant_emergency_phone_number${index + 1}`,
-        `applicant_emergency_email${index + 1}`,
-      ];
+    const optionalFields = [
+      "emergency_contacts_name_2",
+      "emergency_contacts_relationship_2",
+      "emergency_contacts_suffix_2",
+      "emergency_contacts_email_2",
+    ];
 
-      emergencyFields.forEach((field) => {
-        if (_.isEmpty(currentForm[field].value)) {
-          newErrors[field] = `${currentForm[field].title} is required`;
+    const anyFieldNotEmpty = _.some(
+      optionalFields,
+      (optionalField) => !_.isEmpty(currentForm[optionalField].value),
+    );
+
+    if (anyFieldNotEmpty) {
+      _.forEach(optionalFields, (optionalField) => {
+        if (_.isEmpty(currentForm[optionalField].value)) {
+          newErrors[optionalField] =
+            `${currentForm[optionalField].title} is required`;
         }
       });
-    });
+    }
 
     setErrorMessage(newErrors);
 
@@ -116,7 +215,9 @@ const Booking = () => {
 
     if (
       !_.includes(currentForm.applicant_email.value, "@") ||
-      !_.includes(currentForm.applicant_emergency_email1.value, "@")
+      !_.includes(currentForm.emergency_contacts_email_1.value, "@") ||
+      (!_.isEmpty(currentForm.emergency_contacts_email_2.value) &&
+        !_.includes(currentForm.emergency_contacts_email_2.value, "@"))
     ) {
       return Toast.error("Email must be include @.");
     }
@@ -125,7 +226,7 @@ const Booking = () => {
       return Toast.error("You must verify your phone number");
     }
 
-    if (_.isEmpty(icFrontBase64) || _.isEmpty(icBackBase64)) {
+    if (_.isEmpty(frontIcData) || _.isEmpty(icBackBase64)) {
       return Toast.error(
         "Please upload the supporting document.(IC or Passport)",
       );
@@ -143,15 +244,14 @@ const Booking = () => {
 
     const postData = {
       listing_id: id,
-      booking_date_from: currentForm.booking_date_from.value,
-      booking_date_to: moment(currentForm.booking_date_from.value)
+      date_from: currentForm.booking_date_from.value,
+      date_to: moment(currentForm.booking_date_from.value)
         .add(_.toInteger(currentForm.tenure_period.value), "months")
         .format("YYYY-MM-DD"),
       applicant_id_type: currentForm.applicant_id_type.value,
       applicant_id_value: currentForm.applicant_id_value.value,
-      applicant_phone_number:
-        currentForm.applicant_area_code.value +
-        currentForm.applicant_phone_number.value,
+      applicant_phone_prefix: currentForm.applicant_area_code.value,
+      applicant_phone_suffix: currentForm.applicant_phone_number.value,
       applicant_email: currentForm.applicant_email.value,
       applicant_name: currentForm.applicant_name.value,
       applicant_race: currentForm.applicant_race.value,
@@ -162,78 +262,153 @@ const Booking = () => {
       applicant_city: currentForm.applicant_city.value,
       applicant_line_1: currentForm.applicant_line_1.value,
       applicant_postcode: currentForm.applicant_postcode.value,
-      applicant_document_front: icFrontBase64,
-      applicant_document_back: icBackBase64,
-      applicant_emergency_contacts: JSON.stringify(
-        _.map(emergencyContactNumber, (item, index) => {
-          return {
-            name: currentForm[`applicant_emergency_name${index + 1}`].value,
-            relationship:
-              currentForm[`applicant_emergency_relationship${index + 1}`].value,
-            phone_number:
-              currentForm[`applicant_emergency_area_code${index + 1}`].value +
-              currentForm[`applicant_emergency_phone_number${index + 1}`].value,
-            email: currentForm[`applicant_emergency_email${index + 1}`].value,
-          };
-        }),
-      ),
+      id_front: frontIcData,
+      id_back: backIcData,
+      emergency_contacts_name_1: currentForm.emergency_contacts_name_1.value,
+      emergency_contacts_relationship_1:
+        currentForm.emergency_contacts_relationship_1.value,
+      emergency_contacts_phone_prefix_1:
+        currentForm.emergency_contacts_phone_prefix_1.value,
+      emergency_contacts_phone_suffix_1:
+        currentForm.emergency_contacts_phone_suffix_1.value,
+      emergency_contacts_email_1: currentForm.emergency_contacts_email_1.value,
+      emergency_contacts_name_2: currentForm.emergency_contacts_name_2.value,
+      emergency_contacts_relationship_2:
+        currentForm.emergency_contacts_relationship_2.value,
+      emergency_contacts_phone_prefix_2:
+        currentForm.emergency_contacts_phone_prefix_2.value,
+      emergency_contacts_phone_suffix_2:
+        currentForm.emergency_contacts_phone_suffix_2.value,
+      emergency_contacts_email_2: currentForm.emergency_contacts_email_2.value,
       otp: currentForm.otp.value,
-      otp_token: "",
-      is_zero_deposit: false,
-      is_pay_partial: currentForm.is_pay_partial.value,
-      tenure_period: currentForm.tenure_period.value,
+      otp_token: otpToken,
+      is_pay_partial: false,
+      fee_items: feesList,
     };
 
     console.log(postData);
     // router.push(`/booking/${id}/overview`);
   };
 
-  // console.log(errorMessage);
-
   const onClickToBookAppointment = (id) => {
     router.push(`/property-overview/${id}/book-appointment`);
   };
-  const onClickAddEmergencyContact = () => {
-    setEmergencyContactNumber((prevState) =>
-      _.concat(prevState, _.size(emergencyContactNumber)),
-    );
+
+  // const onClickAddEmergencyContact = () => {
+  //   setEmergencyContactNumber((prevState) =>
+  //     _.concat(prevState, _.size(emergencyContactNumber)),
+  //   );
+  // };
+
+  // const onClickRemoveContact = (number) => {
+  //   if (_.size(emergencyContactNumber) !== 1) {
+  //     const newArray = _.pull(
+  //       emergencyContactNumber,
+  //       _.size(emergencyContactNumber) - 1,
+  //     );
+  //     setEmergencyContactNumber((prevState) => _.union(prevState, newArray));
+  //   }
+  // };
+
+  const fetchGalleryLink = (image, type) => {
+    setGetGalleryLinkLoading(true);
+
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = _.get(res, ["data", "data", "url"], "");
+
+        Toast.success("Get gallery link success.");
+        getGalleryLinkSuccess(url, image, type);
+      })
+      .catch((err) => Toast.error("Get gallery link failure."))
+      .finally(() => setGetGalleryLinkLoading(false));
   };
 
-  const onClickRemoveContact = (number) => {
-    if (_.size(emergencyContactNumber) !== 1) {
-      const newArray = _.pull(
-        emergencyContactNumber,
-        _.size(emergencyContactNumber) - 1,
-      );
-      setEmergencyContactNumber((prevState) => _.union(prevState, newArray));
+  const getGalleryLinkSuccess = (url, image, type) => {
+    if (_.isEqual(type, "front")) {
+      setFrontIcUploading(true);
+    } else {
+      setBackIcUploading(true);
     }
+
+    apiInstance
+      .put(url, image)
+      .then((result) => {
+        Toast.success("Image upload success.");
+        convertToBase64(type, image, url);
+      })
+      .catch((err) => Toast.error("Image upload failure."))
+      .then(() => {
+        if (_.isEqual(type, "front")) {
+          setFrontIcUploading(false);
+        } else {
+          setBackIcUploading(false);
+        }
+      });
   };
 
-  const onChangeFrontICImage = (value) => {
-    convertToBase64("front", value.target.files[0]);
-  };
-
-  const onChangeBackICImage = (value) => {
-    convertToBase64("back", value.target.files[0]);
-  };
-
-  const convertToBase64 = (type, file) => {
-    const isLt2M = file && file.size / 1024 / 1024 < 2;
+  const checkImageSize = (image) => {
+    const isLt2M = image && image.size / 1024 / 1024 < 2;
     if (!isLt2M) {
       Toast.error("Image must smaller than 2MB");
       return;
     }
+  };
 
-    if (file) {
+  const onChangeFrontICImage = (value) => {
+    const image = value.target.files[0];
+
+    checkImageSize(image);
+
+    if (!_.isEmpty(value)) {
+      fetchGalleryLink(image, "front");
+    }
+  };
+
+  const onChangeBackICImage = (value) => {
+    const image = value.target.files[0];
+
+    checkImageSize(image);
+
+    if (!_.isEmpty(value)) {
+      fetchGalleryLink(image, "back");
+    }
+  };
+
+  const convertToBase64 = (type, image, url) => {
+    const name = _.get(image, ["name"], "");
+    const extension = _.split(name, ".");
+    const mimeType = _.get(image, ["type"], "");
+
+    if (image) {
       const reader = new FileReader();
       reader.onload = (e) => {
         if (_.isEqual(type, "front")) {
           setIcFrontBase64(_.get(e, ["target", "result"], ""));
+          setFrontIcData([
+            {
+              type: 2,
+              name: name,
+              extension: extension[1],
+              mime_type: mimeType,
+              path: url,
+            },
+          ]);
         } else {
           setIcBackBase64(_.get(e, ["target", "result"], ""));
+          setBackIcData([
+            {
+              type: 3,
+              name: name,
+              extension: extension[1],
+              mime_type: mimeType,
+              path: url,
+            },
+          ]);
         }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(image);
     } else {
       if (_.isEqual(type, "front")) {
         setIcFrontBase64("");
@@ -245,6 +420,23 @@ const Booking = () => {
 
   const onClickReadAgree = () => {
     setIsReadAgree(!isReadAgree);
+  };
+
+  const onClickOpenWhatsApp = (contactNumber) => {
+    window.open(
+      _.isEmpty(contactNumber)
+        ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
+        : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
+      "_blank",
+    );
+  };
+
+  const onClickOpenMoveInCostModal = () => {
+    document.getElementById("move_in_cost_modal").showModal();
+  };
+
+  const onClickGenerateOtp = async () => {
+    const newToken = await executeRecaptcha("form_submit");
   };
 
   return (
@@ -264,30 +456,33 @@ const Booking = () => {
         </div>
 
         <CustomText textClassName="primary-text font-bold">
-          Room for Rent
+          {_.isEmpty(title) ? "-" : title}
         </CustomText>
         <CustomText textClassName="font-bold pb-3">
-          RM1,100 / Monthly
+          RM{_.isEmpty(rental) ? "-" : rental} / Monthly
         </CustomText>
 
         <CustomText textClassName="font-bold">
-          M Vertica, Kuala Lumpur
+          {_.isEmpty(propertyName) ? "-" : propertyName}
         </CustomText>
         <CustomText textClassName="primary-text font-size-small">
-          A-01-01, Room 2
+          {_.isEmpty(unitRoomName) ? "-" : unitRoomName}
         </CustomText>
         <CustomText textClassName="disable-text font-size-xxsmall">
-          Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala
-          Lumpur, Federal Territory of Kuala Lumpur.
+          {_.isEmpty(address) ? "-" : address}
         </CustomText>
 
-        <form ref={formRef} className="grid grid-cols-6 gap-2">
+        <form
+          ref={formRef}
+          onSubmit={onClickBooking}
+          className="grid grid-cols-6 gap-2"
+        >
           <CustomText textClassName="col-span-4 font-bold pt-3">
             Tenancy Period
           </CustomText>
           <BookingDateInput
             className="col-span-3"
-            placeholder="2023-02-13"
+            placeholder="12/02/2023"
             title="Check in date"
             name="booking_date_from"
             errorMessage={errorMessage.booking_date_from}
@@ -298,12 +493,7 @@ const Booking = () => {
             className="col-span-3"
             placeholder="Tenure Period"
             title="Tenure Period"
-            lists={[
-              { name: "3 months", value: "3" },
-              { name: "6 months", value: "6" },
-              { name: "1 year", value: "12" },
-              { name: "2 years", value: "24" },
-            ]}
+            lists={_.isEmpty(tenureOption) ? defaultOption : tenureOption}
             name="tenure_period"
             errorMessage={errorMessage.tenure_period}
             required
@@ -325,10 +515,7 @@ const Booking = () => {
             className="col-span-2"
             placeholder="Select ID type"
             title="ID Type"
-            lists={[
-              { name: "NRIC", value: "bric" },
-              { name: "Passport", value: "passport" },
-            ]}
+            lists={_.isEmpty(idTypeOption) ? defaultOption : idTypeOption}
             name="applicant_id_type"
             errorMessage={errorMessage.applicant_id_type}
             required
@@ -348,11 +535,7 @@ const Booking = () => {
             placeholder="Select Race"
             title="Race"
             name="applicant_race"
-            lists={[
-              { name: "Malay", value: "melay" },
-              { name: "Chinese", value: "chinese" },
-              { name: "Indian", value: "indian" },
-            ]}
+            lists={_.isEmpty(raceOption) ? defaultOption : raceOption}
             errorMessage={errorMessage.applicant_race}
             required
           />
@@ -361,10 +544,7 @@ const Booking = () => {
             className="col-span-6"
             placeholder="Select Gender"
             title="Gender"
-            lists={[
-              { name: "Male", value: "male" },
-              { name: "Female", value: "female" },
-            ]}
+            lists={_.isEmpty(genderOption) ? defaultOption : genderOption}
             name="applicant_gender"
             errorMessage={errorMessage.applicant_gender}
             required
@@ -383,7 +563,7 @@ const Booking = () => {
             className="col-span-2"
             placeholder="Select Area Code"
             title="Area Code"
-            lists={[{ name: "+60", value: "+60" }]}
+            lists={_.isEmpty(phonePrefix) ? defaultOption : phonePrefix}
             name="applicant_area_code"
             errorMessage={errorMessage.applicant_area_code}
             required
@@ -403,7 +583,9 @@ const Booking = () => {
             className="col-span-6"
             placeholder="Select Nationality"
             title="Nationality"
-            lists={[{ name: "Malaysian", value: "malaysian" }]}
+            lists={
+              _.isEmpty(nationalityOption) ? defaultOption : nationalityOption
+            }
             name="applicant_nationality"
             errorMessage={errorMessage.applicant_nationality}
             required
@@ -444,7 +626,7 @@ const Booking = () => {
             className="col-span-3"
             placeholder="Select Country"
             title="Country"
-            lists={[{ name: "Malaysia", value: "malaysia" }]}
+            lists={_.isEmpty(countryOption) ? defaultOption : countryOption}
             name="applicant_country"
             errorMessage={errorMessage.applicant_country}
             required
@@ -454,14 +636,14 @@ const Booking = () => {
             className="col-span-3"
             placeholder="Select State"
             title="State"
-            lists={[{ name: "Johor", value: "johor" }]}
+            lists={_.isEmpty(stateOption) ? defaultOption : stateOption}
             name="applicant_state"
             errorMessage={errorMessage.applicant_state}
             required
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
-            Emergency Contact Information
+            Emergency Contact Information (Optional)
           </CustomText>
 
           {_.map(emergencyContactNumber, (item, index) => {
@@ -474,49 +656,49 @@ const Booking = () => {
                   {`Contact ${index + 1}`}
                 </CustomText>
 
-                {index === 0 && _.size(emergencyContactNumber) !== 1 ? (
-                  <div
-                    className="col-span-3 cursor-pointer flex justify-end"
-                    onClick={() => onClickRemoveContact(index)}
-                  >
-                    <CustomText textClassName="error-text">Remove</CustomText>
-                  </div>
-                ) : (
-                  false
-                )}
+                {/*{index === 0 && _.size(emergencyContactNumber) !== 1 ? (*/}
+                {/*  <div*/}
+                {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
+                {/*    onClick={() => onClickRemoveContact(index)}*/}
+                {/*  >*/}
+                {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
+                {/*  </div>*/}
+                {/*) : (*/}
+                {/*  false*/}
+                {/*)}*/}
 
                 <BookingInput
                   className="col-span-6"
                   placeholder="your Name"
                   title="Your Name"
-                  name={`applicant_emergency_name${index + 1}`}
+                  name={`emergency_contacts_name_${index + 1}`}
                   errorMessage={
-                    errorMessage[`applicant_emergency_name${index + 1}`]
+                    errorMessage[`emergency_contacts_name_${index + 1}`]
                   }
-                  required
+                  required={index === 0}
                 />
 
                 <BookingInput
                   className="col-span-6"
                   placeholder="Enter Relationship"
                   title="Enter Relationship"
-                  name={`applicant_emergency_relationship${index + 1}`}
+                  name={`emergency_contacts_relationship_${index + 1}`}
                   errorMessage={
-                    errorMessage[`applicant_emergency_relationship${index + 1}`]
+                    errorMessage[`emergency_contacts_relationship_${index + 1}`]
                   }
-                  required
+                  required={index === 0}
                 />
 
                 <BookingSelect
                   className="col-span-2"
                   placeholder="Select Area Code"
                   title="Area Code"
-                  lists={[{ name: "+60", value: "+60" }]}
-                  name={`applicant_emergency_area_code${index + 1}`}
+                  lists={_.isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+                  name={`emergency_contacts_prefix_${index + 1}`}
                   errorMessage={
-                    errorMessage[`applicant_emergency_area_code${index + 1}`]
+                    errorMessage[`emergency_contacts_prefix_${index + 1}`]
                   }
-                  required
+                  required={index === 0}
                 />
 
                 <BookingInput
@@ -524,32 +706,32 @@ const Booking = () => {
                   type="number"
                   placeholder="Phone Number"
                   title="Phone Number"
-                  name={`applicant_emergency_phone_number${index + 1}`}
+                  name={`emergency_contacts_suffix_${index + 1}`}
                   errorMessage={
-                    errorMessage[`applicant_emergency_phone_number${index + 1}`]
+                    errorMessage[`emergency_contacts_suffix_${index + 1}`]
                   }
-                  required
+                  required={index === 0}
                 />
 
                 <BookingInput
                   className="col-span-6"
                   placeholder="Your Email"
                   title="Your Email"
-                  name={`applicant_emergency_email${index + 1}`}
+                  name={`emergency_contacts_email_${index + 1}`}
                   errorMessage={
-                    errorMessage[`applicant_emergency_email${index + 1}`]
+                    errorMessage[`emergency_contacts_email_${index + 1}`]
                   }
-                  required
+                  required={index === 0}
                 />
               </div>
             );
           })}
 
-          <CustomButton
-            buttonText={"+ Add Contact"}
-            buttonClassName="col-span-6 primary-btn"
-            onClick={onClickAddEmergencyContact}
-          />
+          {/*<CustomButton*/}
+          {/*  buttonText={"+ Add Contact"}*/}
+          {/*  buttonClassName="col-span-6 primary-btn"*/}
+          {/*  onClick={onClickAddEmergencyContact}*/}
+          {/*/>*/}
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
             Verification
@@ -568,6 +750,7 @@ const Booking = () => {
           <CustomButton
             buttonText={"Send Code"}
             buttonClassName="primary-btn col-span-6"
+            onClick={onClickGenerateOtp}
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
@@ -588,14 +771,19 @@ const Booking = () => {
           </CustomText>
 
           <div className="col-span-3 flex flex-col items-center">
-            <CustomImage
-              src={_.isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
-              imageStyle={{
-                width: "100%",
-                height: 155,
-                objectFit: "contain",
-              }}
-            />
+            <div className="relative">
+              <ImageUploading loading={frontIcUploading} />
+
+              <CustomImage
+                src={_.isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
+                imageStyle={{
+                  width: "100%",
+                  height: 155,
+                  objectFit: "contain",
+                }}
+              />
+            </div>
+
             <UploadIcButton
               name="front_image"
               icon={Images.uploadIcon}
@@ -608,14 +796,18 @@ const Booking = () => {
             />
           </div>
           <div className="col-span-3 flex flex-col items-center">
-            <CustomImage
-              src={_.isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
-              imageStyle={{
-                width: "100%",
-                height: 155,
-                objectFit: "contain",
-              }}
-            />
+            <div className="relative">
+              <ImageUploading loading={backIcUploading} />
+
+              <CustomImage
+                src={_.isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
+                imageStyle={{
+                  width: "100%",
+                  height: 155,
+                  objectFit: "contain",
+                }}
+              />
+            </div>
 
             <UploadIcButton
               name="back_image"
@@ -632,7 +824,8 @@ const Booking = () => {
           <RentChargesSection
             openCharges={openCharges}
             onClickOpenCharges={onClickOpenCharges}
-            lists={lists}
+            moveInFees={moveInFees}
+            title={title}
           />
 
           <div className="col-span-6 flex items-start px-2 pt-3">
@@ -662,14 +855,32 @@ const Booking = () => {
 
         <AgentSection
           t={t}
+          data={listingPropertyDetailData}
           onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
+          totalMoveInCost={totalMoveInCost}
+          onClickOpenWhatsApp={onClickOpenWhatsApp}
+          onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+        />
+
+        <RentChargeModal />
+
+        <MoveInCostModal
+          openCharges={openModalCharges}
+          onClickOpenModalCharges={onClickOpenModalCharges}
+          lists={moveInFees}
+        />
+
+        <LoadingOverlay
+          loading={
+            listingPropertyDetailDataLoading ||
+            selectOptionDataLoading ||
+            getGalleryLinkLoading
+          }
         />
       </div>
-
-      <RentChargeModal />
     </CustomHeader>
   );
 };
 
-export default withTranslation("common")(Booking);
+export default withTranslation("common")(RecaptchaWrapper(Booking));

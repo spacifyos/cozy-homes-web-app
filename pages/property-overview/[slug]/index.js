@@ -24,8 +24,9 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
-import { getSquareFeet } from "@/src/selectors/listing";
+import { getMoveInFees, getSquareFeet } from "@/src/selectors/listing";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
+import RentChargeModal from "@/components/Booking/RentChargeModal";
 
 export { getServerSideProps };
 
@@ -94,7 +95,7 @@ const PropertyOverview = ({ id }) => {
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
-  const fees = listingSelector.getFees(listingPropertyDetailData);
+  const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
   const totalMoveInCost = listingSelector.getFeesTotalCostFull(
     listingPropertyDetailData,
   );
@@ -102,7 +103,9 @@ const PropertyOverview = ({ id }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    fetchListingPropertyDetail(id);
+    if (_.isEmpty(listingPropertyDetailData)) {
+      fetchListingPropertyDetail(id);
+    }
   }, [id]);
 
   const fetchListingPropertyDetail = (id) => {
@@ -116,7 +119,7 @@ const PropertyOverview = ({ id }) => {
     router.back();
   };
 
-  const onClickOpenCharges = () => {
+  const onClickOpenModalCharges = () => {
     setOpenCharges(!openCharges);
   };
 
@@ -136,14 +139,17 @@ const PropertyOverview = ({ id }) => {
     }
   };
 
-  const onClickBooking = (contactNumber) => {
+  const onClickBooking = () => {
+    router.push(`/booking/${id}`);
+  };
+
+  const onClickOpenWhatsApp = (contactNumber) => {
     window.open(
       _.isEmpty(contactNumber)
         ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
         : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
       "_blank",
     );
-    // router.push(`/booking/1`);
   };
 
   const onClickToPropertyOverview = (id) => {
@@ -242,6 +248,7 @@ const PropertyOverview = ({ id }) => {
 
         <AgentSection
           t={t}
+          onClickOpenWhatsApp={onClickOpenWhatsApp}
           onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
           data={listingPropertyDetailData}
@@ -251,27 +258,13 @@ const PropertyOverview = ({ id }) => {
 
         <MoveInCostModal
           openCharges={openCharges}
-          onClickOpenCharges={onClickOpenCharges}
-          lists={fees}
+          onClickOpenModalCharges={onClickOpenModalCharges}
+          lists={moveInFees}
         />
 
         <ImageModal data={selectedImage} />
 
-        <CustomModal id="rent_charges_details">
-          <CustomText textClassName="font-size-large font-bold pb-2">
-            Rent Charges Details
-          </CustomText>
-          <CustomText textClassName="disable-text font-size-xsmall text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-            dignissim, dui placerat dignissim vestibulum, dolor dui tempus ex,
-            sit amet pulvinar lectus sapien at dui. Proin et lacus sed velit
-            iaculis dictum porttitor quis nisi. Phasellus sodales tincidunt
-            lacus, nec dignissim nulla blandit in. Donec vel turpis id augue
-            dignissim hendrerit vitae eu nulla.  Should you have any inquiries,
-            please contact the owner or agent before proceeding with your
-            payment.
-          </CustomText>
-        </CustomModal>
+        <RentChargeModal />
 
         <LoadingOverlay loading={listingPropertyDetailDataLoading} />
       </div>

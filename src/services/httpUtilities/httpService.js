@@ -18,6 +18,7 @@ const setHeaderLanguage = (locale) => {
  * To get common data
  */
 const getCommonData = () => apiInstance.get(`${version}/common`);
+const getSelectOption = () => apiInstance.get(`/select-options`);
 
 const signInAccount = (data) => apiInstance.post("/auth/login", data);
 
@@ -49,10 +50,16 @@ const getListingCancellation = () => apiInstance.get(`/listing/cancellation`);
 
 const getBookingOverview = (id) => apiInstance.get(`/${id}`);
 
+const postBookingCreate = (postData) =>
+  apiInstance.post(`/booking/create`, postData);
+
+const getGalleryLinkRequest = () => apiInstance.get("/gallery");
+
 export default {
   signUpAccount,
   setHeaderLanguage,
   getCommonData,
+  getSelectOption,
   getUserProfile,
   postChangePassword,
   postEditProfile,
@@ -64,4 +71,6 @@ export default {
   getListingPropertyDetail,
   getListingCancellation,
   getBookingOverview,
+  postBookingCreate,
+  getGalleryLinkRequest,
 };

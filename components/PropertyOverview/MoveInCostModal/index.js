@@ -5,11 +5,13 @@ import Images from "@/src/utils/Image";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const MoveInCostModal = ({ openCharges, onClickOpenCharges, lists }) => {
+const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
   const feesLists = listingSelector.getFeesItemOthers(lists);
   const rentChargesLists = listingSelector.getFeesItemRentCharges(lists);
   const rentCharges = listingSelector.getTotalCostRentCharges(lists);
   const totalMoveInCost = listingSelector.getTotalCostFull(lists);
+
+  const isRentChargesListEmpty = _.isEmpty(rentChargesLists);
 
   return (
     <CustomModal id="move_in_cost_modal">
@@ -21,17 +23,20 @@ const MoveInCostModal = ({ openCharges, onClickOpenCharges, lists }) => {
           className="collapse-title flex justify-between items-center pb-1"
           style={{ padding: 0, minHeight: 20 }}
         >
-          <div className="flex items-center">
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={
+              isRentChargesListEmpty ? () => {} : onClickOpenModalCharges
+            }
+          >
             <CustomText textClassName="font-bold pr-2">Rent Charges</CustomText>
-            {_.isEmpty(rentChargesLists) ? (
+            {isRentChargesListEmpty ? (
               false
             ) : (
               <CustomImage
                 src={!openCharges ? Images.upIcon : Images.downIcon}
                 width={13}
                 height={13}
-                onClick={onClickOpenCharges}
-                className="cursor-pointer"
               />
             )}
           </div>
@@ -86,12 +91,15 @@ const MoveInCostModal = ({ openCharges, onClickOpenCharges, lists }) => {
 
       {_.isEmpty(feesLists)
         ? false
-        : _.map(feesLists, (feesList) => {
+        : _.map(feesLists, (feesList, index) => {
             const label = listingSelector.getLabel(feesList);
             const amount = listingSelector.getAmount(feesList);
 
             return (
-              <div className="flex justify-between items-center pb-1">
+              <div
+                className="flex justify-between items-center pb-1"
+                key={index}
+              >
                 <CustomText textClassName="font-bold pr-2">
                   {_.isEmpty(label) ? "-" : label}
                 </CustomText>

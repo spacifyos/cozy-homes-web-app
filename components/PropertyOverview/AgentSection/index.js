@@ -9,6 +9,7 @@ import _ from "lodash";
 const AgentSection = ({
   t,
   onClickBooking,
+  onClickOpenWhatsApp,
   onClickToBookAppointment,
   data,
   onClickOpenMoveInCostModal,
@@ -20,7 +21,6 @@ const AgentSection = ({
 
   return (
     <div className="agent-section-container z-10">
-
       <div
         className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
         style={{ overflow: "hidden" }}
@@ -54,21 +54,27 @@ const AgentSection = ({
             {/*</CustomText>*/}
           </div>
 
-          {/*<div className="flex gap-3 items-center flex-2 pr-1">*/}
-          {/*  <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
-          {/*    <CustomImage*/}
-          {/*      src={Images.bookingIconActive}*/}
-          {/*      width={28}*/}
-          {/*      onClick={onClickToBookAppointment}*/}
-          {/*    />*/}
-          {/*  </div>*/}
-          {/*  <div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
-          {/*    <CustomImage src={Images.callIcon} width={28} />*/}
-          {/*  </div>*/}
-          {/*  <div className="global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
-          {/*    <CustomImage src={Images.whatsappIcon} width={45} />*/}
-          {/*  </div>*/}
-          {/*</div>*/}
+          <div className="flex gap-3 items-center flex-2 pr-1">
+            {/*<div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
+            {/*  <CustomImage*/}
+            {/*    src={Images.bookingIconActive}*/}
+            {/*    width={28}*/}
+            {/*    onClick={onClickToBookAppointment}*/}
+            {/*  />*/}
+            {/*</div>*/}
+            <a
+              href={`tel:${picContactNumber}`}
+              className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
+            >
+              <CustomImage src={Images.callIcon} width={28} />
+            </a>
+            <div
+              className="global-box-shadow global-border-radius agent-section-icon cursor-pointer"
+              onClick={() => onClickOpenWhatsApp(picContactNumber)}
+            >
+              <CustomImage src={Images.whatsappIcon} width={45} />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 justify-center items-center ">
@@ -92,7 +98,7 @@ const AgentSection = ({
           </div>
           <div
             className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
-            onClick={() => onClickBooking(picContactNumber)}
+            onClick={onClickBooking}
           >
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}

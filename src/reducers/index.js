@@ -5,8 +5,10 @@ import listing from "@/src/reducers/listing";
 import tenancy from "@/src/reducers/tenancy";
 import invoice from "@/src/reducers/invoice";
 import meter from "@/src/reducers/meter";
+import common from "@/src/reducers/common";
 
 export const rootReducers = combineReducers({
+  common,
   auth,
   verification,
   listing,

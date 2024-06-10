@@ -30,12 +30,12 @@ const BookingSelect = ({
             {placeholder}
           </option>
           {_.map(lists, (list) => {
-            const name = _.get(list, ["name"], "");
+            const label = _.get(list, ["label"], "");
             const value = _.get(list, ["value"], "");
 
             return (
               <option key={value} value={value}>
-                {name}
+                {label}
               </option>
             );
           })}

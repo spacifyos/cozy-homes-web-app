@@ -58,9 +58,14 @@ const postEditProfileRequest = async (postData, setLoading) => {
   await apiRequest(api.postEditProfile(postData), setLoading);
 };
 
+const postBookingCreateRequest = async (postData, setLoading) => {
+  await apiRequest(api.postBookingCreate(postData), setLoading);
+};
+
 export default {
   signInRequest,
   signUpRequest,
   postChangePasswordRequest,
   postEditProfileRequest,
+  postBookingCreateRequest,
 };
