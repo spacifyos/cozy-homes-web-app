@@ -59,7 +59,7 @@ const CoinsTransaction = () => {
           </div>
 
           <CustomText textClassName="disable-text font-size-small">
-            {t("account.roomzCoins")}
+            {t("account.spacifyCoins")}
           </CustomText>
 
           <div className="flex items-center">

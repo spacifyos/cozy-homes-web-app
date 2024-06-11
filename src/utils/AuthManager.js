@@ -1,6 +1,6 @@
 import Storage from "redux-persist/lib/storage";
 
-const AUTHENTICATION_TOKEN = "RoomzToken";
+const AUTHENTICATION_TOKEN = "SpacifyToken";
 
 async function setToken(token) {
   try {

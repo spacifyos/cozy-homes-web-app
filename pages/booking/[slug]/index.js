@@ -124,8 +124,6 @@ const Booking = ({ id }) => {
     }
   }, []);
 
-  console.log(listingPropertyDetailData)
-
   useEffect(() => {
     if (_.isEmpty(listingPropertyDetailData)) {
       fetchListingPropertyDetail(id);
@@ -839,7 +837,7 @@ const Booking = ({ id }) => {
               className="cursor-pointer"
             />
             <CustomText textClassName="pl-3 font-bold disable-text">
-              I understand and agree to give Roomz and CTOS the consent to
+              I understand and agree to give Spacify and CTOS the consent to
               process my personal data as per PDPA Act.
             </CustomText>
           </div>

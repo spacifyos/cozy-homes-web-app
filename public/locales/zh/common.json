@@ -42,7 +42,7 @@
   },
   "account": {
     "account": "账户",
-    "roomzCoins": "Roomz 币",
+    "spacifyCoins": "Spacify 币",
     "smartMeterPairing": "智能电表配对",
     "myInvoice": "我的发票",
     "myAppointment": "我的预约",
@@ -62,7 +62,7 @@
     "month": "月"
   },
   "myStay": {
-    "roomzCoins": "Roomz 币",
+    "spacifyCoins": "Spacify 币",
     "myTenancy": "我的租期",
     "tenancyPeriod": "租期",
     "tenancyCode": "租约代码",
@@ -218,7 +218,7 @@
     "yourName": "您的姓名",
     "phoneNumber": "您的电话号码",
     "companyDomain": "您的公司域名",
-    "domainInfo": "您公司的唯一域名。最小：2，最大：12，只能使用字母。例如：我的公司名是 Roomz，我将输入 RZ",
+    "domainInfo": "您公司的唯一域名。最小：2，最大：12，只能使用字母。例如：我的公司名是 Spacify，我将输入 RZ",
     "yourPassword": "您的密码",
     "confirmYourPassword": "确认您的密码",
     "signUpForFree": "免费注册",
@@ -281,7 +281,7 @@
     "downloadReceipt": "下载收据"
   },
   "invoiceSuccessful": {
-    "roomzCoinsEarned": "获得 Roomz 币",
+    "spacifyCoinsEarned": "获得 Spacify 币",
     "paymentCompleted": "支付完成",
     "congratulations": "恭喜！"
   },

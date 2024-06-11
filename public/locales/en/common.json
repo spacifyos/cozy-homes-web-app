@@ -42,7 +42,7 @@
   },
   "account": {
     "account": "Account",
-    "roomzCoins": "Roomz Coins",
+    "spacifyCoins": "Spacify Coins",
     "smartMeterPairing": "Smart Meter Pairing",
     "myInvoice": "My Invoice",
     "myAppointment": "My Appointment",
@@ -62,7 +62,7 @@
     "month": "Month"
   },
   "myStay": {
-    "roomzCoins": " Roomz Coins",
+    "spacifyCoins": " Spacify Coins",
     "myTenancy": "My Tenancy",
     "tenancyPeriod": "Tenancy Period",
     "tenancyCode": "Tenancy Code",
@@ -218,7 +218,7 @@
     "yourName": "Your Name",
     "phoneNumber": "Your Phone Number",
     "companyDomain": "Company Domain",
-    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Roomz, I will enter RZ",
+    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Spacify, I will enter RZ",
     "yourPassword": "Your Password",
     "confirmYourPassword": "Confirm Your Password",
     "signUpForFree": "Sign Up for FREE",
@@ -281,7 +281,7 @@
     "downloadReceipt": "Download Receipt"
   },
   "invoiceSuccessful": {
-    "roomzCoinsEarned": "Roomz Coins earned",
+    "spacifyCoinsEarned": "Spacify Coins earned",
     "paymentCompleted": "Payment Completed",
     "congratulations": "Congratulations!"
   },

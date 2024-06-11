@@ -42,7 +42,7 @@
   },
   "account": {
     "account": "Akaun",
-    "roomzCoins": "Koin Roomz",
+    "spacifyCoins": "Koin Spacify",
     "smartMeterPairing": "Penjodohan Meter Pintar",
     "myInvoice": "Invois Saya",
     "myAppointment": "Lantikan Saya",
@@ -62,7 +62,7 @@
     "month": "Bulan"
   },
   "myStay": {
-    "roomzCoins": " Koin Roomz",
+    "spacifyCoins": " Koin Spacify",
     "myTenancy": "Penyewaan Saya",
     "tenancyPeriod": "Tempoh Penyewaan",
     "tenancyCode": "Kod Penyewaan",
@@ -218,7 +218,7 @@
     "yourName": "Nama Anda",
     "phoneNumber": "Nombor Telefon Anda",
     "companyDomain": "Domain Syarikat Anda",
-    "domainInfo": "Domain unik untuk syarikat anda. Min: 2, Maks: 12 huruf sahaja. contoh: Nama syarikat saya adalah Roomz, saya akan masukkan RZ",
+    "domainInfo": "Domain unik untuk syarikat anda. Min: 2, Maks: 12 huruf sahaja. contoh: Nama syarikat saya adalah Spacify, saya akan masukkan RZ",
     "yourPassword": "Kata Laluan Anda",
     "confirmYourPassword": "Sahkan Kata Laluan Anda",
     "signUpForFree": "Daftar secara PERCUMA",
@@ -281,7 +281,7 @@
     "downloadReceipt": "Muat Turun Resit"
   },
   "invoiceSuccessful": {
-    "roomzCoinsEarned": "Diperolehi Koin Roomz",
+    "spacifyCoinsEarned": "Diperolehi Koin Spacify",
     "paymentCompleted": "Pembayaran Berjaya",
     "congratulations": "Tahniah!"
   },

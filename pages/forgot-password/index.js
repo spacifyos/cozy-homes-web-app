@@ -11,12 +11,13 @@ import SecondStep from "@/components/ForgotPassword/SecondStep";
 import ThirdStep from "@/components/ForgotPassword/ThirdStep";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
-import { router } from "next/client";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
 const ForgotPassword = () => {
   const { t } = useTranslation("common");
+  const router = useRouter();
   const initialTime = 60;
 
   const [step, setStep] = useState(1);

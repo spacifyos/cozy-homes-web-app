@@ -41,7 +41,7 @@ const UserSection = ({ t, data }) => {
       {/*  </div>*/}
       {/*  <div className="pl-2">*/}
       {/*    <CustomText textClassName="disable-text font-size-small line-clamp-1">*/}
-      {/*      {t("myStay.roomzCoins")}*/}
+      {/*      {t("myStay.spacifyCoins")}*/}
       {/*    </CustomText>*/}
       {/*    <div className="flex items-center justify-start">*/}
       {/*      <CustomText textClassName="primary-text font-bold font-size-xxlarge pr-2">*/}

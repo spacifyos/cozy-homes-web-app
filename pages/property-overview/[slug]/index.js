@@ -6,7 +6,7 @@ import DetailComponent from "@/components/PropertyOverview/DetailComponent";
 import DetailFeatureSection from "@/components/PropertyOverview/DetailFeatureSection";
 import Facilities from "@/components/PropertyOverview/Facilities";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
-import RoomzMap from "@/components/PropertyOverview/RoomzMap";
+import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
 import RecommendSection from "@/components/PropertyOverview/RecommendSection";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -230,7 +230,7 @@ const PropertyOverview = ({ id }) => {
 
             <Facilities t={t} facilitiesList={facilitiesList} />
 
-            {/*<RoomzMap t={t} />*/}
+            {/*<SpacifyMap t={t} />*/}
 
             <RecommendSection
               t={t}

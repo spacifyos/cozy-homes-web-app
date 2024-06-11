@@ -2,7 +2,7 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 
-const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
+const SpacifyCoins = ({ t, onClickToCoinsTransaction }) => {
   return (
     <div className="profile-coin-container col-span-2">
       <CustomImage
@@ -23,7 +23,7 @@ const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
 
       <div>
         <CustomText textClassName="disable-text font-size-small">
-          {t("account.roomzCoins")}
+          {t("account.spacifyCoins")}
         </CustomText>
 
         <div className="flex items-center">
@@ -40,4 +40,4 @@ const RoomzCoins = ({ t, onClickToCoinsTransaction }) => {
   );
 };
 
-export default RoomzCoins;
+export default SpacifyCoins;

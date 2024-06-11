@@ -101,7 +101,7 @@ const TenancySection = ({
 
                 <CustomLabelValue
                   label={t("myStay.tenancyCode")}
-                  value={"Roomz-T123456789"}
+                  value={"Spacify-T123456789"}
                   highlight
                 />
 

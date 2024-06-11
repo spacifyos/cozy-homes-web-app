@@ -1,6 +1,6 @@
 import CustomHeader from "@/components/CustomHeader";
 import ProfileCard from "@/components/Account/ProfileCard";
-import RoomzCoins from "@/components/Account/RoomzCoins";
+import SpacifyCoins from "@/components/Account/SpacifyCoins";
 import FeatureComponent from "@/components/Account/FeatureComponent";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
@@ -87,7 +87,7 @@ const Account = () => {
             data={userProfileData}
           />
 
-          <RoomzCoins
+          <SpacifyCoins
             t={t}
             onClickToCoinsTransaction={onClickToCoinsTransaction}
           />

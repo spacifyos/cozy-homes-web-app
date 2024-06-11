@@ -50,7 +50,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
       <div className="flex justify-between items-center">
         <CustomLabelValue
           label={t("myStay.tenancyCode")}
-          value={"Roomz-T123456789"}
+          value={"Spacify-T123456789"}
           highlight
         />
 

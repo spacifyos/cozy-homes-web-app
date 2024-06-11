@@ -44,7 +44,7 @@ const PaymentSuccessful = () => {
       />
 
       <CustomText textClassName="font-bold" styles={{ fontSize: 24 }}>
-        {t("invoiceSuccessful.roomzCoinsEarned")}
+        {t("invoiceSuccessful.spacifyCoinsEarned")}
       </CustomText>
 
       <CustomText textClassName="primary-text font-bold font-size-xxlarge">
