@@ -32,7 +32,7 @@ const SignIn = () => {
   };
 
   const onClickToSignUp = () => {
-    router.push("/sign-up");
+    router.push(`/sign-up?type=${selectedRole}`);
   };
 
   const onClickToLogin = async () => {
@@ -84,6 +84,10 @@ const SignIn = () => {
       event.preventDefault();
       await onClickToLogin();
     }
+  };
+
+  const onClickToForgotPassword = () => {
+    router.push("/forgot-password");
   };
 
   return (
@@ -190,7 +194,10 @@ const SignIn = () => {
               />
             </div>
 
-            <CustomText textClassName="text-center mb-5 underline cursor-pointer">
+            <CustomText
+              textClassName="text-center mb-5 underline cursor-pointer"
+              onClick={onClickToForgotPassword}
+            >
               {t("signIn.forgotPassword")}
             </CustomText>
 

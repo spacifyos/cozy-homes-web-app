@@ -19,6 +19,7 @@ const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const { executeRecaptcha, loaded } = useReCaptcha();
+  const roleType = _.get(router, ["query", "type"], "tenant");
 
   const [signUpLoading, setSignUpLoading] = useState(false);
 
@@ -55,15 +56,17 @@ const SignUp = () => {
     const recaptchaToken = await executeRecaptcha("form_submit");
 
     const postData = {
+      type: roleType,
       name: nameValue,
       phone_prefix: countryCode,
       phone_suffix: phoneValue,
       email: emailValue,
       password: passwordValue,
+      password_confirmation: confirmPasswordValue,
       token: recaptchaToken,
     };
 
-    console.log(postData);
+    await signUpRequest(postData);
   };
 
   const onChangeNameValue = (e) => {
@@ -99,7 +102,7 @@ const SignUp = () => {
   };
 
   const signUpSuccessCallback = () => {
-    router.replace("my-stay");
+    router.replace("/otp-verification");
   };
 
   return (

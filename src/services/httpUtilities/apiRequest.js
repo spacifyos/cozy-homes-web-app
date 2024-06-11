@@ -62,10 +62,31 @@ const postBookingCreateRequest = async (postData, setLoading) => {
   await apiRequest(api.postBookingCreate(postData), setLoading);
 };
 
+const postOtpRequest = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.postOtpRequest(postData), setLoading, successCallback);
+};
+
+const postOtpVerify = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.postOtpVerify(postData), setLoading, successCallback);
+};
+
+const postForgotPasswordRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postForgotPassword(postData, setLoading, successCallback),
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
   postChangePasswordRequest,
   postEditProfileRequest,
   postBookingCreateRequest,
+  postOtpRequest,
+  postOtpVerify,
+  postForgotPasswordRequest
 };

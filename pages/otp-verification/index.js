@@ -5,6 +5,7 @@ import OtpInput from "react-otp-input";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import { useRouter } from "next/router";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
 
 const OtpVerification = () => {
   const router = useRouter();
@@ -13,6 +14,9 @@ const OtpVerification = () => {
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isResendEnabled, setIsResendEnabled] = useState(true);
+  const [otpRequestLoading, setOtpRequestLoading] = useState(false);
+  const [otpVerifyLoading, setOtpVerifyLoading] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
 
   const isOtpValid = _.size(otp) == 6;
 
@@ -27,16 +31,47 @@ const OtpVerification = () => {
     }
   }, [timeLeft]);
 
-  const handleSendOtp = () => {
+  const handleSendOtp = async () => {
     setTimeLeft(initialTime);
     setIsResendEnabled(false);
+
+    const postData = {
+      case: "reset_password",
+      destination: "+60187834039",
+      type: "tenant",
+    };
+
+    await apiRequest.postOtpRequest(
+      postData,
+      setOtpRequestLoading,
+      otpRequestSuccess,
+    );
   };
 
-  const handleResend = () => {
-    handleSendOtp();
+  const otpRequestSuccess = (res) => {
+    setOtpToken(_.get(res, ["token"], ""));
   };
 
-  const onClickSubmit = () => {};
+  const handleResend = async () => {
+    await handleSendOtp();
+  };
+
+  const onClickSubmit = async () => {
+    const postData = {
+      otp: otp,
+      token: otpToken,
+    };
+
+    await apiRequest.postOtpVerify(
+      postData,
+      setOtpVerifyLoading,
+      otpVerifySuccess,
+    );
+  };
+
+  const otpVerifySuccess = () => {
+    router.replace("/my-stay");
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -95,7 +130,8 @@ const OtpVerification = () => {
         <CustomButton
           buttonClassName={`${isOtpValid ? "primary-btn" : "disable-btn"} w-36 flex`}
           buttonText="Verify Code"
-          disable={!isOtpValid}
+          disable={!isOtpValid || otpRequestLoading || otpVerifyLoading}
+          loading={otpRequestLoading || otpVerifyLoading}
           onClick={onClickSubmit}
         />
       </div>

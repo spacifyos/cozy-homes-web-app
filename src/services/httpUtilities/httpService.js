@@ -26,6 +26,11 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const postOtpRequest = (data) => apiInstance.post("/otp", data);
 
+const postOtpVerify = (data) => apiInstance.post("/otp/verify", data);
+
+const postForgotPassword = (postData) =>
+  apiInstance.post(`/auth/forgot-password`, postData);
+
 const getUserProfile = () => apiInstance.get("/user-profile");
 
 const postChangePassword = (postData) =>
@@ -73,4 +78,7 @@ export default {
   getBookingOverview,
   postBookingCreate,
   getGalleryLinkRequest,
+  postOtpRequest,
+  postOtpVerify,
+  postForgotPassword,
 };

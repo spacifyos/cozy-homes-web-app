@@ -124,6 +124,8 @@ const Booking = ({ id }) => {
     }
   }, []);
 
+  console.log(listingPropertyDetailData)
+
   useEffect(() => {
     if (_.isEmpty(listingPropertyDetailData)) {
       fetchListingPropertyDetail(id);
