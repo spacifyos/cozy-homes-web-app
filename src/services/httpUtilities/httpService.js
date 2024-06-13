@@ -67,6 +67,8 @@ const getTenancyListing = () => apiInstance.get("/tenancy");
 
 const getTenancyOverview = (code) => apiInstance.get(`/tenancy/${code}`);
 
+const getInvoiceSummary = () => apiInstance.get("/invoice/summary");
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -90,4 +92,5 @@ export default {
   postForgotPassword,
   getTenancyListing,
   getTenancyOverview,
+  getInvoiceSummary,
 };

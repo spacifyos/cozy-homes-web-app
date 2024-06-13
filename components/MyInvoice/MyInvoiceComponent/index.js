@@ -1,18 +1,22 @@
 import Carousel from "react-multi-carousel";
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
+import * as invoiceSelector from "@/src/selectors/invoice";
+import moment from "moment";
 
-const MyInvoiceComponent = ({ list }) => {
+const MyInvoiceComponent = ({ data }) => {
   const textColor = (value) => {
     switch (value) {
-      case "Total Pay":
-        return "primary-text";
-      case "Overdue":
+      case "Total Paid Invoices":
+        return "completed-text";
+      case "Total Overdue Invoices":
         return "error-text";
-      case "Due Soon":
+      case "Total Unpaid Invoices":
         return "pending-text";
-      default:
+      case "Total Invoices":
         return "primary-text";
+      default:
+        return "pending-text";
     }
   };
 
@@ -71,22 +75,21 @@ const MyInvoiceComponent = ({ list }) => {
         slidesToSlide={1}
         swipeable
       >
-        {_.map(list, (item, index) => {
-          const title = _.get(item, ["title"], "");
-          const value = _.get(item, ["value"], "");
-          const date = _.get(item, ["date"], "");
+        {_.map(data, (item, index) => {
+          const name = invoiceSelector.getName(item);
+          const totalAmountText = invoiceSelector.getTotalAmountText(item);
 
           return (
             <div className="flex flex-col items-center" key={index}>
-              <CustomText>{title}</CustomText>
+              <CustomText>{_.isEmpty(name) ? "-" : name}</CustomText>
               <CustomText
-                textClassName={`${textColor(title)} font-bold`}
+                textClassName={`${textColor(name)} font-bold`}
                 styles={{ fontSize: 24 }}
               >
-                {value}
+                RM{_.isEmpty(totalAmountText) ? "0" : totalAmountText}
               </CustomText>
               <CustomText textClassName="disable-text font-size-xxsmall">
-                {date}
+                {`Last updated: ${moment().format("DD MMM YYYY")}`}
               </CustomText>
             </div>
           );

@@ -33,7 +33,7 @@ function* getInvoiceOverviewRequest({ id }) {
 
 function* getInvoiceSummaryRequest({}) {
   try {
-    const response = yield call(api.getListing);
+    const response = yield call(api.getInvoiceSummary);
 
     const { data, code, message } = response.data;
 

@@ -2,7 +2,7 @@ import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
@@ -14,26 +14,9 @@ import moment from "moment/moment";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
-
-const typeList = [
-  {
-    title: "Total Pay",
-    value: "RM99,999.99",
-    date: "Last updated: 15 Dec 2022",
-  },
-  {
-    title: "Overdue",
-    value: "RM99,999.99",
-    date: "Last updated: 15 Dec 2022",
-  },
-  {
-    title: "Due Soon",
-    value: "RM99,999.99",
-    date: "Last updated: 15 Dec 2022",
-  },
-];
 
 const invoice = [
   {
@@ -70,6 +53,15 @@ const MyInvoice = () => {
     invoiceSelector.getInvoiceListingLoading(state),
   );
 
+  const getInvoiceSummaryRequest = () =>
+    dispatch(invoiceAction.getInvoiceSummaryRequest());
+  const invoiceSummaryData = useSelector((state) =>
+    invoiceSelector.getInvoiceSummaryData(state),
+  );
+  const invoiceSummaryDataLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceSummaryLoading(state),
+  );
+
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
   const [dateFromValue, setDateFromValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
@@ -77,6 +69,14 @@ const MyInvoice = () => {
   const [dateToValue, setDateToValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
+
+  useEffect(() => {
+    fetchInvoiceSummary();
+  }, []);
+
+  const fetchInvoiceSummary = () => {
+    getInvoiceSummaryRequest();
+  };
 
   const onChangeDateFrom = (e) => {
     setDateFromValue(e.target.value);
@@ -109,7 +109,16 @@ const MyInvoice = () => {
       }
     >
       <div className="body-container pb-1">
-        <MyInvoiceComponent list={typeList} />
+        {invoiceSummaryDataLoading ? (
+          <div
+            className="w-full flex justify-center"
+            style={{ minHeight: 120, height: 120 }}
+          >
+            <span className="loading loading-spinner loading-lg primary-text"></span>
+          </div>
+        ) : (
+          <MyInvoiceComponent data={invoiceSummaryData} />
+        )}
 
         <div className="flex items-center pb-3">
           <CustomButton
@@ -164,6 +173,8 @@ const MyInvoice = () => {
           dateToValue={dateToValue}
           onChangeDateTo={onChangeDateTo}
         />
+
+        <LoadingOverlay />
       </div>
     </CustomHeader>
   );

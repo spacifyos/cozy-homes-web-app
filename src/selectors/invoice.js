@@ -7,6 +7,11 @@ export const getInvoiceListingPagination = (state) =>
 export const getInvoiceListingLoading = (state) =>
   _.get(state, ["invoice", "tenancyListing", "loading"], false);
 
+export const getInvoiceSummaryData = (state) =>
+  _.get(state, ["invoice", "invoiceSummary", "data"], null);
+export const getInvoiceSummaryLoading = (state) =>
+  _.get(state, ["invoice", "invoiceSummary", "loading"], false);
+
 export const getInvoiceOverviewData = (state, id) =>
   _.get(state, ["invoice", "tenancyOverview", id, "data"], null);
 export const getInvoiceOverviewLoading = (state) =>
@@ -28,3 +33,5 @@ export const getSchedule = (state) => _.get(state, ["schedule"], "");
 export const getSubtotal = (state) => _.get(state, ["subtotal"], "");
 export const getTax = (state) => _.get(state, ["tax"], "");
 export const getTotalAmount = (state) => _.get(state, ["total_amount"], "");
+export const getName = (state) => _.get(state, ["name"], "");
+export const getTotalAmountText = (state) => _.get(state, ["total_amount_text"], "");
