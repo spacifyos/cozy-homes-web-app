@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 const LoadingOverlay = ({ loading = false }) => {
-  const content = document.getElementById("root-body");
+  const content = document.getElementById("root");
 
   useEffect(() => {
     if (content) {

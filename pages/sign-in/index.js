@@ -13,6 +13,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
+import { getUserPhoneNumber } from "@/src/selectors/auth";
 
 export { getServerSideProps };
 
@@ -58,12 +59,18 @@ const SignIn = () => {
 
   const signInSuccess = (res) => {
     const authToken = authSelector.getToken(res);
-    console.log(authToken);
+    const isUserVerify = authSelector.getUserVerify(res);
+    const userPhoneNumber = authSelector.getUserPhoneNumber(res);
 
-    if (!_.isEmpty(authToken)) {
+    if (!_.isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
 
       router.push("/my-stay");
+    } else {
+      router.push({
+        pathname: "/otp-verification",
+        query: { phoneNumber: userPhoneNumber },
+      });
     }
   };
 

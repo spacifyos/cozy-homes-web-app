@@ -26,7 +26,7 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const postOtpRequest = (data) => apiInstance.post("/otp", data);
 
-const postOtpVerify = (data) => apiInstance.post("/otp/verify", data);
+const postOtpVerify = (data) => apiInstance.post("/auth/verify", data);
 
 const postForgotPassword = (postData) =>
   apiInstance.post(`/auth/forgot-password`, postData);
@@ -45,15 +45,18 @@ const getListingBanner = () => apiInstance.get("/listing/banner");
 
 const getListingTagOption = () => apiInstance.post("/listing/tag-options");
 
-const getListingProperty = (postData) =>
-  apiInstance.post("/listing/property-listings", postData);
+const getListingProperty = (postData, page) =>
+  apiInstance.post(
+    `/listing/property-listings?per_page=12&page=${page}`,
+    postData,
+  );
 
 const getListingPropertyDetail = (id) =>
   apiInstance.get(`/listing/property-details/${id}`);
 
 const getListingCancellation = () => apiInstance.get(`/listing/cancellation`);
 
-const getBookingOverview = (id) => apiInstance.get(`/${id}`);
+const getBookingOverview = (id) => apiInstance.get(`/booking/${id}`);
 
 const postBookingCreate = (postData) =>
   apiInstance.post(`/booking/create`, postData);

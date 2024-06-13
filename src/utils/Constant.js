@@ -25,6 +25,8 @@ const Constant = {
     { name: "WP Labuan", value: "MY-15" },
   ],
 
+  UNPAID: "Unpaid",
+
   TENANCY: "Tenancy",
   POLICY: "Policy",
 

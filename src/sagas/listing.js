@@ -44,11 +44,11 @@ function* getTagOptionRequest({}) {
   }
 }
 
-function* getListingPropertyRequest({ postData }) {
+function* getListingPropertyRequest({ postData, page }) {
   try {
-    const response = yield call(api.getListingProperty, postData);
+    const response = yield call(api.getListingProperty, postData, page);
 
-    const { data, code, message } = response.data;
+    const { data, code, message } = response;
 
     yield put(listingAction.getListingPropertySuccess(data));
   } catch (error) {
@@ -122,10 +122,7 @@ function* listingSaga() {
       "GET_LISTING_CANCELLATION_REQUEST",
       getRequestListingCancellation,
     ),
-    takeLatest(
-        "GET_BOOKING_OVERVIEW_REQUEST",
-        getBookingOverviewRequest,
-    ),
+    takeLatest("GET_BOOKING_OVERVIEW_REQUEST", getBookingOverviewRequest),
   ]);
 }
 

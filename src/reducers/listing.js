@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const initialState = {
   listing: {
     data: null,
@@ -14,6 +16,7 @@ const initialState = {
   listingProperty: {
     data: null,
     loading: false,
+    pagination: null,
   },
   listingPropertyDetail: {
     data: null,
@@ -111,8 +114,9 @@ export default function (state = initialState, action) {
       return {
         ...state,
         listingProperty: {
-          data: action.data,
+          data: _.get(action, ["data", "data"], null),
           loading: false,
+          pagination: _.get(action, ["data", "pagination"], null),
         },
       };
     case "GET_LISTING_PROPERTY_FAILURE":

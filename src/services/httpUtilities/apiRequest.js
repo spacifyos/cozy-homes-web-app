@@ -58,8 +58,8 @@ const postEditProfileRequest = async (postData, setLoading) => {
   await apiRequest(api.postEditProfile(postData), setLoading);
 };
 
-const postBookingCreateRequest = async (postData, setLoading) => {
-  await apiRequest(api.postBookingCreate(postData), setLoading);
+const postBookingCreateRequest = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.postBookingCreate(postData), setLoading, successCallback);
 };
 
 const postOtpRequest = async (postData, setLoading, successCallback) => {

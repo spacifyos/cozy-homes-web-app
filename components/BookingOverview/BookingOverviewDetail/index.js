@@ -1,8 +1,14 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import Images from "@/src/utils/Image";
+import * as listingSelector from "@/src/selectors/listing";
+import _ from "lodash";
+import { getReferenceNumber } from "@/src/selectors/listing";
 
-const BookingOverviewDetail = ({ t, data }) => {
+const BookingOverviewDetail = ({ t, data, id }) => {
+  const referenceNumber = listingSelector.getReferenceNumber(data);
+  const title = listingSelector.getTitle(data);
+  const address = listingSelector.getAddress(data);
+
   return (
     <div className="p-4 pb-7">
       <div className="flex items-center gap-1 pb-4">
@@ -10,20 +16,19 @@ const BookingOverviewDetail = ({ t, data }) => {
           {t("bookingOverview.bookingCode")}
         </CustomText>
         <CustomText textClassName="primary-text font-bold">
-          OIBTHVQJPN
+          {_.isEmpty(referenceNumber) ? "-" : referenceNumber}
         </CustomText>
       </div>
       <div className="flex flex-col">
         <CustomText textClassName="primary-text font-bold">
-          {t("bookingOverview.roomForRent")}
+          {_.isEmpty(title) ? "-" : title}
         </CustomText>
         <CustomText textClassName="font-size-xsmall disable-text pb-4">
-          YOLO Type A, Kampung Baru Air Panas, 53200 SkySanctuary, Federal
-          Territory of Kuala Lumpur.
+          {_.isEmpty(address) ? "-" : address}
         </CustomText>
-        <CustomText textClassName="font-size-xsmall disable-text pb-4">
-          YOLO Type A, Single Bedroom, 106 sqft.
-        </CustomText>
+        {/*<CustomText textClassName="font-size-xsmall disable-text pb-4">*/}
+        {/*  YOLO Type A, Single Bedroom, 106 sqft.*/}
+        {/*</CustomText>*/}
         <div className="grid-cols-2 grid">
           <CustomButton
             buttonClassName="booking-overview-btn font-size-normal"

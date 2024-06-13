@@ -79,6 +79,9 @@ const Booking = ({ id }) => {
   const [getGalleryLinkLoading, setGetGalleryLinkLoading] = useState(false);
   const [frontIcUploading, setFrontIcUploading] = useState(false);
   const [backIcUploading, setBackIcUploading] = useState(false);
+  const [createBookingLoading, setCreateBookingLoading] = useState(false);
+  const [otpRequestLoading, setOtpRequestLoading] = useState(false);
+
   const [openCharges, setOpenCharges] = useState(false);
   const [openModalCharges, setOpenModalCharges] = useState(false);
   const [emergencyContactNumber, setEmergencyContactNumber] = useState(
@@ -91,6 +94,7 @@ const Booking = ({ id }) => {
   const [isReadAgree, setIsReadAgree] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [otpToken, setOtpToken] = useState("");
+  const [otpValue, setOtpValue] = useState("");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -150,10 +154,10 @@ const Booking = ({ id }) => {
     router.back();
   };
 
-  const onClickBooking = async (e, id) => {
-    e.preventDefault();
+  const onClickBooking = async () => {
     const currentForm = formRef && formRef.current;
     const newErrors = {};
+    console.log(currentForm.tenure_period.value);
 
     const requiredFields = [
       "booking_date_from",
@@ -167,17 +171,16 @@ const Booking = ({ id }) => {
       "applicant_area_code",
       "applicant_phone_number",
       "applicant_nationality",
-      "applicant_line_1",
-      "applicant_city",
-      "applicant_postcode",
-      "applicant_country",
-      "applicant_state",
+      // "applicant_line_1",
+      // "applicant_city",
+      // "applicant_postcode",
+      // "applicant_country",
+      // "applicant_state",
       "emergency_contacts_name_1",
       "emergency_contacts_relationship_1",
-      "emergency_contacts_prefix_1",
-      "emergency_contacts_suffix_1",
+      "emergency_contacts_phone_prefix_1",
+      "emergency_contacts_phone_suffix_1",
       "emergency_contacts_email_1",
-      "otp",
     ];
 
     _.forEach(requiredFields, (field) => {
@@ -189,7 +192,7 @@ const Booking = ({ id }) => {
     const optionalFields = [
       "emergency_contacts_name_2",
       "emergency_contacts_relationship_2",
-      "emergency_contacts_suffix_2",
+      "emergency_contacts_phone_suffix_2",
       "emergency_contacts_email_2",
     ];
 
@@ -232,11 +235,11 @@ const Booking = ({ id }) => {
       );
     }
 
-    if (_.isEmpty(currentForm.is_pay_partial.value)) {
-      return Toast.error(
-        "Please select total move-in cost is pay in full or partial",
-      );
-    }
+    // if (_.isEmpty(currentForm.is_pay_partial.value)) {
+    //   return Toast.error(
+    //     "Please select total move-in cost is pay in full or partial",
+    //   );
+    // }
 
     if (!isReadAgree) {
       return Toast.error("Please tick understand and agree policy.");
@@ -246,7 +249,7 @@ const Booking = ({ id }) => {
       listing_id: id,
       date_from: currentForm.booking_date_from.value,
       date_to: moment(currentForm.booking_date_from.value)
-        .add(_.toInteger(currentForm.tenure_period.value), "months")
+        .add(3, "months")
         .format("YYYY-MM-DD"),
       applicant_id_type: currentForm.applicant_id_type.value,
       applicant_id_value: currentForm.applicant_id_value.value,
@@ -262,8 +265,6 @@ const Booking = ({ id }) => {
       applicant_city: currentForm.applicant_city.value,
       applicant_line_1: currentForm.applicant_line_1.value,
       applicant_postcode: currentForm.applicant_postcode.value,
-      id_front: frontIcData,
-      id_back: backIcData,
       emergency_contacts_name_1: currentForm.emergency_contacts_name_1.value,
       emergency_contacts_relationship_1:
         currentForm.emergency_contacts_relationship_1.value,
@@ -275,19 +276,36 @@ const Booking = ({ id }) => {
       emergency_contacts_name_2: currentForm.emergency_contacts_name_2.value,
       emergency_contacts_relationship_2:
         currentForm.emergency_contacts_relationship_2.value,
-      emergency_contacts_phone_prefix_2:
-        currentForm.emergency_contacts_phone_prefix_2.value,
+      emergency_contacts_phone_prefix_2: _.isEmpty(
+        currentForm.emergency_contacts_phone_suffix_2.value,
+      )
+        ? ""
+        : currentForm.emergency_contacts_phone_prefix_2.value,
       emergency_contacts_phone_suffix_2:
         currentForm.emergency_contacts_phone_suffix_2.value,
       emergency_contacts_email_2: currentForm.emergency_contacts_email_2.value,
-      otp: currentForm.otp.value,
+      id_front: frontIcData,
+      id_back: backIcData,
+      otp: otpValue,
       otp_token: otpToken,
       is_pay_partial: false,
       fee_items: feesList,
     };
 
-    console.log(postData);
+    await apiRequest.postBookingCreateRequest(
+      postData,
+      setCreateBookingLoading,
+      createBookingSuccess,
+    );
     // router.push(`/booking/${id}/overview`);
+  };
+
+  const createBookingSuccess = (res) => {
+    const url = _.get(res, ["url"], "");
+
+    if (!_.isEmpty(url)) {
+      window.open(url, "_self");
+    }
   };
 
   const onClickToBookAppointment = (id) => {
@@ -436,7 +454,35 @@ const Booking = ({ id }) => {
   };
 
   const onClickGenerateOtp = async () => {
+    if (_.isEmpty(formRef.current.applicant_phone_number.value)) {
+      return Toast.error("Phone number is required.");
+    }
+
     const newToken = await executeRecaptcha("form_submit");
+
+    const postData = {
+      case: "booking_otp_verification",
+      destination:
+        formRef.current.applicant_area_code.value +
+        formRef.current.applicant_phone_number.value,
+      type: "tenant",
+    };
+
+    await apiRequest.postOtpRequest(
+      postData,
+      setOtpRequestLoading,
+      otpRequestSuccess,
+    );
+  };
+
+  const otpRequestSuccess = (res) => {
+    setOtpToken(_.get(res, ["token"], ""));
+  };
+
+  const onChangeOtpValue = (e) => {
+    if (_.size(e.target.value) <= 6) {
+      setOtpValue(e.target.value);
+    }
   };
 
   return (
@@ -472,11 +518,7 @@ const Booking = ({ id }) => {
           {_.isEmpty(address) ? "-" : address}
         </CustomText>
 
-        <form
-          ref={formRef}
-          onSubmit={onClickBooking}
-          className="grid grid-cols-6 gap-2"
-        >
+        <form ref={formRef} className="grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-4 font-bold pt-3">
             Tenancy Period
           </CustomText>
@@ -694,9 +736,9 @@ const Booking = ({ id }) => {
                   placeholder="Select Area Code"
                   title="Area Code"
                   lists={_.isEmpty(phonePrefix) ? defaultOption : phonePrefix}
-                  name={`emergency_contacts_prefix_${index + 1}`}
+                  name={`emergency_contacts_phone_prefix_${index + 1}`}
                   errorMessage={
-                    errorMessage[`emergency_contacts_prefix_${index + 1}`]
+                    errorMessage[`emergency_contacts_phone_prefix_${index + 1}`]
                   }
                   required={index === 0}
                 />
@@ -706,9 +748,9 @@ const Booking = ({ id }) => {
                   type="number"
                   placeholder="Phone Number"
                   title="Phone Number"
-                  name={`emergency_contacts_suffix_${index + 1}`}
+                  name={`emergency_contacts_phone_suffix_${index + 1}`}
                   errorMessage={
-                    errorMessage[`emergency_contacts_suffix_${index + 1}`]
+                    errorMessage[`emergency_contacts_phone_suffix_${index + 1}`]
                   }
                   required={index === 0}
                 />
@@ -726,20 +768,23 @@ const Booking = ({ id }) => {
               </div>
             );
           })}
+        </form>
+        {/*<CustomButton*/}
+        {/*  buttonText={"+ Add Contact"}*/}
+        {/*  buttonClassName="col-span-6 primary-btn"*/}
+        {/*  onClick={onClickAddEmergencyContact}*/}
+        {/*/>*/}
 
-          {/*<CustomButton*/}
-          {/*  buttonText={"+ Add Contact"}*/}
-          {/*  buttonClassName="col-span-6 primary-btn"*/}
-          {/*  onClick={onClickAddEmergencyContact}*/}
-          {/*/>*/}
-
+        <div className="grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-6 font-bold pt-3">
             Verification
           </CustomText>
 
           <BookingInput
             className="col-span-6"
+            value={otpValue}
             placeholder="000000"
+            onChange={onChangeOtpValue}
             type="number"
             title="Code"
             name="otp"
@@ -749,8 +794,10 @@ const Booking = ({ id }) => {
 
           <CustomButton
             buttonText={"Send Code"}
-            buttonClassName="primary-btn col-span-6"
+            buttonClassName={`primary-btn col-span-6`}
             onClick={onClickGenerateOtp}
+            loading={otpRequestLoading}
+            disable={otpRequestLoading}
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
@@ -851,7 +898,7 @@ const Booking = ({ id }) => {
             </span>{" "}
             apply.
           </CustomText>
-        </form>
+        </div>
 
         <AgentSection
           t={t}

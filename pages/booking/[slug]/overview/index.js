@@ -14,7 +14,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
-const BookingOverview = () => {
+const BookingOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const [paymentSuccess, setPaymentSuccess] = useState(true);
   const router = useRouter();
@@ -23,11 +23,15 @@ const BookingOverview = () => {
   const getBookingOverviewRequest = (id) =>
     dispatch(listingAction.getBookingOverviewRequest(id));
   const bookingOverviewData = useSelector((state) =>
-    listingSelector.getBookingOverviewData(state),
+    listingSelector.getBookingOverviewData(state, id),
   );
   const bookingOverviewLoading = useSelector((state) =>
     listingSelector.getBookingOverviewLoading(state),
   );
+
+  useEffect(() => {
+    fetchBookingOverviewData(id);
+  }, []);
 
   useEffect(() => {
     const paymentSuccess = _.get(router, ["query", "paymentSuccess"], "");
@@ -36,8 +40,12 @@ const BookingOverview = () => {
     }
   }, []);
 
+  const fetchBookingOverviewData = (id) => {
+    getBookingOverviewRequest(id);
+  };
+
   const onClickGoBack = () => {
-    router.back();
+    router.replace("/explore");
   };
 
   return (
@@ -47,11 +55,15 @@ const BookingOverview = () => {
       onClickGoBack={onClickGoBack}
     >
       <div className="body-container pb-4">
-        <BookingOverviewDetail t={t} data={bookingOverviewData} />
+        <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 
-        <StepSection t={t} paymentSuccess={paymentSuccess} />
+        <StepSection
+          t={t}
+          paymentSuccess={paymentSuccess}
+          data={bookingOverviewData}
+        />
 
-        <OverviewModal t={t} />
+        <OverviewModal t={t} data={bookingOverviewData} />
 
         <LoadingOverlay loading={bookingOverviewLoading} />
       </div>

@@ -1,7 +1,13 @@
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 
-const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
+const CustomPagination = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+  disableNext,
+  disablePrevious,
+}) => {
   const renderPageNumbers = () => {
     const pageNumbers = [];
     const maxPageButtons = 5;
@@ -42,7 +48,11 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
         <CustomButton
           buttonClassName="join-item btn-sm"
           buttonText="«"
-          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+          onClick={
+            disablePrevious
+              ? () => {}
+              : () => onPageChange(Math.max(1, currentPage - 1))
+          }
           disabled={currentPage === 1}
         />
 
@@ -59,7 +69,11 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
         <CustomButton
           buttonClassName="join-item btn-sm"
           buttonText="»"
-          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          onClick={
+            disableNext
+              ? () => {}
+              : () => onPageChange(Math.min(totalPages, currentPage + 1))
+          }
           disabled={currentPage === totalPages}
         />
       </div>

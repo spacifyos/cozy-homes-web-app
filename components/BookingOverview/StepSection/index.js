@@ -3,15 +3,22 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
-import { useRouter } from "next/router";
+import * as listingSelector from "@/src/selectors/listing";
+import moment from "moment";
+import StatusLabel from "@/components/StatusLabel";
+import Constant from "@/src/utils/Constant";
 
-const StepSection = ({ t, paymentSuccess }) => {
-  const router = useRouter();
+const StepSection = ({ t, paymentSuccess, data }) => {
+  const createAt = listingSelector.getCreatedAt(data);
+  const paymentStatus = listingSelector.getPaymentStatus(data);
+  const authorizedAt = listingSelector.getAuthorizedAt(data);
+  const agencyReviewStatus = listingSelector.getAgencyReviewStatus(data);
+  const paymentLink = listingSelector.getPaymentLink(data);
+
   const onClickPayNow = () => {
-    router.push("/payment-successful");
+    window.open(paymentLink, "_self");
   };
-  const completed = t("bookingOverview.completed");
-  const pending = t("bookingOverview.pending");
+
   const isPayment = _.isEqual(paymentSuccess, true);
 
   return (
@@ -33,12 +40,11 @@ const StepSection = ({ t, paymentSuccess }) => {
               <CustomText textClassName="font-size-xsmall">
                 {t("bookingOverview.status")}
               </CustomText>
-              <CustomText textClassName="step-section-complete-font">
-                {t("bookingOverview.completed")}
-              </CustomText>
+              <StatusLabel status="Completed" />
             </div>
             <CustomText textClassName="step-section-infor-font">
-              {t("bookingOverview.bookingCreatedAt")} 2022-07-27 18:55:50
+              {t("bookingOverview.bookingCreatedAt")}{" "}
+              {moment(createAt).format("YYYY-MM-DD HH:mm:ss")}
             </CustomText>
           </div>
         </div>
@@ -66,17 +72,9 @@ const StepSection = ({ t, paymentSuccess }) => {
             <CustomText textClassName="font-size-xsmall">
               {t("bookingOverview.status")}
             </CustomText>
-            <CustomText
-              textClassName={
-                isPayment
-                  ? "step-section-pending-font"
-                  : "step-section-complete-font"
-              }
-            >
-              {isPayment ? pending : completed}
-            </CustomText>
+            <StatusLabel status={paymentStatus} />
           </div>
-          {_.isEqual(isPayment, true) ? (
+          {_.isEqual(_.upperCase(paymentStatus), Constant.UNPAID) ? (
             <CustomButton
               buttonClassName="booking-overview-btn"
               buttonText={t("bookingOverview.payNow")}
@@ -84,7 +82,8 @@ const StepSection = ({ t, paymentSuccess }) => {
             />
           ) : (
             <CustomText textClassName="step-section-infor-font">
-              {t("bookingOverview.paymentAuthorizedAt")} 2022-07-27 19:55:50
+              {t("bookingOverview.paymentAuthorizedAt")}{" "}
+              {moment(authorizedAt).format("YYYY-MM-DD HH:mm:ss")}
             </CustomText>
           )}
         </div>
@@ -106,9 +105,7 @@ const StepSection = ({ t, paymentSuccess }) => {
             <CustomText textClassName="font-size-xsmall">
               {t("bookingOverview.status")}
             </CustomText>
-            <CustomText textClassName="step-section-pending-font">
-              {t("bookingOverview.pending")}
-            </CustomText>
+            <StatusLabel status={agencyReviewStatus} />
           </div>
         </div>
       </div>

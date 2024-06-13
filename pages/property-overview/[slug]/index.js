@@ -1,6 +1,5 @@
 import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import DetailComponent from "@/components/PropertyOverview/DetailComponent";
 import DetailFeatureSection from "@/components/PropertyOverview/DetailFeatureSection";
@@ -28,7 +27,18 @@ import { getMoveInFees, getSquareFeet } from "@/src/selectors/listing";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
 
-export { getServerSideProps };
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getServerSideProps(context) {
+  const id = _.get(context, ["params", "slug"], "");
+
+  return {
+    props: {
+      id: id,
+      ...(await serverSideTranslations(context.locale, ["common"])),
+    },
+  };
+}
 
 const lists = [
   {
@@ -103,9 +113,7 @@ const PropertyOverview = ({ id }) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    if (_.isEmpty(listingPropertyDetailData)) {
-      fetchListingPropertyDetail(id);
-    }
+    fetchListingPropertyDetail(id);
   }, [id]);
 
   const fetchListingPropertyDetail = (id) => {

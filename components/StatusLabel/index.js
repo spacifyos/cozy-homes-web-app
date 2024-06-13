@@ -1,30 +1,42 @@
 import CustomText from "@/components/CustomText";
+import _ from "lodash";
 
 const StatusLabel = ({ status }) => {
   const statusColor = (status) => {
-    switch (status) {
-      case "pending":
+    const statusUpperCase = _.upperCase(status);
+
+    switch (statusUpperCase) {
+      case "PENDING":
         return "pending-bg-color";
-      case "Due Soon":
+      case "DUE SOON":
         return "pending-bg-color";
-      case "In Progress":
+      case "IN PROGRESS":
         return "pending-bg-color";
-      case "completed":
+      case "COMPLETED":
         return "completed-bg-color";
-      case "Completed":
-        return "completed-bg-color";
-      case "Pending Confirmation":
+      case "PENDING CONFIRMATION":
         return "tertiary-bg-color";
-      case "Confirmed":
+      case "CONFIRMED":
         return "primary-bg-color";
-      case "New":
+      case "NEW":
         return "primary-bg-color";
-      case "Cancelled":
+      case "CANCELLED":
         return "error-bg-color";
-      case "Overdue":
+      case "OVERDUE":
         return "error-bg-color";
-      case "Paid":
+      case "PAID":
         return "completed-bg-color";
+      case "UNPAID":
+        return "primary-bg-color";
+      case "AUTHORIZED":
+        return "pending-bg-color";
+      case "PENDING VERIFICATION":
+        return "pending-bg-color";
+      case "REJECTED":
+        return "error-bg-color";
+      case "APPROVED":
+        return "completed-bg-color";
+
       default:
         return "pending-bg-color";
     }

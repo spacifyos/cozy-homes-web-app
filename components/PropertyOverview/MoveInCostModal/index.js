@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
+import {getFeeAmount} from "@/src/selectors/listing";
 
 const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
   const feesLists = listingSelector.getFeesItemOthers(lists);
@@ -65,7 +66,7 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
 
           {_.map(rentChargesLists, (rentChargesList, index) => {
             const label = listingSelector.getLabel(rentChargesList);
-            const amount = listingSelector.getAmount(rentChargesList);
+            const amount = listingSelector.getFeeAmount(rentChargesList);
 
             return (
               <ul className="pl-7" key={index}>

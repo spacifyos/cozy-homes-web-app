@@ -37,13 +37,16 @@ const Search = () => {
     listingSelector.getListingTagOptionDataLoading(state),
   );
 
-  const getListingPropertyRequest = (postData) =>
-    dispatch(listingAction.getListingPropertyRequest(postData));
+  const getListingPropertyRequest = (postData, page) =>
+    dispatch(listingAction.getListingPropertyRequest(postData, page));
   const listingPropertyData = useSelector((state) =>
     listingSelector.getListingPropertyData(state),
   );
   const listingPropertyDataLoading = useSelector((state) =>
     listingSelector.getListingPropertyDataLoading(state),
+  );
+  const listingPropertyPagination = useSelector((state) =>
+    listingSelector.getListingPropertyPagination(state),
   );
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
@@ -60,10 +63,14 @@ const Search = () => {
     sort: "rental",
   });
 
-  const [currentPagination, setCurrentPagination] = useState(1);
-
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
   const generalTag = listingSelector.getGeneralTag(listingTagOptionData);
+  const hasMorePages = listingSelector.getHasMorePages(
+    listingPropertyPagination,
+  );
+  const totalPage = listingSelector.getTotalPage(listingPropertyPagination);
+  const currentPage = listingSelector.getCurrentPage(listingPropertyPagination);
+  const lastPage = listingSelector.getLastPage(listingPropertyPagination);
 
   useEffect(() => {
     if (!_.isEmpty(queryKey) && !_.isEmpty(queryId)) {
@@ -133,8 +140,8 @@ const Search = () => {
     getListingTagOptionRequest();
   };
 
-  const fetchListingProperty = (postData) => {
-    getListingPropertyRequest(postData);
+  const fetchListingProperty = (postData, page = 1) => {
+    getListingPropertyRequest(postData, page);
   };
 
   const onClickGeneralTag = (name, code) => {
@@ -286,7 +293,7 @@ const Search = () => {
   };
 
   const onPageChange = (pageNumber) => {
-    setCurrentPagination(pageNumber);
+    fetchListingProperty(selectedFilterParams, pageNumber);
   };
 
   return (
@@ -404,11 +411,13 @@ const Search = () => {
           </div>
         </div>
 
-        {false ? (
+        {lastPage > 1 ? (
           <CustomPagination
-            totalPages={15}
-            currentPage={currentPagination}
+            totalPages={lastPage}
+            currentPage={currentPage}
             onPageChange={onPageChange}
+            disableNext={currentPage === lastPage}
+            disablePrevious={currentPage === 1}
           />
         ) : (
           false

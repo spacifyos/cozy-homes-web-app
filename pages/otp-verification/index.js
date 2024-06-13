@@ -10,6 +10,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 const OtpVerification = () => {
   const router = useRouter();
   const initialTime = 60;
+  const phoneNumber = _.get(router, ["query", "phoneNumber"], "");
 
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -31,13 +32,19 @@ const OtpVerification = () => {
     }
   }, [timeLeft]);
 
-  const handleSendOtp = async () => {
+  useEffect(() => {
+    if (!_.isEmpty(phoneNumber)) {
+      handleSendOtp(phoneNumber);
+    }
+  }, [phoneNumber]);
+
+  const handleSendOtp = async (phoneNumber) => {
     setTimeLeft(initialTime);
     setIsResendEnabled(false);
 
     const postData = {
-      case: "reset_password",
-      destination: "+60187834039",
+      case: "account_verification",
+      destination: phoneNumber,
       type: "tenant",
     };
 
@@ -53,7 +60,7 @@ const OtpVerification = () => {
   };
 
   const handleResend = async () => {
-    await handleSendOtp();
+    await handleSendOtp(phoneNumber);
   };
 
   const onClickSubmit = async () => {
@@ -69,8 +76,10 @@ const OtpVerification = () => {
     );
   };
 
-  const otpVerifySuccess = () => {
-    router.replace("/my-stay");
+  const otpVerifySuccess = (res) => {
+    console.log("");
+
+    // router.replace("/my-stay");
   };
 
   const onClickGoBack = () => {

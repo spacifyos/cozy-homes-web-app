@@ -63,6 +63,7 @@ export const getSquareFeet = (state) => _.get(state, ["square_feet"], "");
 export const getBedType = (state) => _.get(state, ["bed_type"], "");
 export const getPropertyName = (state) => _.get(state, ["property_name"], "");
 export const getUnitRoomName = (state) => _.get(state, ["unit_room_name"], "");
+export const getUnitName = (state) => _.get(state, ["unit_name"], "");
 export const getGender = (state) => _.get(state, ["gender"], "");
 export const getAddress = (state) => _.get(state, ["address"], "");
 export const getPicMemberStartDate = (state) =>
@@ -71,6 +72,7 @@ export const getPicName = (state) => _.get(state, ["pic_name"], "");
 export const getLabel = (state) => _.get(state, ["label"], "");
 export const getValue = (state) => _.get(state, ["value"], "");
 export const getAmount = (state) => _.get(state, ["amount"], "");
+export const getFeeAmount = (state) => _.get(state, ["fee_amount"], "");
 export const getContactNumber = (state) => _.get(state, ["contact_number"], "");
 export const getHtmlContent = (state) => _.get(state, ["html_content"], "");
 export const getTitle = (state) => _.get(state, ["title"], "");
@@ -88,3 +90,16 @@ export const getTotalCostFull = (state) =>
 export const getFeesTotalCostFull = (state) =>
   _.get(state, ["move_in_fees", "total_cost", "full"], "");
 export const getTenureOption = (state) => _.get(state, ["tenure_options"], []);
+export const getHasMorePages = (state) =>
+  _.get(state, ["has_more_pages"], false);
+export const getTotalPage = (state) => _.get(state, ["total"], 1);
+export const getCurrentPage = (state) => _.get(state, ["current_page"], 1);
+export const getLastPage = (state) => _.get(state, ["last_page"], 1);
+export const getReferenceNumber = (state) =>
+  _.get(state, ["reference_number"], "");
+export const getPaymentLink = (state) => _.get(state, ["payment_link"], "");
+export const getCreatedAt = (state) => _.get(state, "created_at", "");
+export const getPaymentStatus = (state) => _.get(state, ["payment_status"], "");
+export const getAgencyReviewStatus = (state) =>
+  _.get(state, ["agency_review_status"], "");
+export const getAuthorizedAt = (state) => _.get(state, ["authorized_at"], "");
