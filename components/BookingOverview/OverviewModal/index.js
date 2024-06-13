@@ -5,6 +5,7 @@ import _ from "lodash";
 
 const OverviewModal = ({ t, data }) => {
   const fees = listingSelector.getFees(data);
+  const totalFees = listingSelector.getTotalFees(data);
 
   return (
     <CustomModal id="booking_overview_modal">
@@ -29,7 +30,7 @@ const OverviewModal = ({ t, data }) => {
                   {name}
                 </CustomText>
                 <CustomText textClassName="modal-font-secondary">
-                  RM{amount}
+                  RM{_.isEmpty(amount) ? "0" : amount}
                 </CustomText>
               </div>
             );
@@ -40,7 +41,9 @@ const OverviewModal = ({ t, data }) => {
         <CustomText textClassName="modal-font-primary">
           {t("bookingOverview.total")}
         </CustomText>
-        <CustomText textClassName="modal-font-main">RM1,600.00</CustomText>
+        <CustomText textClassName="modal-font-main">
+          RM{_.isEmpty(totalFees) ? "0" : totalFees}
+        </CustomText>
       </div>
     </CustomModal>
   );

@@ -16,36 +16,6 @@ import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
-const cityListing = [
-  { image: "/images/building/image1.png", title: "Kuala Lumpur" },
-  { image: "/images/building/image2.png", title: "Petaling Jaya" },
-  { image: "/images/building/image3.png", title: "Subang Jaya" },
-  { image: "/images/building/image4.png", title: "Puchong" },
-];
-
-// const universityListing = [
-//   { image: "/images/college_university/Inti.png", title: "INTI" },
-//   { image: "/images/college_university/mia.png", title: "MIA" },
-//   { image: "/images/college_university/Saito.png", title: "SAITO" },
-//   { image: "/images/college_university/TARUMT.png", title: "TARUNT" },
-//   { image: "/images/college_university/UCSI.png", title: "UCSI" },
-//   { image: "/images/college_university/Uni_KL.png", title: "UNI KL" },
-//   { image: "/images/college_university/UTAR.png", title: "UTAR" },
-//   { image: "/images/college_university/UTM.png", title: "UTM" },
-//   {
-//     image: "/images/college_university/Victori_Malaysia.png",
-//     title: "Victori Malaysia",
-//   },
-// ];
-
-// const condoListing = [
-//   { image: "/images/condo/M_Vertica.png", title: "M Vertica" },
-//   { image: "/images/condo/MAdora.png", title: "M Adora" },
-//   { image: "/images/condo/granito.png", title: "Granito" },
-//   { image: "/images/condo/Sinaran_Residence.png", title: "Sinaran Residence" },
-//   { image: "/images/condo/Anggun_Residence.png", title: "Anggun Residence" },
-// ];
-
 function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();

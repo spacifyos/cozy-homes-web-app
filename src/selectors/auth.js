@@ -36,6 +36,6 @@ export const getName = (state) => _.get(state, ["name"], "");
 export const getEmail = (state) => _.get(state, ["email"], "");
 export const getPhoneNumber = (state) => _.get(state, ["phone_number"], "");
 export const getUserVerify = (state) =>
-  _.get(state, ["isAccountVerified"], false);
+  _.get(state, ["user", "isAccountVerified"], false);
 export const getUserPhoneNumber = (state) =>
   _.get(state, ["user", "phone_number"], "");

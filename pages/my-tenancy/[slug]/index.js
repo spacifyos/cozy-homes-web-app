@@ -9,18 +9,30 @@ import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
 import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
 import EAgreement from "@/components/MyTenancy/E-AgreementSection";
 import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UnsubscribeAutoPayModal from "@/components/MyTenancy/UnsubscribeAutoPayModal";
 import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import { useDispatch, useSelector } from "react-redux";
+import * as authAction from "@/src/actions/auth";
+import * as authSelector from "@/src/selectors/auth";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
-const MyTenancy = ({}) => {
+const MyTenancy = ({ code }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
 
   const getTenancyOverviewRequest = (id) =>
     dispatch(tenancyAction.getTenancyOverviewRequest(id));
@@ -32,6 +44,19 @@ const MyTenancy = ({}) => {
   );
 
   const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    fetchUserprofileData();
+    fetchTenancyOverview(code);
+  }, []);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
+
+  const fetchTenancyOverview = (code) => {
+    getTenancyOverviewRequest(code);
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -59,7 +84,7 @@ const MyTenancy = ({}) => {
       // rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container pb-4">
-        <TenancyUserSection t={t} />
+        <TenancyUserSection t={t} data={userProfileData} />
 
         <TenancyDetail
           t={t}
@@ -79,6 +104,8 @@ const MyTenancy = ({}) => {
         {/*<UnsubscribeAutoPayModal t={t} />*/}
 
         {/*<SubscribeAutoPayModal t={t} />*/}
+
+        <LoadingOverlay loading={userProfileLoading} />
       </div>
     </CustomHeader>
   );

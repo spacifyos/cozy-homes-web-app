@@ -14,7 +14,6 @@ const StepSection = ({ t, paymentSuccess, data }) => {
   const authorizedAt = listingSelector.getAuthorizedAt(data);
   const agencyReviewStatus = listingSelector.getAgencyReviewStatus(data);
   const paymentLink = listingSelector.getPaymentLink(data);
-
   const onClickPayNow = () => {
     window.open(paymentLink, "_self");
   };
@@ -40,7 +39,7 @@ const StepSection = ({ t, paymentSuccess, data }) => {
               <CustomText textClassName="font-size-xsmall">
                 {t("bookingOverview.status")}
               </CustomText>
-              <StatusLabel status="Completed" />
+              <StatusLabel status={_.isEmpty(data) ? "" : "Completed"} />
             </div>
             <CustomText textClassName="step-section-infor-font">
               {t("bookingOverview.bookingCreatedAt")}{" "}

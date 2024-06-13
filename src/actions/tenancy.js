@@ -17,9 +17,9 @@ export const getTenancyOverviewRequest = (id) => ({
   id,
 });
 
-export const getTenancyOverviewSuccess = (id, data) => ({
+export const getTenancyOverviewSuccess = (code, data) => ({
   type: "GET_TENANCY_OVERVIEW_SUCCESS",
-  id,
+  code,
   data,
 });
 
@@ -27,4 +27,3 @@ export const getTenancyOverviewFailure = (messages) => ({
   type: "GET_TENANCY_OVERVIEW_FAILURE",
   messages,
 });
-

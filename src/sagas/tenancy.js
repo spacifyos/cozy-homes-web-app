@@ -5,7 +5,7 @@ import * as tenancyAction from "@/src/actions/tenancy";
 
 function* getTenancyListingRequest({}) {
   try {
-    const response = yield call(api.getListing);
+    const response = yield call(api.getTenancyListing);
 
     const { data, code, message } = response.data;
 
@@ -15,13 +15,13 @@ function* getTenancyListingRequest({}) {
   }
 }
 
-function* getTenancyOverviewRequest({ id }) {
+function* getTenancyOverviewRequest({ code }) {
   try {
-    const response = yield call(api.getBookingOverview, id);
+    const response = yield call(api.getTenancyOverview, code);
 
-    const { data, code, message } = response.data;
+    const { data, message } = response.data;
 
-    yield put(tenancyAction.getTenancyOverviewSuccess(id, data));
+    yield put(tenancyAction.getTenancyOverviewSuccess(code, data));
   } catch (error) {
     yield call(
       httpErrorHelpers,

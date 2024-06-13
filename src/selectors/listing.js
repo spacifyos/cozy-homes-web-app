@@ -103,3 +103,4 @@ export const getPaymentStatus = (state) => _.get(state, ["payment_status"], "");
 export const getAgencyReviewStatus = (state) =>
   _.get(state, ["agency_review_status"], "");
 export const getAuthorizedAt = (state) => _.get(state, ["authorized_at"], "");
+export const getTotalFees = (state) => _.get(state, ["total_fees"], "");

@@ -1,8 +1,11 @@
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
+import _ from "lodash";
 
-const RadialProgressComponent = ({ t, dimensions }) => {
-  const [remainingDay, setRemainingDay] = useState(0);
+const RadialProgressComponent = ({ t, dimensions, tenancyRemaining }) => {
+  const [remainingDay, setRemainingDay] = useState(
+    _.isEmpty(tenancyRemaining) ? 0 : tenancyRemaining,
+  );
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
@@ -10,7 +13,7 @@ const RadialProgressComponent = ({ t, dimensions }) => {
       const newNumber = remainingDay + 1;
       const newPercentage = (newNumber / 365) * 100;
 
-      if (newPercentage <= 70) {
+      if (newPercentage <= 100) {
         setRemainingDay(newNumber);
         setPercentage(newPercentage);
       } else {
@@ -36,9 +39,11 @@ const RadialProgressComponent = ({ t, dimensions }) => {
           {t("myStay.tenancyRemaining")}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold">
-          {remainingDay}
+          {tenancyRemaining}
         </CustomText>
-        <CustomText textClassName="font-size-small">{t("myStay.days")}</CustomText>
+        <CustomText textClassName="font-size-small">
+          {t("myStay.days")}
+        </CustomText>
       </div>
     </div>
   );

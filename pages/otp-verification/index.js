@@ -77,7 +77,7 @@ const OtpVerification = () => {
   };
 
   const otpVerifySuccess = (res) => {
-    console.log("");
+    console.log(res);
 
     // router.replace("/my-stay");
   };
@@ -101,7 +101,7 @@ const OtpVerification = () => {
         </CustomText>
 
         <CustomText textClassName="pb-5 font-size-small disable-text text-center">
-          Sent to +91 9878 977 771
+          Sent to {_.isEmpty(phoneNumber)?"-":phoneNumber}
         </CustomText>
 
         <div className="flex justify-center pb-7">

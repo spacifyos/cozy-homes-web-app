@@ -63,6 +63,10 @@ const postBookingCreate = (postData) =>
 
 const getGalleryLinkRequest = () => apiInstance.get("/gallery");
 
+const getTenancyListing = () => apiInstance.get("/tenancy");
+
+const getTenancyOverview = (code) => apiInstance.get(`/tenancy/${code}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -84,4 +88,6 @@ export default {
   postOtpRequest,
   postOtpVerify,
   postForgotPassword,
+  getTenancyListing,
+  getTenancyOverview,
 };

@@ -70,13 +70,16 @@ const MyStay = () => {
   const [isChecked, setIsChecked] = useState(true);
 
   useEffect(() => {
-    if (_.isEmpty(userProfileData)) {
-      fetchUserprofileData();
-    }
-  }, [userProfileData]);
+    fetchUserprofileData();
+    fetchTenancyListing();
+  }, []);
 
   const fetchUserprofileData = () => {
     getUserProfileRequest();
+  };
+
+  const fetchTenancyListing = () => {
+    getTenancyListingRequest();
   };
 
   const onClickSelectCategory = (category) => {
@@ -95,8 +98,8 @@ const MyStay = () => {
     router.push("/e-agreement");
   };
 
-  const onClickGoToMyTenancy = (id) => {
-    router.push(`/my-tenancy/${id}`);
+  const onClickGoToMyTenancy = (code) => {
+    router.push(`/my-tenancy/${code}`);
   };
 
   const onChangeAutoPay = () => {
@@ -133,6 +136,7 @@ const MyStay = () => {
           onClickGoToMyTenancy={onClickGoToMyTenancy}
           onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
+          data={tenancyListingData}
         />
 
         {/*<FeatureSection*/}
@@ -157,7 +161,7 @@ const MyStay = () => {
           onClickToOverviewPage={onClickToOverviewPage}
         />
 
-        <LoadingOverlay loading={userProfileLoading} />
+        <LoadingOverlay loading={userProfileLoading || tenancyListingLoading} />
       </div>
     </CustomHeader>
   );

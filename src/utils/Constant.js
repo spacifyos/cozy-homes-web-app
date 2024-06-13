@@ -27,6 +27,10 @@ const Constant = {
 
   UNPAID: "Unpaid",
 
+  INVOICE_OVER_DUE: "2",
+  INVOICE_COMING_SOON: "1",
+  INVOICE_PAID: "3",
+
   TENANCY: "Tenancy",
   POLICY: "Policy",
 
