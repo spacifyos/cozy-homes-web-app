@@ -157,7 +157,6 @@ const Booking = ({ id }) => {
   const onClickBooking = async () => {
     const currentForm = formRef && formRef.current;
     const newErrors = {};
-    console.log(currentForm.tenure_period.value);
 
     const requiredFields = [
       "booking_date_from",

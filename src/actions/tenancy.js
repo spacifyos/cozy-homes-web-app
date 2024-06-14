@@ -17,9 +17,9 @@ export const getTenancyOverviewRequest = (id) => ({
   id,
 });
 
-export const getTenancyOverviewSuccess = (code, data) => ({
+export const getTenancyOverviewSuccess = (id, data) => ({
   type: "GET_TENANCY_OVERVIEW_SUCCESS",
-  code,
+  id,
   data,
 });
 

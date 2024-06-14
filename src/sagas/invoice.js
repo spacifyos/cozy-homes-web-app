@@ -45,8 +45,8 @@ function* getInvoiceSummaryRequest({}) {
 
 function* InvoiceSaga() {
   yield all([
-    takeLatest("GET_TENANCY_LISTING_REQUEST", getInvoiceListingRequest),
-    takeLatest("GET_TENANCY_OVERVIEW_REQUEST", getInvoiceOverviewRequest),
+    takeLatest("GET_INVOICE_LISTING_REQUEST", getInvoiceListingRequest),
+    takeLatest("GET_INVOICE_OVERVIEW_REQUEST", getInvoiceOverviewRequest),
     takeLatest("GET_INVOICE_SUMMARY_REQUEST", getInvoiceSummaryRequest),
   ]);
 }

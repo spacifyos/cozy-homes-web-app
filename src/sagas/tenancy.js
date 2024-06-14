@@ -15,13 +15,13 @@ function* getTenancyListingRequest({}) {
   }
 }
 
-function* getTenancyOverviewRequest({ code }) {
+function* getTenancyOverviewRequest({ id }) {
   try {
-    const response = yield call(api.getTenancyOverview, code);
+    const response = yield call(api.getTenancyOverview, id);
 
     const { data, message } = response.data;
 
-    yield put(tenancyAction.getTenancyOverviewSuccess(code, data));
+    yield put(tenancyAction.getTenancyOverviewSuccess(id, data));
   } catch (error) {
     yield call(
       httpErrorHelpers,

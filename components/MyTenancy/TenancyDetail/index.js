@@ -5,17 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
 import Images from "@/src/utils/Image";
-
-const TenancyLabel = () => {
-  return (
-    <div className={"pl-2"}>
-      <CustomText textClassName="font-bold font-size-small primary-text">
-        M Vertica
-      </CustomText>
-      <CustomText textClassName="font-size-xsmall">A-01-01, Room 1</CustomText>
-    </div>
-  );
-};
+import * as tenancySelector from "@/src/selectors/tenancy";
+import moment from "moment";
 
 const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
@@ -35,9 +26,20 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   );
 };
 
-const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
+const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
+
+  const tenancyCode = tenancySelector.getTenancyCode(data);
+  const propertyName = tenancySelector.getPropertyName(data);
+  const unitName = tenancySelector.getUnitName(data);
+  const roomName = tenancySelector.getRoomName(data);
+  const tenancyPeriod = tenancySelector.getTenancyPeriod(data);
+  const rental = tenancySelector.getInitialRentalFee(data);
+  const tenancyRemaining = tenancySelector.getTenancyRemainingDay(data);
+  const totalDays = tenancySelector.getTotalDays(data);
+  const createdAt = tenancySelector.getCreatedAt(data);
+  const address = tenancySelector.getAddress(data);
 
   useEffect(() => {
     if (targetRef.current) {
@@ -50,7 +52,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
       <div className="flex justify-between items-center">
         <CustomLabelValue
           label={t("myStay.tenancyCode")}
-          value={"Spacify-T123456789"}
+          value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
           highlight
         />
 
@@ -63,32 +65,49 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked }) => {
         className="flex mx-16 justify-center items-center py-4"
         ref={targetRef}
       >
-        <RadialProgressComponent t={t} dimensions={dimensions} />
+        {totalDays !== 0 && tenancyRemaining !== 0 ? (
+          <RadialProgressComponent
+            t={t}
+            dimensions={dimensions}
+            tenancyRemaining={tenancyRemaining}
+            totalDays={totalDays}
+          />
+        ) : (
+          false
+        )}
       </div>
+
       <div className="flex flex-col items-start">
         <div className="flex items-center py-3">
           <div className="primary-bg-color p-2 global-border-radius mb-1">
             <CustomImage src={Images.buildingIcon} width={30} height={30} />
           </div>
-          <TenancyLabel />
+
+          <div className={"pl-2"}>
+            <CustomText textClassName="font-bold font-size-small primary-text">
+              {_.isEmpty(propertyName) ? "-" : propertyName}
+            </CustomText>
+            <CustomText textClassName="font-size-xsmall">
+              {_.isEmpty(unitName) ? "" : unitName}
+              {_.isEmpty(roomName) ? "" : ", " + roomName}
+            </CustomText>
+          </div>
         </div>
         <CustomLabelValue
           label={t("myStay.rentalFee")}
-          value={"RM750 / monthly"}
+          value={`RM${_.isEmpty(rental) ? "0" : rental} / monthly`}
         />
         <CustomLabelValue
           label={t("myStay.tenancyPeriod")}
-          value={"30 Nov 2023 - 31 Dec 2024"}
+          value={_.isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
         />
         <CustomLabelValue
           label={t("myTenancy.address")}
-          value={
-            "Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala Lumpur, Federal Territory of Kuala Lumpur."
-          }
+          value={_.isEmpty(address) ? "-" : address}
         />
         <CustomLabelValue
           label={t("myTenancy.createdAt")}
-          value={"28 Nov 2023, 15:56:43"}
+          value={moment(createdAt).format("DD MMM YYYY, HH:mm:ss")}
         />
       </div>
     </div>

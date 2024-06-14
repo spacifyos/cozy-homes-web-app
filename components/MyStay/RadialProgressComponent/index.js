@@ -2,18 +2,21 @@ import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import _ from "lodash";
 
-const RadialProgressComponent = ({ t, dimensions, tenancyRemaining }) => {
-  const [remainingDay, setRemainingDay] = useState(
-    _.isEmpty(tenancyRemaining) ? 0 : tenancyRemaining,
-  );
+const RadialProgressComponent = ({
+  t,
+  dimensions,
+  tenancyRemaining,
+  totalDays,
+}) => {
+  const [remainingDay, setRemainingDay] = useState(0);
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const newNumber = remainingDay + 1;
-      const newPercentage = (newNumber / 365) * 100;
+      const newPercentage = (newNumber / totalDays) * 100;
 
-      if (newPercentage <= 100) {
+      if (newNumber <= tenancyRemaining) {
         setRemainingDay(newNumber);
         setPercentage(newPercentage);
       } else {

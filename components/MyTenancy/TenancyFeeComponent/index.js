@@ -1,15 +1,27 @@
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
+import * as tenancySelector from "@/src/selectors/tenancy";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
-const TenancyFeeComponent = ({ item }) => {
-  const name = _.get(item, ["name"], "");
-  const num = _.get(item, ["num"], "");
-
+const TenancyFeeComponent = ({ data }) => {
   return (
-    <div className="flex flex-row gap-2 pb-2 w-full justify-between">
-      <CustomText textClassName="font-bold">{name}</CustomText>
+    <div className="flex flex-col justify-between items-center gap-2">
+      {_.isEmpty(data) ? (
+        <CustomEmptyBox emptyDesc="No fees in the moment." />
+      ) : (
+        _.map(data, (item, index) => {
+          const name = tenancySelector.getName(item);
+          const feeAmount = tenancySelector.getFeeAmount(item);
 
-      <CustomText>{num}</CustomText>
+          return (
+            <div className="flex w-full justify-between" key={index}>
+              <CustomText textClassName="font-bold">{name}</CustomText>
+
+              <CustomText>{`RM${_.isEmpty(feeAmount) ? "0" : feeAmount}`}</CustomText>
+            </div>
+          );
+        })
+      )}
     </div>
   );
 };

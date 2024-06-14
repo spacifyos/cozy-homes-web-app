@@ -65,7 +65,7 @@ const getGalleryLinkRequest = () => apiInstance.get("/gallery");
 
 const getTenancyListing = () => apiInstance.get("/tenancy");
 
-const getTenancyOverview = (code) => apiInstance.get(`/tenancy/${code}`);
+const getTenancyOverview = (id) => apiInstance.get(`/tenancy/${id}`);
 
 const getInvoiceSummary = () => apiInstance.get("/invoice/summary");
 

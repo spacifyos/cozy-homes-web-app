@@ -10,6 +10,7 @@ export const getTenancyOverviewData = (state, code) =>
 export const getTenancyOverviewLoading = (state) =>
   _.get(state, ["tenancy", "tenancyOverview", "loading"], false);
 
+export const getId = (state) => _.get(state, ["id"], "");
 export const getName = (state) => _.get(state, ["name"], "");
 export const getPropertyName = (state) =>
   _.get(state, ["property", "name"], "");
@@ -22,4 +23,7 @@ export const getInitialRentalFee = (state) =>
   _.get(state, ["initial_rental_fee"], "");
 export const getTenancyRemainingDay = (state) =>
   _.get(state, ["remaining_days"], "");
-export const getCreatedAt = (state) => _.get(state, ["created_at"], "");
+export const getCreatedAt = (state) => _.get(state, ["created_at"], 0);
+export const getTotalDays = (state) => _.get(state, ["total_days"], 0);
+export const getFee = (state) => _.get(state, ["fee"], []);
+export const getFeeAmount = (state) => _.get(state, ["fee_amount"], "");

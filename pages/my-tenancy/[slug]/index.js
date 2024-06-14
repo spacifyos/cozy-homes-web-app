@@ -17,10 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import _ from "lodash";
 
 export { getServerSideProps };
 
-const MyTenancy = ({ code }) => {
+const MyTenancy = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const MyTenancy = ({ code }) => {
   const getTenancyOverviewRequest = (id) =>
     dispatch(tenancyAction.getTenancyOverviewRequest(id));
   const tenancyOverviewData = useSelector((state) =>
-    tenancySelector.getTenancyOverviewData(state),
+    tenancySelector.getTenancyOverviewData(state, id),
   );
   const tenancyOverviewLoading = useSelector((state) =>
     tenancySelector.getTenancyOverviewLoading(state),
@@ -47,15 +48,18 @@ const MyTenancy = ({ code }) => {
 
   useEffect(() => {
     fetchUserprofileData();
-    fetchTenancyOverview(code);
   }, []);
+
+  useEffect(() => {
+    if (!tenancyOverviewLoading) fetchTenancyOverview(id);
+  }, [id]);
 
   const fetchUserprofileData = () => {
     getUserProfileRequest();
   };
 
-  const fetchTenancyOverview = (code) => {
-    getTenancyOverviewRequest(code);
+  const fetchTenancyOverview = (id) => {
+    getTenancyOverviewRequest(id);
   };
 
   const onClickGoBack = () => {
@@ -90,9 +94,10 @@ const MyTenancy = ({ code }) => {
           t={t}
           onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
+          data={tenancyOverviewData}
         />
 
-        <TenancyFeeDetail t={t} />
+        <TenancyFeeDetail t={t} data={tenancyOverviewData} />
 
         {/*<EAgreement*/}
         {/*  t={t}*/}
@@ -105,7 +110,9 @@ const MyTenancy = ({ code }) => {
 
         {/*<SubscribeAutoPayModal t={t} />*/}
 
-        <LoadingOverlay loading={userProfileLoading} />
+        <LoadingOverlay
+          loading={userProfileLoading || tenancyOverviewLoading}
+        />
       </div>
     </CustomHeader>
   );

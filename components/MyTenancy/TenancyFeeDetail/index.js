@@ -1,20 +1,14 @@
 import _ from "lodash";
 import CustomText from "@/components/CustomText";
 import TenancyFeeComponent from "@/components/MyTenancy/TenancyFeeComponent";
+import * as tenancySelector from "@/src/selectors/tenancy";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
-const TenancyFeeDetail = ({ t }) => {
-  const FeeLists = [
-    { name: t("myTenancy.electricityPricePerUnit"), num: 0 },
-    { name: t("myTenancy.rentalDeposit"), num: 0 },
-    { name: t("myTenancy.utilityDeposit"), num: 0 },
-    { name: t("myTenancy.keyDeposit"), num: 0 },
-    { name: t("myTenancy.fitUpDeposit"), num: 0 },
-    { name: t("myTenancy.restorationDeposit"), num: 0 },
-    { name: t("myTenancy.otherDeposit"), num: 0 },
-  ];
+const TenancyFeeDetail = ({ t, data }) => {
+  const fees = tenancySelector.getFee(data);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color px-4 pt-4 pb-2 mb-3">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-3">
       <CustomText textClassName="disable-text font-size-small">
         {t("myTenancy.otherInformation")}
       </CustomText>
@@ -24,11 +18,7 @@ const TenancyFeeDetail = ({ t }) => {
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
-      <div className="flex flex-col justify-between items-center">
-        {_.map(FeeLists, (item, index) => {
-          return <TenancyFeeComponent item={item} key={index} />;
-        })}
-      </div>
+      <TenancyFeeComponent data={fees} />
     </div>
   );
 };

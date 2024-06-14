@@ -68,6 +68,7 @@ const TenancySection = ({
         style={{ width: "100%" }}
       >
         {_.map(data, (item, index) => {
+          const tenancyId = tenancySelector.getId(item);
           const tenancyCode = tenancySelector.getTenancyCode(item);
           const propertyName = tenancySelector.getPropertyName(item);
           const unitName = tenancySelector.getUnitName(item);
@@ -75,6 +76,7 @@ const TenancySection = ({
           const tenancyPeriod = tenancySelector.getTenancyPeriod(item);
           const rental = tenancySelector.getInitialRentalFee(item);
           const tenancyRemaining = tenancySelector.getTenancyRemainingDay(item);
+          const totalDays = tenancySelector.getTotalDays(item);
 
           return (
             <SwiperSlide key={index}>
@@ -93,7 +95,7 @@ const TenancySection = ({
                       src={Images.buildingIcon}
                       width={35}
                       height={35}
-                      onClick={() => onClickGoToMyTenancy(tenancyCode)}
+                      onClick={() => onClickGoToMyTenancy(tenancyId)}
                     />
                   </div>
 
@@ -139,6 +141,7 @@ const TenancySection = ({
                     t={t}
                     dimensions={dimensions}
                     tenancyRemaining={tenancyRemaining}
+                    totalDays={totalDays}
                   />
                 </div>
 
