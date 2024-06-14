@@ -13,10 +13,12 @@ import CustomDropdown from "@/components/CustomDropdown";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import _ from "lodash";
 
 export { getServerSideProps };
 
-const InvoiceOverview = () => {
+const InvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -24,13 +26,35 @@ const InvoiceOverview = () => {
   const getInvoiceOverviewRequest = (id) =>
     dispatch(invoiceAction.getInvoiceOverviewRequest(id));
   const invoiceOverviewData = useSelector((state) =>
-    invoiceSelector.getInvoiceOverviewData(state),
+    invoiceSelector.getInvoiceOverviewData(state, id),
   );
   const invoiceOverviewLoading = useSelector((state) =>
     invoiceSelector.getInvoiceOverviewLoading(state),
   );
 
   const [openDownloadModal, setOpenDownloadModal] = useState(false);
+
+  const code = invoiceSelector.getInvoiceNumber(invoiceOverviewData);
+  const paymentStatus = invoiceSelector.getPaymentStatus(invoiceOverviewData);
+  const status = invoiceSelector.getStatus(invoiceOverviewData);
+  const dueDate = invoiceSelector.getDueDate(invoiceOverviewData);
+  const totalAmount = invoiceSelector.getTotalAmount(invoiceOverviewData);
+  const billTo = invoiceSelector.getBillTo(invoiceOverviewData);
+  const property = invoiceSelector.getProperty(invoiceOverviewData);
+  const invoiceDate = invoiceSelector.getInvoiceDate(invoiceOverviewData);
+  const tenancyCode = invoiceSelector.getTenancyCode(invoiceOverviewData);
+  const schedule = invoiceSelector.getSchedule(invoiceOverviewData);
+  const tax = invoiceSelector.getTax(invoiceOverviewData);
+  const grandTotal = invoiceSelector.getGrandtotal(invoiceOverviewData);
+  const items = invoiceSelector.getItems(invoiceOverviewData);
+
+  useEffect(() => {
+    fetchInvoiceOverviewData(id);
+  }, [id]);
+
+  const fetchInvoiceOverviewData = (id) => {
+    getInvoiceOverviewRequest(id);
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -49,16 +73,16 @@ const InvoiceOverview = () => {
       pageTitle={t("pageTitle.myInvoiceOverview")}
       onClickGoBack={onClickGoBack}
       hideBgImage
-      rightContent={
-        <CustomImage
-          src={Images.downloadIcon}
-          height={25}
-          width={25}
-          className="cursor-pointer"
-          onClick={onClickDownload}
-        />
-      }
-      rightSecondButtonIcon={Images.shareIcon}
+      // rightContent={
+      //   <CustomImage
+      //     src={Images.downloadIcon}
+      //     height={25}
+      //     width={25}
+      //     className="cursor-pointer"
+      //     onClick={onClickDownload}
+      //   />
+      // }
+      // rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container relative py-6 flex justify-center">
         <div className="primary-bg-color p-2 global-border-radius absolute top-0">
@@ -70,7 +94,7 @@ const InvoiceOverview = () => {
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
           <div className="flex justify-between">
             <CustomLabelValue
-              value="XXXXXXXXXXX"
+              value={_.isEmpty(code) ? "-" : code}
               label={t("invoiceOverview.invoiceNumber")}
               highlight
             />
@@ -78,7 +102,7 @@ const InvoiceOverview = () => {
               <CustomText textClassName="font-size-xxsmall disable-text">
                 {t("invoiceOverview.status")}
               </CustomText>
-              <StatusLabel status="pending" />
+              <StatusLabel status={paymentStatus} />
             </div>
           </div>
 
@@ -88,32 +112,32 @@ const InvoiceOverview = () => {
           ></div>
 
           <CustomLabelValue
-            value="John Doe"
+            value={_.isEmpty(billTo) ? "-" : billTo}
             label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
-            value="M Vertica, A-01-01, Room 1"
+            value={_.isEmpty(property) ? "-" : property}
             label={t("invoiceOverview.property")}
           />
 
           <div className="flex justify-between items-center">
             <CustomLabelValue
-              value="19 Aug 2023"
+              value={_.isEmpty(invoiceDate) ? "-" : invoiceDate}
               label={t("invoiceOverview.invoiceDate")}
             />
             <CustomLabelValue
-              value="30 Nov 2023"
+              value={_.isEmpty(dueDate) ? "-" : dueDate}
               label={t("invoiceOverview.dueDate")}
               highlight
             />
           </div>
 
           <CustomLabelValue
-            value="ABCXXXXXXXXXXXXXXX"
+            value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
             label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
-            value="Scheduled Manual Pay"
+            value={_.isEmpty(schedule) ? "-" : schedule}
             label={t("invoiceOverview.schedule")}
           />
 
@@ -126,6 +150,39 @@ const InvoiceOverview = () => {
             {t("invoiceOverview.items")}
           </CustomText>
 
+          <div className="gap-2">
+            {_.isEmpty(items)
+              ? false
+              : _.map(items, (item) => {
+                  const itemName = _.get(item, ["name"], "");
+                  const unitPrice = _.get(item, ["unit_price"], 0);
+                  const quantity = _.get(item, ["quantity"], 1);
+
+                  return (
+                    <div className="flex justify-between items-center pt-2">
+                      <div className="">
+                        <CustomText
+                          textClassName={`black-text font-size-small font-bold`}
+                        >
+                          {itemName}
+                        </CustomText>
+                        <CustomText
+                          textClassName={`font-size-xxsmall disable-text`}
+                        >
+                          RM{unitPrice} per unit
+                        </CustomText>
+                      </div>
+
+                      <CustomText
+                        textClassName={`black-text font-size-large font-bold`}
+                      >
+                        X{quantity}
+                      </CustomText>
+                    </div>
+                  );
+                })}
+          </div>
+
           <div
             className="divider-line"
             style={{ marginTop: 10, marginBottom: 10 }}
@@ -136,13 +193,13 @@ const InvoiceOverview = () => {
               {t("invoiceOverview.subtotal")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM750.00
+              RM{_.isEmpty(grandTotal) ? "0" : grandTotal}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
               {t("invoiceOverview.tax")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM10.00
+              RM{_.isEmpty(tax) ? "0" : tax}
             </CustomText>
           </div>
 
@@ -156,7 +213,7 @@ const InvoiceOverview = () => {
               {t("invoiceOverview.totalAmount")}
             </CustomText>
             <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
-              RM760.00
+              RM{_.isEmpty(totalAmount) ? "0" : totalAmount}
             </CustomText>
           </div>
 
@@ -190,6 +247,8 @@ const InvoiceOverview = () => {
         ) : (
           false
         )}
+
+        <LoadingOverlay loading={invoiceOverviewLoading} />
       </div>
     </CustomHeader>
   );

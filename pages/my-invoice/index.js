@@ -18,36 +18,17 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
-const invoice = [
-  {
-    date: "Nov 2024",
-    list: [
-      { status: "Paid" },
-      { status: "Paid" },
-      { status: "Paid" },
-      { status: "Paid" },
-    ],
-  },
-  {
-    date: "Oct 2024",
-    list: [
-      { status: "Overdue" },
-      { status: "Overdue" },
-      { status: "Due Soon" },
-      { status: "Due Soon" },
-    ],
-  },
-];
-
 const MyInvoice = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const getInvoiceListingRequest = () =>
-    dispatch(invoiceAction.getInvoiceListingRequest());
+  const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+
+  const getInvoiceListingRequest = (paymentStatus, page) =>
+    dispatch(invoiceAction.getInvoiceListingRequest(paymentStatus, page));
   const invoiceListingData = useSelector((state) =>
-    invoiceSelector.getInvoiceListingData(state),
+    invoiceSelector.getInvoiceListingData(state, selectedCategory),
   );
   const invoiceListingLoading = useSelector((state) =>
     invoiceSelector.getInvoiceListingLoading(state),
@@ -62,13 +43,20 @@ const MyInvoice = () => {
     invoiceSelector.getInvoiceSummaryLoading(state),
   );
 
-  const [selectedCategory, setSelectedCategory] = useState("Unpaid");
   const [dateFromValue, setDateFromValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
   const [dateToValue, setDateToValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
+
+  useEffect(() => {
+    fetchInvoiceListingData(selectedCategory);
+  }, [selectedCategory]);
+
+  const fetchInvoiceListingData = (paymentStatus, page = 1) => {
+    getInvoiceListingRequest(paymentStatus, page);
+  };
 
   useEffect(() => {
     fetchInvoiceSummary();
@@ -94,8 +82,8 @@ const MyInvoice = () => {
     router.back();
   };
 
-  const onClickToOverView = (id) => {
-    router.push(`my-invoice/${id}`);
+  const onClickToOverView = (code) => {
+    router.push(`my-invoice/${code}`);
   };
 
   return (
@@ -135,27 +123,11 @@ const MyInvoice = () => {
           />
         </div>
 
-        {_.map(invoice, (item, index) => {
-          const date = _.get(item, ["date"], "");
-          const lists = _.get(item, ["list"], []);
-
-          return (
-            <div key={index} className="pb-4">
-              <CustomText textClassName="section-title">{date}</CustomText>
-
-              <div className="flex flex-col gap-3">
-                {_.map(lists, (list, index) => (
-                  <InvoiceComponent
-                    key={index}
-                    item={list}
-                    t={t}
-                    onClick={onClickToOverView}
-                  />
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        <InvoiceComponent
+          data={invoiceListingData}
+          t={t}
+          onClickToOverView={onClickToOverView}
+        />
 
         <div className="flex justify-center pb-3">
           <CustomButton
@@ -174,7 +146,7 @@ const MyInvoice = () => {
           onChangeDateTo={onChangeDateTo}
         />
 
-        <LoadingOverlay />
+        <LoadingOverlay loading={invoiceListingLoading} />
       </div>
     </CustomHeader>
   );

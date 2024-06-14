@@ -69,6 +69,16 @@ const getTenancyOverview = (id) => apiInstance.get(`/tenancy/${id}`);
 
 const getInvoiceSummary = () => apiInstance.get("/invoice/summary");
 
+const getInvoiceListing = (paymentStatus, page, query) => {
+  const status = _.isEqual(paymentStatus, "Unpaid")
+    ? "&payment_status[]=1&payment_status[]=2"
+    : "&payment_status[]=3";
+
+  return apiInstance.get(`/invoice?per_page=20${status}&page=${page}`);
+};
+
+const getInvoiceOverview = (id) => apiInstance.get(`/invoice/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -93,4 +103,6 @@ export default {
   getTenancyListing,
   getTenancyOverview,
   getInvoiceSummary,
+  getInvoiceListing,
+  getInvoiceOverview,
 };

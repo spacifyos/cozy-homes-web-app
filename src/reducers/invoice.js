@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const initialState = {
   invoiceListing: {
     data: null,
@@ -26,8 +28,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         invoiceListing: {
-          data: action.data,
+          [action.paymentStatus]: {
+            data: _.get(action, ["data", "data"], null),
+          },
           loading: false,
+          pagination: _.get(action, ["data", "pagination"], null),
         },
       };
     case "GET_INVOICE_LISTING_FAILURE":

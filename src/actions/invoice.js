@@ -1,10 +1,13 @@
-export const getInvoiceListingRequest = () => ({
+export const getInvoiceListingRequest = (paymentStatus, page) => ({
   type: "GET_INVOICE_LISTING_REQUEST",
+  paymentStatus,
+  page,
 });
 
-export const getInvoiceListingSuccess = (data) => ({
+export const getInvoiceListingSuccess = (data, paymentStatus) => ({
   type: "GET_INVOICE_LISTING_SUCCESS",
   data,
+  paymentStatus,
 });
 
 export const getInvoiceListingFailure = (messages) => ({

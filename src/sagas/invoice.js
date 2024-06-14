@@ -3,13 +3,18 @@ import api from "@/src/services/httpUtilities/httpService";
 import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
 import * as invoiceAction from "@/src/actions/invoice";
 
-function* getInvoiceListingRequest({}) {
+function* getInvoiceListingRequest({ paymentStatus, page, query }) {
   try {
-    const response = yield call(api.getListing);
+    const response = yield call(
+      api.getInvoiceListing,
+      paymentStatus,
+      page,
+      query,
+    );
 
-    const { data, code, message } = response.data;
+    const { data, code, message } = response;
 
-    yield put(invoiceAction.getInvoiceListingSuccess(data));
+    yield put(invoiceAction.getInvoiceListingSuccess(data, paymentStatus));
   } catch (error) {
     yield call(httpErrorHelpers, error, invoiceAction.getInvoiceListingFailure);
   }
@@ -17,7 +22,7 @@ function* getInvoiceListingRequest({}) {
 
 function* getInvoiceOverviewRequest({ id }) {
   try {
-    const response = yield call(api.getBookingOverview, id);
+    const response = yield call(api.getInvoiceOverview, id);
 
     const { data, code, message } = response.data;
 
