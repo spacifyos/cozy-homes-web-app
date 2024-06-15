@@ -14,7 +14,9 @@ import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import _ from "lodash";
+import { isEmpty, map, get, isEqual, upperCase } from "lodash";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
 
@@ -33,6 +35,8 @@ const InvoiceOverview = ({ id }) => {
   );
 
   const [openDownloadModal, setOpenDownloadModal] = useState(false);
+  const [getInvoicePaymentLinkLoading, setGetInvoicePaymentLinkLoading] =
+    useState(false);
 
   const code = invoiceSelector.getInvoiceNumber(invoiceOverviewData);
   const paymentStatus = invoiceSelector.getPaymentStatus(invoiceOverviewData);
@@ -64,8 +68,26 @@ const InvoiceOverview = ({ id }) => {
     setOpenDownloadModal(!openDownloadModal);
   };
 
-  const onClickToPayment = (id) => {
-    router.push(`/my-invoice/${id}/payment-successful`);
+  // const onClickToPayment = (id) => {
+  //   router.push(`/my-invoice/${id}/payment-successful`);
+  // };
+
+  const onClickToPayment = async (code) => {
+    if (!isEmpty(code)) {
+      await getPaymentInvoiceLink(code);
+    }
+  };
+
+  const getPaymentInvoiceLink = async (code) => {
+    await apiRequest.getInvoicePaymentLinkRequest(
+      code,
+      setGetInvoicePaymentLinkLoading,
+      getInvoicePaymentLinkSuccess,
+    );
+  };
+
+  const getInvoicePaymentLinkSuccess = (res) => {
+    console.log(res);
   };
 
   return (
@@ -94,7 +116,7 @@ const InvoiceOverview = ({ id }) => {
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
           <div className="flex justify-between">
             <CustomLabelValue
-              value={_.isEmpty(code) ? "-" : code}
+              value={isEmpty(code) ? "-" : code}
               label={t("invoiceOverview.invoiceNumber")}
               highlight
             />
@@ -112,32 +134,32 @@ const InvoiceOverview = ({ id }) => {
           ></div>
 
           <CustomLabelValue
-            value={_.isEmpty(billTo) ? "-" : billTo}
+            value={isEmpty(billTo) ? "-" : billTo}
             label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
-            value={_.isEmpty(property) ? "-" : property}
+            value={isEmpty(property) ? "-" : property}
             label={t("invoiceOverview.property")}
           />
 
           <div className="flex justify-between items-center">
             <CustomLabelValue
-              value={_.isEmpty(invoiceDate) ? "-" : invoiceDate}
+              value={isEmpty(invoiceDate) ? "-" : invoiceDate}
               label={t("invoiceOverview.invoiceDate")}
             />
             <CustomLabelValue
-              value={_.isEmpty(dueDate) ? "-" : dueDate}
+              value={isEmpty(dueDate) ? "-" : dueDate}
               label={t("invoiceOverview.dueDate")}
               highlight
             />
           </div>
 
           <CustomLabelValue
-            value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
+            value={isEmpty(tenancyCode) ? "-" : tenancyCode}
             label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
-            value={_.isEmpty(schedule) ? "-" : schedule}
+            value={isEmpty(schedule) ? "-" : schedule}
             label={t("invoiceOverview.schedule")}
           />
 
@@ -151,12 +173,12 @@ const InvoiceOverview = ({ id }) => {
           </CustomText>
 
           <div className="gap-2">
-            {_.isEmpty(items)
+            {isEmpty(items)
               ? false
-              : _.map(items, (item) => {
-                  const itemName = _.get(item, ["name"], "");
-                  const unitPrice = _.get(item, ["unit_price"], 0);
-                  const quantity = _.get(item, ["quantity"], 1);
+              : map(items, (item) => {
+                  const itemName = get(item, ["name"], "");
+                  const unitPrice = get(item, ["unit_price"], 0);
+                  const quantity = get(item, ["quantity"], 1);
 
                   return (
                     <div className="flex justify-between items-center pt-2">
@@ -173,9 +195,7 @@ const InvoiceOverview = ({ id }) => {
                         </CustomText>
                       </div>
 
-                      <CustomText
-                        textClassName={`black-text font-size-large font-bold`}
-                      >
+                      <CustomText textClassName={`black-text font-bold`}>
                         X{quantity}
                       </CustomText>
                     </div>
@@ -193,13 +213,13 @@ const InvoiceOverview = ({ id }) => {
               {t("invoiceOverview.subtotal")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM{_.isEmpty(grandTotal) ? "0" : grandTotal}
+              RM{isEmpty(grandTotal) ? "0" : grandTotal}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
               {t("invoiceOverview.tax")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM{_.isEmpty(tax) ? "0" : tax}
+              RM{isEmpty(tax) ? "0" : tax}
             </CustomText>
           </div>
 
@@ -213,7 +233,7 @@ const InvoiceOverview = ({ id }) => {
               {t("invoiceOverview.totalAmount")}
             </CustomText>
             <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
-              RM{_.isEmpty(totalAmount) ? "0" : totalAmount}
+              RM{isEmpty(totalAmount) ? "0" : totalAmount}
             </CustomText>
           </div>
 
@@ -222,18 +242,22 @@ const InvoiceOverview = ({ id }) => {
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <div className="grid grid-cols-2 gap-2 pt-4">
-            <CustomButton
-              buttonText={t("invoiceOverview.cancel")}
-              buttonClassName="default-btn-outline"
-            />
+          {!isEqual(upperCase(paymentStatus), Constant.PAID) ? (
+            <div className="grid grid-cols-2 gap-2 pt-4">
+              <CustomButton
+                buttonText={t("invoiceOverview.cancel")}
+                buttonClassName="default-btn-outline"
+              />
 
-            <CustomButton
-              buttonText={t("invoiceOverview.payNow")}
-              buttonClassName="primary-btn"
-              onClick={() => onClickToPayment(1)}
-            />
-          </div>
+              <CustomButton
+                buttonText={t("invoiceOverview.payNow")}
+                buttonClassName="primary-btn"
+                onClick={() => onClickToPayment(code)}
+              />
+            </div>
+          ) : (
+            false
+          )}
         </div>
 
         {openDownloadModal ? (
@@ -248,7 +272,9 @@ const InvoiceOverview = ({ id }) => {
           false
         )}
 
-        <LoadingOverlay loading={invoiceOverviewLoading} />
+        <LoadingOverlay
+          loading={invoiceOverviewLoading || getInvoicePaymentLinkLoading}
+        />
       </div>
     </CustomHeader>
   );

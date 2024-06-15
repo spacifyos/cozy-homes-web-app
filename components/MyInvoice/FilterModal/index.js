@@ -10,12 +10,26 @@ const FilterModal = ({
   onChangeDateFrom,
   dateToValue,
   onChangeDateTo,
+  invoiceNumberValue,
+  onChangeInvoiceNumber,
+  onClickCancel,
+  onClickSubmit,
+  onClickReset,
 }) => {
   return (
-    <CustomModal id="invoice_filter_modal">
-      <CustomText textClassName="font-bold font-size-large pb-4">
-        Search Filter
-      </CustomText>
+    <CustomModal id="invoice_filter_modal" disableClose={true}>
+      <div className="flex justify-between items-end pb-4">
+        <CustomText textClassName="font-bold font-size-large">
+          Search Filter
+        </CustomText>
+
+        <CustomText
+          textClassName="underline error-text font-size-xsmall cursor-pointer"
+          onClick={onClickReset}
+        >
+          Reset
+        </CustomText>
+      </div>
 
       <div className="grid grid-cols-2 gap-2">
         <div className="col-span-2 pb-2">
@@ -27,6 +41,8 @@ const FilterModal = ({
             className="primaryWhite-bg-color booking-input"
             placeholder="XXXX-InvXXXXXXXX"
             name="name"
+            value={invoiceNumberValue}
+            onChange={onChangeInvoiceNumber}
           />
         </div>
 
@@ -59,6 +75,7 @@ const FilterModal = ({
               type="date"
               value={dateToValue}
               onChange={onChangeDateTo}
+              min={dateFromValue}
             />
 
             <CustomImage
@@ -68,9 +85,17 @@ const FilterModal = ({
           </div>
         </div>
 
-        <CustomButton buttonText="No" buttonClassName="default-btn-outline" />
+        <CustomButton
+          buttonText="Cancel"
+          buttonClassName="default-btn-outline"
+          onClick={onClickCancel}
+        />
 
-        <CustomButton buttonText="Yes" buttonClassName="primary-btn" />
+        <CustomButton
+          buttonText="Submit"
+          buttonClassName="primary-btn"
+          onClick={onClickSubmit}
+        />
       </div>
     </CustomModal>
   );

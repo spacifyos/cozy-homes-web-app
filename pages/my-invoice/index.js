@@ -1,12 +1,11 @@
 import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
-import CustomText from "@/components/CustomText";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import FilterModal from "@/components/MyInvoice/FilterModal";
@@ -24,6 +23,11 @@ const MyInvoice = () => {
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+  const [filterParams, setFilterParams] = useState({
+    invoiceNumber: "",
+    dateFrom: "",
+    dateTo: "",
+  });
 
   const getInvoiceListingRequest = (paymentStatus, page) =>
     dispatch(invoiceAction.getInvoiceListingRequest(paymentStatus, page));
@@ -31,7 +35,10 @@ const MyInvoice = () => {
     invoiceSelector.getInvoiceListingData(state, selectedCategory),
   );
   const invoiceListingLoading = useSelector((state) =>
-    invoiceSelector.getInvoiceListingLoading(state),
+    invoiceSelector.getInvoiceListingLoading(state, selectedCategory),
+  );
+  const invoiceListingPagination = useSelector((state) =>
+    invoiceSelector.getInvoiceListingPagination(state, selectedCategory),
   );
 
   const getInvoiceSummaryRequest = () =>
@@ -43,12 +50,13 @@ const MyInvoice = () => {
     invoiceSelector.getInvoiceSummaryLoading(state),
   );
 
-  const [dateFromValue, setDateFromValue] = useState(
-    moment(new Date()).format("YYYY-MM-DD"),
-  );
-  const [dateToValue, setDateToValue] = useState(
-    moment(new Date()).format("YYYY-MM-DD"),
-  );
+  const [dateFromValue, setDateFromValue] = useState("");
+  const [dateToValue, setDateToValue] = useState("");
+  const [invoiceNumberValue, setInvoiceNumberValue] = useState("");
+
+  const hasMorePage = invoiceSelector.getHasMorePages(invoiceListingPagination);
+  const lastPage = invoiceSelector.getLastPage(invoiceListingPagination);
+  const currentPage = invoiceSelector.getCurrentPage(invoiceListingPagination);
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory);
@@ -86,15 +94,62 @@ const MyInvoice = () => {
     router.push(`my-invoice/${code}`);
   };
 
+  const onClickLoadMore = () => {
+    fetchInvoiceListingData(selectedCategory, currentPage + 1);
+  };
+
+  const onChangeInvoiceNumber = (e) => {
+    setInvoiceNumberValue(e.target.value);
+  };
+
+  const onClickCancel = () => {
+    handleCloseFilter();
+  };
+
+  const onClickSubmit = () => {
+    setFilterParams({
+      invoiceNumber: invoiceNumberValue,
+      dateFrom: dateFromValue,
+      dateTo: dateToValue,
+    });
+
+    handleCloseFilter();
+  };
+
+  const onClickReset = () => {
+    setInvoiceNumberValue("");
+    setDateToValue("");
+    setDateFromValue("");
+  };
+
+  const handleCloseFilter = () => {
+    document.getElementById("invoice_filter_modal").close();
+  };
+
+  const onClickOpenFilter = () => {
+    const { invoiceNumber, dateFrom, dateTo } = filterParams;
+
+    setInvoiceNumberValue(invoiceNumber);
+    setDateFromValue(dateFrom);
+    setDateToValue(dateTo);
+
+    document.getElementById("invoice_filter_modal").showModal();
+  };
+
+  const isFilter = () => {
+    const { invoiceNumber, dateFrom, dateTo } = filterParams;
+
+    return !isEmpty(invoiceNumber) || !isEmpty(dateFrom) || !isEmpty(dateTo);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myInvoice")}
       rightButtonIcon={Images.filterProIcon}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      onClickRightButton={() =>
-        document.getElementById("invoice_filter_modal").showModal()
-      }
+      isFiltered={isFilter()}
+      onClickRightButton={onClickOpenFilter}
     >
       <div className="body-container pb-1">
         {invoiceSummaryDataLoading ? (
@@ -111,13 +166,13 @@ const MyInvoice = () => {
         <div className="flex items-center pb-3">
           <CustomButton
             buttonText="Unpaid"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
+            buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
             textClassName="font-size-xsmall"
             onClick={() => onClickSelectCategory("Unpaid")}
           />
           <CustomButton
             buttonText="Paid"
-            buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
+            buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
             textClassName="font-size-xsmall"
             onClick={() => onClickSelectCategory("Paid")}
           />
@@ -129,14 +184,19 @@ const MyInvoice = () => {
           onClickToOverView={onClickToOverView}
         />
 
-        <div className="flex justify-center pb-3">
-          <CustomButton
-            buttonClassName="primary-btn min-h-9 h-9 w-32"
-            buttonText="Load More"
-            textClassName="font-size-xsmall"
-            loading={false}
-          />
-        </div>
+        {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
+          <div className="flex justify-center pb-3">
+            <CustomButton
+              buttonClassName="primary-btn min-h-9 h-9 w-32"
+              buttonText="Load More"
+              textClassName="font-size-xsmall"
+              loading={false}
+              onClick={onClickLoadMore}
+            />
+          </div>
+        ) : (
+          false
+        )}
 
         <FilterModal
           t={t}
@@ -144,9 +204,16 @@ const MyInvoice = () => {
           onChangeDateFrom={onChangeDateFrom}
           dateToValue={dateToValue}
           onChangeDateTo={onChangeDateTo}
+          invoiceNumberValue={invoiceNumberValue}
+          onChangeInvoiceNumber={onChangeInvoiceNumber}
+          onClickCancel={onClickCancel}
+          onClickSubmit={onClickSubmit}
+          onClickReset={onClickReset}
         />
 
-        <LoadingOverlay loading={invoiceListingLoading} />
+        <LoadingOverlay
+          loading={invoiceListingLoading && isEmpty(invoiceListingData)}
+        />
       </div>
     </CustomHeader>
   );

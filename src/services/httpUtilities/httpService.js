@@ -79,6 +79,9 @@ const getInvoiceListing = (paymentStatus, page, query) => {
 
 const getInvoiceOverview = (id) => apiInstance.get(`/invoice/${id}`);
 
+const getInvoicePaymentLink = (code) =>
+  apiInstance.get(`/invoice/${code}/make-payment`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -105,4 +108,5 @@ export default {
   getInvoiceSummary,
   getInvoiceListing,
   getInvoiceOverview,
+  getInvoicePaymentLink,
 };

@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { get, concat, isEmpty } from "lodash";
 
 const initialState = {
   invoiceListing: {
@@ -21,18 +21,38 @@ export default function (state = initialState, action) {
       return {
         ...state,
         invoiceListing: {
-          loading: true,
+          [action.paymentStatus]: {
+            ...state.invoiceListing[action.paymentStatus],
+            loading: true,
+          },
         },
       };
     case "GET_INVOICE_LISTING_SUCCESS":
+      const { invoiceListing } = state;
+
+      const currentListItem = get(
+        invoiceListing,
+        [action.paymentStatus, "data"],
+        [],
+      );
+
+      const pagination = get(action.data, ["pagination"], []);
+      const currentPage = get(pagination, ["current_page"], 1);
+      const listItems = get(action.data, ["data"], []);
+
+      const combinedListItems =
+        !isEmpty(listItems) && currentPage > 1
+          ? concat(currentListItem, listItems)
+          : listItems;
+
       return {
         ...state,
         invoiceListing: {
           [action.paymentStatus]: {
-            data: _.get(action, ["data", "data"], null),
+            data: combinedListItems,
+            loading: false,
+            pagination: pagination,
           },
-          loading: false,
-          pagination: _.get(action, ["data", "pagination"], null),
         },
       };
     case "GET_INVOICE_LISTING_FAILURE":

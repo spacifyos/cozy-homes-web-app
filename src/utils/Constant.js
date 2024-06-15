@@ -25,7 +25,8 @@ const Constant = {
     { name: "WP Labuan", value: "MY-15" },
   ],
 
-  UNPAID: "Unpaid",
+  UNPAID: "UNPAID",
+  PAID: "PAID",
 
   INVOICE_OVER_DUE: "2",
   INVOICE_COMING_SOON: "1",

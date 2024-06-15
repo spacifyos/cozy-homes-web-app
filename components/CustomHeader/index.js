@@ -59,30 +59,30 @@ const CustomHeader = ({
               className="cursor-pointer"
             />
           )}
-
-          {_.isEmpty(rightButtonIcon) ? (
-            <div style={{ width: 25, height: 25 }} onClick={onClickRightButton}>
-              {rightContent}
-            </div>
-          ) : (
-            <div className="relative">
-              {isFiltered ? (
-                <div
-                  className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
-                  style={{ top: -10, right: -10 }}
-                ></div>
-              ) : (
-                false
-              )}
-
+          <div
+            style={{ width: 25, height: 25 }}
+            onClick={onClickRightButton}
+            className="relative"
+          >
+            {_.isEmpty(rightButtonIcon) ? (
+              { rightContent }
+            ) : (
               <CustomImage
                 src={rightButtonIcon}
                 imageStyle={{ width: 25, height: 25 }}
                 onClick={onClickRightButton}
                 className="cursor-pointer"
               />
-            </div>
-          )}
+            )}
+            {isFiltered ? (
+              <div
+                className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
+                style={{ top: -10, right: -10 }}
+              ></div>
+            ) : (
+              false
+            )}
+          </div>
         </div>
       </div>
       {children}

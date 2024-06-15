@@ -58,8 +58,16 @@ const postEditProfileRequest = async (postData, setLoading) => {
   await apiRequest(api.postEditProfile(postData), setLoading);
 };
 
-const postBookingCreateRequest = async (postData, setLoading, successCallback) => {
-  await apiRequest(api.postBookingCreate(postData), setLoading, successCallback);
+const postBookingCreateRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postBookingCreate(postData),
+    setLoading,
+    successCallback,
+  );
 };
 
 const postOtpRequest = async (postData, setLoading, successCallback) => {
@@ -76,7 +84,21 @@ const postForgotPasswordRequest = async (
   successCallback,
 ) => {
   await apiRequest(
-    api.postForgotPassword(postData, setLoading, successCallback),
+    api.postForgotPassword(postData),
+    setLoading,
+    successCallback,
+  );
+};
+
+const getInvoicePaymentLinkRequest = async (
+  code,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getInvoicePaymentLink(code),
+    setLoading,
+    successCallback,
   );
 };
 
@@ -88,5 +110,6 @@ export default {
   postBookingCreateRequest,
   postOtpRequest,
   postOtpVerify,
-  postForgotPasswordRequest
+  postForgotPasswordRequest,
+  getInvoicePaymentLinkRequest,
 };

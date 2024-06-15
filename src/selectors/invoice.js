@@ -2,10 +2,14 @@ import _ from "lodash";
 
 export const getInvoiceListingData = (state, paymentStatus) =>
   _.get(state, ["invoice", "invoiceListing", paymentStatus, "data"], null);
-export const getInvoiceListingPagination = (state) =>
-  _.get(state, ["invoice", "invoiceListing", "pagination"], null);
-export const getInvoiceListingLoading = (state) =>
-  _.get(state, ["invoice", "invoiceListing", "loading"], false);
+export const getInvoiceListingPagination = (state, paymentStatus) =>
+  _.get(
+    state,
+    ["invoice", "invoiceListing", paymentStatus, "pagination"],
+    null,
+  );
+export const getInvoiceListingLoading = (state, paymentStatus) =>
+  _.get(state, ["invoice", "invoiceListing", paymentStatus, "loading"], false);
 
 export const getInvoiceSummaryData = (state) =>
   _.get(state, ["invoice", "invoiceSummary", "data"], null);
@@ -40,3 +44,8 @@ export const getTotalAmount = (state) => _.get(state, ["total_amount"], "");
 export const getName = (state) => _.get(state, ["name"], "");
 export const getTotalAmountText = (state) =>
   _.get(state, ["total_amount_text"], "");
+export const getHasMorePages = (state) =>
+  _.get(state, ["has_more_pages"], false);
+export const getTotalPage = (state) => _.get(state, ["total"], 1);
+export const getCurrentPage = (state) => _.get(state, ["current_page"], 1);
+export const getLastPage = (state) => _.get(state, ["last_page"], 1);
