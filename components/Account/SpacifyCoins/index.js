@@ -17,7 +17,7 @@ const SpacifyCoins = ({ t, onClickToCoinsTransaction }) => {
           src={Images.logoImage}
           height={30}
           width={30}
-          onClick={onClickToCoinsTransaction}
+          // onClick={onClickToCoinsTransaction}
         />
       </div>
 

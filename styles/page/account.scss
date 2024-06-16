@@ -1,3 +1,5 @@
+@import "../utils/color";
+
 .profile-user-info-container {
   @apply p-5 w-full global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col items-center relative;
 }
@@ -7,7 +9,8 @@
 }
 
 .profile-coin-icon-container {
-  @apply primary-bg-color p-2 global-box-shadow global-border-radius mb-2;
+  @apply p-2 global-box-shadow global-border-radius mb-2;
+  border: $primary-color 0.5px solid;
 }
 
 .logout-container {
