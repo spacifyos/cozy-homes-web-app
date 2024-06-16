@@ -87,7 +87,11 @@ const InvoiceOverview = ({ id }) => {
   };
 
   const getInvoicePaymentLinkSuccess = (res) => {
-    console.log(res);
+    const url = invoiceSelector.getUrl(res);
+
+    if (!isEmpty(url)) {
+      window.open(url, "_self");
+    }
   };
 
   return (

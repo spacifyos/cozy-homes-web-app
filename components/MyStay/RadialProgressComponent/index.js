@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const RadialProgressComponent = ({
   t,
@@ -42,7 +42,7 @@ const RadialProgressComponent = ({
           {t("myStay.tenancyRemaining")}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold">
-          {tenancyRemaining}
+          {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
         <CustomText textClassName="font-size-small">
           {t("myStay.days")}

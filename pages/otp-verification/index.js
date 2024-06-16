@@ -6,11 +6,15 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import AuthManager from "@/src/utils/AuthManager";
+import * as authSelector from "@/src/selectors/auth";
+import { getIsAccountVerify, getUserToken } from "@/src/selectors/auth";
 
 const OtpVerification = () => {
   const router = useRouter();
   const initialTime = 60;
   const phoneNumber = _.get(router, ["query", "phoneNumber"], "");
+  const type = _.get(router, ["query", "type"], "");
 
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -67,6 +71,8 @@ const OtpVerification = () => {
     const postData = {
       otp: otp,
       token: otpToken,
+      type: type,
+      phone_number: phoneNumber,
     };
 
     await apiRequest.postOtpVerify(
@@ -77,9 +83,18 @@ const OtpVerification = () => {
   };
 
   const otpVerifySuccess = (res) => {
-    console.log(res);
+    const isUserVerify = authSelector.getIsAccountVerify(res);
+    const authToken = authSelector.getToken(res);
 
-    // router.replace("/my-stay");
+    if (!_.isEmpty(authToken) && isUserVerify) {
+      AuthManager.setToken(authToken);
+
+      console.log(isUserVerify, authToken);
+
+      router.push("/my-stay");
+    } else {
+      router.push("/sign-in");
+    }
   };
 
   const onClickGoBack = () => {
@@ -101,7 +116,7 @@ const OtpVerification = () => {
         </CustomText>
 
         <CustomText textClassName="pb-5 font-size-small disable-text text-center">
-          Sent to {_.isEmpty(phoneNumber)?"-":phoneNumber}
+          Sent to {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
         </CustomText>
 
         <div className="flex justify-center pb-7">

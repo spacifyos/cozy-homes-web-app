@@ -8,9 +8,8 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 
 const InvoiceComponent = ({ t, data, onClickToOverView }) => {
   return (
-    <div className="flex flex-col gap-3 pb-4">
+    <div className="flex flex-col gap-3">
       {_.map(data, (item, index) => {
-        const id = invoiceSelector.getId(item);
         const code = invoiceSelector.getInvoiceNumber(item);
         const paymentStatus = invoiceSelector.getPaymentStatus(item);
         const status = invoiceSelector.getStatus(item);
@@ -22,7 +21,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
             <div className="flex items-center">
               <div
                 className="invoice-icon-container cursor-pointer"
-                onClick={() => onClickToOverView(id)}
+                onClick={() => onClickToOverView(code)}
               >
                 <CustomImage
                   src={Images.invoiceIcon}

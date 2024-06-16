@@ -1,25 +1,25 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const InvoiceSection = ({
   t,
   selectedCategory,
   onClickSelectCategory,
   onClickToInvoiceList,
-  list,
+  data,
   onClickToOverviewPage,
 }) => {
   const invoiceBtn = [
     {
-      btnText: "All",
+      value: "HomeUnpaid",
+      name: "Unpaid",
     },
     {
-      btnText: "Unpaid",
-    },
-    {
-      btnText: "Paid",
+      value: "HomePaid",
+      name: "Paid",
     },
   ];
   return (
@@ -31,14 +31,16 @@ const InvoiceSection = ({
       <div className="flex justify-between items-end pb-3">
         <div className="flex items-center">
           {_.map(invoiceBtn, (item, index) => {
-            const btnText = _.get(item, ["btnText"], "");
+            const value = _.get(item, ["value"], "");
+            const name = _.get(item, ["name"], "");
+
             return (
               <CustomButton
                 key={index}
-                buttonText={btnText}
-                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, btnText) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonText={name}
+                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
                 textClassName="font-size-xsmall"
-                onClick={() => onClickSelectCategory(btnText)}
+                onClick={() => onClickSelectCategory(value)}
               />
             );
           })}
@@ -53,16 +55,17 @@ const InvoiceSection = ({
       </div>
 
       <div className="flex flex-col gap-3">
-        {_.map(list, (item, index) => {
-          return (
-            <InvoiceComponent
-              key={index}
-              t={t}
-              item={item}
-              onClick={onClickToOverviewPage}
-            />
-          );
-        })}
+        {isEmpty(data) ? (
+          <div style={{ height: 351 }} className="flex justify-center">
+            <CustomEmptyBox />
+          </div>
+        ) : (
+          <InvoiceComponent
+            t={t}
+            data={data}
+            onClickToOverView={onClickToOverviewPage}
+          />
+        )}
       </div>
     </div>
   );

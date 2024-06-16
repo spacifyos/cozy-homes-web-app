@@ -12,7 +12,7 @@ import AuthWrapper from "@/components/AuthWrapper";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
@@ -23,12 +23,12 @@ import * as smartMeterSelector from "@/src/selectors/meter";
 
 export { getServerSideProps };
 
-const list = [{ status: "Paid" }, { status: "Unpaid" }, { status: "Paid" }];
-
 const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+
+  const [selectedCategory, setSelectedCategory] = useState("HomeUnpaid");
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -48,13 +48,15 @@ const MyStay = () => {
     tenancySelector.getTenancyListingLoading(state),
   );
 
-  const getInvoiceListingRequest = () =>
-    dispatch(invoiceAction.getInvoiceListingRequest());
+  const getInvoiceListingRequest = (paymentStatus, perPage, page) =>
+    dispatch(
+      invoiceAction.getInvoiceListingRequest(paymentStatus, perPage, page),
+    );
   const invoiceListingData = useSelector((state) =>
-    invoiceSelector.getInvoiceListingData(state),
+    invoiceSelector.getInvoiceListingData(state, selectedCategory),
   );
   const invoiceListingLoading = useSelector((state) =>
-    invoiceSelector.getInvoiceListingLoading(state),
+    invoiceSelector.getInvoiceListingLoading(state, selectedCategory),
   );
 
   const getSmartMeterListingRequest = () =>
@@ -66,8 +68,15 @@ const MyStay = () => {
     smartMeterSelector.getSmartMeterListingLoading(state),
   );
 
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [isChecked, setIsChecked] = useState(true);
+
+  useEffect(() => {
+    fetchInvoiceListingData(selectedCategory);
+  }, [selectedCategory]);
+
+  const fetchInvoiceListingData = (paymentStatus, perPage = 3, page = 1) => {
+    getInvoiceListingRequest(paymentStatus, perPage, page);
+  };
 
   useEffect(() => {
     fetchUserprofileData();
@@ -157,11 +166,15 @@ const MyStay = () => {
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
           onClickToInvoiceList={onClickToInvoiceList}
-          list={list}
+          data={invoiceListingData}
           onClickToOverviewPage={onClickToOverviewPage}
         />
 
-        <LoadingOverlay loading={userProfileLoading || tenancyListingLoading} />
+        <LoadingOverlay
+          loading={
+            userProfileLoading || tenancyListingLoading || invoiceListingLoading
+          }
+        />
       </div>
     </CustomHeader>
   );

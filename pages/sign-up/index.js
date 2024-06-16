@@ -102,7 +102,10 @@ const SignUp = () => {
   };
 
   const signUpSuccessCallback = () => {
-    router.replace("/otp-verification");
+    router.push({
+      pathname: "/otp-verification",
+      query: { phoneNumber: countryCode + phoneValue, type: roleType },
+    });
   };
 
   return (

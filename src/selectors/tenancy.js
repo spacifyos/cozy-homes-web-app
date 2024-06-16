@@ -22,7 +22,7 @@ export const getTenancyPeriod = (state) => _.get(state, ["period"], "");
 export const getInitialRentalFee = (state) =>
   _.get(state, ["initial_rental_fee"], "");
 export const getTenancyRemainingDay = (state) =>
-  _.get(state, ["remaining_days"], "");
+  _.get(state, ["remaining_days"], 0);
 export const getCreatedAt = (state) => _.get(state, ["created_at"], 0);
 export const getTotalDays = (state) => _.get(state, ["total_days"], 0);
 export const getFee = (state) => _.get(state, ["fee"], []);

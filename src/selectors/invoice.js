@@ -49,3 +49,4 @@ export const getHasMorePages = (state) =>
 export const getTotalPage = (state) => _.get(state, ["total"], 1);
 export const getCurrentPage = (state) => _.get(state, ["current_page"], 1);
 export const getLastPage = (state) => _.get(state, ["last_page"], 1);
+export const getUrl = (state) => _.get(state, ["url"], "");

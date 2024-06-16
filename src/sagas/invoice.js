@@ -3,13 +3,19 @@ import api from "@/src/services/httpUtilities/httpService";
 import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
 import * as invoiceAction from "@/src/actions/invoice";
 
-function* getInvoiceListingRequest({ paymentStatus, page, query }) {
+function* getInvoiceListingRequest({
+  paymentStatus,
+  perPage,
+  page,
+  filterParams,
+}) {
   try {
     const response = yield call(
       api.getInvoiceListing,
       paymentStatus,
+      perPage,
       page,
-      query,
+      filterParams,
     );
 
     const { data, code, message } = response;

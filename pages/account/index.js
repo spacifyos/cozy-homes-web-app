@@ -72,6 +72,10 @@ const Account = () => {
     router.push("/latest-update");
   };
 
+  const onClickToInvoice = () => {
+    router.push("/my-invoice");
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.account")}
@@ -109,6 +113,7 @@ const Account = () => {
           title={t("account.myInvoice")}
           icon={Images.primaryInvoiceIcon}
           pb={3}
+          onClick={onClickToInvoice}
         />
 
         {/*<FeatureComponent*/}

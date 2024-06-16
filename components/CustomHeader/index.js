@@ -18,7 +18,7 @@ const CustomHeader = ({
   isFiltered = false,
 }) => {
   return (
-    <div className="flex-1 relative bg-color overflow-hidden">
+    <div className="flex-1 relative bg-color overflow-hidden flex flex-col">
       {hideBgImage ? (
         false
       ) : (
@@ -65,7 +65,7 @@ const CustomHeader = ({
             className="relative"
           >
             {_.isEmpty(rightButtonIcon) ? (
-              { rightContent }
+              rightContent
             ) : (
               <CustomImage
                 src={rightButtonIcon}

@@ -2,7 +2,7 @@ import apiInstance, {
   AUTH_TOKEN_HEADER,
   AUTH_AGENT_TOKEN_HEADER,
 } from "./httpManager";
-import _ from "lodash";
+import { includes, isEmpty, isEqual } from "lodash";
 
 const version = "v1";
 
@@ -69,12 +69,16 @@ const getTenancyOverview = (id) => apiInstance.get(`/tenancy/${id}`);
 
 const getInvoiceSummary = () => apiInstance.get("/invoice/summary");
 
-const getInvoiceListing = (paymentStatus, page, query) => {
-  const status = _.isEqual(paymentStatus, "Unpaid")
+const getInvoiceListing = (paymentStatus, perPage, page, filterParams = {}) => {
+  const status = includes(paymentStatus, "Unpaid")
     ? "&payment_status[]=1&payment_status[]=2"
     : "&payment_status[]=3";
 
-  return apiInstance.get(`/invoice?per_page=20${status}&page=${page}`);
+  const { invoiceNumber, dateFrom, dateTo } = filterParams;
+
+  return apiInstance.get(
+    `/invoice?per_page=${perPage}${status}&page=${page}&invoice_number=${isEmpty(invoiceNumber) ? "" : invoiceNumber}&date_from=${isEmpty(dateFrom) ? "" : dateFrom}&date_to=${isEmpty(dateTo) ? "" : dateTo}`,
+  );
 };
 
 const getInvoiceOverview = (id) => apiInstance.get(`/invoice/${id}`);

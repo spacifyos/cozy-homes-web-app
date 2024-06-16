@@ -1,7 +1,14 @@
-export const getInvoiceListingRequest = (paymentStatus, page) => ({
+export const getInvoiceListingRequest = (
+  paymentStatus,
+  perPage,
+  page,
+  filterParams,
+) => ({
   type: "GET_INVOICE_LISTING_REQUEST",
   paymentStatus,
+  perPage,
   page,
+  filterParams,
 });
 
 export const getInvoiceListingSuccess = (data, paymentStatus) => ({

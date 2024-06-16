@@ -9,11 +9,11 @@ import { useRouter } from "next/router";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import FilterModal from "@/components/MyInvoice/FilterModal";
-import moment from "moment/moment";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 export { getServerSideProps };
 
@@ -29,8 +29,20 @@ const MyInvoice = () => {
     dateTo: "",
   });
 
-  const getInvoiceListingRequest = (paymentStatus, page) =>
-    dispatch(invoiceAction.getInvoiceListingRequest(paymentStatus, page));
+  const getInvoiceListingRequest = (
+    paymentStatus,
+    perPage,
+    page,
+    filterParams,
+  ) =>
+    dispatch(
+      invoiceAction.getInvoiceListingRequest(
+        paymentStatus,
+        perPage,
+        page,
+        filterParams,
+      ),
+    );
   const invoiceListingData = useSelector((state) =>
     invoiceSelector.getInvoiceListingData(state, selectedCategory),
   );
@@ -59,11 +71,20 @@ const MyInvoice = () => {
   const currentPage = invoiceSelector.getCurrentPage(invoiceListingPagination);
 
   useEffect(() => {
-    fetchInvoiceListingData(selectedCategory);
+    fetchInvoiceListingData(selectedCategory, 20, 1, filterParams);
   }, [selectedCategory]);
 
-  const fetchInvoiceListingData = (paymentStatus, page = 1) => {
-    getInvoiceListingRequest(paymentStatus, page);
+  useEffect(() => {
+    fetchInvoiceListingData(selectedCategory, 20, currentPage, filterParams);
+  }, [filterParams]);
+
+  const fetchInvoiceListingData = (
+    paymentStatus,
+    perPage,
+    page,
+    filterParams,
+  ) => {
+    getInvoiceListingRequest(paymentStatus, perPage, page, filterParams);
   };
 
   useEffect(() => {
@@ -95,7 +116,12 @@ const MyInvoice = () => {
   };
 
   const onClickLoadMore = () => {
-    fetchInvoiceListingData(selectedCategory, currentPage + 1);
+    fetchInvoiceListingData(
+      selectedCategory,
+      20,
+      currentPage + 1,
+      filterParams,
+    );
   };
 
   const onChangeInvoiceNumber = (e) => {
@@ -151,7 +177,7 @@ const MyInvoice = () => {
       isFiltered={isFilter()}
       onClickRightButton={onClickOpenFilter}
     >
-      <div className="body-container pb-1">
+      <div className="body-container pb-1 flex flex-col flex-1">
         {invoiceSummaryDataLoading ? (
           <div
             className="w-full flex justify-center"
@@ -178,14 +204,20 @@ const MyInvoice = () => {
           />
         </div>
 
-        <InvoiceComponent
-          data={invoiceListingData}
-          t={t}
-          onClickToOverView={onClickToOverView}
-        />
+        {isEmpty(invoiceListingData) ? (
+          <div className="flex flex-1 items-center justify-center">
+            <CustomEmptyBox />
+          </div>
+        ) : (
+          <InvoiceComponent
+            data={invoiceListingData}
+            t={t}
+            onClickToOverView={onClickToOverView}
+          />
+        )}
 
         {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
-          <div className="flex justify-center pb-3">
+          <div className="flex justify-center pb-3 pt-4">
             <CustomButton
               buttonClassName="primary-btn min-h-9 h-9 w-32"
               buttonText="Load More"
