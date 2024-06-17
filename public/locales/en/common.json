@@ -133,7 +133,7 @@
   "payment": {
     "viewBooking": "View Booking",
     "paymentSuccessful": "Payment Successful",
-    "paymentFailed": "Payment Failed"
+    "paymentFailed": "Payment Failure"
   },
   "bookingOverview": {
     "bookingCode": "Booking Code",

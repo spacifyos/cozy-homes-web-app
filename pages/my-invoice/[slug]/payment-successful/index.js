@@ -5,27 +5,53 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import { useEffect } from "react";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import { get, isEmpty, map } from "lodash";
+
 export { getServerSideProps };
 
-const PaymentSuccessful = () => {
+const PaymentSuccessful = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
   const getInvoiceOverviewRequest = (id) =>
-      dispatch(invoiceAction.getInvoiceOverviewRequest(id));
+    dispatch(invoiceAction.getInvoiceOverviewRequest(id));
   const invoiceOverviewData = useSelector((state) =>
-      invoiceSelector.getInvoiceOverviewData(state),
+    invoiceSelector.getInvoiceOverviewData(state, id),
   );
   const invoiceOverviewLoading = useSelector((state) =>
-      invoiceSelector.getInvoiceOverviewLoading(state),
+    invoiceSelector.getInvoiceOverviewLoading(state),
   );
 
+  const code = invoiceSelector.getInvoiceNumber(invoiceOverviewData);
+  const paymentStatus = invoiceSelector.getPaymentStatus(invoiceOverviewData);
+  const status = invoiceSelector.getStatus(invoiceOverviewData);
+  const dueDate = invoiceSelector.getDueDate(invoiceOverviewData);
+  const totalAmount = invoiceSelector.getTotalAmount(invoiceOverviewData);
+  const billTo = invoiceSelector.getBillTo(invoiceOverviewData);
+  const property = invoiceSelector.getProperty(invoiceOverviewData);
+  const invoiceDate = invoiceSelector.getInvoiceDate(invoiceOverviewData);
+  const tenancyCode = invoiceSelector.getTenancyCode(invoiceOverviewData);
+  const schedule = invoiceSelector.getSchedule(invoiceOverviewData);
+  const tax = invoiceSelector.getTax(invoiceOverviewData);
+  const grandTotal = invoiceSelector.getGrandtotal(invoiceOverviewData);
+  const items = invoiceSelector.getItems(invoiceOverviewData);
+
+  useEffect(() => {
+    fetchInvoiceOverviewData(id);
+  }, [id]);
+
+  const fetchInvoiceOverviewData = (id) => {
+    getInvoiceOverviewRequest(id);
+  };
+
   const onClickClose = () => {
-    router.back();
+    router.replace(`/my-invoice/${id}`);
   };
 
   return (
@@ -39,18 +65,19 @@ const PaymentSuccessful = () => {
       />
 
       <CustomImage
+        className="cursor-pointer"
         src={Images.successIcon}
         imageStyle={{ width: 150, height: 150 }}
       />
 
-      <CustomText textClassName="font-bold" styles={{ fontSize: 24 }}>
-        {t("invoiceSuccessful.spacifyCoinsEarned")}
-      </CustomText>
+      {/*<CustomText textClassName="font-bold" styles={{ fontSize: 24 }}>*/}
+      {/*  {t("invoiceSuccessful.spacifyCoinsEarned")}*/}
+      {/*</CustomText>*/}
 
-      <CustomText textClassName="primary-text font-bold font-size-xxlarge">
-        3,800
-      </CustomText>
-      <CustomText textClassName="disable-text font-size-small">
+      {/*<CustomText textClassName="primary-text font-bold font-size-xxlarge">*/}
+      {/*  3,800*/}
+      {/*</CustomText>*/}
+      <CustomText textClassName="font-bold font-size-xxlarge">
         {t("invoiceSuccessful.paymentCompleted")}
       </CustomText>
 
@@ -71,7 +98,7 @@ const PaymentSuccessful = () => {
 
         <div className="flex flex-col items-center py-4">
           <CustomText textClassName="primary-text font-bold font-size-xlarge">
-            RM770.00
+            RM{isEmpty(totalAmount) ? "0" : totalAmount}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xsmall">
             15 Dec 2022, 03:23 PM
@@ -88,19 +115,19 @@ const PaymentSuccessful = () => {
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
           <CustomLabelValue
-            value="John Doe"
+            value={isEmpty(billTo) ? "-" : billTo}
             label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
-            value="M Vertica, A-01-01, Room 1"
+            value={isEmpty(property) ? "-" : property}
             label={t("invoiceOverview.property")}
           />
           <CustomLabelValue
-            value="ABCXXXXXXXXXXXXXXX"
+            value={isEmpty(code) ? "-" : code}
             label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
-            value="Scheduled Manual Pay"
+            value={isEmpty(schedule) ? "-" : schedule}
             label={t("invoiceOverview.schedule")}
           />
 
@@ -113,6 +140,37 @@ const PaymentSuccessful = () => {
             {t("invoiceOverview.items")}
           </CustomText>
 
+          <div className="gap-2">
+            {isEmpty(items)
+              ? false
+              : map(items, (item) => {
+                  const itemName = get(item, ["name"], "");
+                  const unitPrice = get(item, ["unit_price"], 0);
+                  const quantity = get(item, ["quantity"], 1);
+
+                  return (
+                    <div className="flex justify-between items-center pt-2">
+                      <div className="">
+                        <CustomText
+                          textClassName={`black-text font-size-small font-bold`}
+                        >
+                          {itemName}
+                        </CustomText>
+                        <CustomText
+                          textClassName={`font-size-xxsmall disable-text`}
+                        >
+                          RM{unitPrice} per unit
+                        </CustomText>
+                      </div>
+
+                      <CustomText textClassName={`black-text font-bold`}>
+                        X{quantity}
+                      </CustomText>
+                    </div>
+                  );
+                })}
+          </div>
+
           <div
             className="divider-line"
             style={{ marginTop: 10, marginBottom: 10 }}
@@ -123,13 +181,13 @@ const PaymentSuccessful = () => {
               {t("invoiceOverview.subtotal")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM750.00
+              RM{isEmpty(grandTotal) ? "0" : grandTotal}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
               {t("invoiceOverview.tax")}
             </CustomText>
             <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM10.00
+              RM{isEmpty(tax) ? "0" : tax}
             </CustomText>
           </div>
 
@@ -143,7 +201,7 @@ const PaymentSuccessful = () => {
               {t("invoiceOverview.totalAmount")}
             </CustomText>
             <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
-              RM760.00
+              RM{isEmpty(totalAmount) ? "0" : totalAmount}
             </CustomText>
           </div>
 
@@ -153,6 +211,8 @@ const PaymentSuccessful = () => {
           ></div>
         </div>
       </div>
+
+      <LoadingOverlay loading={invoiceOverviewLoading} />
     </div>
   );
 };
