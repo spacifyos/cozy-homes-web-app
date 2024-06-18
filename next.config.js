@@ -11,6 +11,14 @@ const nextConfig = {
     config.resolve.alias.canvas = false;
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/property-overview/:slug',
+        destination: '/property-overview/:slug',
+      },
+    ]
+  },
 };
 
 // Injected content via Sentry wizard below
