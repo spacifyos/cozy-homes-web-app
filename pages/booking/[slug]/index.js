@@ -241,7 +241,7 @@ const Booking = ({ id }) => {
     // }
 
     if (!isReadAgree) {
-      return Toast.error("Please tick understand and agree policy.");
+      return Toast.error("Please read understand and agree.");
     }
 
     const postData = {
@@ -259,11 +259,11 @@ const Booking = ({ id }) => {
       applicant_race: currentForm.applicant_race.value,
       applicant_gender: currentForm.applicant_gender.value,
       applicant_nationality: currentForm.applicant_nationality.value,
-      applicant_country: currentForm.applicant_country.value,
-      applicant_state: currentForm.applicant_state.value,
-      applicant_city: currentForm.applicant_city.value,
-      applicant_line_1: currentForm.applicant_line_1.value,
-      applicant_postcode: currentForm.applicant_postcode.value,
+      line: currentForm.line.value,
+      city: currentForm.city.value,
+      postcode: currentForm.postcode.value,
+      country_code: currentForm.country_code.value,
+      state_code: currentForm.state_code.value,
       emergency_contacts_name_1: currentForm.emergency_contacts_name_1.value,
       emergency_contacts_relationship_1:
         currentForm.emergency_contacts_relationship_1.value,
@@ -641,7 +641,7 @@ const Booking = ({ id }) => {
             placeholder="Your Address"
             title="Your Address"
             name="line"
-            errorMessage={errorMessage.applicant_line_1}
+            errorMessage={errorMessage.line}
             required
           />
 
@@ -650,7 +650,7 @@ const Booking = ({ id }) => {
             placeholder="City"
             title="City"
             name="city"
-            errorMessage={errorMessage.applicant_city}
+            errorMessage={errorMessage.city}
             required
           />
 
@@ -659,7 +659,7 @@ const Booking = ({ id }) => {
             placeholder="Postcode"
             title="PostCode"
             name="postcode"
-            errorMessage={errorMessage.applicant_postcode}
+            errorMessage={errorMessage.postcode}
             required
           />
 
@@ -669,7 +669,7 @@ const Booking = ({ id }) => {
             title="Country"
             lists={_.isEmpty(countryOption) ? defaultOption : countryOption}
             name="country_code"
-            errorMessage={errorMessage.applicant_country}
+            errorMessage={errorMessage.country_code}
             required
           />
 
@@ -679,7 +679,7 @@ const Booking = ({ id }) => {
             title="State"
             lists={_.isEmpty(stateOption) ? defaultOption : stateOption}
             name="state_code"
-            errorMessage={errorMessage.applicant_state}
+            errorMessage={errorMessage.state_code}
             required
           />
 

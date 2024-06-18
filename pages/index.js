@@ -1,12 +1,13 @@
 import Color from "@/src/utils/Color";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import SplashScreen from "@/pages/splash-screen";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import _ from "lodash";
 import AuthManager from "@/src/utils/AuthManager";
 import Toast from "@/src/utils/Toast";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -25,7 +26,14 @@ function Home() {
       className={"container flex-1 h-screen"}
       style={{ backgroundColor: Color.primaryWhiteColor }}
     >
-      <SplashScreen />
+      <div
+        className="flex justify-center items-start h-screen"
+        style={{ paddingTop: "35%" }}
+      >
+        <div>
+          <CustomImage src={Images.logoImage} height={180} width={180} />
+        </div>
+      </div>
     </div>
   );
 }

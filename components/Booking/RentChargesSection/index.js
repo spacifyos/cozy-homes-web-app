@@ -89,7 +89,7 @@ const RentChargesSection = ({
 
           {_.map(rentChargesLists, (rentChargesList, index) => {
             const label = listingSelector.getLabel(rentChargesList);
-            const value = listingSelector.getAmount(rentChargesList);
+            const value = listingSelector.getFeeAmount(rentChargesList);
 
             return (
               <ul className="pl-7" key={index}>
@@ -102,9 +102,9 @@ const RentChargesSection = ({
                   </CustomText>
                   <CustomText
                     styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light"
+                    textClassName="font-light font-size-small"
                   >
-                    {value}
+                    {`RM${value}`}
                   </CustomText>
                 </li>
               </ul>
@@ -117,7 +117,7 @@ const RentChargesSection = ({
         ? false
         : _.map(feesLists, (fessList) => {
             const label = listingSelector.getLabel(fessList);
-            const value = listingSelector.getAmount(fessList);
+            const value = listingSelector.getFeeAmount(fessList);
 
             return (
               <div className="flex justify-between items-center pb-1">

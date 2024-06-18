@@ -4,7 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
-import {getFeeAmount} from "@/src/selectors/listing";
+import { getFeeAmount } from "@/src/selectors/listing";
 
 const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
   const feesLists = listingSelector.getFeesItemOthers(lists);
@@ -75,13 +75,13 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
                     styles={{ color: "#1E1E1E" }}
                     textClassName="font-light font-size-small"
                   >
-                    - {_.isEmpty(label) ? "-" : label}
+                    {`- ${_.isEmpty(label) ? "" : label}`}
                   </CustomText>
                   <CustomText
                     styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light"
+                    textClassName="font-light font-size-small"
                   >
-                    {_.isEmpty(amount) ? "0" : amount}
+                    {`RM${_.isEmpty(amount) ? "0" : amount}`}
                   </CustomText>
                 </li>
               </ul>
@@ -94,7 +94,7 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
         ? false
         : _.map(feesLists, (feesList, index) => {
             const label = listingSelector.getLabel(feesList);
-            const amount = listingSelector.getAmount(feesList);
+            const amount = listingSelector.getFeeAmount(feesList);
 
             return (
               <div
