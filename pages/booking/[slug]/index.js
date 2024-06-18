@@ -8,7 +8,7 @@ import CustomText from "@/components/CustomText";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
@@ -96,6 +96,7 @@ const Booking = ({ id }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [otpToken, setOtpToken] = useState("");
   const [otpValue, setOtpValue] = useState("");
+  const [idType, setIdType] = useState("nric");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -485,6 +486,10 @@ const Booking = ({ id }) => {
     }
   };
 
+  const onChangeIdType = (e) => {
+    setIdType(e.target.value);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -560,15 +565,30 @@ const Booking = ({ id }) => {
             lists={_.isEmpty(idTypeOption) ? defaultOption : idTypeOption}
             name="applicant_id_type"
             errorMessage={errorMessage.applicant_id_type}
+            onChange={onChangeIdType}
             required
           />
 
           <BookingInput
             className="col-span-4"
-            placeholder="ID Number"
-            title="ID Number"
+            type={isEqual(idType, "nric") ? "number" : "text"}
+            placeholder={
+              isEqual(idType, "nric")
+                ? "XXXXXXXXXXXX"
+                : isEqual(idType, "passport")
+                  ? "AXXXXXXXX"
+                  : "ID Number"
+            }
+            title={"ID Number"}
             name="applicant_id_value"
             errorMessage={errorMessage.applicant_id_value}
+            maxLength={
+              isEqual(idType, "nric")
+                ? 12
+                : isEqual(idType, "passport")
+                  ? 14
+                  : 20
+            }
             required
           />
 
