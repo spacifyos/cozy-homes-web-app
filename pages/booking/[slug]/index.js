@@ -29,6 +29,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import { useReCaptcha } from "next-recaptcha-v3";
 import RecaptchaWrapper from "@/components/RecaptchaWrapper";
+import axios from "axios";
 
 export { getServerSideProps };
 
@@ -349,7 +350,7 @@ const Booking = ({ id }) => {
       setBackIcUploading(true);
     }
 
-    apiInstance
+    axios
       .put(url, image)
       .then((result) => {
         Toast.success("Image upload success.");

@@ -66,7 +66,11 @@ const TenancySection = ({
           {map(data, (item, index) => {
             return (
               <SwiperSlide key={index}>
-                <TenancyComponent item={item} t={t} />
+                <TenancyComponent
+                  item={item}
+                  t={t}
+                  onClickGoToMyTenancy={onClickGoToMyTenancy}
+                />
               </SwiperSlide>
             );
           })}
