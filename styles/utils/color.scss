@@ -1,0 +1,80 @@
+$primary-color: #f65626;
+$secondary-color: #fff4e0;
+$primary-bg-color: #f5f8fd;
+$primary-black-color: #000000;
+$primary-white-color: #ffffff;
+$disable-color: #94a1a6;
+$power-on-color: #41c0be;
+$error-color: #ff2e2e;
+$tertiary-bg-color: #0379b7;
+
+$pending-color: #ff8a00;
+$completed-color: #03b78c;
+
+.primaryWhite-bg-color {
+  background-color: $primary-white-color;
+}
+
+.primary-bg-color {
+  background-color: $primary-color !important;
+}
+
+.bg-color {
+  background-color: $primary-bg-color !important;
+}
+
+.secondary-bg-color {
+  background-color: $secondary-color;
+}
+
+.primaryWhite-text-color {
+  color: $primary-white-color;
+}
+
+.tertiary-bg-color {
+  background-color: $tertiary-bg-color;
+}
+
+.disable-bg-color {
+  background-color: #94a1a6;
+}
+
+.pending-bg-color {
+  background-color: $pending-color;
+}
+
+.completed-bg-color {
+  background-color: $completed-color;
+}
+
+.error-bg-color {
+  background-color: $error-color;
+}
+
+.cancelled-bg-color {
+  background-color: $disable-color;
+}
+
+.pending-border-color {
+  border: 1px solid $pending-color;
+  background-color: $primary-white-color;
+  color: $pending-color;
+}
+
+.critical-border-color {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  color: $primary-color;
+}
+
+.completed-border-color {
+  border: 1px solid $completed-color;
+  background-color: $primary-white-color;
+  color: $completed-color;
+}
+
+.low-border-color {
+  border: 1px solid $tertiary-bg-color;
+  background-color: $primary-white-color;
+  color: $tertiary-bg-color;
+}

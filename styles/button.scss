@@ -1,0 +1,304 @@
+@import "utils/color";
+@import "text";
+@import "utils/scaling";
+
+@mixin custom-button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  @extend .global-box-shadow;
+
+  p {
+    font-weight: bold !important;
+  }
+}
+
+.default-btn:hover {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .disable-text;
+  }
+}
+
+.default-btn {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .disable-text;
+  }
+}
+
+.primary-btn:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.primary-btn {
+  border: 1px solid $primary-color;
+  background-color: $primary-color !important;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.disable-btn:hover {
+  border: 1px solid $disable-color;
+  background-color: $disable-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.disable-btn {
+  border: 1px solid $disable-color;
+  background-color: $disable-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.tag-button:hover {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+  }
+}
+
+.tag-button {
+  border: none;
+  background-color: $primary-white-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .primary-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.tag-button-active:hover {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
+  }
+}
+
+.tag-button-active {
+  border: none;
+  background-color: $primary-color;
+  border-radius: 15px;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+
+  p {
+    @extend .white-text;
+    @extend .font-size-xsmall;
+    font-weight: lighter;
+  }
+}
+
+.pdf-previous-btn:hover {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  min-width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-previous-btn {
+  border: 1px solid #1e1e1e;
+  background-color: #1e1e1e !important;
+  min-width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply white-text font-size-small;
+  }
+}
+
+.pdf-next-btn:hover {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  min-width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.pdf-next-btn {
+  border: 1px solid $primary-white-color;
+  background-color: $primary-white-color !important;
+  min-width: 80px;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply black-text font-size-small;
+  }
+}
+
+.default-btn-outline:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
+.default-btn-outline {
+  border: 1px solid $primary-color;
+  background-color: $primary-white-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @apply primary-text;
+  }
+}
+
+.pending-btn:hover {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+  p {
+    @apply primary-text;
+  }
+}
+
+.pending-btn {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+  p {
+    @apply primary-text;
+  }
+}
+
+.appointment-cancelled-btn:hover {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .error-text;
+  }
+}
+
+.appointment-cancelled-btn {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .error-text;
+  }
+}
+
+.appointment-reschedule-btn:hover {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .primary-text;
+  }
+}
+
+.appointment-reschedule-btn {
+  border: 1px solid $primary-bg-color;
+  background-color: $primary-bg-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .primary-text;
+  }
+}
+
+.appointment-confirmed-btn:hover {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.appointment-confirmed-btn {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.default-btn:focus-visible,
+.primary-btn:focus-visible,
+.disable-btn:focus-visible,
+.disable-btn:focus-visible,
+.tag-button:focus-visible,
+.tag-button-active:focus-visible,
+.appointment-cancelled-btn:focus-visible,
+.appointment-reschedule-btn:focus-visible,
+.appointment-confirmed-btn:focus-visible {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+}
+
+.default-btn-outline:focus-visible {
+  outline: none;
+  outline-offset: unset;
+}

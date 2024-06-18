@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "button.scss";
+@import "text.scss";
+@import "input.scss";
+@import "select.scss";
+@import "toggle.scss";
+@import "page/meter-detail";
+@import "page/property-overview";
+@import "page/meter-detail";
+@import "page/explore.scss";
+@import "page/search.scss";
+@import "page/my-stay.scss";
+@import "page/account.scss";
+@import "page/my-tenancy";
+@import "carousel.scss";
+@import "page/booking.scss";
+@import "page/e-agreement.scss";
+@import "page/booking-overview.scss";
+@import "page/my-appointment.scss";
+@import "page/appointment-overview.scss";
+@import "page/help-center.scss";
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+* {
+  scrollbar-color: unset;
+}
+
+body {
+  /*color: rgb(var(--foreground-rgb));*/
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+//::-webkit-scrollbar {
+//  display: none !important;
+//}
+
+.pb-23 {
+  padding-bottom: 88px;
+}
+
+.global-horizontal-padding {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.global-horizontal-margin {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.global-box-shadow {
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 2px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.global-border-radius {
+  border-radius: 10px;
+}
+
+.toggle-primary-color {
+  background-color: $primary-color !important;
+  border: none !important;
+}
+
+.toggle-disable-color {
+  background-color: $disable-color !important;
+  border: none !important;
+}
+
+.border-16 {
+  border-width: 16px !important;
+}
+
+.border-secondary-color {
+  border-color: $secondary-color;
+}
+
+.divider-line {
+  height: 1px;
+  width: 100%;
+  background-color: #e0ecff !important;
+  margin: 25px 0;
+}
+
+.divider-custom:before {
+  height: 6px;
+  width: 30%;
+  max-width: 30%;
+  border-radius: 99px;
+}
+
+.divider-custom:after {
+  display: none;
+}
+
+.modal-box {
+  padding-top: 0;
+}
+
+.divider-step-section {
+  &:before,
+  &:after {
+    height: 1px;
+  }
+}
+
+.section-title {
+  @apply font-size-xlarge font-bold pb-2;
+}
+
+.second-section-title {
+  @apply font-bold font-size-large;
+}
+
+.body-container {
+  @apply global-horizontal-padding relative;
+}
+
+.feature-button {
+  cursor: pointer;
+}
+
+.feature-button:hover {
+  background-color: $primary-white-color;
+}
+
+.collapse-arrow > .collapse-title:after {
+  top: 25px !important;
+}
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.global-border {
+  border: 1px solid #e0ecff;
+}

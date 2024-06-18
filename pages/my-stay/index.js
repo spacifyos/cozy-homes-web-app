@@ -1,0 +1,183 @@
+import CustomHeader from "@/components/CustomHeader";
+import UserSection from "@/components/MyStay/UserSection";
+import TenancySection from "@/components/MyStay/TenancySection";
+import FeatureSection from "@/components/MyStay/FeatureSection";
+import MeterSection from "@/components/MyStay/MeterSection";
+import InvoiceSection from "@/components/MyStay/InvoiceSection";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import AuthWrapper from "@/components/AuthWrapper";
+import * as authAction from "@/src/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import * as authSelector from "@/src/selectors/auth";
+import { isEmpty } from "lodash";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import * as tenancyAction from "@/src/actions/tenancy";
+import * as tenancySelector from "@/src/selectors/tenancy";
+import * as invoiceAction from "@/src/actions/invoice";
+import * as invoiceSelector from "@/src/selectors/invoice";
+import * as smartMeterAction from "@/src/actions/meter";
+import * as smartMeterSelector from "@/src/selectors/meter";
+
+export { getServerSideProps };
+
+const MyStay = () => {
+  const router = useRouter();
+  const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const [selectedCategory, setSelectedCategory] = useState("HomeUnpaid");
+
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
+
+  const getTenancyListingRequest = () =>
+    dispatch(tenancyAction.getTenancyListingRequest());
+  const tenancyListingData = useSelector((state) =>
+    tenancySelector.getTenancyListingData(state),
+  );
+  const tenancyListingLoading = useSelector((state) =>
+    tenancySelector.getTenancyListingLoading(state),
+  );
+
+  const getInvoiceListingRequest = (paymentStatus, perPage, page) =>
+    dispatch(
+      invoiceAction.getInvoiceListingRequest(paymentStatus, perPage, page),
+    );
+  const invoiceListingData = useSelector((state) =>
+    invoiceSelector.getInvoiceListingData(state, selectedCategory),
+  );
+  const invoiceListingLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceListingLoading(state, selectedCategory),
+  );
+
+  const getSmartMeterListingRequest = () =>
+    dispatch(smartMeterAction.getSmartMeterListingRequest());
+  const smartMeterListingData = useSelector((state) =>
+    smartMeterSelector.getSmartMeterListingData(state),
+  );
+  const smartMeterListingLoading = useSelector((state) =>
+    smartMeterSelector.getSmartMeterListingLoading(state),
+  );
+
+  const [isChecked, setIsChecked] = useState(true);
+
+  useEffect(() => {
+    fetchInvoiceListingData(selectedCategory);
+  }, [selectedCategory]);
+
+  const fetchInvoiceListingData = (paymentStatus, perPage = 3, page = 1) => {
+    getInvoiceListingRequest(paymentStatus, perPage, page);
+  };
+
+  useEffect(() => {
+    fetchUserprofileData();
+    fetchTenancyListing();
+  }, []);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
+
+  const fetchTenancyListing = () => {
+    getTenancyListingRequest();
+  };
+
+  const onClickSelectCategory = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const onClickToMeterOverview = (id) => {
+    router.push(`/my-meter/${id}`);
+  };
+
+  const onClickTopUp = (id) => {
+    router.push(`/my-meter/${id}/top-up-meter`);
+  };
+
+  const onClickToAgreement = () => {
+    router.push("/e-agreement");
+  };
+
+  const onClickGoToMyTenancy = (code) => {
+    router.push(`/my-tenancy/${code}`);
+  };
+
+  const onChangeAutoPay = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const onClickToInvoiceList = () => {
+    router.push("/my-invoice");
+  };
+
+  const onClickToOverviewPage = (id) => {
+    router.push(`/my-invoice/${id}`);
+  };
+
+  const onClickToMeterList = () => {
+    router.push("/my-meter");
+  };
+  const onClickToHelpCenter = () => {
+    router.push("/help-center");
+  };
+
+  return (
+    <CustomHeader
+      pageTitle={t("pageTitle.myStay")}
+      hideGoBackButton
+      hideRightButton
+      padding
+    >
+      <div className="body-container pb-24">
+        <UserSection t={t} data={userProfileData} />
+
+        <TenancySection
+          t={t}
+          onClickGoToMyTenancy={onClickGoToMyTenancy}
+          onChangeAutoPay={onChangeAutoPay}
+          isChecked={isChecked}
+          data={tenancyListingData}
+        />
+
+        {/*<FeatureSection*/}
+        {/*  t={t}*/}
+        {/*  onClickToAgreement={onClickToAgreement}*/}
+        {/*  onClickToHelpCenter={onClickToHelpCenter}*/}
+        {/*/>*/}
+
+        <MeterSection
+          t={t}
+          onClickTopUp={onClickTopUp}
+          onClickToMeterOverview={onClickToMeterOverview}
+          onClickToMeterList={onClickToMeterList}
+        />
+
+        <InvoiceSection
+          t={t}
+          onClickSelectCategory={onClickSelectCategory}
+          selectedCategory={selectedCategory}
+          onClickToInvoiceList={onClickToInvoiceList}
+          data={invoiceListingData}
+          onClickToOverviewPage={onClickToOverviewPage}
+        />
+
+        <LoadingOverlay
+          loading={
+            userProfileLoading || tenancyListingLoading || invoiceListingLoading
+          }
+        />
+      </div>
+    </CustomHeader>
+  );
+};
+
+export default withTranslation("common")(AuthWrapper(MyStay));

@@ -1,0 +1,80 @@
+@import "../utils/color";
+
+.explore-banner {
+  width: 300px;
+  height: 300px;
+}
+
+.banner-default-image {
+  width: 310px;
+}
+
+@media screen and (max-width: 470px) {
+  .explore-banner {
+    width: 280px;
+    height: 280px;
+  }
+
+  .banner-default-image {
+    width: 290px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .explore-banner {
+    width: 260px;
+    height: 260px;
+  }
+
+  .banner-default-image {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .explore-banner {
+    width: 240px;
+    height: 240px;
+  }
+
+  .banner-default-image {
+    width: 250px;
+  }
+}
+
+.explore-banner .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-3d .swiper-slide-shadow {
+  background-color: transparent !important;
+}
+
+.banner-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border: 1px solid #d9d9d9;
+  background-color: #d9d9d9;
+  margin-right: 8px;
+  border-radius: 999px;
+}
+
+.banner-dot-active {
+  width: 15px !important;
+  height: 7px !important;
+  background-color: #f65626 !important;
+  border: 1px solid #f65626 !important;
+  margin-right: 8px;
+  border-radius: 999px;
+}
+
+.explore-swiper .swiper-wrapper {
+  display: flex;
+  align-items: flex-start;
+}

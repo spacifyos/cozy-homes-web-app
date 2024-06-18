@@ -1,0 +1,99 @@
+@import "utils/color";
+@import "utils/scaling";
+
+@mixin custom-input($bgColor) {
+  background-color: $bgColor;
+  border: 1px solid $primary-white-color;
+  @extend .global-box-shadow;
+
+  textarea {
+    width: 100%;
+    height: 100%;
+    color: $primary-black-color;
+    -moz-appearance: textfield;
+  }
+  textarea:focus {
+    outline: none;
+    outline-offset: unset;
+  }
+}
+input {
+  width: 100%;
+  color: $primary-black-color;
+  -moz-appearance: textfield;
+}
+
+::placeholder {
+  @extend .font-size-small;
+  //font-style: italic;
+  opacity: 1;
+}
+
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+  outline-offset: unset;
+}
+
+.meter-input::placeholder {
+  @extend .font-size-small;
+}
+
+.meter-input {
+  -moz-appearance: textfield;
+}
+
+.meter-input::-webkit-outer-spin-button,
+.meter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.user-input {
+  color: $primary-black-color;
+  border-color: $disable-color;
+}
+
+.default-input {
+  @include custom-input($primary-white-color);
+}
+
+.user-input:focus,
+.user-input:focus-within {
+  border: 1px solid $disable-color;
+  outline: none;
+}
+
+.default-input:focus,
+.default-input:focus-within,
+.meter-input:focus,
+.meter-input:focus-within {
+  outline: none;
+  outline-offset: unset;
+  border: none;
+  @include custom-input($primary-white-color);
+}
+
+.resize-input-icon {
+  -webkit-appearance: none;
+}
+
+.resize-input-icon::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.resize-input-icon::-webkit-calendar-picker-indicator {
+  display: block;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: transparent;
+  z-index: 999;
+}

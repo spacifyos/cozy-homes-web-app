@@ -1,0 +1,68 @@
+import Constant from "@/src/utils/Constant";
+import _ from "lodash";
+import CustomButton from "@/components/CustomButton";
+
+const FirstStep = ({
+  t,
+  phonePrefix,
+  phoneNumber,
+  selectedRole,
+  onChangePhonePrefix,
+  onChangePhoneNumber,
+  setSelectedRole,
+  onClickSendOtp,
+}) => {
+  return (
+    <div>
+      <div className="grid grid-cols-2 gap-2 mb-8">
+        <CustomButton
+          buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
+          buttonText={t("signIn.tenant")}
+          onClick={() => setSelectedRole("tenant")}
+        />
+        <CustomButton
+          buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
+          buttonText={t("signIn.owner")}
+          onClick={() => setSelectedRole("owner")}
+        />
+      </div>
+
+      <div className="grid grid-cols-3 gap-2 mb-8">
+        <select
+          className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+          value={phonePrefix}
+          onChange={onChangePhonePrefix}
+        >
+          {_.map(Constant.PHONE_PREFIX, (list) => {
+            const name = _.get(list, ["name"], "");
+            const value = _.get(list, ["value"], "");
+
+            return (
+              <option key={value} value={value}>
+                {name}
+              </option>
+            );
+          })}
+        </select>
+
+        <input
+          value={phoneNumber}
+          onChange={onChangePhoneNumber}
+          type="number"
+          placeholder={t("signIn.phoneNumber")}
+          className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+        />
+      </div>
+
+      <div className="grid grid-cols-4">
+        <CustomButton
+          buttonText="Send Code"
+          buttonClassName="primary-btn col-start-2 col-span-2"
+          onClick={onClickSendOtp}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default FirstStep;

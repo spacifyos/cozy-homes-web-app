@@ -1,0 +1,106 @@
+@import "../utils/color";
+@import "../utils/scaling";
+
+.booking-textarea {
+  width: 100%;
+  border: 1px solid $disable-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 4px 0;
+  color: $primary-black-color;
+  height: 100px;
+  resize: none;
+  @apply font-size-xsmall mb-4;
+}
+
+.booking-textarea::placeholder {
+  color: $disable-color;
+}
+
+.booking-input {
+  width: 100%;
+  border: 1px solid $disable-color;
+  background-color: $primary-bg-color;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 4px 0;
+  color: $primary-black-color;
+  height: 40px;
+
+  @apply font-size-xsmall;
+}
+
+.booking-input::placeholder {
+  color: $disable-color;
+}
+
+.booking-select-container {
+  background-color: $primary-bg-color;
+  width: 100%;
+  border: 1px solid $disable-color;
+  border-radius: 10px;
+  margin: 4px 0;
+  padding-right: 10px;
+  color: $primary-black-color;
+}
+
+.booking-select {
+  background-color: $primary-bg-color;
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 0 10px 10px;
+  color: $primary-black-color;
+  -webkit-appearance: none;
+  height: 40px;
+  @apply font-size-xsmall;
+
+  option[value=""][disabled] {
+    display: none;
+    color: $disable-color;
+  }
+
+  option {
+    color: $primary-black-color;
+  }
+}
+
+.booking-select:required:invalid {
+  @extend .font-size-xsmall;
+  color: $disable-color;
+}
+
+.error-message {
+  color: $error-color;
+  padding-bottom: 4px;
+  @apply font-size-xxsmall;
+}
+
+.input-title {
+  color: $primary-black-color;
+  @apply font-size-xxsmall;
+}
+
+.booking-select:focus-within,
+.booking-select:focus,
+.booking-textarea:focus-within,
+.booking-textarea:focus {
+  outline: none;
+  outline-offset: unset;
+}
+.booking-input:focus-within,
+.booking-input:focus {
+  outline: none;
+  outline-offset: unset;
+}
+
+.booking-radio:checked {
+  background-color: $primary-color;
+  box-shadow:
+    0 0 0 4px $primary-bg-color inset,
+    0 0 0 4px $primary-bg-color inset;
+}
+
+.booking-radio {
+  height: 20px;
+  width: 20px;
+}

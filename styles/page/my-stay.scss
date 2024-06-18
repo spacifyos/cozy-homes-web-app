@@ -1,0 +1,48 @@
+.user-info-container {
+  @apply flex items-end pr-3;
+}
+
+.user-info-content {
+  @apply flex flex-col justify-center pl-2;
+}
+
+.user-name {
+  @apply font-size-large font-bold line-clamp-1 pb-1;
+}
+
+.user-info {
+  @apply font-size-xsmall pl-2 line-clamp-1;
+}
+
+.coin-container {
+  @apply primaryWhite-bg-color global-box-shadow p-3 flex items-center justify-center global-border-radius;
+}
+
+.tenancy-container {
+  @apply primaryWhite-bg-color px-4 py-3 flex justify-between items-center relative flex-1 global-border-radius;
+}
+
+.auto-pay-button {
+  @apply flex justify-center items-center secondary-bg-color px-3 py-2 global-border-radius mt-1;
+}
+
+.feature-container {
+  @apply flex flex-col justify-center items-center cursor-pointer;
+}
+
+.feature-icon-container {
+  @apply global-box-shadow w-full p-3 mb-2 flex justify-center items-center primaryWhite-bg-color;
+  border-radius: 999px;
+}
+
+.meter-container {
+  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative;
+}
+
+.invoice-container {
+  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-between relative;
+}
+
+.invoice-icon-container {
+  @apply flex items-center primary-bg-color p-2 global-border-radius mr-2;
+}
