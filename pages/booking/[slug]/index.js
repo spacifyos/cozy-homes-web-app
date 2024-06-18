@@ -170,11 +170,11 @@ const Booking = ({ id }) => {
       "applicant_area_code",
       "applicant_phone_number",
       "applicant_nationality",
-      // "applicant_line_1",
-      // "applicant_city",
-      // "applicant_postcode",
-      // "applicant_country",
-      // "applicant_state",
+      "line",
+      "city",
+      "postcode",
+      "country_code",
+      "state_code",
       "emergency_contacts_name_1",
       "emergency_contacts_relationship_1",
       "emergency_contacts_phone_prefix_1",
@@ -640,7 +640,7 @@ const Booking = ({ id }) => {
             className="col-span-6"
             placeholder="Your Address"
             title="Your Address"
-            name="applicant_line_1"
+            name="line"
             errorMessage={errorMessage.applicant_line_1}
             required
           />
@@ -649,7 +649,7 @@ const Booking = ({ id }) => {
             className="col-span-3"
             placeholder="City"
             title="City"
-            name="applicant_city"
+            name="city"
             errorMessage={errorMessage.applicant_city}
             required
           />
@@ -658,7 +658,7 @@ const Booking = ({ id }) => {
             className="col-span-3"
             placeholder="Postcode"
             title="PostCode"
-            name="applicant_postcode"
+            name="postcode"
             errorMessage={errorMessage.applicant_postcode}
             required
           />
@@ -668,7 +668,7 @@ const Booking = ({ id }) => {
             placeholder="Select Country"
             title="Country"
             lists={_.isEmpty(countryOption) ? defaultOption : countryOption}
-            name="applicant_country"
+            name="country_code"
             errorMessage={errorMessage.applicant_country}
             required
           />
@@ -678,7 +678,7 @@ const Booking = ({ id }) => {
             placeholder="Select State"
             title="State"
             lists={_.isEmpty(stateOption) ? defaultOption : stateOption}
-            name="applicant_state"
+            name="state_code"
             errorMessage={errorMessage.applicant_state}
             required
           />
