@@ -7,18 +7,19 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 
 export { getServerSideProps };
-const PaymentSuccessful = ({}) => {
+
+const PaymentSuccessful = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+
   const onClickGoMainPage = () => {
-    router.push("/explore");
+    router.replace("/explore");
   };
-  const onClickGoToBookingOverview = (id) => {
-    router.push({
-      pathname: `/booking/${id}/overview`,
-      query: { paymentSuccess: true },
-    });
+
+  const onClickGoToBookingOverview = () => {
+    router.replace(`/booking/${id}/overview`);
   };
+
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <CustomImage
@@ -45,7 +46,7 @@ const PaymentSuccessful = ({}) => {
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={()=>onClickGoToBookingOverview(1)}
+        onClick={onClickGoToBookingOverview}
       />
     </div>
   );

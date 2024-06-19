@@ -7,19 +7,19 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 
 export { getServerSideProps };
-const PaymentFailed = ({}) => {
+
+const PaymentFailed = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+
   const onClickGoMainPage = () => {
-    router.push("/explore");
+    router.replace("/explore");
   };
 
-  const onClickPaymentFail = (id) => {
-    router.push({
-      pathname: `/booking/${id}/overview`,
-      query: { paymentSuccess: false },
-    });
+  const onClickPaymentFail = () => {
+    router.replace(`/booking/${id}/overview`);
   };
+
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <CustomImage
@@ -28,24 +28,28 @@ const PaymentFailed = ({}) => {
         className=" absolute top-5 right-5 cursor-pointer"
         onClick={onClickGoMainPage}
       />
+
       <CustomImage
         src={Images.failIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
+
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
         {t("payment.paymentFailed")}
       </CustomText>
+
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="font-size-xsmall text-center">
           Sorry. We encounter an error while processing your payment. Please try
           again later.
         </CustomText>
       </div>
+
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("payment.viewBooking")}
-        onClick={()=>onClickPaymentFail(1)}
+        onClick={onClickPaymentFail}
       />
     </div>
   );
