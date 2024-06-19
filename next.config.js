@@ -5,7 +5,7 @@ const nextConfig = {
   i18n,
   env: {
     API_DOMAIN: process.env.API_DOMAIN,
-    GOOGLE_RECAPTCHA_V3: process.env.GOOGLE_RECAPTCHA_V3,
+    CLOUDFLARE_RECAPTCHA_SITE: process.env.CLOUDFLARE_RECAPTCHA_SITE,
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;

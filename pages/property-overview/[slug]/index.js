@@ -39,26 +39,6 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-const lists = [
-  {
-    title: "First Month Rental",
-    value: "RM100",
-  },
-  {
-    title: "Insurance Extra Charges",
-    value: "RM100",
-  },
-  {
-    title: "Aircond Charges",
-    value: "RM100",
-  },
-  {
-    title: "Water Bill",
-    value: "RM100",
-  },
-];
-
 const PropertyOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();

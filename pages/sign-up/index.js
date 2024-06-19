@@ -4,21 +4,19 @@ import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
-import { useReCaptcha } from "next-recaptcha-v3";
-import RecaptchaWrapper from "@/components/RecaptchaWrapper";
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import Toast from "@/src/utils/Toast";
 import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Turnstile from "react-turnstile";
 
 export { getServerSideProps };
 
 const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const { executeRecaptcha, loaded } = useReCaptcha();
   const roleType = _.get(router, ["query", "type"], "tenant");
 
   const [signUpLoading, setSignUpLoading] = useState(false);
@@ -29,6 +27,8 @@ const SignUp = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+
+  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const onClickToSignIn = () => {
     router.push("/sign-in");
@@ -52,8 +52,6 @@ const SignUp = () => {
     if (!_.isEqual(passwordValue, confirmPasswordValue)) {
       return Toast.error("Password and Confirm Password not same.");
     }
-
-    const recaptchaToken = await executeRecaptcha("form_submit");
 
     const postData = {
       type: roleType,
@@ -200,10 +198,17 @@ const SignUp = () => {
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
               value={confirmPasswordValue}
               onChange={onChangeConfirmPasswordValue}
             />
+
+            <div className="mb-4">
+              <Turnstile
+                sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
+                onVerify={(token) => setRecaptchaToken(token)}
+              />
+            </div>
 
             <div className="flex justify-center mb-8">
               <CustomButton
@@ -233,4 +238,4 @@ const SignUp = () => {
   );
 };
 
-export default withTranslation("common")(RecaptchaWrapper(SignUp));
+export default withTranslation("common")(SignUp);

@@ -27,8 +27,6 @@ import * as commonAction from "@/src/actions/common";
 import * as commonSelector from "@/src/selectors/common";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
-import { useReCaptcha } from "next-recaptcha-v3";
-import RecaptchaWrapper from "@/components/RecaptchaWrapper";
 import axios from "axios";
 
 export { getServerSideProps };
@@ -57,7 +55,6 @@ const Booking = ({ id }) => {
   const router = useRouter();
   const formRef = useRef();
   const dispatch = useDispatch();
-  const { executeRecaptcha, loaded } = useReCaptcha();
 
   const getListingPropertyDetailRequest = (id) =>
     dispatch(listingAction.getListingPropertyDetailRequest(id));
@@ -459,8 +456,6 @@ const Booking = ({ id }) => {
       return Toast.error("Phone number is required.");
     }
 
-    const newToken = await executeRecaptcha("form_submit");
-
     const postData = {
       case: "booking_otp_verification",
       destination:
@@ -705,7 +700,7 @@ const Booking = ({ id }) => {
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
-            Emergency Contact Information (Optional)
+            Emergency Contact Information
           </CustomText>
 
           {_.map(emergencyContactNumber, (item, index) => {
@@ -715,7 +710,7 @@ const Booking = ({ id }) => {
                 key={index}
               >
                 <CustomText textClassName="font-bold col-span-3">
-                  {`Contact ${index + 1}`}
+                  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}
                 </CustomText>
 
                 {/*{index === 0 && _.size(emergencyContactNumber) !== 1 ? (*/}
@@ -950,4 +945,4 @@ const Booking = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(RecaptchaWrapper(Booking));
+export default withTranslation("common")(Booking);

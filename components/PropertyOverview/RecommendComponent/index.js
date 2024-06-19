@@ -36,8 +36,11 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
               onClick={() => onClickToPropertyOverview(propertyId)}
             >
               <div
-                className="flex flex-col left-3 top-3 absolute primaryWhite-bg-color p-1"
-                style={{ borderRadius: 15 }}
+                className="flex flex-col left-3 top-3 absolute p-1"
+                style={{
+                  borderRadius: 15,
+                  backgroundColor: "rgba(255,255,255,0.6)",
+                }}
               >
                 <CustomImage
                   src={Images.femaleUnitIcon}
