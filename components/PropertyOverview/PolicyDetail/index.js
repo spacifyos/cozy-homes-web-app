@@ -1,5 +1,7 @@
 import * as listingSelector from "@/src/selectors/listing";
 import CustomText from "@/components/CustomText";
+import { isEmpty } from "lodash";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const PolicyDetail = ({ t, loading, data }) => {
   const htmlContent = listingSelector.getHtmlContent(data);
@@ -16,12 +18,18 @@ const PolicyDetail = ({ t, loading, data }) => {
         </div>
       ) : (
         <div className="content-container">
-          <CustomText textClassName="font-size-xxlarge font-bold pb-2">
-            {title}
-          </CustomText>
-          <CustomText textClassName="font-size-small disable-text text-justify">
-            {htmlContent}
-          </CustomText>
+          {isEmpty(data) ? (
+            <CustomEmptyBox />
+          ) : (
+            <div>
+              <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+                {title}
+              </CustomText>
+              <CustomText textClassName="font-size-small disable-text text-justify">
+                {htmlContent}
+              </CustomText>
+            </div>
+          )}
         </div>
       )}
     </div>
