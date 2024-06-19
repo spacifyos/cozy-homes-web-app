@@ -18,8 +18,8 @@ import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
-import * as smartMeterAction from "@/src/actions/meter";
-import * as smartMeterSelector from "@/src/selectors/meter";
+import * as meterAction from "@/src/actions/meter";
+import * as meterSelector from "@/src/selectors/meter";
 
 export { getServerSideProps };
 
@@ -59,13 +59,13 @@ const MyStay = () => {
     invoiceSelector.getInvoiceListingLoading(state, selectedCategory),
   );
 
-  const getSmartMeterListingRequest = () =>
-    dispatch(smartMeterAction.getSmartMeterListingRequest());
-  const smartMeterListingData = useSelector((state) =>
-    smartMeterSelector.getSmartMeterListingData(state),
+  const getMeterListingRequest = (per_page, page) =>
+    dispatch(meterAction.getMeterListingRequest(per_page, page));
+  const meterListingData = useSelector((state) =>
+    meterSelector.getMeterListingData(state),
   );
-  const smartMeterListingLoading = useSelector((state) =>
-    smartMeterSelector.getSmartMeterListingLoading(state),
+  const meterListingLoading = useSelector((state) =>
+    meterSelector.getMeterListingLoading(state),
   );
 
   const [isChecked, setIsChecked] = useState(true);
@@ -81,7 +81,12 @@ const MyStay = () => {
   useEffect(() => {
     fetchUserprofileData();
     fetchTenancyListing();
+    fetchMeterListingData();
   }, []);
+
+  const fetchMeterListingData = (per_page = 1, page = 1) => {
+    getMeterListingRequest(per_page, page);
+  };
 
   const fetchUserprofileData = () => {
     getUserProfileRequest();
@@ -159,6 +164,7 @@ const MyStay = () => {
           onClickTopUp={onClickTopUp}
           onClickToMeterOverview={onClickToMeterOverview}
           onClickToMeterList={onClickToMeterList}
+          data={meterListingData}
         />
 
         <InvoiceSection
@@ -172,7 +178,10 @@ const MyStay = () => {
 
         <LoadingOverlay
           loading={
-            userProfileLoading || tenancyListingLoading || invoiceListingLoading
+            userProfileLoading ||
+            tenancyListingLoading ||
+            invoiceListingLoading ||
+            meterListingLoading
           }
         />
       </div>

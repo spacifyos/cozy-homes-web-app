@@ -1,48 +1,37 @@
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import api from "@/src/services/httpUtilities/httpService";
 import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
-import * as smartMeterAction from "@/src/actions/meter";
+import * as meterAction from "@/src/actions/meter";
 
-function* getSmartMeterListingRequest({}) {
+function* getMeterListingRequest({ per_page, page }) {
   try {
-    const response = yield call(api.getListing);
+    const response = yield call(api.getMeterListing, per_page, page);
 
-    const { data, code, message } = response.data;
+    const { data, code, message } = response;
 
-    yield put(smartMeterAction.getSmartMeterListingSuccess(data));
+    yield put(meterAction.getMeterListingSuccess(data));
   } catch (error) {
-    yield call(
-      httpErrorHelpers,
-      error,
-      smartMeterAction.getSmartMeterListingFailure,
-    );
+    yield call(httpErrorHelpers, error, meterAction.getMeterListingFailure);
   }
 }
 
-function* getSmartMeterOverviewRequest({ id }) {
+function* getMeterOverviewRequest({ id }) {
   try {
-    const response = yield call(api.getBookingOverview, id);
+    const response = yield call(api.getMeterOverview, id);
 
     const { data, code, message } = response.data;
 
-    yield put(smartMeterAction.getSmartMeterOverviewSuccess(id, data));
+    yield put(meterAction.getMeterOverviewSuccess(id, data));
   } catch (error) {
-    yield call(
-      httpErrorHelpers,
-      error,
-      smartMeterAction.getSmartMeterOverviewFailure,
-    );
+    yield call(httpErrorHelpers, error, meterAction.getMeterOverviewFailure);
   }
 }
 
-function* SmartMeterSaga() {
+function* MeterSaga() {
   yield all([
-    takeLatest("GET_SMART_METER_LISTING_REQUEST", getSmartMeterListingRequest),
-    takeLatest(
-      "GET_SMART_METER_OVERVIEW_REQUEST",
-      getSmartMeterOverviewRequest,
-    ),
+    takeLatest("GET_METER_LISTING_REQUEST", getMeterListingRequest),
+    takeLatest("GET_METER_OVERVIEW_REQUEST", getMeterOverviewRequest),
   ]);
 }
 
-export default SmartMeterSaga;
+export default MeterSaga;

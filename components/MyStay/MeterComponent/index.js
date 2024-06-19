@@ -2,8 +2,15 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
+import * as meterSelector from "@/src/selectors/meter";
+import { isEmpty } from "lodash";
 
-const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
+const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
+  const name = meterSelector.getName(item);
+  const power = meterSelector.getPower(item);
+  const wifi = meterSelector.getWifi(item);
+  const balanceUnit = meterSelector.getBalanceUnit(item);
+
   return (
     <div className="meter-container">
       {/*<CustomImage*/}
@@ -16,7 +23,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
       <div className="flex items-center pb-1">
         <div
           className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer"
-          onClick={()=>onClickToMeterOverview(1)}
+          onClick={() => onClickToMeterOverview(1)}
         >
           <CustomImage
             src={Images.meterIcon}
@@ -26,7 +33,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
 
         <div className="flex flex-col">
           <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1 pr-5">
-            M Vertica, A-01-01, Room 1 Smart Meter
+            {isEmpty(name) ? "-" : name}
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="pr-3 font-size-xsmall disable-text">
@@ -35,24 +42,28 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
 
             <div className="flex items-center pr-3">
               <CustomImage
-                src={Images.onIcon}
+                src={wifi ? Images.onIcon : Images.offIcon}
                 width={15}
                 height={15}
                 className="mr-1"
               />
-              <CustomText textClassName="power-on-text font-size-small">
+              <CustomText
+                textClassName={`${wifi ? "power-on-text" : "disable-text"} font-size-small`}
+              >
                 {t("myStay.wifi")}
               </CustomText>
             </div>
 
             <div className="flex items-center">
               <CustomImage
-                src={Images.offIcon}
+                src={power ? Images.onIcon : Images.offIcon}
                 width={15}
                 height={15}
                 className="mr-1"
               />
-              <CustomText textClassName="disable-text font-size-small">
+              <CustomText
+                textClassName={`${power ? "power-on-text" : "disable-text"} font-size-small`}
+              >
                 {t("myStay.power")}
               </CustomText>
             </div>
@@ -67,7 +78,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="primary-text font-size-xlarge font-bold pe-1">
-              99999
+              {isEmpty(balanceUnit) ? "-" : balanceUnit}
             </CustomText>
             <CustomImage src={Images.refreshIcon} width={15} height={15} />
           </div>
@@ -77,7 +88,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
-          onClick={()=>onClickTopUp(1)}
+          onClick={() => onClickTopUp(1)}
         />
       </div>
     </div>

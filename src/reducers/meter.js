@@ -1,9 +1,12 @@
+import _ from "lodash";
+
 const initialState = {
-  smartMeterListing: {
+  meterListing: {
     data: null,
     loading: false,
+    pagination: null,
   },
-  smartMeterOverview: {
+  meterOverview: {
     data: null,
     loading: false,
   },
@@ -11,48 +14,49 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case "GET_SMART_METER_LISTING_REQUEST":
+    case "GET_METER_LISTING_REQUEST":
       return {
         ...state,
-        smartMeterListing: {
+        meterListing: {
           loading: true,
         },
       };
-    case "GET_SMART_METER_LISTING_SUCCESS":
+    case "GET_METER_LISTING_SUCCESS":
       return {
         ...state,
-        smartMeterListing: {
-          data: action.data,
+        meterListing: {
+          data: _.get(action, ["data", "data"], null),
           loading: false,
+          pagination: _.get(action, ["data", "pagination"], null),
         },
       };
-    case "GET_SMART_METER_LISTING_FAILURE":
+    case "GET_METER_LISTING_FAILURE":
       return {
         ...state,
-        smartMeterListing: {
+        meterListing: {
           loading: false,
         },
       };
 
-    case "GET_SMART_METER_OVERVIEW_REQUEST":
+    case "GET_METER_OVERVIEW_REQUEST":
       return {
         ...state,
-        smartMeterOverview: {
+        meterOverview: {
           loading: true,
         },
       };
-    case "GET_SMART_METER_OVERVIEW_SUCCESS":
+    case "GET_METER_OVERVIEW_SUCCESS":
       return {
         ...state,
-        smartMeterOverview: {
+        meterOverview: {
           [action.id]: { data: action.data },
           loading: false,
         },
       };
-    case "GET_SMART_METER_OVERVIEW_FAILURE":
+    case "GET_METER_OVERVIEW_FAILURE":
       return {
         ...state,
-        smartMeterOverview: {
+        meterOverview: {
           loading: false,
         },
       };

@@ -1,30 +1,31 @@
-export const getSmartMeterListingRequest = () => ({
-    type: "GET_SMART_METER_LISTING_REQUEST",
+export const getMeterListingRequest = (per_page, page) => ({
+  type: "GET_METER_LISTING_REQUEST",
+  per_page,
+  page,
 });
 
-export const getSmartMeterListingSuccess = (data) => ({
-    type: "GET_SMART_METER_LISTING_SUCCESS",
-    data,
+export const getMeterListingSuccess = (data) => ({
+  type: "GET_METER_LISTING_SUCCESS",
+  data,
 });
 
-export const getSmartMeterListingFailure = (messages) => ({
-    type: "GET_SMART_METER_LISTING_FAILURE",
-    messages,
+export const getMeterListingFailure = (messages) => ({
+  type: "GET_METER_LISTING_FAILURE",
+  messages,
 });
 
-export const getSmartMeterOverviewRequest = (id) => ({
-    type: "GET_SMART_METER_OVERVIEW_REQUEST",
-    id,
+export const getMeterOverviewRequest = (id) => ({
+  type: "GET_METER_OVERVIEW_REQUEST",
+  id,
 });
 
-export const getSmartMeterOverviewSuccess = (id, data) => ({
-    type: "GET_SMART_METER_OVERVIEW_SUCCESS",
-    id,
-    data,
+export const getMeterOverviewSuccess = (id, data) => ({
+  type: "GET_METER_OVERVIEW_SUCCESS",
+  id,
+  data,
 });
 
-export const getSmartMeterOverviewFailure = (messages) => ({
-    type: "GET_SMART_METER_OVERVIEW_FAILURE",
-    messages,
+export const getMeterOverviewFailure = (messages) => ({
+  type: "GET_METER_OVERVIEW_FAILURE",
+  messages,
 });
-

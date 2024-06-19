@@ -10,29 +10,59 @@ import BalanceUnit from "@/components/MyMeter/BalanceUnit";
 import MeterFeature from "@/components/MyMeter/MeterFeature";
 import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import * as smartMeterAction from "@/src/actions/meter";
-import * as smartMeterSelector from "@/src/selectors/meter";
+import { useEffect, useState } from "react";
+import * as meterAction from "@/src/actions/meter";
+import * as meterSelector from "@/src/selectors/meter";
 import { useDispatch, useSelector } from "react-redux";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import apiRequest, {
+  postSyncMeterRequest,
+} from "@/src/services/httpUtilities/apiRequest";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
-const MyMeterOverview = () => {
+const MyMeterOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const getSmartMeterOverviewRequest = () =>
-    dispatch(smartMeterAction.getSmartMeterOverviewRequest());
-  const smartMeterOverviewData = useSelector((state) =>
-    smartMeterSelector.getSmartMeterOverviewData(state),
+  const getMeterOverviewRequest = (id) =>
+    dispatch(meterAction.getMeterOverviewRequest(id));
+  const meterOverviewData = useSelector((state) =>
+    meterSelector.getMeterOverviewData(state, id),
   );
-  const smartMeterOverviewLoading = useSelector((state) =>
-    smartMeterSelector.getSmartMeterOverviewLoading(state),
+  const meterOverviewLoading = useSelector((state) =>
+    meterSelector.getMeterOverviewLoading(state),
   );
+
+  const balanceUnit = meterSelector.getBalanceUnit(meterOverviewData);
+  const lastConnectedAt = meterSelector.getLastConnectAt(meterOverviewData);
+
+  const [syncMeterLoading, setSyncMeterLoading] = useState(false);
+
+  useEffect(() => {
+    fetchMeterOverviewData(id);
+  }, []);
+
+  const fetchMeterOverviewData = (id) => {
+    getMeterOverviewRequest(id);
+  };
 
   const onClickGoBack = () => {
     router.back();
+  };
+
+  const onClickSyncMeter = async () => {
+    await apiRequest.postSyncMeterRequest(
+      id,
+      setSyncMeterLoading,
+      syncMeterSuccessCallback,
+    );
+  };
+
+  const syncMeterSuccessCallback = () => {
+    Toast.success("Sync meter successful!");
   };
 
   // const [selectChange, setSelectChange] = useState("Daily");
@@ -58,6 +88,7 @@ const MyMeterOverview = () => {
           </CustomText>
           <CustomImage
             className="mr-4"
+            onClick={onClickSyncMeter}
             src={Images.refreshIcon}
             height={30}
             width={30}
@@ -65,12 +96,16 @@ const MyMeterOverview = () => {
         </div>
 
         <div className="radial-container pb-7">
-          <MeterRadialProgressComponent t={t} />
+          <MeterRadialProgressComponent t={t} balanceUnit={balanceUnit} />
         </div>
 
-        <MeterDetail t={t} />
+        <MeterDetail t={t} data={meterOverviewData} />
 
-        <BalanceUnit t={t} />
+        <BalanceUnit
+          t={t}
+          balanceUnit={balanceUnit}
+          lastConnectedAt={lastConnectedAt}
+        />
 
         {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
 
@@ -79,6 +114,8 @@ const MyMeterOverview = () => {
         {/*  onClickChange={onClickChange}*/}
         {/*  selectChange={selectChange}*/}
         {/*/>*/}
+
+        <LoadingOverlay loading={meterOverviewLoading || syncMeterLoading} />
       </div>
     </CustomHeader>
   );

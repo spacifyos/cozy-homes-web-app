@@ -1,11 +1,14 @@
 import CustomText from "@/components/CustomText";
 import MeterComponent from "@/components/MyStay/MeterComponent";
+import { isEmpty, map } from "lodash";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const MeterSection = ({
   t,
   onClickTopUp,
   onClickToMeterOverview,
   onClickToMeterList,
+  data,
 }) => {
   return (
     <div className="pb-7">
@@ -22,11 +25,20 @@ const MeterSection = ({
         </CustomText>
       </div>
 
-      <MeterComponent
-        t={t}
-        onClickTopUp={onClickTopUp}
-        onClickToMeterOverview={onClickToMeterOverview}
-      />
+      {isEmpty(data) ? (
+        <CustomEmptyBox />
+      ) : (
+        map(data, (item) => {
+          return (
+            <MeterComponent
+              t={t}
+              onClickTopUp={onClickTopUp}
+              onClickToMeterOverview={onClickToMeterOverview}
+              item={item}
+            />
+          );
+        })
+      )}
     </div>
   );
 };

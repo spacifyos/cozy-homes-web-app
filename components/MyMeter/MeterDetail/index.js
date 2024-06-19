@@ -2,8 +2,17 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
+import * as meterSelector from "@/src/selectors/meter";
+import { isEmpty } from "lodash";
 
-const MeterDetail = ({ t }) => {
+const MeterDetail = ({ t, data }) => {
+  const name = meterSelector.getName(data);
+  const power = meterSelector.getPower(data);
+  const wifi = meterSelector.getWifi(data);
+  const serialNumber = meterSelector.getSerialNumber(data);
+  const totalUnit = meterSelector.getTotalUnit(data);
+  const unitPrice = meterSelector.getUnitPrice(data);
+
   return (
     <div className="meter-response">
       <div className="flex flex-1 flex-col items-center">
@@ -11,7 +20,7 @@ const MeterDetail = ({ t }) => {
           <CustomImage src={Images.meterIcon} width={40} height={40} />
         </div>
         <CustomText textClassName="primary-text font-bold">
-          M Vertica
+          {isEmpty(name) ? "" : name}
         </CustomText>
 
         <CustomText textClassName="line-clamp-2 text-center">
@@ -24,7 +33,7 @@ const MeterDetail = ({ t }) => {
       <div className="flex flex-col items-start flex-1">
         <CustomLabelValue
           label={t("myMeterOverview.serialNumber")}
-          value={"BeLive-SM123456789"}
+          value={serialNumber === 0 ? "" : serialNumber}
         />
         <CustomText textClassName="font-size-xxsmall disable-text">
           {t("myMeterOverview.meterStatus")}
@@ -32,22 +41,40 @@ const MeterDetail = ({ t }) => {
 
         <div className="flex items-center pt-1 gap-5">
           <div className="flex items-center gap-1">
-            <CustomImage src={Images.onIcon} height={15} width={15} />
-            <CustomText textClassName="power-on-text font-size-xsmall">
+            <CustomImage
+              src={wifi ? Images.onIcon : Images.offIcon}
+              height={15}
+              width={15}
+            />
+            <CustomText
+              textClassName={`${wifi ? "power-on-text" : "disable-text"} font-size-small`}
+            >
               Wifi
             </CustomText>
           </div>
           <div className="flex items-center gap-1">
-            <CustomImage src={Images.offIcon} height={15} width={15} />
-            <CustomText textClassName="disable-text font-size-xsmall">
+            <CustomImage
+              src={power ? Images.onIcon : Images.offIcon}
+              height={15}
+              width={15}
+            />
+            <CustomText
+              textClassName={`${power ? "power-on-text" : "disable-text"} font-size-small`}
+            >
               Power
             </CustomText>
           </div>
         </div>
 
         <div className="flex items-center gap-5 pt-2">
-          <CustomLabelValue label={t("myMeterOverview.usedUnit")} value={"28.9"} />
-          <CustomLabelValue label={t("myMeterOverview.unitPrice")} value={"RM0.80"} />
+          <CustomLabelValue
+            label={t("myMeterOverview.usedUnit")}
+            value={isEmpty(totalUnit) ? "0" : totalUnit}
+          />
+          <CustomLabelValue
+            label={t("myMeterOverview.unitPrice")}
+            value={`RM${isEmpty(unitPrice) ? "0" : unitPrice}`}
+          />
         </div>
       </div>
     </div>

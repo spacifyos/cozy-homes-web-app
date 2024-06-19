@@ -3,12 +3,16 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import Images from "@/src/utils/Image";
 import { useRouter } from "next/router";
-import _ from "lodash";
-import MeterUsageComponent from "@/components/MyMeter/MeterUsageComponent";
-import * as smartMeterAction from "@/src/actions/meter";
-import * as smartMeterSelector from "@/src/selectors/meter";
+import { map, isEmpty } from "lodash";
+import * as meterAction from "@/src/actions/meter";
+import * as meterSelector from "@/src/selectors/meter";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "@/components/CustomButton";
+import { useEffect } from "react";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
+import * as invoiceSelector from "@/src/selectors/invoice";
+import MeterComponent from "@/components/MyMeter/MeterComponent";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
@@ -17,14 +21,29 @@ const MyMeter = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const getSmartMeterListingRequest = () =>
-    dispatch(smartMeterAction.getSmartMeterListingRequest());
-  const smartMeterListingData = useSelector((state) =>
-    smartMeterSelector.getSmartMeterListingData(state),
+  const getMeterListingRequest = (per_page, page) =>
+    dispatch(meterAction.getMeterListingRequest(per_page, page));
+  const meterListingData = useSelector((state) =>
+    meterSelector.getMeterListingData(state),
   );
-  const smartMeterListingLoading = useSelector((state) =>
-    smartMeterSelector.getSmartMeterListingLoading(state),
+  const meterListingLoading = useSelector((state) =>
+    meterSelector.getMeterListingLoading(state),
   );
+  const meterListingPagination = useSelector((state) =>
+    meterSelector.getMeterListingPagination(state),
+  );
+
+  const hasMorePage = invoiceSelector.getHasMorePages(meterListingPagination);
+  const lastPage = invoiceSelector.getLastPage(meterListingPagination);
+  const currentPage = invoiceSelector.getCurrentPage(meterListingPagination);
+
+  useEffect(() => {
+    fetchMeterListingData();
+  }, []);
+
+  const fetchMeterListingData = (per_page = 20, page = 1) => {
+    getMeterListingRequest(per_page, page);
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -41,22 +60,35 @@ const MyMeter = () => {
       onClickGoBack={onClickGoBack}
       rightButtonIcon={Images.filterProIcon}
     >
-      <div className="body-container flex flex-col gap-3 pb-4">
-        {_.map(Array(12), (item, index) => (
-          <MeterUsageComponent
-            t={t}
-            key={index}
-            onClickToMeterOverview={onClickToMeterOverview}
-          />
-        ))}
+      <div className="body-container flex flex-col gap-3 pb-4 flex-1">
+        {isEmpty(meterListingData) ? (
+          <div className="flex flex-col justify-center flex-1">
+            <CustomEmptyBox />
+          </div>
+        ) : (
+          map(meterListingData, (item, index) => (
+            <MeterComponent
+              t={t}
+              key={index}
+              item={item}
+              onClickToMeterOverview={onClickToMeterOverview}
+            />
+          ))
+        )}
 
-        <div className="flex justify-center">
-          <CustomButton
-            buttonClassName="primary-btn min-h-9 h-9 w-32"
-            buttonText="Load More"
-            textClassName="font-size-xsmall"
-          />
-        </div>
+        {hasMorePage && lastPage > 1 && !isEmpty(meterListingData) ? (
+          <div className="flex justify-center">
+            <CustomButton
+              buttonClassName="primary-btn min-h-9 h-9 w-32"
+              buttonText="Load More"
+              textClassName="font-size-xsmall"
+            />
+          </div>
+        ) : (
+          false
+        )}
+
+        <LoadingOverlay loading={meterListingLoading} />
       </div>
     </CustomHeader>
   );

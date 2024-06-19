@@ -86,6 +86,13 @@ const getInvoiceOverview = (id) => apiInstance.get(`/invoice/${id}`);
 const getInvoicePaymentLink = (code) =>
   apiInstance.get(`/invoice/${code}/make-payment`);
 
+const getMeterListing = (per_page, page) =>
+  apiInstance.get(`/meter?per_page=${per_page}&page=${page}`);
+
+const getMeterOverview = (id) => apiInstance.get(`/meter/${id}`);
+
+const postSyncMeter = (id) => apiInstance.post(`/meter/${id}/sync-meter`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -113,4 +120,7 @@ export default {
   getInvoiceListing,
   getInvoiceOverview,
   getInvoicePaymentLink,
+  getMeterListing,
+  getMeterOverview,
+  postSyncMeter,
 };

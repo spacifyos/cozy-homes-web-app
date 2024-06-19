@@ -6,6 +6,7 @@ const nextConfig = {
   env: {
     API_DOMAIN: process.env.API_DOMAIN,
     CLOUDFLARE_RECAPTCHA_SITE: process.env.CLOUDFLARE_RECAPTCHA_SITE,
+    SENTRY_DSN: process.env.SENTRY_DSN,
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;

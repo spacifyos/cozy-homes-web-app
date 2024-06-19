@@ -1,7 +1,9 @@
 import CustomText from "@/components/CustomText";
 import MeterComponent from "@/components/MyStay/MeterComponent";
+import { isEmpty } from "lodash";
+import moment from "moment";
 
-const BalanceUnit = ({ t }) => {
+const BalanceUnit = ({ t, balanceUnit, lastConnectedAt }) => {
   return (
     <div className="balance-container">
       <div className="flex justify-center items-center">
@@ -9,12 +11,13 @@ const BalanceUnit = ({ t }) => {
           {t("myMeterOverview.balanceUnit")}:
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold pl-2">
-          9999999
+          {isEmpty(balanceUnit) ? "0" : balanceUnit}
         </CustomText>
       </div>
 
       <CustomText textClassName="disable-text font-size-xxsmall italic">
-        {t("myMeterOverview.lastConnectedAt")}: 15 Dec 2022, 2:15pm
+        {t("myMeterOverview.lastConnectedAt")}:{" "}
+        {moment(lastConnectedAt).format("DD MMM YYYY, HH:mm")}
       </CustomText>
     </div>
   );
