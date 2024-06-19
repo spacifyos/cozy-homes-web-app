@@ -5,12 +5,15 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import { get, isEmpty } from "lodash";
 
 export { getServerSideProps };
 
-const PaymentSuccessful = ({ id }) => {
+const PaymentSuccessful = ({}) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const id = get(router, ["query", "id"], "");
+  const email = get(router, ["query", "email"], "");
 
   const onClickGoMainPage = () => {
     router.replace("/explore");
@@ -39,7 +42,7 @@ const PaymentSuccessful = ({ id }) => {
         <CustomText textClassName="font-size-xsmall text-center">
           Your booking was successful. We will process the tenancy agreement. An
           email confirmation will be sent to email{" "}
-          <span className="underline">te**@gmail.com.</span>
+          <span className="underline">{isEmpty(email) ? "" : email}</span>.
         </CustomText>
       </div>
       <CustomButton
