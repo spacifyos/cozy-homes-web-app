@@ -153,11 +153,11 @@ const MyStay = () => {
           data={tenancyListingData}
         />
 
-        {/*<FeatureSection*/}
-        {/*  t={t}*/}
-        {/*  onClickToAgreement={onClickToAgreement}*/}
-        {/*  onClickToHelpCenter={onClickToHelpCenter}*/}
-        {/*/>*/}
+        <FeatureSection
+          t={t}
+          onClickToAgreement={onClickToAgreement}
+          onClickToHelpCenter={onClickToHelpCenter}
+        />
 
         <MeterSection
           t={t}

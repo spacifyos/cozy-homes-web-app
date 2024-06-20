@@ -29,7 +29,7 @@ const RadialProgressComponent = ({
 
   return (
     <div
-      className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color"
+      className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"
       style={{
         "--value": percentage,
         "--size": `${dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,

@@ -2,11 +2,19 @@ import StatusLabel from "@/components/StatusLabel";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import * as agreementSelector from "@/src/selectors/agreement";
 
 const EAgreementCard = ({ item, onClickToDetail, t }) => {
+  const referenceNumber = agreementSelector.getReferenceNumber(item);
+  const property = agreementSelector.getProperty(item);
+  const status = agreementSelector.getStatus(item);
+  const tenurePeriod = agreementSelector.getTenurePeriod(item);
+  const getAgree = agreementSelector.getAgree(item);
+  const getSigned = agreementSelector.getSigned(item);
+
   return (
     <div
-      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center mb-4"
+      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center cursor-pointer"
       onClick={() => onClickToDetail(1)}
     >
       <div className="flex-1 pr-3">
@@ -28,7 +36,9 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
 
         <div className="grid grid-cols-2 gap-2">
           <div className="flex flex-col">
-            <CustomText textClassName="font-size-small">{t("eAgreement.landlord")}</CustomText>
+            <CustomText textClassName="font-size-small">
+              {t("eAgreement.landlord")}
+            </CustomText>
             <div className="flex">
               <div className="flex mr-3 items-center">
                 <CustomImage
@@ -56,7 +66,9 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
           </div>
 
           <div className="flex flex-col">
-            <CustomText textClassName="font-size-small">{t("eAgreement.tenant")}</CustomText>
+            <CustomText textClassName="font-size-small">
+              {t("eAgreement.tenant")}
+            </CustomText>
             <div className="flex">
               <div className="flex mr-3">
                 <CustomImage

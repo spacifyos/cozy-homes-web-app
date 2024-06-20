@@ -3,7 +3,13 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { useEffect, useRef, useState } from "react";
 
-const FeatureComponent = ({ name, icon, onClickToNextPage, onClickToHelpCenter }) => {
+const FeatureComponent = ({
+  name,
+  icon,
+  onClickToNextPage,
+  onClickToHelpCenter,
+  disable = false,
+}) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -14,9 +20,13 @@ const FeatureComponent = ({ name, icon, onClickToNextPage, onClickToHelpCenter }
   }, [targetRef]);
 
   return (
-    <div className="feature-container" ref={targetRef} onClick={onClickToNextPage}>
+    <div
+      className="feature-container"
+      ref={targetRef}
+      onClick={onClickToNextPage}
+    >
       <div
-        className="feature-icon-container"
+        className={`feature-icon-container ${disable ? "" : "primaryWhite-bg-color"}`}
         style={{ width: dimensions, height: dimensions, minHeight: dimensions }}
         onClick={onClickToHelpCenter}
       >
@@ -24,7 +34,7 @@ const FeatureComponent = ({ name, icon, onClickToNextPage, onClickToHelpCenter }
       </div>
 
       <CustomText textClassName="font-size-xsmall font-bold h-full text-center">
-        {name}
+        {disable ? "Coming Soon" : name}
       </CustomText>
     </div>
   );

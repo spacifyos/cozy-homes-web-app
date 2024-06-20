@@ -93,6 +93,16 @@ const getMeterOverview = (id) => apiInstance.get(`/meter/${id}`);
 
 const postSyncMeter = (id) => apiInstance.post(`/meter/${id}/sync-meter`);
 
+const getAgreementListing = (status, perPage, page, filterParams) => {
+  const {} = filterParams;
+
+  return apiInstance.get(
+    `/agreement?per_page=${perPage}&status=${status}&page=${page}`,
+  );
+};
+
+const getAgreementOverview = (id) => apiInstance.get(`/agreement/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -123,4 +133,6 @@ export default {
   getMeterListing,
   getMeterOverview,
   postSyncMeter,
+  getAgreementListing,
+  getAgreementOverview,
 };
