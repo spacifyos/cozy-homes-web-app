@@ -12,15 +12,10 @@ export { getServerSideProps };
 const PaymentSuccessful = ({}) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const id = get(router, ["query", "id"], "");
-  const email = get(router, ["query", "email"], "");
+  const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
     router.replace("/explore");
-  };
-
-  const onClickGoToBookingOverview = () => {
-    router.replace(`/booking/${id}/overview`);
   };
 
   return (
@@ -40,16 +35,14 @@ const PaymentSuccessful = ({}) => {
       </CustomText>
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="font-size-xsmall text-center">
-          Your booking was successful. We will process the tenancy agreement. An
-          email confirmation will be sent to email{" "}
-          <span className="underline">{isEmpty(email) ? "" : email}</span>.
+          {isEmpty(message) ? "" : message}
         </CustomText>
       </div>
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={t("payment.viewBooking")}
-        onClick={onClickGoToBookingOverview}
+        buttonText={"Back to home page"}
+        onClick={onClickGoMainPage}
       />
     </div>
   );

@@ -5,19 +5,17 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import { get, isEmpty } from "lodash";
 
 export { getServerSideProps };
 
 const PaymentFailed = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+  const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
     router.replace("/explore");
-  };
-
-  const onClickPaymentFail = () => {
-    router.replace(`/booking/${id}/overview`);
   };
 
   return (
@@ -40,16 +38,15 @@ const PaymentFailed = ({ id }) => {
 
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="font-size-xsmall text-center">
-          Sorry. We encounter an error while processing your payment. Please try
-          again later.
+          {isEmpty(message) ? "" : message}
         </CustomText>
       </div>
 
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={t("payment.viewBooking")}
-        onClick={onClickPaymentFail}
+        buttonText={"Back to home page"}
+        onClick={onClickGoMainPage}
       />
     </div>
   );
