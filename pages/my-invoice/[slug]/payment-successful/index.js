@@ -11,6 +11,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import { useEffect } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { get, isEmpty, map } from "lodash";
+import moment from "moment";
 
 export { getServerSideProps };
 
@@ -41,6 +42,7 @@ const PaymentSuccessful = ({ id }) => {
   const tax = invoiceSelector.getTax(invoiceOverviewData);
   const grandTotal = invoiceSelector.getGrandtotal(invoiceOverviewData);
   const items = invoiceSelector.getItems(invoiceOverviewData);
+  const paidAt = invoiceSelector.getPaidAt(invoiceOverviewData);
 
   useEffect(() => {
     fetchInvoiceOverviewData(id);
@@ -58,14 +60,13 @@ const PaymentSuccessful = ({ id }) => {
     <div className="relative p-4 pt-10 bg-color flex flex-col items-center">
       <CustomImage
         src={Images.cancelIcon}
-        className="absolute right-5 top-5"
+        className="absolute right-5 top-5 cursor-pointer"
         height={20}
         width={20}
         onClick={onClickClose}
       />
 
       <CustomImage
-        className="cursor-pointer"
         src={Images.successIcon}
         imageStyle={{ width: 150, height: 150 }}
       />
@@ -101,7 +102,9 @@ const PaymentSuccessful = ({ id }) => {
             RM{isEmpty(totalAmount) ? "0" : totalAmount}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xsmall">
-            15 Dec 2022, 03:23 PM
+            {isEmpty(paidAt)
+              ? moment(new Date()).format("DD MMM YYYY HH:mm")
+              : paidAt}
           </CustomText>
         </div>
       </div>

@@ -46,6 +46,9 @@ const MyTenancy = ({ id }) => {
 
   const [isChecked, setIsChecked] = useState(false);
 
+  const oneTimeFee = tenancySelector.getOneTimeFee(tenancyOverviewData);
+  const recurringFee = tenancySelector.getRecurringFee(tenancyOverviewData);
+
   useEffect(() => {
     fetchUserprofileData();
   }, []);
@@ -87,7 +90,7 @@ const MyTenancy = ({ id }) => {
       // rightButtonIcon={Images.downloadIcon}
       // rightSecondButtonIcon={Images.shareIcon}
     >
-      <div className="body-container pb-4">
+      <div className="body-container">
         <TenancyUserSection t={t} data={userProfileData} />
 
         <TenancyDetail
@@ -97,7 +100,9 @@ const MyTenancy = ({ id }) => {
           data={tenancyOverviewData}
         />
 
-        <TenancyFeeDetail t={t} data={tenancyOverviewData} />
+        <TenancyFeeDetail title={"One Time Charges"} data={oneTimeFee} />
+
+        <TenancyFeeDetail title={"Monthly Charges"} data={recurringFee} />
 
         {/*<EAgreement*/}
         {/*  t={t}*/}

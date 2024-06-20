@@ -4,13 +4,11 @@ import TenancyFeeComponent from "@/components/MyTenancy/TenancyFeeComponent";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 
-const TenancyFeeDetail = ({ t, data }) => {
-  const fees = tenancySelector.getFee(data);
-
+const TenancyFeeDetail = ({ title, data }) => {
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-3">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-7">
       <CustomText textClassName="disable-text font-size-small">
-        {t("myTenancy.otherInformation")}
+        {title}
       </CustomText>
 
       <div
@@ -18,7 +16,7 @@ const TenancyFeeDetail = ({ t, data }) => {
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
-      <TenancyFeeComponent data={fees} />
+      <TenancyFeeComponent data={data} />
     </div>
   );
 };

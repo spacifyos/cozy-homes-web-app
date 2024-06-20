@@ -111,7 +111,7 @@ const InvoiceOverview = ({ id }) => {
       // rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container relative py-6 flex justify-center">
-        <div className="primary-bg-color p-2 global-border-radius absolute top-0">
+        <div className="primary-bg-color p-2 ps-2.5 global-border-radius absolute top-0">
           <CustomImage
             src={Images.invoiceIcon}
             imageStyle={{ width: 35, height: 35 }}
