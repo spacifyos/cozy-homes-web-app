@@ -72,11 +72,7 @@ const MyInvoice = () => {
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory, 20, 1, filterParams);
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    fetchInvoiceListingData(selectedCategory, 20, currentPage, filterParams);
-  }, [filterParams]);
+  }, [selectedCategory, filterParams]);
 
   const fetchInvoiceListingData = (
     paymentStatus,

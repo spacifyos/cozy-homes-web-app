@@ -3,9 +3,10 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from "@sentry/nextjs";
+import { isEqual } from "lodash";
 
 Sentry.init({
-  enabled: false,
+  enabled: isEqual(process.env.PRODUCTION, "PRODUCTION"),
 
   dsn: process.env.SENTRY_DSN,
 
