@@ -1,10 +1,17 @@
 import _ from "lodash";
 import Toast from "@/src/utils/Toast";
+import Router from "next/router";
 
 export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   const response = _.get(err, ["response"], "");
   const message = _.get(err, ["message"], "");
   const statusCode = _.get(response, "status", null);
+
+  if (statusCode === 404) {
+    Router.replace("/404");
+    unknowErrorMsgFunction(statusCode);
+    return;
+  }
 
   if (!_.isEmpty(response)) {
     const messages = _.get(response, ["data", "message"], "");
@@ -12,8 +19,7 @@ export const apiRequestErrorResponse = (err, ignoreToast = false) => {
     if (!_.isEmpty(messages) && !ignoreToast) {
       Toast.error(messages);
     } else {
-      const unknownErrorMsg = `Unknown ${statusCode} Error`;
-      Toast.error(unknownErrorMsg);
+      unknowErrorMsgFunction(statusCode);
     }
 
     return;
@@ -22,7 +28,11 @@ export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   if (!_.isEmpty(message)) {
     !ignoreToast ? Toast.error(message) : false;
   } else {
-    const unknownErrorMsg = `Unknown ${statusCode} Error`;
-    Toast.error(unknownErrorMsg);
+    unknowErrorMsgFunction(statusCode);
   }
+};
+
+const unknowErrorMsgFunction = (statusCode) => {
+  const unknownErrorMsg = `Unknown ${statusCode} Error`;
+  Toast.error(unknownErrorMsg);
 };

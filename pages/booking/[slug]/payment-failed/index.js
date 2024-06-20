@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import { isEmpty } from "lodash";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
@@ -17,6 +19,12 @@ const PaymentFailed = ({ id }) => {
   };
 
   const onClickPaymentFail = () => {
+    if (isEmpty(id)) {
+      return Toast.error(
+        "This booking id is invalid, please contact your agent.",
+      );
+    }
+
     router.replace(`/booking/${id}/overview`);
   };
 

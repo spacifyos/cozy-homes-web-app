@@ -6,13 +6,13 @@ import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { get, isEmpty } from "lodash";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
-const PaymentSuccessful = ({}) => {
+const PaymentSuccessful = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const id = get(router, ["query", "id"], "");
   const email = get(router, ["query", "email"], "");
 
   const onClickGoMainPage = () => {
@@ -20,6 +20,12 @@ const PaymentSuccessful = ({}) => {
   };
 
   const onClickGoToBookingOverview = () => {
+    if (isEmpty(id)) {
+      return Toast.error(
+        "This booking id is invalid, please contact your agent.",
+      );
+    }
+
     router.replace(`/booking/${id}/overview`);
   };
 

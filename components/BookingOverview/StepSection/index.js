@@ -48,7 +48,9 @@ const StepSection = ({ t, paymentSuccess, data }) => {
           </div>
         </div>
       </div>
+
       <div className="divider-line"></div>
+
       <div className="flex gap-2">
         <CustomImage
           src={
@@ -73,6 +75,7 @@ const StepSection = ({ t, paymentSuccess, data }) => {
             </CustomText>
             <StatusLabel status={paymentStatus} />
           </div>
+
           {_.isEqual(_.upperCase(paymentStatus), Constant.UNPAID) ? (
             <CustomButton
               buttonClassName="booking-overview-btn"
@@ -87,7 +90,9 @@ const StepSection = ({ t, paymentSuccess, data }) => {
           )}
         </div>
       </div>
+
       <div className="divider-line"></div>
+
       <div className="flex gap-2">
         <CustomImage
           src={Images.step3Icon}
