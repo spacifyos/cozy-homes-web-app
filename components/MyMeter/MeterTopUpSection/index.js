@@ -40,7 +40,7 @@ const MeterTopUpSection = ({
 
             <CustomSelect
               selectStyles={{ border: "unset" }}
-              className="max-w-full mb-8 col-span-2"
+              className="max-w-full mb-8 col-span-2 min-w-full"
               selectClassName="bg-color w-full"
               placeholder={"Select tenancy"}
               optionList={tenancy}
