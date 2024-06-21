@@ -566,7 +566,7 @@ const Booking = ({ id }) => {
 
           <BookingInput
             className="col-span-4"
-            type={isEqual(idType, "nric") ? "number" : "text"}
+            type={"text"}
             placeholder={
               isEqual(idType, "nric")
                 ? "XXXXXXXXXXXX"

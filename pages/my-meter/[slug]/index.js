@@ -18,6 +18,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
 import { isEmpty } from "lodash";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
@@ -38,10 +39,12 @@ const MyMeterOverview = ({ id }) => {
   const balanceUnit = meterSelector.getBalanceUnit(meterOverviewData);
   const lastConnectedAt = meterSelector.getLastConnectAt(meterOverviewData);
   const unitPrice = meterSelector.getUnitPrice(meterOverviewData);
+  const tenancy = meterSelector.getTenancy(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(0);
   const [meterTopUpLoading, setMeterTopUpLoading] = useState(false);
+  const [tenancyValue, setTenancyValue] = useState("");
 
   useEffect(() => {
     fetchMeterOverviewData(id);
@@ -56,7 +59,15 @@ const MyMeterOverview = ({ id }) => {
   };
 
   const onClickSyncMeter = async () => {
-    await apiRequest.postSyncMeterRequest(id, setSyncMeterLoading);
+    await apiRequest.postSyncMeterRequest(
+      id,
+      setSyncMeterLoading,
+      syncMeterSuccessCallback,
+    );
+  };
+
+  const syncMeterSuccessCallback = () => {
+    fetchMeterOverviewData(id);
   };
 
   const onClickSelectPrice = (price) => {
@@ -69,9 +80,17 @@ const MyMeterOverview = ({ id }) => {
   };
 
   const onClickPayNow = async () => {
+    if (isEmpty(tenancyValue)) {
+      return Toast.error("Tenancy must be select.");
+    }
+
+    if (selectedPrice === 0) {
+      return Toast.error("Top up price cannot be 0.");
+    }
+
     const postData = {
       amount: selectedPrice,
-      tenancy_code: "HZCOMPANY-TA-24000001",
+      tenancy_code: tenancyValue,
     };
 
     await apiRequest.postMeterTopUpRequest(
@@ -96,6 +115,10 @@ const MyMeterOverview = ({ id }) => {
 
   const onClickClearSelectedPrice = () => {
     setSelectedPrice(0);
+  };
+
+  const onChangeTenancyValue = (e) => {
+    setTenancyValue(e.target.value);
   };
 
   // const [selectChange, setSelectChange] = useState("Daily");
@@ -148,6 +171,9 @@ const MyMeterOverview = ({ id }) => {
           onClickPayNow={onClickPayNow}
           onChangeSelectedPriceValue={onChangeSelectedPriceValue}
           onClickClearSelectedPrice={onClickClearSelectedPrice}
+          tenancy={tenancy}
+          tenancyValue={tenancyValue}
+          onChangeTenancyValue={onChangeTenancyValue}
         />
 
         {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}

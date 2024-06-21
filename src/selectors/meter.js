@@ -30,4 +30,5 @@ export const getCurrentPage = (state) => _.get(state, ["current_page"], 1);
 export const getLastPage = (state) => _.get(state, ["last_page"], 1);
 export const getPropertyName = (state) => _.get(state, ["property_name"], 1);
 export const getUrl = (state) => _.get(state, ["url"], "");
+export const getTenancy = (state) => _.get(state, ["tenancy"], []);
 

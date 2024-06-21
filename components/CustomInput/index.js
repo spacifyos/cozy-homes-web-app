@@ -16,6 +16,7 @@ const CustomInput = ({
   value,
   onChange,
   onClickRightIcon,
+  inputClassName,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -44,13 +45,13 @@ const CustomInput = ({
       </div>
 
       <div
-        className={`input input-bordered flex items-center gap-2 default-input `}
+        className={`input input-bordered flex items-center gap-2 default-input`}
       >
         {!_.isEmpty(leftIcon) ? leftIcon : false}
         <input
           ref={inputRef}
           type={inputType}
-          className="grow input-primary primaryWhite-bg-color"
+          className={`grow input-primary primaryWhite-bg-color ${inputClassName}`}
           placeholder={placeholder}
           autoFocus={autoFocus}
           value={value}

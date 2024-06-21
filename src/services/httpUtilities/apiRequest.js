@@ -102,8 +102,8 @@ const getInvoicePaymentLinkRequest = async (
   );
 };
 
-const postSyncMeterRequest = async (id, setLoading) => {
-  await apiRequest(api.postSyncMeter(id), setLoading);
+const postSyncMeterRequest = async (id, setLoading, successCallback) => {
+  await apiRequest(api.postSyncMeter(id), setLoading, successCallback);
 };
 
 const postMeterTopUpRequest = async (

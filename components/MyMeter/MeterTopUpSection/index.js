@@ -1,6 +1,9 @@
 import CustomText from "@/components/CustomText";
 import { get, map, isEqual, toInteger, round, toNumber } from "lodash";
 import CustomButton from "@/components/CustomButton";
+import CustomSelect from "@/components/CustomSelect";
+import Constant from "@/src/utils/Constant";
+import CustomInput from "@/components/CustomInput";
 
 const topUpOptions = [
   { name: "25", value: 25 },
@@ -19,51 +22,69 @@ const MeterTopUpSection = ({
   onClickPayNow,
   onChangeSelectedPriceValue,
   onClickClearSelectedPrice,
+  tenancy,
+  tenancyValue,
+  onChangeTenancyValue,
 }) => {
   return (
     <div>
       <CustomText textClassName="section-title">
         Top Up Price (Malaysia Ringgit - RM)
       </CustomText>
+
       <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
-        <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8">
-          {map(topUpOptions, (topUpOption, index) => {
-            const name = get(topUpOption, ["name"], "");
-            const value = get(topUpOption, ["value"], 0);
-
-            return (
-              <CustomButton
-                key={index}
-                buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "primary-btn" : "pending-btn"}`}
-                buttonText={name}
-                onClick={() => onClickSelectPrice(value)}
-              />
-            );
-          })}
-        </div>
-
         <div className="grid grid-cols-2 gap-1">
-          <CustomText textClassName="disable-text font-bold">
+            <CustomText textClassName="font-size-small font-bold col-span-2">
+              Tenancy
+            </CustomText>
+
+            <CustomSelect
+              selectStyles={{ border: "unset" }}
+              className="max-w-full mb-8 col-span-2"
+              selectClassName="bg-color w-full"
+              placeholder={"Select tenancy"}
+              optionList={tenancy}
+              onChange={onChangeTenancyValue}
+              value={tenancyValue}
+            />
+
+          <CustomText textClassName="font-size-small font-bold col-span-2">
+            Top Up Price
+          </CustomText>
+
+          <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8 col-span-2">
+            {map(topUpOptions, (topUpOption, index) => {
+              const name = get(topUpOption, ["name"], "");
+              const value = get(topUpOption, ["value"], 0);
+
+              return (
+                <CustomButton
+                  key={index}
+                  buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "primary-btn" : "pending-btn"}`}
+                  buttonText={name}
+                  onClick={() => onClickSelectPrice(value)}
+                />
+              );
+            })}
+          </div>
+
+          <CustomText textClassName="font-size-small font-bold">
             Other Price
           </CustomText>
 
-          <CustomText textClassName="primary-text font-bold">
+          <CustomText textClassName="font-size-small primary-text font-bold">
             Total Unit
           </CustomText>
 
           <input
             type="number"
             className="input w-4/5 bg-color global-box-shadow meter-input"
-            style={{ height: 40 }}
             placeholder={t("topUpMeter.unit")}
             value={selectedPrice}
             onChange={onChangeSelectedPriceValue}
           />
 
-          <CustomText
-            textClassName="font-bold flex items-center"
-            style={{ height: 40 }}
-          >
+          <CustomText textClassName="font-bold flex items-center font-size-xlarge">
             {`${round(toNumber(selectedPrice) / toNumber(unitPrice), 1)} unit`}
           </CustomText>
         </div>

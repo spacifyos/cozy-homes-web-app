@@ -58,7 +58,7 @@ const MyMeter = () => {
       pageTitle={t("pageTitle.myMeter")}
       hideBgImage
       onClickGoBack={onClickGoBack}
-      rightButtonIcon={Images.filterProIcon}
+      // rightButtonIcon={Images.filterProIcon}
     >
       <div className="body-container flex flex-col gap-3 pb-4 flex-1">
         {isEmpty(meterListingData) ? (
