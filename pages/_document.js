@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <title>Spacify Asia</title>
         <meta name="theme-color" content="#f65626" />
         <meta name="msapplication-navbutton-color" content="#f65626" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#f65626" />
