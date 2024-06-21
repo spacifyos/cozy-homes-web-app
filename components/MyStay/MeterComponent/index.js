@@ -89,7 +89,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
-          onClick={() => onClickTopUp(1)}
+          onClick={() => onClickTopUp(id)}
         />
       </div>
     </div>
