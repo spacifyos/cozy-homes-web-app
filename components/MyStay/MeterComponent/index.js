@@ -6,6 +6,7 @@ import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
 const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
+  const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
   const wifi = meterSelector.getWifi(item);
@@ -23,7 +24,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
       <div className="flex items-center pb-1">
         <div
           className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer"
-          onClick={() => onClickToMeterOverview(1)}
+          onClick={() => onClickToMeterOverview(id)}
         >
           <CustomImage
             src={Images.meterIcon}
@@ -88,7 +89,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
           buttonClassName="col-span-4 primary-btn h-14"
           textClassName="font-size-xxlarge"
           buttonText={t("myStay.topUp")}
-          onClick={() => onClickTopUp(1)}
+          onClick={() => onClickTopUp(id)}
         />
       </div>
     </div>

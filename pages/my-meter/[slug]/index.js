@@ -15,10 +15,9 @@ import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import apiRequest, {
-  postSyncMeterRequest,
-} from "@/src/services/httpUtilities/apiRequest";
-import Toast from "@/src/utils/Toast";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
+import { isEmpty } from "lodash";
 
 export { getServerSideProps };
 
@@ -38,8 +37,11 @@ const MyMeterOverview = ({ id }) => {
 
   const balanceUnit = meterSelector.getBalanceUnit(meterOverviewData);
   const lastConnectedAt = meterSelector.getLastConnectAt(meterOverviewData);
+  const unitPrice = meterSelector.getUnitPrice(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState(0);
+  const [meterTopUpLoading, setMeterTopUpLoading] = useState(false);
 
   useEffect(() => {
     fetchMeterOverviewData(id);
@@ -54,15 +56,46 @@ const MyMeterOverview = ({ id }) => {
   };
 
   const onClickSyncMeter = async () => {
-    await apiRequest.postSyncMeterRequest(
+    await apiRequest.postSyncMeterRequest(id, setSyncMeterLoading);
+  };
+
+  const onClickSelectPrice = (price) => {
+    if (price === selectedPrice) {
+      setSelectedPrice(0);
+      return;
+    }
+
+    setSelectedPrice(price);
+  };
+
+  const onClickPayNow = async () => {
+    const postData = {
+      amount: selectedPrice,
+      tenancy_code: "HZCOMPANY-TA-24000001",
+    };
+
+    await apiRequest.postMeterTopUpRequest(
       id,
-      setSyncMeterLoading,
-      syncMeterSuccessCallback,
+      postData,
+      setMeterTopUpLoading,
+      meterTopUpSuccessCallback,
     );
   };
 
-  const syncMeterSuccessCallback = () => {
-    Toast.success("Sync meter successful!");
+  const meterTopUpSuccessCallback = (res) => {
+    const url = meterSelector.getUrl(res);
+
+    if (!isEmpty(url)) {
+      window.open(url, "_self");
+    }
+  };
+
+  const onChangeSelectedPriceValue = (e) => {
+    setSelectedPrice(e.target.value);
+  };
+
+  const onClickClearSelectedPrice = () => {
+    setSelectedPrice(0);
   };
 
   // const [selectChange, setSelectChange] = useState("Daily");
@@ -87,7 +120,7 @@ const MyMeterOverview = ({ id }) => {
             {t("myMeterOverview.todayUsage")}
           </CustomText>
           <CustomImage
-            className="mr-4"
+            className="mr-4 cursor-pointer"
             onClick={onClickSyncMeter}
             src={Images.refreshIcon}
             height={30}
@@ -107,6 +140,16 @@ const MyMeterOverview = ({ id }) => {
           lastConnectedAt={lastConnectedAt}
         />
 
+        <MeterTopUpSection
+          t={t}
+          onClickSelectPrice={onClickSelectPrice}
+          selectedPrice={selectedPrice}
+          unitPrice={unitPrice}
+          onClickPayNow={onClickPayNow}
+          onChangeSelectedPriceValue={onChangeSelectedPriceValue}
+          onClickClearSelectedPrice={onClickClearSelectedPrice}
+        />
+
         {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
 
         {/*<MeterUsageSection*/}
@@ -115,7 +158,11 @@ const MyMeterOverview = ({ id }) => {
         {/*  selectChange={selectChange}*/}
         {/*/>*/}
 
-        <LoadingOverlay loading={meterOverviewLoading || syncMeterLoading} />
+        <LoadingOverlay
+          loading={
+            meterOverviewLoading || syncMeterLoading || meterTopUpLoading
+          }
+        />
       </div>
     </CustomHeader>
   );

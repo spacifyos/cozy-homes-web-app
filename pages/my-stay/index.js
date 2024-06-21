@@ -161,7 +161,7 @@ const MyStay = () => {
 
         <MeterSection
           t={t}
-          onClickTopUp={onClickTopUp}
+          onClickTopUp={onClickToMeterOverview}
           onClickToMeterOverview={onClickToMeterOverview}
           onClickToMeterList={onClickToMeterList}
           data={meterListingData}

@@ -12,6 +12,7 @@ const MeterDetail = ({ t, data }) => {
   const serialNumber = meterSelector.getSerialNumber(data);
   const totalUnit = meterSelector.getTotalUnit(data);
   const unitPrice = meterSelector.getUnitPrice(data);
+  const propertyName = meterSelector.getPropertyName(data);
 
   return (
     <div className="meter-response">
@@ -20,11 +21,11 @@ const MeterDetail = ({ t, data }) => {
           <CustomImage src={Images.meterIcon} width={40} height={40} />
         </div>
         <CustomText textClassName="primary-text font-bold">
-          {isEmpty(name) ? "" : name}
+          {isEmpty(name) ? "-" : name}
         </CustomText>
 
         <CustomText textClassName="line-clamp-2 text-center">
-          A-01-01, Room 1 Smart Meter
+          {isEmpty(propertyName) ? "" : propertyName}
         </CustomText>
       </div>
 
