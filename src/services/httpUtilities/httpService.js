@@ -93,6 +93,9 @@ const getMeterOverview = (id) => apiInstance.get(`/meter/${id}`);
 
 const postSyncMeter = (id) => apiInstance.post(`/meter/${id}/sync-meter`);
 
+const postMeterTopUp = (id, postData) =>
+  apiInstance.post(`/meter/${id}/top-up`, postData);
+
 const getAgreementListing = (status, perPage, page, filterParams) => {
   const {} = filterParams;
 
@@ -133,6 +136,7 @@ export default {
   getMeterListing,
   getMeterOverview,
   postSyncMeter,
+  postMeterTopUp,
   getAgreementListing,
   getAgreementOverview,
 };

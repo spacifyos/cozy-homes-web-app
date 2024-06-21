@@ -106,6 +106,9 @@ const SignUp = () => {
     });
   };
 
+  console.log(process.env.CLOUDFLARE_RECAPTCHA_SITE)
+  console.log(recaptchaToken)
+
   return (
     <CustomHeader hideGoBackButton>
       <div className="body-container py-4">

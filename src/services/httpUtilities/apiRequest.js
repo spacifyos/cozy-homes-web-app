@@ -102,8 +102,21 @@ const getInvoicePaymentLinkRequest = async (
   );
 };
 
-export const postSyncMeterRequest = async (id, setLoading, successCallback) => {
-  await apiRequest(api.postSyncMeter(id), setLoading, successCallback);
+const postSyncMeterRequest = async (id, setLoading) => {
+  await apiRequest(api.postSyncMeter(id), setLoading);
+};
+
+const postMeterTopUpRequest = async (
+  id,
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postMeterTopUp(id, postData),
+    setLoading,
+    successCallback,
+  );
 };
 
 export default {
@@ -117,4 +130,5 @@ export default {
   postForgotPasswordRequest,
   getInvoicePaymentLinkRequest,
   postSyncMeterRequest,
+  postMeterTopUpRequest,
 };

@@ -20,7 +20,7 @@ export const getBalanceUnit = (state) => _.get(state, ["remaining_unit"], "");
 export const getSerialNumber = (state) => _.get(state, ["vendor_meter_id"], "");
 export const getCreatedAt = (state) => _.get(state, ["created_at"], "");
 export const getTotalUnit = (state) => _.get(state, ["total_unit"], "");
-export const getUnitPrice = (state) => _.get(state, ["unit_price"], "");
+export const getUnitPrice = (state) => _.get(state, ["unit_price"], "0");
 export const getLastConnectAt = (state) => _.get(state, ["last_connected_at"], "");
 export const getTotalUsage = (state) => _.get(state, ["total_usage"], "");
 export const getHasMorePages = (state) =>
@@ -28,3 +28,6 @@ export const getHasMorePages = (state) =>
 export const getTotalPage = (state) => _.get(state, ["total"], 1);
 export const getCurrentPage = (state) => _.get(state, ["current_page"], 1);
 export const getLastPage = (state) => _.get(state, ["last_page"], 1);
+export const getPropertyName = (state) => _.get(state, ["property_name"], 1);
+export const getUrl = (state) => _.get(state, ["url"], "");
+
