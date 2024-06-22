@@ -8,7 +8,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 
 const InvoiceComponent = ({ t, data, onClickToOverView }) => {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 pb-3">
       {_.map(data, (item, index) => {
         const code = invoiceSelector.getInvoiceNumber(item);
         const paymentStatus = invoiceSelector.getPaymentStatus(item);
@@ -30,22 +30,26 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
               </div>
 
               <div className="flex flex-col">
-                <div className="flex items-center pb-1">
+                <div className="flex items-end pb-0.5">
                   <CustomText textClassName="black-text font-size-small font-bold line-clamp-1 pr-2">
                     {t("myStay.invoice")} #: {_.isEmpty(code) ? "-" : code}
                   </CustomText>
-                  <StatusLabel status={paymentStatus} />
                 </div>
 
-                <div className="flex items-start">
-                  <div className="pr-12">
-                    <CustomLabelValue
-                      className="pb-1"
-                      label={t("myStay.rentalFee")}
-                      value={`RM${_.isEmpty(totalAmount) ? "0" : totalAmount}`}
-                    />
+                <div className="flex items-center pb-0.5">
+                  <div className="pr-6">
+                    <CustomText
+                      textClassName={`disable-text font-size-xxsmall font-normal`}
+                    >
+                      {t("myStay.rentalFee")}
+                    </CustomText>
+                    <CustomText
+                      textClassName={`font-size-small black-text font-bold`}
+                    >
+                      {`RM${_.isEmpty(totalAmount) ? "0" : totalAmount}`}
+                    </CustomText>
                   </div>
-                  <div>
+                  <div className="pr-3">
                     <CustomText textClassName="font-size-xxsmall disable-text">
                       {t("myStay.status")}
                     </CustomText>
@@ -62,6 +66,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
                       </CustomText>
                     </div>
                   </div>
+                  <StatusLabel status={paymentStatus} />
                 </div>
 
                 <div className="flex items-center">

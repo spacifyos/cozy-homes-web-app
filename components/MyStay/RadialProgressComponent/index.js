@@ -37,14 +37,14 @@ const RadialProgressComponent = ({
       }}
       role="progressbar"
     >
-      <div className="flex-col flex justify-end items-center">
-        <CustomText textClassName="font-size-xxsmall disable-text line-clamp-1">
+      <div className="flex-col flex justify-end items-center pt-1 px-2">
+        <CustomText textClassName="font-size-xxsmall disable-text line-clamp-2 text-center">
           {t("myStay.tenancyRemaining")}
         </CustomText>
-        <CustomText textClassName="font-size-xxlarge primary-text font-bold">
+        <CustomText textClassName="font-size-xlarge primary-text font-bold">
           {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
-        <CustomText textClassName="font-size-small">
+        <CustomText textClassName="font-size-xsmall">
           {t("myStay.days")}
         </CustomText>
       </div>

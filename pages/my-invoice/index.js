@@ -213,12 +213,12 @@ const MyInvoice = () => {
         )}
 
         {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
-          <div className="flex justify-center pb-3 pt-4">
+          <div className="flex justify-center pb-3 pt-1">
             <CustomButton
               buttonClassName="primary-btn min-h-9 h-9 w-32"
               buttonText="Load More"
               textClassName="font-size-xsmall"
-              loading={false}
+              loading={invoiceListingLoading && !isEmpty(invoiceListingData)}
               onClick={onClickLoadMore}
             />
           </div>
