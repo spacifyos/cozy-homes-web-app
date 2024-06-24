@@ -38,9 +38,7 @@ const Account = () => {
   const [signOutLoading, setSignOutLoading] = useState(false);
 
   useEffect(() => {
-    if (_.isEmpty(userProfileData)) {
-      fetchUserprofileData();
-    }
+    fetchUserprofileData();
   }, [userProfileData]);
 
   const fetchUserprofileData = () => {

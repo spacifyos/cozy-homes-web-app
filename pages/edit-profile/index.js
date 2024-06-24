@@ -50,9 +50,7 @@ const EditProfile = () => {
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
 
   useEffect(() => {
-    if (_.isEmpty(userProfileData)) {
-      fetchUserprofileData();
-    }
+    fetchUserprofileData();
   }, [userProfileData]);
 
   const fetchUserprofileData = () => {
