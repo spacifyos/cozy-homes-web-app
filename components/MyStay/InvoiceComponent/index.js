@@ -17,12 +17,13 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
         const totalAmount = invoiceSelector.getTotalAmount(item);
 
         return (
-          <div className="invoice-container" key={index}>
+          <div
+            className="invoice-container cursor-pointer"
+            key={index}
+            onClick={() => onClickToOverView(code)}
+          >
             <div className="flex items-center">
-              <div
-                className="invoice-icon-container cursor-pointer"
-                onClick={() => onClickToOverView(code)}
-              >
+              <div className="invoice-icon-container">
                 <CustomImage
                   src={Images.invoiceIcon}
                   imageStyle={{ width: 35, height: 35 }}

@@ -13,7 +13,10 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
   const balanceUnit = meterSelector.getBalanceUnit(item);
 
   return (
-    <div className="meter-container">
+    <div
+      className="meter-container"
+      // onClick={() => onClickToMeterOverview(id)}
+    >
       {/*<CustomImage*/}
       {/*  src={Images.moreIcon}*/}
       {/*  width={25}*/}
@@ -22,10 +25,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
       {/*/>*/}
 
       <div className="flex items-center pb-1">
-        <div
-          className="primary-bg-color p-2 global-border-radius mb-1 mr-2 cursor-pointer"
-          onClick={() => onClickToMeterOverview(id)}
-        >
+        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2">
           <CustomImage
             src={Images.meterIcon}
             imageStyle={{ width: 35, height: 35 }}

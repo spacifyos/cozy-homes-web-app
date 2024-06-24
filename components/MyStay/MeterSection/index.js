@@ -28,9 +28,10 @@ const MeterSection = ({
       {isEmpty(data) ? (
         <CustomEmptyBox />
       ) : (
-        map(data, (item) => {
+        map(data, (item, index) => {
           return (
             <MeterComponent
+              key={index}
               t={t}
               onClickTopUp={onClickTopUp}
               onClickToMeterOverview={onClickToMeterOverview}

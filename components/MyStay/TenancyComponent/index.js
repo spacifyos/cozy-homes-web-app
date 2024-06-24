@@ -28,7 +28,10 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
   const totalDays = tenancySelector.getTotalDays(item);
 
   return (
-    <div className="tenancy-container">
+    <div
+      className="tenancy-container cursor-pointer"
+      onClick={() => onClickGoToMyTenancy(tenancyId)}
+    >
       {/*<CustomImage*/}
       {/*  src={Images.moreIcon}*/}
       {/*  width={25}*/}
@@ -38,13 +41,8 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
       {/*/>*/}
 
       <div className="flex flex-col items-start pr-3">
-        <div className="primary-bg-color p-2 global-border-radius mb-1 cursor-pointer">
-          <CustomImage
-            src={Images.buildingIcon}
-            width={35}
-            height={35}
-            onClick={() => onClickGoToMyTenancy(tenancyId)}
-          />
+        <div className="primary-bg-color p-2 global-border-radius mb-1 ">
+          <CustomImage src={Images.buildingIcon} width={35} height={35} />
         </div>
 
         <div className={"pb-2"}>
