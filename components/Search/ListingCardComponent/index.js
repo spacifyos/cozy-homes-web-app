@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as listingSelector from "@/src/selectors/listing";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
   const propertyName = listingSelector.getPropertyName(item);
@@ -14,10 +14,13 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
   return (
     <div className="cursor-pointer">
       <CustomImage
-        src={_.isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
+        src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
         width="100%"
         className="rounded-2xl mb-1 global-box-shadow primaryWhite-bg-color"
-        imageStyle={{ objectFit: "cover", height: 150 }}
+        imageStyle={{
+          objectFit: isEmpty(imageUrl) ? "contain" : "cover",
+          height: 150,
+        }}
         onClick={() => onClickToPropertyOverview(propertyId)}
       />
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
