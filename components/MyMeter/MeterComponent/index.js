@@ -5,18 +5,18 @@ import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
 const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
-  const id = meterSelector.getId(item)
+  const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
   const wifi = meterSelector.getWifi(item);
   const balanceUnit = meterSelector.getBalanceUnit(item);
 
   return (
-    <div className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-4 pb-4 flex">
-      <div
-        className="primary-bg-color px-2 py-3 global-border-radius cursor-pointer flex items-center "
-        onClick={() => onClickToMeterOverview(id)}
-      >
+    <div
+      className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
+      onClick={() => onClickToMeterOverview(id)}
+    >
+      <div className="primary-bg-color px-2 py-3 global-border-radius flex items-center">
         <CustomImage
           src={Images.meterIcon}
           imageStyle={{ width: 35, height: 35 }}
