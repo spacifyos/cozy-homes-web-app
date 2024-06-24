@@ -364,32 +364,28 @@ const Booking = ({ id }) => {
       });
   };
 
-  const checkImageSize = (image) => {
+  const checkImageSize = (image, target) => {
     const isLt2M = image && image.size / 1024 / 1024 < 2;
     if (!isLt2M) {
       Toast.error("Image must smaller than 2MB");
       return;
+    }
+
+    if (image && image.size > 1) {
+      fetchGalleryLink(image, target);
     }
   };
 
   const onChangeFrontICImage = (value) => {
     const image = value.target.files[0];
 
-    checkImageSize(image);
-
-    if (!_.isEmpty(value)) {
-      fetchGalleryLink(image, "front");
-    }
+    checkImageSize(image, "front");
   };
 
   const onChangeBackICImage = (value) => {
     const image = value.target.files[0];
 
-    checkImageSize(image);
-
-    if (!_.isEmpty(value)) {
-      fetchGalleryLink(image, "back");
-    }
+    checkImageSize(image, "back");
   };
 
   const convertToBase64 = (type, image, url) => {
