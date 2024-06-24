@@ -206,12 +206,12 @@ const SignIn = () => {
               />
             </div>
 
-            {/*<CustomText*/}
-            {/*  textClassName="text-center mb-5 underline cursor-pointer"*/}
-            {/*  onClick={onClickToForgotPassword}*/}
-            {/*>*/}
-            {/*  {t("signIn.forgotPassword")}*/}
-            {/*</CustomText>*/}
+            <CustomText
+              textClassName="text-center mb-5 underline cursor-pointer"
+              onClick={onClickToForgotPassword}
+            >
+              {t("signIn.forgotPassword")}
+            </CustomText>
 
             <CustomText textClassName="font-size-small my-5">
               By using our services, you are deemed unconditionally agree,

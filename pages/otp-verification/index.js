@@ -75,7 +75,7 @@ const OtpVerification = () => {
       phone_number: phoneNumber,
     };
 
-    await apiRequest.postOtpVerify(
+    await apiRequest.postAuthVerify(
       postData,
       setOtpVerifyLoading,
       otpVerifySuccess,

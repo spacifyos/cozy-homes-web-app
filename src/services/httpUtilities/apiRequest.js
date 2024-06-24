@@ -78,6 +78,10 @@ const postOtpVerify = async (postData, setLoading, successCallback) => {
   await apiRequest(api.postOtpVerify(postData), setLoading, successCallback);
 };
 
+const postAuthVerify = async (postData, setLoading, successCallback) => {
+  await apiRequest(api.postAuthVerify(postData), setLoading, successCallback);
+};
+
 const postForgotPasswordRequest = async (
   postData,
   setLoading,
@@ -127,6 +131,7 @@ export default {
   postBookingCreateRequest,
   postOtpRequest,
   postOtpVerify,
+  postAuthVerify,
   postForgotPasswordRequest,
   getInvoicePaymentLinkRequest,
   postSyncMeterRequest,

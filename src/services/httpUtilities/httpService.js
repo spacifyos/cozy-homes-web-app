@@ -26,7 +26,9 @@ const signUpAccount = (data) => apiInstance.post("/auth/register", data);
 
 const postOtpRequest = (data) => apiInstance.post("/otp", data);
 
-const postOtpVerify = (data) => apiInstance.post("/auth/verify", data);
+const postOtpVerify = (data) => apiInstance.post("/otp/verify", data);
+
+const postAuthVerify = (data) => apiInstance.post("/auth/verify", data);
 
 const postForgotPassword = (postData) =>
   apiInstance.post(`/auth/forgot-password`, postData);
@@ -126,6 +128,7 @@ export default {
   getGalleryLinkRequest,
   postOtpRequest,
   postOtpVerify,
+  postAuthVerify,
   postForgotPassword,
   getTenancyListing,
   getTenancyOverview,

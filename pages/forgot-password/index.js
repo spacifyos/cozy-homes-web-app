@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { isEmpty, isEqual, get } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -50,7 +50,7 @@ const ForgotPassword = () => {
   }, [timeLeft]);
 
   const handleSendOtp = async () => {
-    if (_.isEmpty(phonePrefix) || _.isEmpty(phoneNumber)) {
+    if (isEmpty(phonePrefix) || isEmpty(phoneNumber)) {
       return Toast.error("All fields are required.");
     }
 
@@ -71,7 +71,7 @@ const ForgotPassword = () => {
   };
 
   const otpRequestSuccess = (res) => {
-    setOtpToken(_.get(res, ["token"], ""));
+    setOtpToken(get(res, ["token"], ""));
   };
 
   const onClickSendOtp = async () => {
@@ -119,16 +119,16 @@ const ForgotPassword = () => {
   };
 
   const onClickSubmitChangePassword = async () => {
-    if (_.isEmpty(passwordValue) || _.isEmpty(confirmPasswordValue)) {
+    if (isEmpty(passwordValue) || isEmpty(confirmPasswordValue)) {
       return Toast.error("All fields are required.");
     }
 
-    if (_.isEqual(passwordValue, confirmPasswordValue)) {
+    if (!isEqual(passwordValue, confirmPasswordValue)) {
       return Toast.error("Password and Confirm Password not same.");
     }
 
     const postData = {
-      type: selectedRole,
+      type: "tenant",
       phone_number: phonePrefix + phoneNumber,
       password: passwordValue,
       password_confirmation: confirmPasswordValue,
