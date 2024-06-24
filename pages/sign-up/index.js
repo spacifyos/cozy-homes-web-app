@@ -102,12 +102,9 @@ const SignUp = () => {
   const signUpSuccessCallback = () => {
     router.push({
       pathname: "/otp-verification",
-      query: { phoneNumber: countryCode + phoneValue, type: roleType },
+      query: { phoneNumber: countryCode + phoneValue, type: "tenant" },
     });
   };
-
-  console.log(process.env.CLOUDFLARE_RECAPTCHA_SITE)
-  console.log(recaptchaToken)
 
   return (
     <CustomHeader hideGoBackButton>

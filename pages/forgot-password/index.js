@@ -12,6 +12,7 @@ import ThirdStep from "@/components/ForgotPassword/ThirdStep";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import { useRouter } from "next/router";
+import CustomHeader from "@/components/CustomHeader";
 
 export { getServerSideProps };
 
@@ -86,6 +87,8 @@ const ForgotPassword = () => {
     const postData = {
       otp: otp,
       token: otpToken,
+      type: "tenant",
+      phone_number: phonePrefix + phoneNumber,
     };
 
     await apiRequest.postOtpVerify(
@@ -201,14 +204,13 @@ const ForgotPassword = () => {
     }
   };
 
-  return (
-    <div className="flex-1 relative bg-color overflow-hidden">
-      <CustomImage
-        className={"absolute right-0 w-3/5"}
-        src={Images.topBackgroundImage}
-      />
+  const onClickGoBack = () => {
+    router.back();
+  };
 
-      <div className="body-container mb-4" style={{ paddingTop: "10vh" }}>
+  return (
+    <CustomHeader onClickGoBack={onClickGoBack}>
+      <div className="body-container mb-4" style={{ paddingTop: "5vh" }}>
         <div className="py-6">
           <CustomText
             textClassName="primary-text font-bold leading-10"
@@ -233,7 +235,7 @@ const ForgotPassword = () => {
 
         <LoadingOverlay loading={otpRequestLoading} />
       </div>
-    </div>
+    </CustomHeader>
   );
 };
 

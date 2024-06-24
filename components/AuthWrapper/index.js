@@ -12,13 +12,13 @@ function AuthWrapper(WrappedComponent) {
       if (_.isEmpty(value)) {
         Toast.error("You need sign in account.");
 
-        router.push({
+        return router.push({
           pathname: "/sign-in",
         });
       }
-    });
 
-    return <WrappedComponent {...props} />;
+      return <WrappedComponent {...props} />;
+    });
   };
 
   return AuthWrapper;

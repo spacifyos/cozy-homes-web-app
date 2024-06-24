@@ -25,7 +25,7 @@ const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
         }
         imageStyle={{ height: 100, width: 100 }}
       />
-      <CustomText textClassName="font-size-xsmall font-bold text-center">
+      <CustomText textClassName="font-size-xsmall font-bold text-center" lineClamp={2}>
         {name}
       </CustomText>
     </div>

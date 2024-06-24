@@ -19,7 +19,9 @@ const PolicyDetail = ({ t, loading, data }) => {
       ) : (
         <div className="content-container">
           {isEmpty(data) ? (
-            <CustomEmptyBox />
+            <div className="py-10">
+              <CustomEmptyBox />
+            </div>
           ) : (
             <div>
               <CustomText textClassName="font-size-xxlarge font-bold pb-2">

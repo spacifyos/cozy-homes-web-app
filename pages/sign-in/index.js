@@ -33,7 +33,12 @@ const SignIn = () => {
   };
 
   const onClickToSignUp = () => {
-    router.push(`/sign-up?type=${selectedRole}`);
+    router.push({
+      pathname: `/sign-up`,
+      // query: {
+      //   type: selectedRole,
+      // },
+    });
   };
 
   const onClickToLogin = async () => {
@@ -135,27 +140,27 @@ const SignIn = () => {
             className="p-3 global-box-shadow primaryWhite-bg-color py-10"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
-            <CustomText textClassName="pb-2 font-bold font-size-large">
-              {t("signIn.iAm")} ...
+            <CustomText textClassName="pb-4 font-bold font-size-large">
+              {t("signIn.iAm")} Tenant
             </CustomText>
 
-            <div className="grid grid-cols-2 gap-2 mb-8">
-              <CustomButton
-                buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText={t("signIn.tenant")}
-                onClick={() => setSelectedRole("tenant")}
-              />
-              <CustomButton
-                buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText={t("signIn.owner")}
-                onClick={() => setSelectedRole("owner")}
-              />
-              {/*<CustomButton*/}
-              {/*  buttonClassName="default-btn-outline"*/}
-              {/*  buttonText={t("signIn.agency")}*/}
-              {/*  onClick={onClickToAgencySignIn}*/}
-              {/*/>*/}
-            </div>
+            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
+            {/*  <CustomButton*/}
+            {/*    buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonText={t("signIn.tenant")}*/}
+            {/*    onClick={() => setSelectedRole("tenant")}*/}
+            {/*  />*/}
+            {/*  <CustomButton*/}
+            {/*    buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonText={t("signIn.owner")}*/}
+            {/*    onClick={() => setSelectedRole("owner")}*/}
+            {/*  />*/}
+            {/*  <CustomButton*/}
+            {/*    buttonClassName="default-btn-outline"*/}
+            {/*    buttonText={t("signIn.agency")}*/}
+            {/*    onClick={onClickToAgencySignIn}*/}
+            {/*  />*/}
+            {/*</div>*/}
 
             <div className="grid grid-cols-3 gap-2 mb-4">
               <select
@@ -201,14 +206,14 @@ const SignIn = () => {
               />
             </div>
 
-            <CustomText
-              textClassName="text-center mb-5 underline cursor-pointer"
-              onClick={onClickToForgotPassword}
-            >
-              {t("signIn.forgotPassword")}
-            </CustomText>
+            {/*<CustomText*/}
+            {/*  textClassName="text-center mb-5 underline cursor-pointer"*/}
+            {/*  onClick={onClickToForgotPassword}*/}
+            {/*>*/}
+            {/*  {t("signIn.forgotPassword")}*/}
+            {/*</CustomText>*/}
 
-            <CustomText textClassName="font-size-small mb-5">
+            <CustomText textClassName="font-size-small my-5">
               By using our services, you are deemed unconditionally agree,
               consent and be bound by our terms and conditions and privacy
               policy.
