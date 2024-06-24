@@ -205,6 +205,7 @@ const SignUp = () => {
 
             <div className="mb-4">
               <Turnstile
+                theme="light"
                 sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
                 onVerify={(token) => setRecaptchaToken(token)}
               />
