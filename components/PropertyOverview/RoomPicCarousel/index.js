@@ -28,9 +28,12 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
             />
           </SwiperSlide>
         ) : (
-          _.map(imageUrl, (item) => {
+          _.map(imageUrl, (item, index) => {
             return (
-              <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
+              <SwiperSlide
+                style={{ borderRadius: 15, overflow: "hidden" }}
+                key={index}
+              >
                 <CustomImage
                   src={item}
                   className="w-full"

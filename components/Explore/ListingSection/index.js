@@ -77,9 +77,8 @@ const ListingSection = ({
           >
             {_.map(lists, (item, index) => {
               return (
-                <SwiperSlide style={{ minWidth: 100 }}>
+                <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <ListingCardComponent
-                    key={index}
                     item={item}
                     onClickToPropertyListing={onClickToPropertyListing}
                   />

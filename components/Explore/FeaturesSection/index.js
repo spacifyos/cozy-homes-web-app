@@ -36,13 +36,13 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
         />
       </div>
 
-      {_.map(tags, (item) => {
+      {_.map(tags, (item, index) => {
         const icon = listingSelector.getImageUrl(item);
         const name = listingSelector.getName(item);
         const code = listingSelector.getCode(item);
 
         return (
-          <div className="col-span-3">
+          <div className="col-span-3" key={index}>
             <CustomButton
               buttonStyles={{ height: 60, width: "100%" }}
               buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"

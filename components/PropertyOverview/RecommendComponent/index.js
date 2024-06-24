@@ -29,9 +29,8 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
         const propertyId = listingSelector.getId(item);
 
         return (
-          <SwiperSlide style={{ minWidth: 165 }}>
+          <SwiperSlide style={{ minWidth: 165 }} key={index}>
             <div
-              key={index}
               className="carousel-item relative flex flex-col px-1 cursor-pointer"
               onClick={() => onClickToPropertyOverview(propertyId)}
             >

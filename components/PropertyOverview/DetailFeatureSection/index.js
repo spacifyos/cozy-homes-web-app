@@ -32,7 +32,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
       {_.map(lists, (list, index) => {
         return (
           <div
-            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""}`}
+            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""}`} key={index}
           >
             {/*<div>*/}
             <CustomImage src={_.get(list, ["icon"], "")} width={25} />

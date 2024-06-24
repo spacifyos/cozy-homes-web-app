@@ -115,12 +115,15 @@ const RentChargesSection = ({
 
       {_.isEmpty(feesLists)
         ? false
-        : _.map(feesLists, (fessList) => {
+        : _.map(feesLists, (fessList, index) => {
             const label = listingSelector.getLabel(fessList);
             const value = listingSelector.getFeeAmount(fessList);
 
             return (
-              <div className="flex justify-between items-center pb-1">
+              <div
+                className="flex justify-between items-center pb-1"
+                key={index}
+              >
                 <CustomText textClassName="font-bold pr-2">{label}</CustomText>
                 <CustomText>RM{value}</CustomText>
               </div>
@@ -148,6 +151,7 @@ const RentChargesSection = ({
             name="is_pay_partial"
             value="full"
             checked
+            onChange={() => console.log()}
             className="radio booking-radio mr-2"
           />
           <CustomText>Pay in Full</CustomText>
