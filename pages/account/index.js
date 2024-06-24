@@ -39,7 +39,7 @@ const Account = () => {
 
   useEffect(() => {
     fetchUserprofileData();
-  }, [userProfileData]);
+  }, []);
 
   const fetchUserprofileData = () => {
     getUserProfileRequest();

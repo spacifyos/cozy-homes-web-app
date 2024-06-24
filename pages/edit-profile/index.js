@@ -51,7 +51,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     fetchUserprofileData();
-  }, [userProfileData]);
+  }, []);
 
   const fetchUserprofileData = () => {
     getUserProfileRequest();
