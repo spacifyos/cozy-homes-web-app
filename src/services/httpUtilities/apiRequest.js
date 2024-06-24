@@ -54,8 +54,12 @@ const postChangePasswordRequest = async (
   );
 };
 
-const postEditProfileRequest = async (postData, setLoading) => {
-  await apiRequest(api.postEditProfile(postData), setLoading);
+const postEditProfileRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(api.postEditProfile(postData), setLoading, successCallback);
 };
 
 const postBookingCreateRequest = async (

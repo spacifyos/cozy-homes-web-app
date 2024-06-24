@@ -12,7 +12,7 @@ import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
@@ -44,10 +44,16 @@ const EditProfile = () => {
 
   const [editProfileLoading, setEditProfileLoading] = useState(false);
 
-  const [nameValue, setNameValue] = useState(name);
+  const [nameValue, setNameValue] = useState();
   const [currentPasswordValue, setCurrentPasswordValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+
+  useEffect(() => {
+    if (!isEmpty(name)) {
+      setNameValue(name);
+    }
+  }, []);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -175,7 +181,15 @@ const EditProfile = () => {
       name: nameValue,
     };
 
-    await apiRequest.postEditProfileRequest(postData, setEditProfileLoading);
+    await apiRequest.postEditProfileRequest(
+      postData,
+      setEditProfileLoading,
+      editProfileSuccess,
+    );
+  };
+
+  const editProfileSuccess = () => {
+    fetchUserprofileData();
   };
 
   return (
