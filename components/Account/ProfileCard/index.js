@@ -26,7 +26,7 @@ const ProfileCard = ({ onClickToEditProfile, data }) => {
         className="rounded-2xl"
       />
 
-      <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2">
+      <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2 text-center">
         {_.isEmpty(name) ? "-" : name}
       </CustomText>
 
