@@ -8,7 +8,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ import Constant from "@/src/utils/Constant";
 import Helper from "@/src/utils/Helper";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
+import { browserName, detect } from "detect-browser-es";
 
 export { getServerSideProps };
 
@@ -27,6 +28,7 @@ const InvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const targetTagA = useRef();
 
   const getInvoiceOverviewRequest = (id) =>
     dispatch(invoiceAction.getInvoiceOverviewRequest(id));
@@ -145,7 +147,10 @@ const InvoiceOverview = ({ id }) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl)) {
-          window.open(resUrl, "_blank");
+          window.open(
+            resUrl,
+            `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
+          );
         }
       })
       .catch((error) => {
@@ -239,13 +244,16 @@ const InvoiceOverview = ({ id }) => {
           <div className="gap-2">
             {isEmpty(items)
               ? false
-              : map(items, (item) => {
+              : map(items, (item, index) => {
                   const itemName = get(item, ["name"], "");
                   const unitPrice = get(item, ["unit_price"], 0);
                   const quantity = get(item, ["quantity"], 1);
 
                   return (
-                    <div className="flex justify-between items-center pt-2">
+                    <div
+                      className="flex justify-between items-center pt-2"
+                      key={index}
+                    >
                       <div className="">
                         <CustomText
                           textClassName={`black-text font-size-small font-bold`}
