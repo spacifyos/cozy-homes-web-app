@@ -132,6 +132,7 @@ const ForgotPassword = () => {
       phone_number: phonePrefix + phoneNumber,
       password: passwordValue,
       password_confirmation: confirmPasswordValue,
+      otp_token: otpToken,
     };
 
     await apiRequest.postForgotPasswordRequest(
