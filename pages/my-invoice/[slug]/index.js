@@ -111,6 +111,15 @@ const InvoiceOverview = ({ id }) => {
   };
 
   const onClickDownloadDocument = async (url) => {
+    if (
+      isEqual(targetOpenDocument, url) &&
+      !isEmpty(gallerySecretKey) &&
+      !isEmpty(targetOpenDocument)
+    ) {
+      fetchDocumentData(targetOpenDocument, gallerySecretKey);
+      return;
+    }
+
     setTargetOpenDocument(url);
 
     await apiRequest.getRootDataRequest(
@@ -136,7 +145,7 @@ const InvoiceOverview = ({ id }) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl)) {
-          window.open(resUrl);
+          window.open(resUrl, "_blank");
         }
       })
       .catch((error) => {
@@ -322,11 +331,11 @@ const InvoiceOverview = ({ id }) => {
             top={-14}
             items={[
               {
-                name: t("invoiceOverview.downloadInvoice"),
+                name: "Review Invoice",
                 value: invoiceDocument,
               },
               {
-                name: t("invoiceOverview.downloadReceipt"),
+                name: "Review Receipt",
                 value: receiptDocument,
               },
             ]}
