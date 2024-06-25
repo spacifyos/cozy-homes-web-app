@@ -46,3 +46,5 @@ export const getCurrentPage = (state) => get(state, ["current_page"], 1);
 export const getLastPage = (state) => get(state, ["last_page"], 1);
 export const getUrl = (state) => get(state, ["url"], "");
 export const getPaidAt = (state) => get(state, ["paid_at"], "");
+export const getDocument = (state) => get(state, ["document"], "");
+export const getReceipt = (state) => get(state, ["receipt"], "");

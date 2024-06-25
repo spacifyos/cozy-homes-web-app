@@ -1,26 +1,8 @@
-/**
- * Copyright 2020 - present, Alpstein Technology Sdn Bhd.
- * All rights reserved.
- */
-import _ from "lodash";
+import { ceil, join, replace, reverse, split, toString } from "lodash";
 import React from "react";
+import CryptoJS from "crypto-js";
+
 const isProduction = process.env.NODE_ENV === "production";
-
-const arrayToString = (obj, separator = ",") =>
-  Object.keys(obj)
-    .map((key) => obj[key])
-    .join(separator);
-
-const trackPageView = (url) => {
-  try {
-    window.gtag("config", "UA-XXXXXXXX-X", {
-      page_location: url,
-    });
-  } catch (error) {
-    // silences the error in dev mode
-    // and/or if gtag fails to load
-  }
-};
 
 const secToMin = (seconds) => {
   let secs = Math.round(seconds);
@@ -50,13 +32,6 @@ const secToMin = (seconds) => {
   return `${time.m}:${time.s}`;
 };
 
-const dateToYMD = (date) => {
-  let d = date.getDate();
-  let m = date.getMonth() + 1; //Month from 0 to 11
-  let y = date.getFullYear();
-  return "" + y + "-" + (m <= 9 ? "0" + m : m) + "-" + (d <= 9 ? "0" + d : d);
-};
-
 const formatToDatePicker = (date) => {
   let month = date.getMonth() + 1;
 
@@ -67,28 +42,26 @@ const formatToDatePicker = (date) => {
   return `${year}-${month}-${day}`;
 };
 
-const downPaymentCalculate = (propertyPrice, downPaymentRate) => {
-  if (propertyPrice === 0 || downPaymentRate === 0) {
-    return 0;
+const generateSecretKey = (secret1, secret2) => {
+  const secret = new Date().getHours();
+  const key1 = replace(secret1, "8", "o");
+  const key2 = replace(secret2, "8", "m");
+  let final = "";
+
+  if (secret % 2 == 0) {
+    const reverseKey2 = join(reverse(split(key2, "")), "");
+    final = toString(CryptoJS.MD5(key1 + reverseKey2));
+  } else {
+    const reverseKey1 = join(reverse(split(key1, "")), "");
+    final = toString(CryptoJS.MD5(key2 + reverseKey1));
   }
 
-  return _.ceil((propertyPrice * 100 * downPaymentRate) / 100 / 100, 2);
-};
-
-const openWhatsappLink = (number, text) => {
-  const number1 = `60146160394`;
-  const text1 = `Hello Leong,I am interest in you~~~~`;
-
-  window.open(`https://wa.me/${number}/?text=${text}`, "_blank");
+  return final;
 };
 
 export default {
   isProduction,
-  trackPageView,
   secToMin,
-  arrayToString,
-  dateToYMD,
   formatToDatePicker,
-  downPaymentCalculate,
-  openWhatsappLink,
+  generateSecretKey,
 };
