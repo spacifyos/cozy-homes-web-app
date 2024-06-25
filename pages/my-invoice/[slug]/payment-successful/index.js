@@ -53,7 +53,7 @@ const PaymentSuccessful = ({ id }) => {
   };
 
   const onClickClose = () => {
-    router.replace(`/my-invoice/${id}`);
+    router.replace(`/my-stay`);
   };
 
   return (

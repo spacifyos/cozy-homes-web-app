@@ -81,7 +81,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
             <CustomText textClassName="primary-text font-size-xlarge font-bold pe-1">
               {isEmpty(balanceUnit) ? "-" : balanceUnit}
             </CustomText>
-            <CustomImage src={Images.refreshIcon} width={15} height={15} />
+            {/*<CustomImage src={Images.refreshIcon} width={15} height={15} />*/}
           </div>
         </div>
 

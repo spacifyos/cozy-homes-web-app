@@ -7,6 +7,12 @@ export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   const message = _.get(err, ["message"], "");
   const statusCode = _.get(response, "status", null);
 
+  if (statusCode === 403) {
+    Router.replace("/403");
+    unknowErrorMsgFunction(statusCode);
+    return;
+  }
+
   if (statusCode === 404) {
     Router.replace("/404");
     unknowErrorMsgFunction(statusCode);

@@ -30,11 +30,11 @@ const ProfileCard = ({ onClickToEditProfile, data }) => {
         {_.isEmpty(name) ? "-" : name}
       </CustomText>
 
-      <CustomText textClassName="font-size-small leading-3 line-clamp-1">
+      <CustomText textClassName="font-size-small leading-3 line-clamp-1 text-center">
         {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
       </CustomText>
 
-      <CustomText textClassName="font-size-small line-clamp-1">
+      <CustomText textClassName="font-size-small line-clamp-1 text-center">
         {_.isEmpty(email) ? "-" : email}
       </CustomText>
     </div>

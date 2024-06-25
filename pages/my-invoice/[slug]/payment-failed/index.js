@@ -13,7 +13,7 @@ const PaymentFailure = ({ id }) => {
   const { t } = useTranslation("common");
 
   const onClickBackToInvoiceOverview = () => {
-    router.replace(`/my-invoice/${id}`);
+    router.replace(`/my-stay`);
   };
 
   return (

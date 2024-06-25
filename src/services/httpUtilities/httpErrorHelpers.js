@@ -56,8 +56,12 @@ function* handleApiResponseError(
 ) {
   const statusCode = _.get(response, "status", null);
 
-  if (statusCode === 403 || statusCode === 401) {
+  if (statusCode === 401) {
     Router.replace("/sign-in");
+  }
+
+  if (statusCode === 403) {
+    Router.replace("/403");
   }
 
   if (statusCode === 404) {
