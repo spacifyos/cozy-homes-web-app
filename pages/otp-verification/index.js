@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import AuthManager from "@/src/utils/AuthManager";
 import * as authSelector from "@/src/selectors/auth";
-import { getIsAccountVerify, getUserToken } from "@/src/selectors/auth";
 
 const OtpVerification = () => {
   const router = useRouter();

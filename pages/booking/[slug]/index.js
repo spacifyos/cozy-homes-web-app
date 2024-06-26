@@ -55,6 +55,7 @@ const Booking = ({ id }) => {
   const router = useRouter();
   const formRef = useRef();
   const dispatch = useDispatch();
+  const initialTime = 60;
 
   const getListingPropertyDetailRequest = (id) =>
     dispatch(listingAction.getListingPropertyDetailRequest(id));
@@ -125,6 +126,21 @@ const Booking = ({ id }) => {
   const [tenurePeriod, setTenurePeriod] = useState(
     get(tenureOption[0], ["value"], 0),
   );
+
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+  const [isResendEnabled, setIsResendEnabled] = useState(true);
+
+  useEffect(() => {
+    if (timeLeft > 0 && !isResendEnabled) {
+      const timerId = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+      return () => clearInterval(timerId);
+    } else if (timeLeft === 0) {
+      setTimeLeft(60);
+      setIsResendEnabled(true);
+    }
+  }, [timeLeft, isResendEnabled]);
 
   useEffect(() => {
     if (_.isEmpty(selectOptionData)) {
@@ -470,6 +486,7 @@ const Booking = ({ id }) => {
   };
 
   const otpRequestSuccess = (res) => {
+    setIsResendEnabled(false);
     setOtpToken(_.get(res, ["token"], ""));
   };
 
@@ -540,6 +557,7 @@ const Booking = ({ id }) => {
               Tenancy Period
             </CustomText>
             <BookingDateInput
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               placeholder="12/02/2023"
               title="Check in date"
@@ -552,6 +570,7 @@ const Booking = ({ id }) => {
             <BookingInput
               required
               disabled
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               title="Check out date"
               value={
@@ -563,6 +582,7 @@ const Booking = ({ id }) => {
 
             <BookingSelect
               className="col-span-6"
+              bgColor="primaryWhite-bg-color"
               placeholder="Tenure Period"
               title="Tenure Period"
               lists={_.isEmpty(tenureOption) ? defaultOption : tenureOption}
@@ -709,6 +729,7 @@ const Booking = ({ id }) => {
             </CustomText>
 
             <BookingInput
+              bgColor="primaryWhite-bg-color"
               className="col-span-6"
               placeholder="Your Address"
               title="Your Address"
@@ -718,6 +739,7 @@ const Booking = ({ id }) => {
             />
 
             <BookingInput
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               placeholder="City"
               title="City"
@@ -727,6 +749,7 @@ const Booking = ({ id }) => {
             />
 
             <BookingInput
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               placeholder="Postcode"
               title="PostCode"
@@ -736,6 +759,7 @@ const Booking = ({ id }) => {
             />
 
             <BookingSelect
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               placeholder="Select Country"
               title="Country"
@@ -746,6 +770,7 @@ const Booking = ({ id }) => {
             />
 
             <BookingSelect
+              bgColor="primaryWhite-bg-color"
               className="col-span-3"
               placeholder="Select State"
               title="State"
@@ -862,6 +887,7 @@ const Booking = ({ id }) => {
             </CustomText>
 
             <BookingInput
+              bgColor="primaryWhite-bg-color"
               className="col-span-6"
               value={otpValue}
               placeholder="000000"
@@ -874,11 +900,15 @@ const Booking = ({ id }) => {
             />
 
             <CustomButton
-              buttonText={"Send Code"}
-              buttonClassName={`primary-btn col-span-6`}
+              buttonText={
+                isResendEnabled
+                  ? "Send Code"
+                  : `Resend OTP in ${timeLeft} seconds`
+              }
+              buttonClassName={`${isResendEnabled ? "primary-btn" : "disable-btn"} col-span-6`}
               onClick={onClickGenerateOtp}
               loading={otpRequestLoading}
-              disable={otpRequestLoading}
+              disable={otpRequestLoading || !isResendEnabled}
             />
           </div>
 
