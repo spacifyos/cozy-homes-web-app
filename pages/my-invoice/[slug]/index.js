@@ -8,7 +8,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,10 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { isEmpty, map, get, isEqual, upperCase } from "lodash";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Constant from "@/src/utils/Constant";
+import Helper from "@/src/utils/Helper";
+import axios from "axios";
+import Toast from "@/src/utils/Toast";
+import { browserName, detect } from "detect-browser-es";
 
 export { getServerSideProps };
 
@@ -24,6 +28,7 @@ const InvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const targetTagA = useRef();
 
   const getInvoiceOverviewRequest = (id) =>
     dispatch(invoiceAction.getInvoiceOverviewRequest(id));
@@ -51,6 +56,19 @@ const InvoiceOverview = ({ id }) => {
   const tax = invoiceSelector.getTax(invoiceOverviewData);
   const grandTotal = invoiceSelector.getGrandtotal(invoiceOverviewData);
   const items = invoiceSelector.getItems(invoiceOverviewData);
+  const invoiceDocument = invoiceSelector.getDocument(invoiceOverviewData);
+  const receiptDocument = invoiceSelector.getReceipt(invoiceOverviewData);
+
+  const [rootDataLoading, setRootDataLoading] = useState(false);
+  const [targetOpenDocument, setTargetOpenDocument] = useState("");
+  const [gallerySecretKey, setGallerySecretKey] = useState("");
+  const [downloading, setDownloading] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(gallerySecretKey) && !isEmpty(targetOpenDocument)) {
+      fetchDocumentData(targetOpenDocument, gallerySecretKey);
+    }
+  }, [gallerySecretKey, targetOpenDocument]);
 
   useEffect(() => {
     fetchInvoiceOverviewData(id);
@@ -94,20 +112,67 @@ const InvoiceOverview = ({ id }) => {
     }
   };
 
+  const onClickDownloadDocument = async (url) => {
+    if (
+      isEqual(targetOpenDocument, url) &&
+      !isEmpty(gallerySecretKey) &&
+      !isEmpty(targetOpenDocument)
+    ) {
+      fetchDocumentData(targetOpenDocument, gallerySecretKey);
+      return;
+    }
+
+    setTargetOpenDocument(url);
+
+    await apiRequest.getRootDataRequest(
+      setRootDataLoading,
+      getRootDataSuccessCallback,
+    );
+  };
+
+  const getRootDataSuccessCallback = (res) => {
+    const chiper1 = get(res, ["chiper1"], "");
+    const chiper2 = get(res, ["chiper2"], "");
+
+    setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
+  };
+
+  const fetchDocumentData = (url, key) => {
+    setDownloading(true);
+    axios
+      .get(url, {
+        headers: { "Content-Type": "application/json", AGSC: key },
+      })
+      .then((response) => {
+        const resUrl = get(response, ["data", "data", "url"], "");
+
+        if (!isEmpty(resUrl)) {
+          window.open(
+            resUrl,
+            `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
+          );
+        }
+      })
+      .catch((error) => {
+        Toast.error("Download document failed");
+      })
+      .finally(() => setDownloading(false));
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myInvoiceOverview")}
       onClickGoBack={onClickGoBack}
       hideBgImage
-      // rightContent={
-      //   <CustomImage
-      //     src={Images.downloadIcon}
-      //     height={25}
-      //     width={25}
-      //     className="cursor-pointer"
-      //     onClick={onClickDownload}
-      //   />
-      // }
+      rightContent={
+        <CustomImage
+          src={Images.downloadIcon}
+          height={25}
+          width={25}
+          className="cursor-pointer"
+          onClick={onClickDownload}
+        />
+      }
       // rightSecondButtonIcon={Images.shareIcon}
     >
       <div className="body-container relative py-6 flex justify-center">
@@ -179,13 +244,16 @@ const InvoiceOverview = ({ id }) => {
           <div className="gap-2">
             {isEmpty(items)
               ? false
-              : map(items, (item) => {
+              : map(items, (item, index) => {
                   const itemName = get(item, ["name"], "");
                   const unitPrice = get(item, ["unit_price"], 0);
                   const quantity = get(item, ["quantity"], 1);
 
                   return (
-                    <div className="flex justify-between items-center pt-2">
+                    <div
+                      className="flex justify-between items-center pt-2"
+                      key={index}
+                    >
                       <div className="">
                         <CustomText
                           textClassName={`black-text font-size-small font-bold`}
@@ -251,6 +319,7 @@ const InvoiceOverview = ({ id }) => {
               <CustomButton
                 buttonText={t("invoiceOverview.cancel")}
                 buttonClassName="default-btn-outline"
+                onClick={onClickGoBack}
               />
 
               <CustomButton
@@ -266,10 +335,17 @@ const InvoiceOverview = ({ id }) => {
 
         {openDownloadModal ? (
           <CustomDropdown
+            onClickDownloadDocument={onClickDownloadDocument}
             top={-14}
             items={[
-              { title: t("invoiceOverview.downloadInvoice") },
-              { title: t("invoiceOverview.downloadReceipt") },
+              {
+                name: "Review Invoice",
+                value: invoiceDocument,
+              },
+              {
+                name: "Review Receipt",
+                value: receiptDocument,
+              },
             ]}
           />
         ) : (
@@ -277,7 +353,12 @@ const InvoiceOverview = ({ id }) => {
         )}
 
         <LoadingOverlay
-          loading={invoiceOverviewLoading || getInvoicePaymentLinkLoading}
+          loading={
+            invoiceOverviewLoading ||
+            getInvoicePaymentLinkLoading ||
+            rootDataLoading ||
+            downloading
+          }
         />
       </div>
     </CustomHeader>

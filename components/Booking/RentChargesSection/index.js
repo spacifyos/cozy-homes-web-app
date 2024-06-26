@@ -17,7 +17,7 @@ const RentChargesSection = ({
 
   return (
     <div
-      className="col-span-6 mt-3 flex flex-col primaryWhite-bg-color p-4 global-box-shadow"
+      className="col-span-6 flex flex-col primaryWhite-bg-color p-4 global-box-shadow"
       style={{ borderRadius: 15 }}
     >
       <div className="flex items-center">

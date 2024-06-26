@@ -1,27 +1,30 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { map, isEmpty, size, get } from "lodash";
 
-const CustomDropdown = ({ items, top }) => {
+const CustomDropdown = ({ items, top, onClickDownloadDocument }) => {
   return (
     <div
       className="absolute  right-4 global-border-radius global-box-shadow primaryWhite-bg-color max-w-36 min-w-10 z-50 global-border"
       style={{ top: top }}
     >
       <div className="flex flex-col justify-center items-center w-36 ">
-        {_.map(items, (item, index) => {
-          const title = _.get(item, ["title"], "");
-          const onClickHandler = _.get(item, ["function"], () => {});
+        {map(items, (item, index) => {
+          const name = get(item, ["name"], "");
+          const value = get(item, ["value"], "");
 
-          return (
+          return isEmpty(value) ? (
+            false
+          ) : (
             <CustomText
+              key={index}
               textClassName="p-2 cursor-pointer w-full text-center font-normal"
-              onClick={onClickHandler}
+              onClick={() => onClickDownloadDocument(value)}
               styles={{
                 borderBottom:
-                  _.size(items) !== index + 1 ? "1px solid #e0ecff" : "none",
+                  size(items) !== index + 1 ? "1px solid #e0ecff" : "none",
               }}
             >
-              {title}
+              {name}
             </CustomText>
           );
         })}

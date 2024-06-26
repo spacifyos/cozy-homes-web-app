@@ -4,8 +4,6 @@ import apiInstance, {
 } from "./httpManager";
 import { includes, isEmpty, isEqual } from "lodash";
 
-const version = "v1";
-
 /**
  * To update language in api header
  * @param locale
@@ -17,7 +15,8 @@ const setHeaderLanguage = (locale) => {
 /**
  * To get common data
  */
-const getCommonData = () => apiInstance.get(`${version}/common`);
+const getRootData = () => apiInstance.get(`/root`);
+
 const getSelectOption = () => apiInstance.get(`/select-options`);
 
 const signInAccount = (data) => apiInstance.post("/auth/login", data);
@@ -111,7 +110,7 @@ const getAgreementOverview = (id) => apiInstance.get(`/agreement/${id}`);
 export default {
   signUpAccount,
   setHeaderLanguage,
-  getCommonData,
+  getRootData,
   getSelectOption,
   getUserProfile,
   postChangePassword,

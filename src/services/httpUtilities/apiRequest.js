@@ -1,5 +1,5 @@
 import api from "@/src/services/httpUtilities/httpService";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { apiRequestErrorResponse } from "@/src/services/httpUtilities/apiRequestErrorResponse";
 
@@ -15,13 +15,15 @@ const apiRequest = async (
     setLoading(true);
     const res = await api;
 
+    const status = _.get(res, ["status"], 0);
     const data = _.get(res, ["data", "data"], "");
+    const config = _.get(res, ["data", "config"], "");
     const code = _.get(res, ["data", "code"], 0);
     const message = _.get(res, ["data", "message"], "");
 
-    if (code === 200 || code === 204) {
+    if (status === 200 || code === 200 || code === 204) {
       setLoading(false);
-      successCallback(data);
+      successCallback(isEmpty(data) ? config : data);
 
       if (!ignoreSuccessMessage) {
         Toast.success(_.isEmpty(message) ? successMessage : message);
@@ -127,6 +129,10 @@ const postMeterTopUpRequest = async (
   );
 };
 
+const getRootDataRequest = async (setLoading, successCallback) => {
+  await apiRequest(api.getRootData(), setLoading, successCallback);
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -140,4 +146,5 @@ export default {
   getInvoicePaymentLinkRequest,
   postSyncMeterRequest,
   postMeterTopUpRequest,
+  getRootDataRequest,
 };
