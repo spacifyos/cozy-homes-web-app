@@ -20,7 +20,7 @@ const bindMiddleware = (middleware) => {
 
 const persistConfig = {
   key: "nextjs",
-  // whitelist: [""],
+  whitelist: ["common"],
   storage,
 };
 
