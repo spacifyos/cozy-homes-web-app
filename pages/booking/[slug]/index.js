@@ -8,7 +8,7 @@ import CustomText from "@/components/CustomText";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
-import _, { isEqual } from "lodash";
+import _, { get, isEmpty, isEqual } from "lodash";
 import { useEffect, useRef, useState } from "react";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
@@ -120,6 +120,11 @@ const Booking = ({ id }) => {
   const nationalityOption = commonSelector.getNationality(selectOptionData);
   const raceOption = commonSelector.getRace(selectOptionData);
   const stateOption = commonSelector.getState(selectOptionData);
+
+  const [checkInDate, setCheckInDate] = useState("");
+  const [tenurePeriod, setTenurePeriod] = useState(
+    get(tenureOption[0], ["value"], 0),
+  );
 
   useEffect(() => {
     if (_.isEmpty(selectOptionData)) {
@@ -246,9 +251,7 @@ const Booking = ({ id }) => {
     const postData = {
       listing_id: id,
       date_from: currentForm.booking_date_from.value,
-      date_to: moment(currentForm.booking_date_from.value)
-        .add(3, "months")
-        .format("YYYY-MM-DD"),
+      date_to: calculateCheckOutDate("YYYY-MM-DD"),
       applicant_id_type: currentForm.applicant_id_type.value,
       applicant_id_value: currentForm.applicant_id_value.value,
       applicant_phone_prefix: currentForm.applicant_area_code.value,
@@ -295,7 +298,6 @@ const Booking = ({ id }) => {
       setCreateBookingLoading,
       createBookingSuccess,
     );
-    // router.push(`/booking/${id}/overview`);
   };
 
   const createBookingSuccess = (res) => {
@@ -481,6 +483,22 @@ const Booking = ({ id }) => {
     setIdType(e.target.value);
   };
 
+  const onChangeCheckInDate = (e) => {
+    setCheckInDate(e.target.value);
+  };
+
+  const onChangeTenurePeriod = (e) => {
+    setTenurePeriod(e.target.value);
+  };
+
+  const calculateCheckOutDate = (format) => {
+    if (!isEmpty(checkInDate)) {
+      return moment(checkInDate).add(tenurePeriod, "months").format(format);
+    }
+
+    return null;
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -524,17 +542,31 @@ const Booking = ({ id }) => {
             title="Check in date"
             name="booking_date_from"
             errorMessage={errorMessage.booking_date_from}
+            onChange={onChangeCheckInDate}
             required
           />
 
-          <BookingSelect
+          <BookingInput
+            required
+            disabled
             className="col-span-3"
+            title="Check out date"
+            value={
+              isEmpty(calculateCheckOutDate("DD/MM/YYYY"))
+                ? "Please select check in date"
+                : calculateCheckOutDate("DD/MM/YYYY")
+            }
+          />
+
+          <BookingSelect
+            className="col-span-6"
             placeholder="Tenure Period"
             title="Tenure Period"
             lists={_.isEmpty(tenureOption) ? defaultOption : tenureOption}
             name="tenure_period"
             errorMessage={errorMessage.tenure_period}
             required
+            onChange={onChangeTenurePeriod}
           />
 
           <CustomText textClassName="col-span-6 font-bold pt-3">
