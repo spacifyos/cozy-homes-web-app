@@ -2,13 +2,12 @@ import Images from "@/src/utils/Image";
 import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
-import {
+import _, {
   get,
   isEmpty,
   isEqual,
@@ -41,8 +40,32 @@ import axios from "axios";
 import { NextSeo } from "next-seo";
 import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export { getServerSideProps };
+export async function getServerSideProps(context) {
+  const id = _.get(context, ["params", "slug"], "");
+
+  let listingPropertyDetailData = null;
+
+  try {
+    const response = await axios.get(
+      `${process.env.API_DOMAIN}/listing/property-details/${id}`,
+      { headers: { "Content-Type": "application/json" } },
+    );
+
+    listingPropertyDetailData = get(response, ["data", "data"], null);
+  } catch (error) {
+    console.error("Error fetching listing details:", error);
+  }
+
+  return {
+    props: {
+      id: id,
+      listingPropertyDetailData: listingPropertyDetailData,
+      ...(await serverSideTranslations(context.locale, ["common"])),
+    },
+  };
+}
 
 const defaultOption = [{ label: "Not option provided", value: "" }];
 
@@ -63,21 +86,21 @@ const ImageUploading = ({ loading }) => {
   );
 };
 
-const Booking = ({ id }) => {
+const Booking = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const formRef = useRef();
   const dispatch = useDispatch();
   const initialTime = 60;
 
-  const getListingPropertyDetailRequest = (id) =>
-    dispatch(listingAction.getListingPropertyDetailRequest(id));
-  const listingPropertyDetailData = useSelector((state) =>
-    listingSelector.getListingPropertyDetailData(state, id),
-  );
-  const listingPropertyDetailDataLoading = useSelector((state) =>
-    listingSelector.getListingPropertyDetailDataLoading(state),
-  );
+  // const getListingPropertyDetailRequest = (id) =>
+  //   dispatch(listingAction.getListingPropertyDetailRequest(id));
+  // const listingPropertyDetailData = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailData(state, id),
+  // );
+  // const listingPropertyDetailDataLoading = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailDataLoading(state),
+  // );
 
   const getSelectOptionRequest = () =>
     dispatch(commonAction.getSelectOptionRequest());
@@ -163,15 +186,13 @@ const Booking = ({ id }) => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isEmpty(listingPropertyDetailData)) {
-      fetchListingPropertyDetail(id);
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   fetchListingPropertyDetail(id);
+  // }, [id]);
 
-  const fetchListingPropertyDetail = (id) => {
-    getListingPropertyDetailRequest(id);
-  };
+  // const fetchListingPropertyDetail = (id) => {
+  //   getListingPropertyDetailRequest(id);
+  // };
 
   const fetchSelectOption = () => {
     getSelectOptionRequest();
@@ -1081,11 +1102,7 @@ const Booking = ({ id }) => {
         <ImageModal data={selectedImage} />
 
         <LoadingOverlay
-          loading={
-            listingPropertyDetailDataLoading ||
-            selectOptionDataLoading ||
-            getGalleryLinkLoading
-          }
+          loading={selectOptionDataLoading || getGalleryLinkLoading}
         />
       </div>
     </CustomHeader>
