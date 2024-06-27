@@ -165,7 +165,7 @@ const PropertyOverview = ({ id }) => {
       //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
       // }
     >
-      <NextSeo title="Property Overview Page - Spacify Asia" />
+      <NextSeo title="Property Overview - Spacify Asia" />
       <div className="body-container pb-32">
         <RoomPicCarousel
           imageUrl={imageUrl}

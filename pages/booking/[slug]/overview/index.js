@@ -55,7 +55,7 @@ const BookingOverview = ({ id }) => {
       hideBgImage
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Booking Overview Page - Spacify Asia" />
+      <NextSeo title="Booking Overview - Spacify Asia" />
       <div className="body-container pb-4">
         <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 

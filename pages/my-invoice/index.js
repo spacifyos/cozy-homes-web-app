@@ -174,7 +174,7 @@ const MyInvoice = () => {
       isFiltered={isFilter()}
       onClickRightButton={onClickOpenFilter}
     >
-      <NextSeo title="My Invoice Page - Spacify Asia" />
+      <NextSeo title="My Invoice - Spacify Asia" />
       <div className="body-container pb-1 flex flex-col flex-1">
         {invoiceSummaryDataLoading ? (
           <div

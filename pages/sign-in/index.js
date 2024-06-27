@@ -105,7 +105,7 @@ const SignIn = () => {
 
   return (
     <CustomHeader hideGoBackButton>
-      <NextSeo title="Sign In Page - Spacify Asia" />
+      <NextSeo title="Sign In - Spacify Asia" />
       <div className="body-container pt-4 pb-24">
         <div className="py-6 mb-4">
           <CustomText

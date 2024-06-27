@@ -200,7 +200,7 @@ const EditProfile = () => {
       pageTitle={t("pageTitle.editProfile")}
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Edit Profile Page - Spacify Asia" />
+      <NextSeo title="Edit Profile - Spacify Asia" />
       <div
         className="body-container pb-3 flex flex-col grow"
         style={{ height: "calc(100vh - 67px)" }}

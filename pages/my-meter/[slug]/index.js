@@ -138,7 +138,7 @@ const MyMeterOverview = ({ id }) => {
       hideBgImage
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Meter Overview Page - Spacify Asia" />
+      <NextSeo title="Meter Overview - Spacify Asia" />
       <div className="pb-4 global-horizontal-padding">
         <div className="flex flex-row justify-between">
           <CustomText textClassName="section-title">

@@ -83,7 +83,7 @@ const Account = () => {
       hideRightSecondButton
       padding
     >
-      <NextSeo title="Account Page - Spacify Asia" />
+      <NextSeo title="Account - Spacify Asia" />
       <div className="body-container pb-24">
         <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
           <ProfileCard

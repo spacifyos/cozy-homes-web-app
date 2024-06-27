@@ -109,7 +109,7 @@ const SignUp = () => {
 
   return (
     <CustomHeader hideGoBackButton>
-      <NextSeo title="Sign Up Page - Spacify Asia" />
+      <NextSeo title="Sign Up - Spacify Asia" />
       <div className="body-container py-4">
         <div className="py-6 mb-4">
           <CustomText

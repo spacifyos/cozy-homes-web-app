@@ -143,7 +143,7 @@ const MyStay = () => {
       hideRightButton
       padding
     >
-      <NextSeo title="My Stay Page - Spacify Asia" />
+      <NextSeo title="My Stay - Spacify Asia" />
       <div className="body-container pb-24">
         <UserSection t={t} data={userProfileData} />
 

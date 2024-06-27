@@ -524,7 +524,7 @@ const Booking = ({ id }) => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Booking Form Page - Spacify Asia" />
+      <NextSeo title="Booking Form - Spacify Asia" />
       <div className="pb-36">
         <div className="global-horizontal-padding flex justify-center pb-4">
           <CustomImage

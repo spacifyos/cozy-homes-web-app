@@ -88,7 +88,7 @@ function Home() {
       {/*  onClickOpenSwitcher={onClickOpenSwitcher}*/}
       {/*  onClickChangeLanguage={onClickChangeLanguage}*/}
       {/*/>*/}
-      <NextSeo title="Explore Page - Spacify Asia" />
+      <NextSeo title="Explore - Spacify Asia" />
 
       <BannerCarousel
         listingBannerData={listingBannerData}

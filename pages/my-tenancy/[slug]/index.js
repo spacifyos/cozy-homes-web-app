@@ -91,7 +91,7 @@ const MyTenancy = ({ id }) => {
       // rightButtonIcon={Images.downloadIcon}
       // rightSecondButtonIcon={Images.shareIcon}
     >
-      <NextSeo title="Tenancy Overview Page - Spacify Asia" />
+      <NextSeo title="Tenancy Overview - Spacify Asia" />
       <div className="body-container">
         <TenancyUserSection t={t} data={userProfileData} />
 

@@ -19,7 +19,7 @@ const PaymentFailure = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
-      <NextSeo title="Invoice Payment Failed Page - Spacify Asia" />
+      <NextSeo title="Invoice Payment Failed - Spacify Asia" />
       <CustomImage
         src={Images.cancelIcon}
         imageStyle={{ width: "20px" }}

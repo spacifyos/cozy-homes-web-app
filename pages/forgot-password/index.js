@@ -212,7 +212,7 @@ const ForgotPassword = () => {
 
   return (
     <CustomHeader onClickGoBack={onClickGoBack}>
-      <NextSeo title="Forgot Password Page - Spacify Asia" />
+      <NextSeo title="Forgot Password - Spacify Asia" />
       <div className="body-container mb-4" style={{ paddingTop: "5vh" }}>
         <div className="py-6">
           <CustomText
