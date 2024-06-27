@@ -581,9 +581,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           siteName: process.env.DOMAIN,
         }}
         twitter={{
-          handle: "@handle",
-          site: "@site",
-          cardType: "summary_large_image",
+          handle: "Testing - Spacify Asia",
+          site: process.env.DOMAIN,
+          cardType: "app",
         }}
       />
 
