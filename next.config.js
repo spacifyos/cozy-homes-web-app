@@ -4,6 +4,7 @@ const nextConfig = {
   reactStrictMode: false,
   i18n,
   env: {
+    DOMAIN: process.env.DOMAIN,
     API_DOMAIN: process.env.API_DOMAIN,
     CLOUDFLARE_RECAPTCHA_SITE: process.env.CLOUDFLARE_RECAPTCHA_SITE,
     SENTRY_DSN: process.env.SENTRY_DSN,

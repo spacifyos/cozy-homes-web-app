@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
 import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
-import _ from "lodash";
+import _, { isEmpty, map } from "lodash";
 import "react-multi-carousel/lib/styles.css";
 import "@/styles/globals.scss";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { DefaultSeo } from "next-seo";
+import Images from "@/src/utils/Image";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -65,7 +66,23 @@ function AppContent({ Component, pageProps }) {
       }
       style={{ backgroundColor: Color.primaryBgColor }}
     >
-      <DefaultSeo title="Spacify Asia" />
+      <DefaultSeo
+        title="Spacify Asia"
+        openGraph={{
+          url: process.env.DOMAIN,
+          title: "Spacify Asia",
+          description: "",
+          images: [
+            {
+              url: Images.logoImage,
+              width: 1080,
+              height: 810,
+              alt: `Spacify Image`,
+            },
+          ],
+          siteName: process.env.DOMAIN,
+        }}
+      />
       <div
         style={{ maxWidth: 500, zIndex: 1 }}
         className={

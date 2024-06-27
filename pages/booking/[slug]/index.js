@@ -8,7 +8,17 @@ import CustomText from "@/components/CustomText";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
-import _, { get, isEmpty, isEqual } from "lodash";
+import {
+  get,
+  isEmpty,
+  isEqual,
+  map,
+  some,
+  forEach,
+  split,
+  includes,
+  size,
+} from "lodash";
 import { useEffect, useRef, useState } from "react";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
@@ -28,7 +38,9 @@ import * as commonSelector from "@/src/selectors/common";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
+import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
+import ImageModal from "@/components/PropertyOverview/ImageModal";
 
 export { getServerSideProps };
 
@@ -122,7 +134,9 @@ const Booking = ({ id }) => {
   const nationalityOption = commonSelector.getNationality(selectOptionData);
   const raceOption = commonSelector.getRace(selectOptionData);
   const stateOption = commonSelector.getState(selectOptionData);
+  const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
 
+  const [selectedImage, setSelectedImage] = useState(null);
   const [checkInDate, setCheckInDate] = useState("");
   const [tenurePeriod, setTenurePeriod] = useState(
     get(tenureOption[0], ["value"], 0),
@@ -144,13 +158,13 @@ const Booking = ({ id }) => {
   }, [timeLeft, isResendEnabled]);
 
   useEffect(() => {
-    if (_.isEmpty(selectOptionData)) {
+    if (isEmpty(selectOptionData)) {
       fetchSelectOption();
     }
   }, []);
 
   useEffect(() => {
-    if (_.isEmpty(listingPropertyDetailData)) {
+    if (isEmpty(listingPropertyDetailData)) {
       fetchListingPropertyDetail(id);
     }
   }, [id]);
@@ -203,8 +217,8 @@ const Booking = ({ id }) => {
       "emergency_contacts_email_1",
     ];
 
-    _.forEach(requiredFields, (field) => {
-      if (_.isEmpty(currentForm[field].value)) {
+    forEach(requiredFields, (field) => {
+      if (isEmpty(currentForm[field].value)) {
         newErrors[field] = `${currentForm[field].title} is required`;
       }
     });
@@ -216,14 +230,14 @@ const Booking = ({ id }) => {
       "emergency_contacts_email_2",
     ];
 
-    const anyFieldNotEmpty = _.some(
+    const anyFieldNotEmpty = some(
       optionalFields,
-      (optionalField) => !_.isEmpty(currentForm[optionalField].value),
+      (optionalField) => !isEmpty(currentForm[optionalField].value),
     );
 
     if (anyFieldNotEmpty) {
-      _.forEach(optionalFields, (optionalField) => {
-        if (_.isEmpty(currentForm[optionalField].value)) {
+      forEach(optionalFields, (optionalField) => {
+        if (isEmpty(currentForm[optionalField].value)) {
           newErrors[optionalField] =
             `${currentForm[optionalField].title} is required`;
         }
@@ -232,30 +246,30 @@ const Booking = ({ id }) => {
 
     setErrorMessage(newErrors);
 
-    if (!_.isEmpty(newErrors)) {
+    if (!isEmpty(newErrors)) {
       return Toast.error("All fields are required.");
     }
 
     if (
-      !_.includes(currentForm.applicant_email.value, "@") ||
-      !_.includes(currentForm.emergency_contacts_email_1.value, "@") ||
-      (!_.isEmpty(currentForm.emergency_contacts_email_2.value) &&
-        !_.includes(currentForm.emergency_contacts_email_2.value, "@"))
+      !includes(currentForm.applicant_email.value, "@") ||
+      !includes(currentForm.emergency_contacts_email_1.value, "@") ||
+      (!isEmpty(currentForm.emergency_contacts_email_2.value) &&
+        !includes(currentForm.emergency_contacts_email_2.value, "@"))
     ) {
       return Toast.error("Email must be include @.");
     }
 
-    if (_.isEmpty(otpToken)) {
+    if (isEmpty(otpToken)) {
       return Toast.error("You must verify your phone number");
     }
 
-    if (_.isEmpty(frontIcData) || _.isEmpty(icBackBase64)) {
+    if (isEmpty(frontIcData) || isEmpty(icBackBase64)) {
       return Toast.error(
         "Please upload the supporting document.(IC or Passport)",
       );
     }
 
-    // if (_.isEmpty(currentForm.is_pay_partial.value)) {
+    // if (isEmpty(currentForm.is_pay_partial.value)) {
     //   return Toast.error(
     //     "Please select total move-in cost is pay in full or partial",
     //   );
@@ -294,7 +308,7 @@ const Booking = ({ id }) => {
       emergency_contacts_name_2: currentForm.emergency_contacts_name_2.value,
       emergency_contacts_relationship_2:
         currentForm.emergency_contacts_relationship_2.value,
-      emergency_contacts_phone_prefix_2: _.isEmpty(
+      emergency_contacts_phone_prefix_2: isEmpty(
         currentForm.emergency_contacts_phone_suffix_2.value,
       )
         ? ""
@@ -318,9 +332,9 @@ const Booking = ({ id }) => {
   };
 
   const createBookingSuccess = (res) => {
-    const url = _.get(res, ["url"], "");
+    const url = get(res, ["url"], "");
 
-    if (!_.isEmpty(url)) {
+    if (!isEmpty(url)) {
       window.open(url, "_self");
     }
   };
@@ -331,17 +345,17 @@ const Booking = ({ id }) => {
 
   // const onClickAddEmergencyContact = () => {
   //   setEmergencyContactNumber((prevState) =>
-  //     _.concat(prevState, _.size(emergencyContactNumber)),
+  //     concat(prevState, size(emergencyContactNumber)),
   //   );
   // };
 
   // const onClickRemoveContact = (number) => {
-  //   if (_.size(emergencyContactNumber) !== 1) {
-  //     const newArray = _.pull(
+  //   if (size(emergencyContactNumber) !== 1) {
+  //     const newArray = pull(
   //       emergencyContactNumber,
-  //       _.size(emergencyContactNumber) - 1,
+  //       size(emergencyContactNumber) - 1,
   //     );
-  //     setEmergencyContactNumber((prevState) => _.union(prevState, newArray));
+  //     setEmergencyContactNumber((prevState) => union(prevState, newArray));
   //   }
   // };
 
@@ -351,7 +365,7 @@ const Booking = ({ id }) => {
     apiInstance
       .get("/gallery")
       .then((res) => {
-        const url = _.get(res, ["data", "data", "url"], "");
+        const url = get(res, ["data", "data", "url"], "");
 
         Toast.success("Get gallery link success.");
         getGalleryLinkSuccess(url, image, type);
@@ -361,7 +375,7 @@ const Booking = ({ id }) => {
   };
 
   const getGalleryLinkSuccess = (url, image, type) => {
-    if (_.isEqual(type, "front")) {
+    if (isEqual(type, "front")) {
       setFrontIcUploading(true);
     } else {
       setBackIcUploading(true);
@@ -375,7 +389,7 @@ const Booking = ({ id }) => {
       })
       .catch((err) => Toast.error("Image upload failure."))
       .then(() => {
-        if (_.isEqual(type, "front")) {
+        if (isEqual(type, "front")) {
           setFrontIcUploading(false);
         } else {
           setBackIcUploading(false);
@@ -408,15 +422,15 @@ const Booking = ({ id }) => {
   };
 
   const convertToBase64 = (type, image, url) => {
-    const name = _.get(image, ["name"], "");
-    const extension = _.split(name, ".");
-    const mimeType = _.get(image, ["type"], "");
+    const name = get(image, ["name"], "");
+    const extension = split(name, ".");
+    const mimeType = get(image, ["type"], "");
 
     if (image) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        if (_.isEqual(type, "front")) {
-          setIcFrontBase64(_.get(e, ["target", "result"], ""));
+        if (isEqual(type, "front")) {
+          setIcFrontBase64(get(e, ["target", "result"], ""));
           setFrontIcData([
             {
               type: 2,
@@ -427,7 +441,7 @@ const Booking = ({ id }) => {
             },
           ]);
         } else {
-          setIcBackBase64(_.get(e, ["target", "result"], ""));
+          setIcBackBase64(get(e, ["target", "result"], ""));
           setBackIcData([
             {
               type: 3,
@@ -441,7 +455,7 @@ const Booking = ({ id }) => {
       };
       reader.readAsDataURL(image);
     } else {
-      if (_.isEqual(type, "front")) {
+      if (isEqual(type, "front")) {
         setIcFrontBase64("");
       } else {
         setIcBackBase64("");
@@ -455,7 +469,7 @@ const Booking = ({ id }) => {
 
   const onClickOpenWhatsApp = (contactNumber) => {
     window.open(
-      _.isEmpty(contactNumber)
+      isEmpty(contactNumber)
         ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
         : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
       "_blank",
@@ -467,7 +481,7 @@ const Booking = ({ id }) => {
   };
 
   const onClickGenerateOtp = async () => {
-    if (_.isEmpty(formRef.current.applicant_phone_number.value)) {
+    if (isEmpty(formRef.current.applicant_phone_number.value)) {
       return Toast.error("Phone number is required.");
     }
 
@@ -488,11 +502,11 @@ const Booking = ({ id }) => {
 
   const otpRequestSuccess = (res) => {
     setIsResendEnabled(false);
-    setOtpToken(_.get(res, ["token"], ""));
+    setOtpToken(get(res, ["token"], ""));
   };
 
   const onChangeOtpValue = (e) => {
-    if (_.size(e.target.value) <= 6) {
+    if (size(e.target.value) <= 6) {
       setOtpValue(e.target.value);
     }
   };
@@ -517,6 +531,11 @@ const Booking = ({ id }) => {
     return null;
   };
 
+  const onClickPopupImage = (selectedImage) => {
+    setSelectedImage(selectedImage);
+    document.getElementById("image_modal").showModal();
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -524,32 +543,49 @@ const Booking = ({ id }) => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Booking Form - Spacify Asia" />
-      <div className="pb-36">
-        <div className="global-horizontal-padding flex justify-center pb-4">
-          <CustomImage
-            src={Images.filterDefaultImage}
-            imageStyle={{ width: "100%" }}
-            className="rounded-2xl"
-          />
-        </div>
+      <NextSeo
+        title="Booking Form - Spacify Asia"
+        openGraph={{
+          url: `${process.env.DOMAIN}/booking/${id}`,
+          title: isEmpty(title) ? "Spacify Booking" : title,
+          description: isEmpty(propertyName) ? "" : propertyName,
+          images: map(imageUrl, (item, index) => {
+            return {
+              url: isEmpty(item) ? Images.imageNotFound : item,
+              width: 800,
+              height: 600,
+              alt: `image ${index + 1}`,
+            };
+          }),
+          siteName: process.env.DOMAIN,
+        }}
+      />
 
+      <div className="pb-36">
         <div className="global-horizontal-padding pb-3">
+          <RoomPicCarousel
+            imageUrl={imageUrl}
+            onClickPopupImage={onClickPopupImage}
+          />
+
           <CustomText textClassName="primary-text font-bold">
-            {_.isEmpty(title) ? "-" : title}
+            {isEmpty(title) ? "-" : title}
           </CustomText>
+
           <CustomText textClassName="font-bold pb-3">
-            RM{_.isEmpty(rental) ? "-" : rental} / Monthly
+            RM{isEmpty(rental) ? "-" : rental} / Monthly
           </CustomText>
 
           <CustomText textClassName="font-bold">
-            {_.isEmpty(propertyName) ? "-" : propertyName}
+            {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
+
           <CustomText textClassName="primary-text font-size-small">
-            {_.isEmpty(unitRoomName) ? "-" : unitRoomName}
+            {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
+
           <CustomText textClassName="disable-text font-size-xxsmall">
-            {_.isEmpty(address) ? "-" : address}
+            {isEmpty(address) ? "-" : address}
           </CustomText>
         </div>
 
@@ -587,7 +623,7 @@ const Booking = ({ id }) => {
               bgColor="primaryWhite-bg-color"
               placeholder="Tenure Period"
               title="Tenure Period"
-              lists={_.isEmpty(tenureOption) ? defaultOption : tenureOption}
+              lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
               name="tenure_period"
               errorMessage={errorMessage.tenure_period}
               required
@@ -612,7 +648,7 @@ const Booking = ({ id }) => {
               className="col-span-2"
               placeholder="Select ID type"
               title="ID Type"
-              lists={_.isEmpty(idTypeOption) ? defaultOption : idTypeOption}
+              lists={isEmpty(idTypeOption) ? defaultOption : idTypeOption}
               name="applicant_id_type"
               errorMessage={errorMessage.applicant_id_type}
               onChange={onChangeIdType}
@@ -647,7 +683,7 @@ const Booking = ({ id }) => {
               placeholder="Select Race"
               title="Race"
               name="applicant_race"
-              lists={_.isEmpty(raceOption) ? defaultOption : raceOption}
+              lists={isEmpty(raceOption) ? defaultOption : raceOption}
               errorMessage={errorMessage.applicant_race}
               required
             />
@@ -656,7 +692,7 @@ const Booking = ({ id }) => {
               className="col-span-6"
               placeholder="Select Gender"
               title="Gender"
-              lists={_.isEmpty(genderOption) ? defaultOption : genderOption}
+              lists={isEmpty(genderOption) ? defaultOption : genderOption}
               name="applicant_gender"
               errorMessage={errorMessage.applicant_gender}
               required
@@ -675,7 +711,7 @@ const Booking = ({ id }) => {
               className="col-span-2"
               placeholder="Select Area Code"
               title="Area Code"
-              lists={_.isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+              lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
               name="applicant_area_code"
               errorMessage={errorMessage.applicant_area_code}
               required
@@ -696,7 +732,7 @@ const Booking = ({ id }) => {
               placeholder="Select Nationality"
               title="Nationality"
               lists={
-                _.isEmpty(nationalityOption) ? defaultOption : nationalityOption
+                isEmpty(nationalityOption) ? defaultOption : nationalityOption
               }
               name="applicant_nationality"
               errorMessage={errorMessage.applicant_nationality}
@@ -708,7 +744,7 @@ const Booking = ({ id }) => {
             {/*    placeholder="Select Occupation"*/}
             {/*    title="Occupation"*/}
             {/*    lists={*/}
-            {/*      _.isEmpty([]) ? defaultOption : []*/}
+            {/*      isEmpty([]) ? defaultOption : []*/}
             {/*    }*/}
             {/*    name=""*/}
             {/*    errorMessage={errorMessage.applicant_occupation}*/}
@@ -765,7 +801,7 @@ const Booking = ({ id }) => {
               className="col-span-3"
               placeholder="Select Country"
               title="Country"
-              lists={_.isEmpty(countryOption) ? defaultOption : countryOption}
+              lists={isEmpty(countryOption) ? defaultOption : countryOption}
               name="country_code"
               errorMessage={errorMessage.country_code}
               required
@@ -776,7 +812,7 @@ const Booking = ({ id }) => {
               className="col-span-3"
               placeholder="Select State"
               title="State"
-              lists={_.isEmpty(stateOption) ? defaultOption : stateOption}
+              lists={isEmpty(stateOption) ? defaultOption : stateOption}
               name="state_code"
               errorMessage={errorMessage.state_code}
               required
@@ -788,7 +824,7 @@ const Booking = ({ id }) => {
               Emergency Contact Information
             </CustomText>
 
-            {_.map(emergencyContactNumber, (item, index) => {
+            {map(emergencyContactNumber, (item, index) => {
               return (
                 <div
                   className="col-span-6 grid grid-cols-6 gap-2 pt-2"
@@ -798,7 +834,7 @@ const Booking = ({ id }) => {
                     {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}
                   </CustomText>
 
-                  {/*{index === 0 && _.size(emergencyContactNumber) !== 1 ? (*/}
+                  {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
                   {/*  <div*/}
                   {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
                   {/*    onClick={() => onClickRemoveContact(index)}*/}
@@ -837,7 +873,7 @@ const Booking = ({ id }) => {
                     className="col-span-2"
                     placeholder="Select Area Code"
                     title="Area Code"
-                    lists={_.isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+                    lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
                     name={`emergency_contacts_phone_prefix_${index + 1}`}
                     errorMessage={
                       errorMessage[
@@ -937,9 +973,7 @@ const Booking = ({ id }) => {
                 <ImageUploading loading={frontIcUploading} />
 
                 <CustomImage
-                  src={
-                    _.isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64
-                  }
+                  src={isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
                   imageStyle={{
                     width: "100%",
                     height: 155,
@@ -964,7 +998,7 @@ const Booking = ({ id }) => {
                 <ImageUploading loading={backIcUploading} />
 
                 <CustomImage
-                  src={_.isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
+                  src={isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
                   imageStyle={{
                     width: "100%",
                     height: 155,
@@ -1043,6 +1077,8 @@ const Booking = ({ id }) => {
           onClickOpenModalCharges={onClickOpenModalCharges}
           lists={moveInFees}
         />
+
+        <ImageModal data={selectedImage} />
 
         <LoadingOverlay
           loading={
