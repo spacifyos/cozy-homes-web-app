@@ -13,6 +13,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import { useRouter } from "next/router";
 import CustomHeader from "@/components/CustomHeader";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -211,6 +212,7 @@ const ForgotPassword = () => {
 
   return (
     <CustomHeader onClickGoBack={onClickGoBack}>
+      <NextSeo title="Forgot Password Page - Spacify Asia" />
       <div className="body-container mb-4" style={{ paddingTop: "5vh" }}>
         <div className="py-6">
           <CustomText

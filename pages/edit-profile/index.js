@@ -18,6 +18,7 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import CustomAlertModal from "@/components/CustomAlertModal";
 import ChangePasswordModal from "@/components/EditProfile/ChangePasswordModal";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -199,6 +200,7 @@ const EditProfile = () => {
       pageTitle={t("pageTitle.editProfile")}
       onClickGoBack={onClickGoBack}
     >
+      <NextSeo title="Edit Profile Page - Spacify Asia" />
       <div
         className="body-container pb-3 flex flex-col grow"
         style={{ height: "calc(100vh - 67px)" }}

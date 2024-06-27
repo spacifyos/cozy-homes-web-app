@@ -7,6 +7,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { get, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -31,6 +32,7 @@ const PaymentSuccessful = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
+      <NextSeo title="Booking Payment Successful Page - Spacify Asia" />
       <CustomImage
         src={Images.cancelIcon}
         imageStyle={{ width: 20 }}

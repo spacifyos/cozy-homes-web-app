@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -173,6 +174,7 @@ const MyInvoice = () => {
       isFiltered={isFilter()}
       onClickRightButton={onClickOpenFilter}
     >
+      <NextSeo title="My Invoice Page - Spacify Asia" />
       <div className="body-container pb-1 flex flex-col flex-1">
         {invoiceSummaryDataLoading ? (
           <div

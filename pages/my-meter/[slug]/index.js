@@ -19,6 +19,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
 import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -137,6 +138,7 @@ const MyMeterOverview = ({ id }) => {
       hideBgImage
       onClickGoBack={onClickGoBack}
     >
+      <NextSeo title="Meter Overview Page - Spacify Asia" />
       <div className="pb-4 global-horizontal-padding">
         <div className="flex flex-row justify-between">
           <CustomText textClassName="section-title">

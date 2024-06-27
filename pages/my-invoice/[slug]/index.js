@@ -21,6 +21,7 @@ import Helper from "@/src/utils/Helper";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import { browserName, detect } from "detect-browser-es";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -175,6 +176,7 @@ const InvoiceOverview = ({ id }) => {
       }
       // rightSecondButtonIcon={Images.shareIcon}
     >
+      <NextSeo title="Invoice Overview Page - Spacify Asia" />
       <div className="body-container relative py-6 flex justify-center">
         <div className="primary-bg-color p-2 ps-2.5 global-border-radius absolute top-0">
           <CustomImage

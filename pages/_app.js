@@ -21,6 +21,7 @@ import * as commonAction from "@/src/actions/common";
 import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import { DefaultSeo } from "next-seo";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -64,6 +65,7 @@ function AppContent({ Component, pageProps }) {
       }
       style={{ backgroundColor: Color.primaryBgColor }}
     >
+      <DefaultSeo title="Spacify Asia" />
       <div
         style={{ maxWidth: 500, zIndex: 1 }}
         className={

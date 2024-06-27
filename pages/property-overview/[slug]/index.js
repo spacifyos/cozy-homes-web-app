@@ -28,6 +28,7 @@ import ImageModal from "@/components/PropertyOverview/ImageModal";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextSeo } from "next-seo";
 
 export async function getServerSideProps(context) {
   const id = _.get(context, ["params", "slug"], "");
@@ -164,6 +165,7 @@ const PropertyOverview = ({ id }) => {
       //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
       // }
     >
+      <NextSeo title="Property Overview Page - Spacify Asia" />
       <div className="body-container pb-32">
         <RoomPicCarousel
           imageUrl={imageUrl}

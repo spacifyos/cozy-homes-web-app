@@ -18,6 +18,7 @@ import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import _ from "lodash";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -84,12 +85,13 @@ const MyTenancy = ({ id }) => {
 
   return (
     <CustomHeader
-      pageTitle={t("pageTitle.myTenancy")}
+      pageTitle={t("pageTitle.myTenancyOverview")}
       hideBgImage
       onClickGoBack={onClickGoBack}
       // rightButtonIcon={Images.downloadIcon}
       // rightSecondButtonIcon={Images.shareIcon}
     >
+      <NextSeo title="Tenancy Overview Page - Spacify Asia" />
       <div className="body-container">
         <TenancyUserSection t={t} data={userProfileData} />
 

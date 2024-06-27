@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
 export default function Custom404() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function Custom404() {
 
   return (
     <div className="flex flex-col justify-center items-center flex-1 px-10">
+      <NextSeo title="Page Not Found - Spacify Asia" />
       <div className="flex gap-1">
         <CustomText
           textClassName="font-bold"

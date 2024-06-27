@@ -11,6 +11,7 @@ import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -54,6 +55,7 @@ const BookingOverview = ({ id }) => {
       hideBgImage
       onClickGoBack={onClickGoBack}
     >
+      <NextSeo title="Booking Overview Page - Spacify Asia" />
       <div className="body-container pb-4">
         <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 

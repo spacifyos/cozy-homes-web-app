@@ -28,6 +28,7 @@ import * as commonSelector from "@/src/selectors/common";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -523,6 +524,7 @@ const Booking = ({ id }) => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
+      <NextSeo title="Booking Form Page - Spacify Asia" />
       <div className="pb-36">
         <div className="global-horizontal-padding flex justify-center pb-4">
           <CustomImage

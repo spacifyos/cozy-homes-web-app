@@ -20,6 +20,7 @@ import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -142,6 +143,7 @@ const MyStay = () => {
       hideRightButton
       padding
     >
+      <NextSeo title="My Stay Page - Spacify Asia" />
       <div className="body-container pb-24">
         <UserSection t={t} data={userProfileData} />
 

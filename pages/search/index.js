@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -303,6 +304,7 @@ const Search = () => {
       hideRightButton
       onClickGoBack={onClickGoBack}
     >
+      <NextSeo title="Spacify Listing Page - Spacify Asia" />
       <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
         <CustomInput
           rightIcon={Images.searchOutlineActiveIcon}
