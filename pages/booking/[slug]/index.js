@@ -580,6 +580,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           }),
           siteName: process.env.DOMAIN,
         }}
+        twitter={{
+          handle: "@handle",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
       />
 
       <div className="pb-36">
