@@ -4,6 +4,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Helper from "@/src/utils/Helper";
 
 const SpecificRequestComponent = ({
   t,
@@ -118,7 +119,7 @@ const SpecificRequestComponent = ({
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
               onClick={() => {
-                document.getElementById("help_center_upload_modal").showModal();
+                Helper.documentGetElementById("help_center_upload_modal").showModal();
                 onClickChangeUploadModalTitle(true);
               }}
             >
@@ -147,7 +148,7 @@ const SpecificRequestComponent = ({
               className="bg-color p-2 global-border-radius relative cursor-pointer"
               style={{ width: 55, height: 55 }}
               onClick={() => {
-                document.getElementById("help_center_upload_modal").showModal();
+                Helper.documentGetElementById("help_center_upload_modal").showModal();
                 onClickChangeUploadModalTitle(false);
               }}
             >

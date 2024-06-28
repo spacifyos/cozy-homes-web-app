@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import * as listingSelector from "@/src/selectors/listing";
 import _ from "lodash";
-import { getReferenceNumber } from "@/src/selectors/listing";
+import Helper from "@/src/utils/Helper";
 
 const BookingOverviewDetail = ({ t, data, id }) => {
   const referenceNumber = listingSelector.getReferenceNumber(data);
@@ -38,7 +38,7 @@ const BookingOverviewDetail = ({ t, data, id }) => {
               buttonClassName="booking-overview-btn font-size-normal"
               buttonText={t("bookingOverview.viewMore")}
               onClick={() =>
-                document.getElementById("booking_overview_modal").showModal()
+                Helper.documentGetElementById("booking_overview_modal").showModal()
               }
             />
           </div>

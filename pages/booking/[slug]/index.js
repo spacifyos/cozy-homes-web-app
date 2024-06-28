@@ -41,6 +41,7 @@ import { NextSeo } from "next-seo";
 import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Helper from "@/src/utils/Helper";
 
 export async function getServerSideProps(context) {
   const id = _.get(context, ["params", "slug"], "");
@@ -498,7 +499,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   };
 
   const onClickOpenMoveInCostModal = () => {
-    document.getElementById("move_in_cost_modal").showModal();
+    Helper.documentGetElementById("move_in_cost_modal").showModal();
   };
 
   const onClickGenerateOtp = async () => {
@@ -554,7 +555,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
-    document.getElementById("image_modal").showModal();
+    Helper.documentGetElementById("image_modal").showModal();
   };
 
   return (
@@ -570,20 +571,17 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           url: `${process.env.DOMAIN}/booking/${id}`,
           title: isEmpty(title) ? "Spacify Booking" : title,
           description: isEmpty(propertyName) ? "" : propertyName,
-          images: map(imageUrl, (item, index) => {
-            return {
-              url: isEmpty(item) ? Images.imageNotFound : item,
-              width: 800,
-              height: 600,
-              alt: `image ${index + 1}`,
-            };
-          }),
+          images: isEmpty(imageUrl)
+            ? [Images.imageNotFound]
+            : map(imageUrl, (item, index) => {
+                return {
+                  url: item,
+                  width: 800,
+                  height: 600,
+                  alt: `image ${index + 1}`,
+                };
+              }),
           siteName: process.env.DOMAIN,
-        }}
-        twitter={{
-          handle: "Testing - Spacify Asia",
-          site: process.env.DOMAIN,
-          cardType: "app",
         }}
       />
 
@@ -1015,7 +1013,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
                 onChangeImage={onChangeFrontICImage}
                 onClickSelectImage={() =>
-                  document.getElementById("front_image").click()
+                  Helper.documentGetElementById("front_image").click()
                 }
               />
             </div>
@@ -1040,7 +1038,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
                 onChangeImage={onChangeBackICImage}
                 onClickSelectImage={() =>
-                  document.getElementById("back_image").click()
+                  Helper.documentGetElementById("back_image").click()
                 }
               />
             </div>

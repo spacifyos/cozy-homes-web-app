@@ -59,9 +59,14 @@ const generateSecretKey = (secret1, secret2) => {
   return final;
 };
 
+const documentGetElementById = (id) => {
+  return typeof window !== "undefined" && document.getElementById(id);
+};
+
 export default {
   isProduction,
   secToMin,
   formatToDatePicker,
   generateSecretKey,
+  documentGetElementById,
 };

@@ -12,6 +12,7 @@ import CustomImage from "@/components/CustomImage";
 import Constant from "@/src/utils/Constant";
 import PinModal from "@/components/EAgreement/PinModal";
 import CanvasModal from "@/components/EAgreement/CanvasModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -133,7 +134,7 @@ const ViewAgreement = () => {
           <CustomButton
             buttonText={t("viewAgreement.agree")}
             buttonClassName="primary-btn"
-            onClick={() => document.getElementById("pin_modal").showModal()}
+            onClick={() => Helper.documentGetElementById("pin_modal").showModal()}
           />
         </div>
       </div>

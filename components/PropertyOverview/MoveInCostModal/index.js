@@ -4,7 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
-import { getFeeAmount } from "@/src/selectors/listing";
+import Helper from "@/src/utils/Helper";
 
 const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
   const feesLists = listingSelector.getFeesItemOthers(lists);
@@ -53,7 +53,7 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
               height={20}
               width={20}
               onClick={() =>
-                document.getElementById("rent_charges_details").showModal()
+                Helper.documentGetElementById("rent_charges_details").showModal()
               }
             />
             <CustomText
