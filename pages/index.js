@@ -20,7 +20,7 @@ function Home() {
     setTimeout(() => {
       router.replace("/my-stay");
     }, 1000);
-  },[]);
+  }, []);
 
   return (
     <div

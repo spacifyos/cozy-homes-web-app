@@ -31,7 +31,7 @@ function AuthWrapper(WrappedComponent) {
     }
 
     if (!isAuthenticated) {
-      Toast.error("You need to sign in to your account.");
+      // Toast.error("You need to sign in to your account.");
 
       router.push({
         pathname: "/sign-in",
