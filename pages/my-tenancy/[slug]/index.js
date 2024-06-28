@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import _ from "lodash";
+import Helper from "@/src/utils/Helper";
 import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
@@ -77,9 +77,9 @@ const MyTenancy = ({ id }) => {
   const onChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
-      document.getElementById("myTenancy_Unsubscribe_modal").showModal();
+      Helper.documentGetElementById("myTenancy_Unsubscribe_modal").showModal();
     } else {
-      document.getElementById("myTenancy_Subscribe_modal").showModal();
+      Helper.documentGetElementById("myTenancy_Subscribe_modal").showModal();
     }
   };
 

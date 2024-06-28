@@ -27,9 +27,9 @@ import Images from "@/src/utils/Image";
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <AppContent Component={Component} pageProps={pageProps} />
-      </PersistGate>
+      {/*<PersistGate loading={null} persistor={persistor}>*/}
+      <AppContent Component={Component} pageProps={pageProps} />
+      {/*</PersistGate>*/}
     </Provider>
   );
 }

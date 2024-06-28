@@ -20,17 +20,17 @@ const bindMiddleware = (middleware) => {
 
 const persistConfig = {
   key: "nextjs",
-  whitelist: ["common"],
+  // whitelist: ["common"],
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducers);
+// const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export const store = createStore(
-  persistedReducer,
+  rootReducers,
   bindMiddleware([sagaMiddleware]),
 );
 
 store.sagaTask = sagaMiddleware.run(rootSaga);
 
-export const persistor = persistStore(store);
+// export const persistor = persistStore(store);

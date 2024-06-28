@@ -3,6 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
+import Helper from "@/src/utils/Helper";
 
 const SubscribeAutoPayModal = ({ t }) => {
   return (
@@ -22,7 +23,7 @@ const SubscribeAutoPayModal = ({ t }) => {
           buttonClassName="default-btn-outline"
           buttonText={t("myTenancy.no")}
           onClick={() => {
-            document.getElementById("myTenancy_Unsubscribe_modal").close();
+            Helper.documentGetElementById("myTenancy_Unsubscribe_modal").close();
           }}
         />
         <CustomButton

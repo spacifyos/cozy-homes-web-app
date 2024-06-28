@@ -2,6 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
+import Helper from "@/src/utils/Helper";
 
 const PinModal = ({ t }) => {
   return (
@@ -26,8 +27,8 @@ const PinModal = ({ t }) => {
           buttonText={t("viewAgreement.submit")}
           buttonClassName="primary-btn"
           onClick={() => {
-            document.getElementById("canvas_modal").showModal();
-            document.getElementById("pin_modal").close();
+            Helper.documentGetElementById("canvas_modal").showModal();
+            Helper.documentGetElementById("pin_modal").close();
           }}
         />
       </div>

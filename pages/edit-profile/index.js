@@ -19,6 +19,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import CustomAlertModal from "@/components/CustomAlertModal";
 import ChangePasswordModal from "@/components/EditProfile/ChangePasswordModal";
 import {NextSeo} from "next-seo";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -75,7 +76,7 @@ const EditProfile = () => {
       setConfirmPasswordValue("");
     }
 
-    document.getElementById("change_password_modal").showModal();
+    Helper.documentGetElementById("change_password_modal").showModal();
   };
 
   const onChangeCurrentPassword = (e) => {
@@ -153,15 +154,15 @@ const EditProfile = () => {
   };
 
   const closeChangePasswordModal = () => {
-    document.getElementById("change_password_modal").close();
+    Helper.documentGetElementById("change_password_modal").close();
   };
 
   // const onClickOpenChangePasswordAlert = () => {
-  //   document.getElementById("change_password_alert").showModal();
+  //   Helper.documentGetElementById("change_password_alert").showModal();
   // };
   //
   // const onClickCloseChangePasswordAlert = () => {
-  //   document.getElementById("change_password_alert").close();
+  //   Helper.documentGetElementById("change_password_alert").close();
   // };
 
   // const onClickCloseAllModal = () => {

@@ -14,7 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -146,7 +147,7 @@ const MyInvoice = () => {
   };
 
   const handleCloseFilter = () => {
-    document.getElementById("invoice_filter_modal").close();
+    Helper.documentGetElementById("invoice_filter_modal").close();
   };
 
   const onClickOpenFilter = () => {
@@ -156,7 +157,7 @@ const MyInvoice = () => {
     setDateFromValue(dateFrom);
     setDateToValue(dateTo);
 
-    document.getElementById("invoice_filter_modal").showModal();
+    Helper.documentGetElementById("invoice_filter_modal").showModal();
   };
 
   const isFilter = () => {
