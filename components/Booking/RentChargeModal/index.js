@@ -8,13 +8,12 @@ const RentChargeModal = () => {
         Rent Charges Details
       </CustomText>
       <CustomText textClassName="disable-text font-size-xsmall text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
-        dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
-        pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
-        porttitor quis nisi. Phasellus sodales tincidunt lacus, nec dignissim
-        nulla blandit in. Donec vel turpis id augue dignissim hendrerit vitae eu
-        nulla.  Should you have any inquiries, please contact the owner or agent
-        before proceeding with your payment.
+        Rent Charges provide a premium, all-inclusive living experience for a
+        modest monthly fee. Covering maintenance, utilities, insurance,
+        appliance upkeep, and accidental event protection, these charges ensure
+        a hassle-free and comfortable stay. Enjoy seamless convenience with
+        essential services bundled into one simple payment, giving you peace of
+        mind and exceptional value.
       </CustomText>
     </CustomModal>
   );
