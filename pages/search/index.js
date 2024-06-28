@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -118,14 +118,16 @@ const Search = () => {
 
   useEffect(() => {
     const handleScroll = _.debounce(() => {
-      const currentPosition = window.scrollY;
+      const currentPosition = typeof window != "undefined" && window.scrollY;
       setScrollTop(currentPosition >= 187 ? 10 : 187 - currentPosition);
     }, 1);
 
-    window.addEventListener("scroll", handleScroll);
+    typeof window != "undefined" &&
+      window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      typeof window != "undefined" &&
+        window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
