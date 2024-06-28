@@ -18,9 +18,9 @@ function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("/explore");
+      router.replace("/my-stay");
     }, 1000);
-  });
+  },[]);
 
   return (
     <div
