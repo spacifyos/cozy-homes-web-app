@@ -572,7 +572,14 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           title: isEmpty(title) ? "Spacify Booking" : title,
           description: isEmpty(propertyName) ? "" : propertyName,
           images: isEmpty(imageUrl)
-            ? [Images.logoImage]
+            ? [
+                {
+                  url: Images.logoImage,
+                  width: 800,
+                  height: 600,
+                  alt: `Logo Image`,
+                },
+              ]
             : map(imageUrl, (item, index) => {
                 return {
                   url: item,
