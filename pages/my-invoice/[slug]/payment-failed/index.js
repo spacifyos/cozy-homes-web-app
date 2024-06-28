@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -18,6 +19,7 @@ const PaymentFailure = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
+      <NextSeo title="Invoice Payment Failed - Spacify Asia" />
       <CustomImage
         src={Images.cancelIcon}
         imageStyle={{ width: "20px" }}
@@ -44,7 +46,7 @@ const PaymentFailure = ({ id }) => {
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={"Back to invoice overview"}
+        buttonText={"Back to Home"}
         onClick={onClickBackToInvoiceOverview}
       />
     </div>

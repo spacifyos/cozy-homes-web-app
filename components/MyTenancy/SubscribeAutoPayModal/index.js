@@ -4,7 +4,7 @@ import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
-import { useState } from "react";
+import Helper from "@/src/utils/Helper";
 
 const SubscribeAutoPayModal = ({ t }) => {
   return (
@@ -72,7 +72,7 @@ const SubscribeAutoPayModal = ({ t }) => {
           buttonClassName=" default-btn-outline"
           buttonText={t("myTenancy.cancel")}
           onClick={() => {
-            document.getElementById("myTenancy_Subscribe_modal").close();
+            Helper.documentGetElementById("myTenancy_Subscribe_modal").close();
           }}
         />
         <CustomButton

@@ -35,7 +35,6 @@
 }
 
 .booking-select-container {
-  background-color: $primary-bg-color;
   width: 100%;
   border: 1px solid $disable-color;
   border-radius: 10px;
@@ -45,7 +44,7 @@
 }
 
 .booking-select {
-  background-color: $primary-bg-color;
+  background-color: transparent;
   width: 100%;
   border-radius: 10px;
   padding: 10px 0 10px 10px;

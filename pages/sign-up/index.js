@@ -11,6 +11,7 @@ import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Turnstile from "react-turnstile";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -108,6 +109,7 @@ const SignUp = () => {
 
   return (
     <CustomHeader hideGoBackButton>
+      <NextSeo title="Sign Up - Spacify Asia" />
       <div className="body-container py-4">
         <div className="py-6 mb-4">
           <CustomText

@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { get, isEmpty, map } from "lodash";
 import moment from "moment";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -58,6 +59,7 @@ const PaymentSuccessful = ({ id }) => {
 
   return (
     <div className="relative p-4 pt-10 bg-color flex flex-col items-center">
+      <NextSeo title="Invoice Payment Successful - Spacify Asia" />
       <CustomImage
         src={Images.cancelIcon}
         className="absolute right-5 top-5 cursor-pointer"

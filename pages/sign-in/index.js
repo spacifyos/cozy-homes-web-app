@@ -14,6 +14,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
 import { getUserPhoneNumber } from "@/src/selectors/auth";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -104,6 +105,7 @@ const SignIn = () => {
 
   return (
     <CustomHeader hideGoBackButton>
+      <NextSeo title="Sign In - Spacify Asia" />
       <div className="body-container pt-4 pb-24">
         <div className="py-6 mb-4">
           <CustomText

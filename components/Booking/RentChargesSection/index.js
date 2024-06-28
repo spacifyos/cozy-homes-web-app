@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
+import Helper from "@/src/utils/Helper";
 
 const RentChargesSection = ({
   openCharges,
@@ -76,7 +77,7 @@ const RentChargesSection = ({
               width={20}
               className="cursor-pointer"
               onClick={() =>
-                document.getElementById("rent_charges_details").showModal()
+                Helper.documentGetElementById("rent_charges_details").showModal()
               }
             />
             <CustomText

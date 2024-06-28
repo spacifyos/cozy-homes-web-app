@@ -2,9 +2,17 @@ import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import * as listingSelector from "@/src/selectors/listing";
+import { useEffect, useRef, useState } from "react";
 
 const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
-  const screenHeight = window.innerHeight;
+  const targetRef = useRef();
+  const [screenHeight, setScreenHeight] = useState(0);
+
+  useEffect(() => {
+    if (targetRef.current) {
+      setScreenHeight(window.innerHeight);
+    }
+  }, [targetRef]);
 
   return (
     <div
@@ -14,6 +22,7 @@ const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
         top: 10,
         borderRadius: "0 10px 10px 0",
       }}
+      ref={targetRef}
     >
       {loading ? (
         <div className="flex justify-center items-center">

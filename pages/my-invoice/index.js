@@ -14,6 +14,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import { NextSeo } from "next-seo";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -145,7 +147,7 @@ const MyInvoice = () => {
   };
 
   const handleCloseFilter = () => {
-    document.getElementById("invoice_filter_modal").close();
+    Helper.documentGetElementById("invoice_filter_modal").close();
   };
 
   const onClickOpenFilter = () => {
@@ -155,7 +157,7 @@ const MyInvoice = () => {
     setDateFromValue(dateFrom);
     setDateToValue(dateTo);
 
-    document.getElementById("invoice_filter_modal").showModal();
+    Helper.documentGetElementById("invoice_filter_modal").showModal();
   };
 
   const isFilter = () => {
@@ -173,6 +175,7 @@ const MyInvoice = () => {
       isFiltered={isFilter()}
       onClickRightButton={onClickOpenFilter}
     >
+      <NextSeo title="My Invoice - Spacify Asia" />
       <div className="body-container pb-1 flex flex-col flex-1">
         {invoiceSummaryDataLoading ? (
           <div

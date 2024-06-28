@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import Helper from "@/src/utils/Helper";
 
 const LoadingOverlay = ({ loading = false }) => {
-  const content = document.getElementById("root-body");
+  const content = Helper.documentGetElementById("root-body");
 
   useEffect(() => {
     if (content) {

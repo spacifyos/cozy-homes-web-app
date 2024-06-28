@@ -13,6 +13,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -87,6 +88,7 @@ function Home() {
       {/*  onClickOpenSwitcher={onClickOpenSwitcher}*/}
       {/*  onClickChangeLanguage={onClickChangeLanguage}*/}
       {/*/>*/}
+      <NextSeo title="Explore - Spacify Asia" />
 
       <BannerCarousel
         listingBannerData={listingBannerData}

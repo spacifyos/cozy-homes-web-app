@@ -23,11 +23,12 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
-import { getMoveInFees, getSquareFeet } from "@/src/selectors/listing";
+import Helper from "@/src/utils/Helper";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { NextSeo } from "next-seo";
 
 export async function getServerSideProps(context) {
   const id = _.get(context, ["params", "slug"], "");
@@ -145,12 +146,12 @@ const PropertyOverview = ({ id }) => {
   };
 
   const onClickOpenMoveInCostModal = () => {
-    document.getElementById("move_in_cost_modal").showModal();
+    Helper.documentGetElementById("move_in_cost_modal").showModal();
   };
 
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
-    document.getElementById("image_modal").showModal();
+    Helper.documentGetElementById("image_modal").showModal();
   };
 
   return (
@@ -164,6 +165,7 @@ const PropertyOverview = ({ id }) => {
       //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
       // }
     >
+      <NextSeo title="Property Overview - Spacify Asia" />
       <div className="body-container pb-32">
         <RoomPicCarousel
           imageUrl={imageUrl}

@@ -1,9 +1,6 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
-import CustomButton from "@/components/CustomButton";
 import CustomText from "@/components/CustomText";
+import Helper from "@/src/utils/Helper";
 
 const ImageModal = ({ data }) => {
   return (
@@ -29,7 +26,7 @@ const ImageModal = ({ data }) => {
       <div
         className="absolute top-1 right-1 z-10 w-10 h-10 flex items-center justify-center rounded cursor-pointer"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => document.getElementById("image_modal").close()}
+        onClick={() => Helper.documentGetElementById("image_modal").close()}
       >
         <CustomText textClassName="font-size-xxlarge white-text">X</CustomText>
       </div>

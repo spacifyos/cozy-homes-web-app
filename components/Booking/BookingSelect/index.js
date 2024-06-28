@@ -12,6 +12,7 @@ const BookingSelect = ({
   name,
   rightIcon = Images.downIcon,
   required,
+  bgColor = "bg-color",
   ...props
 }) => {
   return (
@@ -24,7 +25,9 @@ const BookingSelect = ({
         )}
         <CustomText textClassName="input-title">{title}</CustomText>
       </div>
-      <div className="booking-wrapper booking-select-container flex justify-between">
+      <div
+        className={`${bgColor} booking-select-container flex justify-between`}
+      >
         <select className="booking-select" name={name} title={title} {...props}>
           <option disabled value="">
             {placeholder}

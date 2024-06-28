@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import AuthManager from "@/src/utils/AuthManager";
 import * as authSelector from "@/src/selectors/auth";
-import { getIsAccountVerify, getUserToken } from "@/src/selectors/auth";
+import {NextSeo} from "next-seo";
 
 const OtpVerification = () => {
   const router = useRouter();
@@ -101,6 +101,7 @@ const OtpVerification = () => {
 
   return (
     <CustomHeader onClickGoBack={onClickGoBack}>
+      <NextSeo title="Otp Verify - Spacify Asia" />
       <div className="body-container py-4 flex flex-col items-center overflow-hidden">
         <CustomText
           textClassName="primary-text font-bold leading-10 pb-5 text-center"

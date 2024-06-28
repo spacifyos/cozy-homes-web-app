@@ -13,6 +13,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import MeterComponent from "@/components/MyMeter/MeterComponent";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -60,6 +61,7 @@ const MyMeter = () => {
       onClickGoBack={onClickGoBack}
       // rightButtonIcon={Images.filterProIcon}
     >
+      <NextSeo title="My Meter - Spacify Asia" />
       <div className="body-container flex flex-col gap-3 pb-4 flex-1">
         {isEmpty(meterListingData) ? (
           <div className="flex flex-col justify-center flex-1">
