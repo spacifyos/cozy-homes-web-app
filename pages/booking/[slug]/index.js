@@ -567,6 +567,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     >
       <NextSeo
         title="Booking Form - Spacify Asia"
+        canonical={`${process.env.DOMAIN}/booking/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/booking/${id}`,
           title: isEmpty(title) ? "Spacify Booking" : title,
@@ -588,7 +589,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                   alt: `image ${index + 1}`,
                 };
               }),
-          siteName: process.env.DOMAIN,
+          siteName: `${process.env.DOMAIN}/booking/${id}`,
         }}
       />
 
