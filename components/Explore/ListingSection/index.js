@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
-import _ from "lodash";
+import { isEmpty, map } from "lodash";
 import Skeleton from "@/components/Skeleton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -29,25 +29,25 @@ const ListingSection = ({
 
       {/*<CustomButton*/}
       {/*  buttonText="City"*/}
-      {/*  buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "City") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "City") ? "primary-btn" : "default-btn"} mr-2`}*/}
       {/*  textClassName="font-size-xsmall"*/}
       {/*  onClick={() => onClickSelectCategory("City")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="College"*/}
-      {/*  buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "College") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "College") ? "primary-btn" : "default-btn"} mr-2`}*/}
       {/*  textClassName="font-size-xsmall"*/}
       {/*  onClick={() => onClickSelectCategory("College")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="Condominium"*/}
-      {/*  buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "Condominium") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "Condominium") ? "primary-btn" : "default-btn"} mr-2`}*/}
       {/*  textClassName="font-size-xsmall"*/}
       {/*  onClick={() => onClickSelectCategory("Condominium")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="All"*/}
-      {/*  buttonClassName={`btn-sm ${_.isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
       {/*  textClassName="font-size-xsmall"*/}
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
@@ -55,12 +55,14 @@ const ListingSection = ({
       <div className="gap-1">
         {listingLoading ? (
           <div className="flex">
-            {_.map(Array(4), (item, index) => (
+            {map(Array(4), (item, index) => (
               <Skeleton width={105} height={105} key={index} />
             ))}
           </div>
-        ) : _.isEmpty(lists) ? (
-          <CustomEmptyBox emptyTitle="Property not available now." />
+        ) : isEmpty(lists) ? (
+          <div className="flex justify-center" style={{ height: 140 }}>
+            <CustomEmptyBox emptyTitle="Property not available now." />
+          </div>
         ) : (
           <Swiper
             style={{ width: "100%" }}
@@ -75,7 +77,7 @@ const ListingSection = ({
             modules={[Pagination, Navigation]}
             className="mySwiper explore-swiper"
           >
-            {_.map(lists, (item, index) => {
+            {map(lists, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <ListingCardComponent

@@ -6,7 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
 import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
-import _, { isEmpty, map } from "lodash";
+import { isEmpty, get, isEqual } from "lodash";
 import "react-multi-carousel/lib/styles.css";
 import "@/styles/globals.scss";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
@@ -20,7 +20,6 @@ import "swiper/css/navigation";
 import * as commonAction from "@/src/actions/common";
 import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
 
@@ -37,7 +36,7 @@ function MyApp({ Component, pageProps }) {
 function AppContent({ Component, pageProps }) {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const routeName = _.get(router, ["route"], "");
+  const routeName = get(router, ["route"], "");
   const dispatch = useDispatch();
 
   const getSelectOptionRequest = () =>
@@ -50,7 +49,7 @@ function AppContent({ Component, pageProps }) {
   );
 
   useEffect(() => {
-    if (_.isEmpty(selectOptionData)) {
+    if (isEmpty(selectOptionData)) {
       getSelectOptionRequest();
     }
   }, []);
@@ -58,6 +57,25 @@ function AppContent({ Component, pageProps }) {
   const onClickChangeTab = (route) => {
     router.push(route);
   };
+
+  typeof window !== "undefined" &&
+    document.addEventListener("gesturestart", function (e) {
+      e.preventDefault();
+      document.body.style.zoom = 0.99;
+    });
+
+  typeof window !== "undefined" &&
+    document.addEventListener("gesturechange", function (e) {
+      e.preventDefault();
+
+      document.body.style.zoom = 0.99;
+    });
+
+  typeof window !== "undefined" &&
+    document.addEventListener("gestureend", function (e) {
+      e.preventDefault();
+      document.body.style.zoom = 1;
+    });
 
   return (
     <div
@@ -91,14 +109,12 @@ function AppContent({ Component, pageProps }) {
       >
         <Toaster />
 
-        <LoadingOverlay loading={selectOptionDataLoading} />
-
         <Component {...pageProps} />
 
-        {_.isEqual(routeName, "/explore") ||
-        _.isEqual(routeName, "/my-stay") ||
-        _.isEqual(routeName, "/account") ||
-        _.isEqual(routeName, "/sign-in") ? (
+        {isEqual(routeName, "/explore") ||
+        isEqual(routeName, "/my-stay") ||
+        isEqual(routeName, "/account") ||
+        isEqual(routeName, "/sign-in") ? (
           <BottomNavigate
             t={t}
             routeName={routeName}
