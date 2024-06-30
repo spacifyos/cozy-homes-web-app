@@ -388,15 +388,16 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       .get("/gallery")
       .then((res) => {
         const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
 
         Toast.success("Get gallery link success.");
-        getGalleryLinkSuccess(url, image, type);
+        getGalleryLinkSuccess(url, image, type, path);
       })
       .catch((err) => Toast.error("Get gallery link failure."))
       .finally(() => setGetGalleryLinkLoading(false));
   };
 
-  const getGalleryLinkSuccess = (url, image, type) => {
+  const getGalleryLinkSuccess = (url, image, type, path) => {
     if (isEqual(type, "front")) {
       setFrontIcUploading(true);
     } else {
@@ -407,7 +408,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       .put(url, image)
       .then((result) => {
         Toast.success("Image upload success.");
-        convertToBase64(type, image, url);
+        convertToBase64(type, image, path);
       })
       .catch((err) => Toast.error("Image upload failure."))
       .then(() => {
@@ -443,7 +444,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     checkImageSize(image, "back");
   };
 
-  const convertToBase64 = (type, image, url) => {
+  const convertToBase64 = (type, image, path) => {
     const name = get(image, ["name"], "");
     const extension = split(name, ".");
     const mimeType = get(image, ["type"], "");
@@ -459,7 +460,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               name: name,
               extension: extension[1],
               mime_type: mimeType,
-              path: url,
+              path: path,
             },
           ]);
         } else {
@@ -470,7 +471,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               name: name,
               extension: extension[1],
               mime_type: mimeType,
-              path: url,
+              path: path,
             },
           ]);
         }
