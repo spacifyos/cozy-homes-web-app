@@ -34,7 +34,7 @@ const FilterModal = ({
     >
       <div
         className="bg-color px-6 pb-6 rounded-t-2xl"
-        style={{ maxWidth: 500, width: 500 }}
+        style={{ maxWidth: 500, width: "100%" }}
       >
         <div className="divider divider-custom justify-center"></div>
         <div className="flex justify-between items-end pb-4">
