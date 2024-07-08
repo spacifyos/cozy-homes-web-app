@@ -168,7 +168,7 @@ const Account = () => {
           </div>
 
           <CustomText textClassName="disable-text font-size-small">
-            {t("account.version")} 1.0.0
+            {t("account.version")} 1.0.1
           </CustomText>
         </div>
 
