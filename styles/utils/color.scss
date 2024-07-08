@@ -1,4 +1,4 @@
-$primary-color: #f65626;
+$primary-color: #d71440;
 $secondary-color: #fff4e0;
 $primary-bg-color: #f5f8fd;
 $primary-black-color: #000000;
@@ -10,6 +10,12 @@ $tertiary-bg-color: #0379b7;
 
 $pending-color: #ff8a00;
 $completed-color: #03b78c;
+
+$owner-color: linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%);
+
+.owner-bg-color {
+  background: $owner-color !important;
+}
 
 .primaryWhite-bg-color {
   background-color: $primary-white-color;

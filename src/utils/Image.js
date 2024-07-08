@@ -165,6 +165,7 @@ const Image = {
   refreshIconActive: "/images/icon/refresh_icon_active.png",
   adminIcon: "/images/icon/admin_icon.png",
   profilePic: "/images/profile.png",
+  blackLogo: "/images/black_logo.png",
 };
 
 export default { ...Image };
