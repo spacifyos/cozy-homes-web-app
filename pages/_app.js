@@ -37,6 +37,7 @@ function AppContent({ Component, pageProps }) {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
   const dispatch = useDispatch();
 
   const getSelectOptionRequest = () =>
@@ -118,6 +119,7 @@ function AppContent({ Component, pageProps }) {
           <BottomNavigate
             t={t}
             routeName={routeName}
+            routeQuery={routeQuery}
             onClickChangeTab={onClickChangeTab}
           />
         ) : (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthManager from "@/src/utils/AuthManager";
-import { isEmpty } from "lodash";
+import { get, isEmpty, replace } from "lodash";
 import Toast from "@/src/utils/Toast";
 
 function AuthWrapper(WrappedComponent) {
@@ -9,6 +9,7 @@ function AuthWrapper(WrappedComponent) {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const pathname = get(router, ["pathname"], "");
 
     useEffect(() => {
       const checkAuthentication = async () => {
@@ -35,6 +36,7 @@ function AuthWrapper(WrappedComponent) {
 
       router.push({
         pathname: "/sign-in",
+        query: { tab: replace(pathname, "/", "") },
       });
       return null;
     }

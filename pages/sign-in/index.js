@@ -4,16 +4,14 @@ import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import { useEffect, useState } from "react";
-import _ from "lodash";
+import { useState } from "react";
+import { get, isEmpty, map } from "lodash";
 import Constant from "@/src/utils/Constant";
-import { useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
-import { getUserPhoneNumber } from "@/src/selectors/auth";
 import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
@@ -21,6 +19,7 @@ export { getServerSideProps };
 const SignIn = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const routeQuery = get(router, ["query"], null);
 
   const [signInLoading, setSignInLoading] = useState(false);
 
@@ -43,12 +42,12 @@ const SignIn = () => {
   };
 
   const onClickToLogin = async () => {
-    if (_.isEmpty(phoneNumber)) {
+    if (isEmpty(phoneNumber)) {
       Toast.error("Phone number is required.");
       return;
     }
 
-    if (_.isEmpty(password)) {
+    if (isEmpty(password)) {
       Toast.error("Password is required.");
       return;
     }
@@ -68,10 +67,21 @@ const SignIn = () => {
     const isUserVerify = authSelector.getUserVerify(res);
     const userPhoneNumber = authSelector.getUserPhoneNumber(res);
 
-    if (!_.isEmpty(authToken) && isUserVerify) {
+    if (!isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
 
-      router.push("/my-stay");
+      if (!isEmpty(routeQuery)) {
+        const tab = get(routeQuery, ["tab"], "");
+
+        switch (tab) {
+          case "my-stay":
+            return router.push("/my-stay");
+          case "account":
+            return router.push("/account");
+          default:
+            return router.push("/my-stay");
+        }
+      }
     } else {
       router.push({
         pathname: "/otp-verification",
@@ -148,12 +158,12 @@ const SignIn = () => {
 
             {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
             {/*  <CustomButton*/}
-            {/*    buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
             {/*    buttonText={t("signIn.tenant")}*/}
             {/*    onClick={() => setSelectedRole("tenant")}*/}
             {/*  />*/}
             {/*  <CustomButton*/}
-            {/*    buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
             {/*    buttonText={t("signIn.owner")}*/}
             {/*    onClick={() => setSelectedRole("owner")}*/}
             {/*  />*/}
@@ -170,9 +180,9 @@ const SignIn = () => {
                 value={phonePrefix}
                 onChange={onChangePhonePrefix}
               >
-                {_.map(Constant.PHONE_PREFIX, (list) => {
-                  const name = _.get(list, ["name"], "");
-                  const value = _.get(list, ["value"], "");
+                {map(Constant.PHONE_PREFIX, (list) => {
+                  const name = get(list, ["name"], "");
+                  const value = get(list, ["value"], "");
 
                   return (
                     <option key={value} value={value}>
