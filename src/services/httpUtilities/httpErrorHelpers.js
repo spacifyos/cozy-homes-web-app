@@ -1,7 +1,8 @@
 import Toast from "@/src/utils/Toast";
 import _ from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import Router from "next/router"; // Import the Router from next/router
+import Router from "next/router";
+import AuthManager from "@/src/utils/AuthManager"; // Import the Router from next/router
 
 function* httpErrorHelpers(
   error,
@@ -57,7 +58,7 @@ function* handleApiResponseError(
   const statusCode = _.get(response, "status", null);
 
   if (statusCode === 401) {
-    Router.replace("/sign-in");
+    AuthManager.removeToken().then(() => Router.replace("/sign-in"));
   }
 
   if (statusCode === 403) {

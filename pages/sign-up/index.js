@@ -4,14 +4,20 @@ import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import Toast from "@/src/utils/Toast";
 import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import Turnstile from "react-turnstile";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
+import {
+  DEFAULT_ONLOAD_NAME,
+  DEFAULT_SCRIPT_ID,
+  SCRIPT_URL,
+  Turnstile,
+} from "@marsidev/react-turnstile";
+import Script from "next/script";
 
 export { getServerSideProps };
 
@@ -19,6 +25,7 @@ const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const roleType = _.get(router, ["query", "type"], "tenant");
+  const ref = useRef();
 
   const [signUpLoading, setSignUpLoading] = useState(false);
 
@@ -206,11 +213,25 @@ const SignUp = () => {
             />
 
             <div className="mb-4">
-              <Turnstile
-                theme="light"
-                sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
-                onVerify={(token) => setRecaptchaToken(token)}
+              <Script
+                id={DEFAULT_SCRIPT_ID}
+                src={SCRIPT_URL}
+                strategy="beforeInteractive"
               />
+
+              <Turnstile
+                siteKey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
+                ref={ref}
+                options={{ refreshExpired: "manual", theme: "light" }}
+                onExpire={() => ref.current?.reset()}
+                onError={(err) => console.error(err)}
+                onSuccess={(token) => setRecaptchaToken(token)}
+              />
+              {/*<Turnstile*/}
+              {/*  theme="light"*/}
+              {/*  sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}*/}
+              {/*  onVerify={(token) => setRecaptchaToken(token)}*/}
+              {/*/>*/}
             </div>
 
             <div className="flex justify-center mb-8">
