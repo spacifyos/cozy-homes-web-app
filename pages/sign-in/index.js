@@ -70,17 +70,15 @@ const SignIn = () => {
     if (!isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
 
-      if (!isEmpty(routeQuery)) {
-        const tab = get(routeQuery, ["tab"], "");
+      const tab = get(routeQuery, ["tab"], "");
 
-        switch (tab) {
-          case "my-stay":
-            return router.push("/my-stay");
-          case "account":
-            return router.push("/account");
-          default:
-            return router.push("/my-stay");
-        }
+      switch (tab) {
+        case "my-stay":
+          return router.push("/my-stay");
+        case "account":
+          return router.push("/account");
+        default:
+          return router.push("/my-stay");
       }
     } else {
       router.push({
