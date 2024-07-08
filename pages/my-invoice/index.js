@@ -67,6 +67,7 @@ const MyInvoice = () => {
   const [dateFromValue, setDateFromValue] = useState("");
   const [dateToValue, setDateToValue] = useState("");
   const [invoiceNumberValue, setInvoiceNumberValue] = useState("");
+  const [isOpenFilterModal, setIsOpenFilterModal] = useState(true);
 
   const hasMorePage = invoiceSelector.getHasMorePages(invoiceListingPagination);
   const lastPage = invoiceSelector.getLastPage(invoiceListingPagination);
@@ -147,7 +148,8 @@ const MyInvoice = () => {
   };
 
   const handleCloseFilter = () => {
-    Helper.documentGetElementById("invoice_filter_modal").close();
+    setIsOpenFilterModal(false);
+    // Helper.documentGetElementById("invoice_filter_modal").close();
   };
 
   const onClickOpenFilter = () => {
@@ -157,7 +159,8 @@ const MyInvoice = () => {
     setDateFromValue(dateFrom);
     setDateToValue(dateTo);
 
-    Helper.documentGetElementById("invoice_filter_modal").showModal();
+    setIsOpenFilterModal(true);
+    // Helper.documentGetElementById("invoice_filter_modal").showModal();
   };
 
   const isFilter = () => {
@@ -240,6 +243,7 @@ const MyInvoice = () => {
           onClickCancel={onClickCancel}
           onClickSubmit={onClickSubmit}
           onClickReset={onClickReset}
+          isOpenFilterModal={isOpenFilterModal}
         />
 
         <LoadingOverlay
