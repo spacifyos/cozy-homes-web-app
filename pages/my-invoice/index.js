@@ -67,7 +67,7 @@ const MyInvoice = () => {
   const [dateFromValue, setDateFromValue] = useState("");
   const [dateToValue, setDateToValue] = useState("");
   const [invoiceNumberValue, setInvoiceNumberValue] = useState("");
-  const [isOpenFilterModal, setIsOpenFilterModal] = useState(true);
+  const [isOpenFilterModal, setIsOpenFilterModal] = useState(false);
 
   const hasMorePage = invoiceSelector.getHasMorePages(invoiceListingPagination);
   const lastPage = invoiceSelector.getLastPage(invoiceListingPagination);
