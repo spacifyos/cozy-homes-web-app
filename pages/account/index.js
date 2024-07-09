@@ -15,7 +15,7 @@ import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import _ from "lodash";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -73,6 +73,10 @@ const Account = () => {
 
   const onClickToInvoice = () => {
     router.push("/my-invoice");
+  };
+
+  const onClickToTnC = () => {
+    window.open("https://tms.spacify.asia/privacy-policy");
   };
 
   return (
@@ -142,6 +146,7 @@ const Account = () => {
         <FeatureComponent
           title={t("account.termAndCondition")}
           icon={Images.primaryTermAndConditionIcon}
+          onClick={onClickToTnC}
         />
 
         <div className="divider-line"></div>
@@ -163,7 +168,7 @@ const Account = () => {
           </div>
 
           <CustomText textClassName="disable-text font-size-small">
-            {t("account.version")} 1.0.0
+            {t("account.version")} 1.0.1
           </CustomText>
         </div>
 

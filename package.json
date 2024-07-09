@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ashwinthomas/react-time-picker-dropdown": "^1.0.5",
+    "@marsidev/react-turnstile": "^0.7.1",
     "@sentry/nextjs": "^8",
     "antd-mobile": "^5.35.0",
     "axios": "^1.6.7",

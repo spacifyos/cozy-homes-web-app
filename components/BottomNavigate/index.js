@@ -1,11 +1,10 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
-import { useRouter } from "next/router";
+import { get, includes, isEmpty, isEqual, map } from "lodash";
 
-const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
-
+const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
+  const tab = get(routeQuery, ["tab"], "");
 
   const lists = [
     {
@@ -28,16 +27,20 @@ const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
     },
   ];
   return (
-    <div id="bottom_navbar" className="fixed bottom-0 w-full z-10" style={{ maxWidth: 500 }}>
+    <div
+      id="bottom_navbar"
+      className="fixed bottom-0 w-full z-10"
+      style={{ maxWidth: 500 }}
+    >
       <div
         className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
         style={{ margin: 10 }}
       >
-        {_.map(lists, (item, index) => {
-          const name = _.get(item, ["name"], "");
-          const value = _.get(item, ["value"], "");
-          const icon = _.get(item, ["icon"], "");
-          const activeIcon = _.get(item, ["activeIcon"], "");
+        {map(lists, (item, index) => {
+          const name = get(item, ["name"], "");
+          const value = get(item, ["value"], "");
+          const icon = get(item, ["icon"], "");
+          const activeIcon = get(item, ["activeIcon"], "");
 
           return (
             <div
@@ -46,12 +49,22 @@ const BottomNavigate = ({ routeName, onClickChangeTab,t }) => {
               className="flex flex-col justify-center items-center cursor-pointer"
             >
               <CustomImage
-                src={_.isEqual(value, routeName) ? activeIcon : icon}
+                src={
+                  isEqual(value, routeName) ||
+                  (!isEmpty(tab) && includes(value, tab))
+                    ? activeIcon
+                    : icon
+                }
                 width={25}
                 height={25}
               />
               <CustomText
-                textClassName={`${_.isEqual(value, routeName) ? "primary-text" : "disable-text"} font-size-small pt-1`}
+                textClassName={`${
+                  isEqual(value, routeName) ||
+                  (!isEmpty(tab) && includes(value, tab))
+                    ? "primary-text"
+                    : "disable-text"
+                } font-size-small pt-1`}
               >
                 {name}
               </CustomText>
