@@ -14,7 +14,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
       activeIcon: Images.searchIconActive,
     },
     {
-      name: t("root.myStay"),
+      name: "My Property",
       value: "/my-stay",
       icon: Images.homeIcon,
       activeIcon: Images.homeIconActive,

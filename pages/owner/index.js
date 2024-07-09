@@ -1,11 +1,32 @@
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
+import UserDetailComponent from "@/components/Owner/UserDetailComponent";
+import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
+import PropertyCarouselComponent from "@/components/Owner/PropertyCarouselComponent";
+import AuthWrapper from "@/components/AuthWrapper";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
+import { useRouter } from "next/router";
+
+export { getServerSideProps };
 
 const OwnerHome = () => {
+  const router = useRouter();
+  const name = "";
+  const email = "";
+  const phoneNumber = "";
+
+  const onClickToPropertyDetail = (id = 1) => {
+    router.push({
+      pathname: `/owner/property/${id}`,
+    });
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container py-9">
+      <div className="body-container pt-10 pb-12">
         <div className="flex items-center">
           <CustomText textClassName="white-text font-bold font-size-large">
             Welcome to{" "}
@@ -22,15 +43,23 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <div className="px-4 absolute top-20 w-full">
-        <div className="p-2 relative w-full primaryWhite-bg-color global-border-radius global-box-shadow z-10">
-          <CustomImage src={Images.userIcon} />
-        </div>
-      </div>
+      <UserDetailComponent
+        email={email}
+        name={name}
+        phoneNumber={phoneNumber}
+      />
 
-      <div className="body-container primaryWhite-bg-color flex-1"></div>
+      <div className="body-container primaryWhite-bg-color flex-1 pb-24">
+        <PropertyInfoComponent />
+
+        <PropertyCarouselComponent
+          onClickToPropertyDetail={onClickToPropertyDetail}
+        />
+
+        <RentalIncomeComponent />
+      </div>
     </div>
   );
 };
 
-export default OwnerHome;
+export default withTranslation("common")(AuthWrapper(OwnerHome));

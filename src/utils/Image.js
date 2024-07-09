@@ -166,6 +166,13 @@ const Image = {
   adminIcon: "/images/icon/admin_icon.png",
   profilePic: "/images/profile.png",
   blackLogo: "/images/black_logo.png",
+  percentIconActive: "/images/icon/percent_icon_active.png",
+  bedIconActive: "/images/icon/bed_icon_active.png",
+  defaultOwnerPortalImage: "/images/default_owner_property_image.png",
+  rentalInIcon: "/images/icon/rental_in.png",
+  rentalOutIcon: "/images/icon/rental_out.png",
+  withdrawIcon: "/images/icon/withdraw.png",
+  leftIconWhite: "/images/icon/left_icon_white.png",
 };
 
 export default { ...Image };

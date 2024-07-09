@@ -53,6 +53,10 @@ $owner-color: linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%);
   background-color: $completed-color;
 }
 
+.available-bg-color {
+  background-color: $power-on-color;
+}
+
 .error-bg-color {
   background-color: $error-color;
 }
