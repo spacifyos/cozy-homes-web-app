@@ -20,7 +20,7 @@ const ProfileCard = ({ onClickToEditProfile, data }) => {
       />
 
       <CustomImage
-        src={Images.profilePic}
+        src={Images.userIcon}
         height={46}
         width={46}
         className="rounded-2xl"

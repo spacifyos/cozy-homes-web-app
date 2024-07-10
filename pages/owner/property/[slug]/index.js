@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
 import PropertyCarouselComponent from "@/components/Owner/PropertyCarouselComponent";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -36,7 +37,7 @@ const PropertyDetail = () => {
               textClassName={"font-bold white-text"}
               styles={{ fontSize: 18 }}
             >
-              My Property
+              My Wallet
             </CustomText>
           </div>
 
@@ -61,15 +62,10 @@ const PropertyDetail = () => {
       </div>
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-4">
-        <PropertyCarouselComponent
-          onClickToPropertyDetail={() => {}}
-          showLabel
-        />
 
-        <SpaceDetailComponent />
       </div>
     </div>
   );
 };
 
-export default PropertyDetail;
+export default withTranslation("common")(AuthWrapper(PropertyDetail));

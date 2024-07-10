@@ -291,11 +291,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       );
     }
 
-    // if (isEmpty(currentForm.is_pay_partial.value)) {
-    //   return Toast.error(
-    //     "Please select total move-in cost is pay in full or partial",
-    //   );
-    // }
+    if (isEmpty(currentForm.is_pay_partial.value)) {
+      return Toast.error(
+        "Please select total move-in cost is pay in full or partial",
+      );
+    }
 
     if (!isReadAgree) {
       return Toast.error("Please read understand and agree.");

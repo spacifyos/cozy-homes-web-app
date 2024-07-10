@@ -151,8 +151,7 @@ const RentChargesSection = ({
             type="radio"
             name="is_pay_partial"
             value="full"
-            checked
-            onChange={() => console.log()}
+            onClick={(e) => console.log(e.target.value)}
             className="radio booking-radio mr-2"
           />
           <CustomText>Pay in Full</CustomText>
@@ -161,19 +160,20 @@ const RentChargesSection = ({
         <CustomText>RM{totalMoveInCost}</CustomText>
       </div>
 
-      {/*<div className="flex justify-between items-center pt-2">*/}
-      {/*  <div className="flex items-center">*/}
-      {/*    <input*/}
-      {/*      type="radio"*/}
-      {/*      name="is_pay_partial"*/}
-      {/*      value="partial"*/}
-      {/*      className="radio booking-radio mr-2"*/}
-      {/*    />*/}
-      {/*    <CustomText>Pay in Partial</CustomText>*/}
-      {/*  </div>*/}
+      <div className="flex justify-between items-center pt-2">
+        <div className="flex items-center">
+          <input
+            type="radio"
+            name="is_pay_partial"
+            value="partial"
+            onClick={(e) => console.log(e.target.value)}
+            className="radio booking-radio mr-2"
+          />
+          <CustomText>Pay in Partial</CustomText>
+        </div>
 
-      {/*  <CustomText>RM1,328.00</CustomText>*/}
-      {/*</div>*/}
+        <CustomText>RM1,328.00</CustomText>
+      </div>
     </div>
   );
 };
