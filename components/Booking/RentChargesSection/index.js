@@ -10,11 +10,14 @@ const RentChargesSection = ({
   onClickOpenCharges,
   moveInFees,
   title,
+  onClickSelectPaymentAmount,
 }) => {
   const feesLists = listingSelector.getFeesItemOthers(moveInFees);
   const rentChargesLists = listingSelector.getFeesItemRentCharges(moveInFees);
   const rentCharges = listingSelector.getTotalCostRentCharges(moveInFees);
-  const totalMoveInCost = listingSelector.getTotalCostFull(moveInFees);
+  const totalMoveInCostFull = listingSelector.getTotalCostFull(moveInFees);
+  const totalMoveInCostPartial =
+    listingSelector.getTotalCostPartial(moveInFees);
 
   return (
     <div
@@ -77,7 +80,9 @@ const RentChargesSection = ({
               width={20}
               className="cursor-pointer"
               onClick={() =>
-                Helper.documentGetElementById("rent_charges_details").showModal()
+                Helper.documentGetElementById(
+                  "rent_charges_details",
+                ).showModal()
               }
             />
             <CustomText
@@ -141,7 +146,7 @@ const RentChargesSection = ({
           Total Move-in Cost
         </CustomText>
         <CustomText textClassName="primary-text font-bold">
-          RM{totalMoveInCost}
+          RM{totalMoveInCostFull}
         </CustomText>
       </div>
 
@@ -150,30 +155,30 @@ const RentChargesSection = ({
           <input
             type="radio"
             name="is_pay_partial"
-            value="full"
-            checked
-            onChange={() => console.log()}
+            value="false"
+            onClick={onClickSelectPaymentAmount}
             className="radio booking-radio mr-2"
           />
           <CustomText>Pay in Full</CustomText>
         </div>
 
-        <CustomText>RM{totalMoveInCost}</CustomText>
+        <CustomText>RM{totalMoveInCostFull}</CustomText>
       </div>
 
-      {/*<div className="flex justify-between items-center pt-2">*/}
-      {/*  <div className="flex items-center">*/}
-      {/*    <input*/}
-      {/*      type="radio"*/}
-      {/*      name="is_pay_partial"*/}
-      {/*      value="partial"*/}
-      {/*      className="radio booking-radio mr-2"*/}
-      {/*    />*/}
-      {/*    <CustomText>Pay in Partial</CustomText>*/}
-      {/*  </div>*/}
+      <div className="flex justify-between items-center pt-2">
+        <div className="flex items-center">
+          <input
+            type="radio"
+            name="is_pay_partial"
+            value="true"
+            onClick={onClickSelectPaymentAmount}
+            className="radio booking-radio mr-2"
+          />
+          <CustomText>Pay in Partial</CustomText>
+        </div>
 
-      {/*  <CustomText>RM1,328.00</CustomText>*/}
-      {/*</div>*/}
+        <CustomText>RM{totalMoveInCostPartial}</CustomText>
+      </div>
     </div>
   );
 };

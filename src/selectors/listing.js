@@ -87,6 +87,8 @@ export const getTotalCostRentCharges = (state) =>
   _.get(state, ["total_cost", "rent_charges"], "");
 export const getTotalCostFull = (state) =>
   _.get(state, ["total_cost", "full"], "");
+export const getTotalCostPartial = (state) =>
+    _.get(state, ["total_cost", "partial"], "");
 export const getFeesTotalCostFull = (state) =>
   _.get(state, ["move_in_fees", "total_cost", "full"], "");
 export const getTenureOption = (state) => _.get(state, ["tenure_options"], []);
