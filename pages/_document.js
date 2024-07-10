@@ -20,6 +20,8 @@ export default function Document() {
         <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" sizes="16x16" href="/favicon-16x16.png" />
 
+        <link rel="manifest" href="/manifest.json" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link
