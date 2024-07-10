@@ -49,11 +49,14 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
         <div className="collapse-content p-0">
           <div className="flex items-center pt-1">
             <CustomImage
+              className="cursor-pointer"
               src={Images.infoIcon}
               height={20}
               width={20}
               onClick={() =>
-                Helper.documentGetElementById("rent_charges_details").showModal()
+                Helper.documentGetElementById(
+                  "rent_charges_details",
+                ).showModal()
               }
             />
             <CustomText
