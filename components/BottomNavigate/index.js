@@ -2,30 +2,43 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { get, includes, isEmpty, isEqual, map } from "lodash";
+import AuthManager from "@/src/utils/AuthManager";
+import { useEffect, useState } from "react";
 
 const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
+  const [lists, setLists] = useState([]);
+
+  useEffect(() => {
+    const checkUserType = async () => {
+      const userType = await AuthManager.retrieveType();
+
+      setLists([
+        {
+          name: t("root.explore"),
+          value: "/explore",
+          icon: Images.searchIcon,
+          activeIcon: Images.searchIconActive,
+        },
+        {
+          name: "My Property",
+          value: isEqual(userType, "tenant") ? "/my-stay" : "/owner",
+          icon: Images.homeIcon,
+          activeIcon: Images.homeIconActive,
+        },
+        {
+          name: t("root.account"),
+          value: "/account",
+          icon: Images.accountIcon,
+          activeIcon: Images.accountIconActive,
+        },
+      ]);
+    };
+
+    checkUserType();
+  }, []);
+
   const tab = get(routeQuery, ["tab"], "");
 
-  const lists = [
-    {
-      name: t("root.explore"),
-      value: "/explore",
-      icon: Images.searchIcon,
-      activeIcon: Images.searchIconActive,
-    },
-    {
-      name: "My Property",
-      value: "/my-stay",
-      icon: Images.homeIcon,
-      activeIcon: Images.homeIconActive,
-    },
-    {
-      name: t("root.account"),
-      value: "/account",
-      icon: Images.accountIcon,
-      activeIcon: Images.accountIconActive,
-    },
-  ];
   return (
     <div
       id="bottom_navbar"
@@ -52,7 +65,8 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
                 src={
                   isEqual(value, routeName) ||
                   (!isEmpty(tab) && includes(value, tab))
-                    ? activeIcon
+                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                      activeIcon
                     : icon
                 }
                 width={25}
@@ -62,7 +76,8 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
                 textClassName={`${
                   isEqual(value, routeName) ||
                   (!isEmpty(tab) && includes(value, tab))
-                    ? "primary-text"
+                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                      "primary-text"
                     : "disable-text"
                 } font-size-small pt-1`}
               >

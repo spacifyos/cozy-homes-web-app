@@ -4,8 +4,8 @@ import AuthManager from "@/src/utils/AuthManager";
 import { get, isEmpty, isEqual, replace } from "lodash";
 import Toast from "@/src/utils/Toast";
 
-function AuthWrapper(WrappedComponent) {
-  const AuthWrapper = (props) => {
+function OwnerAuthWrapper(WrappedComponent) {
+  const OwnerAuthWrapper = (props) => {
     const router = useRouter();
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ function AuthWrapper(WrappedComponent) {
         const token = await AuthManager.retrieveToken();
         const type = await AuthManager.retrieveType();
 
-        if (!isEmpty(token) && !isEmpty(type) && isEqual(type, "tenant")) {
+        if (!isEmpty(token) && !isEmpty(type) && isEqual(type, "owner")) {
           setIsAuthenticated(true);
         }
         setIsLoading(false);
@@ -46,7 +46,7 @@ function AuthWrapper(WrappedComponent) {
     return <WrappedComponent {...props} />;
   };
 
-  return AuthWrapper;
+  return OwnerAuthWrapper;
 }
 
-export default AuthWrapper;
+export default OwnerAuthWrapper;

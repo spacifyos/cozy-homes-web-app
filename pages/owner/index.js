@@ -4,11 +4,11 @@ import CustomText from "@/components/CustomText";
 import UserDetailComponent from "@/components/Owner/UserDetailComponent";
 import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
 import PropertyCarouselComponent from "@/components/Owner/PropertyCarouselComponent";
-import AuthWrapper from "@/components/AuthWrapper";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import { useRouter } from "next/router";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 
 export { getServerSideProps };
 
@@ -62,4 +62,4 @@ const OwnerHome = () => {
   );
 };
 
-export default withTranslation("common")(AuthWrapper(OwnerHome));
+export default withTranslation("common")(OwnerAuthWrapper(OwnerHome));

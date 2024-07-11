@@ -79,7 +79,8 @@ function* signOutAccountRequest() {
 // }
 //
 function* clearAccessToken() {
-  AuthManager.removeToken().then(() => Router.replace("/sign-in"));
+  AuthManager.removeLoginType();
+  AuthManager.removeToken().then(() => Router.replace("/sign-in?tab=my-stay"));
 }
 
 //

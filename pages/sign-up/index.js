@@ -5,7 +5,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import Toast from "@/src/utils/Toast";
 import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
@@ -24,11 +24,11 @@ export { getServerSideProps };
 const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const roleType = _.get(router, ["query", "type"], "tenant");
   const ref = useRef();
 
   const [signUpLoading, setSignUpLoading] = useState(false);
 
+  const [selectedRole, setSelectedRole] = useState("tenant");
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("+60");
@@ -62,7 +62,7 @@ const SignUp = () => {
     }
 
     const postData = {
-      type: roleType,
+      type: selectedRole,
       name: nameValue,
       phone_prefix: countryCode,
       phone_suffix: phoneValue,
@@ -110,7 +110,7 @@ const SignUp = () => {
   const signUpSuccessCallback = () => {
     router.push({
       pathname: "/otp-verification",
-      query: { phoneNumber: countryCode + phoneValue, type: "tenant" },
+      query: { phoneNumber: countryCode + phoneValue, type: selectedRole },
     });
   };
 
@@ -150,9 +150,26 @@ const SignUp = () => {
             </CustomText>
           </div>
           <div
-            className="p-3 global-box-shadow primaryWhite-bg-color py-10"
+            className="p-3 global-box-shadow primaryWhite-bg-color py-5"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
+            <CustomText textClassName="pb-4 font-bold font-size-large">
+              Sign up with ...
+            </CustomText>
+
+            <div className="grid grid-cols-2 gap-2 mb-8">
+              <CustomButton
+                buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
+                buttonText={t("signIn.tenant")}
+                onClick={() => setSelectedRole("tenant")}
+              />
+              <CustomButton
+                buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
+                buttonText={t("signIn.owner")}
+                onClick={() => setSelectedRole("owner")}
+              />
+            </div>
+
             <input
               type="text"
               placeholder={t("signUp.yourName")}
