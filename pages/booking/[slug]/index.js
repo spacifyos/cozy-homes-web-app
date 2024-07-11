@@ -7,7 +7,7 @@ import CustomText from "@/components/CustomText";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
-import _, {
+import {
   get,
   isEmpty,
   isEqual,
@@ -44,7 +44,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Helper from "@/src/utils/Helper";
 
 export async function getServerSideProps(context) {
-  const id = _.get(context, ["params", "slug"], "");
+  const id = get(context, ["params", "slug"], "");
 
   let listingPropertyDetailData = null;
 
@@ -132,6 +132,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [otpToken, setOtpToken] = useState("");
   const [otpValue, setOtpValue] = useState("");
   const [idType, setIdType] = useState("nric");
+  const [paymentAmount, setPaymentAmount] = useState("");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -291,7 +292,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       );
     }
 
-    if (isEmpty(currentForm.is_pay_partial.value)) {
+    if (isEmpty(paymentAmount)) {
       return Toast.error(
         "Please select total move-in cost is pay in full or partial",
       );
@@ -342,7 +343,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       id_back: backIcData,
       otp: otpValue,
       otp_token: otpToken,
-      is_pay_partial: false,
+      is_pay_partial: isEqual(paymentAmount, "true") ? true : false,
       fee_items: feesList,
     };
 
@@ -557,6 +558,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
     Helper.documentGetElementById("image_modal").showModal();
+  };
+
+  const onClickSelectPaymentAmount = (e) => {
+    setPaymentAmount(e.target.value);
   };
 
   return (
@@ -1059,6 +1064,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               onClickOpenCharges={onClickOpenCharges}
               moveInFees={moveInFees}
               title={title}
+              onClickSelectPaymentAmount={onClickSelectPaymentAmount}
             />
           </div>
 
