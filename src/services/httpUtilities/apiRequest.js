@@ -133,6 +133,18 @@ const getRootDataRequest = async (setLoading, successCallback) => {
   await apiRequest(api.getRootData(), setLoading, successCallback);
 };
 
+const getAgreementPdf = async (id, setLoading, successCallback) => {
+  await apiRequest(api.getAgreementPdf(id), setLoading, successCallback);
+};
+
+const getAgreementDownload = async (id, setLoading, successCallback) => {
+  await apiRequest(
+    api.getAgreementPdfDownload(id),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -147,4 +159,6 @@ export default {
   postSyncMeterRequest,
   postMeterTopUpRequest,
   getRootDataRequest,
+  getAgreementPdf,
+  getAgreementDownload,
 };

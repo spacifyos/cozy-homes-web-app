@@ -13,10 +13,13 @@ import Constant from "@/src/utils/Constant";
 import PinModal from "@/components/EAgreement/PinModal";
 import CanvasModal from "@/components/EAgreement/CanvasModal";
 import Helper from "@/src/utils/Helper";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import { get, isEmpty } from "lodash";
 
 export { getServerSideProps };
 
-const ViewAgreement = () => {
+const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
 
@@ -25,12 +28,48 @@ const ViewAgreement = () => {
   const [numPages, setNumPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
 
+  const [loading, setLoading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const [pdf, setPdf] = useState("");
+
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = new URL(
       "pdfjs-dist/build/pdf.worker.js",
       import.meta.url,
     ).toString();
   }, []);
+
+  useEffect(() => {
+    fetchAgreementPdf();
+  }, []);
+
+  const fetchAgreementPdf = async () => {
+    await apiRequest.getAgreementPdf(id, setLoading, getAgreementPdfSuccess);
+  };
+
+  const getAgreementPdfSuccess = (res) => {
+    const url = get(res, ["url"], "");
+
+    if (!isEmpty(url)) {
+      setPdf(url);
+    }
+  };
+
+  const downloadPdf = async () => {
+    await apiRequest.getAgreementDownload(
+      id,
+      setDownloading,
+      downloadSuccessCallback,
+    );
+  };
+
+  const downloadSuccessCallback = (res) => {
+    const url = get(res, ["url"], "");
+
+    if (!isEmpty(url)) {
+      window.open(url);
+    }
+  };
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -62,6 +101,7 @@ const ViewAgreement = () => {
       pageTitle={t("pageTitle.viewAgreement")}
       hideBgImage
       rightButtonIcon={Images.downloadIcon}
+      onClickRightButton={downloadPdf}
     >
       <div className="body-container pb-4">
         <div
@@ -69,7 +109,7 @@ const ViewAgreement = () => {
           style={{ backgroundColor: "#505050" }}
         >
           <Document
-            file={Constant.DEFAULT_PDF}
+            file={isEmpty(pdf) ? "" : { url: pdf }}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={(err) => console.log(err)}
             loading={
@@ -134,12 +174,20 @@ const ViewAgreement = () => {
           <CustomButton
             buttonText={t("viewAgreement.agree")}
             buttonClassName="primary-btn"
-            onClick={() => Helper.documentGetElementById("pin_modal").showModal()}
+            onClick={() =>
+              Helper.documentGetElementById("pin_modal").showModal()
+            }
           />
         </div>
+
+        <LoadingOverlay loading={loading} />
       </div>
 
-      <CanvasModal onClickReadSign={onClickReadSign} readSign={readSign} t={t}/>
+      <CanvasModal
+        onClickReadSign={onClickReadSign}
+        readSign={readSign}
+        t={t}
+      />
 
       <PinModal t={t} />
     </CustomHeader>

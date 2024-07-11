@@ -97,15 +97,17 @@ const postSyncMeter = (id) => apiInstance.post(`/meter/${id}/sync-meter`);
 const postMeterTopUp = (id, postData) =>
   apiInstance.post(`/meter/${id}/top-up`, postData);
 
-const getAgreementListing = (status, perPage, page, filterParams) => {
-  const {} = filterParams;
-
+const getAgreementListing = (status, perPage, page) => {
   return apiInstance.get(
     `/agreement?per_page=${perPage}&status=${status}&page=${page}`,
   );
 };
 
 const getAgreementOverview = (id) => apiInstance.get(`/agreement/${id}`);
+
+const getAgreementPdf = (id) => apiInstance.get(`/agreement/${id}/pdf`);
+const getAgreementPdfDownload = (id) =>
+  apiInstance.get(`/agreement/${id}/download`);
 
 export default {
   signUpAccount,
@@ -141,4 +143,6 @@ export default {
   postMeterTopUp,
   getAgreementListing,
   getAgreementOverview,
+  getAgreementPdf,
+  getAgreementPdfDownload,
 };

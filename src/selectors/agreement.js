@@ -12,15 +12,17 @@ export const getAgreementOverviewData = (state, id) =>
 export const getAgreementOverviewLoading = (state) =>
   get(state, ["agreement", "agreementOverview", "loading"], false);
 
-export const getReferenceNumber = (state) => get(state, ["reference_number"], "");
+export const getId = (state) => get(state, ["id"], "");
+export const getReferenceNumber = (state) =>
+  get(state, ["reference_number"], "");
 export const getStatus = (state) => get(state, ["status"], "");
 export const getProperty = (state) => get(state, ["property"], "");
 export const getTenurePeriod = (state) => get(state, ["tenure_period"], "");
-export const getAgree = (state) => get(state, ["agree"], false);
-export const getSigned = (state) => get(state, ["code"], false);
-export const getService = (state) => get(state, ["service"], "");
-export const getDate = (state) => get(state, ["date"], "");
-export const getAgreeDate = (state) => get(state, ["agree_date"], "");
-export const getSignedDate = (state) => get(state, ["signed_date"], "");
-export const getTenantName = (state) => get(state, ["tenant_name"], "");
-export const getStampingStatus = (state) => get(state, ["stamping_status"], "");
+export const getAgree = (state) => get(state, ["is_agreed"], false);
+export const getSigned = (state) => get(state, ["is_signed"], false);
+export const getAgreedDate = (state) => get(state, ["agree_at"], "");
+export const getAgreementDate = (state) => get(state, ["agreement_date"], "");
+export const getSignedDate = (state) => get(state, ["signed_at"], "");
+export const getTenantName = (state) => get(state, ["signee", "name"], "");
+export const isCanAgree = (state) => get(state, ["attribute", "is_can_agree"], false);
+export const isCanSign = (state) => get(state, ["attribute", "is_can_sign"], false);
