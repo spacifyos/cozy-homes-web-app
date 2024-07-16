@@ -14,7 +14,7 @@ import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { isEmpty, get, size } from "lodash";
+import { isEmpty, get, size, isEqual } from "lodash";
 import { NextSeo } from "next-seo";
 import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
 import Toast from "@/src/utils/Toast";
