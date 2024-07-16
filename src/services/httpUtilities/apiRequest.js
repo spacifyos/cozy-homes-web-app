@@ -2,6 +2,8 @@ import api from "@/src/services/httpUtilities/httpService";
 import _, { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { apiRequestErrorResponse } from "@/src/services/httpUtilities/apiRequestErrorResponse";
+import axios from "axios";
+import moment from "moment";
 
 const apiRequest = async (
   api,
@@ -48,11 +50,13 @@ const postChangePasswordRequest = async (
   postData,
   setLoading,
   successCallback,
+  failureCallback,
 ) => {
   await apiRequest(
     api.postChangePassword(postData),
     setLoading,
     successCallback,
+    failureCallback,
   );
 };
 
@@ -129,8 +133,18 @@ const postMeterTopUpRequest = async (
   );
 };
 
-const getRootDataRequest = async (setLoading, successCallback) => {
-  await apiRequest(api.getRootData(), setLoading, successCallback);
+const getRootDataRequest = async (
+  setLoading,
+  successCallback,
+  successMessage = "Success",
+) => {
+  await apiRequest(
+    api.getRootData(),
+    setLoading,
+    successCallback,
+    () => {},
+    successMessage,
+  );
 };
 
 const getAgreementPdf = async (id, setLoading, successCallback) => {
@@ -143,6 +157,54 @@ const getAgreementDownload = async (id, setLoading, successCallback) => {
     setLoading,
     successCallback,
   );
+};
+
+const postAgreeAgreement = async (id, setLoading, successCallback) => {
+  await apiRequest(api.postAgreeAgreement(id), setLoading, successCallback);
+};
+
+const postSignAgreement = async (id, postData, setLoading, successCallback) => {
+  await apiRequest(
+    api.postSignAgreement(id, postData),
+    setLoading,
+    successCallback,
+  );
+};
+
+const patchUserPinNumber = async (
+  postData,
+  setLoading,
+  successCallback,
+  failureCallback,
+) => {
+  await apiRequest(
+    api.patchUserPinNumber(postData),
+    setLoading,
+    successCallback,
+    failureCallback,
+  );
+};
+
+const downloadFileRequest = async (url, headers) => {
+  try {
+    const response = await axios.get(url, {
+      headers,
+      responseType: "blob",
+    });
+
+    const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
+    const fileLink = document.createElement("a");
+    fileLink.href = fileUrl;
+    fileLink.setAttribute(
+      "download",
+      `${moment().format("YYYYMMDDHHmmss")}.pdf`,
+    ); // specify the file name and extension
+    document.body.appendChild(fileLink);
+    fileLink.click();
+    fileLink.remove();
+  } catch (error) {
+    console.error("Error downloading the file", error);
+  }
 };
 
 export default {
@@ -161,4 +223,8 @@ export default {
   getRootDataRequest,
   getAgreementPdf,
   getAgreementDownload,
+  postAgreeAgreement,
+  postSignAgreement,
+  patchUserPinNumber,
+  downloadFileRequest,
 };

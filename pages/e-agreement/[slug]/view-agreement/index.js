@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import { pdfjs } from "react-pdf";
-import { Document, Page } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useRef, useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import Constant from "@/src/utils/Constant";
@@ -15,22 +14,44 @@ import CanvasModal from "@/components/EAgreement/CanvasModal";
 import Helper from "@/src/utils/Helper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty, isEqual, size } from "lodash";
+import Toast from "@/src/utils/Toast";
+import * as agreementSelector from "@/src/selectors/agreement";
+import axios from "axios";
+import { detect } from "detect-browser-es";
+import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
 const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  let canvasRef;
 
   const [readAgree, setReadAgree] = useState(false);
   const [readSign, setReadSign] = useState(false);
-  const [numPages, setNumPages] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
 
   const [loading, setLoading] = useState(false);
+  const [agreeLoading, setAgreeLoading] = useState(false);
+  const [signLoading, setSignLoading] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [pdf, setPdf] = useState("");
+
+  const [data, setData] = useState(null);
+
+  const [rootDataLoading, setRootDataLoading] = useState(false);
+  const [gallerySecretKey, setGallerySecretKey] = useState("");
+  const [pinNumberValue, setPinNumberValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [signatureEmptyMessage, setSignatureEmptyMessage] = useState("");
+  const [showPaginateButton, setShowPaginateButton] = useState(false);
+
+  const pdf = agreementSelector.getUrl(data);
+  const isCanAgree = agreementSelector.isCanAgree(data);
+  const isCanSign = agreementSelector.isCanSign(data);
+  const tenantName = agreementSelector.getTenantName(data);
+  const tenantIc = agreementSelector.getTenantIc(data);
 
   useEffect(() => {
     pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -41,38 +62,48 @@ const ViewAgreement = ({ id }) => {
 
   useEffect(() => {
     fetchAgreementPdf();
+    handlePdfSecretData();
   }, []);
 
   const fetchAgreementPdf = async () => {
     await apiRequest.getAgreementPdf(id, setLoading, getAgreementPdfSuccess);
   };
 
-  const getAgreementPdfSuccess = (res) => {
-    const url = get(res, ["url"], "");
-
-    if (!isEmpty(url)) {
-      setPdf(url);
+  const getAgreementPdfSuccess = async (res) => {
+    if (!isEmpty(res)) {
+      setData(res);
     }
   };
 
   const downloadPdf = async () => {
-    await apiRequest.getAgreementDownload(
-      id,
-      setDownloading,
-      downloadSuccessCallback,
-    );
-  };
+    setDownloading(true);
 
-  const downloadSuccessCallback = (res) => {
-    const url = get(res, ["url"], "");
+    const url = `${process.env.API_DOMAIN}/agreement/${id}/pdf`;
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: gallerySecretKey,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
 
-    if (!isEmpty(url)) {
-      window.open(url);
-    }
-  };
+    axios
+      .get(url, { headers: headers })
+      .then(async (response) => {
+        const resUrl = get(response, ["data", "data", "url"], "");
 
-  const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
+        if (!isEmpty(resUrl)) {
+          await apiRequest.downloadFileRequest(resUrl, headers);
+          // window.open(
+          //   resUrl,
+          //   `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
+          // );
+        }
+      })
+      .catch((error) => {
+        Toast.error("Download document failed");
+      })
+      .finally(() => setDownloading(false));
   };
 
   const onClickGoBack = () => {
@@ -88,11 +119,128 @@ const ViewAgreement = ({ id }) => {
   };
 
   const onClickNext = () => {
-    if (pageNumber !== numPages) setPageNumber(pageNumber + 1);
+    if (pageNumber !== totalPages) setPageNumber(pageNumber + 1);
   };
 
   const onClickPrevious = () => {
     if (pageNumber !== 1) setPageNumber(pageNumber - 1);
+  };
+
+  const onClickHandlePdf = async () => {
+    if (isCanAgree) {
+      if (!readAgree) {
+        return Toast.error("Please check the understood and agree term.");
+      }
+
+      await handleAgreeAgreement();
+    } else if (isCanSign) {
+      handleOpenSignatureModal();
+    }
+  };
+
+  const handleAgreeAgreement = async () => {
+    await apiRequest.postAgreeAgreement(
+      id,
+      setAgreeLoading,
+      agreeSuccessCallback,
+    );
+  };
+
+  const agreeSuccessCallback = async () => {
+    await fetchAgreementPdf();
+  };
+
+  const handleOpenSignatureModal = () => {
+    Helper.documentGetElementById("canvas_modal").showModal();
+  };
+
+  const handlePdfSecretData = async () => {
+    await apiRequest.getRootDataRequest(
+      setRootDataLoading,
+      getRootDataSuccessCallback,
+    );
+  };
+
+  const getRootDataSuccessCallback = (res) => {
+    const chiper1 = get(res, ["chiper1"], "");
+    const chiper2 = get(res, ["chiper2"], "");
+
+    setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
+  };
+
+  const onClickCloseSignatureModal = () => {
+    Helper.documentGetElementById("canvas_modal").close();
+  };
+
+  const onClickSubmitSignature = () => {
+    if (canvasRef.isEmpty()) {
+      setSignatureEmptyMessage("Signature is required");
+      return;
+    }
+
+    if (!readSign) {
+      return Toast.error("Please check the understood and agree term.");
+    }
+
+    openPinModal();
+  };
+
+  const handleOpenPinModal = () => {
+    Helper.documentGetElementById("pin_modal").showModal();
+  };
+
+  const handleClosePinModal = () => {
+    Helper.documentGetElementById("pin_modal").close();
+  };
+
+  const onClickClosePinModal = () => {
+    handleClosePinModal();
+    handleOpenSignatureModal();
+  };
+
+  const openPinModal = () => {
+    onClickCloseSignatureModal();
+    handleOpenPinModal();
+  };
+
+  const handleSignAgreement = async () => {
+    if (isEmpty(pinNumberValue)) {
+      setErrorMessage("Pin number is required.");
+      return;
+    }
+
+    handleClosePinModal();
+
+    const postData = {
+      pin_number: pinNumberValue,
+      signature: canvasRef.toDataURL("image/png"),
+    };
+
+    await apiRequest.postSignAgreement(
+      id,
+      postData,
+      setSignLoading,
+      signSuccessCallback,
+    );
+  };
+
+  const signSuccessCallback = async () => {
+    setPinNumberValue("");
+    await fetchAgreementPdf();
+  };
+
+  const onClickResetCanvas = () => {
+    canvasRef.clear();
+  };
+
+  const handleSignatureRef = (ref) => {
+    canvasRef = ref;
+  };
+
+  const onChangePinNumberValue = (e) => {
+    if (size(e.target.value) <= 6) {
+      setPinNumberValue(e.target.value);
+    }
   };
 
   return (
@@ -109,9 +257,13 @@ const ViewAgreement = ({ id }) => {
           style={{ backgroundColor: "#505050" }}
         >
           <Document
-            file={isEmpty(pdf) ? "" : { url: pdf }}
-            onLoadSuccess={onDocumentLoadSuccess}
-            onLoadError={(err) => console.log(err)}
+            file={isEmpty(pdf) ? "" : pdf}
+            options={{ httpHeaders: { AGSC: gallerySecretKey } }}
+            onLoadSuccess={({ numPages }) => {
+              setShowPaginateButton(true);
+
+              setTotalPages(numPages);
+            }}
             loading={
               <div
                 className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
@@ -129,67 +281,114 @@ const ViewAgreement = ({ id }) => {
               </div>
             }
           >
-            <Page pageNumber={pageNumber} />
+            <Page
+              pageNumber={pageNumber}
+              loading={
+                <div
+                  className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+                  style={{ height: 450 }}
+                >
+                  <span className="loading loading-spinner loading-lg primary-text"></span>
+                </div>
+              }
+              error={
+                <div
+                  className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+                  style={{ height: 450 }}
+                >
+                  <CustomText>This pdf cannot be found!</CustomText>
+                </div>
+              }
+            />
           </Document>
 
-          <CustomText textClassName="white-text font-size-xsmall pt-2">
-            {t("viewAgreement.page")} {pageNumber} of {numPages}
-          </CustomText>
+          {showPaginateButton ? (
+            <div className="flex flex-col items-center">
+              <CustomText textClassName="white-text font-size-xsmall pt-2">
+                {t("viewAgreement.page")} {pageNumber} of {totalPages}
+              </CustomText>
 
-          <div className="flex gap-2 pt-2">
+              <div className="flex gap-2 pt-2">
+                <CustomButton
+                  buttonText={t("viewAgreement.previous")}
+                  buttonClassName={`btn-sm ${pageNumber !== 1 ? "pdf-next-btn" : "pdf-previous-btn"}`}
+                  onClick={onClickPrevious}
+                />
+                <CustomButton
+                  buttonText={t("viewAgreement.next")}
+                  buttonClassName={`btn-sm ${pageNumber !== totalPages ? "pdf-next-btn" : "pdf-previous-btn"}`}
+                  onClick={onClickNext}
+                />
+              </div>
+            </div>
+          ) : (
+            false
+          )}
+        </div>
+
+        {isCanAgree ? (
+          <div className="flex items-start gap-2 pt-8">
+            <CustomImage
+              className="cursor-pointer"
+              src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+              height={23}
+              width={23}
+              onClick={onClickReadAgree}
+            />
+            <CustomText textClassName="font-size-small text-justify leading-4">
+              I,{" "}
+              <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
+              , hereby acknowledge and confirm that I have read, understood and
+              agree to the terms and conditions of the agreement appearing and
+              irrevocably agree to be bound by the terms and conditions
+              contained therein.
+            </CustomText>
+          </div>
+        ) : (
+          false
+        )}
+
+        {!isCanAgree && !isCanSign ? (
+          false
+        ) : (
+          <div className="grid grid-cols-2 gap-2 pt-8">
             <CustomButton
-              buttonText={t("viewAgreement.previous")}
-              buttonClassName={`btn-sm ${pageNumber !== 1 ? "pdf-next-btn" : "pdf-previous-btn"}`}
-              onClick={onClickPrevious}
+              buttonText="Cancel"
+              buttonClassName="default-btn-outline"
+              onClick={onClickGoBack}
             />
             <CustomButton
-              buttonText={t("viewAgreement.next")}
-              buttonClassName={`btn-sm ${pageNumber !== numPages ? "pdf-next-btn" : "pdf-previous-btn"}`}
-              onClick={onClickNext}
+              buttonText={isCanAgree ? "Agree" : isCanSign ? "Sign" : "View"}
+              buttonClassName="primary-btn"
+              onClick={onClickHandlePdf}
             />
           </div>
-        </div>
+        )}
 
-        <div className="flex items-start gap-2 pt-5">
-          <CustomImage
-            src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-            height={23}
-            width={23}
-            onClick={onClickReadAgree}
-          />
-          <CustomText textClassName="font-size-small text-justify leading-4">
-            I, <span className="primary-text">Demo (NRIC: 10920192)</span>,
-            hereby acknowledge and confirm that I have read, understood and
-            agree to the terms and conditions of the agreement appearing and
-            irrevocably agree to be bound by the terms and conditions contained
-            therein.
-          </CustomText>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2 pt-5 ">
-          <CustomButton
-            buttonText={t("viewAgreement.reject")}
-            buttonClassName="default-btn-outline"
-          />
-          <CustomButton
-            buttonText={t("viewAgreement.agree")}
-            buttonClassName="primary-btn"
-            onClick={() =>
-              Helper.documentGetElementById("pin_modal").showModal()
-            }
-          />
-        </div>
-
-        <LoadingOverlay loading={loading} />
+        <LoadingOverlay
+          loading={loading || agreeLoading || signLoading || downloading}
+        />
       </div>
 
       <CanvasModal
         onClickReadSign={onClickReadSign}
         readSign={readSign}
         t={t}
+        onClickCloseSignatureModal={onClickCloseSignatureModal}
+        onClickSubmitSignature={onClickSubmitSignature}
+        handleSignatureRef={handleSignatureRef}
+        onClickResetCanvas={onClickResetCanvas}
+        signatureEmptyMessage={signatureEmptyMessage}
       />
 
-      <PinModal t={t} />
+      <PinModal
+        t={t}
+        onClickSubmitSignature={handleSignAgreement}
+        onClickClosePinModal={onClickClosePinModal}
+        pinNumberValue={pinNumberValue}
+        onChangePinNumberValue={onChangePinNumberValue}
+        errorMessage={errorMessage}
+      />
     </CustomHeader>
   );
 };

@@ -15,7 +15,6 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
-import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 

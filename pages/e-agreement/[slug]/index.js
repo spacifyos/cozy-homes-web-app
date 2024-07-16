@@ -11,15 +11,12 @@ import CustomButton from "@/components/CustomButton";
 import * as agreementSelector from "@/src/selectors/agreement";
 import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
-import { isEmpty } from "lodash";
-import {
-  getAgreedDate,
-  getAgreementDate,
-  getSignedDate,
-} from "@/src/selectors/agreement";
+import { get, isEmpty } from "lodash";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
