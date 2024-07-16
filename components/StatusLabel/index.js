@@ -36,6 +36,8 @@ const StatusLabel = ({ status }) => {
         return "error-bg-color";
       case "APPROVED":
         return "completed-bg-color";
+      case "DRAFT":
+        return "disable-bg-color";
 
       default:
         return "pending-bg-color";

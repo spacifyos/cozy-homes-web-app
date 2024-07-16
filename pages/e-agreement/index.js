@@ -11,17 +11,24 @@ import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import Constant from "@/src/utils/Constant";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
-const statusList = ["pending", "completed", "pending", "pending", "completed"];
-const btnList = [{ btn: "All" }, { btn: "Completed" }, { btn: "Pending" }];
+const btnLists = [
+  { name: "All", value: Constant.AGREEMENT_ALL },
+  { name: "Draft", value: Constant.AGREEMENT_DRAFT },
+  { name: "Pending", value: Constant.AGREEMENT_PENDING },
+  { name: "Completed", value: Constant.AGREEMENT_COMPLETED },
+];
 
 const EAgreement = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const [selectedStatus, setSelectedStatus] = useState("All");
   const dispatch = useDispatch();
+
+  const [selectedStatus, setSelectedStatus] = useState(Constant.AGREEMENT_ALL);
 
   const getAgreementListingRequest = (status, perPage, page) =>
     dispatch(agreementAction.getAgreementListingRequest(status, perPage, page));
@@ -29,18 +36,22 @@ const EAgreement = () => {
     agreementSelector.getAgreementListingData(state, selectedStatus),
   );
   const agreementListingDataLoading = useSelector((state) =>
-    agreementSelector.getAgreementOverviewLoading(state),
+    agreementSelector.getAgreementListingLoading(state, selectedStatus),
   );
   const agreementListingDataPagination = useSelector((state) =>
     agreementSelector.getAgreementListingPagination(state),
   );
 
   useEffect(() => {
-    // fetchAgreementListingData();
-  }, []);
+    fetchAgreementListingData(selectedStatus);
+  }, [selectedStatus]);
 
-  const fetchAgreementListingData = () => {
-    getAgreementListingRequest();
+  const fetchAgreementListingData = (
+    status = Constant.AGREEMENT_ALL,
+    perPage = 20,
+    page = 1,
+  ) => {
+    getAgreementListingRequest(status, perPage, page);
   };
 
   const onClickGoBack = () => {
@@ -64,27 +75,29 @@ const EAgreement = () => {
     >
       <div className="body-container pb-4 flex flex-col flex-1">
         <div className="flex items-center pb-3">
-          {map(btnList, (item, index) => {
-            const btn = get(item, ["btn"], "");
+          {map(btnLists, (item, index) => {
+            const name = get(item, ["name"], "");
+            const value = get(item, ["value"], "");
+
             return (
               <CustomButton
                 key={index}
-                buttonText={btn}
-                buttonClassName={`btn-sm ${isEqual(selectedStatus, btn) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonText={name}
+                buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
                 textClassName="font-size-xsmall"
-                onClick={() => onClickSelectStatus(btn)}
+                onClick={() => onClickSelectStatus(value)}
               />
             );
           })}
         </div>
 
-        {!isEmpty(agreementListingData) ? (
+        {isEmpty(agreementListingData) ? (
           <div className="flex flex-col flex-1 justify-center">
             <CustomEmptyBox />
           </div>
         ) : (
           <div className="flex flex-col gap-4">
-            {map(Array(10), (item, index) => (
+            {map(agreementListingData, (item, index) => (
               <EAgreementCard
                 item={item}
                 key={index}
@@ -101,4 +114,4 @@ const EAgreement = () => {
   );
 };
 
-export default withTranslation("common")(EAgreement);
+export default withTranslation("common")(AuthWrapper(EAgreement));

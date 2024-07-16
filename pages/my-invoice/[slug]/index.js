@@ -22,6 +22,7 @@ import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import { browserName, detect } from "detect-browser-es";
 import { NextSeo } from "next-seo";
+import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
@@ -119,7 +120,7 @@ const InvoiceOverview = ({ id }) => {
       !isEmpty(gallerySecretKey) &&
       !isEmpty(targetOpenDocument)
     ) {
-      fetchDocumentData(targetOpenDocument, gallerySecretKey);
+      await fetchDocumentData(targetOpenDocument, gallerySecretKey);
       return;
     }
 
@@ -138,20 +139,28 @@ const InvoiceOverview = ({ id }) => {
     setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
   };
 
-  const fetchDocumentData = (url, key) => {
+  const fetchDocumentData = async (url, key) => {
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: key,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
+
     setDownloading(true);
+
     axios
-      .get(url, {
-        headers: { "Content-Type": "application/json", AGSC: key },
-      })
-      .then((response) => {
+      .get(url, { headers: headers })
+      .then(async (response) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl)) {
-          window.open(
-            resUrl,
-            `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
-          );
+          await apiRequest.downloadFileRequest(resUrl, {});
+          // window.open(
+          //   resUrl,
+          //   `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
+          // );
         }
       })
       .catch((error) => {

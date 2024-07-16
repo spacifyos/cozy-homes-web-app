@@ -1,6 +1,7 @@
 import { ceil, join, replace, reverse, split, toString } from "lodash";
 import React from "react";
 import CryptoJS from "crypto-js";
+import axios from "axios";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -44,8 +45,8 @@ const formatToDatePicker = (date) => {
 
 const generateSecretKey = (secret1, secret2) => {
   const secret = new Date().getHours();
-  const key1 = replace(secret1, "8", "o");
-  const key2 = replace(secret2, "8", "m");
+  const key1 = replace(secret1, /8/g, "o");
+  const key2 = replace(secret2, /8/g, "m");
   let final = "";
 
   if (secret % 2 == 0) {
@@ -63,10 +64,38 @@ const documentGetElementById = (id) => {
   return typeof window !== "undefined" && document.getElementById(id);
 };
 
+const getFileAsBase64 = async (url, headers) => {
+  try {
+    const response = await axios.get(url, {
+      headers,
+      responseType: "blob", // important to set the response type to blob
+    });
+
+    const blob = new Blob([response.data], { type: "application/pdf" });
+    const reader = new FileReader();
+
+    reader.readAsDataURL(blob);
+
+    return new Promise((resolve, reject) => {
+      reader.onloadend = () => {
+        resolve(reader.result);
+      };
+
+      reader.onerror = (error) => {
+        reject("Error converting file to base64", error);
+      };
+    });
+  } catch (error) {
+    console.error("Error downloading the file", error);
+    throw error;
+  }
+};
+
 export default {
   isProduction,
   secToMin,
   formatToDatePicker,
   generateSecretKey,
   documentGetElementById,
+  getFileAsBase64,
 };

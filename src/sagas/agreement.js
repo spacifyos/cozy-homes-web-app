@@ -3,15 +3,9 @@ import api from "@/src/services/httpUtilities/httpService";
 import httpErrorHelpers from "@/src/services/httpUtilities/httpErrorHelpers";
 import * as agreementAction from "@/src/actions/agreement";
 
-function* getAgreementListingRequest({ status, perPage, page, filterParams }) {
+function* getAgreementListingRequest({ status, perPage, page }) {
   try {
-    const response = yield call(
-      api.getAgreementListing,
-      status,
-      perPage,
-      page,
-      filterParams,
-    );
+    const response = yield call(api.getAgreementListing, status, perPage, page);
 
     const { data, code, message } = response;
 

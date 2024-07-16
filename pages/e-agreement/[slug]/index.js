@@ -11,8 +11,12 @@ import CustomButton from "@/components/CustomButton";
 import * as agreementSelector from "@/src/selectors/agreement";
 import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import AuthWrapper from "@/components/AuthWrapper";
+import { get, isEmpty } from "lodash";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -38,17 +42,18 @@ const EAgreementOverview = ({ id }) => {
   const tenurePeriod = agreementSelector.getTenurePeriod(agreementOverviewData);
   const getAgree = agreementSelector.getAgree(agreementOverviewData);
   const getSigned = agreementSelector.getSigned(agreementOverviewData);
-  const getDate = agreementSelector.getDate(agreementOverviewData);
-  const getService = agreementSelector.getService(agreementOverviewData);
-  const getStampingStatus = agreementSelector.getStampingStatus(
+  const agreedDate = agreementSelector.getAgreedDate(agreementOverviewData);
+  const tenantName = agreementSelector.getTenantName(agreementOverviewData);
+  const agreementDate = agreementSelector.getAgreementDate(
     agreementOverviewData,
   );
-  const getTenantName = agreementSelector.getTenantName(agreementOverviewData);
-  const agreeDate = agreementSelector.getAgreeDate(agreementOverviewData);
-  const signedDate = agreementSelector.getSigned(agreementOverviewData);
+  const signedDate = agreementSelector.getSignedDate(agreementOverviewData);
+  const isCanAgree = agreementSelector.isCanAgree(agreementOverviewData);
+  const isCanSign = agreementSelector.isCanSign(agreementOverviewData);
+  const agreementId = agreementSelector.getId(agreementOverviewData);
 
   useEffect(() => {
-    // fetchAgreementOverviewData(id);
+    fetchAgreementOverviewData(id);
   }, [id]);
 
   const fetchAgreementOverviewData = (id) => {
@@ -68,7 +73,7 @@ const EAgreementOverview = ({ id }) => {
       onClickGoBack={onClickGoBack}
       hideBgImage
       pageTitle={t("pageTitle.eAgreementOverview")}
-      rightButtonIcon={Images.downloadIcon}
+      // rightButtonIcon={Images.downloadIcon}
     >
       <div className="body-container relative pt-6 pb-4 flex justify-center">
         <div className="primary-bg-color p-2 ps-3 global-border-radius absolute top-0">
@@ -82,7 +87,7 @@ const EAgreementOverview = ({ id }) => {
           <div className="flex justify-between">
             <CustomLabelValue
               highlight
-              value="XXXXXXXXXXX"
+              value={isEmpty(referenceNumber) ? "-" : referenceNumber}
               label={t("eAgreementOverview.referenceNumber")}
             />
 
@@ -90,7 +95,7 @@ const EAgreementOverview = ({ id }) => {
               <CustomText textClassName="font-size-xxsmall disable-text">
                 {t("eAgreementOverview.status")}
               </CustomText>
-              <StatusLabel status="pending" />
+              <StatusLabel status={status} />
             </div>
           </div>
 
@@ -99,23 +104,23 @@ const EAgreementOverview = ({ id }) => {
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <CustomLabelValue
-            value="E-Sign & E-Stamp"
-            label={t("eAgreementOverview.service")}
-          />
+          {/*<CustomLabelValue*/}
+          {/*  value="E-Sign & E-Stamp"*/}
+          {/*  label={t("eAgreementOverview.service")}*/}
+          {/*/>*/}
 
           <CustomLabelValue
-            value="M Vertica, A-01-01, Room 1"
+            value={isEmpty(property) ? "-" : property}
             label={t("eAgreementOverview.property")}
           />
 
           <CustomLabelValue
-            value="19 Aug 2023"
+            value={isEmpty(agreementDate) ? "-" : agreementDate}
             label={t("eAgreementOverview.agreementDate")}
           />
 
           <CustomLabelValue
-            value="19 Aug 2023 -18 Aug 2023"
+            value={isEmpty(tenurePeriod) ? "-" : tenurePeriod}
             label={t("eAgreementOverview.tenure")}
           />
 
@@ -125,58 +130,7 @@ const EAgreementOverview = ({ id }) => {
           ></div>
 
           <CustomLabelValue
-            value="M Vertica"
-            label={t("eAgreementOverview.landlord")}
-          />
-
-          <div className="pb-2">
-            <CustomText textClassName="font-size-xxsmall disable-text">
-              {t("eAgreementOverview.activity")}
-            </CustomText>
-
-            <div className="pt-1 grid grid-cols-2 gap-2">
-              <div className="flex mr-3 items-start">
-                <CustomImage
-                  src={Images.checkGreyIcon}
-                  className="mr-1"
-                  height={18}
-                  width={18}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.agreed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    on 19 Aug 03:46 pm
-                  </CustomText>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <CustomImage
-                  src={Images.checkGreenIcon}
-                  className="mr-1"
-                  height={18}
-                  width={18}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.signed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    on 19 Aug 03:46 pm
-                  </CustomText>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <CustomLabelValue
-            value="John Doe"
+            value={isEmpty(tenantName) ? "-" : tenantName}
             label={t("eAgreementOverview.tenant")}
           />
 
@@ -187,7 +141,7 @@ const EAgreementOverview = ({ id }) => {
             <div className="pt-1 grid grid-cols-2 gap-2">
               <div className="flex mr-3 items-start">
                 <CustomImage
-                  src={Images.checkGreyIcon}
+                  src={getAgree ? Images.checkGreenIcon : Images.checkGreyIcon}
                   className="mr-1"
                   height={18}
                   width={18}
@@ -197,13 +151,13 @@ const EAgreementOverview = ({ id }) => {
                     {t("eAgreementOverview.agreed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
-                    on 19 Aug 03:46 pm
+                    {isEmpty(agreedDate) ? "-" : agreedDate}
                   </CustomText>
                 </div>
               </div>
               <div className="flex items-start">
                 <CustomImage
-                  src={Images.checkGreenIcon}
+                  src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
                   className="mr-1"
                   height={18}
                   width={18}
@@ -213,7 +167,7 @@ const EAgreementOverview = ({ id }) => {
                     {t("eAgreementOverview.signed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
-                    on 19 Aug 03:46 pm
+                    {isEmpty(signedDate) ? "-" : signedDate}
                   </CustomText>
                 </div>
               </div>
@@ -225,21 +179,23 @@ const EAgreementOverview = ({ id }) => {
             style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
-          <div className="grid grid-cols-2 gap-2">
-            <CustomLabelValue
-              value="Pending"
-              label={t("eAgreementOverview.stampingStatus")}
-            />
-            <CustomLabelValue
-              value="No"
-              label={t("eAgreementOverview.insurance")}
-            />
-          </div>
+          {/*<div className="grid grid-cols-2 gap-2">*/}
+          {/*  <CustomLabelValue*/}
+          {/*    value="Pending"*/}
+          {/*    label={t("eAgreementOverview.stampingStatus")}*/}
+          {/*  />*/}
+          {/*  <CustomLabelValue*/}
+          {/*    value="No"*/}
+          {/*    label={t("eAgreementOverview.insurance")}*/}
+          {/*  />*/}
+          {/*</div>*/}
 
           <div className="flex justify-center pt-5 w-full">
             <CustomButton
-              onClick={() => onClickToViewAgreement(1)}
-              buttonText={t("eAgreementOverview.viewAndAgree")}
+              onClick={() => onClickToViewAgreement(agreementId)}
+              buttonText={
+                isCanAgree ? "View & Agree" : isCanSign ? "View & Sign" : "View"
+              }
               buttonClassName="primary-btn w-3/5"
             />
           </div>
@@ -251,4 +207,4 @@ const EAgreementOverview = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(EAgreementOverview);
+export default withTranslation("common")(AuthWrapper(EAgreementOverview));

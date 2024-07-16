@@ -34,6 +34,9 @@ const postForgotPassword = (postData) =>
 
 const getUserProfile = () => apiInstance.get("/user-profile");
 
+const patchUserPinNumber = (postData) =>
+  apiInstance.patch("/user-profile/pin-number", postData);
+
 const postChangePassword = (postData) =>
   apiInstance.patch("/user-profile/password", postData);
 
@@ -97,15 +100,23 @@ const postSyncMeter = (id) => apiInstance.post(`/meter/${id}/sync-meter`);
 const postMeterTopUp = (id, postData) =>
   apiInstance.post(`/meter/${id}/top-up`, postData);
 
-const getAgreementListing = (status, perPage, page, filterParams) => {
-  const {} = filterParams;
-
+const getAgreementListing = (status, perPage, page) => {
   return apiInstance.get(
     `/agreement?per_page=${perPage}&status=${status}&page=${page}`,
   );
 };
 
 const getAgreementOverview = (id) => apiInstance.get(`/agreement/${id}`);
+
+const getAgreementPdf = (id) => apiInstance.get(`/agreement/${id}/pdf`);
+
+const getAgreementPdfDownload = (id) =>
+  apiInstance.get(`/agreement/${id}/download`);
+
+const postAgreeAgreement = (id) => apiInstance.post(`/agreement/${id}/agree`);
+
+const postSignAgreement = (id, postData) =>
+  apiInstance.post(`/agreement/${id}/sign`, postData);
 
 export default {
   signUpAccount,
@@ -141,4 +152,9 @@ export default {
   postMeterTopUp,
   getAgreementListing,
   getAgreementOverview,
+  getAgreementPdf,
+  getAgreementPdfDownload,
+  postAgreeAgreement,
+  postSignAgreement,
+  patchUserPinNumber,
 };

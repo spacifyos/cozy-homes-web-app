@@ -5,9 +5,18 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useRef, useState } from "react";
+import { isEmpty } from "lodash";
 
-const CanvasModal = ({ onClickReadSign, readSign, t }) => {
-  let canvasRef;
+const CanvasModal = ({
+  onClickReadSign,
+  readSign,
+  t,
+  onClickCloseSignatureModal,
+  onClickSubmitSignature,
+  onClickResetCanvas,
+  handleSignatureRef,
+  signatureEmptyMessage,
+}) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -17,21 +26,17 @@ const CanvasModal = ({ onClickReadSign, readSign, t }) => {
     }
   }, [targetRef]);
 
-  const onClickResetCanvas = () => {
-    canvasRef.clear();
-  };
-
   return (
-    <CustomModal id="canvas_modal">
+    <CustomModal id="canvas_modal" disableClose>
       <CustomText textClassName="font-bold font-size-large pb-5">
-          {t("viewAgreement.pleaseSignBelow")}
+        {t("viewAgreement.pleaseSignBelow")}
       </CustomText>
       <div
         className="flex justify-end cursor-pointer"
         onClick={onClickResetCanvas}
       >
-        <CustomText textClassName="primary-text font-size-small">
-            {t("viewAgreement.reset")}
+        <CustomText textClassName="primary-text font-size-small pb-2">
+          {t("viewAgreement.reset")}
         </CustomText>
       </div>
       <div
@@ -39,7 +44,7 @@ const CanvasModal = ({ onClickReadSign, readSign, t }) => {
         ref={targetRef}
       >
         <SignatureCanvas
-          ref={(ref) => (canvasRef = ref)}
+          ref={handleSignatureRef}
           backgroundColor="rgba(255,255,255,255)"
           canvasProps={{
             width: dimensions,
@@ -49,8 +54,17 @@ const CanvasModal = ({ onClickReadSign, readSign, t }) => {
         />
       </div>
 
+      {!isEmpty(signatureEmptyMessage) ? (
+        <CustomText textClassName="error-message pt-2">
+          * {signatureEmptyMessage}
+        </CustomText>
+      ) : (
+        false
+      )}
+
       <div className="flex items-start gap-2 pt-5 py-10">
         <CustomImage
+          className="cursor-pointer"
           src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}
           height={23}
           width={23}
@@ -66,12 +80,14 @@ const CanvasModal = ({ onClickReadSign, readSign, t }) => {
 
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
-          buttonText={t("viewAgreement.reject")}
+          buttonText={"Cancel"}
           buttonClassName="default-btn-outline"
+          onClick={onClickCloseSignatureModal}
         />
         <CustomButton
           buttonText={t("viewAgreement.sign")}
           buttonClassName="primary-btn"
+          onClick={onClickSubmitSignature}
         />
       </div>
     </CustomModal>

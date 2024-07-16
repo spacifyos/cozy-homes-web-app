@@ -12,13 +12,12 @@ import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
-import _, { isEmpty } from "lodash";
+import _, { get, isEmpty, size } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import CustomAlertModal from "@/components/CustomAlertModal";
 import ChangePasswordModal from "@/components/EditProfile/ChangePasswordModal";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
@@ -69,13 +68,7 @@ const EditProfile = () => {
     router.back();
   };
 
-  const onClickOpenChangePasswordModal = (isClear = true) => {
-    if (isClear) {
-      setCurrentPasswordValue("");
-      setPasswordValue("");
-      setConfirmPasswordValue("");
-    }
-
+  const onClickOpenChangePasswordModal = () => {
     Helper.documentGetElementById("change_password_modal").showModal();
   };
 
@@ -134,41 +127,26 @@ const EditProfile = () => {
   };
 
   const changePasswordSuccess = () => {
-    closeChangePasswordModal();
+    setCurrentPasswordValue("");
+    setPasswordValue("");
+    setConfirmPasswordValue("");
   };
 
   const changePasswordFailure = () => {
-    closeChangePasswordModal();
-
     setTimeout(() => {
-      onClickOpenChangePasswordModal(false);
+      onClickOpenChangePasswordModal();
     }, 500);
   };
 
   const onClickCloseChangePasswordModal = () => {
-    // if (changePasswordLoading) {
-    //   onClickOpenChangePasswordAlert();
-    // } else {
     closeChangePasswordModal();
-    // }
   };
 
   const closeChangePasswordModal = () => {
+    setErrorMessage([]);
+
     Helper.documentGetElementById("change_password_modal").close();
   };
-
-  // const onClickOpenChangePasswordAlert = () => {
-  //   Helper.documentGetElementById("change_password_alert").showModal();
-  // };
-  //
-  // const onClickCloseChangePasswordAlert = () => {
-  //   Helper.documentGetElementById("change_password_alert").close();
-  // };
-
-  // const onClickCloseAllModal = () => {
-  //   onClickCloseChangePasswordAlert();
-  //   closeChangePasswordModal();
-  // };
 
   const onChangeNameValue = (e) => {
     setNameValue(e.target.value);
@@ -246,10 +224,10 @@ const EditProfile = () => {
           </CustomText>
 
           <CustomButton
-            buttonClassName="default-btn-outline btn-sm mb-20"
+            buttonClassName="default-btn-outline btn-sm mb-4"
             buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}
             buttonText="Change Password"
-            onClick={() => onClickOpenChangePasswordModal()}
+            onClick={onClickOpenChangePasswordModal}
           />
 
           {/*<CustomText textClassName="font-size-xxsmall mb-1">*/}
@@ -257,9 +235,11 @@ const EditProfile = () => {
           {/*</CustomText>*/}
 
           {/*<CustomButton*/}
-          {/*  buttonClassName="default-btn-outline btn-sm mb-20"*/}
+          {/*  buttonClassName="default-btn-outline btn-sm"*/}
           {/*  buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}*/}
           {/*  buttonText={t("editProfile.setPinNumber")}*/}
+          {/*  onClick={onClickOpenSetPinNumberModal}*/}
+          {/*/>*/}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -289,13 +269,6 @@ const EditProfile = () => {
           onClickCloseChangePasswordModal={onClickCloseChangePasswordModal}
           onClickChangePassword={onClickChangePassword}
         />
-
-        {/*<CustomAlertModal*/}
-        {/*  id="change_password_alert"*/}
-        {/*  alertTitle="Change password in processing, are you sure close it?"*/}
-        {/*  onClickCancel={onClickCloseChangePasswordAlert}*/}
-        {/*  onClickConfirm={onClickCloseAllModal}*/}
-        {/*/>*/}
 
         <LoadingOverlay
           loading={
