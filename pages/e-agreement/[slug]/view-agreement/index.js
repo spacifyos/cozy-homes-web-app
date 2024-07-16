@@ -23,6 +23,13 @@ import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+
+const options = {
+  cMapUrl: "/cmaps/",
+  standardFontDataUrl: "/standard_fonts/",
+};
+
 const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -45,20 +52,13 @@ const ViewAgreement = ({ id }) => {
   const [pinNumberValue, setPinNumberValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [signatureEmptyMessage, setSignatureEmptyMessage] = useState("");
-  const [showPaginateButton, setShowPaginateButton] = useState(false);
+  const [isDocumentReady, setIsDocumentReady] = useState(false);
 
   const pdf = agreementSelector.getUrl(data);
   const isCanAgree = agreementSelector.isCanAgree(data);
   const isCanSign = agreementSelector.isCanSign(data);
   const tenantName = agreementSelector.getTenantName(data);
   const tenantIc = agreementSelector.getTenantIc(data);
-
-  useEffect(() => {
-    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-      "pdfjs-dist/build/pdf.worker.js",
-      import.meta.url,
-    ).toString();
-  }, []);
 
   useEffect(() => {
     fetchAgreementPdf();
@@ -243,6 +243,39 @@ const ViewAgreement = ({ id }) => {
     }
   };
 
+  const errorRender = () => {
+    return (
+      <div
+        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        style={{ height: 450 }}
+      >
+        <CustomText>This pdf cannot be found!</CustomText>
+      </div>
+    );
+  };
+
+  const noDataRender = () => {
+    return (
+      <div
+        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        style={{ height: 450 }}
+      >
+        <CustomText>No page specified.</CustomText>
+      </div>
+    );
+  };
+
+  const loadingRender = () => {
+    return (
+      <div
+        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        style={{ height: 450 }}
+      >
+        <span className="loading loading-spinner loading-lg primary-text"></span>
+      </div>
+    );
+  };
+
   return (
     <CustomHeader
       onClickGoBack={onClickGoBack}
@@ -257,52 +290,32 @@ const ViewAgreement = ({ id }) => {
           style={{ backgroundColor: "#505050" }}
         >
           <Document
+            renderMode="canvas"
             file={isEmpty(pdf) ? "" : pdf}
-            options={{ httpHeaders: { AGSC: gallerySecretKey } }}
+            options={{
+              httpHeaders: { AGSC: gallerySecretKey },
+            }}
             onLoadSuccess={({ numPages }) => {
-              setShowPaginateButton(true);
-
+              setIsDocumentReady(true);
               setTotalPages(numPages);
             }}
-            loading={
-              <div
-                className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-                style={{ height: 450 }}
-              >
-                <span className="loading loading-spinner loading-lg primary-text"></span>
-              </div>
-            }
-            error={
-              <div
-                className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-                style={{ height: 450 }}
-              >
-                <CustomText>This pdf cannot be found!</CustomText>
-              </div>
-            }
+            noData={noDataRender()}
+            loading={loadingRender()}
+            error={errorRender()}
           >
-            <Page
-              pageNumber={pageNumber}
-              loading={
-                <div
-                  className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-                  style={{ height: 450 }}
-                >
-                  <span className="loading loading-spinner loading-lg primary-text"></span>
-                </div>
-              }
-              error={
-                <div
-                  className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-                  style={{ height: 450 }}
-                >
-                  <CustomText>This pdf cannot be found!</CustomText>
-                </div>
-              }
-            />
+            {isDocumentReady ? (
+              <Page
+                pageNumber={pageNumber}
+                loading={loadingRender()}
+                error={errorRender()}
+                noData={noDataRender()}
+              />
+            ) : (
+              false
+            )}
           </Document>
 
-          {showPaginateButton ? (
+          {isDocumentReady ? (
             <div className="flex flex-col items-center">
               <CustomText textClassName="white-text font-size-xsmall pt-2">
                 {t("viewAgreement.page")} {pageNumber} of {totalPages}

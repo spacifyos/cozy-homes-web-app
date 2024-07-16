@@ -19,7 +19,6 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import ChangePasswordModal from "@/components/EditProfile/ChangePasswordModal";
 import { NextSeo } from "next-seo";
 import Helper from "@/src/utils/Helper";
-import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
 
 export { getServerSideProps };
 
@@ -27,7 +26,6 @@ const EditProfile = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
-  const initialTime = 60;
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -41,11 +39,9 @@ const EditProfile = () => {
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
-  const type = authSelector.getType(userProfileData);
 
   const [errorMessage, setErrorMessage] = useState([]);
   const [changePasswordLoading, setChangePasswordLoading] = useState(false);
-  const [setPinNumberLoading, setSetPinNumberLoading] = useState(false);
 
   const [editProfileLoading, setEditProfileLoading] = useState(false);
 
@@ -53,27 +49,6 @@ const EditProfile = () => {
   const [currentPasswordValue, setCurrentPasswordValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
-
-  const [pinNumberValue, setPinNumberValue] = useState("");
-  const [confirmPinNumberValue, setConfirmPinNumberValue] = useState("");
-  const [timeLeft, setTimeLeft] = useState(initialTime);
-  const [isResendEnabled, setIsResendEnabled] = useState(true);
-  const [otpRequestLoading, setOtpRequestLoading] = useState(false);
-  const [otpValue, setOtpValue] = useState("");
-
-  const [isRequestOtp, setIsRequestOtp] = useState(false);
-
-  useEffect(() => {
-    if (timeLeft > 0 && !isResendEnabled) {
-      const timerId = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000);
-      return () => clearInterval(timerId);
-    } else if (timeLeft === 0) {
-      setTimeLeft(60);
-      setIsResendEnabled(true);
-    }
-  }, [timeLeft, isResendEnabled]);
 
   useEffect(() => {
     if (!isEmpty(name)) {
@@ -197,110 +172,6 @@ const EditProfile = () => {
     fetchUserprofileData();
   };
 
-  const onClickSetPinNumber = async () => {
-    if (!isRequestOtp) {
-      return Toast.error("You must request otp.");
-    }
-
-    const newErrors = {};
-
-    if (_.isEmpty(pinNumberValue)) {
-      newErrors["pin_number"] = "Password is required.";
-    }
-
-    if (_.isEmpty(confirmPinNumberValue)) {
-      newErrors["confirm_pin_number"] = "Confirm password is required.";
-    }
-
-    if (_.isEmpty(otpValue)) {
-      newErrors["otp"] = "Otp is required.";
-    }
-
-    setErrorMessage(newErrors);
-
-    if (_.isEmpty(newErrors)) {
-      if (!_.isEqual(pinNumberValue, confirmPinNumberValue)) {
-        newErrors["pin_number"] =
-          "Pin Number and Confirm Pin Number do not match.";
-        newErrors["confirm_pin_number"] =
-          "Pin Number and Confirm Pin Number do not match.";
-        return;
-      }
-
-      onClickCloseSetPinNumberModal();
-
-      const postData = {
-        pin_number: pinNumberValue,
-        pin_number_confirmation: confirmPinNumberValue,
-        otp: otpValue,
-      };
-
-      await apiRequest.patchUserPinNumber(
-        postData,
-        setSetPinNumberLoading,
-        setPinNumberSuccessCallback,
-        setPinNumberFailureCallback,
-      );
-    }
-  };
-
-  const setPinNumberSuccessCallback = () => {
-    setPinNumberValue("");
-    setConfirmPinNumberValue("");
-    setOtpValue("");
-    setIsRequestOtp(false);
-  };
-
-  const setPinNumberFailureCallback = () => {
-    setTimeout(() => {
-      onClickOpenSetPinNumberModal();
-    }, 500);
-  };
-
-  const onChangePinNumber = (e) => {
-    setPinNumberValue(e.target.value);
-  };
-
-  const onChangeConfirmPinNumber = (e) => {
-    setConfirmPinNumberValue(e.target.value);
-  };
-
-  const onClickCloseSetPinNumberModal = () => {
-    setErrorMessage([]);
-
-    Helper.documentGetElementById("set_pin_number_modal").close();
-  };
-
-  const onClickOpenSetPinNumberModal = () => {
-    Helper.documentGetElementById("set_pin_number_modal").showModal();
-  };
-
-  const onClickGenerateOtp = async () => {
-    const postData = {
-      case: "reset_pin_number",
-      destination: phoneNumber,
-      type: type,
-    };
-
-    await apiRequest.postOtpRequest(
-      postData,
-      setOtpRequestLoading,
-      otpRequestSuccess,
-    );
-
-    setIsRequestOtp(true);
-  };
-
-  const otpRequestSuccess = (res) => {
-    setIsResendEnabled(false);
-  };
-
-  const onChangeOtpValue = (e) => {
-    if (size(e.target.value) <= 6) {
-      setOtpValue(e.target.value);
-    }
-  };
-
   return (
     <CustomHeader
       hideRightButton
@@ -359,16 +230,16 @@ const EditProfile = () => {
             onClick={onClickOpenChangePasswordModal}
           />
 
-          <CustomText textClassName="font-size-xxsmall mb-1">
-            {t("editProfile.pinNumber")}
-          </CustomText>
+          {/*<CustomText textClassName="font-size-xxsmall mb-1">*/}
+          {/*  {t("editProfile.pinNumber")}*/}
+          {/*</CustomText>*/}
 
-          <CustomButton
-            buttonClassName="default-btn-outline btn-sm"
-            buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}
-            buttonText={t("editProfile.setPinNumber")}
-            onClick={onClickOpenSetPinNumberModal}
-          />
+          {/*<CustomButton*/}
+          {/*  buttonClassName="default-btn-outline btn-sm"*/}
+          {/*  buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}*/}
+          {/*  buttonText={t("editProfile.setPinNumber")}*/}
+          {/*  onClick={onClickOpenSetPinNumberModal}*/}
+          {/*/>*/}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
@@ -399,29 +270,9 @@ const EditProfile = () => {
           onClickChangePassword={onClickChangePassword}
         />
 
-        <SetPinNumberModal
-          pinNumberValue={pinNumberValue}
-          confirmPinNumberValue={confirmPinNumberValue}
-          onChangePinNumber={onChangePinNumber}
-          onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-          errorMessage={errorMessage}
-          setPinNumberLoading={setPinNumberLoading}
-          onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-          onClickSetPinNumber={onClickSetPinNumber}
-          onChangeOtpValue={onChangeOtpValue}
-          otpValue={otpValue}
-          onClickGenerateOtp={onClickGenerateOtp}
-          timeLeft={timeLeft}
-          isResendEnabled={isResendEnabled}
-          otpRequestLoading={otpRequestLoading}
-        />
-
         <LoadingOverlay
           loading={
-            userProfileLoading ||
-            changePasswordLoading ||
-            editProfileLoading ||
-            setPinNumberLoading
+            userProfileLoading || changePasswordLoading || editProfileLoading
           }
         />
       </div>

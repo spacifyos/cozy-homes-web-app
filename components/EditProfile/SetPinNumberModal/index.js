@@ -61,6 +61,7 @@ const SetPinNumberModal = ({
               ? "Request Otp"
               : `Resend OTP in ${timeLeft} seconds`
           }
+          textClassName="font-size-small"
           buttonClassName={`${isResendEnabled ? "primary-btn" : "disable-btn"} mb-4`}
           onClick={onClickGenerateOtp}
           loading={otpRequestLoading}

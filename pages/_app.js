@@ -22,6 +22,9 @@ import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
+import {pdfjs} from "react-pdf";
+
+
 
 function MyApp({ Component, pageProps }) {
   return (
