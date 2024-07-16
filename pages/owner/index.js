@@ -9,14 +9,51 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import { useRouter } from "next/router";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import { useEffect, useState } from "react";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import * as ownerSelector from "@/src/selectors/owner";
 
 export { getServerSideProps };
 
 const OwnerHome = () => {
   const router = useRouter();
-  const name = "";
-  const email = "";
-  const phoneNumber = "";
+
+  const [propertyListingLoading, setPropertyListingLoading] = useState(false);
+  const [propertyListing, setPropertyListing] = useState([]);
+
+  const [transactionListing, setTransactionListing] = useState([]);
+  const [transactionListingLoading, setTransactionListingLoading] =
+    useState(false);
+
+  const properties = ownerSelector.getProperties(propertyListing);
+
+  useEffect(() => {
+    fetchPropertyListing();
+    fetchTransactionListing();
+  }, []);
+
+  const fetchTransactionListing = async () => {
+    await apiRequest.getOwnerTransaction(
+      setTransactionListingLoading,
+      getTransactionListingSuccess,
+    );
+  };
+
+  const getTransactionListingSuccess = (res) => {
+    setTransactionListing(res);
+  };
+
+  const fetchPropertyListing = async () => {
+    await apiRequest.getOwnerPropertyList(
+      setPropertyListingLoading,
+      getPropertyListingSuccess,
+    );
+  };
+
+  const getPropertyListingSuccess = (res) => {
+    setPropertyListing(res);
+  };
 
   const onClickToPropertyDetail = (id = 1) => {
     router.push({
@@ -33,31 +70,29 @@ const OwnerHome = () => {
           </CustomText>
           <CustomImage
             src={Images.blackLogo}
-            width={20}
+            width={80}
             height={20}
             className="mx-1.5"
           />
-          <CustomText textClassName="white-text font-bold font-size-large">
-            Spacify
-          </CustomText>
         </div>
       </div>
 
-      <UserDetailComponent
-        email={email}
-        name={name}
-        phoneNumber={phoneNumber}
-      />
+      <UserDetailComponent data={propertyListing} />
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-24">
-        <PropertyInfoComponent />
+        <PropertyInfoComponent data={propertyListing} />
 
         <PropertyCarouselComponent
           onClickToPropertyDetail={onClickToPropertyDetail}
+          data={properties}
         />
 
-        <RentalIncomeComponent />
+        <RentalIncomeComponent data={transactionListing} />
       </div>
+
+      <LoadingOverlay
+        loading={propertyListingLoading || transactionListingLoading}
+      />
     </div>
   );
 };

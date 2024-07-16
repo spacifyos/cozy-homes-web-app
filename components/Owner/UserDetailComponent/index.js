@@ -2,8 +2,13 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
+import * as ownerSelector from "@/src/selectors/owner";
 
-const UserDetailComponent = ({ name, phoneNumber, email }) => {
+const UserDetailComponent = ({ data }) => {
+  const name = ownerSelector.getOwnerName(data);
+  const email = ownerSelector.getOwnerEmail(data);
+  const phoneNumber = ownerSelector.getOwnerPhoneNumber(data);
+
   return (
     <div className="px-4 absolute top-20 w-full">
       <div className="p-3 relative w-full primaryWhite-bg-color global-border-radius global-box-shadow z-10 flex justify-between">
@@ -30,14 +35,14 @@ const UserDetailComponent = ({ name, phoneNumber, email }) => {
           </div>
         </div>
 
-        <div className="flex flex-col justify-end">
-          <CustomText textClassName="disable-text font-size-xsmall">
-            My Wallet
-          </CustomText>
-          <CustomText textClassName="primary-text font-size-xlarge font-bold">
-            RM99,999
-          </CustomText>
-        </div>
+        {/*<div className="flex flex-col justify-end">*/}
+        {/*  <CustomText textClassName="disable-text font-size-xsmall">*/}
+        {/*    My Wallet*/}
+        {/*  </CustomText>*/}
+        {/*  <CustomText textClassName="primary-text font-size-xlarge font-bold">*/}
+        {/*    RM99,999*/}
+        {/*  </CustomText>*/}
+        {/*</div>*/}
       </div>
     </div>
   );

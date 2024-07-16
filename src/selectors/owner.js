@@ -1,0 +1,15 @@
+import {get} from "lodash";
+
+export const getOwnerName = state=>get(state,["owner_name"],"")
+export const getOwnerEmail = state=>get(state,["owner_email"],"")
+export const getOwnerPhoneNumber = state=>get(state,["owner_phone_number"],"")
+export const getTotalProperty = state=>get(state,["total_property"],"")
+export const getTotalUnits = state=>get(state,["total_units"],"")
+export const getTotalRoom = state=>get(state,["total_rooms"],"")
+export const getOccupancy = state=>get(state,["occupancy"],"")
+export const getProperties = state=>get(state,["properties"],[])
+export const getPropertyId = state => get(state,["property_id"],"")
+export const getPropertyName = state => get(state,["property_name"],"")
+export const getPropertyImage = state => get(state,["property_image"],"")
+export const getPropertyAddress = state => get(state,["property_address"],"")
+export const getRoomVacant = state => get(state,["room_vacant"],"")

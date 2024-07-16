@@ -2,8 +2,9 @@ import CustomText from "@/components/CustomText";
 import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
+import * as ownerSelector from "@/src/selectors/owner";
 
-const RentalIncomeComponent = ({ data = Array(5) }) => {
+const RentalIncomeComponent = ({ data }) => {
   return (
     <div className="pt-6">
       <div className="flex justify-between items-end pb-3">

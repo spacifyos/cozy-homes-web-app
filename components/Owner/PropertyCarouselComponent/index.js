@@ -1,35 +1,13 @@
-import { get, map, size } from "lodash";
+import { get, isEmpty, map, size } from "lodash";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-
-const infoLists = [
-  {
-    name: "Property",
-    value: 999,
-    icon: Images.buildingIconActive,
-  },
-  {
-    name: "Unit",
-    value: 999,
-    icon: Images.spaceIcon,
-  },
-  {
-    name: "Room",
-    value: 999,
-    icon: Images.bedIconActive,
-  },
-  {
-    name: "Occupancy",
-    value: 999,
-    icon: Images.percentIconActive,
-  },
-];
+import * as ownerSelector from "@/src/selectors/owner";
 
 const PropertyCarouselComponent = ({
-  data = Array(3),
+  data,
   onClickToPropertyDetail,
   showLabel,
 }) => {
@@ -49,12 +27,43 @@ const PropertyCarouselComponent = ({
         style={{ width: "100%" }}
       >
         {map(data, (item, index) => {
+          const propertyName = ownerSelector.getPropertyName(item);
+          const propertyAddress = ownerSelector.getPropertyAddress(item);
+          const propertyImage = ownerSelector.getPropertyImage(item);
+          const propertyId = ownerSelector.getPropertyId(item);
+
+          const infoLists = [
+            {
+              name: "Unit",
+              value: ownerSelector.getTotalUnits(item),
+              icon: Images.spaceIcon,
+            },
+            {
+              name: "Room",
+              value: ownerSelector.getTotalRoom(item),
+              icon: Images.bedIconActive,
+            },
+            {
+              name: "Occupancy",
+              value: `${ownerSelector.getOccupancy(item)}%`,
+              icon: Images.percentIconActive,
+            },
+            {
+              name: "Room Vacant",
+              value: `${ownerSelector.getRoomVacant(item)}%`,
+              icon: Images.percentIconActive,
+            },
+          ];
+
           return (
-            <SwiperSlide key={index} onClick={() => onClickToPropertyDetail()}>
+            <SwiperSlide
+              key={index}
+              onClick={() => onClickToPropertyDetail(propertyId)}
+            >
               <div
                 style={{
-                  background: `url(${Images.defaultOwnerPortalImage}) no-repeat center center`,
-                  backgroundSize: "cover",
+                  background: `url(${isEmpty(propertyImage) ? Images.logoImage : propertyImage}) no-repeat center center`,
+                  backgroundSize: "contain",
                 }}
                 className="owner-property-banner global-border-radius"
               >
@@ -73,10 +82,10 @@ const PropertyCarouselComponent = ({
                   )}
 
                   <CustomText textClassName="white-text font-bold font-size-xlarge">
-                    M Vertica KL City Residences
+                    {isEmpty(propertyName) ? "-" : propertyName}
                   </CustomText>
                   <CustomText textClassName="white-text font-size-xsmall font-light">
-                    Jalan Cheras, Kuala Lumpur
+                    {isEmpty(propertyAddress) ? "-" : propertyAddress}
                   </CustomText>
 
                   <div className="flex pt-2">
@@ -86,7 +95,7 @@ const PropertyCarouselComponent = ({
                       const icon = get(list, ["icon"], "");
 
                       return (
-                        <div className="global-box-shadow global-border-radius p-2 flex items-end justify-center">
+                        <div className="p-2 flex items-end justify-center">
                           <CustomImage
                             src={icon}
                             imageStyle={{ width: 20, height: 20 }}
