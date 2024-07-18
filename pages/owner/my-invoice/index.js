@@ -1,7 +1,7 @@
 import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
-import { isEmpty, isEqual } from "lodash";
+import _, { isEmpty, isEqual } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
@@ -15,11 +15,15 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
-import AuthWrapper from "@/components/AuthWrapper";
+import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
+import InvoiceSummary from "@/components/OwnerMyInvoice/InvoiceSummary";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 
 export { getServerSideProps };
 
-const MyInvoice = () => {
+const OwnerMyInvoice = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -111,7 +115,7 @@ const MyInvoice = () => {
   };
 
   const onClickToOverView = (code) => {
-    router.push(`my-invoice/${code}`);
+    router.push(`/owner/my-invoice/${code}`);
   };
 
   const onClickLoadMore = () => {
@@ -170,16 +174,45 @@ const MyInvoice = () => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.myInvoice")}
-      rightButtonIcon={Images.filterProIcon}
-      hideBgImage
-      onClickGoBack={onClickGoBack}
-      isFiltered={isFilter()}
-      onClickRightButton={onClickOpenFilter}
-    >
-      <NextSeo title="My Invoice - Spacify Asia" />
-      <div className="body-container pb-1 flex flex-col flex-1">
+    <div className="flex flex-col flex-1 owner-bg-color">
+      <div className="body-container">
+        <div
+          className={`flex items-center justify-between overflow-hidden py-5`}
+        >
+          <div className="flex justify-center items-center">
+            <div onClick={onClickGoBack} className="cursor-pointer">
+              <CustomImage
+                className={"me-5 w-2.5 cursor-pointer"}
+                src={Images.leftIconWhite}
+              />
+            </div>
+
+            <CustomText
+              textClassName={"font-bold white-text"}
+              styles={{ fontSize: 18 }}
+            >
+              My Invoice
+            </CustomText>
+          </div>
+
+          <div style={{ width: 25, height: 25 }} className="relative">
+            <CustomImage
+              src={Images.filterProWhiteIcon}
+              imageStyle={{ width: 25, height: 25 }}
+              onClick={onClickOpenFilter}
+              className="cursor-pointer"
+            />
+            {isFilter() ? (
+              <div
+                className="w-2.5 h-2.5 rounded-2xl primaryWhite-bg-color absolute z-10"
+                style={{ top: -10, left: -10 }}
+              ></div>
+            ) : (
+              false
+            )}
+          </div>
+        </div>
+
         {invoiceSummaryDataLoading ? (
           <div
             className="w-full flex justify-center"
@@ -188,9 +221,12 @@ const MyInvoice = () => {
             <span className="loading loading-spinner loading-lg primary-text"></span>
           </div>
         ) : (
-          <MyInvoiceComponent data={invoiceSummaryData} />
+          <InvoiceSummary data={invoiceSummaryData} />
         )}
+      </div>
+      <NextSeo title="My Invoice - Spacify Asia" />
 
+      <div className="body-container primaryWhite-bg-color pb-1 flex flex-col flex-1 pt-5">
         <div className="flex items-center pb-3">
           <CustomButton
             buttonText="Unpaid"
@@ -250,8 +286,8 @@ const MyInvoice = () => {
           loading={invoiceListingLoading && isEmpty(invoiceListingData)}
         />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 
-export default withTranslation("common")(AuthWrapper(MyInvoice));
+export default withTranslation("common")(OwnerAuthWrapper(OwnerMyInvoice));

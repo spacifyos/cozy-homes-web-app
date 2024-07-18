@@ -103,7 +103,7 @@ const OwnerAccount = () => {
   };
 
   const onClickToInvoice = () => {
-    router.push("/my-invoice");
+    router.push("/owner/my-invoice");
   };
 
   const onClickToTnC = () => {

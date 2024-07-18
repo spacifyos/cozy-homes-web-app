@@ -1,13 +1,14 @@
 import CustomText from "@/components/CustomText";
 
-const   CustomLabelValue = ({
+const CustomLabelValue = ({
   label,
   value,
   className = "",
   highlight = false,
+  styles,
 }) => {
   return (
-    <div className={`pb-2 ${className}`}>
+    <div className={`pb-2 ${className}`} style={styles}>
       <CustomText textClassName={`disable-text font-size-xxsmall font-normal`}>
         {label}
       </CustomText>

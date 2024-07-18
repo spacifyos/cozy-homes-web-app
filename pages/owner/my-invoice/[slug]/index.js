@@ -23,11 +23,12 @@ import Toast from "@/src/utils/Toast";
 import { browserName, detect } from "detect-browser-es";
 import { NextSeo } from "next-seo";
 import AuthManager from "@/src/utils/AuthManager";
-import AuthWrapper from "@/components/AuthWrapper";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
 
 export { getServerSideProps };
 
-const InvoiceOverview = ({ id }) => {
+const OwnerInvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
@@ -171,184 +172,202 @@ const InvoiceOverview = ({ id }) => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.myInvoiceOverview")}
-      onClickGoBack={onClickGoBack}
-      hideBgImage
-      rightContent={
-        <CustomImage
-          src={Images.downloadIcon}
-          height={25}
-          width={25}
-          className="cursor-pointer"
-          onClick={onClickDownload}
-        />
-      }
-      // rightSecondButtonIcon={Images.shareIcon}
-    >
+    <div className="flex flex-col flex-1 owner-bg-color">
       <NextSeo title="Invoice Overview - Spacify Asia" />
-      <div className="body-container relative py-6 flex justify-center">
-        <div className="primary-bg-color p-2 ps-2.5 global-border-radius absolute top-0">
+
+      <div className="body-container pt-5 pb-16">
+        <div className={`flex items-center justify-between overflow-hidden`}>
+          <div className="flex justify-center items-center">
+            <div onClick={onClickGoBack} className="cursor-pointer">
+              <CustomImage
+                className={"me-5 w-2.5 cursor-pointer"}
+                src={Images.leftIconWhite}
+              />
+            </div>
+
+            <CustomText
+              textClassName={"font-bold white-text"}
+              styles={{ fontSize: 18 }}
+            >
+              My Invoice Overview
+            </CustomText>
+          </div>
+
           <CustomImage
-            src={Images.invoiceIcon}
-            imageStyle={{ width: 35, height: 35 }}
+            src={Images.downloadWhiteIcon}
+            imageStyle={{ width: 22, height: 22 }}
+            onClick={onClickDownload}
+            className="cursor-pointer"
           />
         </div>
-        <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
-          <div className="flex justify-between">
+      </div>
+
+      <div className="global-box-shadow global-border-radius px-5 py-6 primaryWhite-bg-color absolute top-16 right-4 left-4 z-10">
+        <div className="flex justify-between items-end">
+          <div className="flex items-end">
+            <div className="primary-bg-color p-2 ps-2.5 global-border-radius mr-2">
+              <CustomImage
+                src={Images.invoiceIcon}
+                imageStyle={{ width: 30, height: 30 }}
+              />
+            </div>
             <CustomLabelValue
+              styles={{ paddingBottom: 0 }}
               value={isEmpty(code) ? "-" : code}
               label={t("invoiceOverview.invoiceNumber")}
               highlight
             />
-            <div className="pb-2">
-              <CustomText textClassName="font-size-xxsmall disable-text">
-                {t("invoiceOverview.status")}
-              </CustomText>
-              <StatusLabel status={paymentStatus} />
-            </div>
           </div>
 
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <CustomLabelValue
-            value={isEmpty(billTo) ? "-" : billTo}
-            label={t("invoiceOverview.billTo")}
-          />
-          <CustomLabelValue
-            value={isEmpty(property) ? "-" : property}
-            label={t("invoiceOverview.property")}
-          />
-
-          <div className="flex justify-between items-center">
-            <CustomLabelValue
-              value={isEmpty(invoiceDate) ? "-" : invoiceDate}
-              label={t("invoiceOverview.invoiceDate")}
-            />
-            <CustomLabelValue
-              value={isEmpty(dueDate) ? "-" : dueDate}
-              label={t("invoiceOverview.dueDate")}
-              highlight
-            />
+          <div>
+            <CustomText textClassName="font-size-xxsmall disable-text">
+              {t("invoiceOverview.status")}
+            </CustomText>
+            <StatusLabel status={paymentStatus} />
           </div>
-
-          <CustomLabelValue
-            value={isEmpty(tenancyCode) ? "-" : tenancyCode}
-            label={t("invoiceOverview.tenancyCode")}
-          />
-          <CustomLabelValue
-            value={isEmpty(schedule) ? "-" : schedule}
-            label={t("invoiceOverview.schedule")}
-          />
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <CustomText textClassName="font-size-xxsmall disable-text">
-            {t("invoiceOverview.items")}
-          </CustomText>
-
-          <div className="gap-2">
-            {isEmpty(items)
-              ? false
-              : map(items, (item, index) => {
-                  const itemName = get(item, ["name"], "");
-                  const unitPrice = get(item, ["unit_price"], 0);
-                  const quantity = get(item, ["quantity"], 1);
-
-                  return (
-                    <div
-                      className="flex justify-between items-center pt-2"
-                      key={index}
-                    >
-                      <div className="">
-                        <CustomText
-                          textClassName={`black-text font-size-small font-bold`}
-                        >
-                          {itemName}
-                        </CustomText>
-                        <CustomText
-                          textClassName={`font-size-xxsmall disable-text`}
-                        >
-                          RM{unitPrice} per unit
-                        </CustomText>
-                      </div>
-
-                      <CustomText textClassName={`black-text font-bold`}>
-                        X{quantity}
-                      </CustomText>
-                    </div>
-                  );
-                })}
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <div className="grid grid-cols-2 gap-2">
-            <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
-              {t("invoiceOverview.subtotal")}
-            </CustomText>
-            <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM{isEmpty(grandTotal) ? "0" : grandTotal}
-            </CustomText>
-            <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
-              {t("invoiceOverview.tax")}
-            </CustomText>
-            <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
-              RM{isEmpty(tax) ? "0" : tax}
-            </CustomText>
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <div className="grid grid-cols-2 gap-2">
-            <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
-              {t("invoiceOverview.totalAmount")}
-            </CustomText>
-            <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
-              RM{isEmpty(totalAmount) ? "0" : totalAmount}
-            </CustomText>
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          {!isEqual(upperCase(paymentStatus), Constant.PAID) ? (
-            <div className="grid grid-cols-2 gap-2 pt-4">
-              <CustomButton
-                buttonText={t("invoiceOverview.cancel")}
-                buttonClassName="default-btn-outline"
-                onClick={onClickGoBack}
-              />
-
-              <CustomButton
-                buttonText={t("invoiceOverview.payNow")}
-                buttonClassName="primary-btn"
-                onClick={() => onClickToPayment(code)}
-              />
-            </div>
-          ) : (
-            false
-          )}
         </div>
 
+        <div
+          className="divider-line"
+          style={{ marginTop: 10, marginBottom: 10 }}
+        ></div>
+
+        <CustomLabelValue
+          value={isEmpty(billTo) ? "-" : billTo}
+          label={t("invoiceOverview.billTo")}
+        />
+        <CustomLabelValue
+          value={isEmpty(property) ? "-" : property}
+          label={t("invoiceOverview.property")}
+        />
+
+        <div className="flex justify-between items-center">
+          <CustomLabelValue
+            value={isEmpty(invoiceDate) ? "-" : invoiceDate}
+            label={t("invoiceOverview.invoiceDate")}
+          />
+          <CustomLabelValue
+            value={isEmpty(dueDate) ? "-" : dueDate}
+            label={t("invoiceOverview.dueDate")}
+            highlight
+          />
+        </div>
+
+        <CustomLabelValue
+          value={isEmpty(tenancyCode) ? "-" : tenancyCode}
+          label={t("invoiceOverview.tenancyCode")}
+        />
+        <CustomLabelValue
+          value={isEmpty(schedule) ? "-" : schedule}
+          label={t("invoiceOverview.schedule")}
+        />
+
+        <div
+          className="divider-line"
+          style={{ marginTop: 10, marginBottom: 10 }}
+        ></div>
+
+        <CustomText textClassName="font-size-xxsmall disable-text">
+          {t("invoiceOverview.items")}
+        </CustomText>
+
+        <div className="gap-2">
+          {isEmpty(items)
+            ? false
+            : map(items, (item, index) => {
+                const itemName = get(item, ["name"], "");
+                const unitPrice = get(item, ["unit_price"], 0);
+                const quantity = get(item, ["quantity"], 1);
+
+                return (
+                  <div
+                    className="flex justify-between items-center pt-2"
+                    key={index}
+                  >
+                    <div className="">
+                      <CustomText
+                        textClassName={`black-text font-size-small font-bold`}
+                      >
+                        {itemName}
+                      </CustomText>
+                      <CustomText
+                        textClassName={`font-size-xxsmall disable-text`}
+                      >
+                        RM{unitPrice} per unit
+                      </CustomText>
+                    </div>
+
+                    <CustomText textClassName={`black-text font-bold`}>
+                      X{quantity}
+                    </CustomText>
+                  </div>
+                );
+              })}
+        </div>
+
+        <div
+          className="divider-line"
+          style={{ marginTop: 10, marginBottom: 10 }}
+        ></div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+            {t("invoiceOverview.subtotal")}
+          </CustomText>
+          <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
+            RM{isEmpty(grandTotal) ? "0" : grandTotal}
+          </CustomText>
+          <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+            {t("invoiceOverview.tax")}
+          </CustomText>
+          <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
+            RM{isEmpty(tax) ? "0" : tax}
+          </CustomText>
+        </div>
+
+        <div
+          className="divider-line"
+          style={{ marginTop: 10, marginBottom: 10 }}
+        ></div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+            {t("invoiceOverview.totalAmount")}
+          </CustomText>
+          <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
+            RM{isEmpty(totalAmount) ? "0" : totalAmount}
+          </CustomText>
+        </div>
+
+        <div
+          className="divider-line"
+          style={{ marginTop: 10, marginBottom: 10 }}
+        ></div>
+
+        {!isEqual(upperCase(paymentStatus), Constant.PAID) ? (
+          <div className="grid grid-cols-2 gap-2 pt-4">
+            <CustomButton
+              buttonText={t("invoiceOverview.cancel")}
+              buttonClassName="default-btn-outline"
+              onClick={onClickGoBack}
+            />
+
+            <CustomButton
+              buttonText={t("invoiceOverview.payNow")}
+              buttonClassName="primary-btn"
+              onClick={() => onClickToPayment(code)}
+            />
+          </div>
+        ) : (
+          false
+        )}
+      </div>
+
+      <div className="body-container primaryWhite-bg-color relative py-6 flex flex-col flex-1">
         {openDownloadModal ? (
           <CustomDropdown
             onClickDownloadDocument={onClickDownloadDocument}
-            top={-14}
+            top={-58}
             items={[
               {
                 name: "Review Invoice",
@@ -373,8 +392,10 @@ const InvoiceOverview = ({ id }) => {
           }
         />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 
-export default withTranslation("common")(AuthWrapper(InvoiceOverview));
+export default withTranslation("common")(
+  OwnerAuthWrapper(OwnerInvoiceOverview),
+);
