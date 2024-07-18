@@ -21,13 +21,13 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
         },
         {
           name: "My Property",
-          value: isEqual(userType, "tenant") ? "/my-stay" : "/owner",
+          value: isEqual(userType, "owner") ? "/owner" : "/my-property",
           icon: Images.homeIcon,
           activeIcon: Images.homeIconActive,
         },
         {
           name: t("root.account"),
-          value: "/account",
+          value: isEqual(userType, "owner") ? "/owner/account" : "/account",
           icon: Images.accountIcon,
           activeIcon: Images.accountIconActive,
         },
@@ -64,7 +64,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
               <CustomImage
                 src={
                   isEqual(value, routeName) ||
-                  (!isEmpty(tab) && includes(value, tab))
+                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
                     ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                       activeIcon
                     : icon
@@ -75,7 +75,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
               <CustomText
                 textClassName={`${
                   isEqual(value, routeName) ||
-                  (!isEmpty(tab) && includes(value, tab))
+                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
                     ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                       "primary-text"
                     : "disable-text"

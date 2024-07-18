@@ -89,7 +89,7 @@ const OtpVerification = () => {
     if (!_.isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
 
-      router.push("/my-stay");
+      router.push("/my-property");
     } else {
       router.push("/sign-in");
     }

@@ -28,6 +28,29 @@ const OwnerHome = () => {
 
   const properties = ownerSelector.getProperties(propertyListing);
 
+  const lists = [
+    {
+      name: "Property",
+      value: ownerSelector.getTotalProperty(propertyListing),
+      icon: Images.buildingIconActive,
+    },
+    {
+      name: "Unit",
+      value: ownerSelector.getTotalUnits(propertyListing),
+      icon: Images.spaceIcon,
+    },
+    {
+      name: "Room",
+      value: ownerSelector.getTotalRoom(propertyListing),
+      icon: Images.bedIconActive,
+    },
+    {
+      name: "Occupancy",
+      value: `${ownerSelector.getOccupancy(propertyListing)}%`,
+      icon: Images.percentIconActive,
+    },
+  ];
+
   useEffect(() => {
     fetchPropertyListing();
     fetchTransactionListing();
@@ -55,7 +78,7 @@ const OwnerHome = () => {
     setPropertyListing(res);
   };
 
-  const onClickToPropertyDetail = (id = 1) => {
+  const onClickToPropertyDetail = (id) => {
     router.push({
       pathname: `/owner/property/${id}`,
     });
@@ -80,7 +103,7 @@ const OwnerHome = () => {
       <UserDetailComponent data={propertyListing} />
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-24">
-        <PropertyInfoComponent data={propertyListing} />
+        <PropertyInfoComponent lists={lists} />
 
         <PropertyCarouselComponent
           onClickToPropertyDetail={onClickToPropertyDetail}

@@ -76,7 +76,7 @@ const HelpCenter = () => {
   };
 
   const onClickGoBack = () => {
-    router.push("/my-stay");
+    router.push("/my-property");
   };
 
   const onClickToNewRequest = () => {

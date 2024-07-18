@@ -13,7 +13,7 @@ function Home() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("/my-stay?tab=my-stay");
+      router.replace("/my-property");
     }, 1000);
   }, []);
 

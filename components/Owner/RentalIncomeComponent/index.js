@@ -2,7 +2,6 @@ import CustomText from "@/components/CustomText";
 import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
-import * as ownerSelector from "@/src/selectors/owner";
 
 const RentalIncomeComponent = ({ data }) => {
   return (
@@ -24,7 +23,7 @@ const RentalIncomeComponent = ({ data }) => {
           </div>
         ) : (
           map(data, (item) => {
-            return <RentalIncomeCard />;
+            return <RentalIncomeCard item={item} />;
           })
         )}
       </div>

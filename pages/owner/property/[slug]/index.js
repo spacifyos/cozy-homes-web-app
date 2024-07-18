@@ -3,25 +3,91 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
 import { useRouter } from "next/router";
 import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
-import PropertyCarouselComponent from "@/components/Owner/PropertyCarouselComponent";
-import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
-import AuthWrapper from "@/components/AuthWrapper";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import { useEffect, useState } from "react";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import * as ownerSelector from "@/src/selectors/owner";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import UnitCarouselComponent from "@/components/OwnerProperty/UnitCarouselComponent";
+import { get, isEmpty, filter } from "lodash";
 
 export { getServerSideProps };
 
-const PropertyDetail = () => {
+const PropertyDetail = ({ id }) => {
   const router = useRouter();
+
+  const [propertyDetail, setPropertyDetail] = useState(null);
+  const [propertyDetailLoading, setPropertyDetailLoading] = useState(false);
+
+  const [selectedSlide, setSelectedSlide] = useState(0);
+  const [selectedRoom, setSelectedRoom] = useState([]);
+
+  const propertyName = ownerSelector.getPropertyName(propertyDetail);
+  const propertyAddress = ownerSelector.getPropertyAddress(propertyDetail);
+  const units = ownerSelector.getUnits(propertyDetail);
+  const lists = [
+    {
+      name: "Unit",
+      value: ownerSelector.getTotalUnits(propertyDetail),
+      icon: Images.spaceIcon,
+    },
+    {
+      name: "Room",
+      value: ownerSelector.getTotalRoom(propertyDetail),
+      icon: Images.bedIconActive,
+    },
+    {
+      name: "Occupancy",
+      value: `${ownerSelector.getOccupancy(propertyDetail)}%`,
+      icon: Images.percentIconActive,
+    },
+    {
+      name: "Room Vacant",
+      value: `${ownerSelector.getVacantRoom(propertyDetail)}%`,
+      icon: Images.percentIconActive,
+    },
+  ];
+
+  useEffect(() => {
+    const targetUnit = units[selectedSlide];
+    const targetRoom = get(targetUnit, ["rooms"], []);
+
+    if (!isEmpty(targetRoom)) {
+      setSelectedRoom(targetRoom);
+    }
+  }, [selectedSlide, units]);
+
+  useEffect(() => {
+    fetchPropertyDetail();
+  }, []);
+
+  const fetchPropertyDetail = async () => {
+    await apiRequest.getOwnerPropertyOverview(
+      id,
+      setPropertyDetailLoading,
+      propertyDetailSuccessCallback,
+    );
+  };
+
+  const propertyDetailSuccessCallback = (res) => {
+    setPropertyDetail(res);
+  };
 
   const onClickGoBack = () => {
     router.back();
   };
 
+  const onSlideChange = (value) => {
+    const activeIndex = get(value, ["activeIndex"], 0);
+
+    setSelectedSlide(activeIndex);
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container  py-5">
+      <div className="body-container py-5">
         <div
           className={`flex items-center justify-between overflow-hidden pb-6`}
         >
@@ -37,7 +103,7 @@ const PropertyDetail = () => {
               textClassName={"font-bold white-text"}
               styles={{ fontSize: 18 }}
             >
-              My Wallet
+              My Property
             </CustomText>
           </div>
 
@@ -51,21 +117,28 @@ const PropertyDetail = () => {
 
         <div className="pb-4">
           <CustomText textClassName="white-text font-bold font-size-xlarge">
-            M Vertica KL City Residences
+            {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
           <CustomText textClassName="white-text font-size-xsmall font-light">
-            Jalan Cheras, Kuala Lumpur
+            {isEmpty(propertyAddress) ? "-" : propertyAddress}
           </CustomText>
         </div>
 
-        <PropertyInfoComponent paddingTop={"0"} />
+        <PropertyInfoComponent paddingTop={"0"} lists={lists} />
       </div>
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-4">
-
+        <UnitCarouselComponent
+          data={units}
+          onSlideChange={onSlideChange}
+          selectedSlide={selectedSlide}
+          targetRooms={selectedRoom}
+        />
       </div>
+
+      <LoadingOverlay loading={propertyDetailLoading} />
     </div>
   );
 };
 
-export default withTranslation("common")(AuthWrapper(PropertyDetail));
+export default withTranslation("common")(OwnerAuthWrapper(PropertyDetail));

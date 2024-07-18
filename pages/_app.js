@@ -116,9 +116,10 @@ function AppContent({ Component, pageProps }) {
         <Component {...pageProps} />
 
         {isEqual(routeName, "/explore") ||
-        isEqual(routeName, "/my-stay") ||
+        isEqual(routeName, "/my-property") ||
         isEqual(routeName, "/owner") ||
         isEqual(routeName, "/account") ||
+        isEqual(routeName, "/owner/account") ||
         isEqual(routeName, "/sign-in") ? (
           <BottomNavigate
             t={t}

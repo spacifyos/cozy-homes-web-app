@@ -80,7 +80,7 @@ function* signOutAccountRequest() {
 //
 function* clearAccessToken() {
   AuthManager.removeLoginType();
-  AuthManager.removeToken().then(() => Router.replace("/sign-in?tab=my-stay"));
+  AuthManager.removeToken().then(() => Router.replace("/sign-in"));
 }
 
 //

@@ -19,19 +19,23 @@ const Loading = () => {
         const tab = get(routeQuery, ["tab"], "");
 
         switch (tab) {
-          case "my-stay":
+          case "my-property":
             if (isEqual(type, "tenant")) {
-              return router.replace("/my-stay");
+              return router.replace("/my-property");
             } else {
               return router.replace("/owner");
             }
 
           case "account":
-            return router.replace("/account");
+            if (isEqual(type, "tenant")) {
+              return router.replace("/account");
+            } else {
+              return router.replace("/owner/account");
+            }
 
           default:
             if (isEqual(type, "tenant")) {
-              return router.replace("/my-stay");
+              return router.replace("/my-property");
             } else {
               return router.replace("/owner");
             }

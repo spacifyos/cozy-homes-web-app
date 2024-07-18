@@ -7,6 +7,7 @@ $disable-color: #94a1a6;
 $power-on-color: #41c0be;
 $error-color: #ff2e2e;
 $tertiary-bg-color: #0379b7;
+$occupied-bg-color: #ffeeee;
 
 $pending-color: #ff8a00;
 $completed-color: #03b78c;
@@ -59,6 +60,10 @@ $owner-color: linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%);
 
 .error-bg-color {
   background-color: $error-color;
+}
+
+.occupied-bg-color {
+  background-color: $occupied-bg-color;
 }
 
 .cancelled-bg-color {

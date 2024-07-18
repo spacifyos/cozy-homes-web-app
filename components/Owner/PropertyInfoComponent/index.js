@@ -1,33 +1,8 @@
 import { get, map } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import Images from "@/src/utils/Image";
-import * as ownerSelector from "@/src/selectors/owner";
 
-const PropertyInfoComponent = ({ paddingTop = "4.5rem", data }) => {
-  const lists = [
-    {
-      name: "Property",
-      value: ownerSelector.getTotalProperty(data),
-      icon: Images.buildingIconActive,
-    },
-    {
-      name: "Unit",
-      value: ownerSelector.getTotalUnits(data),
-      icon: Images.spaceIcon,
-    },
-    {
-      name: "Room",
-      value: ownerSelector.getTotalRoom(data),
-      icon: Images.bedIconActive,
-    },
-    {
-      name: "Occupancy",
-      value: `${ownerSelector.getOccupancy(data)}%`,
-      icon: Images.percentIconActive,
-    },
-  ];
-
+const PropertyInfoComponent = ({ paddingTop = "4.5rem", lists }) => {
   return (
     <div className="grid grid-cols-4 gap-3" style={{ paddingTop: paddingTop }}>
       {map(lists, (list) => {
