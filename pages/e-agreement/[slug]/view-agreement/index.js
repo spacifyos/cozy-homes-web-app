@@ -14,7 +14,7 @@ import CanvasModal from "@/components/EAgreement/CanvasModal";
 import Helper from "@/src/utils/Helper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { get, isEmpty, isEqual, size } from "lodash";
+import { get, isEmpty, isEqual, map, size } from "lodash";
 import Toast from "@/src/utils/Toast";
 import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
@@ -33,12 +33,15 @@ const options = {
 const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  let pdfPageRef;
   let canvasRef;
 
   const [readAgree, setReadAgree] = useState(false);
   const [readSign, setReadSign] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
+  const [pdfPageHeight, setPdfPageHeight] = useState(450);
+  const [changePageLoading, setChangePageLoading] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [agreeLoading, setAgreeLoading] = useState(false);
@@ -64,6 +67,12 @@ const ViewAgreement = ({ id }) => {
     fetchAgreementPdf();
     handlePdfSecretData();
   }, []);
+
+  const onPageLoadSuccess = () => {
+    if (pdfPageHeight === 450) {
+      setPdfPageHeight(pdfPageRef && pdfPageRef.clientHeight);
+    }
+  };
 
   const fetchAgreementPdf = async () => {
     await apiRequest.getAgreementPdf(id, setLoading, getAgreementPdfSuccess);
@@ -119,11 +128,15 @@ const ViewAgreement = ({ id }) => {
   };
 
   const onClickNext = () => {
-    if (pageNumber !== totalPages) setPageNumber(pageNumber + 1);
+    if (pageNumber !== totalPages) {
+      setPageNumber(pageNumber + 1);
+    }
   };
 
   const onClickPrevious = () => {
-    if (pageNumber !== 1) setPageNumber(pageNumber - 1);
+    if (pageNumber !== 1) {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const onClickHandlePdf = async () => {
@@ -247,7 +260,7 @@ const ViewAgreement = ({ id }) => {
     return (
       <div
         className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-        style={{ height: 450 }}
+        style={{ height: pdfPageHeight }}
       >
         <CustomText>This pdf cannot be found!</CustomText>
       </div>
@@ -258,7 +271,7 @@ const ViewAgreement = ({ id }) => {
     return (
       <div
         className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-        style={{ height: 450 }}
+        style={{ height: pdfPageHeight }}
       >
         <CustomText>No page specified.</CustomText>
       </div>
@@ -269,7 +282,7 @@ const ViewAgreement = ({ id }) => {
     return (
       <div
         className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
-        style={{ height: 450 }}
+        style={{ height: pdfPageHeight }}
       >
         <span className="loading loading-spinner loading-lg primary-text"></span>
       </div>
@@ -294,8 +307,11 @@ const ViewAgreement = ({ id }) => {
             file={isEmpty(pdf) ? "" : pdf}
             options={{
               httpHeaders: { AGSC: gallerySecretKey },
+              cMapUrl: "/bcmaps/",
+              cMapPacked: true,
             }}
             onLoadSuccess={({ numPages }) => {
+              setChangePageLoading(false);
               setIsDocumentReady(true);
               setTotalPages(numPages);
             }}
@@ -305,6 +321,9 @@ const ViewAgreement = ({ id }) => {
           >
             {isDocumentReady ? (
               <Page
+                inputRef={(ref) => (pdfPageRef = ref)}
+                // onLoadError={() => setChangePageLoading(false)}
+                onLoadSuccess={onPageLoadSuccess}
                 pageNumber={pageNumber}
                 loading={loadingRender()}
                 error={errorRender()}
@@ -324,13 +343,15 @@ const ViewAgreement = ({ id }) => {
               <div className="flex gap-2 pt-2">
                 <CustomButton
                   buttonText={t("viewAgreement.previous")}
-                  buttonClassName={`btn-sm ${pageNumber !== 1 ? "pdf-next-btn" : "pdf-previous-btn"}`}
+                  buttonClassName={`btn-sm ${pageNumber !== 1 && !changePageLoading ? "pdf-next-btn" : "pdf-previous-btn"}`}
                   onClick={onClickPrevious}
+                  disable={changePageLoading}
                 />
                 <CustomButton
                   buttonText={t("viewAgreement.next")}
-                  buttonClassName={`btn-sm ${pageNumber !== totalPages ? "pdf-next-btn" : "pdf-previous-btn"}`}
+                  buttonClassName={`btn-sm ${pageNumber !== totalPages && !changePageLoading ? "pdf-next-btn" : "pdf-previous-btn"}`}
                   onClick={onClickNext}
+                  disable={changePageLoading}
                 />
               </div>
             </div>
