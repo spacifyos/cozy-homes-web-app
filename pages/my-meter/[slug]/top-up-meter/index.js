@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 const topUpUnit = [
@@ -63,7 +64,7 @@ const TopUpMeter = () => {
               const btn = _.get(item, ["btn"], "");
               return (
                 <CustomButton
-                    key={index}
+                  key={index}
                   buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, btn) ? "primary-btn" : "pending-btn"}`}
                   buttonText={btn}
                   onClick={() => onClickTopUp(btn)}
@@ -112,4 +113,4 @@ const TopUpMeter = () => {
   );
 };
 
-export default withTranslation("common")(TopUpMeter);
+export default withTranslation("common")(AuthWrapper(TopUpMeter));

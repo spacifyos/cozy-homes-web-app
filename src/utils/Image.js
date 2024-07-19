@@ -150,6 +150,7 @@ const Image = {
   rentalOutIcon: "/images/icon/rental_out.png",
   withdrawIcon: "/images/icon/withdraw.png",
   leftIconWhite: "/images/icon/left_icon_white.png",
+  pageNotFound: "/images/404_image.png",
 };
 
 export default { ...Image };

@@ -208,7 +208,14 @@ const downloadFileRequest = async (url, headers) => {
 };
 
 const getOwnerPropertyList = async (setLoading, successCallback) => {
-  await apiRequest(api.getOwnerPropertyList(), setLoading, successCallback);
+  await apiRequest(
+    api.getOwnerPropertyList(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
 };
 
 const getOwnerPropertyOverview = async (id, setLoading, successCallback) => {
@@ -216,11 +223,21 @@ const getOwnerPropertyOverview = async (id, setLoading, successCallback) => {
     api.getOwnerPropertyOverview(id),
     setLoading,
     successCallback,
+    () => {},
+    "",
+    true,
   );
 };
 
 const getOwnerTransaction = async (setLoading, successCallback) => {
-  await apiRequest(api.getOwnerTransaction(), setLoading, successCallback);
+  await apiRequest(
+    api.getOwnerTransaction(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
 };
 
 export default {
@@ -245,5 +262,5 @@ export default {
   downloadFileRequest,
   getOwnerPropertyList,
   getOwnerPropertyOverview,
-  getOwnerTransaction
+  getOwnerTransaction,
 };

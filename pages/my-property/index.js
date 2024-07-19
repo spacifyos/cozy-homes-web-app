@@ -137,13 +137,9 @@ const MyStay = () => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.myStay")}
-      hideGoBackButton
-      hideRightButton
-      padding
-    >
+    <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
       <NextSeo title="My Stay - Spacify Asia" />
+      
       <div className="body-container pb-24">
         <UserSection t={t} data={userProfileData} />
 

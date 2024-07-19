@@ -7,7 +7,7 @@ const CustomHeader = ({
   children,
   pageTitle,
   hideGoBackButton = false,
-  hideBgImage = false,
+  hideBgImage = true,
   onClickGoBack,
   onClickRightButton,
   rightButtonIcon,
@@ -19,14 +19,14 @@ const CustomHeader = ({
 }) => {
   return (
     <div className="flex-1 relative bg-color overflow-hidden flex flex-col">
-      {hideBgImage ? (
-        false
-      ) : (
-        <CustomImage
-          className={"absolute right-0 w-3/5"}
-          src={Images.topBackgroundImage}
-        />
-      )}
+      {/*{hideBgImage ? (*/}
+      {/*  false*/}
+      {/*) : (*/}
+      {/*  <CustomImage*/}
+      {/*    className={"absolute right-0 w-3/5"}*/}
+      {/*    src={Images.topBackgroundImage}*/}
+      {/*  />*/}
+      {/*)}*/}
 
       <div
         className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}

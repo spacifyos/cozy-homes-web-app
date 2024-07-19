@@ -115,15 +115,21 @@ const SignUp = () => {
   };
 
   return (
-    <CustomHeader hideGoBackButton>
+    <div className="bg-color">
       <NextSeo title="Sign Up - Spacify Asia" />
       <div className="body-container py-4">
-        <div className="py-6 mb-4">
+        <div className="py-6 flex flex-col">
           <CustomText
             textClassName="primary-text font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
-            {t("signUp.letGetStarted")}
+            Let’s Get
+          </CustomText>
+          <CustomText
+            textClassName="primary-text font-bold leading-10"
+            styles={{ fontSize: 34 }}
+          >
+            Started
           </CustomText>
         </div>
 
@@ -275,7 +281,7 @@ const SignUp = () => {
 
         <LoadingOverlay loading={signUpLoading} />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 

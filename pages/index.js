@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import AuthManager from "@/src/utils/AuthManager";
+import { get, isEmpty, isEqual } from "lodash";
 
 export { getServerSideProps };
 
@@ -12,9 +14,22 @@ function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => {
-      router.replace("/my-property");
-    }, 1000);
+    const checkAuthentication = async () => {
+      const token = await AuthManager.retrieveToken();
+      const type = await AuthManager.retrieveType();
+
+      if (!isEmpty(token) && !isEmpty(type)) {
+        if (isEqual(type, "tenant")) {
+          return router.replace("/my-property");
+        } else {
+          return router.replace("/owner");
+        }
+      } else {
+        return router.replace("/sign-in");
+      }
+    };
+
+    setTimeout(() => checkAuthentication(), 1000);
   }, []);
 
   return (
@@ -27,7 +42,7 @@ function Home() {
     >
       <div
         className="flex flex-col justify-start items-center h-screen"
-        style={{ paddingTop: "35%" }}
+        style={{ paddingTop: "50%" }}
       >
         <div>
           <CustomImage

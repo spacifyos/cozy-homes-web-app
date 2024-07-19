@@ -14,6 +14,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import MeterComponent from "@/components/MyMeter/MeterComponent";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import {NextSeo} from "next-seo";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -96,4 +97,4 @@ const MyMeter = () => {
   );
 };
 
-export default withTranslation("common")(MyMeter);
+export default withTranslation("common")(AuthWrapper(MyMeter));

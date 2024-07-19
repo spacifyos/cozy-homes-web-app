@@ -20,6 +20,7 @@ import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
 import { detect } from "detect-browser-es";
 import AuthManager from "@/src/utils/AuthManager";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -406,4 +407,4 @@ const ViewAgreement = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(ViewAgreement);
+export default withTranslation("common")(AuthWrapper(ViewAgreement));

@@ -104,15 +104,21 @@ const SignIn = () => {
   };
 
   return (
-    <CustomHeader hideGoBackButton>
+    <div className="bg-color">
       <NextSeo title="Sign In - Spacify Asia" />
       <div className="body-container pt-4 pb-24">
-        <div className="py-6 mb-4">
+        <div className="py-6 flex flex-col">
           <CustomText
             textClassName="primary-text font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
-            {t("signIn.welcomeBack")}
+            Welcome
+          </CustomText>
+          <CustomText
+            textClassName="primary-text font-bold leading-10"
+            styles={{ fontSize: 34 }}
+          >
+            Back
           </CustomText>
         </div>
 
@@ -231,7 +237,7 @@ const SignIn = () => {
 
         <LoadingOverlay loading={signInLoading} />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 
