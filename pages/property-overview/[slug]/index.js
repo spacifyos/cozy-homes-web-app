@@ -108,7 +108,7 @@ const PropertyOverview = ({ id }) => {
     } else {
       setTargetItems(zeroDepositItems);
     }
-  }, []);
+  }, [listingPropertyDetailData]);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
