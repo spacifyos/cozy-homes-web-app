@@ -118,8 +118,12 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [createBookingLoading, setCreateBookingLoading] = useState(false);
   const [otpRequestLoading, setOtpRequestLoading] = useState(false);
 
-  const [openCharges, setOpenCharges] = useState(false);
-  const [openModalCharges, setOpenModalCharges] = useState(false);
+  const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
+  const [openLastMonthCharges, setOpenLastMonthCharges] = useState(false);
+  const [openModalFirstMonthCharges, setOpenFirstMonthModalCharges] =
+    useState(false);
+  const [openModalLastMonthCharges, setOpenModalLastMonthCharges] =
+    useState(false);
   const [emergencyContactNumber, setEmergencyContactNumber] = useState(
     Array(2),
   );
@@ -133,6 +137,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [otpValue, setOtpValue] = useState("");
   const [idType, setIdType] = useState("nric");
   const [paymentAmount, setPaymentAmount] = useState("");
+  const [isZeroDeposit, setIsZeroDeposit] = useState("true");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -143,14 +148,19 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     listingPropertyDetailData,
   );
   const address = listingSelector.getAddress(listingPropertyDetailData);
-  const totalMoveInCost = listingSelector.getFeesTotalCostFull(
-    listingPropertyDetailData,
-  );
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
   const tenureOption = listingSelector.getTenureOption(
     listingPropertyDetailData,
   );
   const feesList = listingSelector.getFees(listingPropertyDetailData);
+  const isAllowedZeroDeposit = listingSelector.isAllowedZeroDeposit(
+    listingPropertyDetailData,
+  );
+
+  const normalItems = listingSelector.getItems(moveInFees);
+  const zeroDepositItems = listingSelector.getItemsWithZeroDeposit(moveInFees);
+  const securityDepositItems =
+    listingSelector.getItemsWithSecurityDeposit(moveInFees);
 
   const countryOption = commonSelector.getCountry(selectOptionData);
   const genderOption = commonSelector.getGender(selectOptionData);
@@ -159,6 +169,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const nationalityOption = commonSelector.getNationality(selectOptionData);
   const raceOption = commonSelector.getRace(selectOptionData);
   const stateOption = commonSelector.getState(selectOptionData);
+  const occupationOption = commonSelector.getOccupation(selectOptionData);
+
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -169,6 +181,22 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isResendEnabled, setIsResendEnabled] = useState(true);
+
+  const [targetItems, setTargetItems] = useState(normalItems);
+
+  const totalMoveInCost = listingSelector.getTotalCostFull(targetItems);
+
+  useEffect(() => {
+    if (!isAllowedZeroDeposit) {
+      setTargetItems(normalItems);
+    } else {
+      if (isEqual(isZeroDeposit, "true")) {
+        setTargetItems(zeroDepositItems);
+      } else {
+        setTargetItems(securityDepositItems);
+      }
+    }
+  }, [isZeroDeposit]);
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -200,12 +228,20 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     getSelectOptionRequest();
   };
 
-  const onClickOpenCharges = () => {
-    setOpenCharges(!openCharges);
+  const onClickOpenFirstMonthCharges = () => {
+    setOpenFirstMonthCharges(!openFirstMonthCharges);
   };
 
-  const onClickOpenModalCharges = () => {
-    setOpenModalCharges(!openModalCharges);
+  const onClickOpenLastMonthCharges = () => {
+    setOpenLastMonthCharges(!openLastMonthCharges);
+  };
+
+  const onClickOpenModalFirstMonthCharges = () => {
+    setOpenFirstMonthModalCharges(!openModalFirstMonthCharges);
+  };
+
+  const onClickOpenModalLastMonthCharges = () => {
+    setOpenModalLastMonthCharges(!openModalLastMonthCharges);
   };
 
   const onClickGoBack = () => {
@@ -233,6 +269,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       "postcode",
       "country_code",
       "state_code",
+      "occupation_type",
+      "institution_name",
       "emergency_contacts_name_1",
       "emergency_contacts_relationship_1",
       "emergency_contacts_phone_prefix_1",
@@ -286,6 +324,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       return Toast.error("You must verify your phone number");
     }
 
+    if (isEmpty(isZeroDeposit)) {
+      return Toast.error("You must select zero deposit solution.");
+    }
+
     if (isEmpty(frontIcData) || isEmpty(icBackBase64)) {
       return Toast.error(
         "Please upload the supporting document.(IC or Passport)",
@@ -320,6 +362,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       postcode: currentForm.postcode.value,
       country_code: currentForm.country_code.value,
       state_code: currentForm.state_code.value,
+      occupation_type: currentForm.occupation_type.value,
+      institution_name: currentForm.institution_name.value,
       emergency_contacts_name_1: currentForm.emergency_contacts_name_1.value,
       emergency_contacts_relationship_1:
         currentForm.emergency_contacts_relationship_1.value,
@@ -344,6 +388,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       otp: otpValue,
       otp_token: otpToken,
       is_pay_partial: isEqual(paymentAmount, "true") ? true : false,
+      is_zero_deposit: isEqual(isZeroDeposit, "true") ? true : false,
       fee_items: feesList,
     };
 
@@ -549,7 +594,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const calculateCheckOutDate = (format) => {
     if (!isEmpty(checkInDate)) {
-      return moment(checkInDate).add(tenurePeriod, "months").format(format);
+      return moment(checkInDate)
+        .add(tenurePeriod, "months")
+        .subtract(1, "days")
+        .format(format);
     }
 
     return null;
@@ -562,6 +610,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const onClickSelectPaymentAmount = (e) => {
     setPaymentAmount(e.target.value);
+  };
+
+  const onClickSelectIsZeroDeposit = (e) => {
+    setIsZeroDeposit(e.target.value);
   };
 
   return (
@@ -777,26 +829,26 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               required
             />
 
-            {/*<BookingSelect*/}
-            {/*    className="col-span-6"*/}
-            {/*    placeholder="Select Occupation"*/}
-            {/*    title="Occupation"*/}
-            {/*    lists={*/}
-            {/*      isEmpty([]) ? defaultOption : []*/}
-            {/*    }*/}
-            {/*    name=""*/}
-            {/*    errorMessage={errorMessage.applicant_occupation}*/}
-            {/*    required*/}
-            {/*/>*/}
+            <BookingSelect
+              className="col-span-6"
+              placeholder="Select Occupation"
+              title="Occupation"
+              lists={
+                isEmpty(occupationOption) ? defaultOption : occupationOption
+              }
+              name="occupation_type"
+              errorMessage={errorMessage.occupation_type}
+              required
+            />
 
-            {/*<BookingInput*/}
-            {/*    className="col-span-6"*/}
-            {/*    placeholder="Company Name / College Name"*/}
-            {/*    title="Company Name / College Name"*/}
-            {/*    name=""*/}
-            {/*    // errorMessage={errorMessage.applicant_phone_number}*/}
-            {/*    required*/}
-            {/*/>*/}
+            <BookingInput
+              className="col-span-6"
+              placeholder="Company Name / College Name"
+              title="Company Name / College Name"
+              name="institution_name"
+              errorMessage={errorMessage.institution_name}
+              required
+            />
           </div>
 
           <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
@@ -957,7 +1009,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
         {/*/>*/}
 
         <div className="grid">
-          <div className="global-horizontal-padding pt-3 pb-4 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
             <CustomText textClassName="col-span-6 font-bold">
               Verification
             </CustomText>
@@ -988,7 +1040,46 @@ const Booking = ({ id, listingPropertyDetailData }) => {
             />
           </div>
 
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
+          {isAllowedZeroDeposit ? (
+            <div className="global-horizontal-padding pt-3 pb-4 grid grid-cols-6 gap-2">
+              <div className="flex items-end col-span-6">
+                <CustomText textClassName="font-bold pr-1">
+                  ZERO Deposit Solution
+                </CustomText>
+                <CustomText textClassName="font-size-xxsmall pb-0.5">
+                  (*Select either one)
+                </CustomText>
+              </div>
+
+              <div className="flex items-center col-span-3">
+                <input
+                  type="radio"
+                  name="is_zero_deposit"
+                  value="true"
+                  checked={isEqual(isZeroDeposit, "true") ? true : false}
+                  onClick={onClickSelectIsZeroDeposit}
+                  className="radio booking-radio mr-2"
+                />
+                <CustomText>ZERO Deposit</CustomText>
+              </div>
+
+              <div className="flex items-center col-span-3">
+                <input
+                  type="radio"
+                  name="is_zero_deposit"
+                  value="false"
+                  checked={isEqual(isZeroDeposit, "false") ? true : false}
+                  onClick={onClickSelectIsZeroDeposit}
+                  className="radio booking-radio mr-2"
+                />
+                <CustomText>Pay 2 Months Security Deposit</CustomText>
+              </div>
+            </div>
+          ) : (
+            false
+          )}
+
+          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
             <CustomText textClassName="col-span-6 font-bold">
               Supporting Documents
             </CustomText>
@@ -1060,9 +1151,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
           <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
             <RentChargesSection
-              openCharges={openCharges}
-              onClickOpenCharges={onClickOpenCharges}
-              moveInFees={moveInFees}
+              openFirstMonthCharges={openFirstMonthCharges}
+              onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
+              openLastMonthCharges={openLastMonthCharges}
+              onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
+              moveInFees={targetItems}
               title={title}
               onClickSelectPaymentAmount={onClickSelectPaymentAmount}
             />
@@ -1112,15 +1205,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
         <RentChargeModal />
 
         <MoveInCostModal
-          openCharges={openModalCharges}
-          onClickOpenModalCharges={onClickOpenModalCharges}
-          lists={moveInFees}
+          openModalFirstMonthCharges={openModalFirstMonthCharges}
+          openModalLastMonthCharges={openModalLastMonthCharges}
+          onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
+          onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+          lists={targetItems}
         />
 
         <ImageModal data={selectedImage} />
 
         <LoadingOverlay
-          loading={selectOptionDataLoading || getGalleryLinkLoading}
+          loading={
+            selectOptionDataLoading ||
+            getGalleryLinkLoading ||
+            createBookingLoading
+          }
         />
       </div>
     </CustomHeader>

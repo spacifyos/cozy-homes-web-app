@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
@@ -65,7 +65,10 @@ const PropertyOverview = ({ id }) => {
 
   const [selectDetail, setSelectedDetail] = useState(Constant.TENANCY);
   // const [isBookMarks, setIsBookMarks] = useState(true);
-  const [openCharges, setOpenCharges] = useState(false);
+  const [openModalFirstMonthCharges, setOpenFirstMonthModalCharges] =
+    useState(false);
+  const [openModalLastMonthCharges, setOpenModalLastMonthCharges] =
+    useState(false);
 
   const propertyName = listingSelector.getPropertyName(
     listingPropertyDetailData,
@@ -87,9 +90,25 @@ const PropertyOverview = ({ id }) => {
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
-  const totalMoveInCost = listingSelector.getFeesTotalCostFull(
+
+  const isAllowedZeroDeposit = listingSelector.isAllowedZeroDeposit(
     listingPropertyDetailData,
   );
+
+  const normalItems = listingSelector.getItems(moveInFees);
+  const zeroDepositItems = listingSelector.getItemsWithZeroDeposit(moveInFees);
+
+  const [targetItems, setTargetItems] = useState(normalItems);
+
+  const totalMoveInCost = listingSelector.getTotalCostFull(targetItems);
+
+  useEffect(() => {
+    if (!isAllowedZeroDeposit) {
+      setTargetItems(normalItems);
+    } else {
+      setTargetItems(zeroDepositItems);
+    }
+  }, []);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -106,10 +125,6 @@ const PropertyOverview = ({ id }) => {
   };
   const onClickGoBack = () => {
     router.back();
-  };
-
-  const onClickOpenModalCharges = () => {
-    setOpenCharges(!openCharges);
   };
 
   // const onClickRightButton = () => {
@@ -152,6 +167,14 @@ const PropertyOverview = ({ id }) => {
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
     Helper.documentGetElementById("image_modal").showModal();
+  };
+
+  const onClickOpenModalFirstMonthCharges = () => {
+    setOpenFirstMonthModalCharges(!openModalFirstMonthCharges);
+  };
+
+  const onClickOpenModalLastMonthCharges = () => {
+    setOpenModalLastMonthCharges(!openModalLastMonthCharges);
   };
 
   return (
@@ -241,15 +264,17 @@ const PropertyOverview = ({ id }) => {
           onClickOpenWhatsApp={onClickOpenWhatsApp}
           onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
-          data={listingPropertyDetailData}
+          data={targetItems}
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
           totalMoveInCost={totalMoveInCost}
         />
 
         <MoveInCostModal
-          openCharges={openCharges}
-          onClickOpenModalCharges={onClickOpenModalCharges}
-          lists={moveInFees}
+          openModalFirstMonthCharges={openModalFirstMonthCharges}
+          openModalLastMonthCharges={openModalLastMonthCharges}
+          onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
+          onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+          lists={targetItems}
         />
 
         <ImageModal data={selectedImage} />

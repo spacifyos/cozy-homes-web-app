@@ -1,23 +1,33 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Helper from "@/src/utils/Helper";
+import RentChargesComponent from "@/components/Booking/RentChargesComponent";
+import { useEffect, useState } from "react";
 
 const RentChargesSection = ({
-  openCharges,
-  onClickOpenCharges,
+  openFirstMonthCharges,
+  onClickOpenFirstMonthCharges,
+  openLastMonthCharges,
+  onClickOpenLastMonthCharges,
   moveInFees,
   title,
   onClickSelectPaymentAmount,
 }) => {
-  const feesLists = listingSelector.getFeesItemOthers(moveInFees);
-  const rentChargesLists = listingSelector.getFeesItemRentCharges(moveInFees);
-  const rentCharges = listingSelector.getTotalCostRentCharges(moveInFees);
+  const firstMonthRentCharges =
+    listingSelector.getFirstMonthRentCharges(moveInFees);
+  const lastMonthRentCharges =
+    listingSelector.getLastMonthRentCharges(moveInFees);
+  const othersList = listingSelector.getOthers(moveInFees);
   const totalMoveInCostFull = listingSelector.getTotalCostFull(moveInFees);
   const totalMoveInCostPartial =
     listingSelector.getTotalCostPartial(moveInFees);
+  const totalMoveInCostFirstMonth =
+    listingSelector.getTotalCostFirstMonthRentCharges(moveInFees);
+  const totalMoveInCostLastMonth =
+    listingSelector.getTotalCostLastMonthRentCharges(moveInFees);
 
   return (
     <div
@@ -53,75 +63,25 @@ const RentChargesSection = ({
         style={{ backgroundColor: "#D9D9D9" }}
       ></div>
 
-      <div
-        className={`collapse ${openCharges ? "collapse-open" : ""} pb-1`}
-        style={{ borderRadius: 0 }}
-      >
-        <div
-          className="collapse-title flex justify-between items-center cursor-pointer pb-1"
-          style={{ padding: 0, minHeight: 20 }}
-        >
-          <div className="flex items-center" onClick={onClickOpenCharges}>
-            <CustomText textClassName="font-bold pr-2">Rent Charges</CustomText>
-            <CustomImage
-              src={!openCharges ? Images.upIcon : Images.downIcon}
-              width={13}
-              height={13}
-            />
-          </div>
+      <RentChargesComponent
+        title="First Month Rent Charges"
+        onClickOpenCharges={onClickOpenFirstMonthCharges}
+        openCharges={openFirstMonthCharges}
+        rentChargesAmount={totalMoveInCostFirstMonth}
+        rentChargesLists={firstMonthRentCharges}
+      />
 
-          <CustomText>RM{rentCharges}</CustomText>
-        </div>
-        <div className="collapse-content p-0">
-          <div className="flex items-center pt-1">
-            <CustomImage
-              src={Images.infoIcon}
-              height={20}
-              width={20}
-              className="cursor-pointer"
-              onClick={() =>
-                Helper.documentGetElementById(
-                  "rent_charges_details",
-                ).showModal()
-              }
-            />
-            <CustomText
-              styles={{ color: "#1E1E1E" }}
-              textClassName="pl-2 font-light font-size-small"
-            >
-              Inclusion of:
-            </CustomText>
-          </div>
+      <RentChargesComponent
+        title="Last Month Rent Charges"
+        onClickOpenCharges={onClickOpenLastMonthCharges}
+        openCharges={openLastMonthCharges}
+        rentChargesAmount={totalMoveInCostLastMonth}
+        rentChargesLists={lastMonthRentCharges}
+      />
 
-          {_.map(rentChargesLists, (rentChargesList, index) => {
-            const label = listingSelector.getLabel(rentChargesList);
-            const value = listingSelector.getFeeAmount(rentChargesList);
-
-            return (
-              <ul className="pl-7" key={index}>
-                <li className="flex justify-between">
-                  <CustomText
-                    styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light font-size-small"
-                  >
-                    - {label}
-                  </CustomText>
-                  <CustomText
-                    styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light font-size-small"
-                  >
-                    {`RM${value}`}
-                  </CustomText>
-                </li>
-              </ul>
-            );
-          })}
-        </div>
-      </div>
-
-      {_.isEmpty(feesLists)
+      {_.isEmpty(othersList)
         ? false
-        : _.map(feesLists, (fessList, index) => {
+        : _.map(othersList, (fessList, index) => {
             const label = listingSelector.getLabel(fessList);
             const value = listingSelector.getFeeAmount(fessList);
 
