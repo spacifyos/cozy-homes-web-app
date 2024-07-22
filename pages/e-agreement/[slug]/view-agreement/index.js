@@ -6,9 +6,8 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { Document, Page, pdfjs } from "react-pdf";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CustomImage from "@/components/CustomImage";
-import Constant from "@/src/utils/Constant";
 import PinModal from "@/components/EAgreement/PinModal";
 import CanvasModal from "@/components/EAgreement/CanvasModal";
 import Helper from "@/src/utils/Helper";
@@ -18,8 +17,8 @@ import { get, isEmpty, isEqual, map, size } from "lodash";
 import Toast from "@/src/utils/Toast";
 import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
-import { detect } from "detect-browser-es";
 import AuthManager from "@/src/utils/AuthManager";
+import PinNumberInfoModal from "@/components/EAgreement/PinNumberInfoModal";
 
 export { getServerSideProps };
 
@@ -41,7 +40,6 @@ const ViewAgreement = ({ id }) => {
   const [totalPages, setTotalPages] = useState(0);
   const [pageNumber, setPageNumber] = useState(1);
   const [pdfPageHeight, setPdfPageHeight] = useState(450);
-  const [changePageLoading, setChangePageLoading] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [agreeLoading, setAgreeLoading] = useState(false);
@@ -50,7 +48,6 @@ const ViewAgreement = ({ id }) => {
 
   const [data, setData] = useState(null);
 
-  const [rootDataLoading, setRootDataLoading] = useState(false);
   const [gallerySecretKey, setGallerySecretKey] = useState("");
   const [pinNumberValue, setPinNumberValue] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -62,6 +59,7 @@ const ViewAgreement = ({ id }) => {
   const isCanSign = agreementSelector.isCanSign(data);
   const tenantName = agreementSelector.getTenantName(data);
   const tenantIc = agreementSelector.getTenantIc(data);
+  const hasPinNumber = agreementSelector.hasPinNumber(data);
 
   useEffect(() => {
     fetchAgreementPdf();
@@ -147,7 +145,11 @@ const ViewAgreement = ({ id }) => {
 
       await handleAgreeAgreement();
     } else if (isCanSign) {
-      handleOpenSignatureModal();
+      if (hasPinNumber) {
+        handleOpenSignatureModal();
+      } else {
+        handleOpenPinNumberInfoModal();
+      }
     }
   };
 
@@ -168,10 +170,7 @@ const ViewAgreement = ({ id }) => {
   };
 
   const handlePdfSecretData = async () => {
-    await apiRequest.getRootDataRequest(
-      setRootDataLoading,
-      getRootDataSuccessCallback,
-    );
+    await apiRequest.getRootDataRequest(setLoading, getRootDataSuccessCallback);
   };
 
   const getRootDataSuccessCallback = (res) => {
@@ -289,6 +288,28 @@ const ViewAgreement = ({ id }) => {
     );
   };
 
+  const opt = useMemo(() => {
+    return {
+      httpHeaders: { AGSC: gallerySecretKey },
+      cMapUrl: "/bcmaps/",
+      cMapPacked: true,
+    };
+  }, [gallerySecretKey]);
+
+  const onClickToSetPinNumber = () => {
+    router.push({
+      pathname: "/account",
+    });
+  };
+
+  const onClickClosePinNumberInfoModal = () => {
+    Helper.documentGetElementById("pin_number_info_modal").close();
+  };
+
+  const handleOpenPinNumberInfoModal = () => {
+    Helper.documentGetElementById("pin_number_info_modal").showModal();
+  };
+
   return (
     <CustomHeader
       onClickGoBack={onClickGoBack}
@@ -305,59 +326,49 @@ const ViewAgreement = ({ id }) => {
           <Document
             renderMode="canvas"
             file={isEmpty(pdf) ? "" : pdf}
-            options={{
-              httpHeaders: { AGSC: gallerySecretKey },
-              cMapUrl: "/bcmaps/",
-              cMapPacked: true,
-            }}
+            options={opt}
             onLoadSuccess={({ numPages }) => {
-              setChangePageLoading(false);
-              setIsDocumentReady(true);
               setTotalPages(numPages);
+              setIsDocumentReady(true);
             }}
-            noData={noDataRender()}
-            loading={loadingRender()}
-            error={errorRender()}
+            noData={noDataRender}
+            loading={loadingRender}
+            error={errorRender}
           >
-            {isDocumentReady ? (
-              <Page
-                inputRef={(ref) => (pdfPageRef = ref)}
-                // onLoadError={() => setChangePageLoading(false)}
-                onLoadSuccess={onPageLoadSuccess}
-                pageNumber={pageNumber}
-                loading={loadingRender()}
-                error={errorRender()}
-                noData={noDataRender()}
-              />
-            ) : (
-              false
-            )}
+            <Page
+              inputRef={(ref) => (pdfPageRef = ref)}
+              pageNumber={pageNumber}
+              onLoadSuccess={() => {
+                if (pdfPageHeight === 450) {
+                  setPdfPageHeight(pdfPageRef && pdfPageRef.clientHeight);
+                }
+              }}
+              loading={loadingRender}
+              error={errorRender}
+              noData={noDataRender}
+            />
           </Document>
 
-          {isDocumentReady ? (
-            <div className="flex flex-col items-center">
-              <CustomText textClassName="white-text font-size-xsmall pt-2">
-                {t("viewAgreement.page")} {pageNumber} of {totalPages}
-              </CustomText>
+          <div className="flex flex-col items-center">
+            <CustomText textClassName="white-text font-size-xsmall pt-2">
+              {t("viewAgreement.page")} {pageNumber} of {totalPages}
+            </CustomText>
 
-              <div className="flex gap-2 pt-2">
-                <CustomButton
-                  buttonText={t("viewAgreement.previous")}
-                  buttonClassName={`btn-sm ${pageNumber !== 1 && !changePageLoading ? "pdf-next-btn" : "pdf-previous-btn"}`}
-                  onClick={onClickPrevious}
-                  disable={changePageLoading}
-                />
-                <CustomButton
-                  buttonText={t("viewAgreement.next")}
-                  buttonClassName={`btn-sm ${pageNumber !== totalPages && !changePageLoading ? "pdf-next-btn" : "pdf-previous-btn"}`}
-                  onClick={onClickNext}
-                  disable={changePageLoading}
-                />
-              </div>
+            <div className="flex gap-2 pt-2">
+              <CustomButton
+                buttonText={t("viewAgreement.previous")}
+                buttonClassName={`btn-sm ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                onClick={onClickPrevious}
+                disable={!isDocumentReady}
+              />
+              <CustomButton
+                buttonText={t("viewAgreement.next")}
+                buttonClassName={`btn-sm ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                onClick={onClickNext}
+                disable={!isDocumentReady}
+              />
             </div>
-          ) : (
-            false
-          )}
+          </div>
         </div>
 
         {isCanAgree ? (
@@ -422,6 +433,11 @@ const ViewAgreement = ({ id }) => {
         pinNumberValue={pinNumberValue}
         onChangePinNumberValue={onChangePinNumberValue}
         errorMessage={errorMessage}
+      />
+
+      <PinNumberInfoModal
+        onClickToSetPinNumber={onClickToSetPinNumber}
+        onClickCloseModal={onClickClosePinNumberInfoModal}
       />
     </CustomHeader>
   );

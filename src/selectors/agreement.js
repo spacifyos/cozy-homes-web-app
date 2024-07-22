@@ -27,4 +27,5 @@ export const getTenantName = (state) => get(state, ["signee", "name"], "");
 export const getTenantIc = (state) => get(state, ["signee", "identity"], "");
 export const isCanAgree = (state) => get(state, ["attribute", "is_can_agree"], false);
 export const isCanSign = (state) => get(state, ["attribute", "is_can_sign"], false);
+export const hasPinNumber = (state) => get(state, ["attribute", "signee_has_pin_number"], false);
 export const getUrl = (state) => get(state, ["url"], "");
