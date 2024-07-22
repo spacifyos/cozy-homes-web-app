@@ -60,6 +60,7 @@ const ViewAgreement = ({ id }) => {
   const tenantName = agreementSelector.getTenantName(data);
   const tenantIc = agreementSelector.getTenantIc(data);
   const hasPinNumber = agreementSelector.hasPinNumber(data);
+  const referenceNumber = agreementSelector.getReferenceNumber(data);
 
   useEffect(() => {
     fetchAgreementPdf();
@@ -100,11 +101,11 @@ const ViewAgreement = ({ id }) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl)) {
-          await apiRequest.downloadFileRequest(resUrl, headers);
-          // window.open(
-          //   resUrl,
-          //   `${isEqual(detect().name, "safari") ? "_self" : "_blank"}`,
-          // );
+          await apiRequest.downloadFileRequest(
+            resUrl,
+            headers,
+            referenceNumber,
+          );
         }
       })
       .catch((error) => {

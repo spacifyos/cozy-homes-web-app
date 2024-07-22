@@ -1,5 +1,5 @@
 import api from "@/src/services/httpUtilities/httpService";
-import _, { isEmpty } from "lodash";
+import _, { isEmpty, get } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { apiRequestErrorResponse } from "@/src/services/httpUtilities/apiRequestErrorResponse";
 import axios from "axios";
@@ -17,18 +17,18 @@ const apiRequest = async (
     setLoading(true);
     const res = await api;
 
-    const status = _.get(res, ["status"], 0);
-    const data = _.get(res, ["data", "data"], "");
-    const config = _.get(res, ["data", "config"], "");
-    const code = _.get(res, ["data", "code"], 0);
-    const message = _.get(res, ["data", "message"], "");
+    const status = get(res, ["status"], 0);
+    const data = get(res, ["data", "data"], "");
+    const config = get(res, ["data", "config"], "");
+    const code = get(res, ["data", "code"], 0);
+    const message = get(res, ["data", "message"], "");
 
     if (status === 200 || code === 200 || code === 204) {
       setLoading(false);
       successCallback(isEmpty(data) ? config : data);
 
       if (!ignoreSuccessMessage) {
-        Toast.success(_.isEmpty(message) ? successMessage : message);
+        Toast.success(isEmpty(message) ? successMessage : message);
       }
     }
   } catch (err) {
@@ -185,7 +185,7 @@ const patchUserPinNumber = async (
   );
 };
 
-const downloadFileRequest = async (url, headers) => {
+const downloadFileRequest = async (url, headers, fileName) => {
   try {
     const response = await axios.get(url, {
       headers,
@@ -197,8 +197,10 @@ const downloadFileRequest = async (url, headers) => {
     fileLink.href = fileUrl;
     fileLink.setAttribute(
       "download",
-      `${moment().format("YYYYMMDDHHmmss")}.pdf`,
-    ); // specify the file name and extension
+      `${isEmpty(fileName) ? moment().format("YYYYMMDDHHmmss") : fileName}.pdf`,
+    );
+
+    // specify the file name and extension
     document.body.appendChild(fileLink);
     fileLink.click();
     fileLink.remove();

@@ -29,3 +29,7 @@ export const isCanAgree = (state) => get(state, ["attribute", "is_can_agree"], f
 export const isCanSign = (state) => get(state, ["attribute", "is_can_sign"], false);
 export const hasPinNumber = (state) => get(state, ["attribute", "signee_has_pin_number"], false);
 export const getUrl = (state) => get(state, ["url"], "");
+export const getHasMorePages = (state) => get(state, ["has_more_pages"], false);
+export const getTotalPage = (state) => get(state, ["total"], 1);
+export const getCurrentPage = (state) => get(state, ["current_page"], 1);
+export const getLastPage = (state) => get(state, ["last_page"], 1);

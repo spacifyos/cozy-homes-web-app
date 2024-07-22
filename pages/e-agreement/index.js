@@ -13,6 +13,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";
+import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 
@@ -39,7 +40,17 @@ const EAgreement = () => {
     agreementSelector.getAgreementListingLoading(state, selectedStatus),
   );
   const agreementListingDataPagination = useSelector((state) =>
-    agreementSelector.getAgreementListingPagination(state),
+    agreementSelector.getAgreementListingPagination(state, selectedStatus),
+  );
+
+  const hasMorePage = agreementSelector.getHasMorePages(
+    agreementListingDataPagination,
+  );
+  const lastPage = agreementSelector.getLastPage(
+    agreementListingDataPagination,
+  );
+  const currentPage = agreementSelector.getCurrentPage(
+    agreementListingDataPagination,
   );
 
   useEffect(() => {
@@ -48,7 +59,7 @@ const EAgreement = () => {
 
   const fetchAgreementListingData = (
     status = Constant.AGREEMENT_ALL,
-    perPage = 20,
+    perPage = 3,
     page = 1,
   ) => {
     getAgreementListingRequest(status, perPage, page);
@@ -64,6 +75,10 @@ const EAgreement = () => {
 
   const onClickToDetail = (id) => {
     router.push(`/e-agreement/${id}`);
+  };
+
+  const onClickLoadMore = () => {
+    fetchAgreementListingData(selectedStatus, 3, currentPage + 1);
   };
 
   return (
@@ -106,6 +121,22 @@ const EAgreement = () => {
               />
             ))}
           </div>
+        )}
+
+        {hasMorePage && lastPage > 1 && !isEmpty(agreementListingData) ? (
+          <div className="flex justify-center pt-3">
+            <CustomButton
+              buttonClassName="primary-btn min-h-9 h-9 w-32"
+              buttonText="Load More"
+              textClassName="font-size-xsmall"
+              loading={
+                agreementListingDataLoading && !isEmpty(agreementListingData)
+              }
+              onClick={onClickLoadMore}
+            />
+          </div>
+        ) : (
+          false
         )}
 
         <LoadingOverlay loading={agreementListingDataLoading} />
