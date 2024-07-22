@@ -39,11 +39,6 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
           style={{ marginTop: 10, marginBottom: 10 }}
         ></div>
 
-        {/*<div className="grid grid-cols-2 gap-2">*/}
-        {/*<div className="flex flex-col">*/}
-        {/*<CustomText textClassName="font-size-small">*/}
-        {/*  {t("eAgreement.tenant")}*/}
-        {/*</CustomText>*/}
         <div className="flex">
           <div className="flex mr-5">
             <CustomImage
@@ -69,8 +64,6 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
             </CustomText>
           </div>
         </div>
-        {/*</div>*/}
-        {/*</div>*/}
       </div>
       <CustomImage src={Images.rightIcon} width={10} height={10} />
     </div>
