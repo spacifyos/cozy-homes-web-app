@@ -30,6 +30,7 @@ export const getPostResetPasswordWithEmailStatus = (state) =>
 export const getPostResetPasswordWithEmailLoading = (state) =>
   _.get(state, ["auth", "resetPasswordWithEmail", "loading"], false);
 
+export const getId = (state) => _.get(state, ["id"], "");
 export const getToken = (state) => _.get(state, ["token"], "");
 export const getType = (state) => _.get(state, ["type"], "");
 export const getName = (state) => _.get(state, ["name"], "");

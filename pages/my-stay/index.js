@@ -12,7 +12,6 @@ import AuthWrapper from "@/components/AuthWrapper";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import { isEmpty } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
@@ -21,6 +20,8 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
+import CryptoJS from "crypto-js";
+import { isEmpty, toString } from "lodash";
 
 export { getServerSideProps };
 
@@ -70,6 +71,43 @@ const MyStay = () => {
   );
 
   const [isChecked, setIsChecked] = useState(true);
+
+  // const name = authSelector.getName(userProfileData);
+  // const email = authSelector.getEmail(userProfileData);
+  // const userId = "GD7LqzjMPyqLAAl9";
+  // const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
+  //
+  // const encryptUserId = toString(
+  //   CryptoJS.HmacSHA256(toString(userId), secretKey),
+  // );
+  // console.log(encryptUserId);
+  //
+  // useEffect(() => {
+  //   const script = document.createElement("script");
+  //   script.async = true;
+  //   script.defer = true;
+  //   script.src =
+  //     "https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/float.js";
+  //   document.body.appendChild(script);
+  //
+  //   const chatbotScript = document.createElement("script");
+  //   chatbotScript.innerHTML = `
+  //     window.addEventListener("chatbot:read", function() {
+  //       window.$chatbot.setUser("${userId}", {
+  //         name: "Optimum Support",
+  //         email: "support@optimumtech.my",
+  //         identifier_hash: "${encryptUserId}"
+  //       });
+  //     });
+  //   `;
+  //   document.body.appendChild(chatbotScript);
+  //
+  //   // Clean up the scripts when the component unmounts
+  //   return () => {
+  //     document.body.removeChild(script);
+  //     document.body.removeChild(chatbotScript);
+  //   };
+  // }, [userId]);
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory);
