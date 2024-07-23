@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
-import _, { isEmpty } from "lodash";
+import _, { isEmpty, isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
 const RentChargesComponent = ({
@@ -72,12 +72,16 @@ const RentChargesComponent = ({
                 >
                   - {label}
                 </CustomText>
-                <CustomText
-                  styles={{ color: "#1E1E1E" }}
-                  textClassName="font-light font-size-small"
-                >
-                  {`RM${value}`}
-                </CustomText>
+                {isEqual(process.env.PRODUCTION, "DEVELOPMENT") ? (
+                  <CustomText
+                    styles={{ color: "#1E1E1E" }}
+                    textClassName="font-light font-size-small"
+                  >
+                    {`RM${value}`}
+                  </CustomText>
+                ) : (
+                  false
+                )}
               </li>
             </ul>
           );
