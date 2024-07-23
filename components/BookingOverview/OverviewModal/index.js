@@ -2,10 +2,32 @@ import CustomText from "@/components/CustomText";
 import CustomModal from "@/components/CustomModal";
 import * as listingSelector from "@/src/selectors/listing";
 import _ from "lodash";
+import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 
-const OverviewModal = ({ t, data }) => {
+const OverviewModal = ({
+  t,
+  data,
+  onClickOpenFirstMonthCharges,
+  openFirstMonthCharges,
+  onClickOpenLastMonthCharges,
+  openLastMonthCharges,
+}) => {
   const fees = listingSelector.getFees(data);
-  const totalFees = listingSelector.getTotalFees(data);
+
+  const firstMonthRentCharges = listingSelector.getFirstMonthRentCharges(fees);
+  const lastMonthRentCharges = listingSelector.getLastMonthRentCharges(fees);
+  const othersList = listingSelector.getOthers(fees);
+  const totalMoveInCostFirstMonth =
+    listingSelector.getTotalCostFirstMonthRentCharges(fees);
+  const totalMoveInCostLastMonth =
+    listingSelector.getTotalCostLastMonthRentCharges(fees);
+  const totalFeesAmount = listingSelector.getTotalFeesAmount(data);
+  const totalFeesFirstMonthAmount =
+    listingSelector.getTotalFeesFirstMonthAmount(data);
+  const totalFeesLastMonthAmount =
+    listingSelector.getTotalFeesLastMonthAmount(data);
+
+  console.log(firstMonthRentCharges);
 
   return (
     <CustomModal id="booking_overview_modal">
@@ -18,31 +40,47 @@ const OverviewModal = ({ t, data }) => {
       </CustomText>
       <div className="divider divider-bookingOverview"></div>
 
-      {_.isEmpty(fees)
+      <RentChargesComponent
+        title="First Month Rent Charges"
+        onClickOpenCharges={onClickOpenFirstMonthCharges}
+        openCharges={openFirstMonthCharges}
+        rentChargesAmount={totalFeesFirstMonthAmount}
+        rentChargesLists={firstMonthRentCharges}
+      />
+
+      <RentChargesComponent
+        title="Last Month Rent Charges"
+        onClickOpenCharges={onClickOpenLastMonthCharges}
+        openCharges={openLastMonthCharges}
+        rentChargesAmount={totalFeesLastMonthAmount}
+        rentChargesLists={lastMonthRentCharges}
+      />
+
+      {_.isEmpty(othersList)
         ? false
-        : _.map(fees, (fee) => {
-            const name = listingSelector.getName(fee);
-            const amount = listingSelector.getAmount(fee);
+        : _.map(othersList, (fessList, index) => {
+            const label = listingSelector.getLabel(fessList);
+            const value = listingSelector.getFeeAmount(fessList);
 
             return (
-              <div className="payment-details-fee">
-                <CustomText textClassName="modal-font-primary">
-                  {name}
-                </CustomText>
-                <CustomText textClassName="modal-font-secondary">
-                  RM{_.isEmpty(amount) ? "0" : amount}
-                </CustomText>
+              <div
+                className="flex justify-between items-center pb-1"
+                key={index}
+              >
+                <CustomText textClassName="font-bold pr-2">{label}</CustomText>
+                <CustomText>RM{value}</CustomText>
               </div>
             );
           })}
 
       <div className="divider divider-bookingOverview"></div>
+
       <div className="payment-details-fee">
         <CustomText textClassName="modal-font-primary">
           {t("bookingOverview.total")}
         </CustomText>
         <CustomText textClassName="modal-font-main">
-          RM{_.isEmpty(totalFees) ? "0" : totalFees}
+          RM{_.isEmpty(totalFeesAmount) ? "0" : totalFeesAmount}
         </CustomText>
       </div>
     </CustomModal>

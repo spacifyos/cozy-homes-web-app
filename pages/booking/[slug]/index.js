@@ -42,6 +42,7 @@ import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Helper from "@/src/utils/Helper";
+import { getRentalWithSecurityDeposit } from "@/src/selectors/listing";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -156,6 +157,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const isAllowedZeroDeposit = listingSelector.isAllowedZeroDeposit(
     listingPropertyDetailData,
   );
+  const rentalWithSecurityDeposit =
+    listingSelector.getRentalWithSecurityDeposit(listingPropertyDetailData);
 
   const normalItems = listingSelector.getItems(moveInFees);
   const zeroDepositItems = listingSelector.getItemsWithZeroDeposit(moveInFees);
@@ -181,9 +184,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isResendEnabled, setIsResendEnabled] = useState(true);
-
   const [targetItems, setTargetItems] = useState(normalItems);
 
+  const targetRental = isEqual(isZeroDeposit, "true")
+    ? rental
+    : rentalWithSecurityDeposit;
   const totalMoveInCost = listingSelector.getTotalCostFull(targetItems);
 
   useEffect(() => {
@@ -616,6 +621,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     setIsZeroDeposit(e.target.value);
   };
 
+  console.log(targetRental);
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
@@ -663,7 +669,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           </CustomText>
 
           <CustomText textClassName="font-bold pb-3">
-            RM{isEmpty(rental) ? "-" : rental} / Monthly
+            {`RM${isEmpty(targetRental) ? "0" : targetRental} / Monthly`}
           </CustomText>
 
           <CustomText textClassName="font-bold">

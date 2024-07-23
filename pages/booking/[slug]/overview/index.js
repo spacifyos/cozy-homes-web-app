@@ -11,7 +11,7 @@ import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -29,6 +29,9 @@ const BookingOverview = ({ id }) => {
   const bookingOverviewLoading = useSelector((state) =>
     listingSelector.getBookingOverviewLoading(state),
   );
+
+  const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
+  const [openLastMonthCharges, setOpenLastMonthCharges] = useState(false);
 
   useEffect(() => {
     fetchBookingOverviewData(id);
@@ -49,6 +52,14 @@ const BookingOverview = ({ id }) => {
     router.replace("/explore");
   };
 
+  const onClickOpenFirstMonthCharges = () => {
+    setOpenFirstMonthCharges(!openFirstMonthCharges);
+  };
+
+  const onClickOpenLastMonthCharges = () => {
+    setOpenLastMonthCharges(!openLastMonthCharges);
+  };
+
   return (
     <CustomHeader
       pageTitle={t("pageTitle.bookingOverview")}
@@ -65,7 +76,14 @@ const BookingOverview = ({ id }) => {
           data={bookingOverviewData}
         />
 
-        <OverviewModal t={t} data={bookingOverviewData} />
+        <OverviewModal
+          t={t}
+          data={bookingOverviewData}
+          openFirstMonthCharges={openFirstMonthCharges}
+          onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
+          openLastMonthCharges={openLastMonthCharges}
+          onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
+        />
 
         <LoadingOverlay loading={bookingOverviewLoading} />
       </div>

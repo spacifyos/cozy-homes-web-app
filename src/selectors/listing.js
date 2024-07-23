@@ -54,6 +54,8 @@ export const getGeneralTag = (state) => get(state, ["general_tags"], []);
 export const getCode = (state) => get(state, ["code"], "");
 export const getDescription = (state) => get(state, ["description"], "");
 export const getRental = (state) => get(state, ["rental"], "");
+export const getRentalWithSecurityDeposit = (state) =>
+  get(state, ["rental_with_security_deposit"], "");
 export const getFees = (state) => get(state, ["fees"], "");
 export const getMoveInFees = (state) => get(state, ["move_in_fees"], null);
 export const getRecommended = (state) => get(state, ["recommended"], []);
@@ -108,6 +110,9 @@ export const getAgencyReviewStatus = (state) =>
   get(state, ["agency_review_status"], "");
 export const getAuthorizedAt = (state) => get(state, ["authorized_at"], "");
 export const getTotalFees = (state) => get(state, ["total_fees"], "");
+export const getTotalFeesAmount = (state) => get(state, ["total_fees","total"], "");
+export const getTotalFeesFirstMonthAmount = (state) => get(state, ["total_fees","total_first_month_rent_charges"], "");
+export const getTotalFeesLastMonthAmount = (state) => get(state, ["total_fees","total_last_month_rent_charges"], "");
 export const getItemsWithZeroDeposit = (state) =>
   get(state, ["items_with_zero_deposit"], null);
 export const getItemsWithSecurityDeposit = (state) =>
