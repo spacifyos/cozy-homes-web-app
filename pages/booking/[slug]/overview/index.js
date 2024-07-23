@@ -12,6 +12,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
+import RentChargeModal from "@/components/Booking/RentChargeModal";
 
 export { getServerSideProps };
 
@@ -84,6 +85,8 @@ const BookingOverview = ({ id }) => {
           openLastMonthCharges={openLastMonthCharges}
           onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
         />
+
+        <RentChargeModal />
 
         <LoadingOverlay loading={bookingOverviewLoading} />
       </div>
