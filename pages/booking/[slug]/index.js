@@ -126,7 +126,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [openModalLastMonthCharges, setOpenModalLastMonthCharges] =
     useState(false);
   const [emergencyContactNumber, setEmergencyContactNumber] = useState(
-    Array(2),
+    Array(1),
   );
   const [icFrontBase64, setIcFrontBase64] = useState("");
   const [frontIcData, setFrontIcData] = useState([]);
@@ -926,9 +926,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                   className="col-span-6 grid grid-cols-6 gap-2 pt-2"
                   key={index}
                 >
-                  <CustomText textClassName="font-bold col-span-3">
-                    {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}
-                  </CustomText>
+                  {/*<CustomText textClassName="font-bold col-span-3">*/}
+                  {/*  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}*/}
+                  {/*</CustomText>*/}
 
                   {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
                   {/*  <div*/}
