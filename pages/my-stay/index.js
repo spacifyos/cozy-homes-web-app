@@ -72,42 +72,33 @@ const MyStay = () => {
 
   const [isChecked, setIsChecked] = useState(true);
 
-  // const name = authSelector.getName(userProfileData);
-  // const email = authSelector.getEmail(userProfileData);
-  // const userId = "GD7LqzjMPyqLAAl9";
-  // const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
+  const name = authSelector.getName(userProfileData);
+  const email = authSelector.getEmail(userProfileData);
+  const userId = "17217905789033510";
+  const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
+
+  const encryptUserId = toString(CryptoJS.HmacSHA256(userId, secretKey));
+
+  // useEffect(() => {
+  //   const handleChatbotReady = () => {
+  //     window.$chatbot.setUser(`${userId}`, {
+  //       name: "Optimum Support",
+  //       email: "support@optimumtech.my",
+  //       identifier_hash: `${encryptUserId}`,
+  //     });
+  //   };
   //
-  // const encryptUserId = toString(
-  //   CryptoJS.HmacSHA256(toString(userId), secretKey),
-  // );
-  // console.log(encryptUserId);
-  //
+  //   window.addEventListener("chatbot:ready", handleChatbotReady);
+  // }, [name]);
+
   // useEffect(() => {
   //   const script = document.createElement("script");
   //   script.async = true;
   //   script.defer = true;
   //   script.src =
-  //     "https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/float.js";
+  //     "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js";
   //   document.body.appendChild(script);
-  //
-  //   const chatbotScript = document.createElement("script");
-  //   chatbotScript.innerHTML = `
-  //     window.addEventListener("chatbot:read", function() {
-  //       window.$chatbot.setUser("${userId}", {
-  //         name: "Optimum Support",
-  //         email: "support@optimumtech.my",
-  //         identifier_hash: "${encryptUserId}"
-  //       });
-  //     });
-  //   `;
-  //   document.body.appendChild(chatbotScript);
-  //
-  //   // Clean up the scripts when the component unmounts
-  //   return () => {
-  //     document.body.removeChild(script);
-  //     document.body.removeChild(chatbotScript);
-  //   };
-  // }, [userId]);
+  // }, [name]);
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory);
