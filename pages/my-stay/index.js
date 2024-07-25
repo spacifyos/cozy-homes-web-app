@@ -6,7 +6,7 @@ import MeterSection from "@/components/MyStay/MeterSection";
 import InvoiceSection from "@/components/MyStay/InvoiceSection";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import AuthWrapper from "@/components/AuthWrapper";
 import * as authAction from "@/src/actions/auth";
@@ -22,6 +22,7 @@ import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
 import CryptoJS from "crypto-js";
 import { isEmpty, toString } from "lodash";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -29,6 +30,7 @@ const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const handleChatbotReadyRef = useRef();
 
   const [selectedCategory, setSelectedCategory] = useState("HomeUnpaid");
 
@@ -74,31 +76,61 @@ const MyStay = () => {
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
+  const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const userId = "17217905789033510";
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
+  const src = "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js";
 
-  const encryptUserId = toString(CryptoJS.HmacSHA256(userId, secretKey));
+  const encryptUserId = toString(CryptoJS.HmacSHA256(phoneNumber, secretKey));
+
+  useEffect(() => {
+    const handleChatbotReady = () => {
+      window.$chatbot.setUser(phoneNumber, {
+        name: name,
+        email: email,
+        id: phoneNumber,
+        identifier_hash: encryptUserId,
+      });
+    };
+    handleChatbotReadyRef.current = handleChatbotReady;
+
+    if (!isEmpty(phoneNumber)) {
+      window.addEventListener("chatbot:ready", handleChatbotReady);
+    }
+  }, [phoneNumber]);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.id = src;
+    script.async = true;
+    script.defer = true;
+    script.src = src;
+
+    if (!isEmpty(phoneNumber)) {
+      document.body.appendChild(script);
+    }
+  }, [phoneNumber]);
 
   // useEffect(() => {
-  //   const handleChatbotReady = () => {
-  //     window.$chatbot.setUser(`${userId}`, {
-  //       name: "Optimum Support",
-  //       email: "support@optimumtech.my",
-  //       identifier_hash: `${encryptUserId}`,
-  //     });
+  //   const handleRouteChange = () => {
+  //     window.removeEventListener(
+  //       "chatbot:ready",
+  //       handleChatbotReadyRef.current,
+  //     );
+  //     const script = Helper.documentGetElementById(src);
+  //     if (script) {
+  //       document.body.removeChild(script);
+  //     }
+  //
+  //     const chatBotElements =
+  //       document.getElementsByClassName("bot--bubble-holder");
+  //     while (chatBotElements.length > 0) {
+  //       chatBotElements[0].parentNode.removeChild(chatBotElements[0]);
+  //     }
   //   };
   //
-  //   window.addEventListener("chatbot:ready", handleChatbotReady);
-  // }, [name]);
-
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.async = true;
-  //   script.defer = true;
-  //   script.src =
-  //     "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js";
-  //   document.body.appendChild(script);
-  // }, [name]);
+  //   router.events.on("routeChangeStart", handleRouteChange);
+  // }, [router.events]);
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory);
