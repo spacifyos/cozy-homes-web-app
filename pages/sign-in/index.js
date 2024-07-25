@@ -80,6 +80,18 @@ const SignIn = () => {
         default:
           return router.push("/my-stay");
       }
+
+      // switch (tab) {
+      //   case "my-stay":
+      //     router.replace("/my-stay").then(() => window.location.reload());
+      //     break;
+      //   case "account":
+      //     router.replace("/account").then(() => window.location.reload());
+      //     break;
+      //   default:
+      //     router.replace("/my-stay").then(() => window.location.reload());
+      //     break;
+      // }
     } else {
       router.push({
         pathname: "/otp-verification",

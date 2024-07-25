@@ -52,18 +52,48 @@ function AppContent({ Component, pageProps }) {
     commonSelector.getSelectOptionDateLoading(state),
   );
 
-  useEffect(() => {
-    const chatBotElements =
-      document.getElementsByClassName("bot--bubble-holder");
-
-    for (let i = 0; i < chatBotElements.length; i++) {
-      if (isEqual(pathname, "/my-stay")) {
-        chatBotElements[i].style.display = "block";
-      } else {
-        chatBotElements[i].style.display = "none";
-      }
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const chatBotElements = Array.from(
+  //     document.getElementsByClassName("bot--bubble-holder"),
+  //   );
+  //   const botWidget = Array.from(
+  //     document.getElementsByClassName("bot-widget-holder"),
+  //   );
+  //   //
+  //   //   botWidget.forEach((element) => {
+  //   //     element.remove();
+  //   //   });
+  //   //
+  //   //   chatBotElements.forEach((element) => {
+  //   //     element.remove();
+  //   //   });
+  //   //
+  //   //   const script = Helper.documentGetElementById(src);
+  //   //   if (script) {
+  //   //     document.body.removeChild(script);
+  //   //   }
+  //   // }
+  //
+  //   for (let i = 0; i < botWidget.length; i++) {
+  //     if (isEqual(pathname, "/my-stay")) {
+  //       botWidget[i].style.display = "block";
+  //
+  //       // window.location.reload()
+  //       // // router.reload();
+  //       // return;
+  //     } else {
+  //       botWidget[i].style.display = "none";
+  //     }
+  //   }
+  //
+  //   for (let i = 0; i < chatBotElements.length; i++) {
+  //     if (isEqual(pathname, "/my-stay")) {
+  //       chatBotElements[i].style.display = "block";
+  //     } else {
+  //       chatBotElements[i].style.display = "none";
+  //     }
+  //   }
+  // }, [router]);
 
   useEffect(() => {
     if (isEmpty(selectOptionData)) {

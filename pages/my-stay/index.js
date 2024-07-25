@@ -20,9 +20,6 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
-import CryptoJS from "crypto-js";
-import { isEmpty, toString, get, isEqual } from "lodash";
-import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -30,8 +27,6 @@ const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
-  const handleChatbotReadyRef = useRef();
-  const myStayRef = useRef(null);
 
   const [selectedCategory, setSelectedCategory] = useState("HomeUnpaid");
 
@@ -74,44 +69,6 @@ const MyStay = () => {
   );
 
   const [isChecked, setIsChecked] = useState(true);
-
-  const name = authSelector.getName(userProfileData);
-  const email = authSelector.getEmail(userProfileData);
-  const phoneNumber = authSelector.getPhoneNumber(userProfileData);
-  const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
-  const src = "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js";
-
-  const encryptUserId = toString(CryptoJS.HmacSHA256(phoneNumber, secretKey));
-
-  useEffect(() => {
-    const handleChatbotReady = () => {
-      window.$chatbot.setUser(phoneNumber, {
-        name: name,
-        email: email,
-        id: phoneNumber,
-        identifier_hash: encryptUserId,
-      });
-    };
-    handleChatbotReadyRef.current = handleChatbotReady;
-
-    if (!isEmpty(phoneNumber)) {
-      window.addEventListener("chatbot:ready", handleChatbotReady);
-    }
-  }, [router, phoneNumber]);
-
-  useEffect(() => {
-    const checkScript = Helper.documentGetElementById(src);
-
-    const script = document.createElement("script");
-    script.id = src;
-    script.async = true;
-    script.defer = true;
-    script.src = src;
-
-    if (!checkScript && !isEmpty(phoneNumber)) {
-      myStayRef.current.appendChild(script);
-    }
-  }, [router, phoneNumber]);
 
   useEffect(() => {
     fetchInvoiceListingData(selectedCategory);
@@ -186,7 +143,7 @@ const MyStay = () => {
       padding
     >
       <NextSeo title="My Stay - Spacify Asia" />
-      <div className="body-container pb-24" ref={myStayRef}>
+      <div className="body-container pb-24">
         <UserSection t={t} data={userProfileData} />
 
         <TenancySection

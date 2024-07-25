@@ -20,6 +20,12 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
       activeIcon: Images.homeIconActive,
     },
     {
+      name: "Chat",
+      value: "/chat",
+      icon: Images.navigateChatIcon,
+      activeIcon: Images.navigateChatIcon,
+    },
+    {
       name: t("root.account"),
       value: "/account",
       icon: Images.accountIcon,
@@ -30,7 +36,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
     <div
       id="bottom_navbar"
       className="fixed bottom-0 w-full z-10"
-      style={{ maxWidth: 500 }}
+      style={{ maxWidth: 500, zIndex: 999 }}
     >
       <div
         className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
