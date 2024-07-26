@@ -75,7 +75,7 @@ function AppContent({ Component, pageProps }) {
     // }
 
     for (let i = 0; i < botWidget.length; i++) {
-      if (isEqual(pathname, "/my-stay")) {
+      if (isEqual(pathname, "/chat")) {
         botWidget[i].style.display = "block";
 
         // window.location.reload()
@@ -87,7 +87,7 @@ function AppContent({ Component, pageProps }) {
     }
 
     for (let i = 0; i < chatBotElements.length; i++) {
-      if (isEqual(pathname, "/my-stay")) {
+      if (isEqual(pathname, "/chat")) {
         chatBotElements[i].style.display = "block";
       } else {
         chatBotElements[i].style.display = "none";
