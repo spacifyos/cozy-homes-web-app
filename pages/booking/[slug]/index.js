@@ -289,26 +289,26 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       }
     });
 
-    const optionalFields = [
-      "emergency_contacts_name_2",
-      "emergency_contacts_relationship_2",
-      "emergency_contacts_phone_suffix_2",
-      "emergency_contacts_email_2",
-    ];
-
-    const anyFieldNotEmpty = some(
-      optionalFields,
-      (optionalField) => !isEmpty(currentForm[optionalField].value),
-    );
-
-    if (anyFieldNotEmpty) {
-      forEach(optionalFields, (optionalField) => {
-        if (isEmpty(currentForm[optionalField].value)) {
-          newErrors[optionalField] =
-            `${currentForm[optionalField].title} is required`;
-        }
-      });
-    }
+    // const optionalFields = [
+    //   "emergency_contacts_name_2",
+    //   "emergency_contacts_relationship_2",
+    //   "emergency_contacts_phone_suffix_2",
+    //   "emergency_contacts_email_2",
+    // ];
+    //
+    // const anyFieldNotEmpty = some(
+    //   optionalFields,
+    //   (optionalField) => !isEmpty(currentForm[optionalField].value),
+    // );
+    //
+    // if (anyFieldNotEmpty) {
+    //   forEach(optionalFields, (optionalField) => {
+    //     if (isEmpty(currentForm[optionalField].value)) {
+    //       newErrors[optionalField] =
+    //         `${currentForm[optionalField].title} is required`;
+    //     }
+    //   });
+    // }
 
     setErrorMessage(newErrors);
 
@@ -318,9 +318,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
     if (
       !includes(currentForm.applicant_email.value, "@") ||
-      !includes(currentForm.emergency_contacts_email_1.value, "@") ||
-      (!isEmpty(currentForm.emergency_contacts_email_2.value) &&
-        !includes(currentForm.emergency_contacts_email_2.value, "@"))
+      !includes(currentForm.emergency_contacts_email_1.value, "@")
+      // (!isEmpty(currentForm.emergency_contacts_email_2.value) &&
+      //   !includes(currentForm.emergency_contacts_email_2.value, "@"))
     ) {
       return Toast.error("Email must be include @.");
     }
@@ -377,17 +377,17 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       emergency_contacts_phone_suffix_1:
         currentForm.emergency_contacts_phone_suffix_1.value,
       emergency_contacts_email_1: currentForm.emergency_contacts_email_1.value,
-      emergency_contacts_name_2: currentForm.emergency_contacts_name_2.value,
-      emergency_contacts_relationship_2:
-        currentForm.emergency_contacts_relationship_2.value,
-      emergency_contacts_phone_prefix_2: isEmpty(
-        currentForm.emergency_contacts_phone_suffix_2.value,
-      )
-        ? ""
-        : currentForm.emergency_contacts_phone_prefix_2.value,
-      emergency_contacts_phone_suffix_2:
-        currentForm.emergency_contacts_phone_suffix_2.value,
-      emergency_contacts_email_2: currentForm.emergency_contacts_email_2.value,
+      // emergency_contacts_name_2: currentForm.emergency_contacts_name_2.value,
+      // emergency_contacts_relationship_2:
+      //   currentForm.emergency_contacts_relationship_2.value,
+      // emergency_contacts_phone_prefix_2: isEmpty(
+      //   currentForm.emergency_contacts_phone_suffix_2.value,
+      // )
+      //   ? ""
+      //   : currentForm.emergency_contacts_phone_prefix_2.value,
+      // emergency_contacts_phone_suffix_2:
+      //   currentForm.emergency_contacts_phone_suffix_2.value,
+      // emergency_contacts_email_2: currentForm.emergency_contacts_email_2.value,
       id_front: frontIcData,
       id_back: backIcData,
       otp: otpValue,
