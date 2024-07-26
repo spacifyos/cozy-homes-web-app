@@ -10,10 +10,12 @@ import CryptoJS from "crypto-js";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useRouter } from "next/router";
+import CustomButton from "@/components/CustomButton";
 
 const Chat = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const chatRef = useRef();
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -30,9 +32,10 @@ const Chat = () => {
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src =
-    "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/embed.js?id=embed_chatbot_container_id";
+    "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/popup.js?id=embed_chatbot_container_id";
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(phoneNumber, secretKey));
+  const [isChatReady, setIsChatReady] = useState(false);
 
   useEffect(() => {
     const handleChatbotReady = () => {
@@ -67,6 +70,10 @@ const Chat = () => {
 
     if (!isEmpty(phoneNumber)) {
       chatContainer.appendChild(script);
+
+      setTimeout(() => {
+        setIsChatReady(true);
+      }, 2000);
     }
   }, [phoneNumber]);
 
@@ -83,7 +90,7 @@ const Chat = () => {
   };
 
   return (
-    <div className="relative" id="chat-container">
+    <div className="flex flex-col flex-1" id="chat-container" ref={chatRef}>
       <div
         className={`flex items-center global-horizontal-padding pb-5 pt-5 overflow-hidden`}
       >
@@ -100,10 +107,18 @@ const Chat = () => {
         </div>
       </div>
 
-      <div
-        id="embed_chatbot_container_id"
-        style={{ height: "calc(100vh - 67px)" }}
-      ></div>
+      <div className="flex flex-1 flex-col items-center justify-center">
+        <CustomText textClassName="pb-4">
+          {`Welcome, ${isEmpty(name) ? "" : name} do you facing any problem?`}
+        </CustomText>
+
+        <CustomButton
+          buttonClassName="bot-trigger--btn primary-btn"
+          buttonText="Let start chat now"
+          loading={!isChatReady}
+          disable={!isChatReady}
+        />
+      </div>
 
       <LoadingOverlay loading={userProfileLoading} />
     </div>
