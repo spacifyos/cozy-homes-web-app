@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Helper from "@/src/utils/Helper";
-import _, { isEmpty, toString } from "lodash";
+import { isEmpty, toString } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
@@ -25,6 +25,9 @@ const Chat = () => {
   const userProfileLoading = useSelector((state) =>
     authSelector.getUserProfileLoading(state),
   );
+
+  const bottomNavigateHeight =
+    Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
@@ -81,10 +84,16 @@ const Chat = () => {
   };
 
   return (
-    <div className="relative pb-24" id="chat-container">
+    <div id="chat-container">
       <div
         id="embed_chatbot_container_id"
-        style={{ height: "calc(100vh - 92px)" }}
+        style={{
+          height:
+            visualViewport.height * visualViewport.scale - bottomNavigateHeight,
+          width: "100%",
+          maxWidth: 500,
+          position: "fixed",
+        }}
       ></div>
 
       <LoadingOverlay loading={userProfileLoading} />

@@ -75,6 +75,8 @@ const SignIn = () => {
       switch (tab) {
         case "my-stay":
           return router.push("/my-stay");
+        case "chat":
+          return router.push("/chat");
         case "account":
           return router.push("/account");
         default:

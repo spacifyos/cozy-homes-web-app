@@ -166,6 +166,7 @@ const Image = {
   adminIcon: "/images/icon/admin_icon.png",
   profilePic: "/images/profile.png",
   navigateChatIcon: "/images/icon/navigate_chat_icon.png",
+  navigateChatIconActive: "/images/icon/navigate_chat_icon_active.png"
 };
 
 export default { ...Image };
