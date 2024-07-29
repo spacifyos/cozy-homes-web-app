@@ -32,18 +32,20 @@ const Chat = () => {
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
+  const uuid = authSelector.getUuid(userProfileData);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src =
     "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/embed.js?id=embed_chatbot_container_id";
 
-  const encryptUserId = toString(CryptoJS.HmacSHA256(phoneNumber, secretKey));
+  const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
     const handleChatbotReady = () => {
-      window.$chatbot.setUser(phoneNumber, {
+      window.$chatbot.setUser(uuid, {
         name: name,
         email: email,
+        phone_number: phoneNumber,
         identifier_hash: encryptUserId,
       });
     };
@@ -53,7 +55,7 @@ const Chat = () => {
     // return () => {
     //   window.removeEventListener("chatbot:ready", handleChatbotReady);
     // };
-  }, [phoneNumber]);
+  }, [uuid]);
 
   useEffect(() => {
     const checkScript = Helper.documentGetElementById(src);
