@@ -51,31 +51,22 @@ const Chat = () => {
           phone_number: phoneNumber,
           identifier_hash: encryptUserId,
         });
-      };
 
-      window.addEventListener("chatbot:ready", handleChatbotReady);
-      setUChatUserInsertSuccess(true);
-
-      return () => {
-        window.removeEventListener("chatbot:ready", handleChatbotReady);
-      };
-    }
-  }, [uuid]);
-
-  useEffect(() => {
-    if (uChatUserInsertSuccess && !isEmpty(phoneNumber)) {
-      const handleAdditionalData = () => {
         window.$chatbot.setCustomAttributes({
           user_fields: {
             user_phone: phoneNumber,
           },
         });
       };
-      console.log(phoneNumber);
 
-      window.addEventListener("chatbot:ready", handleAdditionalData);
+      window.addEventListener("chatbot:ready", handleChatbotReady);
+      setUChatUserInsertSuccess(true);
+
+      // return () => {
+      //   window.removeEventListener("chatbot:ready", handleChatbotReady);
+      // };
     }
-  }, [uChatUserInsertSuccess, phoneNumber]);
+  }, [uuid]);
 
   useEffect(() => {
     const checkScript = Helper.documentGetElementById(src);
