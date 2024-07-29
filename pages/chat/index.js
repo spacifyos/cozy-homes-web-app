@@ -44,16 +44,15 @@ const Chat = () => {
       window.$chatbot.setUser(phoneNumber, {
         name: name,
         email: email,
-        id: phoneNumber,
         identifier_hash: encryptUserId,
       });
     };
 
     window.addEventListener("chatbot:ready", handleChatbotReady);
 
-    return () => {
-      window.removeEventListener("chatbot:ready", handleChatbotReady);
-    };
+    // return () => {
+    //   window.removeEventListener("chatbot:ready", handleChatbotReady);
+    // };
   }, [phoneNumber]);
 
   useEffect(() => {
