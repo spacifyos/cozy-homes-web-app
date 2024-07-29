@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import _, { isEqual } from "lodash";
+import _, { isEmpty, isEqual, isInteger } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
@@ -69,6 +69,7 @@ const PropertyOverview = ({ id }) => {
     useState(false);
   const [openModalLastMonthCharges, setOpenModalLastMonthCharges] =
     useState(false);
+  const [openImageModal, setOpenImageModal] = useState(false);
 
   const propertyName = listingSelector.getPropertyName(
     listingPropertyDetailData,
@@ -110,7 +111,7 @@ const PropertyOverview = ({ id }) => {
     }
   }, [listingPropertyDetailData]);
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(2);
 
   useEffect(() => {
     fetchListingPropertyDetail(id);
@@ -166,7 +167,11 @@ const PropertyOverview = ({ id }) => {
 
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
-    Helper.documentGetElementById("image_modal").showModal();
+    setOpenImageModal(true);
+  };
+
+  const onClickCloseImageModal = () => {
+    setOpenImageModal(false);
   };
 
   const onClickOpenModalFirstMonthCharges = () => {
@@ -277,7 +282,12 @@ const PropertyOverview = ({ id }) => {
           lists={targetItems}
         />
 
-        <ImageModal data={selectedImage} />
+        <ImageModal
+          data={imageUrl}
+          selectedImage={selectedImage}
+          onClickCloseImageModal={onClickCloseImageModal}
+          openImageModal={openImageModal}
+        />
 
         <RentChargeModal />
 
