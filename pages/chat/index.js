@@ -26,6 +26,8 @@ const Chat = () => {
     authSelector.getUserProfileLoading(state),
   );
 
+  const [uChatUserInsertSuccess, setUChatUserInsertSuccess] = useState(false);
+
   const bottomNavigateHeight =
     Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
@@ -41,21 +43,39 @@ const Chat = () => {
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
-    const handleChatbotReady = () => {
-      window.$chatbot.setUser(uuid, {
-        name: name,
-        email: email,
-        phone_number: phoneNumber,
-        identifier_hash: encryptUserId,
-      });
-    };
+    if (!isEmpty(uuid)) {
+      const handleChatbotReady = () => {
+        window.$chatbot.setUser(uuid, {
+          name: name,
+          email: email,
+          phone_number: phoneNumber,
+          identifier_hash: encryptUserId,
+        });
+      };
 
-    window.addEventListener("chatbot:ready", handleChatbotReady);
+      window.addEventListener("chatbot:ready", handleChatbotReady);
+      setUChatUserInsertSuccess(true);
 
-    // return () => {
-    //   window.removeEventListener("chatbot:ready", handleChatbotReady);
-    // };
+      return () => {
+        window.removeEventListener("chatbot:ready", handleChatbotReady);
+      };
+    }
   }, [uuid]);
+
+  useEffect(() => {
+    if (uChatUserInsertSuccess && !isEmpty(phoneNumber)) {
+      const handleAdditionalData = () => {
+        window.$chatbot.setCustomAttributes({
+          user_fields: {
+            user_phone: phoneNumber,
+          },
+        });
+      };
+      console.log(phoneNumber);
+
+      window.addEventListener("chatbot:ready", handleAdditionalData);
+    }
+  }, [uChatUserInsertSuccess, phoneNumber]);
 
   useEffect(() => {
     const checkScript = Helper.documentGetElementById(src);
