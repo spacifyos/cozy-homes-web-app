@@ -1,36 +1,64 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import Helper from "@/src/utils/Helper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import { map, size } from "lodash";
 
-const ImageModal = ({ data }) => {
-  return (
-    <dialog id="image_modal" className="modal">
-      {/*<Swiper*/}
-      {/*  navigation={true}*/}
-      {/*  modules={[Navigation]}*/}
-      {/*  className="mySwiper"*/}
-      {/*  style={{ width: "100%" }}*/}
-      {/*>*/}
-      {/*  {_.map(data, (item) => {*/}
-      {/*    return (*/}
-      {/*      <SwiperSlide style={{ display: "flex", justifyContent: "center" }}>*/}
-      <CustomImage
-        src={data}
-        imageStyle={{ width: "100%", height: "80vh", objectFit: "contain" }}
-      />
-      {/*      </SwiperSlide>*/}
-      {/*    );*/}
-      {/*  })}*/}
-      {/*</Swiper>*/}
+const ImageModal = ({
+  data,
+  selectedImage,
+  onClickCloseImageModal,
+  openImageModal,
+}) => {
+  return openImageModal ? (
+    <div
+      className="fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col justify-center items-center"
+      style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+    >
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper image-modal-swiper"
+        style={{ width: "100%" }}
+        initialSlide={selectedImage}
+      >
+        {map(data, (item, index) => {
+          return (
+            <SwiperSlide
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CustomImage
+                src={item}
+                imageStyle={{
+                  width: "100%",
+                  height: "80%",
+                  objectFit: "contain",
+                }}
+              />
+              <CustomText textClassName="white-text pt-2">{`${index + 1}/${size(data)}`}</CustomText>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+
+      <div></div>
 
       <div
         className="absolute top-1 right-1 z-10 w-10 h-10 flex items-center justify-center rounded cursor-pointer"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
-        onClick={() => Helper.documentGetElementById("image_modal").close()}
+        onClick={onClickCloseImageModal}
       >
         <CustomText textClassName="font-size-xxlarge white-text">X</CustomText>
       </div>
-    </dialog>
+    </div>
+  ) : (
+    false
   );
 };
 

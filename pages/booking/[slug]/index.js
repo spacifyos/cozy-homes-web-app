@@ -118,6 +118,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [backIcUploading, setBackIcUploading] = useState(false);
   const [createBookingLoading, setCreateBookingLoading] = useState(false);
   const [otpRequestLoading, setOtpRequestLoading] = useState(false);
+  const [openImageModal, setOpenImageModal] = useState(false);
 
   const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
   const [openLastMonthCharges, setOpenLastMonthCharges] = useState(false);
@@ -610,7 +611,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const onClickPopupImage = (selectedImage) => {
     setSelectedImage(selectedImage);
-    Helper.documentGetElementById("image_modal").showModal();
+    setOpenImageModal(true);
+  };
+
+  const onClickCloseImageModal = () => {
+    setOpenImageModal(false);
   };
 
   const onClickSelectPaymentAmount = (e) => {
@@ -1218,7 +1223,12 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           lists={targetItems}
         />
 
-        <ImageModal data={selectedImage} />
+        <ImageModal
+          data={imageUrl}
+          selectedImage={selectedImage}
+          onClickCloseImageModal={onClickCloseImageModal}
+          openImageModal={openImageModal}
+        />
 
         <LoadingOverlay
           loading={

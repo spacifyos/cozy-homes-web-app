@@ -5,6 +5,7 @@ const CustomImage = ({
   height = 50,
   imageStyle,
   onClick = () => {},
+  ...props
 }) => {
   return (
     <img
@@ -15,6 +16,7 @@ const CustomImage = ({
       height={height}
       style={{ ...imageStyle }}
       onClick={onClick}
+      {...props}
     />
   );
 };
