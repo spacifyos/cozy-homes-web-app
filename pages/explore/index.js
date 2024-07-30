@@ -81,7 +81,7 @@ function Home() {
   };
 
   return (
-    <CustomHeader hideGoBackButton hideRightButton padding>
+    <div className="bg-color pt-7">
       {/*<LanguageSwitcher*/}
       {/*  locale={locale}*/}
       {/*  openSwitcher={openSwitcher}*/}
@@ -131,7 +131,7 @@ function Home() {
           onClickToPropertyListing={onClickToPropertyListing}
         />
       </div>
-    </CustomHeader>
+    </div>
   );
 }
 

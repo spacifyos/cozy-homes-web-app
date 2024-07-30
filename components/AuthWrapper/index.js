@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthManager from "@/src/utils/AuthManager";
-import { get, isEmpty, replace } from "lodash";
+import { get, isEmpty, isEqual, replace } from "lodash";
 import Toast from "@/src/utils/Toast";
 
 function AuthWrapper(WrappedComponent) {
@@ -14,7 +14,9 @@ function AuthWrapper(WrappedComponent) {
     useEffect(() => {
       const checkAuthentication = async () => {
         const token = await AuthManager.retrieveToken();
-        if (!isEmpty(token)) {
+        const type = await AuthManager.retrieveType();
+
+        if (!isEmpty(token) && !isEmpty(type) && isEqual(type, "tenant")) {
           setIsAuthenticated(true);
         }
         setIsLoading(false);

@@ -118,6 +118,13 @@ const postAgreeAgreement = (id) => apiInstance.post(`/agreement/${id}/agree`);
 const postSignAgreement = (id, postData) =>
   apiInstance.post(`/agreement/${id}/sign`, postData);
 
+const getOwnerPropertyList = () => apiInstance.get(`/owner`);
+
+const getOwnerPropertyOverview = (id) =>
+  apiInstance.get(`/owner/property/${id}`);
+
+const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -157,4 +164,7 @@ export default {
   postAgreeAgreement,
   postSignAgreement,
   patchUserPinNumber,
+  getOwnerPropertyList,
+  getOwnerPropertyOverview,
+  getOwnerTransaction,
 };

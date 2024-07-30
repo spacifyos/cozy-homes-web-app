@@ -1,14 +1,11 @@
-import Color from "@/src/utils/Color";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import _ from "lodash";
-import AuthManager from "@/src/utils/AuthManager";
-import Toast from "@/src/utils/Toast";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import CustomText from "@/components/CustomText";
+import AuthManager from "@/src/utils/AuthManager";
+import { get, isEmpty, isEqual } from "lodash";
 
 export { getServerSideProps };
 
@@ -17,22 +14,42 @@ function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => {
-      router.replace("/my-stay");
-    }, 1000);
+    const checkAuthentication = async () => {
+      const token = await AuthManager.retrieveToken();
+      const type = await AuthManager.retrieveType();
+
+      if (!isEmpty(token) && !isEmpty(type)) {
+        if (isEqual(type, "tenant")) {
+          return router.push("/my-property");
+        } else {
+          return router.push("/owner");
+        }
+      } else {
+        return router.push("/sign-in");
+      }
+    };
+
+    setTimeout(() => checkAuthentication(), 1000);
   }, []);
 
   return (
     <div
       className={"container flex-1 h-screen"}
-      style={{ backgroundColor: Color.primaryWhiteColor }}
+      style={{
+        background:
+          "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)",
+      }}
     >
       <div
         className="flex flex-col justify-start items-center h-screen"
-        style={{ paddingTop: "35%" }}
+        style={{ paddingTop: "50%" }}
       >
         <div>
-          <CustomImage src={Images.logoImage} height={180} width={180} />
+          <CustomImage
+            src={Images.blackLogoWithText}
+            height={180}
+            width={180}
+          />
         </div>
       </div>
     </div>

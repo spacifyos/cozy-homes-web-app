@@ -15,6 +15,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -253,4 +254,4 @@ const MyInvoice = () => {
   );
 };
 
-export default withTranslation("common")(MyInvoice);
+export default withTranslation("common")(AuthWrapper(MyInvoice));

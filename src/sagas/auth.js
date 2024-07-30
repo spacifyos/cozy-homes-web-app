@@ -47,6 +47,7 @@ function* signOutAccountRequest() {
 }
 
 function* clearAccessToken() {
+  AuthManager.removeLoginType();
   AuthManager.removeToken().then(() => {
     // Router.reload();
     Router.replace("/sign-in");

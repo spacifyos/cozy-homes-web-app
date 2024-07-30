@@ -209,6 +209,39 @@ const downloadFileRequest = async (url, headers, fileName) => {
   }
 };
 
+const getOwnerPropertyList = async (setLoading, successCallback) => {
+  await apiRequest(
+    api.getOwnerPropertyList(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const getOwnerPropertyOverview = async (id, setLoading, successCallback) => {
+  await apiRequest(
+    api.getOwnerPropertyOverview(id),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const getOwnerTransaction = async (setLoading, successCallback) => {
+  await apiRequest(
+    api.getOwnerTransaction(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -229,4 +262,7 @@ export default {
   postSignAgreement,
   patchUserPinNumber,
   downloadFileRequest,
+  getOwnerPropertyList,
+  getOwnerPropertyOverview,
+  getOwnerTransaction,
 };

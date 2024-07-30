@@ -23,6 +23,7 @@ import Toast from "@/src/utils/Toast";
 import { browserName, detect } from "detect-browser-es";
 import { NextSeo } from "next-seo";
 import AuthManager from "@/src/utils/AuthManager";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -376,4 +377,4 @@ const InvoiceOverview = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(InvoiceOverview);
+export default withTranslation("common")(AuthWrapper(InvoiceOverview));

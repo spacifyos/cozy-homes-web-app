@@ -54,7 +54,7 @@ const PaymentSuccessful = ({ id }) => {
   };
 
   const onClickClose = () => {
-    router.replace(`/my-stay`);
+    router.replace(`/my-property`);
   };
 
   return (

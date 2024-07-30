@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
-import { get, isEmpty, map } from "lodash";
+import { get, isEmpty, map, isEqual } from "lodash";
 import Constant from "@/src/utils/Constant";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -35,9 +35,6 @@ const SignIn = () => {
   const onClickToSignUp = () => {
     router.push({
       pathname: `/sign-up`,
-      // query: {
-      //   type: selectedRole,
-      // },
     });
   };
 
@@ -66,36 +63,17 @@ const SignIn = () => {
     const authToken = authSelector.getToken(res);
     const isUserVerify = authSelector.getUserVerify(res);
     const userPhoneNumber = authSelector.getUserPhoneNumber(res);
+    const userType = authSelector.getUserType(res);
 
     if (!isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
+      AuthManager.setLoginType(userType);
 
       const tab = get(routeQuery, ["tab"], "");
 
-      switch (tab) {
-        case "my-stay":
-          return router.push("/my-stay");
-        case "chat":
-          return router.push("/chat");
-        case "account":
-          return router.push("/account");
-        default:
-          return router.push("/my-stay");
-      }
-
-      // switch (tab) {
-      //   case "my-stay":
-      //     router.replace("/my-stay").then(() => window.location.reload());
-      //     break;
-      //   case "account":
-      //     router.replace("/account").then(() => window.location.reload());
-      //     break;
-      //   default:
-      //     router.replace("/my-stay").then(() => window.location.reload());
-      //     break;
-      // }
+      return router.replace(`/loading?tab=${tab}`);
     } else {
-      router.push({
+      return router.push({
         pathname: "/otp-verification",
         query: { phoneNumber: userPhoneNumber, type: selectedRole },
       });
@@ -126,15 +104,21 @@ const SignIn = () => {
   };
 
   return (
-    <CustomHeader hideGoBackButton>
+    <div className="bg-color">
       <NextSeo title="Sign In - Spacify Asia" />
       <div className="body-container pt-4 pb-24">
-        <div className="py-6 mb-4">
+        <div className="py-6 flex flex-col">
           <CustomText
             textClassName="primary-text font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
-            {t("signIn.welcomeBack")}
+            Welcome
+          </CustomText>
+          <CustomText
+            textClassName="primary-text font-bold leading-10"
+            styles={{ fontSize: 34 }}
+          >
+            Back
           </CustomText>
         </div>
 
@@ -165,26 +149,26 @@ const SignIn = () => {
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-4 font-bold font-size-large">
-              {t("signIn.iAm")} Tenant
+              {t("signIn.iAm")} ...
             </CustomText>
 
-            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.tenant")}*/}
-            {/*    onClick={() => setSelectedRole("tenant")}*/}
-            {/*  />*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.owner")}*/}
-            {/*    onClick={() => setSelectedRole("owner")}*/}
-            {/*  />*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName="default-btn-outline"*/}
-            {/*    buttonText={t("signIn.agency")}*/}
-            {/*    onClick={onClickToAgencySignIn}*/}
-            {/*  />*/}
-            {/*</div>*/}
+            <div className="grid grid-cols-2 gap-2 mb-8">
+              <CustomButton
+                buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
+                buttonText={t("signIn.tenant")}
+                onClick={() => setSelectedRole("tenant")}
+              />
+              <CustomButton
+                buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
+                buttonText={t("signIn.owner")}
+                onClick={() => setSelectedRole("owner")}
+              />
+              {/*<CustomButton*/}
+              {/*  buttonClassName="default-btn-outline"*/}
+              {/*  buttonText={t("signIn.agency")}*/}
+              {/*  onClick={onClickToAgencySignIn}*/}
+              {/*/>*/}
+            </div>
 
             <div className="grid grid-cols-3 gap-2 mb-4">
               <select
@@ -253,7 +237,7 @@ const SignIn = () => {
 
         <LoadingOverlay loading={signInLoading} />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 

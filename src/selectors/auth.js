@@ -44,3 +44,4 @@ export const getUserVerify = (state) =>
 export const getUserPhoneNumber = (state) =>
   _.get(state, ["user", "phone_number"], "");
 export const getUserToken = (state) => _.get(state, ["user", "token"], "");
+export const getUserType = (state) => _.get(state, ["user", "type"], "");

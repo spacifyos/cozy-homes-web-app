@@ -2,36 +2,49 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { get, includes, isEmpty, isEqual, map } from "lodash";
+import AuthManager from "@/src/utils/AuthManager";
+import { useEffect, useState } from "react";
 
 const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
+  const [lists, setLists] = useState([]);
+
+  useEffect(() => {
+    const checkUserType = async () => {
+      const userType = await AuthManager.retrieveType();
+
+      setLists([
+        {
+          name: t("root.explore"),
+          value: "/explore",
+          icon: Images.searchIcon,
+          activeIcon: Images.searchIconActive,
+        },
+        {
+          name: "My Property",
+          value: isEqual(userType, "owner") ? "/owner" : "/my-property",
+          icon: Images.homeIcon,
+          activeIcon: Images.homeIconActive,
+        },
+        {
+          name: "Chat",
+          value: isEqual(userType, "owner") ? "/owner/chat" : "/chat",
+          icon: Images.navigateChatIcon,
+          activeIcon: Images.navigateChatIconActive,
+        },
+        {
+          name: t("root.account"),
+          value: isEqual(userType, "owner") ? "/owner/account" : "/account",
+          icon: Images.accountIcon,
+          activeIcon: Images.accountIconActive,
+        },
+      ]);
+    };
+
+    checkUserType();
+  }, []);
+
   const tab = get(routeQuery, ["tab"], "");
 
-  const lists = [
-    {
-      name: t("root.explore"),
-      value: "/explore",
-      icon: Images.searchIcon,
-      activeIcon: Images.searchIconActive,
-    },
-    {
-      name: t("root.myStay"),
-      value: "/my-stay",
-      icon: Images.homeIcon,
-      activeIcon: Images.homeIconActive,
-    },
-    {
-      name: "Chat",
-      value: "/chat",
-      icon: Images.navigateChatIcon,
-      activeIcon: Images.navigateChatIconActive,
-    },
-    {
-      name: t("root.account"),
-      value: "/account",
-      icon: Images.accountIcon,
-      activeIcon: Images.accountIconActive,
-    },
-  ];
   return (
     <div
       id="bottom_navbar"
@@ -57,8 +70,9 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
               <CustomImage
                 src={
                   isEqual(value, routeName) ||
-                  (!isEmpty(tab) && includes(value, tab))
-                    ? activeIcon
+                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                      activeIcon
                     : icon
                 }
                 width={25}
@@ -67,8 +81,9 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
               <CustomText
                 textClassName={`${
                   isEqual(value, routeName) ||
-                  (!isEmpty(tab) && includes(value, tab))
-                    ? "primary-text"
+                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                      "primary-text"
                     : "disable-text"
                 } font-size-small pt-1`}
               >

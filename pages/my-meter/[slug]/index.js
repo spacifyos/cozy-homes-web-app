@@ -20,6 +20,7 @@ import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
 import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import {NextSeo} from "next-seo";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -196,4 +197,4 @@ const MyMeterOverview = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(MyMeterOverview);
+export default withTranslation("common")(AuthWrapper(MyMeterOverview));

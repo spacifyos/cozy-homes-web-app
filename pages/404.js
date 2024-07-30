@@ -2,6 +2,8 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
+import Images from "@/src/utils/Image";
+import CustomImage from "@/components/CustomImage";
 
 export default function Custom404() {
   const router = useRouter();
@@ -14,38 +16,23 @@ export default function Custom404() {
     <div className="flex flex-col justify-center items-center flex-1 px-10">
       <NextSeo title="Page Not Found - Spacify Asia" />
       <div className="flex gap-1">
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#f9a533" }}
-        >
-          4
-        </CustomText>
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#f05a22" }}
-        >
-          0
-        </CustomText>
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#d71440" }}
-        >
-          4
-        </CustomText>
+        <CustomImage src={Images.pageNotFound} imageStyle={{ width: "100%" }} />
       </div>
 
-      <CustomText textClassName="font-size-xxlarge text-center font-bold pb-2">
-        Oops! It looks like you are lost.
+      <CustomText
+        textClassName="text-center font-bold pb-2"
+        styles={{ fontSize: 32 }}
+      >
+        Page Not Found!
       </CustomText>
 
       <CustomText textClassName="text-center font-size-small pb-6">
-        The page you are looking for is not available. Try to search again or
-        use the go to.
+        Sorry, we could not find the page you are looking for.
       </CustomText>
 
       <CustomButton
-        buttonText="Go to home page"
-        buttonClassName="primary-btn"
+        buttonText="Go Back"
+        buttonClassName="primary-btn w-40"
         onClick={onClickGoToBack}
       />
     </div>

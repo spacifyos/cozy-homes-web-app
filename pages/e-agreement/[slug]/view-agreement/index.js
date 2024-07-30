@@ -19,6 +19,7 @@ import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
 import AuthManager from "@/src/utils/AuthManager";
 import PinNumberInfoModal from "@/components/EAgreement/PinNumberInfoModal";
+import AuthWrapper from "@/components/AuthWrapper"
 
 export { getServerSideProps };
 
@@ -444,4 +445,4 @@ const ViewAgreement = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(ViewAgreement);
+export default withTranslation("common")(AuthWrapper(ViewAgreement));

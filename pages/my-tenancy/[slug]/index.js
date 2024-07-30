@@ -19,6 +19,7 @@ import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Helper from "@/src/utils/Helper";
 import { NextSeo } from "next-seo";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -125,4 +126,4 @@ const MyTenancy = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(MyTenancy);
+export default withTranslation("common")(AuthWrapper(MyTenancy));
