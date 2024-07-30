@@ -54,9 +54,7 @@ const PropertyDetail = ({ id }) => {
     const targetUnit = units[selectedSlide];
     const targetRoom = get(targetUnit, ["rooms"], []);
 
-    if (!isEmpty(targetRoom)) {
-      setSelectedRoom(targetRoom);
-    }
+    setSelectedRoom(targetRoom);
   }, [selectedSlide, units]);
 
   useEffect(() => {
