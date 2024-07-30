@@ -2,7 +2,7 @@
   "name": "Spacify Asia App",
   "short_name": "Spacify Asia",
   "description": "Spacify Asia description",
-  "start_url": "/my-stay",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
