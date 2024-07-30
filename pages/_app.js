@@ -22,9 +22,8 @@ import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
-import {pdfjs} from "react-pdf";
-
-
+import { pdfjs } from "react-pdf";
+import Helper from "@/src/utils/Helper";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -41,6 +40,7 @@ function AppContent({ Component, pageProps }) {
   const router = useRouter();
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
+  const pathname = get(router, ["pathname"], "");
   const dispatch = useDispatch();
 
   const getSelectOptionRequest = () =>
@@ -51,6 +51,49 @@ function AppContent({ Component, pageProps }) {
   const selectOptionDataLoading = useSelector((state) =>
     commonSelector.getSelectOptionDateLoading(state),
   );
+
+  useEffect(() => {
+    const chatBotElements = Array.from(
+      document.getElementsByClassName("bot--bubble-holder"),
+    );
+    const botWidget = Array.from(
+      document.getElementsByClassName("bot-widget-holder"),
+    );
+    //
+    //   botWidget.forEach((element) => {
+    //     element.remove();
+    //   });
+    //
+    //   chatBotElements.forEach((element) => {
+    //     element.remove();
+    //   });
+    //
+    //   const script = Helper.documentGetElementById(src);
+    //   if (script) {
+    //     document.body.removeChild(script);
+    //   }
+    // }
+
+    for (let i = 0; i < botWidget.length; i++) {
+      if (isEqual(pathname, "/chat")) {
+        botWidget[i].style.display = "block";
+
+        // window.location.reload()
+        // // router.reload();
+        // return;
+      } else {
+        botWidget[i].style.display = "none";
+      }
+    }
+
+    for (let i = 0; i < chatBotElements.length; i++) {
+      if (isEqual(pathname, "/chat")) {
+        chatBotElements[i].style.display = "block";
+      } else {
+        chatBotElements[i].style.display = "none";
+      }
+    }
+  }, [router]);
 
   useEffect(() => {
     if (isEmpty(selectOptionData)) {
@@ -120,7 +163,8 @@ function AppContent({ Component, pageProps }) {
         isEqual(routeName, "/owner") ||
         isEqual(routeName, "/account") ||
         isEqual(routeName, "/owner/account") ||
-        isEqual(routeName, "/sign-in") ? (
+        isEqual(routeName, "/sign-in") ||
+        isEqual(routeName, "/chat") ? (
           <BottomNavigate
             t={t}
             routeName={routeName}

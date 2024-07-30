@@ -64,6 +64,10 @@ const documentGetElementById = (id) => {
   return typeof window !== "undefined" && document.getElementById(id);
 };
 
+const windowInnerHeight = () => {
+  return typeof window !== "undefined" && window.innerHeight;
+};
+
 const getFileAsBase64 = async (url, headers) => {
   try {
     const response = await axios.get(url, {
@@ -98,4 +102,5 @@ export default {
   generateSecretKey,
   documentGetElementById,
   getFileAsBase64,
+  windowInnerHeight
 };

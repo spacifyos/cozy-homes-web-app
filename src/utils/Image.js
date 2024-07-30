@@ -151,6 +151,8 @@ const Image = {
   withdrawIcon: "/images/icon/withdraw.png",
   leftIconWhite: "/images/icon/left_icon_white.png",
   pageNotFound: "/images/404_image.png",
+  navigateChatIcon: "/images/icon/navigate_chat_icon.png",
+  navigateChatIconActive: "/images/icon/navigate_chat_icon_active.png",
 };
 
 export default { ...Image };

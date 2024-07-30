@@ -38,7 +38,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
                   src={item}
                   className="w-full"
                   imageStyle={{ height: 300, objectFit: "cover" }}
-                  onClick={() => onClickPopupImage(item)}
+                  onClick={() => onClickPopupImage(index)}
                 />
               </SwiperSlide>
             );

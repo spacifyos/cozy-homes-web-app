@@ -130,7 +130,7 @@
   }
 }
 
-.pdf-previous-btn:hover {
+.pdf-disable-btn:hover {
   border: 1px solid #1e1e1e;
   background-color: #1e1e1e !important;
   min-width: 80px;
@@ -142,7 +142,7 @@
   }
 }
 
-.pdf-previous-btn {
+.pdf-disable-btn {
   border: 1px solid #1e1e1e;
   background-color: #1e1e1e !important;
   min-width: 80px;
@@ -154,7 +154,7 @@
   }
 }
 
-.pdf-next-btn:hover {
+.pdf-active-btn:hover {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color !important;
   min-width: 80px;
@@ -166,7 +166,7 @@
   }
 }
 
-.pdf-next-btn {
+.pdf-active-btn {
   border: 1px solid $primary-white-color;
   background-color: $primary-white-color !important;
   min-width: 80px;

@@ -2,100 +2,50 @@ import CustomModal from "@/components/CustomModal";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Helper from "@/src/utils/Helper";
+import { useEffect, useState } from "react";
+import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 
-const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
-  const feesLists = listingSelector.getFeesItemOthers(lists);
-  const rentChargesLists = listingSelector.getFeesItemRentCharges(lists);
-  const rentCharges = listingSelector.getTotalCostRentCharges(lists);
-  const totalMoveInCost = listingSelector.getTotalCostFull(lists);
-
-  const isRentChargesListEmpty = _.isEmpty(rentChargesLists);
+const MoveInCostModal = ({
+  openModalFirstMonthCharges,
+  openModalLastMonthCharges,
+  onClickOpenModalFirstMonthCharges,
+  onClickOpenModalLastMonthCharges,
+  lists,
+}) => {
+  const firstMonthRentCharges = listingSelector.getFirstMonthRentCharges(lists);
+  const lastMonthRentCharges = listingSelector.getLastMonthRentCharges(lists);
+  const othersList = listingSelector.getOthers(lists);
+  const totalMoveInCostFull = listingSelector.getTotalCostFull(lists);
+  const totalMoveInCostPartial = listingSelector.getTotalCostPartial(lists);
+  const totalMoveInCostFirstMonth =
+    listingSelector.getTotalCostFirstMonthRentCharges(lists);
+  const totalMoveInCostLastMonth =
+    listingSelector.getTotalCostLastMonthRentCharges(lists);
 
   return (
     <CustomModal id="move_in_cost_modal">
-      <div
-        className={`collapse ${openCharges ? "collapse-open" : ""} pb-1`}
-        style={{ borderRadius: 0 }}
-      >
-        <div
-          className="collapse-title flex justify-between items-center pb-1"
-          style={{ padding: 0, minHeight: 20 }}
-        >
-          <div
-            className="flex items-center cursor-pointer"
-            onClick={
-              isRentChargesListEmpty ? () => {} : onClickOpenModalCharges
-            }
-          >
-            <CustomText textClassName="font-bold pr-2">Rent Charges</CustomText>
-            {isRentChargesListEmpty ? (
-              false
-            ) : (
-              <CustomImage
-                src={!openCharges ? Images.upIcon : Images.downIcon}
-                width={13}
-                height={13}
-              />
-            )}
-          </div>
+      <RentChargesComponent
+        title="First Month Rent Charges"
+        onClickOpenCharges={onClickOpenModalFirstMonthCharges}
+        openCharges={openModalFirstMonthCharges}
+        rentChargesAmount={totalMoveInCostFirstMonth}
+        rentChargesLists={firstMonthRentCharges}
+      />
 
-          <CustomText>
-            RM{_.isEmpty(rentCharges) ? "0" : rentCharges}
-          </CustomText>
-        </div>
-        <div className="collapse-content p-0">
-          <div className="flex items-center pt-1">
-            <CustomImage
-              className="cursor-pointer"
-              src={Images.infoIcon}
-              height={20}
-              width={20}
-              onClick={() =>
-                Helper.documentGetElementById(
-                  "rent_charges_details",
-                ).showModal()
-              }
-            />
-            <CustomText
-              styles={{ color: "#1E1E1E" }}
-              textClassName="pl-2 font-light font-size-small"
-            >
-              Inclusion of:
-            </CustomText>
-          </div>
+      <RentChargesComponent
+        title="Last Month Rent Charges"
+        onClickOpenCharges={onClickOpenModalLastMonthCharges}
+        openCharges={openModalLastMonthCharges}
+        rentChargesAmount={totalMoveInCostLastMonth}
+        rentChargesLists={lastMonthRentCharges}
+      />
 
-          {_.map(rentChargesLists, (rentChargesList, index) => {
-            const label = listingSelector.getLabel(rentChargesList);
-            const amount = listingSelector.getFeeAmount(rentChargesList);
-
-            return (
-              <ul className="pl-7" key={index}>
-                <li className="flex justify-between">
-                  <CustomText
-                    styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light font-size-small"
-                  >
-                    {`- ${_.isEmpty(label) ? "" : label}`}
-                  </CustomText>
-                  <CustomText
-                    styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light font-size-small"
-                  >
-                    {`RM${_.isEmpty(amount) ? "0" : amount}`}
-                  </CustomText>
-                </li>
-              </ul>
-            );
-          })}
-        </div>
-      </div>
-
-      {_.isEmpty(feesLists)
+      {_.isEmpty(othersList)
         ? false
-        : _.map(feesLists, (feesList, index) => {
+        : _.map(othersList, (feesList, index) => {
             const label = listingSelector.getLabel(feesList);
             const amount = listingSelector.getFeeAmount(feesList);
 
@@ -112,30 +62,26 @@ const MoveInCostModal = ({ openCharges, onClickOpenModalCharges, lists }) => {
             );
           })}
 
-      {/*<div className="flex justify-between items-center pb-1">*/}
-      {/*  <CustomText textClassName="font-bold pr-2">Move In Fee</CustomText>*/}
-      {/*  <CustomText>RM300.00</CustomText>*/}
-      {/*</div>*/}
-      {/*<div className="flex justify-between items-center pb-1">*/}
-      {/*  <CustomText textClassName="font-bold pr-2">Security Deposit</CustomText>*/}
-      {/*  <CustomText>RM1,400.00</CustomText>*/}
-      {/*</div>*/}
-      {/*<div className="flex justify-between items-center">*/}
-      {/*  <CustomText textClassName="font-bold pr-2">Key Deposit</CustomText>*/}
-      {/*  <CustomText>RM200.00</CustomText>*/}
-      {/*</div>*/}
-
       <div
         className="divider-line"
         style={{ backgroundColor: "#D9D9D9", marginTop: 16, marginBottom: 20 }}
       ></div>
 
+      <CustomText textClassName="font-bold pr-2 pb-1">
+        Total Move-in Cost
+      </CustomText>
+
       <div className="flex justify-between items-center">
-        <CustomText textClassName="font-bold pr-2">
-          Total Move-in Cost
-        </CustomText>
+        <CustomText textClassName="pr-2">Full Amount</CustomText>
         <CustomText textClassName="primary-text font-bold">
-          RM{_.isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
+          RM{_.isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
+        </CustomText>
+      </div>
+
+      <div className="flex justify-between items-center">
+        <CustomText textClassName="pr-2">Partial Amount</CustomText>
+        <CustomText textClassName="primary-text font-bold">
+          RM{_.isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
         </CustomText>
       </div>
     </CustomModal>
