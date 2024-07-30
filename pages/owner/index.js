@@ -21,16 +21,6 @@ export { getServerSideProps };
 
 const OwnerHome = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  const getUserProfileRequest = () =>
-    dispatch(authAction.getUserProfileRequest());
-  const userProfileData = useSelector((state) =>
-    authSelector.getUserProfileData(state),
-  );
-  const userProfileLoading = useSelector((state) =>
-    authSelector.getUserProfileLoading(state),
-  );
 
   const [propertyListingLoading, setPropertyListingLoading] = useState(false);
   const [propertyListing, setPropertyListing] = useState([]);
@@ -67,12 +57,7 @@ const OwnerHome = () => {
   useEffect(() => {
     fetchPropertyListing();
     fetchTransactionListing();
-    fetchUserprofileData();
   }, []);
-
-  const fetchUserprofileData = () => {
-    getUserProfileRequest();
-  };
 
   const fetchTransactionListing = async () => {
     await apiRequest.getOwnerTransaction(
@@ -118,7 +103,7 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <UserDetailComponent data={userProfileData} />
+      <UserDetailComponent data={propertyListing} />
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-24">
         <PropertyInfoComponent lists={lists} />
@@ -132,11 +117,7 @@ const OwnerHome = () => {
       </div>
 
       <LoadingOverlay
-        loading={
-          propertyListingLoading ||
-          transactionListingLoading ||
-          userProfileLoading
-        }
+        loading={propertyListingLoading || transactionListingLoading}
       />
     </div>
   );
