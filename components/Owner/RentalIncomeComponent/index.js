@@ -11,9 +11,9 @@ const RentalIncomeComponent = ({ data }) => {
           Rental Income
         </CustomText>
 
-        <CustomText textClassName="font-size-small cursor-pointer">
-          View All
-        </CustomText>
+        {/*<CustomText textClassName="font-size-small cursor-pointer">*/}
+        {/*  View All*/}
+        {/*</CustomText>*/}
       </div>
 
       <div className="flex flex-col gap-3">

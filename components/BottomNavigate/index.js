@@ -27,7 +27,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
         },
         {
           name: "Chat",
-          value: "/chat",
+          value: isEqual(userType, "owner") ? "/owner/chat" : "/chat",
           icon: Images.navigateChatIcon,
           activeIcon: Images.navigateChatIconActive,
         },

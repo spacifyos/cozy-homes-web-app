@@ -18,6 +18,8 @@ const Loading = () => {
       if (!isEmpty(token) && !isEmpty(type)) {
         const tab = get(routeQuery, ["tab"], "");
 
+        console.log(tab)
+
         switch (tab) {
           case "my-property":
             if (isEqual(type, "tenant")) {
@@ -31,6 +33,13 @@ const Loading = () => {
               return router.replace("/account");
             } else {
               return router.replace("/owner/account");
+            }
+
+          case "chat":
+            if (isEqual(type, "tenant")) {
+              return router.replace("/chat");
+            } else {
+              return router.replace("/owner/chat");
             }
 
           default:
