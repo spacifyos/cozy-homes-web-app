@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { get, includes, isEmpty, isEqual, map } from "lodash";
+import { get, isEmpty, isEqual, map } from "lodash";
 import AuthManager from "@/src/utils/AuthManager";
 import { useEffect, useState } from "react";
 
