@@ -20,12 +20,12 @@ function Home() {
 
       if (!isEmpty(token) && !isEmpty(type)) {
         if (isEqual(type, "tenant")) {
-          return router.replace("/my-property");
+          return router.push("/my-property");
         } else {
-          return router.replace("/owner");
+          return router.push("/owner");
         }
       } else {
-        return router.replace("/sign-in");
+        return router.push("/sign-in");
       }
     };
 
