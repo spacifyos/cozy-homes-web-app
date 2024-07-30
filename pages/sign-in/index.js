@@ -33,9 +33,11 @@ const SignIn = () => {
   };
 
   const onClickToSignUp = () => {
-    router.push({
-      pathname: `/sign-up`,
-    });
+    router
+      .push({
+        pathname: `/sign-up`,
+      })
+      .then(() => router.reload());
   };
 
   const onClickToLogin = async () => {

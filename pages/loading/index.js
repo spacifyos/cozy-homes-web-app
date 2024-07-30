@@ -18,8 +18,6 @@ const Loading = () => {
       if (!isEmpty(token) && !isEmpty(type)) {
         const tab = get(routeQuery, ["tab"], "");
 
-        console.log(tab)
-
         switch (tab) {
           case "my-property":
             if (isEqual(type, "tenant")) {

@@ -13,11 +13,24 @@ import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as ownerSelector from "@/src/selectors/owner";
+import * as authAction from "@/src/actions/auth";
+import { useDispatch, useSelector } from "react-redux";
+import * as authSelector from "@/src/selectors/auth";
 
 export { getServerSideProps };
 
 const OwnerHome = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
 
   const [propertyListingLoading, setPropertyListingLoading] = useState(false);
   const [propertyListing, setPropertyListing] = useState([]);
@@ -54,7 +67,12 @@ const OwnerHome = () => {
   useEffect(() => {
     fetchPropertyListing();
     fetchTransactionListing();
+    fetchUserprofileData();
   }, []);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
 
   const fetchTransactionListing = async () => {
     await apiRequest.getOwnerTransaction(
@@ -100,7 +118,7 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <UserDetailComponent data={propertyListing} />
+      <UserDetailComponent data={userProfileData} />
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-24">
         <PropertyInfoComponent lists={lists} />
@@ -114,7 +132,11 @@ const OwnerHome = () => {
       </div>
 
       <LoadingOverlay
-        loading={propertyListingLoading || transactionListingLoading}
+        loading={
+          propertyListingLoading ||
+          transactionListingLoading ||
+          userProfileLoading
+        }
       />
     </div>
   );
