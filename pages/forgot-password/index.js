@@ -13,7 +13,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import { useRouter } from "next/router";
 import CustomHeader from "@/components/CustomHeader";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -72,11 +72,11 @@ const ForgotPassword = () => {
   };
 
   const otpRequestSuccess = (res) => {
+    setStep(2);
     setOtpToken(get(res, ["token"], ""));
   };
 
   const onClickSendOtp = async () => {
-    setStep(2);
     await handleSendOtp();
   };
 
