@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const CustomImage = ({
   className = "",
   src,
@@ -8,14 +10,15 @@ const CustomImage = ({
   ...props
 }) => {
   return (
-    <img
+    <Image
+      onClick={onClick}
+      unoptimized={true}
       className={`object-contain ${className}`}
       alt={"image"}
       src={src}
       width={width}
       height={height}
       style={{ ...imageStyle }}
-      onClick={onClick}
       {...props}
     />
   );

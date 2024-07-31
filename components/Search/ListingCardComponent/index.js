@@ -15,11 +15,11 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
     <div className="cursor-pointer">
       <CustomImage
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        width="100%"
         className="rounded-2xl mb-1 global-box-shadow primaryWhite-bg-color"
         imageStyle={{
           objectFit: isEmpty(imageUrl) ? "contain" : "cover",
           height: 150,
+          width: "100%",
         }}
         onClick={() => onClickToPropertyOverview(propertyId)}
       />

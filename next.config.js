@@ -15,6 +15,16 @@ const nextConfig = {
     SENTRY_DSN: process.env.SENTRY_DSN,
     PRODUCTION: process.env.PRODUCTION,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;
