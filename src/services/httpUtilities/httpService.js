@@ -74,9 +74,11 @@ const getTenancyOverview = (id) => apiInstance.get(`/tenancy/${id}`);
 const getInvoiceSummary = () => apiInstance.get("/invoice/summary");
 
 const getInvoiceListing = (paymentStatus, perPage, page, filterParams = {}) => {
-  const status = includes(paymentStatus, "Unpaid")
-    ? "&payment_status[]=1&payment_status[]=2"
-    : "&payment_status[]=3";
+  const status = includes(paymentStatus, "All")
+    ? ""
+    : includes(paymentStatus, "Unpaid")
+      ? "&payment_status[]=1&payment_status[]=2"
+      : "&payment_status[]=3";
 
   const { invoiceNumber, dateFrom, dateTo } = filterParams;
 

@@ -11,8 +11,13 @@ const InvoiceSection = ({
   onClickToInvoiceList,
   data,
   onClickToOverviewPage,
+  hideTitle = false,
 }) => {
   const invoiceBtn = [
+    {
+      value: "HomeAll",
+      name: "All",
+    },
     {
       value: "HomeUnpaid",
       name: "Unpaid",
@@ -24,9 +29,13 @@ const InvoiceSection = ({
   ];
   return (
     <div>
-      <CustomText textClassName="section-title">
-        {t("myStay.myInvoice")}
-      </CustomText>
+      {hideTitle ? (
+        false
+      ) : (
+        <CustomText textClassName="section-title">
+          {t("myStay.myInvoice")}
+        </CustomText>
+      )}
 
       <div className="flex justify-between items-end pb-3">
         <div className="flex items-center">

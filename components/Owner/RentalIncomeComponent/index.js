@@ -3,16 +3,16 @@ import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
 
-const RentalIncomeComponent = ({ data }) => {
+const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
   return (
-    <div className="pt-6">
+    <div className="">
       <div className="flex justify-between items-end pb-3">
-        <CustomText textClassName="section-title" styles={{ paddingBottom: 0 }}>
+        <CustomText textClassName="font-bold">
           Rental Income
         </CustomText>
 
-        {/*<CustomText textClassName="font-size-small cursor-pointer">*/}
-        {/*  View All*/}
+        {/*<CustomText textClassName="font-size-small cursor-pointer" onClick={onClickViewMoreTransaction}>*/}
+        {/*  View More*/}
         {/*</CustomText>*/}
       </div>
 

@@ -16,11 +16,30 @@ import * as ownerSelector from "@/src/selectors/owner";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
+import TransactionComponent from "@/components/Owner/TransactionComponent";
+import * as invoiceAction from "@/src/actions/invoice";
+import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 
 const OwnerHome = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const [selectedCategory, setSelectedCategory] = useState("Rental");
+  const [selectedInvoiceCategory, setSelectedInvoiceCategory] = useState("HomeAll");
+
+  const getInvoiceListingRequest = (paymentStatus, perPage, page) =>
+    dispatch(
+      invoiceAction.getInvoiceListingRequest(paymentStatus, perPage, page),
+    );
+  const invoiceListingData = useSelector((state) =>
+    invoiceSelector.getInvoiceListingData(state, selectedInvoiceCategory),
+  );
+  const invoiceListingLoading = useSelector((state) =>
+    invoiceSelector.getInvoiceListingLoading(state, selectedInvoiceCategory),
+  );
 
   const [propertyListingLoading, setPropertyListingLoading] = useState(false);
   const [propertyListing, setPropertyListing] = useState([]);
@@ -66,6 +85,14 @@ const OwnerHome = () => {
     );
   };
 
+  useEffect(() => {
+    fetchInvoiceListingData(selectedInvoiceCategory);
+  }, [selectedInvoiceCategory]);
+
+  const fetchInvoiceListingData = (paymentStatus, perPage = 3, page = 1) => {
+    getInvoiceListingRequest(paymentStatus, perPage, page);
+  };
+
   const getTransactionListingSuccess = (res) => {
     setTransactionListing(res);
   };
@@ -85,6 +112,22 @@ const OwnerHome = () => {
     router.push({
       pathname: `/owner/property/${id}`,
     });
+  };
+
+  const onClickSelectCategory = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const onClickSelectInvoiceCategory = (category) => {
+    setSelectedInvoiceCategory(category);
+  };
+
+  const onClickToInvoiceList = () => {
+    router.push("/owner/my-invoice");
+  };
+
+  const onClickToOverviewPage = (id) => {
+    router.push(`/owner/my-invoice/${id}`);
   };
 
   return (
@@ -113,11 +156,25 @@ const OwnerHome = () => {
           data={properties}
         />
 
-        <RentalIncomeComponent data={transactionListing} />
+        <TransactionComponent
+          t={t}
+          transactionListing={transactionListing}
+          onClickSelectCategory={onClickSelectCategory}
+          selectedCategory={selectedCategory}
+          onClickSelectInvoiceCategory={onClickSelectInvoiceCategory}
+          selectedInvoiceCategory={selectedInvoiceCategory}
+          onClickToInvoiceList={onClickToInvoiceList}
+          invoiceListingData={invoiceListingData}
+          onClickToOverviewPage={onClickToOverviewPage}
+        />
       </div>
 
       <LoadingOverlay
-        loading={propertyListingLoading || transactionListingLoading}
+        loading={
+          propertyListingLoading ||
+          transactionListingLoading ||
+          invoiceListingLoading
+        }
       />
     </div>
   );

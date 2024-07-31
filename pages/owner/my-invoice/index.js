@@ -28,7 +28,7 @@ const OwnerMyInvoice = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const [selectedCategory, setSelectedCategory] = useState("Unpaid");
+  const [selectedCategory, setSelectedCategory] = useState("All");
   const [filterParams, setFilterParams] = useState({
     invoiceNumber: "",
     dateFrom: "",
@@ -228,6 +228,12 @@ const OwnerMyInvoice = () => {
 
       <div className="body-container primaryWhite-bg-color pb-1 flex flex-col flex-1 pt-5">
         <div className="flex items-center pb-3">
+          <CustomButton
+            buttonText="All"
+            buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
+            textClassName="font-size-xsmall"
+            onClick={() => onClickSelectCategory("All")}
+          />
           <CustomButton
             buttonText="Unpaid"
             buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}

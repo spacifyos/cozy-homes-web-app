@@ -28,7 +28,7 @@ const MyStay = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
 
-  const [selectedCategory, setSelectedCategory] = useState("HomeUnpaid");
+  const [selectedCategory, setSelectedCategory] = useState("HomeAll");
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -138,7 +138,7 @@ const MyStay = () => {
   return (
     <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
       <NextSeo title="My Stay - Spacify Asia" />
-      
+
       <div className="body-container pb-24">
         <UserSection t={t} data={userProfileData} />
 
