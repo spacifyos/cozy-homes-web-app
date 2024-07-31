@@ -18,6 +18,8 @@ import {
   Turnstile,
 } from "@marsidev/react-turnstile";
 import Script from "next/script";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -118,18 +120,18 @@ const SignUp = () => {
     <div className="bg-color">
       <NextSeo title="Sign Up - Spacify Asia" />
       <div className="body-container py-4">
-        <div className="py-6 flex flex-col">
+        <div className="pb-6 flex flex-col items-center">
+          <CustomImage
+            src={Images.logoHorizontalColor}
+            imageStyle={{ width: 180 }}
+            className="mb-2"
+          />
+
           <CustomText
             textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
+            styles={{ fontSize: 36 }}
           >
-            Let’s Get
-          </CustomText>
-          <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
-          >
-            Started
+            Let’s Get Started
           </CustomText>
         </div>
 

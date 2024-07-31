@@ -153,6 +153,7 @@ const Image = {
   pageNotFound: "/images/404_image.png",
   navigateChatIcon: "/images/icon/navigate_chat_icon.png",
   navigateChatIconActive: "/images/icon/navigate_chat_icon_active.png",
+  logoHorizontalColor: "/images/logo_horizontal_color.png",
 };
 
 export default { ...Image };

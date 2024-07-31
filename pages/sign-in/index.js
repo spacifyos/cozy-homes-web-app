@@ -13,6 +13,8 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
 import { NextSeo } from "next-seo";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -109,18 +111,18 @@ const SignIn = () => {
     <div className="bg-color">
       <NextSeo title="Sign In - Spacify Asia" />
       <div className="body-container pt-4 pb-24">
-        <div className="py-6 flex flex-col">
+        <div className="pb-6 flex flex-col items-center">
+          <CustomImage
+            src={Images.logoHorizontalColor}
+            imageStyle={{ width: 180 }}
+            className="mb-2"
+          />
+
           <CustomText
             textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
+            styles={{ fontSize: 36 }}
           >
-            Welcome
-          </CustomText>
-          <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
-          >
-            Back
+            Welcome Back
           </CustomText>
         </div>
 
