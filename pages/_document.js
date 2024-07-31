@@ -9,9 +9,9 @@ export default function Document() {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <meta name="theme-color" content="#f65626" />
-        <meta name="msapplication-navbutton-color" content="#f65626" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#f65626" />
+        <meta name="theme-color" content="#d71440" />
+        <meta name="msapplication-navbutton-color" content="#d71440" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#d71440" />
 
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
