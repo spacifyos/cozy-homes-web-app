@@ -10,7 +10,7 @@ import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import { useEffect } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { get, isEmpty, map } from "lodash";
+import { get, isEmpty, isEqual, map } from "lodash";
 import moment from "moment";
 import { NextSeo } from "next-seo";
 
@@ -20,6 +20,8 @@ const PaymentSuccessful = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+
+  const userType = get(router, ["query", "type"], "");
 
   const getInvoiceOverviewRequest = (id) =>
     dispatch(invoiceAction.getInvoiceOverviewRequest(id));
@@ -54,7 +56,11 @@ const PaymentSuccessful = ({ id }) => {
   };
 
   const onClickClose = () => {
-    router.replace(`/my-property`);
+    if (isEqual(userType, "owner")) {
+      return router.replace(`/owner`);
+    } else {
+      return router.replace(`/my-property`);
+    }
   };
 
   return (
@@ -124,11 +130,15 @@ const PaymentSuccessful = ({ id }) => {
             label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
+            value={isEmpty(code) ? "-" : code}
+            label="Invoice Number"
+          />
+          <CustomLabelValue
             value={isEmpty(property) ? "-" : property}
             label={t("invoiceOverview.property")}
           />
           <CustomLabelValue
-            value={isEmpty(code) ? "-" : code}
+            value={isEmpty(tenancyCode) ? "-" : tenancyCode}
             label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
