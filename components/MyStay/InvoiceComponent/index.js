@@ -42,7 +42,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
                     <CustomText
                       textClassName={`disable-text font-size-xxsmall font-normal`}
                     >
-                      {t("myStay.rentalFee")}
+                      Amount
                     </CustomText>
                     <CustomText
                       textClassName={`font-size-small black-text font-bold`}

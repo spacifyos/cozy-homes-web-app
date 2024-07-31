@@ -351,11 +351,11 @@ const InvoiceOverview = ({ id }) => {
             top={-14}
             items={[
               {
-                name: "Review Invoice",
+                name: "Download Invoice",
                 value: invoiceDocument,
               },
               {
-                name: "Review Receipt",
+                name: "Download Receipt",
                 value: receiptDocument,
               },
             ]}
