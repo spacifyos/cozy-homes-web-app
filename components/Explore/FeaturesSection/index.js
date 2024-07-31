@@ -30,9 +30,7 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
           icon={Image.carParkIcon}
           imageHeight={25}
           imageWidth={25}
-          onClick={() =>
-            onClickToPropertyListing("rental_type", Constant.HOME_FOR_RENT)
-          }
+          onClick={() => onClickToPropertyListing("space_type", "car_park")}
         />
       </div>
 
