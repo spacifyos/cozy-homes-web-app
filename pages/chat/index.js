@@ -15,14 +15,12 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 export { getServerSideProps };
 
 const Chat = () => {
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
 
   const [uChatIsReady, setUChatIsReady] = useState(false);
-  const [uChatUserInsertSuccess, setUChatUserInsertSuccess] = useState(false);
 
   const bottomNavigateHeight =
     Helper.documentGetElementById("bottom_navbar").offsetHeight;
@@ -41,6 +39,12 @@ const Chat = () => {
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
+    if (checkScript) {
+      return router.reload();
+    }
+  }, []);
+
+  useEffect(() => {
     if (uChatIsReady) {
       const handleChatbotReady = () => {
         window.$chatbot.setUser(uuid, {
@@ -53,30 +57,22 @@ const Chat = () => {
 
       window.addEventListener("chatbot:ready", handleChatbotReady);
       setUChatIsReady(false);
-      setUChatUserInsertSuccess(true);
     }
   }, [uChatIsReady]);
 
   useEffect(() => {
-    if (uChatUserInsertSuccess) {
+    if (!isEmpty(propertyDetails)) {
       const handleSetAttribute = () => {
         window.$chatbot.setCustomAttributes({
           user_fields: {
-            tenant_property_info: JSON.stringify(propertyDetails),
+            tenant_property_info: JSON.stringify(propertyDetails[0]),
           },
         });
       };
 
       window.addEventListener("chatbot:ready", handleSetAttribute);
-      setUChatUserInsertSuccess(false);
     }
-  }, [uChatUserInsertSuccess]);
-
-  useEffect(() => {
-    if (checkScript) {
-      return router.reload();
-    }
-  }, []);
+  }, [propertyDetails]);
 
   useEffect(() => {
     fetchUserprofileData();
