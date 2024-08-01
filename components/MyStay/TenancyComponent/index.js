@@ -29,7 +29,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
 
   return (
     <div
-      className="tenancy-container cursor-pointer"
+      className="tenancy-container cursor-pointer grid grid-cols-2 gap-2"
       onClick={() => onClickGoToMyTenancy(tenancyId)}
     >
       {/*<CustomImage*/}
@@ -40,7 +40,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
       {/*  onClick={onClickTenancyViewMore}*/}
       {/*/>*/}
 
-      <div className="flex flex-col items-start pr-3">
+      <div className="flex flex-col items-start col-span-1">
         <div className="primary-bg-color p-2 global-border-radius mb-1 ">
           <CustomImage src={Images.buildingIcon} width={35} height={35} />
         </div>
@@ -49,7 +49,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
           <CustomText textClassName="font-bold font-size-small primary-text">
             {_.isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
-          <CustomText textClassName="font-size-xsmall">
+          <CustomText textClassName="font-size-xsmall" lineClamp={1}>
             {_.isEmpty(unitName) ? "" : unitName}
             {_.isEmpty(roomName) ? "" : ", " + roomName}
           </CustomText>
@@ -79,7 +79,10 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
         {/*/>*/}
       </div>
 
-      <div className="flex-1 flex justify-center items-center" ref={targetRef}>
+      <div
+        className="flex-1 flex justify-center items-center col-span-1"
+        ref={targetRef}
+      >
         <RadialProgressComponent
           t={t}
           dimensions={dimensions}
