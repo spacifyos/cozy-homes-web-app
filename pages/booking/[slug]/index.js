@@ -394,8 +394,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       otp: otpValue,
       otp_token: otpToken,
       is_pay_partial: isEqual(paymentAmount, "true") ? true : false,
-      is_zero_deposit: isEqual(isZeroDeposit, "true") ? true : false,
       fee_items: feesList,
+      ...(isAllowedZeroDeposit
+        ? { is_zero_deposit: isEqual(isZeroDeposit, "true") ? true : false }
+        : {}),
     };
 
     await apiRequest.postBookingCreateRequest(
