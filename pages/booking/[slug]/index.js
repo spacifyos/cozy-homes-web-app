@@ -628,7 +628,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     setIsZeroDeposit(e.target.value);
   };
 
-  console.log(targetRental);
   return (
     <CustomHeader
       pageTitle={t("pageTitle.booking")}
