@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Helper from "@/src/utils/Helper";
-import { isEmpty, toString } from "lodash";
+import { get, isEmpty, toString } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import AuthWrapper from "@/components/AuthWrapper";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
 
 export { getServerSideProps };
 
@@ -17,15 +18,10 @@ const Chat = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const getUserProfileRequest = () =>
-    dispatch(authAction.getUserProfileRequest());
-  const userProfileData = useSelector((state) =>
-    authSelector.getUserProfileData(state),
-  );
-  const userProfileLoading = useSelector((state) =>
-    authSelector.getUserProfileLoading(state),
-  );
+  const [userProfileData, setUserProfileData] = useState(false);
+  const [userProfileLoading, setUserProfileLoading] = useState(false);
 
+  const [uChatIsReady, setUChatIsReady] = useState(false);
   const [uChatUserInsertSuccess, setUChatUserInsertSuccess] = useState(false);
 
   const bottomNavigateHeight =
@@ -35,15 +31,17 @@ const Chat = () => {
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const uuid = authSelector.getUuid(userProfileData);
+  const propertyDetails = get(userProfileData, ["property_details"], []);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src =
     "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/embed.js?id=embed_chatbot_container_id";
+  const checkScript = Helper.documentGetElementById(src);
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
-    if (!isEmpty(uuid)) {
+    if (uChatIsReady) {
       const handleChatbotReady = () => {
         window.$chatbot.setUser(uuid, {
           name: name,
@@ -51,25 +49,52 @@ const Chat = () => {
           phone_number: phoneNumber,
           identifier_hash: encryptUserId,
         });
+      };
 
+      window.addEventListener("chatbot:ready", handleChatbotReady);
+      setUChatIsReady(false);
+      setUChatUserInsertSuccess(true);
+    }
+  }, [uChatIsReady]);
+
+  useEffect(() => {
+    if (uChatUserInsertSuccess) {
+      const handleSetAttribute = () => {
         window.$chatbot.setCustomAttributes({
           user_fields: {
-            user_phone: phoneNumber,
+            tenant_property_info: JSON.stringify(propertyDetails),
           },
         });
       };
 
-      window.addEventListener("chatbot:ready", handleChatbotReady);
-      setUChatUserInsertSuccess(true);
-
-      // return () => {
-      //   window.removeEventListener("chatbot:ready", handleChatbotReady);
-      // };
+      window.addEventListener("chatbot:ready", handleSetAttribute);
+      setUChatUserInsertSuccess(false);
     }
-  }, [uuid]);
+  }, [uChatUserInsertSuccess]);
 
   useEffect(() => {
-    const checkScript = Helper.documentGetElementById(src);
+    if (checkScript) {
+      return router.reload();
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUserprofileData();
+  }, []);
+
+  const fetchUserprofileData = async () => {
+    await apiRequest.getUChatUserRequest(
+      setUserProfileLoading,
+      getUserSuccessCallback,
+    );
+  };
+
+  const getUserSuccessCallback = (res) => {
+    setUserProfileData(res);
+    handleGenerateUChat();
+  };
+
+  const handleGenerateUChat = () => {
     const chatContainer = Helper.documentGetElementById("chat-container");
     const script = document.createElement("script");
 
@@ -78,21 +103,11 @@ const Chat = () => {
     script.defer = true;
     script.src = src;
 
-    if (checkScript) {
-      return router.reload();
-    }
+    chatContainer.appendChild(script);
 
-    if (!isEmpty(phoneNumber)) {
-      chatContainer.appendChild(script);
-    }
-  }, [phoneNumber]);
-
-  useEffect(() => {
-    fetchUserprofileData();
-  }, []);
-
-  const fetchUserprofileData = () => {
-    getUserProfileRequest();
+    setTimeout(() => {
+      setUChatIsReady(true);
+    }, 1000);
   };
 
   return (

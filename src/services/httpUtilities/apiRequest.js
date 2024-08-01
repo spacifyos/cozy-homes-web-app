@@ -242,6 +242,17 @@ const getOwnerTransaction = async (setLoading, successCallback) => {
   );
 };
 
+const getUChatUserRequest = async (setLoading, successCallback) => {
+  await apiRequest(
+      api.getUserProfile(),
+      setLoading,
+      successCallback,
+      () => {},
+      "",
+      true,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -265,4 +276,5 @@ export default {
   getOwnerPropertyList,
   getOwnerPropertyOverview,
   getOwnerTransaction,
+  getUChatUserRequest
 };
