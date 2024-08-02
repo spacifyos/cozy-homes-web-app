@@ -9,7 +9,7 @@ import { isEqual } from "lodash";
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
 
-  enabled: isEqual(process.env.PRODUCTION, "PRODUCTION"),
+  enabled: false,
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1,
 
