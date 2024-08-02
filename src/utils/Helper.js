@@ -64,6 +64,12 @@ const documentGetElementById = (id) => {
   return typeof window !== "undefined" && document.getElementById(id);
 };
 
+const documentGetElementByClassName = (className) => {
+  return (
+    typeof window !== "undefined" && document.getElementsByClassName(className)
+  );
+};
+
 const windowInnerHeight = () => {
   return typeof window !== "undefined" && window.innerHeight;
 };
@@ -102,5 +108,6 @@ export default {
   generateSecretKey,
   documentGetElementById,
   getFileAsBase64,
-  windowInnerHeight
+  windowInnerHeight,
+  documentGetElementByClassName,
 };

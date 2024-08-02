@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
+import Helper from "@/src/utils/Helper";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -50,48 +51,48 @@ function AppContent({ Component, pageProps }) {
     commonSelector.getSelectOptionDateLoading(state),
   );
 
-  useEffect(() => {
-    const chatBotElements = Array.from(
-      document.getElementsByClassName("bot--bubble-holder"),
-    );
-    const botWidget = Array.from(
-      document.getElementsByClassName("bot-widget-holder"),
-    );
-    //
-    //   botWidget.forEach((element) => {
-    //     element.remove();
-    //   });
-    //
-    //   chatBotElements.forEach((element) => {
-    //     element.remove();
-    //   });
-    //
-    //   const script = Helper.documentGetElementById(src);
-    //   if (script) {
-    //     document.body.removeChild(script);
-    //   }
-    // }
-
-    for (let i = 0; i < botWidget.length; i++) {
-      if (isEqual(pathname, "/chat")) {
-        botWidget[i].style.display = "block";
-
-        // window.location.reload()
-        // // router.reload();
-        // return;
-      } else {
-        botWidget[i].style.display = "none";
-      }
-    }
-
-    for (let i = 0; i < chatBotElements.length; i++) {
-      if (isEqual(pathname, "/chat")) {
-        chatBotElements[i].style.display = "block";
-      } else {
-        chatBotElements[i].style.display = "none";
-      }
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   const chatBotElements = Array.from(
+  //     document.getElementsByClassName("bot--bubble-holder"),
+  //   );
+  //   const botWidget = Array.from(
+  //     document.getElementsByClassName("bot-widget-holder"),
+  //   );
+  //   //
+  //   //   botWidget.forEach((element) => {
+  //   //     element.remove();
+  //   //   });
+  //   //
+  //   //   chatBotElements.forEach((element) => {
+  //   //     element.remove();
+  //   //   });
+  //   //
+  //   //   const script = Helper.documentGetElementById(src);
+  //   //   if (script) {
+  //   //     document.body.removeChild(script);
+  //   //   }
+  //   // }
+  //
+  //   for (let i = 0; i < botWidget.length; i++) {
+  //     if (isEqual(pathname, "/chat")) {
+  //       botWidget[i].style.display = "block";
+  //
+  //       // window.location.reload()
+  //       // // router.reload();
+  //       // return;
+  //     } else {
+  //       botWidget[i].style.display = "none";
+  //     }
+  //   }
+  //
+  //   for (let i = 0; i < chatBotElements.length; i++) {
+  //     if (isEqual(pathname, "/chat")) {
+  //       chatBotElements[i].style.display = "block";
+  //     } else {
+  //       chatBotElements[i].style.display = "none";
+  //     }
+  //   }
+  // }, [router]);
 
   useEffect(() => {
     if (isEmpty(selectOptionData)) {
@@ -103,24 +104,26 @@ function AppContent({ Component, pageProps }) {
     router.push(route);
   };
 
-  typeof window !== "undefined" &&
-    document.addEventListener("gesturestart", function (e) {
-      e.preventDefault();
-      document.body.style.zoom = 0.99;
-    });
+  useEffect(() => {
+    typeof window !== "undefined" &&
+      document.addEventListener("gesturestart", function (e) {
+        e.preventDefault();
+        document.body.style.zoom = 0.99;
+      });
 
-  typeof window !== "undefined" &&
-    document.addEventListener("gesturechange", function (e) {
-      e.preventDefault();
+    typeof window !== "undefined" &&
+      document.addEventListener("gesturechange", function (e) {
+        e.preventDefault();
 
-      document.body.style.zoom = 0.99;
-    });
+        document.body.style.zoom = 0.99;
+      });
 
-  typeof window !== "undefined" &&
-    document.addEventListener("gestureend", function (e) {
-      e.preventDefault();
-      document.body.style.zoom = 1;
-    });
+    typeof window !== "undefined" &&
+      document.addEventListener("gestureend", function (e) {
+        e.preventDefault();
+        document.body.style.zoom = 1;
+      });
+  }, []);
 
   return (
     <div
