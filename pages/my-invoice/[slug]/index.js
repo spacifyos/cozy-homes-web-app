@@ -31,7 +31,6 @@ const InvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
-  const targetTagA = useRef();
 
   const getInvoiceOverviewRequest = (id) =>
     dispatch(invoiceAction.getInvoiceOverviewRequest(id));

@@ -36,7 +36,8 @@ const nextConfig = {
 const { withSentryConfig } = require("@sentry/nextjs");
 
 module.exports = withSentryConfig(
-  withPWA({
+  // withPWA(
+      {
     ...nextConfig,
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -70,5 +71,6 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  }),
+  }
+  // ),
 );
