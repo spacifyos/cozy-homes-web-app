@@ -5,13 +5,16 @@ import CustomText from "@/components/CustomText";
 const PropertyInfoComponent = ({ paddingTop = "4.5rem", lists }) => {
   return (
     <div className="grid grid-cols-4 gap-3" style={{ paddingTop: paddingTop }}>
-      {map(lists, (list) => {
+      {map(lists, (list, index) => {
         const name = get(list, ["name"], "");
         const value = get(list, ["value"], "");
         const icon = get(list, ["icon"], "");
 
         return (
-          <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color">
+          <div
+            className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color"
+            key={index}
+          >
             <CustomImage src={icon} imageStyle={{ width: 20, height: 20 }} />
 
             <div className="pt-1">

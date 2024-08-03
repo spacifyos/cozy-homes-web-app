@@ -25,10 +25,6 @@ const nextConfig = {
       },
     ],
   },
-  compiler: {
-    // Remove console logs only in production
-    removeConsole: true,
-  },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;

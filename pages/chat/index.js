@@ -32,8 +32,7 @@ const Chat = () => {
   const propertyDetails = get(userProfileData, ["property_details"], []);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
-  const src =
-    "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/embed.js?id=embed_chatbot_container_id";
+  const src = "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/full.js";
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 

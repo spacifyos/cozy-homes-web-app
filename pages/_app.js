@@ -18,7 +18,7 @@ import "@/src/lib/swiper/modules/effect-cards.css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import * as commonAction from "@/src/actions/common";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
@@ -41,6 +41,7 @@ function AppContent({ Component, pageProps }) {
   const routeQuery = get(router, ["query"], "");
   const pathname = get(router, ["pathname"], "");
   const dispatch = useDispatch();
+  const divRef = useRef();
 
   const getSelectOptionRequest = () =>
     dispatch(commonAction.getSelectOptionRequest());
@@ -49,6 +50,10 @@ function AppContent({ Component, pageProps }) {
   );
   const selectOptionDataLoading = useSelector((state) =>
     commonSelector.getSelectOptionDateLoading(state),
+  );
+
+  const botWidget = Array.from(
+    Helper.documentGetElementByClassName("bot-widget-holder"),
   );
 
   useEffect(() => {
@@ -60,6 +65,16 @@ function AppContent({ Component, pageProps }) {
   const onClickChangeTab = (route) => {
     router.push(route);
   };
+
+  useEffect(() => {
+    for (let i = 0; i < botWidget.length; i++) {
+      if (isEqual(pathname, "/chat")) {
+        botWidget[i].style.display = "block";
+      } else {
+        botWidget[i].style.display = "none";
+      }
+    }
+  }, [divRef.current, router, botWidget]);
 
   useEffect(() => {
     typeof window !== "undefined" &&
@@ -84,6 +99,7 @@ function AppContent({ Component, pageProps }) {
 
   return (
     <div
+      ref={divRef}
       className={
         "flex flex-col justify-center items-center h-full overflow-hidden"
       }

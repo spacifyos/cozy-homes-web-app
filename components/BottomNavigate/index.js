@@ -48,7 +48,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
   return (
     <div
       id="bottom_navbar"
-      className="fixed bottom-0 w-full z-10"
+      className="fixed bottom-0 w-full z-10 primaryWhite-bg-color"
       style={{ maxWidth: 500, zIndex: 9999 }}
     >
       <div

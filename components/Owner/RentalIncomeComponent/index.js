@@ -7,9 +7,7 @@ const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
   return (
     <div className="">
       <div className="flex justify-between items-end pb-3">
-        <CustomText textClassName="font-bold">
-          Rental Income
-        </CustomText>
+        <CustomText textClassName="font-bold">Rental Income</CustomText>
 
         {/*<CustomText textClassName="font-size-small cursor-pointer" onClick={onClickViewMoreTransaction}>*/}
         {/*  View More*/}
@@ -22,8 +20,8 @@ const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
             <CustomEmptyBox />
           </div>
         ) : (
-          map(data, (item) => {
-            return <RentalIncomeCard item={item} />;
+          map(data, (item, index) => {
+            return <RentalIncomeCard item={item} key={index} />;
           })
         )}
       </div>

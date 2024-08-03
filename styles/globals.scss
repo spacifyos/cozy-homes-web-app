@@ -6,6 +6,7 @@
 @import "input.scss";
 @import "select.scss";
 @import "toggle.scss";
+@import "uChat.scss";
 @import "page/meter-detail";
 @import "page/property-overview";
 @import "page/meter-detail";
@@ -45,12 +46,15 @@
 
 body {
   /*color: rgb(var(--foreground-rgb));*/
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  //background: linear-gradient(
+  //    to bottom,
+  //    transparent,
+  //    rgb(var(--background-end-rgb))
+  //  )
+  //  rgb(var(--background-start-rgb));
+  display: flex;
+  justify-content: center;
+  background-color: #d3d3d3;
 }
 
 @layer utilities {
