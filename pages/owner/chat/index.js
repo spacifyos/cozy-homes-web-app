@@ -92,7 +92,7 @@ const OwnerChat = () => {
   };
 
   const handleGenerateUChat = () => {
-    const chatContainer = Helper.documentGetElementById("chat-container");
+    const chatContainer = document.body;
     const script = document.createElement("script");
 
     script.id = src;

@@ -61,16 +61,12 @@ const generateSecretKey = (secret1, secret2) => {
 };
 
 const documentGetElementById = (id) => {
-  return (
-    typeof window !== "undefined" && document && document.getElementById(id)
-  );
+  return typeof window !== "undefined" && document.getElementById(id);
 };
 
 const documentGetElementByClassName = (className) => {
   return (
-    typeof window !== "undefined" &&
-    document &&
-    document.getElementsByClassName(className)
+    typeof window !== "undefined" && document.getElementsByClassName(className)
   );
 };
 

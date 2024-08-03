@@ -25,6 +25,10 @@ const nextConfig = {
       },
     ],
   },
+  compiler: {
+    // Remove console logs only in production
+    removeConsole: process.env.NODE_ENV === "PRODUCTION",
+  },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;
@@ -37,7 +41,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 module.exports = withSentryConfig(
   // withPWA(
-      {
+  {
     ...nextConfig,
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -71,6 +75,6 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  }
+  },
   // ),
 );

@@ -34,15 +34,31 @@ const Chat = () => {
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src =
     "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/embed.js?id=embed_chatbot_container_id";
-  const checkScript = Helper.documentGetElementById(src);
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
+    const checkScript = Helper.documentGetElementById(src);
+    const chatContainer = document.body;
+    const script = document.createElement("script");
+
     if (checkScript) {
       return router.reload();
     }
-  }, []);
+
+    script.id = src;
+    script.async = true;
+    script.defer = true;
+    script.src = src;
+
+    if (!isEmpty(userProfileData)) {
+      chatContainer.appendChild(script);
+
+      setTimeout(() => {
+        setUChatIsReady(true);
+      }, 1000);
+    }
+  }, [userProfileData, window]);
 
   useEffect(() => {
     if (uChatIsReady) {
@@ -87,23 +103,6 @@ const Chat = () => {
 
   const getUserSuccessCallback = (res) => {
     setUserProfileData(res);
-    handleGenerateUChat();
-  };
-
-  const handleGenerateUChat = () => {
-    const chatContainer = Helper.documentGetElementById("chat-container");
-    const script = document.createElement("script");
-
-    script.id = src;
-    script.async = true;
-    script.defer = true;
-    script.src = src;
-
-    chatContainer.appendChild(script);
-
-    setTimeout(() => {
-      setUChatIsReady(true);
-    }, 1000);
   };
 
   return (
