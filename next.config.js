@@ -27,7 +27,7 @@ const nextConfig = {
   },
   compiler: {
     // Remove console logs only in production
-    removeConsole: process.env.NODE_ENV === "PRODUCTION",
+    removeConsole: process.env.PRODUCTION === "PRODUCTION",
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
