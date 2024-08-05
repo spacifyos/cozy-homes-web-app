@@ -11,7 +11,7 @@ const RentalIncomeCard = ({ item }) => {
   const amount = ownerSelector.getAmount(item);
 
   return (
-    <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center">
+    <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center primaryWhite-bg-color">
       <div className="flex">
         <CustomImage src={Images.rentalInIcon} width={30} height={30} />
 

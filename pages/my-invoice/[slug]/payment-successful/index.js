@@ -158,13 +158,16 @@ const PaymentSuccessful = ({ id }) => {
           <div className="gap-2">
             {isEmpty(items)
               ? false
-              : map(items, (item) => {
+              : map(items, (item, index) => {
                   const itemName = get(item, ["name"], "");
                   const unitPrice = get(item, ["unit_price"], 0);
                   const quantity = get(item, ["quantity"], 1);
 
                   return (
-                    <div className="flex justify-between items-center pt-2">
+                    <div
+                      className="flex justify-between items-center pt-2"
+                      key={index}
+                    >
                       <div className="">
                         <CustomText
                           textClassName={`black-text font-size-small font-bold`}

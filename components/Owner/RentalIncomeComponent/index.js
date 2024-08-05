@@ -5,26 +5,14 @@ import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
 
 const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
   return (
-    <div className="">
-      <div className="flex justify-between items-end pb-3">
-        <CustomText textClassName="font-bold">Rental Income</CustomText>
-
-        {/*<CustomText textClassName="font-size-small cursor-pointer" onClick={onClickViewMoreTransaction}>*/}
-        {/*  View More*/}
-        {/*</CustomText>*/}
-      </div>
-
-      <div className="flex flex-col gap-3">
-        {isEmpty(data) ? (
-          <div style={{ height: 351 }} className="flex justify-center">
-            <CustomEmptyBox />
-          </div>
-        ) : (
-          map(data, (item, index) => {
-            return <RentalIncomeCard item={item} key={index} />;
-          })
-        )}
-      </div>
+    <div className="flex flex-col gap-3 flex-1">
+      {isEmpty(data) ? (
+        <CustomEmptyBox />
+      ) : (
+        map(data, (item, index) => {
+          return <RentalIncomeCard item={item} key={index} />;
+        })
+      )}
     </div>
   );
 };

@@ -154,6 +154,9 @@ const Image = {
   navigateChatIcon: "/images/icon/navigate_chat_icon.png",
   navigateChatIconActive: "/images/icon/navigate_chat_icon_active.png",
   logoHorizontalColor: "/images/logo_horizontal_color.png",
+  editIconWhite: "/images/icon/edit_icon_white.png",
+  addIcon: "/images/icon/add_icon.png",
+  bankIconWhite: "/images/icon/bank_icon_white.png",
 };
 
 export default { ...Image };

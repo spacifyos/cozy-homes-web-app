@@ -9,8 +9,7 @@
 }
 
 .profile-coin-icon-container {
-  @apply p-2 global-box-shadow global-border-radius mb-2;
-  border: $primary-color 0.5px solid;
+  @apply p-2 global-box-shadow global-border-radius bg-color;
 }
 
 .logout-container {
