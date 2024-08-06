@@ -106,16 +106,16 @@ const Chat = () => {
 
   return (
     <div id="chat-container">
-      <div
-        id="embed_chatbot_container_id"
-        style={{
-          height:
-            visualViewport.height * visualViewport.scale - bottomNavigateHeight,
-          width: "100%",
-          maxWidth: 500,
-          position: "fixed",
-        }}
-      ></div>
+      {/*<div*/}
+      {/*  id="embed_chatbot_container_id"*/}
+      {/*  style={{*/}
+      {/*    height:*/}
+      {/*      visualViewport.height * visualViewport.scale - bottomNavigateHeight,*/}
+      {/*    width: "100%",*/}
+      {/*    maxWidth: 500,*/}
+      {/*    position: "fixed",*/}
+      {/*  }}*/}
+      {/*></div>*/}
 
       <LoadingOverlay loading={userProfileLoading} />
     </div>
