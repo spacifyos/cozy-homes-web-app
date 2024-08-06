@@ -117,7 +117,7 @@ const Chat = () => {
       {/*  }}*/}
       {/*></div>*/}
 
-      <LoadingOverlay loading={userProfileLoading} />
+      <LoadingOverlay loading={userProfileLoading || !uChatIsReady} />
     </div>
   );
 };
