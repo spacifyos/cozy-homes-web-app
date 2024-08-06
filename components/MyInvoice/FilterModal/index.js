@@ -29,7 +29,7 @@ const FilterModal = ({
 
   return isOpenFilterModal ? (
     <div
-      className="fixed inset-0 z-10 h-screen overflow-hidden flex flex-col justify-end items-center"
+      className="fixed inset-0 bottom-2 z-10 overflow-hidden flex flex-col justify-end items-center h-full"
       style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
     >
       <div
