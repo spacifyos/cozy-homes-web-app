@@ -19,6 +19,8 @@ const CustomImage = ({
       onClick={onClick}
     >
       <Image
+        loader={() => src}
+        loading="lazy"
         layout="responsive"
         alt={"image"}
         src={src}

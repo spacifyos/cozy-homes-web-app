@@ -47,6 +47,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
                   onClick={() => onClickPopupImage(index)}
                 >
                   <Image
+                      loader={() => item}
                     alt={item}
                     src={item}
                     style={{ objectFit: "cover" }}

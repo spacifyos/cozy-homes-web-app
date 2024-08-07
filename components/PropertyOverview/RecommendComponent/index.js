@@ -59,6 +59,9 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
                 style={{ height: 150 }}
               >
                 <Image
+                    loader={() => {
+                        return isEmpty(image) ? Images.imageNotFound : image
+                    }}
                   alt={isEmpty(propertyName) ? "image" : propertyName}
                   src={isEmpty(image) ? Images.imageNotFound : image}
                   style={{ objectFit: isEmpty(image) ? "contain" : "cover" }}

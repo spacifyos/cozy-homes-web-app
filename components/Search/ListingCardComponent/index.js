@@ -25,6 +25,9 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
           alt={isEmpty(propertyName) ? "image" : propertyName}
           src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
           style={{ objectFit: isEmpty(imageUrl) ? "contain" : "cover" }}
+          loader={() => {
+            return isEmpty(imageUrl) ? Images.imageNotFound : imageUrl;
+          }}
           sizes="100vw"
           fill
         />

@@ -42,6 +42,7 @@ const ImageModal = ({
                 }}
               >
                 <Image
+                    loader={() => item}
                   alt={item}
                   src={item}
                   style={{ objectFit: "contain" }}
