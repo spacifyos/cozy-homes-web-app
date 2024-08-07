@@ -139,8 +139,7 @@ const OwnerHome = () => {
           </CustomText>
           <CustomImage
             src={Images.blackLogo}
-            width={80}
-            height={20}
+            imageStyle={{width:80}}
             className="mx-1.5"
           />
         </div>

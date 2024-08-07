@@ -15,7 +15,7 @@ const PropertyInfoComponent = ({ paddingTop = "4.5rem", lists }) => {
             className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color"
             key={index}
           >
-            <CustomImage src={icon} imageStyle={{ width: 20, height: 20 }} />
+            <CustomImage src={icon} imageStyle={{ width: 20 }} />
 
             <div className="pt-1">
               <CustomText textClassName="font-size-xlarge font-bold text-center">

@@ -1,8 +1,9 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
+import Image from "next/image";
 
 const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -20,11 +21,17 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
         style={{ margin: 0, width: "100%", cursor: "pointer" }}
       >
         {_.isEmpty(imageUrl) ? (
-          <SwiperSlide style={{ borderRadius: 15, overflow: "hidden" }}>
+          <SwiperSlide
+            style={{
+              borderRadius: 15,
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <CustomImage
               src={Images.imageNotFound}
-              className="w-full"
-              imageStyle={{ height: 300, objectFit: "contain" }}
+              imageStyle={{ height: 300, width: 300 }}
             />
           </SwiperSlide>
         ) : (
@@ -34,12 +41,19 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
                 style={{ borderRadius: 15, overflow: "hidden" }}
                 key={index}
               >
-                <CustomImage
-                  src={item}
-                  className="w-full"
-                  imageStyle={{ height: 300, objectFit: "cover" }}
+                <div
+                  className="relative rounded-2xl global-box-shadow w-full overflow-hidden"
+                  style={{ height: 300 }}
                   onClick={() => onClickPopupImage(index)}
-                />
+                >
+                  <Image
+                    alt={item}
+                    src={item}
+                    style={{ objectFit: "cover" }}
+                    sizes="100vw"
+                    fill
+                  />
+                </div>
               </SwiperSlide>
             );
           })

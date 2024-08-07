@@ -1,10 +1,11 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { map, isEmpty } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import Image from "next/image";
 
 const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
   return (
@@ -20,7 +21,7 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
       modules={[Pagination, Navigation]}
       className="mySwiper property-overview-swiper"
     >
-      {_.map(recommendedList, (item, index) => {
+      {map(recommendedList, (item, index) => {
         const image = listingSelector.getImageUrl(item);
         const propertyName = listingSelector.getPropertyName(item);
         const unitRoomName = listingSelector.getUnitRoomName(item);
@@ -43,8 +44,7 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
               >
                 <CustomImage
                   src={Images.femaleUnitIcon}
-                  width={20}
-                  height={20}
+                  imageStyle={{ width: 25 }}
                 />
               </div>
 
@@ -54,15 +54,18 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
               {/*  </div>*/}
               {/*</div>*/}
 
-              <CustomImage
-                src={_.isEmpty(image) ? Images.imageNotFound : image}
-                imageStyle={{
-                  height: 150,
-                  width: "100%",
-                  objectFit: _.isEmpty(image) ? "contain" : "cover",
-                }}
-                className=" rounded-2xl global-box-shadow"
-              />
+              <div
+                className="relative rounded-2xl global-box-shadow w-full overflow-hidden"
+                style={{ height: 150 }}
+              >
+                <Image
+                  alt={isEmpty(propertyName) ? "image" : propertyName}
+                  src={isEmpty(image) ? Images.imageNotFound : image}
+                  style={{ objectFit: isEmpty(image) ? "contain" : "cover" }}
+                  sizes="100vw"
+                  fill
+                />
+              </div>
 
               <div className="pt-2">
                 <CustomText textClassName="font-size-normal font-bold leading-5 line-clamp-1">

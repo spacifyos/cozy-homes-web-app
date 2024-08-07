@@ -59,7 +59,7 @@ const EAgreement = () => {
 
   const fetchAgreementListingData = (
     status = Constant.AGREEMENT_ALL,
-    perPage = 3,
+    perPage = 20,
     page = 1,
   ) => {
     getAgreementListingRequest(status, perPage, page);
@@ -78,7 +78,7 @@ const EAgreement = () => {
   };
 
   const onClickLoadMore = () => {
-    fetchAgreementListingData(selectedStatus, 3, currentPage + 1);
+    fetchAgreementListingData(selectedStatus, 20, currentPage + 1);
   };
 
   return (

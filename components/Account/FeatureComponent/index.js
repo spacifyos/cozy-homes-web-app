@@ -28,10 +28,10 @@ const FeatureComponent = ({
         <CustomText textClassName="font-size-small">{title}</CustomText>
       </div>
 
-      <CustomImage
-        src={Images.rightIcon}
-        imageStyle={{ width1: 16, height: 16 }}
-      />
+        <CustomImage
+          src={Images.rightIcon}
+          imageStyle={{ width: 10}}
+        />
     </div>
   );
 };

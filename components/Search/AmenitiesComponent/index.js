@@ -44,8 +44,7 @@ const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
             >
               <CustomImage
                 src={isActive ? iconActive : icon}
-                width={25}
-                height={25}
+                imageStyle={{ width: 25, height: 25 }}
               />
               <CustomText
                 textClassName={`${isActive ? "primary-text" : "disable-text"} text-center font-size-xxsmall`}

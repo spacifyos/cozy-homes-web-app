@@ -29,8 +29,8 @@ const AgentSection = ({
           <div className="relative ">
             <CustomImage
               src={Images.userIcon}
-              width={43}
               className="rounded-2xl"
+              imageStyle={{ width: 43 }}
             />
 
             {/*<div*/}
@@ -89,10 +89,9 @@ const AgentSection = ({
             </div>
 
             <CustomImage
+              imageStyle={{ width: 25 }}
               className="cursor-pointer"
               src={Images.infoIcon}
-              width={25}
-              height={25}
               onClick={onClickOpenMoveInCostModal}
             />
           </div>
@@ -103,7 +102,7 @@ const AgentSection = ({
             <CustomText textClassName="font-size-large font-bold white-text">
               {t("propertyDetail.bookNow")}
             </CustomText>
-            <CustomImage src={Images.righWhiteIcon} width={8} height={8} />
+            <CustomImage src={Images.righWhiteIcon} imageStyle={{ width: 8 }} />
           </div>
         </div>
       </div>

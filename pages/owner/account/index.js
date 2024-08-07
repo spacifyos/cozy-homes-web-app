@@ -304,8 +304,7 @@ const OwnerAccount = () => {
             >
               <CustomImage
                 src={Images.primaryLogoutIcon}
-                width={25}
-                height={25}
+                imageStyle={{ width: 25 }}
                 className="mr-2"
               />
               <CustomText textClassName="font-size-small">

@@ -42,7 +42,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
 
       <div className="flex flex-col items-start col-span-1">
         <div className="primary-bg-color p-2 global-border-radius mb-1 ">
-          <CustomImage src={Images.buildingIcon} width={35} height={35} />
+          <CustomImage src={Images.buildingIcon} imageStyle={{width:35}} />
         </div>
 
         <div className={"pb-2"}>

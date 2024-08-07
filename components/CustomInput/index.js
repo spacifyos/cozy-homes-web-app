@@ -63,8 +63,7 @@ const CustomInput = ({
           <CustomImage
             className="cursor-pointer"
             src={rightIcon}
-            height={20}
-            width={20}
+            imageStyle={{ width: 20, height: 20 }}
             onClick={onClickRightIcon}
           />
         ) : (

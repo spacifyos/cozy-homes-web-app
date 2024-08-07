@@ -75,8 +75,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
                       activeIcon
                     : icon
                 }
-                width={25}
-                height={25}
+                imageStyle={{ width: 25, height: 25 }}
               />
               <CustomText
                 textClassName={`${

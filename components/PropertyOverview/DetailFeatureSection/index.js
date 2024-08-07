@@ -32,10 +32,14 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
       {_.map(lists, (list, index) => {
         return (
           <div
-            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""}`} key={index}
+            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""}`}
+            key={index}
           >
             {/*<div>*/}
-            <CustomImage src={_.get(list, ["icon"], "")} width={25} />
+            <CustomImage
+              src={_.get(list, ["icon"], "")}
+              imageStyle={{ width: 25 }}
+            />
             {/*<CustomText textClassName="disable-text font-size-xxsmall max-h-9 leading-3 my-1">*/}
             {/*  {_.get(list, ["title"], "")}*/}
             {/*</CustomText>*/}

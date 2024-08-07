@@ -3,24 +3,30 @@ import Image from "next/image";
 const CustomImage = ({
   className = "",
   src,
-  width = 50,
-  height = 50,
   imageStyle,
   onClick = () => {},
-  ...props
 }) => {
   return (
-    <Image
+    <div
+      className={className}
+      style={{
+        position: "relative",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        ...imageStyle,
+      }}
       onClick={onClick}
-      unoptimized={true}
-      className={`object-contain ${className}`}
-      alt={"image"}
-      src={src}
-      width={width}
-      height={height}
-      style={{ ...imageStyle }}
-      {...props}
-    />
+    >
+      <Image
+        layout="responsive"
+        alt={"image"}
+        src={src}
+        width={0}
+        height={0}
+        objectFit="cover"
+      />
+    </div>
   );
 };
 

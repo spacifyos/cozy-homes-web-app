@@ -66,13 +66,14 @@ const PaymentSuccessful = ({ id }) => {
   return (
     <div className="relative p-4 pt-10 bg-color flex flex-col items-center">
       <NextSeo title="Invoice Payment Successful - Spacify Asia" />
-      <CustomImage
-        src={Images.cancelIcon}
-        className="absolute right-5 top-5 cursor-pointer"
-        height={20}
-        width={20}
-        onClick={onClickClose}
-      />
+
+      <div className="absolute top-5 right-5 cursor-pointer">
+        <CustomImage
+          src={Images.cancelIcon}
+          imageStyle={{ width: 20 }}
+          onClick={onClickClose}
+        />
+      </div>
 
       <CustomImage
         src={Images.successIcon}

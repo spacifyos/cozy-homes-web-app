@@ -76,7 +76,10 @@ const EAgreementOverview = ({ id }) => {
       // rightButtonIcon={Images.downloadIcon}
     >
       <div className="body-container relative pt-6 pb-4 flex justify-center">
-        <div className="primary-bg-color p-2 ps-3 global-border-radius absolute top-0">
+        <div
+          className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
+          style={{ height: 54 }}
+        >
           <CustomImage
             src={Images.agreementIcon}
             imageStyle={{ width: 30, height: 30 }}

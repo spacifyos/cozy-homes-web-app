@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _, { isEqual } from "lodash";
+import { isEmpty, map } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Helper from "@/src/utils/Helper";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
@@ -35,11 +35,11 @@ const RentChargesSection = ({
       style={{ borderRadius: 15 }}
     >
       <div className="flex items-center">
-        <CustomImage src={Images.logoImage} width={40} height={40} />
+        <CustomImage src={Images.logoImage} imageStyle={{width:40}} />
 
         <div className="flex flex-col pl-2">
           <CustomText textClassName="font-bold primary-text font-size-large">
-            {_.isEmpty(title) ? "-" : title}
+            {isEmpty(title) ? "-" : title}
           </CustomText>
           <CustomText textClassName="font-light font-size-small disable-text">
             Hosted by Spacify
@@ -79,9 +79,9 @@ const RentChargesSection = ({
         rentChargesLists={lastMonthRentCharges}
       />
 
-      {_.isEmpty(othersList)
+      {isEmpty(othersList)
         ? false
-        : _.map(othersList, (fessList, index) => {
+        : map(othersList, (fessList, index) => {
             const label = listingSelector.getLabel(fessList);
             const value = listingSelector.getFeeAmount(fessList);
 

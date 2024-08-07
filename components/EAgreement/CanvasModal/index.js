@@ -63,13 +63,14 @@ const CanvasModal = ({
       )}
 
       <div className="flex items-start gap-2 pt-5 py-10">
-        <CustomImage
-          className="cursor-pointer"
-          src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}
-          height={23}
-          width={23}
-          onClick={onClickReadSign}
-        />
+        <div style={{ width: 23 }} onClick={onClickReadSign}>
+          <CustomImage
+            className="cursor-pointer"
+            src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}
+            imageStyle={{ width: 23 }}
+          />
+        </div>
+
         <CustomText textClassName="font-size-small text-justify leading-4">
           The parties agreed that this agreement may be electronically signed.
           The parties agree that the electronic signatures appearing on this

@@ -1173,20 +1173,20 @@ const Booking = ({ id, listingPropertyDetailData }) => {
             />
           </div>
 
-          <div className="global-horizontal-padding pt-3 grid grid-cols-6 gap-2">
-            <div className="col-span-6 flex items-start px-2">
+          <div className="flex items-start px-4 pt-3">
+            <div style={{ width: 25 }}>
               <CustomImage
                 src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-                width={23}
-                height={23}
+                imageStyle={{ width: 25 }}
                 onClick={onClickReadAgree}
                 className="cursor-pointer"
               />
-              <CustomText textClassName="pl-3 font-bold disable-text">
-                I understand and agree to give Spacify and CTOS the consent to
-                process my personal data as per PDPA Act.
-              </CustomText>
             </div>
+
+            <CustomText textClassName="pl-3 font-bold disable-text">
+              I understand and agree to give Spacify and CTOS the consent to
+              process my personal data as per PDPA Act.
+            </CustomText>
           </div>
 
           <div className="global-horizontal-padding pt-3 grid grid-cols-6 gap-2">

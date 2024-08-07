@@ -19,7 +19,7 @@ import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
 import AuthManager from "@/src/utils/AuthManager";
 import PinNumberInfoModal from "@/components/EAgreement/PinNumberInfoModal";
-import AuthWrapper from "@/components/AuthWrapper"
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -375,13 +375,13 @@ const ViewAgreement = ({ id }) => {
 
         {isCanAgree ? (
           <div className="flex items-start gap-2 pt-8">
-            <CustomImage
-              className="cursor-pointer"
-              src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-              height={23}
-              width={23}
-              onClick={onClickReadAgree}
-            />
+            <div style={{ width: 23 }} onClick={onClickReadAgree}>
+              <CustomImage
+                className="cursor-pointer"
+                src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                imageStyle={{ width: 23 }}
+              />
+            </div>
             <CustomText textClassName="font-size-small text-justify leading-4">
               I,{" "}
               <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>

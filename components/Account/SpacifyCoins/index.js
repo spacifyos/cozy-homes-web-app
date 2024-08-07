@@ -5,18 +5,14 @@ import CustomText from "@/components/CustomText";
 const SpacifyCoins = ({ t, onClickToCoinsTransaction }) => {
   return (
     <div className="profile-coin-container col-span-2">
-      <CustomImage
-        src={Images.moreIcon}
-        height={22}
-        width={22}
-        className="absolute right-1 top-3 cursor-pointer"
-      />
+      <div className="absolute right-1 top-3 cursor-pointer">
+        <CustomImage src={Images.moreIcon} imageStyle={{ width: 22 }} />
+      </div>
 
       <div className="profile-coin-icon-container cursor-pointer">
         <CustomImage
           src={Images.logoImage}
-          height={30}
-          width={30}
+          imageStyle={{ width: 30 }}
           // onClick={onClickToCoinsTransaction}
         />
       </div>

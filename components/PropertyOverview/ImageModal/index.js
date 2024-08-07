@@ -4,6 +4,7 @@ import Helper from "@/src/utils/Helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { map, size } from "lodash";
+import Image from "next/image";
 
 const ImageModal = ({
   data,
@@ -13,14 +14,14 @@ const ImageModal = ({
 }) => {
   return openImageModal ? (
     <div
-      className="fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col justify-center items-center"
+      className="h-full fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col justify-center items-center"
       style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
     >
       <Swiper
         navigation={true}
         modules={[Navigation]}
         className="mySwiper image-modal-swiper"
-        style={{ width: "100%" }}
+        style={{ width: "100%", height: "100%" }}
         initialSlide={selectedImage}
       >
         {map(data, (item, index) => {
@@ -33,14 +34,21 @@ const ImageModal = ({
                 alignItems: "center",
               }}
             >
-              <CustomImage
-                src={item}
-                imageStyle={{
+              <div
+                className="relative"
+                style={{
                   width: "100%",
                   height: "80%",
-                  objectFit: "contain",
                 }}
-              />
+              >
+                <Image
+                  alt={item}
+                  src={item}
+                  style={{ objectFit: "contain" }}
+                  sizes="100vw"
+                  fill
+                />
+              </div>
               <CustomText textClassName="white-text pt-2">{`${index + 1}/${size(data)}`}</CustomText>
             </SwiperSlide>
           );

@@ -32,9 +32,7 @@ const CustomButton = ({
       {!_.isEmpty(icon) ? (
         <CustomImage
           src={icon}
-          width={imageWidth}
-          height={imageHeight}
-          imageStyle={imageStyle}
+          imageStyle={{ width: imageWidth, height: imageHeight, ...imageStyle }}
         />
       ) : (
         false

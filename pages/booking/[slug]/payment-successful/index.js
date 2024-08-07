@@ -33,12 +33,15 @@ const PaymentSuccessful = ({ id }) => {
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <NextSeo title="Booking Payment Successful - Spacify Asia" />
-      <CustomImage
-        src={Images.cancelIcon}
-        imageStyle={{ width: 20 }}
-        className=" absolute top-5 right-5 cursor-pointer"
-        onClick={onClickGoMainPage}
-      />
+
+      <div className="absolute top-5 right-5 cursor-pointer">
+        <CustomImage
+          src={Images.cancelIcon}
+          imageStyle={{ width: 20 }}
+          onClick={onClickGoMainPage}
+        />
+      </div>
+
       <CustomImage
         src={Images.successIcon}
         imageStyle={{ width: "150px", height: "150px" }}

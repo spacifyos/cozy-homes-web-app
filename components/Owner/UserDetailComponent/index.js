@@ -13,7 +13,7 @@ const UserDetailComponent = ({ data }) => {
     <div className="px-4 absolute top-20 w-full">
       <div className="p-3 relative w-full primaryWhite-bg-color global-border-radius global-box-shadow z-10 flex justify-between">
         <div className="flex">
-          <CustomImage src={Images.userIcon} height={60} width={60} />
+          <CustomImage src={Images.userIcon} imageStyle={{width:60}} />
 
           <div className="user-info-content">
             <CustomText textClassName="user-name">

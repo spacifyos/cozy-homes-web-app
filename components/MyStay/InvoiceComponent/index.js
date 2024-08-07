@@ -58,8 +58,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
                     <div className="flex items-center">
                       <CustomImage
                         src={Images.paidIcon}
-                        width={15}
-                        height={15}
+                        imageStyle={{ width: 15 }}
                         className="mr-1"
                       />
                       <CustomText textClassName="disable-text font-size-xsmall leading-4">
