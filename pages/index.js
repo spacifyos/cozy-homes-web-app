@@ -47,8 +47,7 @@ function Home() {
         <div>
           <CustomImage
             src={Images.blackLogoWithText}
-            height={180}
-            width={180}
+            imageStyle={{ width: 180 }}
           />
         </div>
       </div>

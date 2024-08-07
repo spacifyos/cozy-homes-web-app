@@ -19,7 +19,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
 import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
@@ -149,8 +149,7 @@ const MyMeterOverview = ({ id }) => {
             className="mr-4 cursor-pointer"
             onClick={onClickSyncMeter}
             src={Images.refreshIcon}
-            height={30}
-            width={30}
+            imageStyle={{ width: 30 }}
           />
         </div>
 

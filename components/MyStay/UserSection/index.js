@@ -12,7 +12,7 @@ const UserSection = ({ t, data }) => {
   return (
     <div className="flex justify-between pb-5">
       <div className="user-info-container">
-        <CustomImage src={Images.userIcon} imageStyle={{width:55}} />
+        <CustomImage src={Images.userIcon} imageStyle={{ width: 55 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name">
@@ -20,13 +20,13 @@ const UserSection = ({ t, data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.phoneIcon} height={15} width={15} />
+            <CustomImage src={Images.phoneIcon} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
           </div>
           <div className="flex items-center">
-            <CustomImage src={Images.emailIcon} height={15} width={15} />
+            <CustomImage src={Images.emailIcon} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {_.isEmpty(email) ? "-" : email}
             </CustomText>

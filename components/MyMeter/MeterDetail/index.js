@@ -18,7 +18,7 @@ const MeterDetail = ({ t, data }) => {
     <div className="meter-response">
       <div className="flex flex-1 flex-col items-center">
         <div className="primary-bg-color p-3 global-border-radius">
-          <CustomImage src={Images.meterIcon} width={40} height={40} />
+          <CustomImage src={Images.meterIcon} imageStyle={{ width: 40 }} />
         </div>
         <CustomText textClassName="primary-text font-bold">
           {isEmpty(name) ? "-" : name}
@@ -44,8 +44,7 @@ const MeterDetail = ({ t, data }) => {
           <div className="flex items-center gap-1">
             <CustomImage
               src={wifi ? Images.onIcon : Images.offIcon}
-              height={15}
-              width={15}
+              imageStyle={{ width: 15 }}
             />
             <CustomText
               textClassName={`${wifi ? "power-on-text" : "disable-text"} font-size-small`}
@@ -56,8 +55,7 @@ const MeterDetail = ({ t, data }) => {
           <div className="flex items-center gap-1">
             <CustomImage
               src={power ? Images.onIcon : Images.offIcon}
-              height={15}
-              width={15}
+              imageStyle={{ width: 15 }}
             />
             <CustomText
               textClassName={`${power ? "power-on-text" : "disable-text"} font-size-small`}

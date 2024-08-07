@@ -10,7 +10,7 @@ const CustomEmptyBox = ({
   return (
     <div className={"flex justify-center items-center flex-col px-4"}>
       <div className={"pb-2"}>
-        <CustomImage src={emptyImage} width={60} height={60} />
+        <CustomImage src={emptyImage} imageStyle={{ width: 60 }} />
       </div>
       <CustomText textClassName="font-size-large font-bold disable-text">
         {emptyTitle}

@@ -1,7 +1,6 @@
 import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import Images from "@/src/utils/Image";
 import { useRouter } from "next/router";
 import { map, isEmpty } from "lodash";
 import * as meterAction from "@/src/actions/meter";
