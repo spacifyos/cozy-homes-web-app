@@ -44,8 +44,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
             <div className="flex items-center pr-3">
               <CustomImage
                 src={wifi ? Images.onIcon : Images.offIcon}
-                width={15}
-                height={15}
+                imageStyle={{ width: 15 }}
                 className="mr-1"
               />
               <CustomText
@@ -58,8 +57,7 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
             <div className="flex items-center">
               <CustomImage
                 src={power ? Images.onIcon : Images.offIcon}
-                width={15}
-                height={15}
+                imageStyle={{ width: 15 }}
                 className="mr-1"
               />
               <CustomText
