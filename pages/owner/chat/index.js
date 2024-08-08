@@ -119,7 +119,7 @@ const OwnerChat = () => {
       {/*  }}*/}
       {/*></div>*/}
 
-      <LoadingOverlay loading={userProfileLoading || !uChatIsReady} />
+      <LoadingOverlay loading={userProfileLoading} />
     </div>
   );
 };
