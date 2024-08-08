@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { map, get, isEmpty } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
@@ -32,9 +32,9 @@ const BookingSelect = ({
           <option disabled value="">
             {placeholder}
           </option>
-          {_.map(lists, (list) => {
-            const label = _.get(list, ["label"], "");
-            const value = _.get(list, ["value"], "");
+          {map(lists, (list) => {
+            const label = get(list, ["label"], "");
+            const value = get(list, ["value"], "");
 
             return (
               <option key={value} value={value}>
@@ -46,7 +46,7 @@ const BookingSelect = ({
 
         <CustomImage src={rightIcon} imageStyle={{ width: 10 }} />
       </div>
-      {_.isEmpty(errorMessage) ? (
+      {isEmpty(errorMessage) ? (
         false
       ) : (
         <CustomText textClassName="error-message">* {errorMessage}</CustomText>

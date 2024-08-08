@@ -180,8 +180,9 @@ const OwnerInvoiceOverview = ({ id }) => {
           <div className="flex justify-center items-center">
             <div onClick={onClickGoBack} className="cursor-pointer">
               <CustomImage
-                className={"me-5 w-2.5 cursor-pointer"}
+                className={"me-5 cursor-pointer"}
                 src={Images.leftIconWhite}
+                imageStyle={{ width: 10 }}
               />
             </div>
 

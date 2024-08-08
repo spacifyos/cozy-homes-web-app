@@ -37,8 +37,9 @@ const MyBank = () => {
         <div className="flex items-center">
           <div onClick={onClickGoBack} className="cursor-pointer">
             <CustomImage
-              className={"me-5 w-2.5 cursor-pointer"}
+              className={"me-5 cursor-pointer"}
               src={Images.leftIconWhite}
+              imageStyle={{ width: 10 }}
             />
           </div>
 
@@ -61,7 +62,7 @@ const MyBank = () => {
               className="flex flex-col justify-center items-center flex-1 cursor-pointer"
               onClick={onClickToAddBank}
             >
-              <CustomImage src={Images.addIcon} width={30} height={30} />
+              <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
               <CustomText textClassName="disable-text pt-2">
                 Add Bank
               </CustomText>

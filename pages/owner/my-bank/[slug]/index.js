@@ -10,6 +10,7 @@ import BookingInput from "@/components/Booking/BookingInput";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
+import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";
 
 export { getServerSideProps };
 
@@ -20,6 +21,9 @@ const BankOverview = () => {
   const [bankName, setBankName] = useState("");
   const [accountName, setAccountName] = useState("Tan Mei Mei");
   const [accountNumber, setAccountNumber] = useState("12312123123");
+
+  const [bankValue, setBankValue] = useState(null);
+  const [openSelectBank, setOpenSelectBank] = useState(false);
 
   const onClickReadAgree = () => {
     setIsReadAgree(!isReadAgree);
@@ -33,6 +37,15 @@ const BankOverview = () => {
     router.push("/owner/my-bank/add-bank-successful");
   };
 
+  const onClickSelect = (item) => {
+    setOpenSelectBank(false);
+    setBankValue(item);
+  };
+
+  const onClickOpenSelect = () => {
+    setOpenSelectBank(!openSelectBank);
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
       <NextSeo title="My Bank - Spacify Asia" />
@@ -41,8 +54,9 @@ const BankOverview = () => {
         <div className="flex items-center">
           <div onClick={onClickGoBack} className="cursor-pointer">
             <CustomImage
-              className={"me-5 w-2.5 cursor-pointer"}
+              className={"me-5 cursor-pointer"}
               src={Images.leftIconWhite}
+              imageStyle={{ width: 10 }}
             />
           </div>
 
@@ -58,7 +72,10 @@ const BankOverview = () => {
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
         <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center">
           <div className="primary-bg-color p-3 global-border-radius mr-2">
-            <CustomImage src={Images.bankIconWhite} width={20} height={20} />
+            <CustomImage
+              src={Images.bankIconWhite}
+              imageStyle={{ width: 10 }}
+            />
           </div>
 
           <CustomText textClassName="primary-text font-bold">
@@ -69,14 +86,13 @@ const BankOverview = () => {
 
       <div className="body-container bg-color flex flex-1 pt-12 w-full">
         <div className="w-full">
-          <BookingSelect
+          <CustomSelectWithIcon
             title="Bank Name"
-            placeholder="Select Bank"
-            lists={[]}
             required
-            bgColor="primaryWhite-bg-color"
-            className="pb-4"
-            value={bankName}
+            onClickSelect={onClickSelect}
+            value={bankValue}
+            onClickOpenSelect={onClickOpenSelect}
+            openSelectBank={openSelectBank}
           />
 
           <BookingInput
@@ -101,8 +117,7 @@ const BankOverview = () => {
             <div className="flex items-start">
               <CustomImage
                 src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-                width={23}
-                height={23}
+                imageStyle={{ width: 40 }}
                 onClick={onClickReadAgree}
                 className="cursor-pointer"
               />
