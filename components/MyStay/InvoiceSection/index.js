@@ -66,7 +66,7 @@ const InvoiceSection = ({
       <div className="flex flex-col gap-3">
         {isEmpty(data) ? (
           <div style={{ height: 351 }} className="flex justify-center">
-            <CustomEmptyBox />
+            <CustomEmptyBox emptyTitle="No invoice found" />
           </div>
         ) : (
           <InvoiceComponent

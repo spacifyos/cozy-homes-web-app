@@ -56,7 +56,7 @@ const Loading = () => {
   return (
     <div className="flex-1 ">
       <div className="flex justify-center" style={{ paddingTop: "20vh" }}>
-        <CustomImage src={Images.logoImage} width={120} height={120} />
+        <CustomImage src={Images.logoImage} imageStyle={{ width: 120 }} />
       </div>
 
       <LoadingOverlay loading={true} />

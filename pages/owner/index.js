@@ -28,7 +28,8 @@ const OwnerHome = () => {
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState("Rental");
-  const [selectedInvoiceCategory, setSelectedInvoiceCategory] = useState("HomeAll");
+  const [selectedInvoiceCategory, setSelectedInvoiceCategory] =
+    useState("HomeAll");
 
   const getInvoiceListingRequest = (paymentStatus, perPage, page) =>
     dispatch(
@@ -139,7 +140,7 @@ const OwnerHome = () => {
           </CustomText>
           <CustomImage
             src={Images.blackLogo}
-            imageStyle={{width:80}}
+            imageStyle={{ width: 80 }}
             className="mx-1.5"
           />
         </div>

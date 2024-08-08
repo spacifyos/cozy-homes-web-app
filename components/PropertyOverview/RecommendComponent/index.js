@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { map, isEmpty } from "lodash";
+import { map, isEmpty, size } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
@@ -10,7 +10,10 @@ import Image from "next/image";
 const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
   return (
     <Swiper
-      style={{ width: "100%", paddingBottom: 32 }}
+      style={{
+        width: "100%",
+        paddingBottom: size(recommendedList) <= 2 ? 0 : 32,
+      }}
       slidesPerView={2}
       spaceBetween={4}
       loop={true}
@@ -59,9 +62,9 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
                 style={{ height: 150 }}
               >
                 <Image
-                    loader={() => {
-                        return isEmpty(image) ? Images.imageNotFound : image
-                    }}
+                  loader={() => {
+                    return isEmpty(image) ? Images.imageNotFound : image;
+                  }}
                   alt={isEmpty(propertyName) ? "image" : propertyName}
                   src={isEmpty(image) ? Images.imageNotFound : image}
                   style={{ objectFit: isEmpty(image) ? "contain" : "cover" }}

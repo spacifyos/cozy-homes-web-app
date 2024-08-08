@@ -65,7 +65,7 @@ const MyMeter = () => {
       <div className="body-container flex flex-col gap-3 pb-4 flex-1">
         {isEmpty(meterListingData) ? (
           <div className="flex flex-col justify-center flex-1">
-            <CustomEmptyBox />
+            <CustomEmptyBox emptyTitle="No meter found" />
           </div>
         ) : (
           map(meterListingData, (item, index) => (

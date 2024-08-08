@@ -18,7 +18,7 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
       onClick={() => onClickToPropertyOverview(propertyId)}
     >
       <div
-        className="relative rounded-2xl global-box-shadow w-full overflow-hidden"
+        className="relative rounded-2xl global-box-shadow w-full overflow-hidden primaryWhite-bg-color"
         style={{ height: 150 }}
       >
         <Image

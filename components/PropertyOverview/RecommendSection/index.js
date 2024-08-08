@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import RecommendComponent from "@/components/PropertyOverview/RecommendComponent";
 import { isEmpty } from "lodash";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const RecommendSection = ({
   t,
@@ -13,7 +14,12 @@ const RecommendSection = ({
         {t("propertyDetail.recommend")}
       </CustomText>
       {isEmpty(recommendedList) ? (
-        <CustomText>Recommend property not available for now. </CustomText>
+        <div className="flex justify-center flex-1 py-10">
+          <CustomEmptyBox
+            emptyTitle="No recommend property found"
+            emptyDesc="Recommend property not available for now. "
+          />
+        </div>
       ) : (
         <RecommendComponent
           t={t}

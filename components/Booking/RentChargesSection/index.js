@@ -35,7 +35,7 @@ const RentChargesSection = ({
       style={{ borderRadius: 15 }}
     >
       <div className="flex items-center">
-        <CustomImage src={Images.logoImage} imageStyle={{width:40}} />
+        <CustomImage src={Images.logoImage} imageStyle={{ width: 40 }} />
 
         <div className="flex flex-col pl-2">
           <CustomText textClassName="font-bold primary-text font-size-large">
@@ -62,22 +62,29 @@ const RentChargesSection = ({
         className="divider-line"
         style={{ backgroundColor: "#D9D9D9" }}
       ></div>
+      {isEmpty(firstMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="First Month Rent Charges"
+          onClickOpenCharges={onClickOpenFirstMonthCharges}
+          openCharges={openFirstMonthCharges}
+          rentChargesAmount={totalMoveInCostFirstMonth}
+          rentChargesLists={firstMonthRentCharges}
+        />
+      )}
 
-      <RentChargesComponent
-        title="First Month Rent Charges"
-        onClickOpenCharges={onClickOpenFirstMonthCharges}
-        openCharges={openFirstMonthCharges}
-        rentChargesAmount={totalMoveInCostFirstMonth}
-        rentChargesLists={firstMonthRentCharges}
-      />
-
-      <RentChargesComponent
-        title="Last Month Rent Charges"
-        onClickOpenCharges={onClickOpenLastMonthCharges}
-        openCharges={openLastMonthCharges}
-        rentChargesAmount={totalMoveInCostLastMonth}
-        rentChargesLists={lastMonthRentCharges}
-      />
+      {isEmpty(lastMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="Last Month Rent Charges"
+          onClickOpenCharges={onClickOpenLastMonthCharges}
+          openCharges={openLastMonthCharges}
+          rentChargesAmount={totalMoveInCostLastMonth}
+          rentChargesLists={lastMonthRentCharges}
+        />
+      )}
 
       {isEmpty(othersList)
         ? false

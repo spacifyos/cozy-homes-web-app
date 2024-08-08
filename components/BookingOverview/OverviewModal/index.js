@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomModal from "@/components/CustomModal";
 import * as listingSelector from "@/src/selectors/listing";
-import _ from "lodash";
+import { isEmpty, map } from "lodash";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 
 const OverviewModal = ({
@@ -27,8 +27,6 @@ const OverviewModal = ({
   const totalFeesLastMonthAmount =
     listingSelector.getTotalFeesLastMonthAmount(data);
 
-  console.log(firstMonthRentCharges);
-
   return (
     <CustomModal id="booking_overview_modal">
       <CustomText textClassName="modal-title-font pb-2 ">
@@ -40,25 +38,33 @@ const OverviewModal = ({
       </CustomText>
       <div className="divider divider-bookingOverview"></div>
 
-      <RentChargesComponent
-        title="First Month Rent Charges"
-        onClickOpenCharges={onClickOpenFirstMonthCharges}
-        openCharges={openFirstMonthCharges}
-        rentChargesAmount={totalFeesFirstMonthAmount}
-        rentChargesLists={firstMonthRentCharges}
-      />
+      {isEmpty(firstMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="First Month Rent Charges"
+          onClickOpenCharges={onClickOpenFirstMonthCharges}
+          openCharges={openFirstMonthCharges}
+          rentChargesAmount={totalFeesFirstMonthAmount}
+          rentChargesLists={firstMonthRentCharges}
+        />
+      )}
 
-      <RentChargesComponent
-        title="Last Month Rent Charges"
-        onClickOpenCharges={onClickOpenLastMonthCharges}
-        openCharges={openLastMonthCharges}
-        rentChargesAmount={totalFeesLastMonthAmount}
-        rentChargesLists={lastMonthRentCharges}
-      />
+      {isEmpty(lastMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="Last Month Rent Charges"
+          onClickOpenCharges={onClickOpenLastMonthCharges}
+          openCharges={openLastMonthCharges}
+          rentChargesAmount={totalFeesLastMonthAmount}
+          rentChargesLists={lastMonthRentCharges}
+        />
+      )}
 
-      {_.isEmpty(othersList)
+      {isEmpty(othersList)
         ? false
-        : _.map(othersList, (fessList, index) => {
+        : map(othersList, (fessList, index) => {
             const label = listingSelector.getLabel(fessList);
             const value = listingSelector.getFeeAmount(fessList);
 
@@ -80,7 +86,7 @@ const OverviewModal = ({
           {t("bookingOverview.total")}
         </CustomText>
         <CustomText textClassName="modal-font-main">
-          RM{_.isEmpty(totalFeesAmount) ? "0" : totalFeesAmount}
+          RM{isEmpty(totalFeesAmount) ? "0" : totalFeesAmount}
         </CustomText>
       </div>
     </CustomModal>

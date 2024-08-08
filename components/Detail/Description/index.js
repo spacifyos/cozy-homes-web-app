@@ -1,5 +1,6 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const Description = ({ t, description }) => {
   return (
@@ -8,11 +9,18 @@ const Description = ({ t, description }) => {
         {t("propertyDetail.description")}
       </CustomText>
       <div className="">
-        <CustomText textClassName="font-size-xsmall">
-          {_.isEmpty(description)
-            ? "Description is not available for now."
-            : description}
-        </CustomText>
+        {isEmpty(description) ? (
+          <div className="py-10">
+            <CustomEmptyBox
+              emptyTitle="No description found"
+              emptyDesc="Description is not available for now."
+            />
+          </div>
+        ) : (
+          <CustomText textClassName="font-size-xsmall">
+            {description}
+          </CustomText>
+        )}
       </div>
     </div>
   );

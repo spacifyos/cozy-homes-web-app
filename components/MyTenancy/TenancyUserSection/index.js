@@ -12,7 +12,7 @@ const TenancyUserSection = ({ t, data }) => {
   return (
     <div className="flex justify-between pb-4">
       <div className="user-info-container">
-        <CustomImage src={Images.userIcon} height={60} width={60} />
+        <CustomImage src={Images.userIcon} imageStyle={{ width: 60 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name primary-text">
@@ -20,7 +20,10 @@ const TenancyUserSection = ({ t, data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.blackPhoneIcon} height={15} width={15} />
+            <CustomImage
+              src={Images.blackPhoneIcon}
+              imageStyle={{ width: 15 }}
+            />
             <CustomText textClassName="user-info">
               {" "}
               {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
@@ -28,7 +31,10 @@ const TenancyUserSection = ({ t, data }) => {
           </div>
 
           <div className="flex items-center">
-            <CustomImage src={Images.blackMailIcon} height={15} width={15} />
+            <CustomImage
+              src={Images.blackMailIcon}
+              imageStyle={{ width: 15 }}
+            />
             <CustomText textClassName="user-info">
               {_.isEmpty(email) ? "-" : email}
             </CustomText>

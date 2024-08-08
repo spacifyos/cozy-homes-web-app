@@ -2,7 +2,7 @@ import CustomModal from "@/components/CustomModal";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _, { isEqual } from "lodash";
+import _, { isEmpty, isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Helper from "@/src/utils/Helper";
 import { useEffect, useState } from "react";
@@ -27,21 +27,29 @@ const MoveInCostModal = ({
 
   return (
     <CustomModal id="move_in_cost_modal">
-      <RentChargesComponent
-        title="First Month Rent Charges"
-        onClickOpenCharges={onClickOpenModalFirstMonthCharges}
-        openCharges={openModalFirstMonthCharges}
-        rentChargesAmount={totalMoveInCostFirstMonth}
-        rentChargesLists={firstMonthRentCharges}
-      />
+      {isEmpty(firstMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="First Month Rent Charges"
+          onClickOpenCharges={onClickOpenModalFirstMonthCharges}
+          openCharges={openModalFirstMonthCharges}
+          rentChargesAmount={totalMoveInCostFirstMonth}
+          rentChargesLists={firstMonthRentCharges}
+        />
+      )}
 
-      <RentChargesComponent
-        title="Last Month Rent Charges"
-        onClickOpenCharges={onClickOpenModalLastMonthCharges}
-        openCharges={openModalLastMonthCharges}
-        rentChargesAmount={totalMoveInCostLastMonth}
-        rentChargesLists={lastMonthRentCharges}
-      />
+      {isEmpty(lastMonthRentCharges) ? (
+        false
+      ) : (
+        <RentChargesComponent
+          title="Last Month Rent Charges"
+          onClickOpenCharges={onClickOpenModalLastMonthCharges}
+          openCharges={openModalLastMonthCharges}
+          rentChargesAmount={totalMoveInCostLastMonth}
+          rentChargesLists={lastMonthRentCharges}
+        />
+      )}
 
       {_.isEmpty(othersList)
         ? false

@@ -2,30 +2,29 @@ import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import { isEmpty, isEqual, upperCase } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import moment from "moment";
 import StatusLabel from "@/components/StatusLabel";
 import Constant from "@/src/utils/Constant";
 
-const StepSection = ({ t, paymentSuccess, data }) => {
+const StepSection = ({ t, data, paymentSuccess }) => {
   const createAt = listingSelector.getCreatedAt(data);
   const paymentStatus = listingSelector.getPaymentStatus(data);
   const authorizedAt = listingSelector.getAuthorizedAt(data);
   const agencyReviewStatus = listingSelector.getAgencyReviewStatus(data);
   const paymentLink = listingSelector.getPaymentLink(data);
+
   const onClickPayNow = () => {
     window.open(paymentLink, "_self");
   };
-
-  const isPayment = _.isEqual(paymentSuccess, true);
 
   return (
     <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-7">
       <div className="flex flex-row items-start gap-2 ">
         <CustomImage
           src={Images.stepCompleteIcon}
-          imageStyle={{ width: "30px", height: "30px" }}
+          imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col">
           <CustomText textClassName="step-section-step-font">
@@ -39,7 +38,7 @@ const StepSection = ({ t, paymentSuccess, data }) => {
               <CustomText textClassName="font-size-xsmall">
                 {t("bookingOverview.status")}
               </CustomText>
-              <StatusLabel status={_.isEmpty(data) ? "" : "Completed"} />
+              <StatusLabel status={isEmpty(data) ? "" : "Completed"} />
             </div>
             <CustomText textClassName="step-section-infor-font">
               {t("bookingOverview.bookingCreatedAt")}{" "}
@@ -54,15 +53,15 @@ const StepSection = ({ t, paymentSuccess, data }) => {
       <div className="flex gap-2">
         <CustomImage
           src={
-            _.isEqual(paymentSuccess, true)
+            !isEqual(paymentStatus, "Paid")
               ? Images.step2Icon
               : Images.stepCompleteIcon
           }
-          imageStyle={{ width: "30px", height: "30px" }}
+          imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col ">
           <CustomText
-            textClassName={`step-section-step-font ${_.isEqual(paymentSuccess, true) ? "disable-text" : ""}  py-2`}
+            textClassName={`step-section-step-font ${!isEqual(paymentStatus, "Paid") ? "disable-text" : ""}  py-2`}
           >
             {t("bookingOverview.step2")}
           </CustomText>
@@ -76,7 +75,7 @@ const StepSection = ({ t, paymentSuccess, data }) => {
             <StatusLabel status={paymentStatus} />
           </div>
 
-          {_.isEqual(_.upperCase(paymentStatus), Constant.UNPAID) ? (
+          {isEqual(upperCase(paymentStatus), Constant.UNPAID) ? (
             <CustomButton
               buttonClassName="booking-overview-btn"
               buttonText={t("bookingOverview.payNow")}
@@ -95,8 +94,12 @@ const StepSection = ({ t, paymentSuccess, data }) => {
 
       <div className="flex gap-2">
         <CustomImage
-          src={Images.step3Icon}
-          imageStyle={{ width: "30px", height: "30px" }}
+          src={
+            isEqual(agencyReviewStatus, "Approved")
+              ? Images.stepCompleteIcon
+              : Images.step3Icon
+          }
+          imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col">
           <CustomText textClassName="font-size-xlarge font-bold disable-text py-2">

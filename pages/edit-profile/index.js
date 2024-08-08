@@ -188,9 +188,8 @@ const EditProfile = () => {
           <div className="flex justify-center items-center">
             <CustomImage
               src={Images.userIcon}
-              width={100}
-              height={100}
-              className="rounded-2xl my-2"
+              imageStyle={{ width: 100 }}
+              className="my-2"
             />
           </div>
 

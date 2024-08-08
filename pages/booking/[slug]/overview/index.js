@@ -5,7 +5,6 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import BookingOverviewDetail from "@/components/BookingOverview/BookingOverviewDetail";
 import StepSection from "@/components/BookingOverview/StepSection";
 import { useEffect, useState } from "react";
-import _ from "lodash";
 import OverviewModal from "@/components/BookingOverview/OverviewModal";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
@@ -18,7 +17,6 @@ export { getServerSideProps };
 
 const BookingOverview = ({ id }) => {
   const { t } = useTranslation("common");
-  const [paymentSuccess, setPaymentSuccess] = useState(true);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -36,13 +34,6 @@ const BookingOverview = ({ id }) => {
 
   useEffect(() => {
     fetchBookingOverviewData(id);
-  }, []);
-
-  useEffect(() => {
-    const paymentSuccess = _.get(router, ["query", "paymentSuccess"], "");
-    if (_.isEqual(paymentSuccess, "true")) {
-      setPaymentSuccess(paymentSuccess);
-    }
   }, []);
 
   const fetchBookingOverviewData = (id) => {
@@ -71,11 +62,7 @@ const BookingOverview = ({ id }) => {
       <div className="body-container pb-4">
         <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 
-        <StepSection
-          t={t}
-          paymentSuccess={paymentSuccess}
-          data={bookingOverviewData}
-        />
+        <StepSection t={t} data={bookingOverviewData} />
 
         <OverviewModal
           t={t}

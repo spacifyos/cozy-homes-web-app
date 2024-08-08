@@ -1,7 +1,8 @@
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
+import { isEmpty, map } from "lodash";
 import FacilitiesComponent from "@/components/PropertyOverview/FacilitiesComponent";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const Facilities = ({ t, facilitiesList }) => {
   return (
@@ -11,10 +12,15 @@ const Facilities = ({ t, facilitiesList }) => {
       </CustomText>
 
       <div className="flex flex-row justify-between items-center flex-wrap pr-15">
-        {_.isEmpty(facilitiesList) ? (
-          <CustomText>Facilities not available for now. </CustomText>
+        {isEmpty(facilitiesList) ? (
+          <div className="flex justify-center flex-1 py-10">
+            <CustomEmptyBox
+              emptyTitle="No facilities found"
+              emptyDesc="Facilities is not available for now."
+            />
+          </div>
         ) : (
-          _.map(facilitiesList, (item, index) => {
+          map(facilitiesList, (item, index) => {
             return <FacilitiesComponent item={item} key={index} />;
           })
         )}

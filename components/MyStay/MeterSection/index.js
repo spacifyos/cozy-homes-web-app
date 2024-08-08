@@ -26,7 +26,7 @@ const MeterSection = ({
       </div>
 
       {isEmpty(data) ? (
-        <CustomEmptyBox />
+        <CustomEmptyBox emptyTitle="No meter found" />
       ) : (
         map(data, (item, index) => {
           return (

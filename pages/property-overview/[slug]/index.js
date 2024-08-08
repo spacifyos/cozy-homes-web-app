@@ -213,7 +213,7 @@ const PropertyOverview = ({ id }) => {
             buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal"
             buttonText={t("propertyDetail.tenancy")}
-            imageStyle={{ width: "20px", height: "20px" }}
+            imageStyle={{ width: 18 }}
             onClick={() => onClickSelectDetail(Constant.TENANCY)}
           />
 
@@ -223,7 +223,7 @@ const PropertyOverview = ({ id }) => {
                 ? Images.policyIcon
                 : Images.policyIconActive
             }
-            imageStyle={{ width: "20px", height: "20px" }}
+            imageStyle={{ width: 18 }}
             buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal disable-text"
             buttonText={t("propertyDetail.policy")}
@@ -266,7 +266,7 @@ const PropertyOverview = ({ id }) => {
           onClickOpenWhatsApp={onClickOpenWhatsApp}
           onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
-          data={targetItems}
+          data={listingPropertyDetailData}
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
           totalMoveInCost={totalMoveInCost}
         />

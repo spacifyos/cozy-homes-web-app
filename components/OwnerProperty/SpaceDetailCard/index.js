@@ -52,8 +52,7 @@ const SpaceDetailCard = ({ item }) => {
             <div className="flex items-end">
               <CustomImage
                 src={Images.spaceIcon}
-                width={18}
-                height={18}
+                imageStyle={{ width: 18 }}
                 className="mr-1"
               />
               <CustomText textClassName="font-size-xxsmall">

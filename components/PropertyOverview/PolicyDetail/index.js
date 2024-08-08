@@ -20,7 +20,10 @@ const PolicyDetail = ({ t, loading, data }) => {
         <div className="content-container">
           {isEmpty(data) ? (
             <div className="py-10">
-              <CustomEmptyBox />
+              <CustomEmptyBox
+                emptyTitle="No policy found"
+                emptyDesc="Policy is not available for now."
+              />
             </div>
           ) : (
             <div>

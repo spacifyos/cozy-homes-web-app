@@ -214,7 +214,7 @@ const MyInvoice = () => {
 
         {isEmpty(invoiceListingData) ? (
           <div className="flex flex-1 items-center justify-center">
-            <CustomEmptyBox />
+            <CustomEmptyBox emptyTitle="No meter found" />
           </div>
         ) : (
           <InvoiceComponent

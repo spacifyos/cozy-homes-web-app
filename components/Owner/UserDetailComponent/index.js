@@ -12,8 +12,8 @@ const UserDetailComponent = ({ data }) => {
   return (
     <div className="px-4 absolute top-20 w-full">
       <div className="p-3 relative w-full primaryWhite-bg-color global-border-radius global-box-shadow z-10 flex justify-between">
-        <div className="flex">
-          <CustomImage src={Images.userIcon} imageStyle={{width:60}} />
+        <div className="flex items-end">
+          <CustomImage src={Images.userIcon} imageStyle={{ width: 60 }} />
 
           <div className="user-info-content">
             <CustomText textClassName="user-name">
@@ -21,13 +21,13 @@ const UserDetailComponent = ({ data }) => {
             </CustomText>
 
             <div className="flex items-center">
-              <CustomImage src={Images.phoneIcon} height={15} width={15} />
+              <CustomImage src={Images.phoneIcon} imageStyle={{ width: 15 }} />
               <CustomText textClassName="user-info">
                 {isEmpty(phoneNumber) ? "-" : phoneNumber}
               </CustomText>
             </div>
             <div className="flex items-center">
-              <CustomImage src={Images.emailIcon} height={15} width={15} />
+              <CustomImage src={Images.emailIcon} imageStyle={{ width: 15 }} />
               <CustomText textClassName="user-info">
                 {isEmpty(email) ? "-" : email}
               </CustomText>
