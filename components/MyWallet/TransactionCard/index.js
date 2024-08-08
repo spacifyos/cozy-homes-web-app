@@ -9,7 +9,7 @@ const TransactionCard = ({ onClickToTransactionOverview }) => {
       onClick={() => onClickToTransactionOverview(1)}
     >
       <div className="flex">
-        <CustomImage src={Images.rentalInIcon} width={30} height={30} />
+        <CustomImage src={Images.rentalInIcon} imageStyle={{ width: 30 }} />
 
         <div className="px-3">
           <CustomText textClassName="disable-text italic font-size-xxsmall">

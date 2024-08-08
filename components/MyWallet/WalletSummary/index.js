@@ -32,7 +32,7 @@ const WalletSummary = () => {
 
           return (
             <div className="global-box-shadow global-border-radius px-2 py-5 flex items-center justify-center primaryWhite-bg-color">
-              <CustomImage src={icon} width={22} height={22}/>
+              <CustomImage src={icon} imageStyle={{ width: 22 }} />
 
               <div className="pl-2">
                 <CustomText textClassName="font-size-xxlarge font-bold leading-4">
