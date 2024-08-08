@@ -8,7 +8,7 @@ const SplashScreen = () => {
       style={{ paddingTop: "35%" }}
     >
       <div>
-        <CustomImage src={Images.logoImage} height={180} width={180} />
+        <CustomImage src={Images.logoImage} imageStyle={{ width:180 }} />
       </div>
     </div>
   );

@@ -177,8 +177,7 @@ const InvoiceOverview = ({ id }) => {
       rightContent={
         <CustomImage
           src={Images.downloadIcon}
-          height={25}
-          width={25}
+          imageStyle={{ width:25 }}
           className="cursor-pointer"
           onClick={onClickDownload}
         />

@@ -1127,6 +1127,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 name="front_image"
                 icon={Images.uploadIcon}
                 buttonText="Front Image"
+                imageStyle={{ width: 20 }}
                 buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
                 onChangeImage={onChangeFrontICImage}
                 onClickSelectImage={() =>
@@ -1151,6 +1152,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               <UploadIcButton
                 name="back_image"
                 icon={Images.uploadIcon}
+                imageStyle={{ width: 20 }}
                 buttonText="Back Image"
                 buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
                 onChangeImage={onChangeBackICImage}
