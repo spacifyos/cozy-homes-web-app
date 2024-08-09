@@ -5,9 +5,11 @@ import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
 
 const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
   return (
-    <div className="flex flex-col gap-3 flex-1">
+    <div className="flex flex-col flex-1 ">
       {isEmpty(data) ? (
-        <CustomEmptyBox />
+        <div className="flex items-center justify-center flex-1">
+          <CustomEmptyBox emptyTitle="No transactions found" />
+        </div>
       ) : (
         map(data, (item, index) => {
           return <RentalIncomeCard item={item} key={index} />;

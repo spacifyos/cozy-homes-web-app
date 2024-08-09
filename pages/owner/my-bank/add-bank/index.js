@@ -7,10 +7,12 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import BookingInput from "@/components/Booking/BookingInput";
-import BookingSelect from "@/components/Booking/BookingSelect";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";
+import { get, isEmpty } from "lodash";
+import Toast from "@/src/utils/Toast";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
 
 export { getServerSideProps };
 
@@ -19,7 +21,11 @@ const AddBank = () => {
 
   const [isReadAgree, setIsReadAgree] = useState(false);
   const [bankValue, setBankValue] = useState(null);
+  const [accountNameValue, setAccountNameValue] = useState("");
+  const [accountNumberValue, setAccountNumberValue] = useState("");
   const [openSelectBank, setOpenSelectBank] = useState(false);
+
+  const [updateLoading, setUpdateLoading] = useState(false);
 
   const onClickReadAgree = () => {
     setIsReadAgree(!isReadAgree);
@@ -29,8 +35,30 @@ const AddBank = () => {
     router.back();
   };
 
-  const onClickSubmit = () => {
-    router.push("/owner/my-bank/add-bank-successful");
+  const onClickSubmit = async () => {
+    if (
+      isEmpty(bankValue) ||
+      isEmpty(accountNameValue) ||
+      isEmpty(accountNumberValue)
+    ) {
+      return Toast.error("All fields are required.");
+    }
+
+    const postData = {
+      bank: get(bankValue, ["value"], ""),
+      account_name: accountNameValue,
+      account_number: accountNumberValue,
+    };
+
+    await apiRequest.postUpdateBankDetailRequest(
+      postData,
+      setUpdateLoading,
+      updateSuccessCallback,
+    );
+  };
+
+  const updateSuccessCallback = () => {
+    router.replace("/owner/my-bank/add-bank-successful");
   };
 
   const onClickSelect = (item) => {
@@ -97,14 +125,17 @@ const AddBank = () => {
             bgColor="primaryWhite-bg-color"
             placeholder="Your Name"
             className="pb-4"
+            onChange={(e) => setAccountNameValue(e.target.value)}
           />
 
           <BookingInput
             title="Account Number"
             required
+            type="number"
             bgColor="primaryWhite-bg-color"
             placeholder="Your Number"
             className="pb-4"
+            onChange={(e) => setAccountNumberValue(e.target.value)}
           />
 
           <div className="flex pt-3">

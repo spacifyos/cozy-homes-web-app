@@ -1,7 +1,8 @@
 import CustomButton from "@/components/CustomButton";
-import { isEqual } from "lodash";
+import {isEmpty, isEqual} from "lodash";
 import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import CustomText from "@/components/CustomText";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const TransactionComponent = ({
   data,

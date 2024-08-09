@@ -24,10 +24,11 @@ const AddBankSuccessful = ({}) => {
       <NextSeo title="Booking Payment Successful - Spacify Asia" />
       <CustomImage
         src={Images.cancelIcon}
-        imageStyle={{ width: 20 }}
-        className=" absolute top-5 right-5 cursor-pointer"
+        imageStyle={{ width: 20, position: "absolute" }}
+        className="top-5 right-5 cursor-pointer"
         onClick={onClickToMyBankPage}
       />
+
       <CustomImage
         src={Images.successIcon}
         imageStyle={{ width: "150px", height: "150px" }}
@@ -37,7 +38,7 @@ const AddBankSuccessful = ({}) => {
       </CustomText>
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="font-size-xsmall text-center">
-            You have successfully added your bank account.
+          You have successfully added your bank account.
         </CustomText>
       </div>
       <CustomButton

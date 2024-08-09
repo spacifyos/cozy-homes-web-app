@@ -5,7 +5,7 @@ import CustomText from "@/components/CustomText";
 const CustomEmptyBox = ({
   emptyImage = Images.questionMarkIcon,
   emptyTitle = "No data found",
-  emptyDesc = "No content found try again later.",
+  emptyDesc = "No data available now try again later.",
 }) => {
   return (
     <div className={"flex justify-center items-center flex-col px-4"}>

@@ -2,6 +2,9 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 const DetailLabel = ({ title, value }) => {
   return (
@@ -14,8 +17,31 @@ const DetailLabel = ({ title, value }) => {
   );
 };
 
-const TransactionOverview = () => {
+const TransactionOverview = ({ id }) => {
   const router = useRouter();
+
+  const [getWalletTransactionDetail, setGetWalletTransactionDetail] =
+    useState(null);
+  const [
+    getWalletTransactionDetailLoading,
+    setGetWalletTransactionDetailLoading,
+  ] = useState(false);
+
+  useEffect(() => {
+    // fetchWalletTransactionDetail();
+  }, []);
+
+  const fetchWalletTransactionDetail = async (id) => {
+    await apiRequest.getWalletTransactionDetailRequest(
+      id,
+        setGetWalletTransactionDetailLoading,
+      successCallback,
+    );
+  };
+
+  const successCallback = (res) => {
+    setGetWalletTransactionDetail(res);
+  };
 
   const onClickGoBack = () => {
     router.back();
@@ -89,6 +115,8 @@ const TransactionOverview = () => {
 
         <DetailLabel title="Transactions No." value="ABC12345678900222331556" />
       </div>
+
+      <LoadingOverlay loading={getWalletTransactionDetailLoading}/>
     </div>
   );
 };

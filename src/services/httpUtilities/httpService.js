@@ -40,6 +40,9 @@ const patchUserPinNumber = (postData) =>
 const postChangePassword = (postData) =>
   apiInstance.patch("/user-profile/password", postData);
 
+const postUpdateBankDetail = (postData) =>
+  apiInstance.patch("/user-profile/bank-details", postData);
+
 const postEditProfile = (postData) =>
   apiInstance.patch("/user-profile", postData);
 
@@ -127,6 +130,11 @@ const getOwnerPropertyOverview = (id) =>
 
 const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
 
+const getWalletTransactionListing = () =>
+  apiInstance.get(`/wallet/transactions`);
+
+const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -169,4 +177,7 @@ export default {
   getOwnerPropertyList,
   getOwnerPropertyOverview,
   getOwnerTransaction,
+  postUpdateBankDetail,
+  getWalletTransactionListing,
+  getWalletTransactionDetail,
 };

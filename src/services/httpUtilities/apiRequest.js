@@ -244,12 +244,43 @@ const getOwnerTransaction = async (setLoading, successCallback) => {
 
 const getUChatUserRequest = async (setLoading, successCallback) => {
   await apiRequest(
-      api.getUserProfile(),
-      setLoading,
-      successCallback,
-      () => {},
-      "",
-      true,
+    api.getUserProfile(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const postUpdateBankDetailRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(api.getUserProfile(postData), setLoading, successCallback);
+};
+
+const getWalletTransactionListingRequest = async (
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getWalletTransactionListing(),
+    setLoading,
+    successCallback,
+  );
+};
+
+const getWalletTransactionDetailRequest = async (
+  id,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getWalletTransactionDetail(id),
+    setLoading,
+    successCallback,
   );
 };
 
@@ -276,5 +307,8 @@ export default {
   getOwnerPropertyList,
   getOwnerPropertyOverview,
   getOwnerTransaction,
-  getUChatUserRequest
+  getUChatUserRequest,
+  postUpdateBankDetailRequest,
+  getWalletTransactionListingRequest,
+  getWalletTransactionDetailRequest,
 };
