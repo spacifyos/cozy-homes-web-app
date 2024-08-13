@@ -42,7 +42,7 @@ const Chat = () => {
   const tenancyRemaining = tenancySelector.getTenancyRemainingDay(
     propertyDetails[0],
   );
-  const rental = tenancySelector.getInitialRentalFee(propertyDetails[0]);
+  const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
