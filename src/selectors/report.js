@@ -8,4 +8,16 @@ export const getDescription = (state) => get(state, ["description"], "");
 export const getPeriod = (state) => get(state, ["period"], "");
 export const getPropertyUnitName = (state) =>
   get(state, ["property_unit_name"], "");
+export const getExpense = (state) => get(state, ["expense"], []);
 export const getUnitId = (state) => get(state, ["unit_id"], "");
+export const getIncome = (state) => get(state, ["income"], "");
+export const getMonth = (state) => get(state, ["month"], "");
+export const getPdf = (state) => get(state, ["pdf"], "");
+export const getProperty = (state) => get(state, ["property"], "");
+export const getTotalExpense = (state) => get(state, ["total_expense"], "");
+export const getTotalIncome = (state) => get(state, ["total_income"], "");
+export const getGrandTotal = (state) => get(state, ["grand_total"], "");
+export const getLabel = (state) => get(state, ["label"], "");
+export const getItems = (state) => get(state, ["items"], "");
+export const getTitle = (state) => get(state, ["title"], "");
+export const getAmount = (state) => get(state, ["amount"], "");

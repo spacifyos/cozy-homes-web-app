@@ -220,6 +220,10 @@ const OwnerAccount = () => {
     }
   };
 
+  const onClickToReport = () => {
+    router.push("/owner/my-report");
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
       <NextSeo title="Account - Spacify Asia" />
@@ -270,6 +274,15 @@ const OwnerAccount = () => {
             icon={Images.primaryInvoiceIcon}
             pb={3}
             onClick={onClickToInvoice}
+          />
+
+          <FeatureComponent
+            title={"My Report"}
+            icon={Images.paperIcon}
+            imageWidth={20}
+            imageHeight={20}
+            pb={3}
+            onClick={onClickToReport}
           />
 
           {/*<FeatureComponent*/}

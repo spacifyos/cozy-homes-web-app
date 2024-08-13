@@ -144,6 +144,9 @@ const getOwnerReportListing = (params) => {
   );
 };
 
+const getOwnerReportOverview = (id, month) =>
+  apiInstance.get(`/owner/p-and-l/${id}?month=${month}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -190,4 +193,5 @@ export default {
   getWalletTransactionListing,
   getWalletTransactionDetail,
   getOwnerReportListing,
+  getOwnerReportOverview,
 };

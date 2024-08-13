@@ -13,7 +13,6 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";
-import * as invoiceSelector from "@/src/selectors/invoice";
 
 export { getServerSideProps };
 

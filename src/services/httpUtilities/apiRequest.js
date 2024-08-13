@@ -296,6 +296,19 @@ const getOwnerReportListingRequest = async (
   );
 };
 
+const getOwnerReportOverviewRequest = async (
+  id,
+  month,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getOwnerReportOverview(id, month),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -324,4 +337,5 @@ export default {
   getWalletTransactionListingRequest,
   getWalletTransactionDetailRequest,
   getOwnerReportListingRequest,
+  getOwnerReportOverviewRequest,
 };

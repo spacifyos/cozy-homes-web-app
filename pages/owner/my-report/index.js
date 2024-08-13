@@ -4,7 +4,7 @@ import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { get, filter, isEqual, toString } from "lodash";
+import { get, filter, isEqual, toString, isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/CustomSelect";
 import ListingComponent from "@/components/MyReport/ListingComponent";
@@ -75,7 +75,16 @@ const MyReport = () => {
   };
 
   const onClickToDetail = (id) => {
-    router.push(`/owner/my-report/${id}`);
+    const targetMonth = get(filterParams, ["month"], "");
+
+    router.push({
+      pathname: `/owner/my-report/${id}`,
+      query: {
+        month: isEmpty(targetMonth)
+          ? moment().format("D-M-YYYY")
+          : moment(targetMonth).format("D-M-YYYY"),
+      },
+    });
   };
 
   return (
