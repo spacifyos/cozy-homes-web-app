@@ -12,6 +12,7 @@ export const getTenancyOverviewLoading = (state) =>
 
 export const getId = (state) => _.get(state, ["id"], "");
 export const getName = (state) => _.get(state, ["name"], "");
+export const getStatus = (state) => _.get(state, ["status"], "");
 export const getPropertyName = (state) =>
   _.get(state, ["property", "name"], "");
 export const getUnitName = (state) => _.get(state, ["unit", "name"], "");

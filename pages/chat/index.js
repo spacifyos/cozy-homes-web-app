@@ -11,6 +11,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import AuthWrapper from "@/components/AuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import * as tenancySelector from "@/src/selectors/tenancy";
 
 export { getServerSideProps };
 
@@ -31,8 +32,20 @@ const Chat = () => {
   const uuid = authSelector.getUuid(userProfileData);
   const propertyDetails = get(userProfileData, ["property_details"], []);
 
+  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails[0]);
+  const tenancyStatus = tenancySelector.getStatus(propertyDetails[0]);
+  const propertyName = get(propertyDetails[0], ["property_name"], "");
+  const unitName = get(propertyDetails[0], ["unit_name"], "");
+  const roomName = get(propertyDetails[0], ["room_name"], "");
+  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails[0]);
+  const totalDays = tenancySelector.getTotalDays(propertyDetails[0]);
+  const tenancyRemaining = tenancySelector.getTenancyRemainingDay(
+    propertyDetails[0],
+  );
+  const rental = tenancySelector.getInitialRentalFee(propertyDetails[0]);
+
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
-  const src = "https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/full.js";
+  const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
@@ -75,19 +88,19 @@ const Chat = () => {
     }
   }, [uChatIsReady]);
 
-  useEffect(() => {
-    if (!isEmpty(propertyDetails)) {
-      const handleSetAttribute = () => {
-        window.$chatbot.setCustomAttributes({
-          user_fields: {
-            tenant_property_info: JSON.stringify(propertyDetails[0]),
-          },
-        });
-      };
-
-      window.addEventListener("chatbot:ready", handleSetAttribute);
-    }
-  }, [propertyDetails]);
+  // useEffect(() => {
+  //   if (!isEmpty(propertyDetails)) {
+  //     const handleSetAttribute = () => {
+  //       window.$chatbot.setCustomAttributes({
+  //         user_fields: {
+  //           tenant_property_info: JSON.stringify(propertyDetails[0]),
+  //         },
+  //       });
+  //     };
+  //
+  //     window.addEventListener("chatbot:ready", handleSetAttribute);
+  //   }
+  // }, [propertyDetails]);
 
   useEffect(() => {
     fetchUserprofileData();
