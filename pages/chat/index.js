@@ -39,8 +39,9 @@ const Chat = () => {
   const roomName = get(propertyDetails, ["room_name"], "");
   const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails);
   const totalDays = tenancySelector.getTotalDays(propertyDetails);
-  const tenancyRemaining =
-    tenancySelector.getTenancyRemainingDay(propertyDetails);
+  const tenancyRemaining = tenancySelector.getTenancyRemainingDay(
+    propertyDetails[0],
+  );
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
