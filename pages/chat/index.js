@@ -23,8 +23,8 @@ const Chat = () => {
 
   const [uChatIsReady, setUChatIsReady] = useState(false);
 
-  const bottomNavigateHeight =
-    Helper.documentGetElementById("bottom_navbar").offsetHeight;
+  // const bottomNavigateHeight =
+  //   Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
