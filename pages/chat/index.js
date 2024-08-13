@@ -32,13 +32,13 @@ const Chat = () => {
   const uuid = authSelector.getUuid(userProfileData);
   const propertyDetails = get(userProfileData, ["property_details", 0], []);
 
-  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails[0]);
-  const tenancyStatus = tenancySelector.getStatus(propertyDetails[0]);
-  const propertyName = get(propertyDetails[0], ["property_name"], "");
-  const unitName = get(propertyDetails[0], ["unit_name"], "");
-  const roomName = get(propertyDetails[0], ["room_name"], "");
-  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails[0]);
-  const totalDays = tenancySelector.getTotalDays(propertyDetails[0]);
+  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails);
+  const tenancyStatus = tenancySelector.getStatus(propertyDetails);
+  const propertyName = get(propertyDetails, ["property_name"], "");
+  const unitName = get(propertyDetails, ["unit_name"], "");
+  const roomName = get(propertyDetails, ["room_name"], "");
+  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails);
+  const totalDays = tenancySelector.getTotalDays(propertyDetails);
   const tenancyRemaining = tenancySelector.getTenancyRemainingDay(
     propertyDetails[0],
   );
