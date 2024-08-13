@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
@@ -14,6 +14,8 @@ const BookingDateInput = ({
   disabled = false,
   bgColor = "bg-color",
   required,
+  type = "date",
+  inputStyle,
   ...props
 }) => {
   return (
@@ -29,11 +31,12 @@ const BookingDateInput = ({
 
       <div
         className={`flex items-center gap-2 booking-input relative ${bgColor}`}
+        style={inputStyle}
       >
         <input
-          type="date"
+          type={type}
           placeholder={placeholder}
-          className={`${bgColor} ${inputClassName} flex-1 w-full resize-input-icon`}
+          className={`${bgColor} ${inputClassName} resize-input-icon`}
           name={name}
           onChange={onChange}
           disabled={disabled}
@@ -43,7 +46,7 @@ const BookingDateInput = ({
 
         <CustomImage
           src={Images.calendarIcon}
-          imageStyle={{ width: 20, height: 20 }}
+          imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
         />
       </div>
       {_.isEmpty(errorMessage) ? (

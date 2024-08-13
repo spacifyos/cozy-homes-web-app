@@ -284,6 +284,18 @@ const getWalletTransactionDetailRequest = async (
   );
 };
 
+const getOwnerReportListingRequest = async (
+  params,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getOwnerReportListing(params),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -311,4 +323,5 @@ export default {
   postUpdateBankDetailRequest,
   getWalletTransactionListingRequest,
   getWalletTransactionDetailRequest,
+  getOwnerReportListingRequest,
 };

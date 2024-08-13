@@ -32,17 +32,16 @@ const Chat = () => {
   const uuid = authSelector.getUuid(userProfileData);
   const propertyDetails = get(userProfileData, ["property_details", 0], []);
 
-  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails[0]);
-  const tenancyStatus = tenancySelector.getStatus(propertyDetails[0]);
-  const propertyName = get(propertyDetails[0], ["property_name"], "");
-  const unitName = get(propertyDetails[0], ["unit_name"], "");
-  const roomName = get(propertyDetails[0], ["room_name"], "");
-  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails[0]);
-  const totalDays = tenancySelector.getTotalDays(propertyDetails[0]);
-  const tenancyRemaining = tenancySelector.getTenancyRemainingDay(
-    propertyDetails[0],
-  );
-  const rental = tenancySelector.getInitialRentalFee(propertyDetails[0]);
+  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails);
+  const tenancyStatus = tenancySelector.getStatus(propertyDetails);
+  const propertyName = get(propertyDetails, ["property_name"], "");
+  const unitName = get(propertyDetails, ["unit_name"], "");
+  const roomName = get(propertyDetails, ["room_name"], "");
+  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails);
+  const totalDays = tenancySelector.getTotalDays(propertyDetails);
+  const tenancyRemaining =
+    tenancySelector.getTenancyRemainingDay(propertyDetails);
+  const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
   const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;

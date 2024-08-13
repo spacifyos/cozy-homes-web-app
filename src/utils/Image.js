@@ -157,6 +157,7 @@ const Image = {
   editIconWhite: "/images/icon/edit_icon_white.png",
   addIcon: "/images/icon/add_icon.png",
   bankIconWhite: "/images/icon/bank_icon_white.png",
+  paperIcon: "/images/icon/paper_icon.png",
 };
 
 export default { ...Image };

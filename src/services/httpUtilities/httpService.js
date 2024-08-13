@@ -3,6 +3,7 @@ import apiInstance, {
   AUTH_AGENT_TOKEN_HEADER,
 } from "./httpManager";
 import { includes, isEmpty, isEqual } from "lodash";
+import moment from "moment/moment";
 
 /**
  * To update language in api header
@@ -135,6 +136,14 @@ const getWalletTransactionListing = () =>
 
 const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
 
+const getOwnerReportListing = (params) => {
+  const { property_id, unit_id, month } = params;
+
+  return apiInstance.get(
+    `/owner/p-and-l?property_id=${isEmpty(property_id) ? "" : property_id}&unit_id=${isEmpty(unit_id) ? "" : unit_id}&month=${isEmpty(month) ? "" : moment(month).format("D-M-YYYY")}`,
+  );
+};
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -180,4 +189,5 @@ export default {
   postUpdateBankDetail,
   getWalletTransactionListing,
   getWalletTransactionDetail,
+  getOwnerReportListing,
 };
