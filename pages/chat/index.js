@@ -30,7 +30,7 @@ const Chat = () => {
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const uuid = authSelector.getUuid(userProfileData);
-  const propertyDetails = get(userProfileData, ["property_details"], []);
+  const propertyDetails = get(userProfileData, ["property_details", 0], []);
 
   const tenancyCode = tenancySelector.getTenancyCode(propertyDetails[0]);
   const tenancyStatus = tenancySelector.getStatus(propertyDetails[0]);
