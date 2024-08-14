@@ -11,6 +11,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import * as tenancySelector from "@/src/selectors/tenancy";
 
 export { getServerSideProps };
 
@@ -30,19 +31,46 @@ const OwnerChat = () => {
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const uuid = authSelector.getUuid(userProfileData);
-  const propertyDetails = get(userProfileData, ["property_details"], []);
+  const propertyDetails = get(userProfileData, ["property_details", 0], []);
+
+  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails);
+  const tenancyStatus = tenancySelector.getStatus(propertyDetails);
+  const propertyName = get(propertyDetails, ["property_name"], "");
+  const unitName = get(propertyDetails, ["unit_name"], "");
+  const roomName = get(propertyDetails, ["room_name"], "");
+  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails);
+  const totalDays = tenancySelector.getTotalDays(propertyDetails);
+  const tenancyRemaining =
+    tenancySelector.getTenancyRemainingDay(propertyDetails);
+  const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
-  const src = "https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js";
-  const checkScript = Helper.documentGetElementById(src);
+  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
   useEffect(() => {
+    const checkScript = Helper.documentGetElementById(src);
+    const chatContainer = document.body;
+    const script = document.createElement("script");
+
     if (checkScript) {
       return router.reload();
     }
-  }, []);
+
+    script.id = src;
+    script.async = true;
+    script.defer = true;
+    script.src = src;
+
+    if (!isEmpty(userProfileData)) {
+      chatContainer.appendChild(script);
+
+      setTimeout(() => {
+        setUChatIsReady(true);
+      }, 1000);
+    }
+  }, [userProfileData, window]);
 
   useEffect(() => {
     if (uChatIsReady) {
@@ -60,19 +88,19 @@ const OwnerChat = () => {
     }
   }, [uChatIsReady]);
 
-  useEffect(() => {
-    if (!isEmpty(propertyDetails)) {
-      const handleSetAttribute = () => {
-        window.$chatbot.setCustomAttributes({
-          user_fields: {
-            tenant_property_info: JSON.stringify(propertyDetails[0]),
-          },
-        });
-      };
-
-      window.addEventListener("chatbot:ready", handleSetAttribute);
-    }
-  }, [propertyDetails]);
+  // useEffect(() => {
+  //   if (!isEmpty(propertyDetails)) {
+  //     const handleSetAttribute = () => {
+  //       window.$chatbot.setCustomAttributes({
+  //         user_fields: {
+  //           tenant_property_info: JSON.stringify(propertyDetails[0]),
+  //         },
+  //       });
+  //     };
+  //
+  //     window.addEventListener("chatbot:ready", handleSetAttribute);
+  //   }
+  // }, [propertyDetails]);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -87,23 +115,6 @@ const OwnerChat = () => {
 
   const getUserSuccessCallback = (res) => {
     setUserProfileData(res);
-    handleGenerateUChat();
-  };
-
-  const handleGenerateUChat = () => {
-    const chatContainer = document.body;
-    const script = document.createElement("script");
-
-    script.id = src;
-    script.async = true;
-    script.defer = true;
-    script.src = src;
-
-    chatContainer.appendChild(script);
-
-    setTimeout(() => {
-      setUChatIsReady(true);
-    }, 1000);
   };
 
   return (
