@@ -13,6 +13,7 @@ import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";
 import { get, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 export { getServerSideProps };
 
@@ -44,6 +45,10 @@ const AddBank = () => {
       return Toast.error("All fields are required.");
     }
 
+    if (!isReadAgree) {
+      return Toast.error("Please read and check the following info.");
+    }
+
     const postData = {
       bank: get(bankValue, ["value"], ""),
       account_name: accountNameValue,
@@ -58,7 +63,7 @@ const AddBank = () => {
   };
 
   const updateSuccessCallback = () => {
-    router.replace("/owner/my-bank/add-bank-successful");
+    router.push("/owner/my-bank/add-bank-successful");
   };
 
   const onClickSelect = (item) => {
@@ -168,6 +173,8 @@ const AddBank = () => {
           </div>
         </div>
       </div>
+
+      <LoadingOverlay loading={updateLoading} />
     </div>
   );
 };
