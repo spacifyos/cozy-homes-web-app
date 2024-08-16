@@ -1,7 +1,5 @@
-import Constant from "@/src/utils/Constant";
-import _ from "lodash";
+import { isEqual, map, get } from "lodash";
 import CustomButton from "@/components/CustomButton";
-import CustomText from "@/components/CustomText";
 
 const FirstStep = ({
   t,
@@ -12,21 +10,22 @@ const FirstStep = ({
   onChangePhoneNumber,
   setSelectedRole,
   onClickSendOtp,
+  phonePrefixOption,
 }) => {
   return (
     <div>
-      {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-      {/*  <CustomButton*/}
-      {/*    buttonClassName={`${_.isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
-      {/*    buttonText={t("signIn.tenant")}*/}
-      {/*    onClick={() => setSelectedRole("tenant")}*/}
-      {/*  />*/}
-      {/*  <CustomButton*/}
-      {/*    buttonClassName={`${_.isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
-      {/*    buttonText={t("signIn.owner")}*/}
-      {/*    onClick={() => setSelectedRole("owner")}*/}
-      {/*  />*/}
-      {/*</div>*/}
+      <div className="grid grid-cols-2 gap-2 mb-8">
+        <CustomButton
+          buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
+          buttonText={t("signIn.tenant")}
+          onClick={() => setSelectedRole("tenant")}
+        />
+        <CustomButton
+          buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
+          buttonText={t("signIn.owner")}
+          onClick={() => setSelectedRole("owner")}
+        />
+      </div>
 
       <div className="grid grid-cols-3 gap-2 mb-8">
         <select
@@ -34,9 +33,9 @@ const FirstStep = ({
           value={phonePrefix}
           onChange={onChangePhonePrefix}
         >
-          {_.map(Constant.PHONE_PREFIX, (list) => {
-            const name = _.get(list, ["name"], "");
-            const value = _.get(list, ["value"], "");
+          {map(phonePrefixOption, (list) => {
+            const name = get(list, ["label"], "");
+            const value = get(list, ["value"], "");
 
             return (
               <option key={value} value={value}>

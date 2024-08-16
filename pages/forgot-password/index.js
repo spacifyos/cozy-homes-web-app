@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import FirstStep from "@/components/ForgotPassword/FirstStep";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
 import SecondStep from "@/components/ForgotPassword/SecondStep";
 import ThirdStep from "@/components/ForgotPassword/ThirdStep";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
@@ -14,6 +12,8 @@ import Toast from "@/src/utils/Toast";
 import { useRouter } from "next/router";
 import CustomHeader from "@/components/CustomHeader";
 import { NextSeo } from "next-seo";
+import { useSelector } from "react-redux";
+import * as commonSelector from "@/src/selectors/common";
 
 export { getServerSideProps };
 
@@ -21,6 +21,11 @@ const ForgotPassword = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const initialTime = 60;
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
 
   const [step, setStep] = useState(1);
   const [phonePrefix, setPhonePrefix] = useState("+60");
@@ -152,6 +157,7 @@ const ForgotPassword = () => {
       case 1:
         return (
           <FirstStep
+            phonePrefixOption={phonePrefixOption}
             t={t}
             setStep={setStep}
             phonePrefix={phonePrefix}
@@ -213,11 +219,11 @@ const ForgotPassword = () => {
   return (
     <CustomHeader onClickGoBack={onClickGoBack}>
       <NextSeo title="Forgot Password - Spacify Asia" />
-      <div className="body-container mb-4" style={{ paddingTop: "5vh" }}>
+      <div className="body-container mb-4" style={{ paddingTop: "" }}>
         <div className="py-6">
           <CustomText
             textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 34 }}
+            styles={{ fontSize: 36 }}
           >
             Reset Password
           </CustomText>
@@ -225,18 +231,11 @@ const ForgotPassword = () => {
 
         <div className="w-full">
           <div className="p-4 global-box-shadow primaryWhite-bg-color py-8 global-border-radius">
-            {/*<ul className="steps">*/}
-            {/*  <li className="step step-primary">Register</li>*/}
-            {/*  <li className="step step-primary">Choose plan</li>*/}
-            {/*  <li className="step">Purchase</li>*/}
-            {/*  <li className="step">Receive Product</li>*/}
-            {/*</ul>*/}
-
             {renderContent(step)}
           </div>
         </div>
 
-        <LoadingOverlay loading={otpRequestLoading} />
+        <LoadingOverlay loading={otpRequestLoading || forgotPasswordLoading} />
       </div>
     </CustomHeader>
   );

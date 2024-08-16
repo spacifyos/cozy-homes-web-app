@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
@@ -6,7 +5,6 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
 import { get, isEmpty, map, isEqual } from "lodash";
-import Constant from "@/src/utils/Constant";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
@@ -15,6 +13,8 @@ import AuthManager from "@/src/utils/AuthManager";
 import { NextSeo } from "next-seo";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import * as commonSelector from "@/src/selectors/common";
+import { useSelector } from "react-redux";
 
 export { getServerSideProps };
 
@@ -23,12 +23,18 @@ const SignIn = () => {
   const router = useRouter();
   const routeQuery = get(router, ["query"], null);
 
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+
   const [signInLoading, setSignInLoading] = useState(false);
 
   const [selectedRole, setSelectedRole] = useState("tenant");
   const [phonePrefix, setPhonePrefix] = useState("+60");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+
+  const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
 
   const onClickToAgencySignIn = () => {
     router.push("/agency-sign-in");
@@ -180,8 +186,8 @@ const SignIn = () => {
                 value={phonePrefix}
                 onChange={onChangePhonePrefix}
               >
-                {map(Constant.PHONE_PREFIX, (list) => {
-                  const name = get(list, ["name"], "");
+                {map(phonePrefixOption, (list) => {
+                  const name = get(list, ["label"], "");
                   const value = get(list, ["value"], "");
 
                   return (

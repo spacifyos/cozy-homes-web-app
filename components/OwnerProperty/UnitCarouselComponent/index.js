@@ -6,14 +6,9 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
 
-const UnitCarouselComponent = ({
-  data,
-  selectedSlide,
-  onSlideChange,
-  targetRooms,
-}) => {
+const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
   return (
-    <div>
+    <div className="body-container">
       <Swiper
         className="mySwiper cursor-grab mt-6"
         onSlideChange={onSlideChange}
@@ -115,8 +110,6 @@ const UnitCarouselComponent = ({
       ) : (
         false
       )}
-
-      <SpaceDetailComponent data={targetRooms} />
     </div>
   );
 };

@@ -1,13 +1,11 @@
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useTranslation, withTranslation } from "next-i18next";
-import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
-import _, { isEmpty, isEqual } from "lodash";
+import { useRef, useState } from "react";
+import { isEmpty, isEqual, includes, map, get } from "lodash";
 import Toast from "@/src/utils/Toast";
-import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
@@ -20,6 +18,8 @@ import {
 import Script from "next/script";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import { useSelector } from "react-redux";
+import * as commonSelector from "@/src/selectors/common";
 
 export { getServerSideProps };
 
@@ -27,6 +27,11 @@ const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const ref = useRef();
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
 
   const [signUpLoading, setSignUpLoading] = useState(false);
 
@@ -46,20 +51,20 @@ const SignUp = () => {
 
   const handleSubmit = async () => {
     if (
-      _.isEmpty(nameValue) ||
-      _.isEmpty(passwordValue) ||
-      _.isEmpty(emailValue) ||
-      _.isEmpty(passwordValue) ||
-      _.isEmpty(confirmPasswordValue)
+      isEmpty(nameValue) ||
+      isEmpty(passwordValue) ||
+      isEmpty(emailValue) ||
+      isEmpty(passwordValue) ||
+      isEmpty(confirmPasswordValue)
     ) {
       return Toast.error("All fields are required.");
     }
 
-    if (!_.includes(emailValue, "@")) {
+    if (!includes(emailValue, "@")) {
       return Toast.error("Invalid email format, need '@' symbol.");
     }
 
-    if (!_.isEqual(passwordValue, confirmPasswordValue)) {
+    if (!isEqual(passwordValue, confirmPasswordValue)) {
       return Toast.error("Password and Confirm Password not same.");
     }
 
@@ -192,9 +197,9 @@ const SignUp = () => {
                 value={countryCode}
                 onChange={onChangeCountryCode}
               >
-                {_.map(Constant.PHONE_PREFIX, (item) => {
-                  const name = _.get(item, ["name"], "");
-                  const value = _.get(item, ["value"], "");
+                {map(phonePrefixOption, (item) => {
+                  const name = get(item, ["label"], "");
+                  const value = get(item, ["value"], "");
 
                   return (
                     <option key={value} value={value}>

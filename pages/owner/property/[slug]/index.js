@@ -11,12 +11,17 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as ownerSelector from "@/src/selectors/owner";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import UnitCarouselComponent from "@/components/OwnerProperty/UnitCarouselComponent";
-import { get, isEmpty, filter } from "lodash";
+import { get, isEmpty, filter, isEqual } from "lodash";
+import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
+import CustomButton from "@/components/CustomButton";
+import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
 
 export { getServerSideProps };
 
 const PropertyDetail = ({ id }) => {
   const router = useRouter();
+
+  const [selectedCategory, setSelectedCategory] = useState("Space Details");
 
   const [propertyDetail, setPropertyDetail] = useState(null);
   const [propertyDetailLoading, setPropertyDetailLoading] = useState(false);
@@ -126,13 +131,35 @@ const PropertyDetail = ({ id }) => {
         <PropertyInfoComponent paddingTop={"0"} lists={lists} />
       </div>
 
-      <div className="body-container primaryWhite-bg-color flex-1 pb-4">
+      <div className="bg-color flex-1 pb-4">
         <UnitCarouselComponent
           data={units}
           onSlideChange={onSlideChange}
           selectedSlide={selectedSlide}
           targetRooms={selectedRoom}
         />
+        <div className="pt-6">
+          <div className="pb-4 body-container">
+            <CustomButton
+              buttonText="Space Details"
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => setSelectedCategory("Space Details")}
+            />
+            <CustomButton
+              buttonText="Rent Tracker"
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => setSelectedCategory("Rent Tracker")}
+            />
+          </div>
+
+          {isEqual(selectedCategory, "Space Details") ? (
+            <SpaceDetailComponent data={selectedRoom} />
+          ) : (
+            <RentTrackerComponent />
+          )}
+        </div>
       </div>
 
       <LoadingOverlay loading={propertyDetailLoading} />
