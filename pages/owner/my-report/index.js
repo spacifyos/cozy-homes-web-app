@@ -27,7 +27,7 @@ const MyReport = () => {
   const [unitOption, setUnitOption] = useState([]);
 
   const [filterParams, setFilterParams] = useState({
-    month: moment().format("YYYY-MM"),
+    month: moment().subtract(1, "months").format("YYYY-MM"),
   });
 
   useEffect(() => {

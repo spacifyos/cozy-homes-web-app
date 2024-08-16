@@ -146,12 +146,12 @@ const PropertyDetail = ({ id }) => {
               textClassName="font-size-xsmall"
               onClick={() => setSelectedCategory("Space Details")}
             />
-            <CustomButton
-              buttonText="Rent Tracker"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => setSelectedCategory("Rent Tracker")}
-            />
+            {/*<CustomButton*/}
+            {/*  buttonText="Rent Tracker"*/}
+            {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}*/}
+            {/*  textClassName="font-size-xsmall"*/}
+            {/*  onClick={() => setSelectedCategory("Rent Tracker")}*/}
+            {/*/>*/}
           </div>
 
           {isEqual(selectedCategory, "Space Details") ? (
