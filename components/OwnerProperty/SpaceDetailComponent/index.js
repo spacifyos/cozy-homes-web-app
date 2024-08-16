@@ -5,7 +5,7 @@ import SpaceDetailCard from "@/components/OwnerProperty/SpaceDetailCard";
 
 const SpaceDetailComponent = ({ data }) => {
   return (
-    <div className="flex flex-col gap-3 body-container ">
+    <div className="flex flex-col gap-3 body-container pb-4">
       {isEmpty(data) ? (
         <div style={{ height: 351 }} className="flex justify-center">
           <CustomEmptyBox />

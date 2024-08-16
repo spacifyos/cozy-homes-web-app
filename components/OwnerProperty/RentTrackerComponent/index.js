@@ -2,6 +2,32 @@ import { map, size, get } from "lodash";
 import moment from "moment";
 import CustomText from "@/components/CustomText";
 
+const VerticalLine = () => {
+  return (
+    <div
+      className="mx-2"
+      style={{
+        width: 1,
+        height: "100%",
+        backgroundColor: "#EFEFEF",
+      }}
+    ></div>
+  );
+};
+
+const HorizontalLine = () => {
+  return (
+    <div
+      style={{
+        height: 1,
+        width: "100%",
+        backgroundColor: "#EFEFEF",
+      }}
+      className="my-2"
+    ></div>
+  );
+};
+
 const RentTrackerComponent = () => {
   const generateYearArray = () => {
     const yearArray = [];
@@ -33,11 +59,15 @@ const RentTrackerComponent = () => {
 
   const data = [
     {
-      room: { room: "Master Room", room_type: "Queen Room" },
-      tenant: [],
+      room: "Master Room",
+      room_type: "Queen Room",
+      tenant: [
+        { tenant_name: "-", rental: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+      ],
     },
     {
-      room: { room: "Master Room", room_type: "Queen Room" },
+      room: "Master Room",
+      room_type: "Queen Room",
       tenant: [
         {
           tenant_name: "John Doe",
@@ -59,10 +89,28 @@ const RentTrackerComponent = () => {
       ],
     },
     {
-      room: { room: "Master Room", room_type: "Queen Room" },
+      room: "Master Room",
+      room_type: "Queen Room",
       tenant: [
         {
           tenant_name: "John Doe",
+          rental: [
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+            "900",
+          ],
+        },
+        {
+          tenant_name: "Max Teoh",
           rental: [
             "900",
             "900",
@@ -116,27 +164,13 @@ const RentTrackerComponent = () => {
                   >
                     {item}
                   </CustomText>
-                  {size(titleList) === index + 1 ? (
-                    false
-                  ) : (
-                    <div
-                      className="mx-2"
-                      style={{
-                        width: 1,
-                        height: "100%",
-                        backgroundColor: "#EFEFEF",
-                      }}
-                    ></div>
-                  )}
+                  {size(titleList) === index + 1 ? false : <VerticalLine />}
                 </div>
               );
             })}
           </div>
 
-          <div
-            style={{ height: 1, width: "100%", backgroundColor: "#EFEFEF" }}
-            className="my-2"
-          ></div>
+          <HorizontalLine />
 
           <div className="flex">
             {map(totalRentalList, (item, index) => {
@@ -148,17 +182,11 @@ const RentTrackerComponent = () => {
                   >
                     {item}
                   </CustomText>
+
                   {size(totalRentalList) === index + 1 ? (
                     false
                   ) : (
-                    <div
-                      className="mx-2"
-                      style={{
-                        width: 1,
-                        height: "100%",
-                        backgroundColor: "#EFEFEF",
-                      }}
-                    ></div>
+                    <VerticalLine />
                   )}
                 </div>
               );
@@ -167,20 +195,17 @@ const RentTrackerComponent = () => {
         </div>
 
         {map(data, (item, index) => {
-          const room = get(item, ["room", "room"], "");
-          const roomType = get(item, ["room", "room_type"], "");
+          const room = get(item, ["room"], "");
+          const roomType = get(item, ["room_type"], "");
           const tenants = get(item, ["tenant"], []);
 
           return (
             <div
-              className="p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col mb-3"
+              className={`p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col ${size(data) === index + 1 ? "" : "mb-3"}`}
               style={{ width: 1293 }}
             >
               <div className="flex">
-                {/*{map(titleList, (item, index) => {*/}
-                {/*  return (*/}
                 <div className="flex justify-center items-center">
-                  {/*{index === 0 ? (*/}
                   <div style={{ width: 100 }}>
                     <CustomText textClassName="font-size-small primary-text font-bold">
                       {room}
@@ -189,34 +214,57 @@ const RentTrackerComponent = () => {
                       {roomType}
                     </CustomText>
                   </div>
-                  {/*) : (*/}
-                  {/*  map(tenants, (tenant, tenantIndex) => {*/}
-                  {/*    const tenantName = get(tenant, ["tenant_name"], "");*/}
-                  {/*    const rental = get(tenant, ["rental"], []);*/}
 
-                  {/*    return (*/}
-                  {/*      <CustomText textClassName="font-size-small primary-text font-bold">*/}
-                  {/*        {tenantName}*/}
-                  {/*      </CustomText>*/}
-                  {/*    );*/}
-                  {/*  })*/}
-                  {/*)}*/}
+                  <VerticalLine />
 
-                  {size(data) === index + 1 ? (
-                    false
-                  ) : (
-                    <div
-                      className="mx-2"
-                      style={{
-                        width: 1,
-                        height: "100%",
-                        backgroundColor: "#EFEFEF",
-                      }}
-                    ></div>
-                  )}
+                  <div className="flex flex-col h-full">
+                    {map(tenants, (tenant, tenantIndex) => {
+                      const tenantName = get(tenant, ["tenant_name"], "");
+                      const rentals = get(tenant, ["rental"], []);
+
+                      return (
+                        <div className="flex flex-col h-full">
+                          <div className="flex justify-center items-center h-full">
+                            <CustomText
+                              textClassName="text-center"
+                              styles={{ width: 100 }}
+                              lineClamp={2}
+                            >
+                              {tenantName}
+                            </CustomText>
+
+                            <VerticalLine />
+
+                            {map(rentals, (rental, rentalIndex) => {
+                              return (
+                                <div className="h-full flex items-center">
+                                  <CustomText
+                                    textClassName="font-size-small text-center"
+                                    styles={{ width: 70 }}
+                                  >
+                                    {rental}
+                                  </CustomText>
+
+                                  {size(rentals) === rentalIndex + 1 ? (
+                                    false
+                                  ) : (
+                                    <VerticalLine />
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {size(tenants) === tenantIndex + 1 ? (
+                            false
+                          ) : (
+                            <HorizontalLine />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-                {/*);*/}
-                {/*})}*/}
               </div>
             </div>
           );

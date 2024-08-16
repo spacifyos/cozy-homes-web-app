@@ -131,7 +131,7 @@ const PropertyDetail = ({ id }) => {
         <PropertyInfoComponent paddingTop={"0"} lists={lists} />
       </div>
 
-      <div className="bg-color flex-1 pb-4">
+      <div className="bg-color flex-1">
         <UnitCarouselComponent
           data={units}
           onSlideChange={onSlideChange}
