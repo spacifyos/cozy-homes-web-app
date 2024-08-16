@@ -134,7 +134,10 @@ const MyReport = ({ id }) => {
             {isEmpty(unit) ? "-" : unit}
           </CustomText>
 
-          <div className="divider-line" style={{ margin: "10px 0 24px 0" }}></div>
+          <div
+            className="divider-line"
+            style={{ margin: "10px 0 24px 0" }}
+          ></div>
 
           <CustomText textClassName="disable-text font-size-xxsmall">
             Income
@@ -175,9 +178,7 @@ const MyReport = ({ id }) => {
                                 {isEmpty(title) ? "-" : title}
                               </CustomText>
                               <CustomText textClassName="disable-text font-size-xsmall leading-1">
-                                {!isEmpty(period)
-                                  ? "From 2024-06-01 To 2024-06-30"
-                                  : period}
+                                {isEmpty(period) ? "-" : period}
                               </CustomText>
                             </div>
                           </div>

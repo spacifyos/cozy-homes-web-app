@@ -166,7 +166,7 @@ const RentTrackerComponent = () => {
           </div>
         </div>
 
-        {map(data, (item) => {
+        {map(data, (item, index) => {
           const room = get(item, ["room", "room"], "");
           const roomType = get(item, ["room", "room_type"], "");
           const tenants = get(item, ["tenant"], []);
@@ -177,50 +177,46 @@ const RentTrackerComponent = () => {
               style={{ width: 1293 }}
             >
               <div className="flex">
-                {map(titleList, (item, index) => {
-                  return (
-                    <div className="flex justify-center items-center">
-                      {index === 0 ? (
-                        <div
-                          style={{
-                            width: index === 0 || index === 1 ? 100 : 70,
-                          }}
-                        >
-                          <CustomText textClassName="font-size-small primary-text font-bold">
-                            {room}
-                          </CustomText>
-                          <CustomText textClassName="font-size-xxsmall">
-                            {roomType}
-                          </CustomText>
-                        </div>
-                      ) : (
-                        map(tenants, (tenant, tenantIndex) => {
-                          const tenantName = get(tenant, ["tenant_name"], "");
-                          const rental = get(tenant, ["rental"], []);
+                {/*{map(titleList, (item, index) => {*/}
+                {/*  return (*/}
+                <div className="flex justify-center items-center">
+                  {/*{index === 0 ? (*/}
+                  <div style={{ width: 100 }}>
+                    <CustomText textClassName="font-size-small primary-text font-bold">
+                      {room}
+                    </CustomText>
+                    <CustomText textClassName="font-size-xxsmall">
+                      {roomType}
+                    </CustomText>
+                  </div>
+                  {/*) : (*/}
+                  {/*  map(tenants, (tenant, tenantIndex) => {*/}
+                  {/*    const tenantName = get(tenant, ["tenant_name"], "");*/}
+                  {/*    const rental = get(tenant, ["rental"], []);*/}
 
-                          return (
-                            <CustomText textClassName="font-size-small primary-text font-bold">
-                              {tenantName}
-                            </CustomText>
-                          );
-                        })
-                      )}
+                  {/*    return (*/}
+                  {/*      <CustomText textClassName="font-size-small primary-text font-bold">*/}
+                  {/*        {tenantName}*/}
+                  {/*      </CustomText>*/}
+                  {/*    );*/}
+                  {/*  })*/}
+                  {/*)}*/}
 
-                      {size(titleList) === index + 1 ? (
-                        false
-                      ) : (
-                        <div
-                          className="mx-2"
-                          style={{
-                            width: 1,
-                            height: "100%",
-                            backgroundColor: "#EFEFEF",
-                          }}
-                        ></div>
-                      )}
-                    </div>
-                  );
-                })}
+                  {size(data) === index + 1 ? (
+                    false
+                  ) : (
+                    <div
+                      className="mx-2"
+                      style={{
+                        width: 1,
+                        height: "100%",
+                        backgroundColor: "#EFEFEF",
+                      }}
+                    ></div>
+                  )}
+                </div>
+                {/*);*/}
+                {/*})}*/}
               </div>
             </div>
           );
