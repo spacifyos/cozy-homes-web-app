@@ -14,6 +14,7 @@ export const getIncome = (state) => get(state, ["income"], "");
 export const getMonth = (state) => get(state, ["month"], "");
 export const getPdf = (state) => get(state, ["pdf"], "");
 export const getProperty = (state) => get(state, ["property"], "");
+export const getUnit = (state) => get(state, ["unit"], "");
 export const getTotalExpense = (state) => get(state, ["total_expense"], "");
 export const getTotalIncome = (state) => get(state, ["total_income"], "");
 export const getGrandTotal = (state) => get(state, ["grand_total"], "");

@@ -28,10 +28,11 @@ const MyReport = ({ id }) => {
 
   const month = reportSelector.getMonth(reportDetail);
   const property = reportSelector.getProperty(reportDetail);
+  const unit = reportSelector.getUnit(reportDetail);
   const incomeList = reportSelector.getIncome(reportDetail);
   const totalIncome = reportSelector.getTotalIncome(reportDetail);
   const expenseList = reportSelector.getExpense(reportDetail);
-  const totalExpense = reportSelector.getExpense(reportDetail);
+  const totalExpense = reportSelector.getTotalExpense(reportDetail);
   const grandTotal = reportSelector.getGrandTotal(reportDetail);
   const pdf = reportSelector.getPdf(reportDetail);
 
@@ -117,15 +118,31 @@ const MyReport = ({ id }) => {
 
           <div className="divider-line" style={{ margin: "10px 0" }}></div>
 
-          <CustomText textClassName="font-bold pb-6">
+          <CustomText textClassName="font-bold">
             {isEmpty(property) ? "-" : property}
+          </CustomText>
+
+          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+
+          <CustomText textClassName="disable-text font-size-xxsmall">
+            Unit
+          </CustomText>
+
+          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+
+          <CustomText textClassName="font-bold pb-6">
+            {isEmpty(unit) ? "-" : unit}
           </CustomText>
 
           <CustomText textClassName="disable-text font-size-xxsmall">
             Income
           </CustomText>
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          {isEmpty(incomeList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
 
           {isEmpty(incomeList)
             ? false
@@ -188,7 +205,36 @@ const MyReport = ({ id }) => {
             Expenses
           </CustomText>
 
-          {/*<div className="divider-line" style={{ margin: "10px 0" }}></div>*/}
+          {isEmpty(expenseList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(expenseList)
+            ? false
+            : map(expenseList, (expense) => {
+                const label = reportSelector.getLabel(expense);
+                const amount = reportSelector.getAmount(expense);
+                const description = reportSelector.getDescription(expense);
+
+                return (
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <CustomText textClassName="font-bold">
+                        {isEmpty(label) ? "-" : label}
+                      </CustomText>
+                      <CustomText textClassName="disable-text font-size-xsmall">
+                        {isEmpty(description) ? "-" : description}
+                      </CustomText>
+                    </div>
+
+                    <CustomText textClassName="disable-text font-size-xsmall">
+                      RM{isEmpty(amount) ? "0" : amount}
+                    </CustomText>
+                  </div>
+                );
+              })}
 
           <div className="divider-line" style={{ margin: "10px 0" }}></div>
 
@@ -204,7 +250,7 @@ const MyReport = ({ id }) => {
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Grand Total</CustomText>
             <CustomText textClassName="font-bold power-on-text">
-              RM{isEmpty(grandTotal) ? "0" : grandTotal}
+              {isEmpty(grandTotal) ? "0" : grandTotal}
             </CustomText>
           </div>
 
