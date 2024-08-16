@@ -130,9 +130,11 @@ const MyReport = ({ id }) => {
 
           <div className="divider-line" style={{ margin: "10px 0" }}></div>
 
-          <CustomText textClassName="font-bold pb-6">
+          <CustomText textClassName="font-bold">
             {isEmpty(unit) ? "-" : unit}
           </CustomText>
+
+          <div className="divider-line" style={{ margin: "10px 0 24px 0" }}></div>
 
           <CustomText textClassName="disable-text font-size-xxsmall">
             Income
@@ -181,7 +183,7 @@ const MyReport = ({ id }) => {
                           </div>
 
                           <CustomText textClassName="disable-text font-size-xsmall">
-                            RM{isEmpty(amount) ? "-" : amount}
+                            {isEmpty(amount) ? "-" : amount}
                           </CustomText>
                         </div>
                       );
@@ -195,7 +197,7 @@ const MyReport = ({ id }) => {
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Income</CustomText>
             <CustomText textClassName="font-bold power-on-text">
-              RM{isEmpty(totalIncome) ? "0" : totalIncome}
+              {isEmpty(totalIncome) ? "0" : totalIncome}
             </CustomText>
           </div>
 
@@ -230,7 +232,7 @@ const MyReport = ({ id }) => {
                     </div>
 
                     <CustomText textClassName="disable-text font-size-xsmall">
-                      RM{isEmpty(amount) ? "0" : amount}
+                      {isEmpty(amount) ? "0" : amount}
                     </CustomText>
                   </div>
                 );
@@ -241,7 +243,7 @@ const MyReport = ({ id }) => {
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Expenses</CustomText>
             <CustomText textClassName="font-bold primary-text">
-              RM{isEmpty(totalExpense) ? "0" : totalExpense}
+              {isEmpty(totalExpense) ? "0" : totalExpense}
             </CustomText>
           </div>
 
