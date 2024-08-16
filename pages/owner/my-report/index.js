@@ -68,9 +68,13 @@ const MyReport = () => {
   };
 
   const onChangeMonthValue = (e) => {
+    const selectedMonth = isEmpty(e.target.value)
+      ? moment().subtract(1, "months").format("YYYY-MM")
+      : moment(e.target.value).format("YYYY-MM");
+
     setFilterParams({
       ...filterParams,
-      ...{ month: moment(e.target.value).format("YYYY-MM") },
+      ...{ month: selectedMonth },
     });
   };
 
@@ -140,7 +144,7 @@ const MyReport = () => {
               onChange={onChangeMonthValue}
               value={get(filterParams, ["month"], "")}
               min="2000-01"
-              max={moment().format("YYYY-MM")}
+              max={moment().subtract(1, "months").format("YYYY-MM")}
             />
           </div>
         </div>
