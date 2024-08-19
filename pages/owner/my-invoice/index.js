@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import _, { isEmpty, isEqual } from "lodash";
@@ -7,7 +6,6 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
-import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import FilterModal from "@/components/MyInvoice/FilterModal";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,9 +15,9 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
-import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
 import InvoiceSummary from "@/components/OwnerMyInvoice/InvoiceSummary";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 
 export { getServerSideProps };
 
@@ -153,7 +151,6 @@ const OwnerMyInvoice = () => {
 
   const handleCloseFilter = () => {
     setIsOpenFilterModal(false);
-    // Helper.documentGetElementById("invoice_filter_modal").close();
   };
 
   const onClickOpenFilter = () => {
@@ -164,7 +161,6 @@ const OwnerMyInvoice = () => {
     setDateToValue(dateTo);
 
     setIsOpenFilterModal(true);
-    // Helper.documentGetElementById("invoice_filter_modal").showModal();
   };
 
   const isFilter = () => {
@@ -174,60 +170,45 @@ const OwnerMyInvoice = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container">
-        <div
-          className={`flex items-center justify-between overflow-hidden py-5`}
-        >
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
-
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
+    <CustomOwnerHeader
+      title="My Invoice"
+      onClickGoBack={onClickGoBack}
+      headerContent={
+        <div>
+          {invoiceSummaryDataLoading ? (
+            <div
+              className="w-full flex justify-center"
+              style={{ minHeight: 120, height: 120 }}
             >
-              My Invoice
-            </CustomText>
-          </div>
-
-          <div style={{ width: 25, height: 25 }} className="relative">
-            <CustomImage
-              src={Images.filterProWhiteIcon}
-              imageStyle={{ width: 25, height: 25 }}
-              onClick={onClickOpenFilter}
-              className="cursor-pointer"
-            />
-            {isFilter() ? (
-              <div
-                className="w-2.5 h-2.5 rounded-2xl primaryWhite-bg-color absolute z-10"
-                style={{ top: -10, left: -10 }}
-              ></div>
-            ) : (
-              false
-            )}
-          </div>
+              <span className="loading loading-spinner loading-lg primary-text"></span>
+            </div>
+          ) : (
+            <InvoiceSummary data={invoiceSummaryData} />
+          )}
         </div>
+      }
+      rightButton={
+        <div style={{ width: 25, height: 25 }} className="relative">
+          <CustomImage
+            src={Images.filterProWhiteIcon}
+            imageStyle={{ width: 25, height: 25 }}
+            onClick={onClickOpenFilter}
+            className="cursor-pointer"
+          />
+          {isFilter() ? (
+            <div
+              className="w-2.5 h-2.5 rounded-2xl primaryWhite-bg-color absolute z-10"
+              style={{ top: -10, left: -10 }}
+            ></div>
+          ) : (
+            false
+          )}
+        </div>
+      }
+    >
+      <NextSeo title="My Invoice | Owner - Spacify Asia" />
 
-        {invoiceSummaryDataLoading ? (
-          <div
-            className="w-full flex justify-center"
-            style={{ minHeight: 120, height: 120 }}
-          >
-            <span className="loading loading-spinner loading-lg primary-text"></span>
-          </div>
-        ) : (
-          <InvoiceSummary data={invoiceSummaryData} />
-        )}
-      </div>
-      <NextSeo title="My Invoice - Spacify Asia" />
-
-      <div className="body-container primaryWhite-bg-color pb-1 flex flex-col flex-1 pt-5">
+      <div className="body-container bg-color pb-1 flex flex-col flex-1 pt-5">
         <div className="flex items-center pb-3">
           <CustomButton
             buttonText="All"
@@ -293,7 +274,7 @@ const OwnerMyInvoice = () => {
           loading={invoiceListingLoading && isEmpty(invoiceListingData)}
         />
       </div>
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

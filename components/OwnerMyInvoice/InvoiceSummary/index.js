@@ -6,7 +6,7 @@ import moment from "moment";
 
 const InvoiceSummary = ({ data }) => {
   return (
-    <div className="pb-5 owner-invoice-summary">
+    <div className="owner-invoice-summary">
       <Carousel
         additionalTransfrom={0}
         arrows={false}

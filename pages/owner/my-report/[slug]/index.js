@@ -12,6 +12,8 @@ import { get, isEmpty, map } from "lodash";
 import moment from "moment";
 import * as reportSelector from "@/src/selectors/report";
 import AuthManager from "@/src/utils/AuthManager";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -73,36 +75,17 @@ const MyReport = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col flex-1 ">
-      <div className="body-container py-5 owner-bg-color">
-        <div className={`flex items-center justify-between overflow-hidden`}>
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
+    <CustomOwnerHeader
+      className="pb-0"
+      rightButtonIcon={Images.downloadWhiteIcon}
+      onClickRightButton={onClickDownload}
+      title="Statement Overview"
+      onClickGoBack={onClickGoBack}
+    >
+      <NextSeo title="Statement Overview | Owner - Spacify Asia" />
 
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
-            >
-              Statement Overview
-            </CustomText>
-          </div>
-
-          <CustomImage
-            src={Images.downloadWhiteIcon}
-            imageStyle={{ width: 20, height: 20 }}
-            onClick={onClickDownload}
-            className="cursor-pointer"
-          />
-        </div>
-      </div>
-      <div className="flex flex-col flex-1 global-horizontal-padding py-4">
-        <div className="global-box-shadow global-border-radius p-4 py-5">
+      <div className="bg-color flex flex-col flex-1 global-horizontal-padding py-5">
+        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
           <div className="flex justify-between">
             <CustomText textClassName="font-bold primary-text">
               Monthly P&L Statement
@@ -262,7 +245,7 @@ const MyReport = ({ id }) => {
       </div>
 
       <LoadingOverlay loading={loading} />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

@@ -148,7 +148,7 @@ const OwnerHome = () => {
 
       <UserDetailComponent data={propertyListing} />
 
-      <div className="body-container primaryWhite-bg-color flex-1 pb-24">
+      <div className="body-container bg-color flex-1 pb-24">
         <PropertyInfoComponent lists={lists} />
 
         <PropertyCarouselComponent

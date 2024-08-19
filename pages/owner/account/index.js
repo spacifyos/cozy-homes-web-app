@@ -19,6 +19,7 @@ import Toast from "@/src/utils/Toast";
 import { get, isEmpty, isEqual, size } from "lodash";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 
 export { getServerSideProps };
 
@@ -225,17 +226,8 @@ const OwnerAccount = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <NextSeo title="Account - Spacify Asia" />
-
-      <div className="body-container pt-5 pb-16">
-        <CustomText
-          textClassName={"font-bold white-text"}
-          styles={{ fontSize: 18 }}
-        >
-          Account
-        </CustomText>
-      </div>
+    <CustomOwnerHeader title="Account" hideGoBackButton className="pb-16">
+      <NextSeo title="Account | Owner - Spacify Asia" />
 
       <div className="grid grid-cols-5 gap-3 flex-1 mb-10 absolute top-16 w-full px-4 z-10">
         <ProfileCard
@@ -260,8 +252,8 @@ const OwnerAccount = () => {
       {/*/>*/}
 
       {/*<div className="divider-line"></div>*/}
-      <div className="body-container primaryWhite-bg-color flex-1 pb-24">
-        <div className="pt-32">
+      <div className="body-container bg-color flex-1 pb-24">
+        <div className="pt-28">
           {/*<FeatureComponent*/}
           {/*  title="My Bank"*/}
           {/*  icon={Images.primaryInvoiceIcon}*/}
@@ -292,12 +284,12 @@ const OwnerAccount = () => {
           {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
           {/*/>*/}
 
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.setPinNumber")}*/}
-          {/*  icon={Images.primaryLockIcon}*/}
-          {/*  pb={3}*/}
-          {/*  onClick={onClickOpenSetPinNumberModal}*/}
-          {/*/>*/}
+          <FeatureComponent
+            title={t("account.setPinNumber")}
+            icon={Images.primaryLockIcon}
+            pb={3}
+            onClick={onClickOpenSetPinNumberModal}
+          />
 
           {/*<div className="divider-line"></div>*/}
 
@@ -331,27 +323,28 @@ const OwnerAccount = () => {
           </div>
         </div>
       </div>
+
       <LoadingOverlay
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}
       />
 
-      {/*<SetPinNumberModal*/}
-      {/*  pinNumberValue={pinNumberValue}*/}
-      {/*  confirmPinNumberValue={confirmPinNumberValue}*/}
-      {/*  onChangePinNumber={onChangePinNumber}*/}
-      {/*  onChangeConfirmPinNumber={onChangeConfirmPinNumber}*/}
-      {/*  errorMessage={errorMessage}*/}
-      {/*  setPinNumberLoading={setPinNumberLoading}*/}
-      {/*  onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}*/}
-      {/*  onClickSetPinNumber={onClickSetPinNumber}*/}
-      {/*  onChangeOtpValue={onChangeOtpValue}*/}
-      {/*  otpValue={otpValue}*/}
-      {/*  onClickGenerateOtp={onClickGenerateOtp}*/}
-      {/*  timeLeft={timeLeft}*/}
-      {/*  isResendEnabled={isResendEnabled}*/}
-      {/*  otpRequestLoading={otpRequestLoading}*/}
-      {/*/>*/}
-    </div>
+      <SetPinNumberModal
+        pinNumberValue={pinNumberValue}
+        confirmPinNumberValue={confirmPinNumberValue}
+        onChangePinNumber={onChangePinNumber}
+        onChangeConfirmPinNumber={onChangeConfirmPinNumber}
+        errorMessage={errorMessage}
+        setPinNumberLoading={setPinNumberLoading}
+        onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
+        onClickSetPinNumber={onClickSetPinNumber}
+        onChangeOtpValue={onChangeOtpValue}
+        otpValue={otpValue}
+        onClickGenerateOtp={onClickGenerateOtp}
+        timeLeft={timeLeft}
+        isResendEnabled={isResendEnabled}
+        otpRequestLoading={otpRequestLoading}
+      />
+    </CustomOwnerHeader>
   );
 };
 

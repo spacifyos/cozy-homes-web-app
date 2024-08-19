@@ -15,6 +15,8 @@ import { get, isEmpty, filter, isEqual } from "lodash";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
 import CustomButton from "@/components/CustomButton";
 import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -89,47 +91,26 @@ const PropertyDetail = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container py-5">
-        <div
-          className={`flex items-center justify-between overflow-hidden pb-6`}
-        >
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
-
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
-            >
-              My Property
+    <CustomOwnerHeader
+      title="My Property"
+      onClickGoBack={onClickGoBack}
+      className="pb-6"
+      headerContent={
+        <div>
+          <div className="pb-4">
+            <CustomText textClassName="white-text font-bold font-size-xlarge">
+              {isEmpty(propertyName) ? "-" : propertyName}
+            </CustomText>
+            <CustomText textClassName="white-text font-size-xsmall font-light">
+              {isEmpty(propertyAddress) ? "-" : propertyAddress}
             </CustomText>
           </div>
 
-          {/*<CustomImage*/}
-          {/*  src={rightButtonIcon}*/}
-          {/*  imageStyle={{ width: 25, height: 25 }}*/}
-          {/*  onClick={onClickRightButton}*/}
-          {/*  className="cursor-pointer"*/}
-          {/*/>*/}
+          <PropertyInfoComponent paddingTop={"0"} lists={lists} />
         </div>
-
-        <div className="pb-4">
-          <CustomText textClassName="white-text font-bold font-size-xlarge">
-            {isEmpty(propertyName) ? "-" : propertyName}
-          </CustomText>
-          <CustomText textClassName="white-text font-size-xsmall font-light">
-            {isEmpty(propertyAddress) ? "-" : propertyAddress}
-          </CustomText>
-        </div>
-
-        <PropertyInfoComponent paddingTop={"0"} lists={lists} />
-      </div>
+      }
+    >
+      <NextSeo title="My Property | Owner - Spacify Asia" />
 
       <div className="bg-color flex-1">
         <UnitCarouselComponent
@@ -163,7 +144,7 @@ const PropertyDetail = ({ id }) => {
       </div>
 
       <LoadingOverlay loading={propertyDetailLoading} />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

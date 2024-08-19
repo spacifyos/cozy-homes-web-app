@@ -13,6 +13,8 @@ import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import * as reportSelector from "@/src/selectors/report";
 import moment from "moment";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -92,35 +94,14 @@ const MyReport = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 ">
-      <div className="body-container py-5 owner-bg-color">
-        <div className={`flex items-center justify-between overflow-hidden`}>
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
+    <CustomOwnerHeader
+      className="pb-0"
+      title="My Monthly P&L Statement"
+      onClickGoBack={onClickGoBack}
+    >
+      <NextSeo title="My Report | Owner - Spacify Asia" />
 
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
-            >
-              My Monthly P&L Statement
-            </CustomText>
-          </div>
-
-          {/*<CustomImage*/}
-          {/*  src={rightButtonIcon}*/}
-          {/*  imageStyle={{ width: 25, height: 25 }}*/}
-          {/*  onClick={onClickRightButton}*/}
-          {/*  className="cursor-pointer"*/}
-          {/*/>*/}
-        </div>
-      </div>
-      <div className="flex flex-col flex-1 global-horizontal-padding">
+      <div className="bg-color flex flex-col flex-1 global-horizontal-padding">
         <div className="grid grid-cols-3 gap-2 pt-5 pb-7">
           <CustomSelect
             placeholder={"Property"}
@@ -153,7 +134,7 @@ const MyReport = () => {
       </div>
 
       <LoadingOverlay loading={loading} />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 
