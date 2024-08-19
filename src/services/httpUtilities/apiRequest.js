@@ -265,6 +265,10 @@ const postUpdateBankDetailRequest = async (
   );
 };
 
+const getWalletRequest = async (setLoading, successCallback) => {
+  await apiRequest(api.getWallet(), setLoading, successCallback);
+};
+
 const getWalletTransactionListingRequest = async (
   perPage,
   page,
@@ -341,6 +345,7 @@ export default {
   getOwnerTransaction,
   getUChatUserRequest,
   postUpdateBankDetailRequest,
+  getWalletRequest,
   getWalletTransactionListingRequest,
   getWalletTransactionDetailRequest,
   getOwnerReportListingRequest,

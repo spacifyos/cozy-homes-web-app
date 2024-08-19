@@ -2,37 +2,42 @@ import { get, map } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
+import * as walletSelector from "@/src/selectors/wallet";
 
-const data = [
-  {
-    name: "total income",
-    value: 999,
-    icon: Images.rentalInIcon,
-  },
-  {
-    name: "total expenses",
-    value: 999,
-    icon: Images.rentalOutIcon,
-  },
-  {
-    name: "total withdraw",
-    value: 999,
-    icon: Images.withdrawIcon,
-  },
-];
+const WalletSummary = ({ data }) => {
+  const totalIncome = walletSelector.getTotalIncome(data);
+  const totalExpense = walletSelector.getTotalExpense(data);
+  const totalWithdraw = walletSelector.getTotalWithdrawal(data);
 
-const WalletSummary = () => {
+  const summaryList = [
+    {
+      name: "Total Income",
+      value: totalIncome,
+      icon: Images.rentalInIcon,
+    },
+    {
+      name: "Total Expenses",
+      value: totalExpense,
+      icon: Images.rentalOutIcon,
+    },
+    {
+      name: "Total Withdraw",
+      value: totalWithdraw,
+      icon: Images.withdrawIcon,
+    },
+  ];
+
   return (
-    <div className="px-4 absolute top-40 w-full z-10">
+    <div className="px-4 absolute top-36 w-full z-10">
       <div className="grid grid-cols-3 gap-3">
-        {map(data, (list) => {
+        {map(summaryList, (list) => {
           const name = get(list, ["name"], "");
           const value = get(list, ["value"], "");
           const icon = get(list, ["icon"], "");
 
           return (
             <div className="global-box-shadow global-border-radius px-2 py-5 flex items-center justify-center primaryWhite-bg-color">
-              <CustomImage src={icon} imageStyle={{ width: 22 }} />
+              <CustomImage src={icon} imageStyle={{ width: 20 }} />
 
               <div className="pl-2">
                 <CustomText textClassName="font-size-xxlarge font-bold leading-4">

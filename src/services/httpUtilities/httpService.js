@@ -2,8 +2,9 @@ import apiInstance, {
   AUTH_TOKEN_HEADER,
   AUTH_AGENT_TOKEN_HEADER,
 } from "./httpManager";
-import { includes, isEmpty, isEqual } from "lodash";
+import { includes, isEmpty, isEqual, size } from "lodash";
 import moment from "moment/moment";
+import Constant from "@/src/utils/Constant";
 
 /**
  * To update language in api header
@@ -131,11 +132,28 @@ const getOwnerPropertyOverview = (id) =>
 
 const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
 
+const getWallet = () => apiInstance.get(`/wallet`);
+
 const getWalletTransactionListing = (perPage = 20, page = 1, params) => {
   const { type } = params;
 
+  const formatType = (status) => {
+    switch (status) {
+      case "All":
+        return "&type=";
+      case "Income":
+        return `&type[]=${Constant.WALLET_RENTAL_INCOME}&type[]=${Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT}`;
+      case "Expense":
+        return `&type[]=${Constant.WALLET_EXPENSE}&type[]=${Constant.WALLET_INVOICE_PAYMENT}`;
+      case "Withdraw":
+        return `&type[]=${Constant.WALLET_WITHDRAWAL}`;
+      default:
+        return "&type=";
+    }
+  };
+
   return apiInstance.get(
-    `/wallet/transactions?per_page=${perPage}&page=${page}&type=${type}`,
+    `/wallet/transactions?per_page=${perPage}&page=${page}${formatType(type)}`,
   );
 };
 
@@ -195,6 +213,7 @@ export default {
   getOwnerPropertyOverview,
   getOwnerTransaction,
   postUpdateBankDetail,
+  getWallet,
   getWalletTransactionListing,
   getWalletTransactionDetail,
   getOwnerReportListing,

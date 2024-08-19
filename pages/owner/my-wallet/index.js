@@ -7,7 +7,14 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import WalletSummary from "@/components/MyWallet/WalletSummary";
 import TransactionComponent from "@/components/MyWallet/TransactionComponent";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
+import * as walletSelector from "@/src/selectors/wallet";
+import { get, isEmpty } from "lodash";
+import moment from "moment";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
 
@@ -15,6 +22,54 @@ const MyWallet = () => {
   const router = useRouter();
 
   const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const [walletData, setWalletData] = useState(null);
+  const [walletDataLoading, setWalletDataLoading] = useState(false);
+
+  const [getWalletTransactionListingLoading, setGetWalletTransactionLoading] =
+    useState(false);
+  const [getWalletTransactionListing, setGetWalletTransactionListing] =
+    useState([]);
+
+  const balance = walletSelector.getBalance(walletData);
+  const updatedAt = walletSelector.getUpdatedAt(walletData);
+
+  useEffect(() => {
+    fetchWalletTransactionListing(20, 1, { type: selectedCategory });
+  }, [selectedCategory]);
+
+  const fetchWalletTransactionListing = async (
+    perPage = 20,
+    page = 1,
+    params = { type: selectedCategory },
+  ) => {
+    await apiRequest.getWalletTransactionListingRequest(
+      perPage,
+      page,
+      params,
+      setGetWalletTransactionLoading,
+      getWalletListingSuccessCallback,
+    );
+  };
+
+  const getWalletListingSuccessCallback = (res) => {
+    setGetWalletTransactionListing(res);
+  };
+
+  useEffect(() => {
+    fetchWalletData();
+  }, []);
+
+  const fetchWalletData = async () => {
+    await apiRequest.getWalletRequest(
+      setWalletDataLoading,
+      getWalletDataSuccessCallBack,
+    );
+  };
+
+  const getWalletDataSuccessCallBack = (res) => {
+    setWalletData(res);
+  };
 
   const onClickSelectCategory = (value) => {
     setSelectedCategory(value);
@@ -30,47 +85,29 @@ const MyWallet = () => {
     });
   };
 
+  const onClickViewReport = () => {
+    router.push("/owner/my-report");
+  };
+
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container pt-5 pb-10">
-        <div
-          className={`flex items-center justify-between overflow-hidden pb-6`}
-        >
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
-
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
-            >
-              My Wallet
-            </CustomText>
-          </div>
-
-          {/*<CustomImage*/}
-          {/*  src={rightButtonIcon}*/}
-          {/*  imageStyle={{ width: 25, height: 25 }}*/}
-          {/*  onClick={onClickRightButton}*/}
-          {/*  className="cursor-pointer"*/}
-          {/*/>*/}
-        </div>
-
-        <div className="flex justify-between items-center pb-6">
+    <CustomOwnerHeader
+      className="pb-12"
+      title="My Wallet"
+      onClickGoBack={onClickGoBack}
+      headerContent={
+        <div className="flex justify-between items-center">
           <div className="">
             <CustomText
               textClassName="white-text font-bold"
               styles={{ fontSize: 30 }}
             >
-              RM99,999
+              {isEmpty(balance) ? "RM 0" : balance}
             </CustomText>
             <CustomText textClassName="white-text font-size-xxsmall font-light">
-              Updated on 02 Jul 2024, 4.09pm
+              Updated on{" "}
+              {isEmpty(updatedAt)
+                ? moment().format("DD MMM YYYY, H:mmm")
+                : updatedAt}
             </CustomText>
           </div>
 
@@ -81,19 +118,24 @@ const MyWallet = () => {
             </CustomText>
           </div>
         </div>
-      </div>
-
-      <WalletSummary />
+      }
+    >
+      <WalletSummary data={walletData} />
 
       <div className="body-container primaryWhite-bg-color flex-1 pb-4 pt-16">
         <TransactionComponent
+          onClickViewReport={onClickViewReport}
           selectedCategory={selectedCategory}
           onClickSelectCategory={onClickSelectCategory}
-          data={Array(10)}
+          data={getWalletTransactionListing}
           onClickToTransactionOverview={onClickToTransactionOverview}
         />
       </div>
-    </div>
+
+      <LoadingOverlay
+        loading={walletDataLoading || getWalletTransactionListingLoading}
+      />
+    </CustomOwnerHeader>
   );
 };
 

@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const TransactionCard = ({ onClickToTransactionOverview }) => {
+const TransactionCard = ({ onClickToTransactionOverview, data }) => {
   return (
     <div
       className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer"

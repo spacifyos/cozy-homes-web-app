@@ -1,20 +1,10 @@
 import CustomText from "@/components/CustomText";
-import _, { isEmpty, map } from "lodash";
+import { isEmpty, map, isEqual, get } from "lodash";
 import CustomButton from "@/components/CustomButton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
-import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import TransactionCard from "@/components/MyWallet/TransactionCard";
 
-const btn = [
-  {
-    value: "All",
-    name: "All",
-  },
-  {
-    value: "Withdraw",
-    name: "Withdraw",
-  },
-];
+const btn = ["All", "Income", "Expense", "Withdraw"];
 
 const TransactionComponent = ({
   selectedCategory,
@@ -22,26 +12,32 @@ const TransactionComponent = ({
   onClickToInvoiceList,
   data,
   onClickToTransactionOverview,
+  onClickViewReport,
 }) => {
   return (
     <div>
-      <CustomText textClassName="section-title">Transactions</CustomText>
+      <div className="flex justify-between items-center pb-2">
+        <CustomText textClassName="font-size-xlarge font-bold">
+          Transactions
+        </CustomText>
+        <CustomText
+          textClassName="primary-text cursor-pointer font-size-small"
+          onClick={onClickViewReport}
+        >
+          View Report
+        </CustomText>
+      </div>
 
       <div className="flex items-center pb-3">
-        {_.map(btn, (item, index) => {
-          const value = _.get(item, ["value"], "");
-          const name = _.get(item, ["name"], "");
-
-          return (
-            <CustomButton
-              key={index}
-              buttonText={name}
-              buttonClassName={`btn-sm ${_.isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => onClickSelectCategory(value)}
-            />
-          );
-        })}
+        {map(btn, (item, index) => (
+          <CustomButton
+            key={index}
+            buttonText={item}
+            buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "primary-btn" : "default-btn"} mr-2`}
+            textClassName="font-size-xsmall"
+            onClick={() => onClickSelectCategory(item)}
+          />
+        ))}
       </div>
 
       <div className="flex flex-col gap-3">
@@ -53,6 +49,7 @@ const TransactionComponent = ({
           map(data, (item, index) => {
             return (
               <TransactionCard
+                data={item}
                 key={index}
                 onClickToTransactionOverview={onClickToTransactionOverview}
               />

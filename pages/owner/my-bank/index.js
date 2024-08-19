@@ -40,7 +40,7 @@ const MyBank = () => {
 
   const [getWalletTransactionListingLoading, setGetWalletTransactionLoading] =
     useState(false);
-  const [getWalletTransactionListing, setGetWalletTransaction] = useState([]);
+  const [getWalletTransactionListing, setGetWalletTransactionListing] = useState([]);
 
   useEffect(() => {
     fetchWalletTransactionListing();
@@ -66,7 +66,7 @@ const MyBank = () => {
   };
 
   const getWalletSuccessCallback = (res) => {
-    setGetWalletTransaction(res);
+    setGetWalletTransactionListing(res);
   };
 
   const fetchUserprofileData = () => {
