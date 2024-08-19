@@ -13,3 +13,4 @@ export const getRace = (state) => get(state, ["race"], []);
 export const getState = (state) => get(state, ["state"], []);
 export const getNationality = (state) => get(state, ["nationality"], []);
 export const getOccupation = (state) => get(state, ["occupation"], []);
+export const getBankList = (state) => get(state, ["bank_list"], []);

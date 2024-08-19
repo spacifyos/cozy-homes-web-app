@@ -14,11 +14,19 @@ import { get, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import { useSelector } from "react-redux";
+import * as commonSelector from "@/src/selectors/common";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 
 export { getServerSideProps };
 
 const AddBank = () => {
   const router = useRouter();
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const bankOption = commonSelector.getBankList(selectOptionData);
 
   const [isReadAgree, setIsReadAgree] = useState(false);
   const [bankValue, setBankValue] = useState(null);
@@ -50,8 +58,8 @@ const AddBank = () => {
     }
 
     const postData = {
-      bank: get(bankValue, ["value"], ""),
-      account_name: accountNameValue,
+      bank_name: get(bankValue, ["value"], ""),
+      account_holder_name: accountNameValue,
       account_number: accountNumberValue,
     };
 
@@ -76,27 +84,12 @@ const AddBank = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <NextSeo title="My Bank - Spacify Asia" />
-
-      <div className="body-container pt-5 pb-16">
-        <div className="flex items-center">
-          <div onClick={onClickGoBack} className="cursor-pointer">
-            <CustomImage
-              className={"me-5 cursor-pointer"}
-              src={Images.leftIconWhite}
-              imageStyle={{ width: 10 }}
-            />
-          </div>
-
-          <CustomText
-            textClassName={"font-bold white-text"}
-            styles={{ fontSize: 18 }}
-          >
-            Add Bank
-          </CustomText>
-        </div>
-      </div>
+    <CustomOwnerHeader
+      title="Add Bank"
+      className="pb-10"
+      onClickGoBack={onClickGoBack}
+    >
+      <NextSeo title="Add Bank | Owner - Spacify Asia" />
 
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
         <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center">
@@ -117,6 +110,7 @@ const AddBank = () => {
         <div className="w-full">
           <CustomSelectWithIcon
             title="Bank Name"
+            option={bankOption}
             required
             onClickSelect={onClickSelect}
             value={bankValue}
@@ -175,7 +169,7 @@ const AddBank = () => {
       </div>
 
       <LoadingOverlay loading={updateLoading} />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

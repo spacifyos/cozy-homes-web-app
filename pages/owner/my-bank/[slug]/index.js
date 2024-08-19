@@ -11,19 +11,26 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import { useEffect, useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty, isEqual, filter } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import * as commonSelector from "@/src/selectors/common";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 
 export { getServerSideProps };
 
 const BankOverview = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const bankOption = commonSelector.getBankList(selectOptionData);
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -34,6 +41,15 @@ const BankOverview = () => {
     authSelector.getUserProfileLoading(state),
   );
 
+  const bankDetails = authSelector.getBankDetails(userProfileData);
+  const accountHolderName = authSelector.getAccountHolderName(bankDetails);
+  const accountNumber = authSelector.getAccountNumber(bankDetails);
+  const bankName = authSelector.getBankName(bankDetails);
+
+  const selectedBank = filter(bankOption, (bank) =>
+    isEqual(get(bank, ["label"], ""), bankName),
+  );
+
   const [isReadAgree, setIsReadAgree] = useState(false);
   const [bankValue, setBankValue] = useState(null);
   const [accountNameValue, setAccountNameValue] = useState("");
@@ -41,6 +57,14 @@ const BankOverview = () => {
   const [openSelectBank, setOpenSelectBank] = useState(false);
 
   const [updateLoading, setUpdateLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(bankDetails)) {
+      setBankValue(get(selectedBank, [0], null));
+      setAccountNameValue(accountHolderName);
+      setAccountNumberValue(accountNumber);
+    }
+  }, [bankDetails]);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -72,8 +96,8 @@ const BankOverview = () => {
     }
 
     const postData = {
-      bank: get(bankValue, ["value"], ""),
-      account_name: accountNameValue,
+      bank_name: get(bankValue, ["value"], ""),
+      account_holder_name: accountNameValue,
       account_number: accountNumberValue,
     };
 
@@ -98,27 +122,12 @@ const BankOverview = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <NextSeo title="My Bank - Spacify Asia" />
-
-      <div className="body-container pt-5 pb-16">
-        <div className="flex items-center">
-          <div onClick={onClickGoBack} className="cursor-pointer">
-            <CustomImage
-              className={"me-5 cursor-pointer"}
-              src={Images.leftIconWhite}
-              imageStyle={{ width: 10 }}
-            />
-          </div>
-
-          <CustomText
-            textClassName={"font-bold white-text"}
-            styles={{ fontSize: 18 }}
-          >
-            Bank Overview
-          </CustomText>
-        </div>
-      </div>
+    <CustomOwnerHeader
+      title="Bank Overview"
+      className="pb-10"
+      onClickGoBack={onClickGoBack}
+    >
+      <NextSeo title="Bank Overview | Owner - Spacify Asia" />
 
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
         <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center">
@@ -144,6 +153,7 @@ const BankOverview = () => {
             value={bankValue}
             onClickOpenSelect={onClickOpenSelect}
             openSelectBank={openSelectBank}
+            option={bankOption}
           />
 
           <BookingInput
@@ -189,8 +199,8 @@ const BankOverview = () => {
             />
 
             <CustomButton
-              buttonClassName=" primary-btn"
-              buttonText={"Submit"}
+              buttonClassName="primary-btn"
+              buttonText={"Update"}
               onClick={onClickSubmit}
             />
           </div>
@@ -198,7 +208,7 @@ const BankOverview = () => {
       </div>
 
       <LoadingOverlay loading={updateLoading || userProfileLoading} />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

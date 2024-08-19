@@ -131,8 +131,13 @@ const getOwnerPropertyOverview = (id) =>
 
 const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
 
-const getWalletTransactionListing = () =>
-  apiInstance.get(`/wallet/transactions`);
+const getWalletTransactionListing = (perPage = 20, page = 1, params) => {
+  const { type } = params;
+
+  return apiInstance.get(
+    `/wallet/transactions?per_page=${perPage}&page=${page}&type=${type}`,
+  );
+};
 
 const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
 

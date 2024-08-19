@@ -45,3 +45,10 @@ export const getUserPhoneNumber = (state) =>
   _.get(state, ["user", "phone_number"], "");
 export const getUserToken = (state) => _.get(state, ["user", "token"], "");
 export const getUserType = (state) => _.get(state, ["user", "type"], "");
+export const getBankDetails = (state) => _.get(state, ["bank_details"], "");
+export const getAccountHolderName = (state) => _.get(state, ["account_holder_name"], "");
+export const getAccountNumber = (state) => _.get(state, ["account_number"], "");
+export const getBankLogo = (state) => _.get(state, ["logo"], "");
+export const getBankName = (state) => _.get(state, ["bank_name", "label"], "");
+
+

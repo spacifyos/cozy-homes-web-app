@@ -14,7 +14,10 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import { isEmpty } from "lodash";
+import { isEmpty, lowerCase, replace } from "lodash";
+import BankCard from "@/components/MyBank/BankCard";
+import Constant from "@/src/utils/Constant";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 
 export { getServerSideProps };
 
@@ -31,6 +34,8 @@ const MyBank = () => {
     authSelector.getUserProfileLoading(state),
   );
 
+  const bankDetails = authSelector.getBankDetails(userProfileData);
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [getWalletTransactionListingLoading, setGetWalletTransactionLoading] =
@@ -38,12 +43,23 @@ const MyBank = () => {
   const [getWalletTransactionListing, setGetWalletTransaction] = useState([]);
 
   useEffect(() => {
-    // fetchWalletTransactionListing();
+    fetchWalletTransactionListing();
     fetchUserprofileData();
   }, []);
 
-  const fetchWalletTransactionListing = async () => {
+  useEffect(() => {
+    fetchWalletTransactionListing();
+  }, [selectedCategory]);
+
+  const fetchWalletTransactionListing = async (
+    perPage = 20,
+    page = 1,
+    params = { type: Constant.WALLET_WITHDRAWAL },
+  ) => {
     await apiRequest.getWalletTransactionListingRequest(
+      perPage,
+      page,
+      params,
       setGetWalletTransactionLoading,
       getWalletSuccessCallback,
     );
@@ -62,85 +78,32 @@ const MyBank = () => {
   };
 
   const onClickGoBack = () => {
-    router.back();
+    router.replace("/owner/account");
   };
 
   const onClickToAddBank = () => {
     router.push("/owner/my-bank/add-bank");
   };
 
+  const onClickEditBankInfo = (id) => {
+    const formatBankName = replace(lowerCase(id), " ", "_");
+
+    router.push(`/owner/my-bank/${formatBankName}`);
+  };
+
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <NextSeo title="Add Bank - Spacify Asia" />
+    <CustomOwnerHeader
+      className="pb-28"
+      title="My Bank"
+      onClickGoBack={onClickGoBack}
+    >
+      <NextSeo title="My Bank | Owner - Spacify Asia" />
 
-      <div className="body-container pt-5 pb-28">
-        <div className="flex items-center">
-          <CustomImage
-            onClick={onClickGoBack}
-            className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
-            imageStyle={{ width: 10 }}
-          />
-
-          <CustomText
-            textClassName={"font-bold white-text"}
-            styles={{ fontSize: 18 }}
-          >
-            My Bank
-          </CustomText>
-        </div>
-      </div>
-
-      <div className="mb-10 absolute top-16 w-full px-4 z-10">
-        <div
-          className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center justify-center"
-          style={{ height: 163 }}
-        >
-          {true ? (
-            <div
-              className="flex flex-col justify-center items-center flex-1 cursor-pointer"
-              onClick={onClickToAddBank}
-            >
-              <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
-              <CustomText textClassName="disable-text pt-2">
-                Add Bank
-              </CustomText>
-            </div>
-          ) : (
-            <div className="flex-1">
-              <div
-                className="primary-bg-color absolute p-2 rounded-2xl flex justify-center items-center"
-                style={{ width: 30, height: 30, right: -3, bottom: -3 }}
-              >
-                <CustomImage
-                  src={Images.editIconWhite}
-                  imageStyle={{ width: 15 }}
-                />
-              </div>
-
-              <div className="flex justify-between items-center">
-                <CustomText>Maybank</CustomText>
-
-                <CustomImage
-                  src={Images.logoImage}
-                  imageStyle={{ width: 30 }}
-                />
-              </div>
-
-              <CustomText textClassName="font-bold font-size-large pb-4">
-                {" "}
-                1234 1234 1234 1234
-              </CustomText>
-
-              <CustomLabelValue
-                label="Bank Holder"
-                highlight
-                value={"Jia Hui"}
-              />
-            </div>
-          )}
-        </div>
-      </div>
+      <BankCard
+        bankDetails={bankDetails}
+        onClickToAddBank={onClickToAddBank}
+        onClickEditBankInfo={onClickEditBankInfo}
+      />
 
       <div className="body-container bg-color flex flex-1">
         <TransactionComponent
@@ -156,7 +119,7 @@ const MyBank = () => {
           (userProfileLoading && isEmpty(userProfileData))
         }
       />
-    </div>
+    </CustomOwnerHeader>
   );
 };
 

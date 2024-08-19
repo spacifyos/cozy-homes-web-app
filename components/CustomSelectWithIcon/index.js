@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import { get, isEmpty, isEqual, map } from "lodash";
 
 const CustomSelectWithIcon = ({
+  option,
   required,
   title,
   value,
@@ -14,25 +15,7 @@ const CustomSelectWithIcon = ({
 }) => {
   const selectedLabel = get(value, ["label"], "");
   const selectedValue = get(value, ["value"], "");
-  const selectedIcon = get(value, ["icon"], "");
-
-  const arr = [
-    {
-      label: "spacify banka",
-      value: "spacify banka",
-      icon: Images.logoImage,
-    },
-    {
-      label: "spacify bankb",
-      value: "spacify bankb",
-      icon: Images.blackLogo,
-    },
-    {
-      label: "spacify bankc",
-      value: "spacify bankc",
-      icon: Images.primaryLogoutIcon,
-    },
-  ];
+  const selectedIcon = get(value, ["logo"], "");
 
   return (
     <div className="w-full pb-4">
@@ -72,19 +55,20 @@ const CustomSelectWithIcon = ({
 
         {openSelectBank ? (
           <div
-            className="absolute primaryWhite-bg-color w-full py-2 px-4 grid gap-2"
+            className="absolute primaryWhite-bg-color w-full py-2 px-4 grid gap-2 overflow-y-auto"
             style={{
               borderRadius: "0 0 10px 10px",
               bottom: "-31",
               border: "1px solid #94a1a6",
+              height: 400,
             }}
           >
-            {isEmpty(arr)
+            {isEmpty(option)
               ? false
-              : map(arr, (item, index) => {
+              : map(option, (item, index) => {
                   const label = get(item, ["label"], "");
                   const value = get(item, ["value"], "");
-                  const icon = get(item, ["icon"], "");
+                  const icon = get(item, ["logo"], "");
 
                   return (
                     <div

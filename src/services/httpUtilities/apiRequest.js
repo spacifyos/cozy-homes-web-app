@@ -258,15 +258,22 @@ const postUpdateBankDetailRequest = async (
   setLoading,
   successCallback,
 ) => {
-  await apiRequest(api.getUserProfile(postData), setLoading, successCallback);
+  await apiRequest(
+    api.postUpdateBankDetail(postData),
+    setLoading,
+    successCallback,
+  );
 };
 
 const getWalletTransactionListingRequest = async (
+  perPage,
+  page,
+  params,
   setLoading,
   successCallback,
 ) => {
   await apiRequest(
-    api.getWalletTransactionListing(),
+    api.getWalletTransactionListing(perPage, page, params),
     setLoading,
     successCallback,
   );

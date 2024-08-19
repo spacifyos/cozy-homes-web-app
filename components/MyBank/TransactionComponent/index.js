@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomButton";
-import {isEmpty, isEqual} from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import CustomText from "@/components/CustomText";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
@@ -10,7 +10,7 @@ const TransactionComponent = ({
   onClickSelectCategory,
 }) => {
   return (
-    <div className="pt-20 flex flex-col flex-1">
+    <div className="pt-16 flex flex-col flex-1">
       <div className="flex justify-between items-end pb-3 pt-2">
         <CustomText textClassName="font-bold">Transactions</CustomText>
 
