@@ -173,11 +173,10 @@ const OwnerInvoiceOverview = ({ id }) => {
       title="My Invoice Overview"
       rightButtonIcon={Images.downloadWhiteIcon}
       onClickRightButton={onClickDownload}
-      onClickGoBack={onClickGoBack} className="pb-0"
+      onClickGoBack={onClickGoBack}
+      className="pb-0"
     >
       <NextSeo title="Invoice Overview | Owner - Spacify Asia" />
-
-
 
       <div className="body-container bg-color relative py-6 flex flex-col flex-1">
         <div className="global-box-shadow global-border-radius px-5 py-6 primaryWhite-bg-color">
@@ -185,15 +184,15 @@ const OwnerInvoiceOverview = ({ id }) => {
             <div className="flex items-end">
               <div className="primary-bg-color p-2 ps-2.5 global-border-radius mr-2">
                 <CustomImage
-                    src={Images.invoiceIcon}
-                    imageStyle={{ width: 30, height: 30 }}
+                  src={Images.invoiceIcon}
+                  imageStyle={{ width: 30, height: 30 }}
                 />
               </div>
               <CustomLabelValue
-                  styles={{ paddingBottom: 0 }}
-                  value={isEmpty(code) ? "-" : code}
-                  label={t("invoiceOverview.invoiceNumber")}
-                  highlight
+                styles={{ paddingBottom: 0 }}
+                value={isEmpty(code) ? "-" : code}
+                label={t("invoiceOverview.invoiceNumber")}
+                highlight
               />
             </div>
 
@@ -206,43 +205,43 @@ const OwnerInvoiceOverview = ({ id }) => {
           </div>
 
           <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
+            className="divider-line"
+            style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
           <CustomLabelValue
-              value={isEmpty(billTo) ? "-" : billTo}
-              label={t("invoiceOverview.billTo")}
+            value={isEmpty(billTo) ? "-" : billTo}
+            label={t("invoiceOverview.billTo")}
           />
           <CustomLabelValue
-              value={isEmpty(property) ? "-" : property}
-              label={t("invoiceOverview.property")}
+            value={isEmpty(property) ? "-" : property}
+            label={t("invoiceOverview.property")}
           />
 
           <div className="flex justify-between items-center">
             <CustomLabelValue
-                value={isEmpty(invoiceDate) ? "-" : invoiceDate}
-                label={t("invoiceOverview.invoiceDate")}
+              value={isEmpty(invoiceDate) ? "-" : invoiceDate}
+              label={t("invoiceOverview.invoiceDate")}
             />
             <CustomLabelValue
-                value={isEmpty(dueDate) ? "-" : dueDate}
-                label={t("invoiceOverview.dueDate")}
-                highlight
+              value={isEmpty(dueDate) ? "-" : dueDate}
+              label={t("invoiceOverview.dueDate")}
+              highlight
             />
           </div>
 
           <CustomLabelValue
-              value={isEmpty(tenancyCode) ? "-" : tenancyCode}
-              label={t("invoiceOverview.tenancyCode")}
+            value={isEmpty(tenancyCode) ? "-" : tenancyCode}
+            label={t("invoiceOverview.tenancyCode")}
           />
           <CustomLabelValue
-              value={isEmpty(schedule) ? "-" : schedule}
-              label={t("invoiceOverview.schedule")}
+            value={isEmpty(schedule) ? "-" : schedule}
+            label={t("invoiceOverview.schedule")}
           />
 
           <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
+            className="divider-line"
+            style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
           <CustomText textClassName="font-size-xxsmall disable-text">
@@ -251,41 +250,41 @@ const OwnerInvoiceOverview = ({ id }) => {
 
           <div className="gap-2">
             {isEmpty(items)
-                ? false
-                : map(items, (item, index) => {
+              ? false
+              : map(items, (item, index) => {
                   const itemName = get(item, ["name"], "");
                   const unitPrice = get(item, ["unit_price"], 0);
                   const quantity = get(item, ["quantity"], 1);
 
                   return (
-                      <div
-                          className="flex justify-between items-center pt-2"
-                          key={index}
-                      >
-                        <div className="">
-                          <CustomText
-                              textClassName={`black-text font-size-small font-bold`}
-                          >
-                            {itemName}
-                          </CustomText>
-                          <CustomText
-                              textClassName={`font-size-xxsmall disable-text`}
-                          >
-                            RM{unitPrice} per unit
-                          </CustomText>
-                        </div>
-
-                        <CustomText textClassName={`black-text font-bold`}>
-                          X{quantity}
+                    <div
+                      className="flex justify-between items-center pt-2"
+                      key={index}
+                    >
+                      <div className="">
+                        <CustomText
+                          textClassName={`black-text font-size-small font-bold`}
+                        >
+                          {itemName}
+                        </CustomText>
+                        <CustomText
+                          textClassName={`font-size-xxsmall disable-text`}
+                        >
+                          RM{unitPrice} per unit
                         </CustomText>
                       </div>
+
+                      <CustomText textClassName={`black-text font-bold`}>
+                        X{quantity}
+                      </CustomText>
+                    </div>
                   );
                 })}
           </div>
 
           <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
+            className="divider-line"
+            style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -304,8 +303,8 @@ const OwnerInvoiceOverview = ({ id }) => {
           </div>
 
           <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
+            className="divider-line"
+            style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
           <div className="grid grid-cols-2 gap-2">
@@ -318,27 +317,27 @@ const OwnerInvoiceOverview = ({ id }) => {
           </div>
 
           <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
+            className="divider-line"
+            style={{ marginTop: 10, marginBottom: 10 }}
           ></div>
 
           {!isEmpty(paymentStatus) &&
           !isEqual(upperCase(paymentStatus), Constant.PAID) ? (
-              <div className="grid grid-cols-2 gap-2 pt-4">
-                <CustomButton
-                    buttonText={t("invoiceOverview.cancel")}
-                    buttonClassName="default-btn-outline"
-                    onClick={onClickGoBack}
-                />
+            <div className="grid grid-cols-2 gap-2 pt-4">
+              <CustomButton
+                buttonText={t("invoiceOverview.cancel")}
+                buttonClassName="default-btn-outline"
+                onClick={onClickGoBack}
+              />
 
-                <CustomButton
-                    buttonText={t("invoiceOverview.payNow")}
-                    buttonClassName="primary-btn"
-                    onClick={() => onClickToPayment(code)}
-                />
-              </div>
+              <CustomButton
+                buttonText={t("invoiceOverview.payNow")}
+                buttonClassName="primary-btn"
+                onClick={() => onClickToPayment(code)}
+              />
+            </div>
           ) : (
-              false
+            false
           )}
         </div>
 

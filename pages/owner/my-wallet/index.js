@@ -15,6 +15,7 @@ import * as walletSelector from "@/src/selectors/wallet";
 import { get, isEmpty } from "lodash";
 import moment from "moment";
 import Constant from "@/src/utils/Constant";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -120,9 +121,12 @@ const MyWallet = () => {
         </div>
       }
     >
+
+      <NextSeo title="My Wallet | Owner - Spacify Asia" />
+
       <WalletSummary data={walletData} />
 
-      <div className="body-container primaryWhite-bg-color flex-1 pb-4 pt-16">
+      <div className="body-container bg-color flex-1 pb-4 pt-16">
         <TransactionComponent
           onClickViewReport={onClickViewReport}
           selectedCategory={selectedCategory}

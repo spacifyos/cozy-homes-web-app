@@ -1,10 +1,20 @@
-import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import { NextSeo } from "next-seo";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import * as walletSelector from "@/src/selectors/wallet";
+import { isEmpty } from "lodash";
+import moment from "moment/moment";
+import Constant from "@/src/utils/Constant";
+
+export { getServerSideProps };
 
 const DetailLabel = ({ title, value }) => {
   return (
@@ -20,105 +30,140 @@ const DetailLabel = ({ title, value }) => {
 const TransactionOverview = ({ id }) => {
   const router = useRouter();
 
-  const [getWalletTransactionDetail, setGetWalletTransactionDetail] =
-    useState(null);
+  const [walletTransactionDetail, setWalletTransactionDetail] = useState(null);
   const [
     getWalletTransactionDetailLoading,
     setGetWalletTransactionDetailLoading,
   ] = useState(false);
 
+  const updatedAt = walletSelector.getUpdatedAt(walletTransactionDetail);
+  const remarks = walletSelector.getRemarks(walletTransactionDetail);
+  const typeLabel = walletSelector.getTypeLabel(walletTransactionDetail);
+  const typeValue = walletSelector.getTypeValue(walletTransactionDetail);
+  const amount = walletSelector.getAmount(walletTransactionDetail);
+  const transactionNumber = walletSelector.getTransactionNumber(
+    walletTransactionDetail,
+  );
+  const isAdd = walletSelector.getIsAdd(walletTransactionDetail);
+  const paymentMethod = walletSelector.getPaymentMethod(
+    walletTransactionDetail,
+  );
+  const withdrawStatus = walletSelector.getRequestStatus(
+    walletTransactionDetail,
+  );
+  const status = walletSelector.getStatus(walletTransactionDetail);
+
   useEffect(() => {
-    // fetchWalletTransactionDetail();
+    fetchWalletTransactionDetail();
   }, []);
 
-  const fetchWalletTransactionDetail = async (id) => {
+  const fetchWalletTransactionDetail = async () => {
     await apiRequest.getWalletTransactionDetailRequest(
       id,
-        setGetWalletTransactionDetailLoading,
+      setGetWalletTransactionDetailLoading,
       successCallback,
     );
   };
 
   const successCallback = (res) => {
-    setGetWalletTransactionDetail(res);
+    setWalletTransactionDetail(res);
   };
 
   const onClickGoBack = () => {
     router.back();
   };
 
+  const renderIcon = (type) => {
+    switch (type) {
+      case Constant.WALLET_RENTAL_INCOME:
+        return Images.rentalInIcon;
+      case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
+        return Images.rentalInIcon;
+      case Constant.WALLET_EXPENSE:
+        return Images.rentalOutIcon;
+      case Constant.WALLET_INVOICE_PAYMENT:
+        return Images.rentalOutIcon;
+      case Constant.WALLET_WITHDRAWAL:
+        return Images.withdrawIcon;
+    }
+  };
+
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container pt-5 pb-7">
-        <div
-          className={`flex items-center justify-between overflow-hidden pb-6`}
-        >
-          <div className="flex justify-center items-center">
-            <div onClick={onClickGoBack} className="cursor-pointer">
-              <CustomImage
-                className={"me-5 cursor-pointer"}
-                src={Images.leftIconWhite}
-                imageStyle={{ width: 10 }}
-              />
-            </div>
+    <CustomOwnerHeader
+      title="Transaction Overview"
+      onClickGoBack={onClickGoBack}
+      className="pb-0"
+    >
+      <NextSeo title="Transaction Overview | Owner - Spacify Asia" />
 
-            <CustomText
-              textClassName={"font-bold white-text"}
-              styles={{ fontSize: 18 }}
-            >
-              Transaction Overview
-            </CustomText>
-          </div>
+      {/*<div className="px-4 absolute top-16 w-full z-10">*/}
+      {/*  <div className="global-box-shadow global-border-radius p-5 flex items-center primaryWhite-bg-color">*/}
+      {/*    <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 30 }} />*/}
 
-          {/*<CustomImage*/}
-          {/*  src={rightButtonIcon}*/}
-          {/*  imageStyle={{ width: 25, height: 25 }}*/}
-          {/*  onClick={onClickRightButton}*/}
-          {/*  className="cursor-pointer"*/}
-          {/*/>*/}
-        </div>
+      {/*    <div>*/}
+      {/*      <CustomText textClassName="font-size-xxlarge font-bold px-3 leading-4">*/}
+      {/*        {isEmpty(amount) ? "RM0" : amount}*/}
+      {/*      </CustomText>*/}
+      {/*      /!*<CustomText textClassName="font-size-xxsmall disable-text px-3">*!/*/}
+      {/*      /!*  {`withdraw amount`}*!/*/}
+      {/*      /!*</CustomText>*!/*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+
+      <div className="body-container primaryWhite-bg-color flex-1 py-5">
+        <DetailLabel title="Amount" value={isEmpty(amount) ? "-" : amount} />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <DetailLabel
+          title="Transaction Type"
+          value={isEmpty(typeLabel) ? "-" : typeLabel}
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <DetailLabel
+          title="Payment Details"
+          value={isEmpty(remarks) ? "-" : remarks}
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <DetailLabel
+          title="Payment Method"
+          value={isEmpty(paymentMethod) ? "-" : paymentMethod}
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <DetailLabel
+          title="Updated Date/Time"
+          value={
+            isEmpty(updatedAt)
+              ? moment().format("DD MMM YYYY, HH:mmm")
+              : updatedAt
+          }
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        {/*<DetailLabel title="Wallet Ref" value="202407011234567890000000000" />*/}
+        {/*<div className="divider-line" style={{ margin: "20px 0" }}></div>*/}
+
+        <DetailLabel
+          title="Status"
+          value={
+            typeValue === Constant.WALLET_WITHDRAWAL ? withdrawStatus : status
+          }
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <DetailLabel
+          title="Transactions No."
+          value={isEmpty(transactionNumber) ? "-" : transactionNumber}
+        />
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
       </div>
 
-      <div className="px-4 absolute top-16 w-full z-10">
-        <div className="global-box-shadow global-border-radius p-5 flex items-center primaryWhite-bg-color">
-          <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 30 }} />
-
-          <div>
-            <CustomText textClassName="font-size-xxlarge font-bold px-3 leading-4">
-              {`RM1,000`}
-            </CustomText>
-            <CustomText textClassName="font-size-xxsmall disable-text px-3">
-              {`withdraw amount`}
-            </CustomText>
-          </div>
-        </div>
-      </div>
-
-      <div className="body-container primaryWhite-bg-color flex-1 pb-4 pt-16">
-        <DetailLabel title="Transaction Type" value="Rental Income" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Payment Details" value="Withdraw From Wallet" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Payment Method" value="Bank Transfer" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Date/Time" value="01 Jul 2024, 3.35pm" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Wallet Ref" value="202407011234567890000000000" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Status" value="Successful" />
-        <div className="divider-line" style={{ margin: "20px 0" }}></div>
-
-        <DetailLabel title="Transactions No." value="ABC12345678900222331556" />
-      </div>
-
-      <LoadingOverlay loading={getWalletTransactionDetailLoading}/>
-    </div>
+      <LoadingOverlay loading={getWalletTransactionDetailLoading} />
+    </CustomOwnerHeader>
   );
 };
 
-export default TransactionOverview;
+export default withTranslation("common")(OwnerAuthWrapper(TransactionOverview));
