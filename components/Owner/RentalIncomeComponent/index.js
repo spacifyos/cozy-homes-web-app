@@ -1,4 +1,3 @@
-import CustomText from "@/components/CustomText";
 import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";

@@ -235,7 +235,7 @@ const MyReport = ({ id }) => {
 
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Grand Total</CustomText>
-            <CustomText textClassName="font-bold power-on-text">
+            <CustomText textClassName="font-bold">
               {isEmpty(grandTotal) ? "0" : grandTotal}
             </CustomText>
           </div>

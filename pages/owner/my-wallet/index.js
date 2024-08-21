@@ -15,7 +15,7 @@ import * as walletSelector from "@/src/selectors/wallet";
 import { get, isEmpty } from "lodash";
 import moment from "moment";
 import Constant from "@/src/utils/Constant";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -90,6 +90,10 @@ const MyWallet = () => {
     router.push("/owner/my-report");
   };
 
+  const onClickWithdraw = () => {
+    router.push("/owner/my-wallet/withdraw");
+  };
+
   return (
     <CustomOwnerHeader
       className="pb-12"
@@ -112,7 +116,10 @@ const MyWallet = () => {
             </CustomText>
           </div>
 
-          <div className="global-box-shadow global-border-radius p-3 primaryWhite-bg-color flex justify-center items-center">
+          <div
+            className="global-box-shadow global-border-radius p-3 primaryWhite-bg-color flex justify-center items-center cursor-pointer"
+            onClick={onClickWithdraw}
+          >
             <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 18 }} />
             <CustomText textClassName="primary-text pl-2 font-size-small">
               Withdraw
@@ -121,7 +128,6 @@ const MyWallet = () => {
         </div>
       }
     >
-
       <NextSeo title="My Wallet | Owner - Spacify Asia" />
 
       <WalletSummary data={walletData} />

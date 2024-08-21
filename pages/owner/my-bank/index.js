@@ -40,7 +40,8 @@ const MyBank = () => {
 
   const [getWalletTransactionListingLoading, setGetWalletTransactionLoading] =
     useState(false);
-  const [getWalletTransactionListing, setGetWalletTransactionListing] = useState([]);
+  const [getWalletTransactionListing, setGetWalletTransactionListing] =
+    useState([]);
 
   useEffect(() => {
     fetchWalletTransactionListing();
@@ -54,7 +55,7 @@ const MyBank = () => {
   const fetchWalletTransactionListing = async (
     perPage = 20,
     page = 1,
-    params = { type: Constant.WALLET_WITHDRAWAL },
+    params = { type: "Withdraw" },
   ) => {
     await apiRequest.getWalletTransactionListingRequest(
       perPage,

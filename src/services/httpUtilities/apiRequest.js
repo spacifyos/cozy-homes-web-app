@@ -320,6 +320,18 @@ const getOwnerReportOverviewRequest = async (
   );
 };
 
+const postWalletWithdrawRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postWalletWithdraw(postData),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -350,4 +362,5 @@ export default {
   getWalletTransactionDetailRequest,
   getOwnerReportListingRequest,
   getOwnerReportOverviewRequest,
+  postWalletWithdrawRequest,
 };

@@ -19,20 +19,20 @@ const TransactionComponent = ({
         {/*</CustomText>*/}
       </div>
 
-      <div className="pb-4">
-        <CustomButton
-          buttonText="All"
-          buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-          textClassName="font-size-xsmall"
-          onClick={() => onClickSelectCategory("All")}
-        />
-        <CustomButton
-          buttonText="Cash Out"
-          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Cash Out") ? "primary-btn" : "default-btn"} mr-2`}
-          textClassName="font-size-xsmall"
-          onClick={() => onClickSelectCategory("Cash Out")}
-        />
-      </div>
+      {/*<div className="pb-4">*/}
+      {/*  <CustomButton*/}
+      {/*    buttonText="All"*/}
+      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*    textClassName="font-size-xsmall"*/}
+      {/*    onClick={() => onClickSelectCategory("All")}*/}
+      {/*  />*/}
+      {/*  <CustomButton*/}
+      {/*    buttonText="Cash Out"*/}
+      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "Cash Out") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*    textClassName="font-size-xsmall"*/}
+      {/*    onClick={() => onClickSelectCategory("Cash Out")}*/}
+      {/*  />*/}
+      {/*</div>*/}
 
       <RentalIncomeComponent data={data} />
     </div>

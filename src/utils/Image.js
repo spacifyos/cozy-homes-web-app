@@ -158,6 +158,7 @@ const Image = {
   addIcon: "/images/icon/add_icon.png",
   bankIconWhite: "/images/icon/bank_icon_white.png",
   paperIcon: "/images/icon/paper_icon.png",
+  bankIcon:"/images/icon/bank_icon.png"
 };
 
 export default { ...Image };

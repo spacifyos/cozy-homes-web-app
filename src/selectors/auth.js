@@ -50,5 +50,9 @@ export const getAccountHolderName = (state) => _.get(state, ["account_holder_nam
 export const getAccountNumber = (state) => _.get(state, ["account_number"], "");
 export const getBankLogo = (state) => _.get(state, ["logo"], "");
 export const getBankName = (state) => _.get(state, ["bank_name", "label"], "");
+export const getWalletBalance = (state) => _.get(state, ["wallet", "balance"], "");
+export const getWalletIsCanWithdraw = (state) => _.get(state, ["wallet", "isCanWithdraw"], "");
+export const getWalletUpdatedAt = (state) => _.get(state, ["wallet", "updated_at"], "");
+export const getWalletWithdrawableAmount = (state) => _.get(state, ["wallet", "withdrawableAmount"], "");
 
 

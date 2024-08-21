@@ -5,15 +5,17 @@ import * as walletSelector from "@/src/selectors/wallet";
 import { isEmpty } from "lodash";
 import moment from "moment";
 import Constant from "@/src/utils/Constant";
+import StatusLabel from "@/components/StatusLabel";
 
 const TransactionCard = ({ onClickToTransactionOverview, data }) => {
   const updatedAt = walletSelector.getUpdatedAt(data);
   const remarks = walletSelector.getRemarks(data);
   const typeLabel = walletSelector.getTypeLabel(data);
   const typeValue = walletSelector.getTypeValue(data);
-  const amount = walletSelector.getAmount(data);
+  const amount = walletSelector.getAmountLabel(data);
   const transactionNumber = walletSelector.getTransactionNumber(data);
   const isAdd = walletSelector.getIsAdd(data);
+  const withdraw = walletSelector.getRequestStatus(data);
 
   const renderIcon = (type) => {
     switch (type) {
@@ -39,11 +41,19 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
         <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 30 }} />
 
         <div className="px-3">
-          <CustomText textClassName="disable-text italic font-size-xxsmall">
-            {isEmpty(updatedAt)
-              ? moment().format("DD MMM YYYY, HH:mmm")
-              : updatedAt}
-          </CustomText>
+          <div className="flex items-center">
+            <CustomText textClassName="disable-text italic font-size-xxsmall pr-2">
+              {isEmpty(updatedAt)
+                ? moment().format("DD MMM YYYY, HH:mmm")
+                : updatedAt}
+            </CustomText>
+            {typeValue === Constant.WALLET_WITHDRAWAL ? (
+              <StatusLabel status={withdraw} />
+            ) : (
+              false
+            )}
+          </div>
+
           <CustomText textClassName="font-bold font-size-small" lineClamp={2}>
             {isEmpty(remarks) ? "-" : remarks}
           </CustomText>

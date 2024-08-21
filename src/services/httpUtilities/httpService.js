@@ -170,6 +170,9 @@ const getOwnerReportListing = (params) => {
 const getOwnerReportOverview = (id, month) =>
   apiInstance.get(`/owner/p-and-l/${id}?month=${month}`);
 
+const postWalletWithdraw = (postData) =>
+  apiInstance.post(`/wallet/request-withdrawal`, postData);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -218,4 +221,5 @@ export default {
   getWalletTransactionDetail,
   getOwnerReportListing,
   getOwnerReportOverview,
+  postWalletWithdraw
 };

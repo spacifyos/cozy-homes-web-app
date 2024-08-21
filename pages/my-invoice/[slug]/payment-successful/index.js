@@ -88,7 +88,7 @@ const PaymentSuccessful = ({ id }) => {
       {/*  3,800*/}
       {/*</CustomText>*/}
       <CustomText textClassName="font-bold font-size-xxlarge">
-        {t("invoiceSuccessful.paymentCompleted")}
+        {t("invoiceSuccessful.congratulations")}
       </CustomText>
 
       <div className="flex flex-col global-border-radius primaryWhite-bg-color py-2 px-4 global-box-shadow w-full my-7">
@@ -100,7 +100,7 @@ const PaymentSuccessful = ({ id }) => {
             height={30}
           />
           <CustomText textClassName="black-text font-bold font-size-xlarge">
-            {t("invoiceSuccessful.congratulations")}
+            {t("invoiceSuccessful.paymentCompleted")}
           </CustomText>
         </div>
 

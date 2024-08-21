@@ -95,8 +95,8 @@ const OwnerAccount = () => {
     router.push("/owner/my-bank");
   };
 
-  const onClickToCoinsTransaction = () => {
-    router.push("/coins-transaction");
+  const onClickToMyWallet = () => {
+    router.push("/owner/my-wallet");
   };
 
   const onClickToLatestUpdate = () => {
@@ -237,7 +237,7 @@ const OwnerAccount = () => {
 
         <SpacifyCoins
           t={t}
-          onClickToCoinsTransaction={onClickToCoinsTransaction}
+          onClickToMyWallet={onClickToMyWallet}
         />
       </div>
 
@@ -254,16 +254,19 @@ const OwnerAccount = () => {
       {/*<div className="divider-line"></div>*/}
       <div className="body-container bg-color flex-1 pb-24">
         <div className="pt-28">
-          {/*<FeatureComponent*/}
-          {/*  title="My Bank"*/}
-          {/*  icon={Images.primaryInvoiceIcon}*/}
-          {/*  pb={3}*/}
-          {/*  onClick={onClickToMyBank}*/}
-          {/*/>*/}
+          <FeatureComponent
+            title="My Bank"
+            icon={Images.bankIcon}
+            imageWidth={20}
+            imageHeight={20}
+            pb={3}
+            onClick={onClickToMyBank}
+          />
 
           <FeatureComponent
             title={t("account.myInvoice")}
             icon={Images.primaryInvoiceIcon}
+            imageWidth={25}
             pb={3}
             onClick={onClickToInvoice}
           />
@@ -271,8 +274,7 @@ const OwnerAccount = () => {
           <FeatureComponent
             title={"My Report"}
             icon={Images.paperIcon}
-            imageWidth={20}
-            imageHeight={20}
+            imageWidth={16}
             pb={3}
             onClick={onClickToReport}
           />
@@ -287,6 +289,7 @@ const OwnerAccount = () => {
           <FeatureComponent
             title={t("account.setPinNumber")}
             icon={Images.primaryLockIcon}
+            imageWidth={25}
             pb={3}
             onClick={onClickOpenSetPinNumberModal}
           />
@@ -296,6 +299,7 @@ const OwnerAccount = () => {
           <FeatureComponent
             title={t("account.termAndCondition")}
             icon={Images.primaryTermAndConditionIcon}
+            imageWidth={25}
             pb={3}
             onClick={onClickToTnC}
           />

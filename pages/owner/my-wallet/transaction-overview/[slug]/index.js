@@ -40,7 +40,8 @@ const TransactionOverview = ({ id }) => {
   const remarks = walletSelector.getRemarks(walletTransactionDetail);
   const typeLabel = walletSelector.getTypeLabel(walletTransactionDetail);
   const typeValue = walletSelector.getTypeValue(walletTransactionDetail);
-  const amount = walletSelector.getAmount(walletTransactionDetail);
+  const amount = walletSelector.getAmountValue(walletTransactionDetail);
+  const currency = walletSelector.getAmountCurrency(walletTransactionDetail);
   const transactionNumber = walletSelector.getTransactionNumber(
     walletTransactionDetail,
   );
@@ -112,7 +113,10 @@ const TransactionOverview = ({ id }) => {
       {/*</div>*/}
 
       <div className="body-container primaryWhite-bg-color flex-1 py-5">
-        <DetailLabel title="Amount" value={isEmpty(amount) ? "-" : amount} />
+        <DetailLabel
+          title="Amount"
+          value={`${currency} ${isEmpty(amount) ? "-" : amount}`}
+        />
         <div className="divider-line" style={{ margin: "20px 0" }}></div>
 
         <DetailLabel

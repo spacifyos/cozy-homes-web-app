@@ -10,7 +10,7 @@ import BookingInput from "@/components/Booking/BookingInput";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty, size } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -32,6 +32,7 @@ const AddBank = () => {
   const [bankValue, setBankValue] = useState(null);
   const [accountNameValue, setAccountNameValue] = useState("");
   const [accountNumberValue, setAccountNumberValue] = useState("");
+  const [pinNumberValue, setPinNumberValue] = useState("");
   const [openSelectBank, setOpenSelectBank] = useState(false);
 
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -48,7 +49,8 @@ const AddBank = () => {
     if (
       isEmpty(bankValue) ||
       isEmpty(accountNameValue) ||
-      isEmpty(accountNumberValue)
+      isEmpty(accountNumberValue) ||
+      isEmpty(pinNumberValue)
     ) {
       return Toast.error("All fields are required.");
     }
@@ -61,6 +63,7 @@ const AddBank = () => {
       bank_name: get(bankValue, ["value"], ""),
       account_holder_name: accountNameValue,
       account_number: accountNumberValue,
+      pin_number: pinNumberValue,
     };
 
     await apiRequest.postUpdateBankDetailRequest(
@@ -119,10 +122,10 @@ const AddBank = () => {
           />
 
           <BookingInput
-            title="Account Name"
+            title="Account Holder Name"
             required
             bgColor="primaryWhite-bg-color"
-            placeholder="Your Name"
+            placeholder="Your Holder Name"
             className="pb-4"
             onChange={(e) => setAccountNameValue(e.target.value)}
           />
@@ -132,9 +135,24 @@ const AddBank = () => {
             required
             type="number"
             bgColor="primaryWhite-bg-color"
-            placeholder="Your Number"
+            placeholder="Your Account Number"
             className="pb-4"
             onChange={(e) => setAccountNumberValue(e.target.value)}
+          />
+
+          <BookingInput
+            title="Pin Number"
+            required
+            type="number"
+            bgColor="primaryWhite-bg-color"
+            placeholder="Your Pin Number"
+            className="pb-4"
+            onChange={(e) => {
+              if (size(e.target.value) <= 6) {
+                setPinNumberValue(e.target.value);
+              }
+            }}
+            value={pinNumberValue}
           />
 
           <div className="flex pt-3">
