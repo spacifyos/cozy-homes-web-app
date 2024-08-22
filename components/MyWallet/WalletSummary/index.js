@@ -36,17 +36,16 @@ const WalletSummary = ({ data }) => {
           const icon = get(list, ["icon"], "");
 
           return (
-            <div className="global-box-shadow global-border-radius px-2 py-5 flex items-center justify-center primaryWhite-bg-color">
-              <CustomImage src={icon} imageStyle={{ width: 20 }} />
+            <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color">
+              <CustomImage src={icon} imageStyle={{ width: 35 }} />
 
-              <div className="pl-2">
-                <CustomText textClassName="font-size-xxlarge font-bold leading-4">
-                  {value}
-                </CustomText>
-                <CustomText textClassName="disable-text font-size-xxsmall">
-                  {name}
-                </CustomText>
-              </div>
+              <CustomText textClassName="font-size-xxlarge font-bold leading-4 py-1">
+                {value}
+              </CustomText>
+
+              <CustomText textClassName="disable-text font-size-xxsmall">
+                {name}
+              </CustomText>
             </div>
           );
         })}

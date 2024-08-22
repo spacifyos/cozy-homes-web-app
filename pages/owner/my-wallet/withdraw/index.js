@@ -3,7 +3,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import CustomText from "@/components/CustomText";
-import { isEmpty, size, get } from "lodash";
+import { isEmpty, size, get, toInteger } from "lodash";
 import moment from "moment/moment";
 import BookingInput from "@/components/Booking/BookingInput";
 import CustomImage from "@/components/CustomImage";
@@ -69,6 +69,10 @@ const Withdraw = () => {
       return Toast.error("All fields are required.");
     }
 
+    if (toInteger(withdrawAmount) > toInteger(walletWithdrawableAmount)) {
+      return Toast.error("Your withdraw amount is invalid.");
+    }
+
     const postData = {
       amount: withdrawAmount,
       pin_number: pinNumberValue,
@@ -97,12 +101,15 @@ const Withdraw = () => {
       title="Withdraw Request"
       headerContent={
         <div className="flex flex-col items-center">
-          <CustomText textClassName="white-text">Wallet Balance</CustomText>
+          <CustomText textClassName="white-text">
+            Available Wallet Balance
+          </CustomText>
           <CustomText
             textClassName={`white-text font-bold`}
             styles={{ fontSize: 24 }}
           >
-            RM {isEmpty(walletBalance) ? "0" : walletBalance}
+            RM{" "}
+            {isEmpty(walletWithdrawableAmount) ? "0" : walletWithdrawableAmount}
           </CustomText>
           <CustomText textClassName="white-text font-size-xxsmall">
             {`Last updated: ${isEmpty(walletUpdatedAt) ? moment().format("DD MMM YYYY, HH:mmm") : walletUpdatedAt}`}
@@ -139,7 +146,7 @@ const Withdraw = () => {
         </div>
 
         <BookingInput
-          title="Pin Number"
+          title="Pin Number (6 digits)"
           required
           type="number"
           bgColor="primaryWhite-bg-color"

@@ -14,10 +14,14 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import { isEmpty, lowerCase, replace } from "lodash";
+import { isEmpty, lowerCase, map, replace } from "lodash";
 import BankCard from "@/components/MyBank/BankCard";
 import Constant from "@/src/utils/Constant";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
+import TransactionCard from "@/components/MyWallet/TransactionCard";
+import CustomButton from "@/components/CustomButton";
+import * as walletSelector from "@/src/selectors/wallet";
 
 export { getServerSideProps };
 
@@ -38,10 +42,23 @@ const MyBank = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const [getWalletTransactionListingLoading, setGetWalletTransactionLoading] =
+  const [walletTransactionListingLoading, setWalletTransactionListingLoading] =
     useState(false);
-  const [getWalletTransactionListing, setGetWalletTransactionListing] =
-    useState([]);
+  const [walletTransactionListing, setWalletTransactionListing] = useState([]);
+  const [
+    walletTransactionListingPagination,
+    setWalletTransactionListingPagination,
+  ] = useState([]);
+
+  const hasMorePage = walletSelector.getHasMorePages(
+    walletTransactionListingPagination,
+  );
+  const lastPage = walletSelector.getLastPage(
+    walletTransactionListingPagination,
+  );
+  const currentPage = walletSelector.getCurrentPage(
+    walletTransactionListingPagination,
+  );
 
   useEffect(() => {
     fetchWalletTransactionListing();
@@ -61,13 +78,18 @@ const MyBank = () => {
       perPage,
       page,
       params,
-      setGetWalletTransactionLoading,
+      setWalletTransactionListingLoading,
       getWalletSuccessCallback,
     );
   };
 
-  const getWalletSuccessCallback = (res) => {
-    setGetWalletTransactionListing(res);
+  const getWalletSuccessCallback = (res, pagination) => {
+    const checkCurrentPage = walletSelector.getCurrentPage(pagination);
+
+    setWalletTransactionListingPagination(pagination);
+    setWalletTransactionListing((prevState) =>
+      checkCurrentPage > 1 ? [...prevState, ...res] : res,
+    );
   };
 
   const fetchUserprofileData = () => {
@@ -92,6 +114,16 @@ const MyBank = () => {
     router.push(`/owner/my-bank/${formatBankName}`);
   };
 
+  const onClickToTransactionOverview = (id) => {
+    router.push({
+      pathname: `/owner/my-wallet/transaction-overview/${id}`,
+    });
+  };
+
+  const onClickLoadMore = () => {
+    fetchWalletTransactionListing(20, currentPage + 1);
+  };
+
   return (
     <CustomOwnerHeader
       className="pb-28"
@@ -106,17 +138,59 @@ const MyBank = () => {
         onClickEditBankInfo={onClickEditBankInfo}
       />
 
-      <div className="body-container bg-color flex flex-1">
-        <TransactionComponent
-          data={getWalletTransactionListing}
-          selectedCategory={selectedCategory}
-          onClickSelectCategory={onClickSelectCategory}
-        />
+      <div className="body-container bg-color flex flex-col flex-1 pb-4">
+        <div className="pt-16 flex flex-col flex-1">
+          <div className="flex justify-between items-end pb-3 pt-2">
+            <CustomText textClassName="font-bold">Transactions</CustomText>
+          </div>
+
+          <div className="flex flex-col flex-1">
+            {isEmpty(walletTransactionListing) ? (
+              <div className="flex justify-center flex-1">
+                <CustomEmptyBox />
+              </div>
+            ) : (
+              <div className="flex flex-col gap-3">
+                {map(walletTransactionListing, (item, index) => {
+                  return (
+                    <TransactionCard
+                      data={item}
+                      key={index}
+                      onClickToTransactionOverview={
+                        onClickToTransactionOverview
+                      }
+                    />
+                  );
+                })}
+
+                {hasMorePage &&
+                lastPage > 1 &&
+                !isEmpty(walletTransactionListing) ? (
+                  <div className="flex justify-center pb-3 pt-1">
+                    <CustomButton
+                      buttonClassName="primary-btn min-h-9 h-9 w-32"
+                      buttonText="Load More"
+                      textClassName="font-size-xsmall"
+                      loading={
+                        walletTransactionListingLoading &&
+                        !isEmpty(walletTransactionListing)
+                      }
+                      onClick={onClickLoadMore}
+                    />
+                  </div>
+                ) : (
+                  false
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <LoadingOverlay
         loading={
-          getWalletTransactionListingLoading ||
+          (walletTransactionListingLoading &&
+            isEmpty(walletTransactionListing)) ||
           (userProfileLoading && isEmpty(userProfileData))
         }
       />

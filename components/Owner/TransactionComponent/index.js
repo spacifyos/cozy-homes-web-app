@@ -1,5 +1,5 @@
 import CustomButton from "@/components/CustomButton";
-import { isEqual } from "lodash";
+import { take, isEqual } from "lodash";
 import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import InvoiceSection from "@/components/MyStay/InvoiceSection";
 
@@ -32,7 +32,7 @@ const TransactionComponent = ({
       </div>
 
       {isEqual(selectedCategory, "Rental") ? (
-        <RentalIncomeComponent data={transactionListing} />
+        <RentalIncomeComponent data={take(transactionListing, 4)} />
       ) : (
         <InvoiceSection
           t={t}

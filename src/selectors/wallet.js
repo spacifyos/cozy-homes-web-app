@@ -21,3 +21,8 @@ export const getPaymentMethod = (state) => get(state, ["payment_method"], "");
 export const getRequestStatus = (state) => get(state, ["request_status"], "");
 export const getStatus = (state) => get(state, ["status"], "");
 export const getTransferTo = (state) => get(state, ["transfer_to"], "");
+
+export const getHasMorePages = (state) => get(state, ["has_more_pages"], false);
+export const getTotalPage = (state) => get(state, ["total"], 1);
+export const getCurrentPage = (state) => get(state, ["current_page"], 1);
+export const getLastPage = (state) => get(state, ["last_page"], 1);

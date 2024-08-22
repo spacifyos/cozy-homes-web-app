@@ -8,6 +8,7 @@ const TransactionComponent = ({
   data,
   selectedCategory,
   onClickSelectCategory,
+  onClickToTransactionOverview,
 }) => {
   return (
     <div className="pt-16 flex flex-col flex-1">
@@ -34,7 +35,10 @@ const TransactionComponent = ({
       {/*  />*/}
       {/*</div>*/}
 
-      <RentalIncomeComponent data={data} />
+      <RentalIncomeComponent
+        data={data}
+        onClickToTransactionOverview={onClickToTransactionOverview}
+      />
     </div>
   );
 };

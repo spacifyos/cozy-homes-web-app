@@ -42,6 +42,7 @@ const OwnerAccount = () => {
   );
 
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
+  const walletBalance = authSelector.getWalletBalance(userProfileData);
   const type = authSelector.getType(userProfileData);
 
   const [signOutLoading, setSignOutLoading] = useState(false);
@@ -238,6 +239,7 @@ const OwnerAccount = () => {
         <SpacifyCoins
           t={t}
           onClickToMyWallet={onClickToMyWallet}
+          walletBalance={walletBalance}
         />
       </div>
 
@@ -290,17 +292,15 @@ const OwnerAccount = () => {
             title={t("account.setPinNumber")}
             icon={Images.primaryLockIcon}
             imageWidth={25}
-            pb={3}
             onClick={onClickOpenSetPinNumberModal}
           />
 
-          {/*<div className="divider-line"></div>*/}
+          <div className="divider-line"></div>
 
           <FeatureComponent
             title={t("account.termAndCondition")}
             icon={Images.primaryTermAndConditionIcon}
             imageWidth={25}
-            pb={3}
             onClick={onClickToTnC}
           />
 
@@ -322,7 +322,7 @@ const OwnerAccount = () => {
             </div>
 
             <CustomText textClassName="disable-text font-size-small">
-              {t("account.version")} 1.4.0
+              {t("account.version")} 1.5.0
             </CustomText>
           </div>
         </div>

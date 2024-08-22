@@ -19,13 +19,14 @@ const apiRequest = async (
 
     const status = get(res, ["status"], 0);
     const data = get(res, ["data", "data"], "");
+    const pagination = get(res, ["data", "pagination"], "");
     const config = get(res, ["data", "config"], "");
     const code = get(res, ["data", "code"], 0);
     const message = get(res, ["data", "message"], "");
 
     if (status === 200 || code === 200 || code === 204) {
       setLoading(false);
-      successCallback(isEmpty(data) ? config : data);
+      successCallback(isEmpty(data) ? config : data, pagination);
 
       if (!ignoreSuccessMessage) {
         Toast.success(isEmpty(message) ? successMessage : message);
@@ -266,7 +267,14 @@ const postUpdateBankDetailRequest = async (
 };
 
 const getWalletRequest = async (setLoading, successCallback) => {
-  await apiRequest(api.getWallet(), setLoading, successCallback);
+  await apiRequest(
+    api.getWallet(),
+    setLoading,
+    successCallback,
+    null,
+    "",
+    true,
+  );
 };
 
 const getWalletTransactionListingRequest = async (
@@ -280,6 +288,9 @@ const getWalletTransactionListingRequest = async (
     api.getWalletTransactionListing(perPage, page, params),
     setLoading,
     successCallback,
+    null,
+    "",
+    true,
   );
 };
 
@@ -292,6 +303,9 @@ const getWalletTransactionDetailRequest = async (
     api.getWalletTransactionDetail(id),
     setLoading,
     successCallback,
+    null,
+    "",
+    true,
   );
 };
 
@@ -304,6 +318,9 @@ const getOwnerReportListingRequest = async (
     api.getOwnerReportListing(params),
     setLoading,
     successCallback,
+    null,
+    "",
+    true,
   );
 };
 
@@ -317,6 +334,9 @@ const getOwnerReportOverviewRequest = async (
     api.getOwnerReportOverview(id, month),
     setLoading,
     successCallback,
+    null,
+    "",
+    true,
   );
 };
 

@@ -13,7 +13,7 @@ const RentalIncomeCard = ({ item }) => {
   return (
     <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center primaryWhite-bg-color">
       <div className="flex">
-        <CustomImage src={Images.rentalInIcon} imageStyle={{ width: 30 }} />
+        <CustomImage src={Images.rentalInIcon} imageStyle={{ width: 35 }} />
 
         <div className="px-3">
           <CustomText textClassName="disable-text italic font-size-xxsmall">

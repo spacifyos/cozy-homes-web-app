@@ -38,27 +38,31 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
       onClick={() => onClickToTransactionOverview(transactionNumber)}
     >
       <div className="flex col-span-3">
-        <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 30 }} />
+        <div className="flex items-center" style={{ width: 35 }}>
+          <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 40 }} />
+        </div>
 
         <div className="px-3">
-          <div className="flex items-center">
-            <CustomText textClassName="disable-text italic font-size-xxsmall pr-2">
-              {isEmpty(updatedAt)
-                ? moment().format("DD MMM YYYY, HH:mmm")
-                : updatedAt}
-            </CustomText>
-            {typeValue === Constant.WALLET_WITHDRAWAL ? (
-              <StatusLabel status={withdraw} />
-            ) : (
-              false
-            )}
-          </div>
+          {/*<CustomText textClassName="disable-text font-size-xxsmall pr-2">*/}
+          {/*  {isEmpty(typeLabel) ? "-" : typeLabel}*/}
+          {/*</CustomText>*/}
+          {typeValue === Constant.WALLET_WITHDRAWAL ? (
+            <StatusLabel status={withdraw} />
+          ) : (
+            false
+          )}
 
-          <CustomText textClassName="font-bold font-size-small" lineClamp={2}>
+          <CustomText
+            textClassName="font-bold font-size-small pt-1"
+            lineClamp={2}
+          >
             {isEmpty(remarks) ? "-" : remarks}
           </CustomText>
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            {isEmpty(typeLabel) ? "-" : typeLabel}
+
+          <CustomText textClassName="disable-text italic font-size-xxsmall">
+            {isEmpty(updatedAt)
+              ? moment().format("DD MMM YYYY, HH:mmm")
+              : updatedAt}
           </CustomText>
         </div>
       </div>
