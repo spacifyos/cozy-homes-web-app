@@ -27,6 +27,15 @@ const OwnerHome = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
+
   const [selectedCategory, setSelectedCategory] = useState("Rental");
   const [selectedInvoiceCategory, setSelectedInvoiceCategory] =
     useState("HomeAll");
@@ -77,7 +86,12 @@ const OwnerHome = () => {
   useEffect(() => {
     fetchPropertyListing();
     fetchTransactionListing();
+    fetchUserprofileData();
   }, []);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
 
   const fetchTransactionListing = async () => {
     await apiRequest.getOwnerTransaction(
@@ -146,10 +160,10 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <UserDetailComponent data={propertyListing} />
+      <UserDetailComponent data={userProfileData} />
 
       <div className="body-container bg-color flex-1 pb-24">
-        <PropertyInfoComponent lists={lists} />
+        <PropertyInfoComponent lists={lists} paddingTop={"4rem"} />
 
         <PropertyCarouselComponent
           onClickToPropertyDetail={onClickToPropertyDetail}
