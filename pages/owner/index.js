@@ -145,6 +145,10 @@ const OwnerHome = () => {
     router.push(`/owner/my-invoice/${id}`);
   };
 
+  const onClickToWallet = () => {
+    router.push("/owner/my-wallet");
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
       <div className="body-container pt-10 pb-12">
@@ -160,7 +164,10 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <UserDetailComponent data={userProfileData} />
+      <UserDetailComponent
+        data={userProfileData}
+        onClickToWallet={onClickToWallet}
+      />
 
       <div className="body-container bg-color flex-1 pb-24">
         <PropertyInfoComponent lists={lists} paddingTop={"4rem"} />

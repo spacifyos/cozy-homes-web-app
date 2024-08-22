@@ -5,7 +5,7 @@ import { isEmpty } from "lodash";
 import * as ownerSelector from "@/src/selectors/owner";
 import * as authSelector from "@/src/selectors/auth";
 
-const UserDetailComponent = ({ data }) => {
+const UserDetailComponent = ({ data, onClickToWallet }) => {
   const name = authSelector.getName(data);
   const email = authSelector.getEmail(data);
   const phoneNumber = authSelector.getPhoneNumber(data);
@@ -43,12 +43,15 @@ const UserDetailComponent = ({ data }) => {
           </div>
         </div>
 
-        <div className="flex justify-end items-center">
-          {/*<CustomImage*/}
-          {/*  className="bg-color global-box-shadow global-border-radius"*/}
-          {/*  src={Images.logoImage}*/}
-          {/*  imageStyle={{ width: 40, height: 40 }}*/}
-          {/*/>*/}
+        <div
+          className="flex justify-end items-center cursor-pointer"
+          onClick={onClickToWallet}
+        >
+          <CustomImage
+            className="bg-color global-box-shadow global-border-radius"
+            src={Images.logoImage}
+            imageStyle={{ width: 40, height: 40 }}
+          />
 
           <div className="flex flex-col pl-2">
             <CustomText textClassName="disable-text font-size-xxsmall">
