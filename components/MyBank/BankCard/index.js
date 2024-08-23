@@ -17,7 +17,7 @@ const BankCard = ({ bankDetails, onClickToAddBank, onClickEditBankInfo }) => {
         className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center justify-center"
         style={{ height: 163 }}
       >
-        {isEmpty(bankDetails) ? (
+        {isEmpty(accountNumber) ? (
           <div
             className="flex flex-col justify-center items-center flex-1 cursor-pointer"
             onClick={onClickToAddBank}
