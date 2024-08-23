@@ -7,7 +7,6 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import BookingInput from "@/components/Booking/BookingInput";
-import BookingSelect from "@/components/Booking/BookingSelect";
 import { useEffect, useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import CustomSelectWithIcon from "@/components/CustomSelectWithIcon";

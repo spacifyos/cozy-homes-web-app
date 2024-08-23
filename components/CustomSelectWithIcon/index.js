@@ -55,7 +55,7 @@ const CustomSelectWithIcon = ({
 
         {openSelectBank ? (
           <div
-            className="absolute primaryWhite-bg-color w-full py-2 px-4 grid gap-2 overflow-y-auto"
+            className="absolute primaryWhite-bg-color w-full py-2 px-4 grid gap-2 overflow-y-auto z-10"
             style={{
               borderRadius: "0 0 10px 10px",
               bottom: "-31",
