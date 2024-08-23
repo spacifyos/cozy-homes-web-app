@@ -14,7 +14,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import { isEmpty, lowerCase, map, replace } from "lodash";
+import { isEmpty, isEqual, lowerCase, map, replace } from "lodash";
 import BankCard from "@/components/MyBank/BankCard";
 import Constant from "@/src/utils/Constant";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
@@ -24,6 +24,8 @@ import CustomButton from "@/components/CustomButton";
 import * as walletSelector from "@/src/selectors/wallet";
 
 export { getServerSideProps };
+
+const btn = ["All", "Pending", "Confirmed", "Approved", "Cancelled"];
 
 const MyBank = () => {
   const router = useRouter();
@@ -41,6 +43,7 @@ const MyBank = () => {
   const bankDetails = authSelector.getBankDetails(userProfileData);
 
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loadMore, setLoadMore] = useState(false);
 
   const [walletTransactionListingLoading, setWalletTransactionListingLoading] =
     useState(false);
@@ -66,13 +69,14 @@ const MyBank = () => {
   }, []);
 
   useEffect(() => {
+    setLoadMore(false);
     fetchWalletTransactionListing();
   }, [selectedCategory]);
 
   const fetchWalletTransactionListing = async (
     perPage = 20,
     page = 1,
-    params = { type: "Withdraw" },
+    params = { type: "Withdraw", requestStatus: selectedCategory },
   ) => {
     await apiRequest.getWalletTransactionListingRequest(
       perPage,
@@ -121,7 +125,11 @@ const MyBank = () => {
   };
 
   const onClickLoadMore = () => {
-    fetchWalletTransactionListing(20, currentPage + 1);
+    setLoadMore(true);
+    fetchWalletTransactionListing(20, currentPage + 1, {
+      type: "Withdraw",
+      requestStatus: selectedCategory,
+    });
   };
 
   return (
@@ -140,8 +148,20 @@ const MyBank = () => {
 
       <div className="body-container bg-color flex flex-col flex-1 pb-4">
         <div className="pt-16 flex flex-col flex-1">
-          <div className="flex justify-between items-end pb-3 pt-2">
+          <div className="flex justify-between items-end pb-2 pt-2">
             <CustomText textClassName="font-bold">Transactions</CustomText>
+          </div>
+
+          <div className="flex items-center pb-4 overflow-x-auto hide-scroll-bar">
+            {map(btn, (item, index) => (
+              <CustomButton
+                key={index}
+                buttonText={item}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => onClickSelectCategory(item)}
+              />
+            ))}
           </div>
 
           <div className="flex flex-col flex-1">
@@ -189,8 +209,7 @@ const MyBank = () => {
 
       <LoadingOverlay
         loading={
-          (walletTransactionListingLoading &&
-            isEmpty(walletTransactionListing)) ||
+          (walletTransactionListingLoading && !loadMore) ||
           (userProfileLoading && isEmpty(userProfileData))
         }
       />

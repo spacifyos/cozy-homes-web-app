@@ -43,13 +43,12 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
         </div>
 
         <div className="px-3">
-          {/*<CustomText textClassName="disable-text font-size-xxsmall pr-2">*/}
-          {/*  {isEmpty(typeLabel) ? "-" : typeLabel}*/}
-          {/*</CustomText>*/}
           {typeValue === Constant.WALLET_WITHDRAWAL ? (
             <StatusLabel status={withdraw} />
           ) : (
-            false
+            <CustomText textClassName="disable-text font-size-xxsmall pr-2">
+              {isEmpty(typeLabel) ? "-" : typeLabel}
+            </CustomText>
           )}
 
           <CustomText

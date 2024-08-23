@@ -135,7 +135,7 @@ const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
 const getWallet = () => apiInstance.get(`/wallet`);
 
 const getWalletTransactionListing = (perPage = 20, page = 1, params) => {
-  const { type } = params;
+  const { type, requestStatus } = params;
 
   const formatType = (status) => {
     switch (status) {
@@ -152,8 +152,25 @@ const getWalletTransactionListing = (perPage = 20, page = 1, params) => {
     }
   };
 
+  const formatStatus = (status) => {
+    switch (status) {
+      case "All":
+        return "&request_status=";
+      case "Pending":
+        return `&request_status[]=${Constant.WALLET_WITHDRAW_PENDING}`;
+      case "Confirmed":
+        return `&request_status[]=${Constant.WALLET_WITHDRAW_CONFIRM}`;
+      case "Approved":
+        return `&request_status[]=${Constant.WALLET_WITHDRAW_APPROVED}`;
+      case "Cancelled":
+        return `&request_status[]=${Constant.WALLET_WITHDRAW_CANCELLED}`;
+      default:
+        return "&request_status=";
+    }
+  };
+
   return apiInstance.get(
-    `/wallet/transactions?per_page=${perPage}&page=${page}${formatType(type)}`,
+    `/wallet/transactions?per_page=${perPage}&page=${page}${formatType(type)}${formatStatus(requestStatus)}`,
   );
 };
 
@@ -221,5 +238,5 @@ export default {
   getWalletTransactionDetail,
   getOwnerReportListing,
   getOwnerReportOverview,
-  postWalletWithdraw
+  postWalletWithdraw,
 };
