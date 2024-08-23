@@ -1,4 +1,4 @@
-import { get, map } from "lodash";
+import { get, isEmpty, map } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
@@ -40,7 +40,7 @@ const WalletSummary = ({ data }) => {
               <CustomImage src={icon} imageStyle={{ width: 35 }} />
 
               <CustomText textClassName="font-size-xxlarge font-bold leading-4 py-1">
-                {value}
+                {isEmpty(value) ? "RM0" : value}
               </CustomText>
 
               <CustomText textClassName="disable-text font-size-xxsmall">
