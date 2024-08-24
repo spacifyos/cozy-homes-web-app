@@ -53,7 +53,7 @@ const SpaceDetailCard = ({ item }) => {
               <CustomImage
                 src={Images.spaceIcon}
                 imageStyle={{ width: 18 }}
-                className="mr-1"
+                className="mr-2"
               />
               <CustomText textClassName="font-size-xxsmall">
                 {isEmpty(spaceType) ? "-" : spaceType}

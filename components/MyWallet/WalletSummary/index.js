@@ -29,7 +29,7 @@ const WalletSummary = ({ data }) => {
 
   return (
     <div className="px-4 absolute top-36 w-full z-10">
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 gap-3" style={{maxHeight:110, height:110}}>
         {map(summaryList, (list) => {
           const name = get(list, ["name"], "");
           const value = get(list, ["value"], "");
@@ -39,7 +39,7 @@ const WalletSummary = ({ data }) => {
             <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color">
               <CustomImage src={icon} imageStyle={{ width: 35 }} />
 
-              <CustomText textClassName="font-size-xxlarge font-bold leading-4 py-1">
+              <CustomText textClassName="font-size-xxlarge font-bold leading-4 py-1 text-center">
                 {isEmpty(value) ? "RM0" : value}
               </CustomText>
 

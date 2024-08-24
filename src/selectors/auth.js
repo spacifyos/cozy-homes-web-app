@@ -54,5 +54,6 @@ export const getWalletBalance = (state) => _.get(state, ["wallet", "balance"], "
 export const getWalletIsCanWithdraw = (state) => _.get(state, ["wallet", "isCanWithdraw"], "");
 export const getWalletUpdatedAt = (state) => _.get(state, ["wallet", "updated_at"], "");
 export const getWalletWithdrawableAmount = (state) => _.get(state, ["wallet", "withdrawableAmount"], "");
+export const getHasSetPinNumber = (state) => _.get(state, ["has_set_pin_number"], false);
 
 

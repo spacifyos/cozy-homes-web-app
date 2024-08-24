@@ -17,6 +17,8 @@ import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import CustomModal from "@/components/CustomModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -42,11 +44,18 @@ const Withdraw = () => {
     authSelector.getWalletWithdrawableAmount(userProfileData);
   const bankName = authSelector.getBankName(bankDetails);
   const bankLogo = authSelector.getBankLogo(bankDetails);
+  const hasSetPinNumber = authSelector.getHasSetPinNumber(userProfileData);
 
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [pinNumberValue, setPinNumberValue] = useState("");
 
   const [withdrawLoading, setWithdrawLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(userProfileData) && !hasSetPinNumber) {
+      showPinNumberWarningModel();
+    }
+  }, [userProfileData]);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -95,6 +104,18 @@ const Withdraw = () => {
     }
   };
 
+  const showPinNumberWarningModel = () => {
+    Helper.documentGetElementById("pin_number_warning_modal").showModal();
+  };
+
+  const closePinNumberWarningModal = () => {
+    Helper.documentGetElementById("pin_number_warning_modal").close();
+  };
+
+  const onClickRedirectSetPinNumber = () => {
+    router.push("/owner/account");
+  };
+
   return (
     <CustomOwnerHeader
       onClickGoBack={onClickGoBack}
@@ -108,8 +129,7 @@ const Withdraw = () => {
             textClassName={`white-text font-bold`}
             styles={{ fontSize: 24 }}
           >
-            RM{" "}
-            {isEmpty(walletWithdrawableAmount) ? "0" : walletWithdrawableAmount}
+            RM {isEmpty(walletBalance) ? "0" : walletBalance}
           </CustomText>
           <CustomText textClassName="white-text font-size-xxsmall">
             {`Last updated: ${isEmpty(walletUpdatedAt) ? moment().format("DD MMM YYYY, HH:mmm") : walletUpdatedAt}`}
@@ -126,6 +146,11 @@ const Withdraw = () => {
           onChange={onChangeWithdrawAmount}
           type="number"
           bgColor="primaryWhite-bg-color"
+          errorMessage={
+            toInteger(withdrawAmount) > walletWithdrawableAmount
+              ? "Maximum amount is " + walletWithdrawableAmount
+              : ""
+          }
         />
 
         <div className="pb-6">
@@ -169,12 +194,39 @@ const Withdraw = () => {
 
           <CustomButton
             disable={!walletIsCanWithdraw}
-            buttonClassName="primary-btn"
+            buttonClassName={`${walletIsCanWithdraw ? "primary-btn" : "disable-btn"}`}
             buttonText={"Submit"}
             onClick={onClickSubmit}
           />
         </div>
       </div>
+
+      <CustomModal id="pin_number_warning_modal" disableClose>
+        <div className="flex flex-col items-center w-full">
+          <CustomImage
+            src={Images.infoIcon}
+            imageStyle={{ width: 100, height: 100 }}
+          />
+          <CustomText textClassName="font-size-large font-bold text-center pt-2">
+            You are have not set PIN Number, please Complete it.
+          </CustomText>
+
+          <div className="grid grid-cols-2 gap-4 pt-6 w-full">
+            <CustomButton
+              buttonClassName="default-btn-outline"
+              buttonText={"Cancel"}
+              onClick={closePinNumberWarningModal}
+            />
+
+            <CustomButton
+              disable={!walletIsCanWithdraw}
+              buttonClassName={`${walletIsCanWithdraw ? "primary-btn" : "disable-btn"}`}
+              buttonText={"Set Pin Number"}
+              onClick={onClickRedirectSetPinNumber}
+            />
+          </div>
+        </div>
+      </CustomModal>
 
       <LoadingOverlay loading={userProfileLoading || withdrawLoading} />
     </CustomOwnerHeader>

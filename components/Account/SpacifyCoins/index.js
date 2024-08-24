@@ -17,7 +17,7 @@ const SpacifyCoins = ({ t, onClickToMyWallet = () => {}, walletBalance }) => {
         <CustomImage src={Images.logoImage} imageStyle={{ width: 30 }} />
       </div>
 
-      <div>
+      <div className="flex flex-col items-center justify-center">
         <CustomText textClassName="disable-text font-size-small">
           My Wallet
         </CustomText>
@@ -26,7 +26,7 @@ const SpacifyCoins = ({ t, onClickToMyWallet = () => {}, walletBalance }) => {
           {/*<CustomText textClassName="primary-text font-size-small">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
-          <CustomText textClassName="primary-text font-size-xxlarge font-bold">
+          <CustomText textClassName="primary-text font-size-xxlarge font-bold text-center ">
             {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}
           </CustomText>
           {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}

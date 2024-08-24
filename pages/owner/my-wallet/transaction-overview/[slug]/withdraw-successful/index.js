@@ -67,11 +67,11 @@ const WithdrawSuccessful = ({ id }) => {
   };
 
   const onClickClose = () => {
-    router.replace(`/owner/my-wallet`);
+    router.replace(`/owner`);
   };
 
   return (
-    <div className="relative p-4 pt-10 bg-color flex flex-col items-center">
+    <div className="relative p-4 pt-10 bg-color flex flex-col flex-1 items-center">
       <NextSeo title="Invoice Payment Successful - Spacify Asia" />
 
       <div className="absolute top-5 right-5 cursor-pointer">

@@ -155,7 +155,7 @@ const MyWallet = () => {
 
       <WalletSummary data={walletData} />
 
-      <div className="body-container bg-color flex-1 pb-4 pt-20">
+      <div className="body-container bg-color flex-1 pb-4 pt-24">
         <TransactionComponent
           onClickViewReport={onClickViewReport}
           selectedCategory={selectedCategory}
