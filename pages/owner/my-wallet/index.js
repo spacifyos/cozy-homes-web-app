@@ -24,6 +24,7 @@ const MyWallet = () => {
   const router = useRouter();
 
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [loadMore, setLoadMore] = useState(false);
 
   const [walletData, setWalletData] = useState(null);
   const [walletDataLoading, setWalletDataLoading] = useState(false);
@@ -50,6 +51,7 @@ const MyWallet = () => {
   const updatedAt = walletSelector.getUpdatedAt(walletData);
 
   useEffect(() => {
+    setLoadMore(false);
     fetchWalletTransactionListing(20, 1, { type: selectedCategory });
   }, [selectedCategory]);
 
@@ -113,8 +115,9 @@ const MyWallet = () => {
     router.push("/owner/my-wallet/withdraw");
   };
 
-  const onClickLoadMore = () => {
-    fetchWalletTransactionListing(20, currentPage + 1);
+  const onClickLoadMore = async () => {
+    setLoadMore(true);
+    await fetchWalletTransactionListing(20, currentPage + 1);
   };
 
   return (
@@ -184,8 +187,7 @@ const MyWallet = () => {
 
       <LoadingOverlay
         loading={
-          walletDataLoading ||
-          (walletTransactionListingLoading && isEmpty(walletTransactionListing))
+          walletDataLoading || (walletTransactionListingLoading && !loadMore)
         }
       />
     </CustomOwnerHeader>

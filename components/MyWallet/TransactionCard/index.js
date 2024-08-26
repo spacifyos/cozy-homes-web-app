@@ -29,6 +29,10 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
         return Images.rentalOutIcon;
       case Constant.WALLET_WITHDRAWAL:
         return Images.withdrawIcon;
+      case Constant.WALLET_WITHDRAWAL_REFUND:
+        return Images.rentalInIcon;
+      case Constant.WALLET_REVERT_INVOICE_PAYMENT:
+        return Images.rentalInIcon;
     }
   };
 

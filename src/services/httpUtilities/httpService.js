@@ -147,6 +147,8 @@ const getWalletTransactionListing = (perPage = 20, page = 1, params) => {
         return `&type[]=${Constant.WALLET_EXPENSE}&type[]=${Constant.WALLET_INVOICE_PAYMENT}`;
       case "Withdraw":
         return `&type[]=${Constant.WALLET_WITHDRAWAL}`;
+      case "Refund":
+        return `&type[]=${Constant.WALLET_WITHDRAWAL_REFUND}&type[]=${Constant.WALLET_REVERT_INVOICE_PAYMENT}`;
       default:
         return "&type=";
     }

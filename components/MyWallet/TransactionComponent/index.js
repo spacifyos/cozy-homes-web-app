@@ -4,7 +4,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import TransactionCard from "@/components/MyWallet/TransactionCard";
 
-const btn = ["All", "Income", "Expense", "Withdraw"];
+const btn = ["All", "Income", "Expense", "Withdraw", "Refund"];
 
 const TransactionComponent = ({
   selectedCategory,
@@ -28,7 +28,7 @@ const TransactionComponent = ({
         </CustomText>
       </div>
 
-      <div className="flex items-center pb-3">
+      <div className="flex items-center pb-3 overflow-x-scroll hide-scroll-bar">
         {map(btn, (item, index) => (
           <CustomButton
             key={index}

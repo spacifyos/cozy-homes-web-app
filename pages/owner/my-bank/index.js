@@ -124,9 +124,9 @@ const MyBank = () => {
     });
   };
 
-  const onClickLoadMore = () => {
+  const onClickLoadMore = async () => {
     setLoadMore(true);
-    fetchWalletTransactionListing(20, currentPage + 1, {
+    await fetchWalletTransactionListing(20, currentPage + 1, {
       type: "Withdraw",
       requestStatus: selectedCategory,
     });

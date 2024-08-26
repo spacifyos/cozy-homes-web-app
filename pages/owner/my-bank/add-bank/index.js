@@ -109,7 +109,7 @@ const AddBank = () => {
         </div>
       </div>
 
-      <div className="body-container bg-color flex flex-1 pt-12 w-full">
+      <div className="body-container bg-color flex flex-1 pt-12 pb-4 w-full">
         <div className="w-full">
           <CustomSelectWithIcon
             title="Bank Name"
@@ -155,19 +155,28 @@ const AddBank = () => {
             value={pinNumberValue}
           />
 
-          <div className="flex pt-3">
-            <div className="flex items-start">
+          <div className="flex items-start">
+            <div className="" style={{ width: 20, height: 20 }}>
               <CustomImage
                 src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-                imageStyle={{ width: 40 }}
+                imageStyle={{ width: 20, height: 20 }}
                 onClick={onClickReadAgree}
                 className="cursor-pointer"
               />
-              <CustomText textClassName="pl-3 font-bold disable-text">
-                I understand and agree to give Spacify and CTOS the consent to
-                process my personal data as per PDPA Act.
-              </CustomText>
             </div>
+
+            <CustomText textClassName="pl-2 font-size-small disable-text text-justify">
+              By or adding or updating your bank account details, you
+              acknowledge and agree that all information provided is accurate
+              and complete. Any errors or discrepancies in the information
+              submitted, including but not limited to the bank name, account
+              holder name, and account number, are solely your responsibility.
+              Spacify shall not be liable for any loss or delay in transactions
+              caused by incorrect or incomplete details provided by you. It is
+              your responsibility to ensure that the details are correct before
+              confirming the update. If you encounter any issues, please contact
+              our support team immediately.
+            </CustomText>
           </div>
 
           <div className="grid grid-cols-2 gap-4 pt-6">

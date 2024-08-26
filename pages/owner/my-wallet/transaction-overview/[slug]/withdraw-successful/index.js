@@ -107,7 +107,7 @@ const WithdrawSuccessful = ({ id }) => {
             height={30}
           />
           <CustomText textClassName="black-text font-bold font-size-xlarge">
-            Withdraw Completed
+            Request
           </CustomText>
         </div>
 
@@ -135,7 +135,7 @@ const WithdrawSuccessful = ({ id }) => {
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
           <CustomLabelValue
             value={isEmpty(transferTo) ? "-" : transferTo}
-            label={t("invoiceOverview.billTo")}
+            label="Withdraw requestor"
           />
           <CustomLabelValue
             value={isEmpty(transactionNumber) ? "-" : transactionNumber}
@@ -147,11 +147,11 @@ const WithdrawSuccessful = ({ id }) => {
           />
           <CustomLabelValue
             value={isEmpty(paymentMethod) ? "-" : paymentMethod}
-            label="Payment Method"
+            label="Withdraw Method"
           />
           <CustomLabelValue
             value={isEmpty(withdrawStatus) ? "-" : withdrawStatus}
-            label={"Status"}
+            label="Withdraw Status"
           />
         </div>
       </div>
