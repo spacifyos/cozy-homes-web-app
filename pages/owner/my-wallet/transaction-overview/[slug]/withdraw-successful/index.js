@@ -126,10 +126,10 @@ const WithdrawSuccessful = ({ id }) => {
       </div>
 
       <div className="relative pt-6 flex justify-center w-full">
-        <div className="primary-bg-color p-2 global-border-radius absolute top-0">
+        <div className="primary-bg-color p-3 global-border-radius absolute top-0">
           <CustomImage
-            src={Images.invoiceIcon}
-            imageStyle={{ width: 35, height: 35 }}
+            src={Images.withdrawIconWhite}
+            imageStyle={{ width: 30, height: 30 }}
           />
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">

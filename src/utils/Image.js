@@ -162,6 +162,7 @@ const Image = {
   occupancyIcon: "/images/icon/occupancy_icon.png",
   carParkOccupancyIcon: "/images/icon/car_park.png",
   refundIcon: "/images/icon/refund_icon.png",
+  withdrawIconWhite: "/images/icon/withdraw_icon_white.png",
 };
 
 export default { ...Image };
