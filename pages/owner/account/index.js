@@ -20,6 +20,7 @@ import { get, isEmpty, isEqual, size } from "lodash";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
@@ -28,6 +29,8 @@ const OwnerAccount = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const initialTime = 60;
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
@@ -226,6 +229,10 @@ const OwnerAccount = () => {
     router.push("/owner/my-report");
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <CustomOwnerHeader title="Account" hideGoBackButton className="pb-16">
       <NextSeo title="Account | Owner - Spacify Asia" />
@@ -347,6 +354,13 @@ const OwnerAccount = () => {
         timeLeft={timeLeft}
         isResendEnabled={isResendEnabled}
         otpRequestLoading={otpRequestLoading}
+      />
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
       />
     </CustomOwnerHeader>
   );

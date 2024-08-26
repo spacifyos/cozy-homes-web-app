@@ -20,6 +20,8 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
+import BottomNavigate from "@/components/BottomNavigate";
+import { get } from "lodash";
 
 export { getServerSideProps };
 
@@ -27,6 +29,8 @@ const MyStay = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const [selectedCategory, setSelectedCategory] = useState("HomeAll");
 
@@ -135,6 +139,10 @@ const MyStay = () => {
     router.push("/help-center");
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
       <NextSeo title="My Stay - Spacify Asia" />
@@ -182,6 +190,13 @@ const MyStay = () => {
           }
         />
       </div>
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
     </CustomHeader>
   );
 };

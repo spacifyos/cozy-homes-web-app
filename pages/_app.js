@@ -4,7 +4,6 @@ import { appWithTranslation, useTranslation } from "next-i18next";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
-import BottomNavigate from "@/components/BottomNavigate";
 import { useRouter } from "next/router";
 import { isEmpty, get, isEqual } from "lodash";
 import "react-multi-carousel/lib/styles.css";
@@ -35,10 +34,7 @@ function MyApp({ Component, pageProps }) {
 }
 
 function AppContent({ Component, pageProps }) {
-  const { t } = useTranslation("common");
   const router = useRouter();
-  const routeName = get(router, ["route"], "");
-  const routeQuery = get(router, ["query"], "");
   const pathname = get(router, ["pathname"], "");
   const dispatch = useDispatch();
   const divRef = useRef();
@@ -61,10 +57,6 @@ function AppContent({ Component, pageProps }) {
       getSelectOptionRequest();
     }
   }, []);
-
-  const onClickChangeTab = (route) => {
-    router.push(route);
-  };
 
   useEffect(() => {
     for (let i = 0; i < botWidget.length; i++) {
@@ -131,24 +123,6 @@ function AppContent({ Component, pageProps }) {
         <Toaster />
 
         <Component {...pageProps} />
-
-        {isEqual(routeName, "/explore") ||
-        isEqual(routeName, "/my-property") ||
-        isEqual(routeName, "/owner") ||
-        isEqual(routeName, "/account") ||
-        isEqual(routeName, "/owner/account") ||
-        isEqual(routeName, "/sign-in") ||
-        isEqual(routeName, "/chat") ||
-        isEqual(routeName, "/owner/chat") ? (
-          <BottomNavigate
-            t={t}
-            routeName={routeName}
-            routeQuery={routeQuery}
-            onClickChangeTab={onClickChangeTab}
-          />
-        ) : (
-          false
-        )}
       </div>
     </div>
   );

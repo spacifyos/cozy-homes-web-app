@@ -30,9 +30,9 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
       case Constant.WALLET_WITHDRAWAL:
         return Images.withdrawIcon;
       case Constant.WALLET_WITHDRAWAL_REFUND:
-        return Images.rentalInIcon;
+        return Images.refundIcon;
       case Constant.WALLET_REVERT_INVOICE_PAYMENT:
-        return Images.rentalInIcon;
+        return Images.refundIcon;
     }
   };
 

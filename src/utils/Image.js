@@ -161,6 +161,7 @@ const Image = {
   bankIcon: "/images/icon/bank_icon.png",
   occupancyIcon: "/images/icon/occupancy_icon.png",
   carParkOccupancyIcon: "/images/icon/car_park.png",
+  refundIcon: "/images/icon/refund_icon.png",
 };
 
 export default { ...Image };

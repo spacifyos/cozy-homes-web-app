@@ -6,7 +6,6 @@ import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
 import PropertyCarouselComponent from "@/components/Owner/PropertyCarouselComponent";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import RentalIncomeComponent from "@/components/Owner/RentalIncomeComponent";
 import { useRouter } from "next/router";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import { useEffect, useState } from "react";
@@ -19,6 +18,8 @@ import * as authSelector from "@/src/selectors/auth";
 import TransactionComponent from "@/components/Owner/TransactionComponent";
 import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import BottomNavigate from "@/components/BottomNavigate";
+import { get } from "lodash";
 
 export { getServerSideProps };
 
@@ -26,6 +27,8 @@ const OwnerHome = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -149,6 +152,10 @@ const OwnerHome = () => {
     router.push("/owner/my-wallet");
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <div className="flex flex-col flex-1 owner-bg-color">
       <div className="body-container pt-10 pb-12">
@@ -194,8 +201,16 @@ const OwnerHome = () => {
         loading={
           propertyListingLoading ||
           transactionListingLoading ||
-          invoiceListingLoading
+          invoiceListingLoading ||
+          userProfileLoading
         }
+      />
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
       />
     </div>
   );

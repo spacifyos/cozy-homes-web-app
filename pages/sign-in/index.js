@@ -15,13 +15,15 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import * as commonSelector from "@/src/selectors/common";
 import { useSelector } from "react-redux";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
 const SignIn = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const routeQuery = get(router, ["query"], null);
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const selectOptionData = useSelector((state) =>
     commonSelector.getSelectOptionData(state),
@@ -113,6 +115,10 @@ const SignIn = () => {
     router.push("/forgot-password");
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <div className="bg-color">
       <NextSeo title="Sign In - Spacify Asia" />
@@ -155,7 +161,7 @@ const SignIn = () => {
             </div>
           </div>
           <div
-            className="p-3 global-box-shadow primaryWhite-bg-color py-10"
+            className="p-3 global-box-shadow primaryWhite-bg-color py-10 mb-4"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-4 font-bold font-size-large">
@@ -247,6 +253,13 @@ const SignIn = () => {
 
         <LoadingOverlay loading={signInLoading} />
       </div>
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
     </div>
   );
 };

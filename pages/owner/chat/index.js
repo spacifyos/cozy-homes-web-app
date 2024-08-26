@@ -12,20 +12,24 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as tenancySelector from "@/src/selectors/tenancy";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
 const OwnerChat = () => {
+  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
 
   const [uChatIsReady, setUChatIsReady] = useState(false);
 
-  const bottomNavigateHeight =
-    Helper.documentGetElementById("bottom_navbar").offsetHeight;
+  // const bottomNavigateHeight =
+  //   Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
@@ -117,6 +121,10 @@ const OwnerChat = () => {
     setUserProfileData(res);
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <div id="chat-container">
       {/*<div*/}
@@ -129,6 +137,13 @@ const OwnerChat = () => {
       {/*    position: "fixed",*/}
       {/*  }}*/}
       {/*></div>*/}
+
+      <BottomNavigate
+          t={t}
+          routeName={routeName}
+          routeQuery={routeQuery}
+          onClickChangeTab={onClickChangeTab}
+      />
 
       <LoadingOverlay loading={userProfileLoading} />
     </div>

@@ -7,13 +7,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
-import _ from "lodash";
+import _, {get} from "lodash";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
 import {NextSeo} from "next-seo";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
@@ -22,6 +23,8 @@ function Home() {
   const router = useRouter();
   const dispatch = useDispatch();
   const locale = _.get(router, ["locale"], "en");
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const getListingRequest = () => dispatch(listingAction.getListingRequest());
   const listingData = useSelector((state) =>
@@ -80,6 +83,10 @@ function Home() {
     setOpenSwitcher(!openSwitcher);
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <div className="bg-color pt-7">
       {/*<LanguageSwitcher*/}
@@ -131,6 +138,13 @@ function Home() {
           onClickToPropertyListing={onClickToPropertyListing}
         />
       </div>
+
+      <BottomNavigate
+          t={t}
+          routeName={routeName}
+          routeQuery={routeQuery}
+          onClickChangeTab={onClickChangeTab}
+      />
     </div>
   );
 }

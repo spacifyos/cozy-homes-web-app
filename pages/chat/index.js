@@ -12,11 +12,15 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import AuthWrapper from "@/components/AuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as tenancySelector from "@/src/selectors/tenancy";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
 const Chat = () => {
+  const { t } = useTranslation("common");
   const router = useRouter();
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
@@ -116,6 +120,10 @@ const Chat = () => {
     setUserProfileData(res);
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <div id="chat-container">
       {/*<div*/}
@@ -130,6 +138,13 @@ const Chat = () => {
       {/*></div>*/}
 
       <LoadingOverlay loading={userProfileLoading} />
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
     </div>
   );
 };

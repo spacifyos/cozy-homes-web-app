@@ -20,6 +20,7 @@ import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
+import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
 
@@ -28,6 +29,8 @@ const Account = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const initialTime = 60;
+  const routeName = get(router, ["route"], "");
+  const routeQuery = get(router, ["query"], "");
 
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
@@ -221,6 +224,10 @@ const Account = () => {
     }
   };
 
+  const onClickChangeTab = (route) => {
+    router.push(route);
+  };
+
   return (
     <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
       <NextSeo title="Account - Spacify Asia" />
@@ -332,6 +339,13 @@ const Account = () => {
           otpRequestLoading={otpRequestLoading}
         />
       </div>
+
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
     </CustomHeader>
   );
 };
