@@ -55,6 +55,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
+        <meta name="description" content="Spacify Asia" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="viewport"

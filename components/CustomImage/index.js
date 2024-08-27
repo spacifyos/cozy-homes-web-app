@@ -21,7 +21,7 @@ const CustomImage = ({
     >
       <Image
         loader={() => src}
-        loading="lazy"
+        loading="eager"
         layout="responsive"
         alt={"image"}
         src={src}
