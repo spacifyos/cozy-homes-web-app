@@ -1,10 +1,9 @@
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
-import _ from "lodash";
+import { isEmpty, map, get } from "lodash";
 import { Swiper, SwiperSlide } from "@/src/lib/swiper/swiper-react";
 import { EffectCards } from "@/src/lib/swiper/modules/index.mjs";
 import { useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
 
 const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -17,10 +16,10 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
 
   return (
     <div className="my-3">
-      {_.isEmpty(listingBannerData) ? (
+      {isEmpty(listingBannerData) ? (
         <div className="flex justify-center items-center relative">
           <CustomImage
-            src={Images.banner1Image}
+            src={Images.logoImage}
             className="banner-default-image"
           />
         </div>
@@ -33,8 +32,8 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
             modules={[EffectCards]}
             className="mySwiper explore-banner"
           >
-            {_.map(listingBannerData, (item, index) => {
-              const image = _.get(item, ["image_url"], "");
+            {map(listingBannerData, (item, index) => {
+              const image = get(item, ["image_url"], "");
 
               return (
                 <SwiperSlide key={index} style={{}}>
@@ -52,7 +51,7 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
           </Swiper>
 
           <div className="my-4 flex justify-center items-center">
-            {_.map(listingBannerData, (item, index) => {
+            {map(listingBannerData, (item, index) => {
               return (
                 <div
                   key={index}
