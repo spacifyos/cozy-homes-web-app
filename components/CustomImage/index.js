@@ -5,6 +5,7 @@ const CustomImage = ({
   src,
   imageStyle,
   onClick = () => {},
+  props,
 }) => {
   return (
     <div
@@ -27,6 +28,7 @@ const CustomImage = ({
         width={0}
         height={0}
         objectFit="cover"
+        {...props}
       />
     </div>
   );

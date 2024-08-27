@@ -16,6 +16,7 @@ const nextConfig = {
     PRODUCTION: process.env.PRODUCTION,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
