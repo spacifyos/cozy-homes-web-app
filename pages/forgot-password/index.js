@@ -93,7 +93,7 @@ const ForgotPassword = () => {
     const postData = {
       otp: otp,
       token: otpToken,
-      type: "tenant",
+      type: selectedRole,
       phone_number: phonePrefix + phoneNumber,
     };
 
@@ -134,7 +134,7 @@ const ForgotPassword = () => {
     }
 
     const postData = {
-      type: "tenant",
+      type: selectedRole,
       phone_number: phonePrefix + phoneNumber,
       password: passwordValue,
       password_confirmation: confirmPasswordValue,
