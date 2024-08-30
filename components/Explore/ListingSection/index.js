@@ -54,13 +54,13 @@ const ListingSection = ({
 
       <div className="gap-1">
         {listingLoading ? (
-          <div className="flex">
+          <div className="flex" style={{ height: 144 }}>
             {map(Array(4), (item, index) => (
               <Skeleton width={105} height={105} key={index} />
             ))}
           </div>
         ) : isEmpty(lists) ? (
-          <div className="flex justify-center" style={{ height: 140 }}>
+          <div className="flex justify-center" style={{ height: 144 }}>
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (

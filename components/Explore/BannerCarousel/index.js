@@ -4,6 +4,7 @@ import { isEmpty, map, get } from "lodash";
 import { Swiper, SwiperSlide } from "@/src/lib/swiper/swiper-react";
 import { EffectCards } from "@/src/lib/swiper/modules/index.mjs";
 import { useState } from "react";
+import PreLoading from "@/components/PreLoading";
 
 const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -16,13 +17,8 @@ const BannerCarousel = ({ listingBannerData, listingBannerDataLoading }) => {
 
   return (
     <div className="my-3">
-      {isEmpty(listingBannerData) ? (
-        <div className="flex justify-center items-center relative">
-          <CustomImage
-            src={Images.logoImage}
-            className="banner-default-image"
-          />
-        </div>
+      {isEmpty(listingBannerData) || listingBannerDataLoading ? (
+        <PreLoading className="banner-default-image" width="100%" />
       ) : (
         <div>
           <Swiper
