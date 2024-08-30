@@ -1,6 +1,8 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Images from "@/src/utils/Image";
 import { isEqual } from "lodash";
+import Script from "next/script";
+import { useEffect } from "react";
 
 export default function Document() {
   const organizationSchema = {
@@ -52,6 +54,17 @@ export default function Document() {
     };
   };
 
+  useEffect(() => {
+    if (isEqual(process.env.PRODUCTION, "PRODUCTION")) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-JSLN7PTKGY");
+    }
+  }, []);
+
   return (
     <Html lang="en">
       <Head>
@@ -84,25 +97,25 @@ export default function Document() {
         />
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
-            async
+          <Script
+            strategy="afterInteractive"
             src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
-          ></script>
+          ></Script>
         ) : (
           false
         )}
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script>
-            {`window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <Script>*/}
+        {/*    {`window.dataLayer = window.dataLayer || [];*/}
+        {/*  function gtag(){dataLayer.push(arguments);}*/}
+        {/*  gtag('js', new Date());*/}
 
-          gtag('config', 'G-JSLN7PTKGY');`}
-          </script>
-        ) : (
-          false
-        )}
+        {/*  gtag('config', 'G-JSLN7PTKGY');`}*/}
+        {/*  </Script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
 
         {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
         {/*  <script*/}
