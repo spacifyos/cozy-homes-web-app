@@ -352,6 +352,17 @@ const postWalletWithdrawRequest = async (
   );
 };
 
+const getRentTrackerRequest = async (id, setLoading, successCallback) => {
+  await apiRequest(
+    api.getRentTracker(id),
+    setLoading,
+    successCallback,
+    null,
+    "",
+    true,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -383,4 +394,5 @@ export default {
   getOwnerReportListingRequest,
   getOwnerReportOverviewRequest,
   postWalletWithdrawRequest,
+  getRentTrackerRequest,
 };

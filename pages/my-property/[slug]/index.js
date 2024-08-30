@@ -13,13 +13,14 @@ import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import AuthWrapper from "@/components/AuthWrapper";
 import { get, isEmpty } from "lodash";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
-const EAgreementOverview = ({ id }) => {
+const OwnerEAgreementOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -51,9 +52,9 @@ const EAgreementOverview = ({ id }) => {
   const isCanSign = agreementSelector.isCanSign(agreementOverviewData);
   const agreementId = agreementSelector.getId(agreementOverviewData);
 
-  useEffect(() => {
-    fetchAgreementOverviewData(id);
-  }, [id]);
+  // useEffect(() => {
+  //   fetchAgreementOverviewData(id);
+  // }, [id]);
 
   const fetchAgreementOverviewData = (id) => {
     getAgreementOverviewRequest(id);
@@ -68,15 +69,10 @@ const EAgreementOverview = ({ id }) => {
   };
 
   return (
-    <CustomHeader
-      onClickGoBack={onClickGoBack}
-      hideBgImage
-      pageTitle={t("pageTitle.eAgreementOverview")}
-      // rightButtonIcon={Images.downloadIcon}
-    >
-      <NextSeo title="My E-Agreement Overview - Spacify Asia" />
+    <CustomOwnerHeader onClickGoBack={onClickGoBack} pageTitle="My E-Agreement Overview">
+      <NextSeo title="My E-Agreement Overview | Owner - Spacify Asia" />
 
-      <div className="body-container relative pt-6 pb-4 flex justify-center">
+      <div className="body-container bg-color relative pt-6 pb-4 flex flex justify-center">
         <div
           className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
           style={{ height: 54 }}
@@ -207,8 +203,10 @@ const EAgreementOverview = ({ id }) => {
 
         <LoadingOverlay loading={agreementOverviewDataLoading} />
       </div>
-    </CustomHeader>
+    </CustomOwnerHeader>
   );
 };
 
-export default withTranslation("common")(AuthWrapper(EAgreementOverview));
+export default withTranslation("common")(
+  OwnerAuthWrapper(OwnerEAgreementOverview),
+);

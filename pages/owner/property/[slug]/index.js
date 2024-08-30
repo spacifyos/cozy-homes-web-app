@@ -28,8 +28,12 @@ const PropertyDetail = ({ id }) => {
   const [propertyDetail, setPropertyDetail] = useState(null);
   const [propertyDetailLoading, setPropertyDetailLoading] = useState(false);
 
+  const [rentTrackerData, setRentTrackerData] = useState(null);
+  const [rentTrackerDataLoading, setRentTrackerDataLoading] = useState(false);
+
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState([]);
+  const [selectedUnitID, setSelectedUnitID] = useState(0);
 
   const propertyName = ownerSelector.getPropertyName(propertyDetail);
   const propertyAddress = ownerSelector.getPropertyAddress(propertyDetail);
@@ -58,15 +62,37 @@ const PropertyDetail = ({ id }) => {
   ];
 
   useEffect(() => {
-    const targetUnit = units[selectedSlide];
-    const targetRoom = get(targetUnit, ["rooms"], []);
+    if (!isEmpty(units)) {
+      const targetUnit = units[selectedSlide];
+      const unitId = ownerSelector.getUnitId(targetUnit);
+      setSelectedUnitID(unitId);
+      const targetRoom = get(targetUnit, ["rooms"], []);
 
-    setSelectedRoom(targetRoom);
+      setSelectedRoom(targetRoom);
+    }
   }, [selectedSlide, units]);
 
   useEffect(() => {
     fetchPropertyDetail();
   }, []);
+
+  useEffect(() => {
+    if (isEqual(selectedCategory, "Rent Tracker") && selectedUnitID !== 0) {
+      fetchRenTrackerData(selectedUnitID);
+    }
+  }, [selectedCategory, selectedUnitID]);
+
+  const fetchRenTrackerData = async (unitId) => {
+    await apiRequest.getRentTrackerRequest(
+      unitId,
+      setRentTrackerDataLoading,
+      rentTrackerDataSuccessCallback,
+    );
+  };
+
+  const rentTrackerDataSuccessCallback = (res) => {
+    setRentTrackerData(res);
+  };
 
   const fetchPropertyDetail = async () => {
     await apiRequest.getOwnerPropertyOverview(
@@ -138,12 +164,14 @@ const PropertyDetail = ({ id }) => {
           {isEqual(selectedCategory, "Space Details") ? (
             <SpaceDetailComponent data={selectedRoom} />
           ) : (
-            <RentTrackerComponent />
+            <RentTrackerComponent data={rentTrackerData}/>
           )}
         </div>
       </div>
 
-      <LoadingOverlay loading={propertyDetailLoading} />
+      <LoadingOverlay
+        loading={propertyDetailLoading || rentTrackerDataLoading}
+      />
     </CustomOwnerHeader>
   );
 };

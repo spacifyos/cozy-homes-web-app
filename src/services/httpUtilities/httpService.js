@@ -192,6 +192,8 @@ const getOwnerReportOverview = (id, month) =>
 const postWalletWithdraw = (postData) =>
   apiInstance.post(`/wallet/request-withdrawal`, postData);
 
+const getRentTracker = (id) => apiInstance.get(`/owner/rent-tracker/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -241,4 +243,5 @@ export default {
   getOwnerReportListing,
   getOwnerReportOverview,
   postWalletWithdraw,
+  getRentTracker
 };

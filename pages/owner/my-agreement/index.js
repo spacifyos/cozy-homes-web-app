@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
-import AuthWrapper from "@/components/AuthWrapper";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
+import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
@@ -24,7 +25,7 @@ const btnLists = [
   { name: "Completed", value: Constant.AGREEMENT_COMPLETED },
 ];
 
-const EAgreement = () => {
+const OwnerEAgreement = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -53,9 +54,9 @@ const EAgreement = () => {
     agreementListingDataPagination,
   );
 
-  useEffect(() => {
-    fetchAgreementListingData(selectedStatus);
-  }, [selectedStatus]);
+  // useEffect(() => {
+  //   fetchAgreementListingData(selectedStatus);
+  // }, [selectedStatus]);
 
   const fetchAgreementListingData = (
     status = Constant.AGREEMENT_ALL,
@@ -82,15 +83,10 @@ const EAgreement = () => {
   };
 
   return (
-    <CustomHeader
-      hideRightButton
-      hideBgImage
-      pageTitle={t("pageTitle.eAgreement")}
-      onClickGoBack={onClickGoBack}
-    >
-      <NextSeo title="My E-Agreement - Spacify Asia" />
+    <CustomOwnerHeader title="My E-Agreement" onClickGoBack={onClickGoBack} className="pb-0">
+      <NextSeo title="My E-Agreement | Owner - Spacify Asia" />
 
-      <div className="body-container pb-4 flex flex-col flex-1">
+      <div className="body-container bg-color pt-4 flex flex-col flex-1">
         <div className="flex items-center pb-3">
           {map(btnLists, (item, index) => {
             const name = get(item, ["name"], "");
@@ -143,8 +139,8 @@ const EAgreement = () => {
 
         <LoadingOverlay loading={agreementListingDataLoading} />
       </div>
-    </CustomHeader>
+    </CustomOwnerHeader>
   );
 };
 
-export default withTranslation("common")(AuthWrapper(EAgreement));
+export default withTranslation("common")(OwnerAuthWrapper(OwnerEAgreement));

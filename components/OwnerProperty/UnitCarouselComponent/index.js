@@ -63,13 +63,16 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                   </CustomText>
 
                   <div className="flex pt-1">
-                    {map(infoLists, (list) => {
+                    {map(infoLists, (list, index) => {
                       const name = get(list, ["name"], "");
                       const value = get(list, ["value"], "");
                       const icon = get(list, ["icon"], "");
 
                       return (
-                        <div className="p-2 flex items-end justify-center">
+                        <div
+                          className="p-2 flex items-end justify-center"
+                          key={index}
+                        >
                           <CustomImage
                             src={icon}
                             imageStyle={{ width: 20, height: 20 }}
