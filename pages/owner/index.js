@@ -20,6 +20,7 @@ import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
+import { getCarParkOccupancy } from "@/src/selectors/owner";
 
 export { getServerSideProps };
 
@@ -76,13 +77,13 @@ const OwnerHome = () => {
     },
     {
       name: "Room",
-      value: ownerSelector.getTotalRoom(propertyListing),
+      value: `${ownerSelector.getTotalRoom(propertyListing)}%`,
       icon: Images.bedIconActive,
     },
     {
-      name: "Occupancy",
-      value: `${ownerSelector.getOccupancy(propertyListing)}%`,
-      icon: Images.percentIconActive,
+      name: "Car Park",
+      value: `${ownerSelector.getTotalCarPark(propertyListing)}%`,
+      icon: Images.carParkOccupancyIcon,
     },
   ];
 

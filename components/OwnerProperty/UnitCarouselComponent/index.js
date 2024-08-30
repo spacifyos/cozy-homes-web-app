@@ -5,6 +5,10 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
+import {
+  getTotalCarParkOccupancy,
+  getTotalRoomOccupancy,
+} from "@/src/selectors/owner";
 
 const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
   return (
@@ -22,18 +26,23 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
           const infoLists = [
             {
               name: "Room",
-              value: ownerSelector.getTotalRooms(item),
+              value: ownerSelector.getTotalRoom(item),
               icon: Images.bedIconActive,
             },
             {
-              name: "Occupancy",
-              value: `${ownerSelector.getTotalUnitOccupancy(item)}%`,
-              icon: Images.percentIconActive,
+              name: "Car Park",
+              value: `${ownerSelector.getTotalCarPark(item)}`,
+              icon: Images.carParkOccupancyIcon,
             },
             {
-              name: "Room Vacant",
-              value: `${ownerSelector.getTotalRoomVacant(item)}%`,
-              icon: Images.percentIconActive,
+              name: "Occupancy",
+              value: `${ownerSelector.getTotalRoomOccupancy(item)}%`,
+              icon: Images.occupancyIcon,
+            },
+            {
+              name: "Occupancy",
+              value: `${ownerSelector.getTotalCarParkOccupancy(item)}%`,
+              icon: Images.carParkOccupancyIcon,
             },
           ];
 

@@ -160,7 +160,7 @@ const Image = {
   paperIcon: "/images/icon/paper_icon.png",
   bankIcon: "/images/icon/bank_icon.png",
   occupancyIcon: "/images/icon/occupancy_icon.png",
-  carParkOccupancyIcon: "/images/icon/car_park.png",
+  carParkOccupancyIcon: "/images/icon/car_park_icon.png",
   refundIcon: "/images/icon/refund_icon.png",
   withdrawIconWhite: "/images/icon/withdraw_icon_white.png",
 };

@@ -5,6 +5,12 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as ownerSelector from "@/src/selectors/owner";
+import {
+  getCarParkVacant,
+  getOccupancyCarPark,
+  getOccupancyRoom,
+  getTotalCarPark,
+} from "@/src/selectors/owner";
 
 const PropertyCarouselComponent = ({
   data,
@@ -34,24 +40,24 @@ const PropertyCarouselComponent = ({
 
           const infoLists = [
             {
-              name: "Unit",
-              value: ownerSelector.getTotalUnits(item),
-              icon: Images.spaceIcon,
-            },
-            {
               name: "Room",
               value: ownerSelector.getTotalRoom(item),
               icon: Images.bedIconActive,
             },
             {
-              name: "Occupancy",
-              value: `${ownerSelector.getOccupancy(item)}%`,
-              icon: Images.percentIconActive,
+              name: "Car Park",
+              value: `${ownerSelector.getTotalCarPark(item)}`,
+              icon: Images.carParkOccupancyIcon,
             },
             {
-              name: "Room Vacant",
-              value: `${ownerSelector.getRoomVacant(item)}%`,
-              icon: Images.percentIconActive,
+              name: "Occupancy",
+              value: `${ownerSelector.getOccupancyRoom(item)}%`,
+              icon: Images.occupancyIcon,
+            },
+            {
+              name: "Occupancy",
+              value: `${ownerSelector.getOccupancyCarPark(item)}%`,
+              icon: Images.carParkOccupancyIcon,
             },
           ];
 
@@ -68,7 +74,7 @@ const PropertyCarouselComponent = ({
                 className="owner-property-banner global-border-radius"
               >
                 <div
-                  style={{ height: 250, backgroundColor: "rgba(0,0,0,0.5)" }}
+                  style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
                   className="global-border-radius flex flex-col justify-end p-3"
                 >
                   {showLabel ? (
@@ -96,7 +102,7 @@ const PropertyCarouselComponent = ({
 
                       return (
                         <div
-                          className="p-2 flex items-end justify-center"
+                          className="p-2 flex flex-col items-center justify-center"
                           key={index}
                         >
                           <CustomImage
@@ -104,14 +110,12 @@ const PropertyCarouselComponent = ({
                             imageStyle={{ width: 20, height: 20 }}
                           />
 
-                          <div className="pl-2">
-                            <CustomText textClassName="white-text font-size-xlarge font-bold leading-4">
-                              {value}
-                            </CustomText>
-                            <CustomText textClassName="white-text font-size-xxsmall">
-                              {name}
-                            </CustomText>
-                          </div>
+                          <CustomText textClassName="white-text font-size-xlarge font-bold leading-4">
+                            {value}
+                          </CustomText>
+                          <CustomText textClassName="white-text font-size-xxsmall">
+                            {name}
+                          </CustomText>
                         </div>
                       );
                     })}

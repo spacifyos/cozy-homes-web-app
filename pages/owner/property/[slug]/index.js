@@ -51,13 +51,13 @@ const PropertyDetail = ({ id }) => {
     },
     {
       name: "Occupancy",
-      value: `${ownerSelector.getOccupancy(propertyDetail)}%`,
-      icon: Images.percentIconActive,
+      value: `${ownerSelector.getTotalRoom(propertyDetail)}%`,
+      icon: Images.occupancyIcon,
     },
     {
-      name: "Room Vacant",
-      value: `${ownerSelector.getVacantRoom(propertyDetail)}%`,
-      icon: Images.percentIconActive,
+      name: "Occupancy",
+      value: `${ownerSelector.getTotalCarPark(propertyDetail)}%`,
+      icon: Images.carParkOccupancyIcon,
     },
   ];
 

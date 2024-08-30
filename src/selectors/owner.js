@@ -8,12 +8,17 @@ export const getTotalProperty = (state) => get(state, ["total_property"], "");
 export const getTotalUnits = (state) => get(state, ["total_units"], "");
 export const getTotalRoom = (state) => get(state, ["total_rooms"], "");
 export const getOccupancy = (state) => get(state, ["occupancy"], "");
+export const getCarParkOccupancy = (state) => get(state, ["car_park_occupancy"], "");
+export const getOccupancyCarPark = (state) => get(state, ["occupancy_car_park"], "");
 export const getProperties = (state) => get(state, ["properties"], []);
 export const getPropertyId = (state) => get(state, ["property_id"], "");
 export const getPropertyName = (state) => get(state, ["property_name"], "");
 export const getPropertyImage = (state) => get(state, ["property_image"], "");
 export const getPropertyAddress = (state) =>
   get(state, ["property_address"], "");
+export const getTotalCarPark = (state) => get(state, ["total_car_parks"], "");
+export const getTotalCarParkOccupancy = (state) => get(state, ["total_car_park_occupancy"], "");
+export const getCarParkVacant = (state) => get(state, ["car_park_vacant"], "");
 export const getRoomVacant = (state) => get(state, ["room_vacant"], "");
 export const getVacantRoom = (state) => get(state, ["vacant_room"], "");
 export const getPaidAt = (state) => get(state, ["paid_at"], "");
@@ -26,11 +31,14 @@ export const getUnitImage = (state) => get(state, ["unit_image"], "");
 export const getTotalRooms = (state) => get(state, ["total_rooms"], "");
 export const getTotalUnitOccupancy = (state) =>
   get(state, ["total_unit_occupancy"], "");
+export const getTotalRoomOccupancy = (state) =>
+    get(state, ["total_room_occupancy"], "");
 export const getTotalRoomVacant = (state) =>
   get(state, ["total_room_vacant"], "");
 export const getRooms = (state) => get(state, ["rooms"], []);
 export const getStatus = (state) => get(state, ["status"], "");
 export const getRemainingDays = (state) => get(state, ["remaining_days"], "");
+export const getOccupancyRoom = (state) => get(state, ["occupancy_room"], "");
 export const getRoomName = (state) => get(state, ["room_name"], "");
 export const getSpaceType = (state) => get(state, ["space_type"], "");
 export const getRentalFee = (state) => get(state, ["rental_fee"], "");
