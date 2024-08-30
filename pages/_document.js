@@ -97,7 +97,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script>
+          <Script id="" strategy="afterInteractive">
             {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
