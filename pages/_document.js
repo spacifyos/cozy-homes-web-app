@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import { isEqual } from "lodash";
 import Script from "next/script";
 import { useEffect } from "react";
+import GoogleAnalytic from "@/components/GoogleAnalytic";
 
 export default function Document() {
   const organizationSchema = {
@@ -54,17 +55,6 @@ export default function Document() {
     };
   };
 
-  useEffect(() => {
-    if (isEqual(process.env.PRODUCTION, "PRODUCTION")) {
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-JSLN7PTKGY");
-    }
-  }, []);
-
   return (
     <Html lang="en">
       <Head>
@@ -96,27 +86,6 @@ export default function Document() {
           rel="stylesheet"
         />
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script
-            strategy="afterInteractive"
-            src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
-          ></Script>
-        ) : (
-          false
-        )}
-
-        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
-        {/*  <Script>*/}
-        {/*    {`window.dataLayer = window.dataLayer || [];*/}
-        {/*  function gtag(){dataLayer.push(arguments);}*/}
-        {/*  gtag('js', new Date());*/}
-
-        {/*  gtag('config', 'G-JSLN7PTKGY');`}*/}
-        {/*  </Script>*/}
-        {/*) : (*/}
-        {/*  false*/}
-        {/*)}*/}
-
         {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
         {/*  <script*/}
         {/*    type="application/ld+json"*/}
@@ -145,6 +114,12 @@ export default function Document() {
         {/*)}*/}
       </Head>
       <body id="root-body">
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <GoogleAnalytic />
+        ) : (
+          false
+        )}
+
         <Main />
         <NextScript />
       </body>
