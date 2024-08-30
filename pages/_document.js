@@ -90,13 +90,13 @@ export default function Document() {
           <Script
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
-          ></Script>
+          />
         ) : (
           false
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script id="">
+          <Script>
             {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
