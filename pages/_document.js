@@ -1,6 +1,9 @@
 import { Html, Head, Main, NextScript } from "next/document";
 import Images from "@/src/utils/Image";
 import { isEqual } from "lodash";
+import Script from "next/script";
+import React, { useEffect } from "react";
+import GoogleAnalytic from "@/components/GoogleAnalytic";
 
 export default function Document() {
   const organizationSchema = {
@@ -83,6 +86,30 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
+
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <Script
+            strategy="afterInteractive"
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
+          />
+        ) : (
+          false
+        )}
+
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <Script id="" strategy="afterInteractive">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-JSLN7PTKGY');
+            `}
+          </Script>
+        ) : (
+          false
+        )}
 
         {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
         {/*  <script*/}
