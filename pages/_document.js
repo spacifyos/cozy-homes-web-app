@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 import Images from "@/src/utils/Image";
 import { isEqual } from "lodash";
 import Script from "next/script";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import GoogleAnalytic from "@/components/GoogleAnalytic";
 
 export default function Document() {
@@ -86,6 +86,29 @@ export default function Document() {
           rel="stylesheet"
         />
 
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
+          ></Script>
+        ) : (
+          false
+        )}
+
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <Script id="">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-JSLN7PTKGY');
+            `}
+          </Script>
+        ) : (
+          false
+        )}
+
         {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
         {/*  <script*/}
         {/*    type="application/ld+json"*/}
@@ -114,12 +137,6 @@ export default function Document() {
         {/*)}*/}
       </Head>
       <body id="root-body">
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <GoogleAnalytic />
-        ) : (
-          false
-        )}
-
         <Main />
         <NextScript />
       </body>
