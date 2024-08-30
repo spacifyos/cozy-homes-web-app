@@ -5,16 +5,16 @@ const GoogleAnalytic = () => {
   return (
     <>
       <Script
-        strategy="lazyOnload"
+        async
         src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
       ></Script>
-      <Script strategy="lazyOnload" id="">
+      <Script id="">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-JSLN7PTKGY', {page_path: window.location.pathname,});
+            gtag('config', 'G-JSLN7PTKGY');
             `}
       </Script>
     </>
