@@ -88,6 +88,7 @@ export default function Document() {
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
           <Script
+            strategy="afterInteractive"
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
           />
