@@ -4,11 +4,6 @@ import * as ownerSelector from "@/src/selectors/owner";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
-import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
-import {
-  getTotalCarParkOccupancy,
-  getTotalRoomOccupancy,
-} from "@/src/selectors/owner";
 
 const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
   return (
@@ -35,12 +30,12 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
               icon: Images.carParkOccupancyIcon,
             },
             {
-              name: "Occupancy",
+              name: "Room Occupancy",
               value: `${ownerSelector.getTotalRoomOccupancy(item)}%`,
               icon: Images.occupancyIcon,
             },
             {
-              name: "Occupancy",
+              name: "Car Park Occupancy",
               value: `${ownerSelector.getTotalCarParkOccupancy(item)}%`,
               icon: Images.carParkOccupancyIcon,
             },
@@ -56,7 +51,7 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                 className="owner-property-banner global-border-radius"
               >
                 <div
-                  style={{ height: 250, backgroundColor: "rgba(0,0,0,0.5)" }}
+                  style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
                   className="global-border-radius flex flex-col justify-end p-3"
                 >
                   <div className="flex pb-1">
@@ -79,22 +74,24 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
 
                       return (
                         <div
-                          className="p-2 flex items-end justify-center"
+                          className="p-2 flex flex-col items-center justify-center"
+                          style={{ width: 60 }}
                           key={index}
                         >
                           <CustomImage
                             src={icon}
-                            imageStyle={{ width: 20, height: 20 }}
+                            imageStyle={{ width: 22, height: 22 }}
                           />
 
-                          <div className="pl-2">
-                            <CustomText textClassName="white-text font-size-xlarge font-bold leading-4">
-                              {value}
-                            </CustomText>
-                            <CustomText textClassName="white-text font-size-xxsmall">
-                              {name}
-                            </CustomText>
-                          </div>
+                          <CustomText textClassName="white-text font-size-xlarge font-bold">
+                            {value}
+                          </CustomText>
+                          <CustomText
+                            textClassName="white-text font-size-xxsmall text-center"
+                            styles={{ height: 30 }}
+                          >
+                            {name}
+                          </CustomText>
                         </div>
                       );
                     })}

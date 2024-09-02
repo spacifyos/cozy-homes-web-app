@@ -50,12 +50,12 @@ const PropertyCarouselComponent = ({
               icon: Images.carParkOccupancyIcon,
             },
             {
-              name: "Occupancy",
+              name: "Room Occupancy",
               value: `${ownerSelector.getOccupancyRoom(item)}%`,
               icon: Images.occupancyIcon,
             },
             {
-              name: "Occupancy",
+              name: "Car Park Occupancy",
               value: `${ownerSelector.getOccupancyCarPark(item)}%`,
               icon: Images.carParkOccupancyIcon,
             },
@@ -103,17 +103,21 @@ const PropertyCarouselComponent = ({
                       return (
                         <div
                           className="p-2 flex flex-col items-center justify-center"
+                          style={{ width: 60 }}
                           key={index}
                         >
                           <CustomImage
                             src={icon}
-                            imageStyle={{ width: 20, height: 20 }}
+                            imageStyle={{ width: 22, height: 22 }}
                           />
 
-                          <CustomText textClassName="white-text font-size-xlarge font-bold leading-4">
+                          <CustomText textClassName="white-text font-size-xlarge font-bold">
                             {value}
                           </CustomText>
-                          <CustomText textClassName="white-text font-size-xxsmall">
+                          <CustomText
+                            textClassName="white-text font-size-xxsmall text-center"
+                            styles={{ height: 30 }}
+                          >
                             {name}
                           </CustomText>
                         </div>
