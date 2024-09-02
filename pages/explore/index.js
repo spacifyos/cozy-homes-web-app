@@ -7,13 +7,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
-import _, {get} from "lodash";
+import { get } from "lodash";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
@@ -22,7 +22,7 @@ function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
-  const locale = _.get(router, ["locale"], "en");
+  const locale = get(router, ["locale"], "en");
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
 
@@ -140,10 +140,10 @@ function Home() {
       </div>
 
       <BottomNavigate
-          t={t}
-          routeName={routeName}
-          routeQuery={routeQuery}
-          onClickChangeTab={onClickChangeTab}
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
       />
     </div>
   );

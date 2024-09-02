@@ -20,11 +20,15 @@ const ListingSection = ({
       <div className="flex justify-between items-center pb-2">
         <CustomText textClassName="section-title">{title}</CustomText>
 
-        <div onClick={onClickViewMore} className="cursor-pointer">
+        <a
+          onClick={onClickViewMore}
+          className="cursor-pointer"
+          href={`/search`}
+        >
           <CustomText textClassName="font-size-xsmall">
             {"View More >"}
           </CustomText>
-        </div>
+        </a>
       </div>
 
       {/*<CustomButton*/}
