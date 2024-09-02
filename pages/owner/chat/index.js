@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Helper from "@/src/utils/Helper";
-import { get, isEmpty, toString } from "lodash";
+import { get, isEmpty, toString, map } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
@@ -35,7 +35,13 @@ const OwnerChat = () => {
   const email = authSelector.getEmail(userProfileData);
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const uuid = authSelector.getUuid(userProfileData);
-  const propertyDetails = get(userProfileData, ["property_details", 0], []);
+  const propertyDetails = get(userProfileData, ["property_details"], []);
+
+  const formattedProperty = map(
+    propertyDetails,
+    (property) =>
+      `(Property: ${property.property_name}, Unit: ${property.units.join("/")})`,
+  );
 
   const tenancyCode = tenancySelector.getTenancyCode(propertyDetails);
   const tenancyStatus = tenancySelector.getStatus(propertyDetails);
@@ -49,7 +55,7 @@ const OwnerChat = () => {
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
-  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
+  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js?ref=main_menu--${phoneNumber}--${formattedProperty}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
