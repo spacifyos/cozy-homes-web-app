@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as walletSelector from "@/src/selectors/wallet";
-import { isEmpty } from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import moment from "moment";
 import Constant from "@/src/utils/Constant";
 import StatusLabel from "@/components/StatusLabel";
@@ -15,7 +15,7 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
   const amount = walletSelector.getAmountLabel(data);
   const transactionNumber = walletSelector.getTransactionNumber(data);
   const isAdd = walletSelector.getIsAdd(data);
-  const withdraw = walletSelector.getRequestStatus(data);
+  const withdrawStatus = walletSelector.getRequestStatus(data);
 
   const renderIcon = (type) => {
     switch (type) {
@@ -36,6 +36,36 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
     }
   };
 
+  const renderTextColor = (typeValue) => {
+    switch (typeValue) {
+      case Constant.WALLET_RENTAL_INCOME:
+        return "power-on-text";
+      case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
+        return "power-on-text";
+      case Constant.WALLET_EXPENSE:
+        return "primary-text";
+      case Constant.WALLET_INVOICE_PAYMENT:
+        return "primary-text";
+      case Constant.WALLET_WITHDRAWAL:
+        if (
+          isEqual(withdrawStatus, "Pending") ||
+          isEqual(withdrawStatus, "Confirmed")
+        ) {
+          return "pending-text";
+        } else if (isEqual(withdrawStatus, "Approved")) {
+          return "primary-text";
+        } else if (isEqual(withdrawStatus, "Cancelled")) {
+          return "error-text";
+        } else {
+          return "black-text";
+        }
+      case Constant.WALLET_WITHDRAWAL_REFUND:
+        return "power-on-text";
+      case Constant.WALLET_REVERT_INVOICE_PAYMENT:
+        return "power-on-text";
+    }
+  };
+
   return (
     <div
       className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer grid grid-cols-4 primaryWhite-bg-color"
@@ -48,7 +78,7 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
 
         <div className="px-3">
           {typeValue === Constant.WALLET_WITHDRAWAL ? (
-            <StatusLabel status={withdraw} />
+            <StatusLabel status={withdrawStatus} />
           ) : (
             <CustomText textClassName="disable-text font-size-xxsmall pr-2">
               {isEmpty(typeLabel) ? "-" : typeLabel}
@@ -71,7 +101,7 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
       </div>
 
       <CustomText
-        textClassName={`font-bold ${isAdd ? "primary-text" : "black-text"} font-size-small col-span-1 text-right`}
+        textClassName={`font-bold ${renderTextColor(typeValue)} font-size-small col-span-1 text-right`}
       >
         {isEmpty(amount) ? "RM0" : amount}
       </CustomText>

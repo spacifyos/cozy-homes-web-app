@@ -132,6 +132,20 @@ const RentTrackerComponent = ({ data }) => {
 
                             {map(rentals, (rental, rentalIndex) => {
                               const amount = ownerSelector.getRental(rental);
+                              const renderTextColor = () => {
+                                const status = ownerSelector.getStatus(rental);
+
+                                switch (status) {
+                                  case "full_paid":
+                                    return "power-on-text";
+                                  case "overdue":
+                                    return "error-text";
+                                  case "coming_due":
+                                    return "pending-text";
+                                  case "full_paid":
+                                    return "black-text";
+                                }
+                              };
 
                               return (
                                 <div
@@ -139,7 +153,7 @@ const RentTrackerComponent = ({ data }) => {
                                   key={rentalIndex}
                                 >
                                   <CustomText
-                                    textClassName="font-size-small text-center"
+                                    textClassName={`font-size-small text-center ${renderTextColor()}`}
                                     styles={{ width: 70 }}
                                   >
                                     {isEmpty(amount) ? "0" : amount}
