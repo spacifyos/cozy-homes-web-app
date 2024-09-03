@@ -13,7 +13,6 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
-import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import InvoiceSummary from "@/components/OwnerMyInvoice/InvoiceSummary";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
@@ -110,10 +109,6 @@ const OwnerMyInvoice = () => {
 
   const onClickGoBack = () => {
     router.back();
-  };
-
-  const onClickToOverView = (code) => {
-    router.push(`/owner/my-invoice/${code}`);
   };
 
   const onClickLoadMore = () => {
@@ -235,11 +230,7 @@ const OwnerMyInvoice = () => {
             <CustomEmptyBox />
           </div>
         ) : (
-          <InvoiceComponent
-            data={invoiceListingData}
-            t={t}
-            onClickToOverView={onClickToOverView}
-          />
+          <InvoiceComponent type="owner" data={invoiceListingData} t={t} />
         )}
 
         {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (

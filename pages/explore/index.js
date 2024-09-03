@@ -7,13 +7,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
-import _, {get} from "lodash";
+import { get } from "lodash";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
 
 export { getServerSideProps };
@@ -22,7 +22,7 @@ function Home() {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
-  const locale = _.get(router, ["locale"], "en");
+  const locale = get(router, ["locale"], "en");
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
 
@@ -72,13 +72,6 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyListing = (key, id) => {
-    router.push({
-      pathname: `/search`,
-      query: { key: key, id: id },
-    });
-  };
-
   const onClickOpenSwitcher = () => {
     setOpenSwitcher(!openSwitcher);
   };
@@ -103,10 +96,7 @@ function Home() {
       />
 
       <div className="body-container pb-24">
-        <FeaturesSection
-          onClickToPropertyListing={onClickToPropertyListing}
-          tags={tagsListing}
-        />
+        <FeaturesSection tags={tagsListing} />
 
         {/*<ListingSection*/}
         {/*  t={t}*/}
@@ -115,7 +105,6 @@ function Home() {
         {/*  listingLoading={listingLoading}*/}
         {/*  className="pb-7"*/}
         {/*  onClickViewMore={onClickToFilter}*/}
-        {/*  onClickToPropertyListing={onClickToPropertyListing}*/}
         {/*/>*/}
 
         <ListingSection
@@ -125,7 +114,6 @@ function Home() {
           listingLoading={listingDataLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyListing={onClickToPropertyListing}
         />
 
         <ListingSection
@@ -135,16 +123,10 @@ function Home() {
           listingLoading={listingDataLoading}
           className="pb-3"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyListing={onClickToPropertyListing}
         />
       </div>
 
-      <BottomNavigate
-          t={t}
-          routeName={routeName}
-          routeQuery={routeQuery}
-          onClickChangeTab={onClickChangeTab}
-      />
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
     </div>
   );
 }

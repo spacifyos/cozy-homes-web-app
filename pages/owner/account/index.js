@@ -91,30 +91,6 @@ const OwnerAccount = () => {
     }, 2000);
   };
 
-  const onClickToEditProfile = () => {
-    router.push("/edit-profile");
-  };
-
-  const onClickToMyBank = () => {
-    router.push("/owner/my-bank");
-  };
-
-  const onClickToMyWallet = () => {
-    router.push("/owner/my-wallet");
-  };
-
-  const onClickToLatestUpdate = () => {
-    router.push("/latest-update");
-  };
-
-  const onClickToInvoice = () => {
-    router.push("/owner/my-invoice");
-  };
-
-  const onClickToTnC = () => {
-    window.open("https://tms.spacify.asia/privacy-policy");
-  };
-
   const onClickSetPinNumber = async () => {
     if (!isRequestOtp) {
       return Toast.error("You must request otp.");
@@ -226,7 +202,7 @@ const OwnerAccount = () => {
   };
 
   const onClickToReport = () => {
-    router.push("/owner/my-report");
+    router.push();
   };
 
   const onClickChangeTab = (route) => {
@@ -238,14 +214,11 @@ const OwnerAccount = () => {
       <NextSeo title="Account | Owner - Spacify Asia" />
 
       <div className="grid grid-cols-5 gap-3 flex-1 mb-10 absolute top-16 w-full px-4 z-10">
-        <ProfileCard
-          onClickToEditProfile={onClickToEditProfile}
-          data={userProfileData}
-        />
+        <ProfileCard data={userProfileData} />
 
         <SpacifyCoins
+          route={"/owner/my-wallet"}
           t={t}
-          onClickToMyWallet={onClickToMyWallet}
           walletBalance={walletBalance}
         />
       </div>
@@ -269,7 +242,7 @@ const OwnerAccount = () => {
             imageWidth={20}
             imageHeight={20}
             pb={3}
-            onClick={onClickToMyBank}
+            route={"/owner/my-bank"}
           />
 
           <FeatureComponent
@@ -277,7 +250,7 @@ const OwnerAccount = () => {
             icon={Images.primaryInvoiceIcon}
             imageWidth={25}
             pb={3}
-            onClick={onClickToInvoice}
+            route={"/owner/my-invoice"}
           />
 
           <FeatureComponent
@@ -285,7 +258,7 @@ const OwnerAccount = () => {
             icon={Images.paperIcon}
             imageWidth={16}
             pb={3}
-            onClick={onClickToReport}
+            route={"/owner/my-report"}
           />
 
           {/*<FeatureComponent*/}
@@ -308,7 +281,8 @@ const OwnerAccount = () => {
             title={t("account.termAndCondition")}
             icon={Images.primaryTermAndConditionIcon}
             imageWidth={25}
-            onClick={onClickToTnC}
+            route={"https://tms.spacify.asia/privacy-policy"}
+            target="_blank"
           />
 
           <div className="divider-line"></div>

@@ -3,7 +3,7 @@ import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import MyReportCard from "@/components/MyReport/MyReportCard";
 
-const ListingComponent = ({ data, onClickToDetail }) => {
+const ListingComponent = ({ data, targetMonth }) => {
   return (
     <div className="flex flex-col flex-1">
       <div className="flex justify-between items-end">
@@ -17,7 +17,7 @@ const ListingComponent = ({ data, onClickToDetail }) => {
           <CustomEmptyBox />
         </div>
       ) : (
-        <MyReportCard data={data} onClickToDetail={onClickToDetail} />
+        <MyReportCard data={data} targetMonth={targetMonth} />
       )}
     </div>
   );

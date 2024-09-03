@@ -12,7 +12,6 @@ const ListingSection = ({
   title,
   listingLoading,
   onClickViewMore,
-  onClickToPropertyListing,
   className,
 }) => {
   return (
@@ -20,11 +19,15 @@ const ListingSection = ({
       <div className="flex justify-between items-center pb-2">
         <CustomText textClassName="section-title">{title}</CustomText>
 
-        <div onClick={onClickViewMore} className="cursor-pointer">
+        <a
+          onClick={onClickViewMore}
+          className="cursor-pointer"
+          href={`/search`}
+        >
           <CustomText textClassName="font-size-xsmall">
             {"View More >"}
           </CustomText>
-        </div>
+        </a>
       </div>
 
       {/*<CustomButton*/}
@@ -80,10 +83,7 @@ const ListingSection = ({
             {map(lists, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent
-                    item={item}
-                    onClickToPropertyListing={onClickToPropertyListing}
-                  />
+                  <ListingCardComponent item={item} />
                 </SwiperSlide>
               );
             })}

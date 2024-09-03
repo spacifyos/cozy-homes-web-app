@@ -1,11 +1,10 @@
-import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as listingSelector from "@/src/selectors/listing";
 import { isEmpty } from "lodash";
 import Image from "next/image";
 
-const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
+const ListingCardComponent = ({ t, item }) => {
   const propertyName = listingSelector.getPropertyName(item);
   const unitRoomName = listingSelector.getUnitRoomName(item);
   const rental = listingSelector.getRental(item);
@@ -13,10 +12,7 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
   const imageUrl = listingSelector.getImageUrl(item);
 
   return (
-    <div
-      className="cursor-pointer"
-      onClick={() => onClickToPropertyOverview(propertyId)}
-    >
+    <a href={`/property-overview/${propertyId}`} className="cursor-pointer">
       <div
         className="relative rounded-2xl global-box-shadow w-full overflow-hidden primaryWhite-bg-color"
         style={{ height: 150 }}
@@ -47,7 +43,7 @@ const ListingCardComponent = ({ t, item, onClickToPropertyOverview }) => {
           / month
         </CustomText>
       </div>
-    </div>
+    </a>
   );
 };
 

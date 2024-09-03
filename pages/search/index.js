@@ -5,7 +5,7 @@ import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
-import _ from "lodash";
+import { get, isEmpty, map, debounce, includes, filter, isEqual } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -26,8 +26,8 @@ const Search = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
-  const queryId = _.get(router, ["query", "id"], "");
-  const queryKey = _.get(router, ["query", "key"], "");
+  const queryId = get(router, ["query", "id"], "");
+  const queryKey = get(router, ["query", "key"], "");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -74,19 +74,19 @@ const Search = () => {
   const lastPage = listingSelector.getLastPage(listingPropertyPagination);
 
   useEffect(() => {
-    if (!_.isEmpty(queryKey) && !_.isEmpty(queryId)) {
+    if (!isEmpty(queryKey) && !isEmpty(queryId)) {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: _.isEqual(queryKey, "tags") ? [queryId] : queryId,
+          [queryKey]: isEqual(queryKey, "tags") ? [queryId] : queryId,
         };
       });
     }
   }, []);
 
   useEffect(() => {
-    if (!_.isEmpty(amenitiesTag)) {
-      const formatFacilityTag = _.map(amenitiesTag, (item) => {
+    if (!isEmpty(amenitiesTag)) {
+      const formatFacilityTag = map(amenitiesTag, (item) => {
         return {
           ...item,
           ...{ isActive: false },
@@ -98,8 +98,8 @@ const Search = () => {
   }, [amenitiesTag]);
 
   useEffect(() => {
-    if (!_.isEmpty(generalTag)) {
-      const formatGeneralTag = _.map(generalTag, (item) => {
+    if (!isEmpty(generalTag)) {
+      const formatGeneralTag = map(generalTag, (item) => {
         return {
           ...item,
           ...{ isActive: false },
@@ -117,7 +117,7 @@ const Search = () => {
   }, [amenitiesTarget]);
 
   useEffect(() => {
-    const handleScroll = _.debounce(() => {
+    const handleScroll = debounce(() => {
       const currentPosition = typeof window != "undefined" && window.scrollY;
       setScrollTop(currentPosition >= 187 ? 10 : 187 - currentPosition);
     }, 1);
@@ -149,10 +149,10 @@ const Search = () => {
 
   const onClickGeneralTag = (name, code) => {
     setSelectedFilterParams((prevState) => {
-      const preTags = _.get(prevState, ["tags"], []);
+      const preTags = get(prevState, ["tags"], []);
 
-      const updatedTags = _.includes(preTags, code)
-        ? _.filter(preTags, (tag) => !_.isEqual(tag, code))
+      const updatedTags = includes(preTags, code)
+        ? filter(preTags, (tag) => !isEqual(tag, code))
         : [...preTags, code];
 
       return {
@@ -162,11 +162,11 @@ const Search = () => {
     });
 
     setNewGeneralTag((prevState) => {
-      return _.map(prevState, (item) => {
-        if (_.get(item, ["name"], "") === name) {
+      return map(prevState, (item) => {
+        if (get(item, ["name"], "") === name) {
           return {
             ...item,
-            ...{ isActive: !_.get(item, ["isActive"], false) },
+            ...{ isActive: !get(item, ["isActive"], false) },
           };
         } else {
           return item;
@@ -181,10 +181,10 @@ const Search = () => {
 
   const onClickSelectAmenities = (name, code) => {
     setSelectedFilterParams((prevState) => {
-      const preTags = _.get(prevState, ["tags"], []);
+      const preTags = get(prevState, ["tags"], []);
 
-      const updatedTags = _.includes(preTags, code)
-        ? _.filter(preTags, (tag) => !_.isEqual(tag, code))
+      const updatedTags = includes(preTags, code)
+        ? filter(preTags, (tag) => !isEqual(tag, code))
         : [...preTags, code];
 
       return {
@@ -194,11 +194,11 @@ const Search = () => {
     });
 
     setNewAmenitiesTag((prevState) => {
-      return _.map(prevState, (item) => {
-        if (_.get(item, ["name"], "") === name) {
+      return map(prevState, (item) => {
+        if (get(item, ["name"], "") === name) {
           return {
             ...item,
-            ...{ isActive: !_.get(item, ["isActive"], false) },
+            ...{ isActive: !get(item, ["isActive"], false) },
           };
         } else {
           return item;
@@ -291,10 +291,6 @@ const Search = () => {
     });
   };
 
-  const onClickToPropertyOverview = (id) => {
-    router.push(`/property-overview/${id}`);
-  };
-
   const onPageChange = (pageNumber) => {
     fetchListingProperty(selectedFilterParams, pageNumber);
   };
@@ -332,7 +328,7 @@ const Search = () => {
         />
       </div>
 
-      {_.isEmpty(newGeneralTag) ? (
+      {isEmpty(newGeneralTag) ? (
         false
       ) : (
         <TagComponent
@@ -389,11 +385,11 @@ const Search = () => {
 
             {listingPropertyDataLoading ? (
               <div className="grid grid-cols-2 gap-3">
-                {_.map(Array(6), (item, index) => (
+                {map(Array(6), (item, index) => (
                   <Skeleton width="100%" height={140} key={index} />
                 ))}
               </div>
-            ) : _.isEmpty(listingPropertyData) ? (
+            ) : isEmpty(listingPropertyData) ? (
               <div
                 className="flex items-center justify-center"
                 style={{ height: "200%" }}
@@ -402,13 +398,8 @@ const Search = () => {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-3">
-                {_.map(listingPropertyData, (item, index) => (
-                  <ListingCardComponent
-                    key={index}
-                    item={item}
-                    t={t}
-                    onClickToPropertyOverview={onClickToPropertyOverview}
-                  />
+                {map(listingPropertyData, (item, index) => (
+                  <ListingCardComponent key={index} item={item} t={t} />
                 ))}
               </div>
             )}

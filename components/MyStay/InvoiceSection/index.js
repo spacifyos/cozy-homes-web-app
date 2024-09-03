@@ -1,17 +1,16 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
-import _, { isEmpty } from "lodash";
+import { isEmpty, map, get, isEqual } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const InvoiceSection = ({
   t,
   selectedCategory,
   onClickSelectCategory,
-  onClickToInvoiceList,
   data,
-  onClickToOverviewPage,
   hideTitle = false,
+  type,
 }) => {
   const invoiceBtn = [
     {
@@ -39,15 +38,15 @@ const InvoiceSection = ({
 
       <div className="flex justify-between items-end pb-3">
         <div className="flex items-center">
-          {_.map(invoiceBtn, (item, index) => {
-            const value = _.get(item, ["value"], "");
-            const name = _.get(item, ["name"], "");
+          {map(invoiceBtn, (item, index) => {
+            const value = get(item, ["value"], "");
+            const name = get(item, ["name"], "");
 
             return (
               <CustomButton
                 key={index}
                 buttonText={name}
-                buttonClassName={`btn-sm ${_.isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
                 textClassName="font-size-xsmall"
                 onClick={() => onClickSelectCategory(value)}
               />
@@ -55,12 +54,11 @@ const InvoiceSection = ({
           })}
         </div>
 
-        <CustomText
-          textClassName="font-size-small cursor-pointer"
-          onClick={onClickToInvoiceList}
-        >
-          {t("myStay.viewMore")}
-        </CustomText>
+        <a href={`${isEmpty(type) ? "" : "/owner"}/my-invoice`}>
+          <CustomText textClassName="font-size-small cursor-pointer">
+            {t("myStay.viewMore")}
+          </CustomText>
+        </a>
       </div>
 
       <div className="flex flex-col gap-3">
@@ -69,11 +67,7 @@ const InvoiceSection = ({
             <CustomEmptyBox emptyTitle="No invoice found" />
           </div>
         ) : (
-          <InvoiceComponent
-            t={t}
-            data={data}
-            onClickToOverView={onClickToOverviewPage}
-          />
+          <InvoiceComponent t={t} data={data} type={type} />
         )}
       </div>
     </div>

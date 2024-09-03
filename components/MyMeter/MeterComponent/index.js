@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
-const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
+const MeterComponent = ({ t, item }) => {
   const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
@@ -12,9 +12,9 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
   const balanceUnit = meterSelector.getBalanceUnit(item);
 
   return (
-    <div
+    <a
+      href={`/my-meter/${id}`}
       className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
-      onClick={() => onClickToMeterOverview(id)}
     >
       <div className="primary-bg-color px-2 py-3 global-border-radius flex items-center">
         <CustomImage
@@ -76,7 +76,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
           </div>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

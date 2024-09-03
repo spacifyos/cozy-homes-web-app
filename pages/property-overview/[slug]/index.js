@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import _, { isEmpty, isEqual, isInteger } from "lodash";
+import { isEmpty, isEqual, get } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
@@ -28,7 +28,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
 
 export async function getServerSideProps(context) {
-  const id = _.get(context, ["params", "slug"], "");
+  const id = get(context, ["params", "slug"], "");
 
   return {
     props: {
@@ -136,26 +136,9 @@ const PropertyOverview = ({ id }) => {
   const onClickSelectDetail = (select) => {
     setSelectedDetail(select);
 
-    if (_.isEqual(select, Constant.POLICY)) {
+    if (isEqual(select, Constant.POLICY)) {
       fetchListingCancellation();
     }
-  };
-
-  const onClickBooking = () => {
-    router.push(`/booking/${id}`);
-  };
-
-  const onClickOpenWhatsApp = (contactNumber) => {
-    window.open(
-      _.isEmpty(contactNumber)
-        ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
-        : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
-      "_blank",
-    );
-  };
-
-  const onClickToPropertyOverview = (id) => {
-    router.push(`/property-overview/${id}`);
   };
 
   const onClickOpenMoveInCostModal = () => {
@@ -206,11 +189,11 @@ const PropertyOverview = ({ id }) => {
         <div className="grid grid-cols-6 gap-3 items-center pb-5">
           <CustomButton
             icon={
-              _.isEqual(selectDetail, Constant.TENANCY)
+              isEqual(selectDetail, Constant.TENANCY)
                 ? Images.tenancyIconActive
                 : Images.tenancyIcon
             }
-            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal"
             buttonText={t("propertyDetail.tenancy")}
             imageStyle={{ width: 18 }}
@@ -219,19 +202,19 @@ const PropertyOverview = ({ id }) => {
 
           <CustomButton
             icon={
-              _.isEqual(selectDetail, Constant.TENANCY)
+              isEqual(selectDetail, Constant.TENANCY)
                 ? Images.policyIcon
                 : Images.policyIconActive
             }
             imageStyle={{ width: 18 }}
-            buttonClassName={`col-span-3 ${_.isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
             textClassName="font-size-normal disable-text"
             buttonText={t("propertyDetail.policy")}
             onClick={() => onClickSelectDetail(Constant.POLICY)}
           />
         </div>
 
-        {_.isEqual(selectDetail, Constant.TENANCY) ? (
+        {isEqual(selectDetail, Constant.TENANCY) ? (
           <div>
             <DetailFeatureSection
               t={t}
@@ -247,11 +230,7 @@ const PropertyOverview = ({ id }) => {
 
             {/*<SpacifyMap t={t} />*/}
 
-            <RecommendSection
-              t={t}
-              recommendedList={recommendedList}
-              onClickToPropertyOverview={onClickToPropertyOverview}
-            />
+            <RecommendSection t={t} recommendedList={recommendedList} />
           </div>
         ) : (
           <PolicyDetail
@@ -263,12 +242,11 @@ const PropertyOverview = ({ id }) => {
 
         <AgentSection
           t={t}
-          onClickOpenWhatsApp={onClickOpenWhatsApp}
-          onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
           data={listingPropertyDetailData}
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
           totalMoveInCost={totalMoveInCost}
+          propertyId={id}
         />
 
         <MoveInCostModal

@@ -3,13 +3,7 @@ import MeterComponent from "@/components/MyStay/MeterComponent";
 import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 
-const MeterSection = ({
-  t,
-  onClickTopUp,
-  onClickToMeterOverview,
-  onClickToMeterList,
-  data,
-}) => {
+const MeterSection = ({ t, data }) => {
   return (
     <div className="pb-7">
       <div className="flex justify-between items-end">
@@ -17,27 +11,18 @@ const MeterSection = ({
           {t("myStay.myMeter")}
         </CustomText>
 
-        <CustomText
-          textClassName="font-size-small pb-2 cursor-pointer"
-          onClick={onClickToMeterList}
-        >
-          {t("myStay.viewMore")}
-        </CustomText>
+        <a href={"/my-meter"}>
+          <CustomText textClassName="font-size-small pb-2 cursor-pointer">
+            {t("myStay.viewMore")}
+          </CustomText>
+        </a>
       </div>
 
       {isEmpty(data) ? (
         <CustomEmptyBox emptyTitle="No meter found" />
       ) : (
         map(data, (item, index) => {
-          return (
-            <MeterComponent
-              key={index}
-              t={t}
-              onClickTopUp={onClickTopUp}
-              onClickToMeterOverview={onClickToMeterOverview}
-              item={item}
-            />
-          );
+          return <MeterComponent key={index} t={t} item={item} />;
         })
       )}
     </div>

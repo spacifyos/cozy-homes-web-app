@@ -3,11 +3,11 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
 
-const SpacifyCoins = ({ t, onClickToMyWallet = () => {}, walletBalance }) => {
+const SpacifyCoins = ({ t, route, walletBalance }) => {
   return (
-    <div
+    <a
+      href={route}
       className="profile-coin-container col-span-2 cursor-pointer"
-      onClick={onClickToMyWallet}
     >
       {/*<div className="absolute right-1 top-3 cursor-pointer">*/}
       {/*  <CustomImage src={Images.moreIcon} imageStyle={{ width: 22 }} />*/}
@@ -32,7 +32,7 @@ const SpacifyCoins = ({ t, onClickToMyWallet = () => {}, walletBalance }) => {
           {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

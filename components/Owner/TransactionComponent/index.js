@@ -36,6 +36,7 @@ const TransactionComponent = ({
       ) : (
         <InvoiceSection
           t={t}
+          type={"owner"}
           onClickSelectCategory={onClickSelectInvoiceCategory}
           selectedCategory={selectedInvoiceCategory}
           onClickToInvoiceList={onClickToInvoiceList}

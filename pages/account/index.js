@@ -90,10 +90,6 @@ const Account = () => {
     }, 2000);
   };
 
-  const onClickToEditProfile = () => {
-    router.push("/edit-profile");
-  };
-
   const onClickToMyAppointment = () => {
     router.push("/my-appointment");
   };
@@ -234,10 +230,7 @@ const Account = () => {
 
       <div className="body-container pb-24">
         <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
-          <ProfileCard
-            onClickToEditProfile={onClickToEditProfile}
-            data={userProfileData}
-          />
+          <ProfileCard data={userProfileData} />
 
           <SpacifyCoins
             t={t}
@@ -261,7 +254,7 @@ const Account = () => {
           title={t("account.myInvoice")}
           icon={Images.primaryInvoiceIcon}
           pb={3}
-          onClick={onClickToInvoice}
+          route={"/my-invoice"}
         />
 
         {/*<FeatureComponent*/}
@@ -293,7 +286,8 @@ const Account = () => {
           title={t("account.termAndCondition")}
           icon={Images.primaryTermAndConditionIcon}
           pb={3}
-          onClick={onClickToTnC}
+          route={"https://tms.spacify.asia/privacy-policy"}
+          target="_blank"
         />
 
         <div className="divider-line"></div>

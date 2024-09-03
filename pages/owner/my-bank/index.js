@@ -3,11 +3,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
-import CustomLabelValue from "@/components/CustomLabelValue";
 import { useRouter } from "next/router";
-import TransactionComponent from "@/components/MyBank/TransactionComponent";
 import { useEffect, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -16,7 +12,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import { isEmpty, isEqual, lowerCase, map, replace } from "lodash";
 import BankCard from "@/components/MyBank/BankCard";
-import Constant from "@/src/utils/Constant";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import TransactionCard from "@/components/MyWallet/TransactionCard";
@@ -108,16 +103,6 @@ const MyBank = () => {
     router.replace("/owner/account");
   };
 
-  const onClickToAddBank = () => {
-    router.push("/owner/my-bank/add-bank");
-  };
-
-  const onClickEditBankInfo = (id) => {
-    const formatBankName = replace(lowerCase(id), " ", "_");
-
-    router.push(`/owner/my-bank/${formatBankName}`);
-  };
-
   const onClickToTransactionOverview = (id) => {
     router.push({
       pathname: `/owner/my-wallet/transaction-overview/${id}`,
@@ -140,11 +125,7 @@ const MyBank = () => {
     >
       <NextSeo title="My Bank | Owner - Spacify Asia" />
 
-      <BankCard
-        bankDetails={bankDetails}
-        onClickToAddBank={onClickToAddBank}
-        onClickEditBankInfo={onClickEditBankInfo}
-      />
+      <BankCard bankDetails={bankDetails} />
 
       <div className="body-container bg-color flex flex-col flex-1 pb-4">
         <div className="pt-16 flex flex-col flex-1">

@@ -4,10 +4,13 @@ import Constant from "@/src/utils/Constant";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
+const FeaturesSection = ({ tags }) => {
   return (
     <div className="grid grid-cols-12 gap-3 pb-7">
-      <div className="col-span-6">
+      <a
+        className="col-span-6 cursor-pointer"
+        href={`/search?key=rental_type&id=${Constant.ROOM_FOR_RENT}`}
+      >
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-row-reverse flex-nowrap primaryWhite-bg-color border-none global-box-shadow feature-button"
@@ -16,12 +19,12 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
           icon={Image.bedIconActive}
           imageHeight={25}
           imageWidth={25}
-          onClick={() =>
-            onClickToPropertyListing("rental_type", Constant.ROOM_FOR_RENT)
-          }
         />
-      </div>
-      <div className="col-span-6">
+      </a>
+      <a
+        className="col-span-6 cursor-pointer"
+        href={`/search?key=space_type&id=car_park`}
+      >
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
           buttonClassName="flex-row-reverse flex-nowrap primaryWhite-bg-color border-none global-box-shadow feature-button"
@@ -30,9 +33,8 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
           icon={Image.carParkIcon}
           imageHeight={25}
           imageWidth={25}
-          onClick={() => onClickToPropertyListing("space_type", "car_park")}
         />
-      </div>
+      </a>
 
       {/*{_.map(tags, (item, index) => {*/}
       {/*  const icon = listingSelector.getImageUrl(item);*/}

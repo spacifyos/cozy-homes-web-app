@@ -104,43 +104,8 @@ const MyStay = () => {
     setSelectedCategory(category);
   };
 
-  const onClickToMeterOverview = (id) => {
-    router.push(`/my-meter/${id}`);
-  };
-
-  const onClickTopUp = (id) => {
-    router.push(`/my-meter/${id}/top-up-meter`);
-  };
-
-  const onClickToAgreement = () => {
-    router.push("/e-agreement");
-  };
-
-  const onClickGoToMyTenancy = (code) => {
-    router.push(`/my-tenancy/${code}`);
-  };
-
   const onChangeAutoPay = () => {
     setIsChecked(!isChecked);
-  };
-
-  const onClickToInvoiceList = () => {
-    router.push("/my-invoice");
-  };
-
-  const onClickToOverviewPage = (id) => {
-    router.push(`/my-invoice/${id}`);
-  };
-
-  const onClickToMeterList = () => {
-    router.push("/my-meter");
-  };
-  const onClickToHelpCenter = () => {
-    router.push("/help-center");
-  };
-
-  const onClickChangeTab = (route) => {
-    router.push(route);
   };
 
   return (
@@ -152,33 +117,20 @@ const MyStay = () => {
 
         <TenancySection
           t={t}
-          onClickGoToMyTenancy={onClickGoToMyTenancy}
           onChangeAutoPay={onChangeAutoPay}
           isChecked={isChecked}
           data={tenancyListingData}
         />
 
-        <FeatureSection
-          t={t}
-          onClickToAgreement={onClickToAgreement}
-          onClickToHelpCenter={onClickToHelpCenter}
-        />
+        <FeatureSection t={t} />
 
-        <MeterSection
-          t={t}
-          onClickTopUp={onClickToMeterOverview}
-          onClickToMeterOverview={onClickToMeterOverview}
-          onClickToMeterList={onClickToMeterList}
-          data={meterListingData}
-        />
+        <MeterSection t={t} data={meterListingData} />
 
         <InvoiceSection
           t={t}
           onClickSelectCategory={onClickSelectCategory}
           selectedCategory={selectedCategory}
-          onClickToInvoiceList={onClickToInvoiceList}
           data={invoiceListingData}
-          onClickToOverviewPage={onClickToOverviewPage}
         />
 
         <LoadingOverlay
@@ -191,12 +143,7 @@ const MyStay = () => {
         />
       </div>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
     </CustomHeader>
   );
 };

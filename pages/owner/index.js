@@ -127,12 +127,6 @@ const OwnerHome = () => {
     setPropertyListing(res);
   };
 
-  const onClickToPropertyDetail = (id) => {
-    router.push({
-      pathname: `/owner/property/${id}`,
-    });
-  };
-
   const onClickSelectCategory = (category) => {
     setSelectedCategory(category);
   };
@@ -146,11 +140,7 @@ const OwnerHome = () => {
   };
 
   const onClickToOverviewPage = (id) => {
-    router.push(`/owner/my-invoice/${id}`);
-  };
-
-  const onClickToWallet = () => {
-    router.push("/owner/my-wallet");
+    router.push();
   };
 
   const onClickChangeTab = (route) => {
@@ -172,18 +162,12 @@ const OwnerHome = () => {
         </div>
       </div>
 
-      <UserDetailComponent
-        data={userProfileData}
-        onClickToWallet={onClickToWallet}
-      />
+      <UserDetailComponent data={userProfileData} />
 
       <div className="body-container bg-color flex-1 pb-24">
         <PropertyInfoComponent lists={lists} paddingTop={"4rem"} />
 
-        <PropertyCarouselComponent
-          onClickToPropertyDetail={onClickToPropertyDetail}
-          data={properties}
-        />
+        <PropertyCarouselComponent data={properties} />
 
         <TransactionComponent
           t={t}

@@ -2,7 +2,7 @@ import Images from "@/src/utils/Image";
 import _ from "lodash";
 import FeatureComponent from "@/components/MyStay/FeatureComponent";
 
-const FeatureSection = ({ t, onClickToAgreement, onClickToHelpCenter }) => {
+const FeatureSection = ({ t }) => {
   return (
     <div className="grid grid-cols-4 gap-4 flex justify-center pb-7">
       <FeatureComponent disable name={t("myStay.scan")} icon={Images.qrIcon} />
@@ -14,7 +14,7 @@ const FeatureSection = ({ t, onClickToAgreement, onClickToHelpCenter }) => {
       <FeatureComponent
         name={t("myStay.eAgreement")}
         icon={Images.agreementIconActive}
-        onClickToNextPage={onClickToAgreement}
+        route="/e-agreement"
       />
       <FeatureComponent
         disable
