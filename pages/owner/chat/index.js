@@ -33,6 +33,8 @@ const OwnerChat = () => {
   const uuid = authSelector.getUuid(userProfileData);
   const propertyDetails = get(userProfileData, ["property_details"], []);
 
+  const propertyDetailToString = JSON.stringify(propertyDetails);
+
   const formattedProperty = map(
     propertyDetails,
     (property) =>
