@@ -7,7 +7,7 @@ import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent
 import * as tenancySelector from "@/src/selectors/tenancy";
 import { useEffect, useRef, useState } from "react";
 
-const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
+const TenancyComponent = ({ item, t }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -28,9 +28,9 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
   const totalDays = tenancySelector.getTotalDays(item);
 
   return (
-    <div
+    <a
+      href={`/my-tenancy/${tenancyId}`}
       className="tenancy-container cursor-pointer grid grid-cols-2 gap-2"
-      onClick={() => onClickGoToMyTenancy(tenancyId)}
     >
       {/*<CustomImage*/}
       {/*  src={Images.moreIcon}*/}
@@ -42,7 +42,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
 
       <div className="flex flex-col items-start col-span-1">
         <div className="primary-bg-color p-2 global-border-radius mb-1 ">
-          <CustomImage src={Images.buildingIcon} imageStyle={{width:35}} />
+          <CustomImage src={Images.buildingIcon} imageStyle={{ width: 35 }} />
         </div>
 
         <div className={"pb-2"}>
@@ -101,7 +101,7 @@ const TenancyComponent = ({ item, onClickGoToMyTenancy, t }) => {
       {/*) : (*/}
       {/*  false*/}
       {/*)}*/}
-    </div>
+    </a>
   );
 };
 

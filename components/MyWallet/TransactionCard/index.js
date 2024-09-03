@@ -7,7 +7,7 @@ import moment from "moment";
 import Constant from "@/src/utils/Constant";
 import StatusLabel from "@/components/StatusLabel";
 
-const TransactionCard = ({ onClickToTransactionOverview, data }) => {
+const TransactionCard = ({ data }) => {
   const updatedAt = walletSelector.getUpdatedAt(data);
   const remarks = walletSelector.getRemarks(data);
   const typeLabel = walletSelector.getTypeLabel(data);
@@ -67,9 +67,9 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
   };
 
   return (
-    <div
+    <a
+      href={`/owner/my-wallet/transaction-overview/${transactionNumber}`}
       className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer grid grid-cols-4 primaryWhite-bg-color"
-      onClick={() => onClickToTransactionOverview(transactionNumber)}
     >
       <div className="flex col-span-3">
         <div className="flex items-center" style={{ width: 35 }}>
@@ -105,7 +105,7 @@ const TransactionCard = ({ onClickToTransactionOverview, data }) => {
       >
         {isEmpty(amount) ? "RM0" : amount}
       </CustomText>
-    </div>
+    </a>
   );
 };
 

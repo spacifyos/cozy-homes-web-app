@@ -1,9 +1,6 @@
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
-import CustomText from "@/components/CustomText";
 import { get, filter, isEqual, toString, isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import CustomSelect from "@/components/CustomSelect";
@@ -31,6 +28,7 @@ const MyReport = () => {
   const [filterParams, setFilterParams] = useState({
     month: moment().subtract(1, "months").format("YYYY-MM"),
   });
+  const targetMonth = get(filterParams, ["month"], "");
 
   useEffect(() => {
     fetchOwnerReportListing();
@@ -80,19 +78,6 @@ const MyReport = () => {
     });
   };
 
-  const onClickToDetail = (id) => {
-    const targetMonth = get(filterParams, ["month"], "");
-
-    router.push({
-      pathname: `/owner/my-report/${id}`,
-      query: {
-        month: isEmpty(targetMonth)
-          ? moment().format("D-M-YYYY")
-          : moment(targetMonth).format("D-M-YYYY"),
-      },
-    });
-  };
-
   return (
     <CustomOwnerHeader
       className="pb-0"
@@ -130,7 +115,7 @@ const MyReport = () => {
           </div>
         </div>
 
-        <ListingComponent data={statement} onClickToDetail={onClickToDetail} />
+        <ListingComponent data={statement} targetMonth={targetMonth} />
       </div>
 
       <LoadingOverlay loading={loading} />

@@ -3,8 +3,9 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import { isEmpty, map } from "lodash";
 import * as reportSelector from "@/src/selectors/report";
+import moment from "moment/moment";
 
-const MyReportCard = ({ data, onClickToDetail }) => {
+const MyReportCard = ({ data, targetMonth }) => {
   return (
     <div className="grid gap-3">
       {map(data, (item, index) => {
@@ -14,8 +15,8 @@ const MyReportCard = ({ data, onClickToDetail }) => {
         const id = reportSelector.getUnitId(item);
 
         return (
-          <div
-            onClick={() => onClickToDetail(id)}
+          <a
+            href={`/owner/my-report/${id}?month=${isEmpty(targetMonth) ? moment().format("D-M-YYYY") : moment(targetMonth).format("D-M-YYYY")}`}
             key={index}
             className="flex items-center primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
           >
@@ -35,7 +36,7 @@ const MyReportCard = ({ data, onClickToDetail }) => {
                 {isEmpty(period) ? "-" : period}
               </CustomText>
             </div>
-          </div>
+          </a>
         );
       })}
     </div>

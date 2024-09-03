@@ -12,11 +12,7 @@ import {
   getTotalCarPark,
 } from "@/src/selectors/owner";
 
-const PropertyCarouselComponent = ({
-  data,
-  onClickToPropertyDetail,
-  showLabel,
-}) => {
+const PropertyCarouselComponent = ({ data, showLabel }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
   const onSlideChange = (value) => {
@@ -62,70 +58,69 @@ const PropertyCarouselComponent = ({
           ];
 
           return (
-            <SwiperSlide
-              key={index}
-              onClick={() => onClickToPropertyDetail(propertyId)}
-            >
-              <div
-                style={{
-                  background: `url(${isEmpty(propertyImage) ? Images.logoImage : propertyImage}) no-repeat center center`,
-                  backgroundSize: "contain",
-                }}
-                className="owner-property-banner global-border-radius"
-              >
+            <SwiperSlide key={index}>
+              <a href={`/owner/property/${propertyId}`}>
                 <div
-                  style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
-                  className="global-border-radius flex flex-col justify-end p-3"
+                  style={{
+                    background: `url(${isEmpty(propertyImage) ? Images.logoImage : propertyImage}) no-repeat center center`,
+                    backgroundSize: "contain",
+                  }}
+                  className="owner-property-banner global-border-radius"
                 >
-                  {showLabel ? (
-                    <div className="flex pb-1">
-                      <CustomText textClassName="font-size-xsmall white-text available-bg-color px-4 py-0.5 rounded">
-                        Available
-                      </CustomText>
-                    </div>
-                  ) : (
-                    false
-                  )}
+                  <div
+                    style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
+                    className="global-border-radius flex flex-col justify-end p-3"
+                  >
+                    {showLabel ? (
+                      <div className="flex pb-1">
+                        <CustomText textClassName="font-size-xsmall white-text available-bg-color px-4 py-0.5 rounded">
+                          Available
+                        </CustomText>
+                      </div>
+                    ) : (
+                      false
+                    )}
 
-                  <CustomText textClassName="white-text font-bold font-size-xlarge">
-                    {isEmpty(propertyName) ? "-" : propertyName}
-                  </CustomText>
-                  <CustomText textClassName="white-text font-size-xsmall font-light">
-                    {isEmpty(propertyAddress) ? "-" : propertyAddress}
-                  </CustomText>
+                    <CustomText textClassName="white-text font-bold font-size-xlarge">
+                      {isEmpty(propertyName) ? "-" : propertyName}
+                    </CustomText>
+                    <CustomText textClassName="white-text font-size-xsmall font-light">
+                      {isEmpty(propertyAddress) ? "-" : propertyAddress}
+                    </CustomText>
 
-                  <div className="flex pt-2">
-                    {map(infoLists, (list, index) => {
-                      const name = get(list, ["name"], "");
-                      const value = get(list, ["value"], "");
-                      const icon = get(list, ["icon"], "");
+                    <div className="flex pt-2">
+                      {map(infoLists, (list, index) => {
+                        const name = get(list, ["name"], "");
+                        const value = get(list, ["value"], "");
+                        const icon = get(list, ["icon"], "");
 
-                      return (
-                        <div
-                          className="p-2 flex flex-col items-center justify-center"
-                          style={{ width: 60 }}
-                          key={index}
-                        >
-                          <CustomImage
-                            src={icon}
-                            imageStyle={{ width: 22, height: 22 }}
-                          />
-
-                          <CustomText textClassName="white-text font-size-xlarge font-bold">
-                            {value}
-                          </CustomText>
-                          <CustomText
-                            textClassName="white-text font-size-xxsmall text-center"
-                            styles={{ height: 30 }}
+                        return (
+                          <div
+                            className="p-2 flex flex-col items-center justify-center"
+                            style={{ width: 60 }}
+                            key={index}
                           >
-                            {name}
-                          </CustomText>
-                        </div>
-                      );
-                    })}
+                            <CustomImage
+                              src={icon}
+                              imageStyle={{ width: 22, height: 22 }}
+                            />
+
+                            <CustomText textClassName="white-text font-size-xlarge font-bold">
+                              {value}
+                            </CustomText>
+                            <CustomText
+                              textClassName="white-text font-size-xxsmall text-center"
+                              styles={{ height: 30 }}
+                            >
+                              {name}
+                            </CustomText>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </SwiperSlide>
           );
         })}

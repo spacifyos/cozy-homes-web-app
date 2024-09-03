@@ -1,11 +1,11 @@
-import { isEmpty } from "lodash";
+import { isEmpty, lowerCase, replace } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import * as authSelector from "@/src/selectors/auth";
 
-const BankCard = ({ bankDetails, onClickToAddBank, onClickEditBankInfo }) => {
+const BankCard = ({ bankDetails }) => {
   const accountHolderName = authSelector.getAccountHolderName(bankDetails);
   const accountNumber = authSelector.getAccountNumber(bankDetails);
   const bankName = authSelector.getBankName(bankDetails);
@@ -18,17 +18,17 @@ const BankCard = ({ bankDetails, onClickToAddBank, onClickEditBankInfo }) => {
         style={{ height: 163 }}
       >
         {isEmpty(accountNumber) ? (
-          <div
+          <a
+            href={"/owner/my-bank/add-bank"}
             className="flex flex-col justify-center items-center flex-1 cursor-pointer"
-            onClick={onClickToAddBank}
           >
             <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
             <CustomText textClassName="disable-text pt-2">Add Bank</CustomText>
-          </div>
+          </a>
         ) : (
           <div className="flex-1">
-            <div
-              onClick={() => onClickEditBankInfo(bankName)}
+            <a
+              href={`/owner/my-bank/${replace(lowerCase(bankName), " ", "_")}`}
               className="primary-bg-color absolute p-2 rounded-2xl flex justify-center items-center cursor-pointer"
               style={{ width: 30, height: 30, right: -3, bottom: -3 }}
             >
@@ -36,7 +36,7 @@ const BankCard = ({ bankDetails, onClickToAddBank, onClickEditBankInfo }) => {
                 src={Images.editIconWhite}
                 imageStyle={{ width: 15 }}
               />
-            </div>
+            </a>
 
             <div className="flex justify-between items-center">
               <CustomText textClassName="font-size-large">

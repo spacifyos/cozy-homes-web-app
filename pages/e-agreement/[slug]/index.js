@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
 import { get, isEmpty } from "lodash";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -61,10 +61,6 @@ const EAgreementOverview = ({ id }) => {
 
   const onClickGoBack = () => {
     router.back();
-  };
-
-  const onClickToViewAgreement = (id) => {
-    router.push(`/e-agreement/${id}/view-agreement`);
   };
 
   return (
@@ -147,8 +143,7 @@ const EAgreementOverview = ({ id }) => {
                 <CustomImage
                   src={getAgree ? Images.checkGreenIcon : Images.checkGreyIcon}
                   className="mr-1"
-                  height={18}
-                  width={18}
+                  imageStyle={{ width: 18, height: 18 }}
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
@@ -163,8 +158,7 @@ const EAgreementOverview = ({ id }) => {
                 <CustomImage
                   src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
                   className="mr-1"
-                  height={18}
-                  width={18}
+                  imageStyle={{ width: 18, height: 18 }}
                 />
                 <div className="flex flex-col">
                   <CustomText textClassName="font-size-small disable-text">
@@ -194,15 +188,17 @@ const EAgreementOverview = ({ id }) => {
           {/*  />*/}
           {/*</div>*/}
 
-          <div className="flex justify-center pt-5 w-full">
+          <a
+            className="flex justify-center pt-5 w-full"
+            href={`/e-agreement/${agreementId}/view-agreement`}
+          >
             <CustomButton
-              onClick={() => onClickToViewAgreement(agreementId)}
               buttonText={
                 isCanAgree ? "View & Agree" : isCanSign ? "View & Sign" : "View"
               }
               buttonClassName="primary-btn w-3/5"
             />
-          </div>
+          </a>
         </div>
 
         <LoadingOverlay loading={agreementOverviewDataLoading} />

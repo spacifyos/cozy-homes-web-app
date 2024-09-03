@@ -4,7 +4,7 @@ import Constant from "@/src/utils/Constant";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
+const FeaturesSection = ({ tags }) => {
   return (
     <div className="grid grid-cols-12 gap-3 pb-7">
       <a
@@ -19,9 +19,6 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
           icon={Image.bedIconActive}
           imageHeight={25}
           imageWidth={25}
-          onClick={() =>
-            onClickToPropertyListing("rental_type", Constant.ROOM_FOR_RENT)
-          }
         />
       </a>
       <a
@@ -36,7 +33,6 @@ const FeaturesSection = ({ onClickToPropertyListing, tags }) => {
           icon={Image.carParkIcon}
           imageHeight={25}
           imageWidth={25}
-          onClick={() => onClickToPropertyListing("space_type", "car_park")}
         />
       </a>
 

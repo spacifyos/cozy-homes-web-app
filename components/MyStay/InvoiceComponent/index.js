@@ -1,15 +1,14 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import CustomLabelValue from "@/components/CustomLabelValue";
 import StatusLabel from "@/components/StatusLabel";
-import _ from "lodash";
+import { map, isEmpty } from "lodash";
 import * as invoiceSelector from "@/src/selectors/invoice";
 
-const InvoiceComponent = ({ t, data, onClickToOverView }) => {
+const InvoiceComponent = ({ t, data, type }) => {
   return (
     <div className="flex flex-col gap-3 pb-3">
-      {_.map(data, (item, index) => {
+      {map(data, (item, index) => {
         const code = invoiceSelector.getInvoiceNumber(item);
         const paymentStatus = invoiceSelector.getPaymentStatus(item);
         const status = invoiceSelector.getStatus(item);
@@ -17,10 +16,10 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
         const totalAmount = invoiceSelector.getTotalAmount(item);
 
         return (
-          <div
+          <a
+            href={`${isEmpty(type) ? "" : "/owner"}/my-invoice/${code}`}
             className="invoice-container cursor-pointer"
             key={index}
-            onClick={() => onClickToOverView(code)}
           >
             <div className="flex items-center">
               <div className="invoice-icon-container">
@@ -33,7 +32,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
               <div className="flex flex-col">
                 <div className="flex items-end pb-0.5">
                   <CustomText textClassName="black-text font-size-small font-bold line-clamp-1 pr-2">
-                    {t("myStay.invoice")} #: {_.isEmpty(code) ? "-" : code}
+                    {t("myStay.invoice")} #: {isEmpty(code) ? "-" : code}
                   </CustomText>
                 </div>
 
@@ -47,7 +46,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
                     <CustomText
                       textClassName={`font-size-small black-text font-bold`}
                     >
-                      {`RM${_.isEmpty(totalAmount) ? "0" : totalAmount}`}
+                      {`RM${isEmpty(totalAmount) ? "0" : totalAmount}`}
                     </CustomText>
                   </div>
                   <div className="pr-3">
@@ -62,7 +61,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
                         className="mr-1"
                       />
                       <CustomText textClassName="disable-text font-size-xsmall leading-4">
-                        {_.isEmpty(status) ? "-" : status}
+                        {isEmpty(status) ? "-" : status}
                       </CustomText>
                     </div>
                   </div>
@@ -71,7 +70,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
 
                 <div className="flex items-center">
                   <CustomText textClassName="pr-3 font-size-xxsmall disable-text italic">
-                    {t("myStay.dueDate")} {_.isEmpty(dueDate) ? "-" : dueDate}
+                    {t("myStay.dueDate")} {isEmpty(dueDate) ? "-" : dueDate}
                   </CustomText>
                 </div>
               </div>
@@ -85,7 +84,7 @@ const InvoiceComponent = ({ t, data, onClickToOverView }) => {
               {/*  />*/}
               {/*</div>*/}
             </div>
-          </div>
+          </a>
         );
       })}
     </div>

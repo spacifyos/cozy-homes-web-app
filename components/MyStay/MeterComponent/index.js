@@ -5,7 +5,7 @@ import CustomButton from "@/components/CustomButton";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
-const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
+const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
   const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
@@ -83,12 +83,13 @@ const MeterComponent = ({ t, onClickTopUp, onClickToMeterOverview, item }) => {
           </div>
         </div>
 
-        <CustomButton
-          buttonClassName="col-span-4 primary-btn h-14"
-          textClassName="font-size-xxlarge"
-          buttonText={t("myStay.topUp")}
-          onClick={() => onClickTopUp(id)}
-        />
+        <a className="col-span-4" href={`/my-meter/${id}`}>
+          <CustomButton
+            buttonClassName="w-full primary-btn h-14"
+            textClassName="font-size-xxlarge"
+            buttonText={t("myStay.topUp")}
+          />
+        </a>
       </div>
     </div>
   );

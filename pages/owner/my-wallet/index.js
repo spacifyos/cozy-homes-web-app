@@ -12,9 +12,8 @@ import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import * as walletSelector from "@/src/selectors/wallet";
-import { get, isEmpty } from "lodash";
+import { isEmpty } from "lodash";
 import moment from "moment";
-import Constant from "@/src/utils/Constant";
 import { NextSeo } from "next-seo";
 import CustomButton from "@/components/CustomButton";
 
@@ -101,20 +100,6 @@ const MyWallet = () => {
     router.back();
   };
 
-  const onClickToTransactionOverview = (id) => {
-    router.push({
-      pathname: `/owner/my-wallet/transaction-overview/${id}`,
-    });
-  };
-
-  const onClickViewReport = () => {
-    router.push("/owner/my-report");
-  };
-
-  const onClickWithdraw = () => {
-    router.push("/owner/my-wallet/withdraw");
-  };
-
   const onClickLoadMore = async () => {
     setLoadMore(true);
     await fetchWalletTransactionListing(20, currentPage + 1);
@@ -142,15 +127,15 @@ const MyWallet = () => {
             </CustomText>
           </div>
 
-          <div
+          <a
+            href={"/owner/my-wallet/withdraw"}
             className="global-box-shadow global-border-radius p-3 primaryWhite-bg-color flex justify-center items-center cursor-pointer"
-            onClick={onClickWithdraw}
           >
             <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 25 }} />
             <CustomText textClassName="primary-text pl-2 font-size-small">
               Withdraw
             </CustomText>
-          </div>
+          </a>
         </div>
       }
     >
@@ -160,11 +145,9 @@ const MyWallet = () => {
 
       <div className="body-container bg-color flex-1 pb-4 pt-24">
         <TransactionComponent
-          onClickViewReport={onClickViewReport}
           selectedCategory={selectedCategory}
           onClickSelectCategory={onClickSelectCategory}
           data={walletTransactionListing}
-          onClickToTransactionOverview={onClickToTransactionOverview}
         />
 
         {hasMorePage && lastPage > 1 && !isEmpty(walletTransactionListing) ? (

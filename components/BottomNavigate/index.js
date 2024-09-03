@@ -5,7 +5,7 @@ import { get, isEmpty, isEqual, map } from "lodash";
 import AuthManager from "@/src/utils/AuthManager";
 import { useEffect, useState } from "react";
 
-const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
+const BottomNavigate = ({ routeName, t, routeQuery }) => {
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
@@ -62,8 +62,8 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
           const activeIcon = get(item, ["activeIcon"], "");
 
           return (
-            <div
-              onClick={() => onClickChangeTab(value)}
+            <a
+              href={`${value}`}
               key={index}
               className="flex flex-col justify-center items-center cursor-pointer"
             >
@@ -88,7 +88,7 @@ const BottomNavigate = ({ routeName, onClickChangeTab, t, routeQuery }) => {
               >
                 {name}
               </CustomText>
-            </div>
+            </a>
           );
         })}
       </div>

@@ -12,7 +12,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import MeterComponent from "@/components/MyMeter/MeterComponent";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
@@ -50,10 +50,6 @@ const MyMeter = () => {
     router.back();
   };
 
-  const onClickToMeterOverview = (id) => {
-    router.push(`/my-meter/${id}`);
-  };
-
   return (
     <CustomHeader
       pageTitle={t("pageTitle.myMeter")}
@@ -69,12 +65,7 @@ const MyMeter = () => {
           </div>
         ) : (
           map(meterListingData, (item, index) => (
-            <MeterComponent
-              t={t}
-              key={index}
-              item={item}
-              onClickToMeterOverview={onClickToMeterOverview}
-            />
+            <MeterComponent t={t} key={index} item={item} />
           ))
         )}
 

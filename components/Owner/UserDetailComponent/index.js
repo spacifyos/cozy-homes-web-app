@@ -5,7 +5,7 @@ import { isEmpty } from "lodash";
 import * as ownerSelector from "@/src/selectors/owner";
 import * as authSelector from "@/src/selectors/auth";
 
-const UserDetailComponent = ({ data, onClickToWallet }) => {
+const UserDetailComponent = ({ data }) => {
   const name = authSelector.getName(data);
   const email = authSelector.getEmail(data);
   const phoneNumber = authSelector.getPhoneNumber(data);
@@ -43,9 +43,9 @@ const UserDetailComponent = ({ data, onClickToWallet }) => {
           </div>
         </div>
 
-        <div
+        <a
+          href={"/owner/my-wallet"}
           className="flex justify-end items-center cursor-pointer"
-          onClick={onClickToWallet}
         >
           <CustomImage
             className="bg-color global-box-shadow global-border-radius"
@@ -61,7 +61,7 @@ const UserDetailComponent = ({ data, onClickToWallet }) => {
               {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}
             </CustomText>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   );

@@ -2,22 +2,21 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
-const ProfileCard = ({ onClickToEditProfile, data }) => {
+const ProfileCard = ({ data }) => {
   const name = authSelector.getName(data);
   const email = authSelector.getEmail(data);
   const phoneNumber = authSelector.getPhoneNumber(data);
 
   return (
     <div className="profile-user-info-container col-span-3">
-      <div className="absolute right-3 top-3 cursor-pointer">
-        <CustomImage
-          src={Images.editIcon}
-          imageStyle={{ width: 23 }}
-          onClick={onClickToEditProfile}
-        />
-      </div>
+      <a
+        href={"/edit-profile"}
+        className="absolute right-3 top-3 cursor-pointer"
+      >
+        <CustomImage src={Images.editIcon} imageStyle={{ width: 23 }} />
+      </a>
 
       <CustomImage
         src={Images.userIcon}
@@ -26,15 +25,15 @@ const ProfileCard = ({ onClickToEditProfile, data }) => {
       />
 
       <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2 text-center">
-        {_.isEmpty(name) ? "-" : name}
+        {isEmpty(name) ? "-" : name}
       </CustomText>
 
       <CustomText textClassName="font-size-small leading-3 line-clamp-1 text-center">
-        {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
+        {isEmpty(phoneNumber) ? "-" : phoneNumber}
       </CustomText>
 
       <CustomText textClassName="font-size-small line-clamp-1 text-center">
-        {_.isEmpty(email) ? "-" : email}
+        {isEmpty(email) ? "-" : email}
       </CustomText>
     </div>
   );

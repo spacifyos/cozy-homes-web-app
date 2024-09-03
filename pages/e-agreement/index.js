@@ -13,7 +13,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -73,10 +73,6 @@ const EAgreement = () => {
     setSelectedStatus(category);
   };
 
-  const onClickToDetail = (id) => {
-    router.push(`/e-agreement/${id}`);
-  };
-
   const onClickLoadMore = () => {
     fetchAgreementListingData(selectedStatus, 20, currentPage + 1);
   };
@@ -115,12 +111,7 @@ const EAgreement = () => {
         ) : (
           <div className="flex flex-col gap-4">
             {map(agreementListingData, (item, index) => (
-              <EAgreementCard
-                item={item}
-                key={index}
-                onClickToDetail={onClickToDetail}
-                t={t}
-              />
+              <EAgreementCard item={item} key={index} t={t} />
             ))}
           </div>
         )}

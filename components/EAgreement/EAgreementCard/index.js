@@ -5,7 +5,7 @@ import Images from "@/src/utils/Image";
 import * as agreementSelector from "@/src/selectors/agreement";
 import { isEmpty } from "lodash";
 
-const EAgreementCard = ({ item, onClickToDetail, t }) => {
+const EAgreementCard = ({ item, t }) => {
   const referenceNumber = agreementSelector.getReferenceNumber(item);
   const property = agreementSelector.getProperty(item);
   const status = agreementSelector.getStatus(item);
@@ -15,9 +15,9 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
   const id = agreementSelector.getId(item);
 
   return (
-    <div
+    <a
+      href={`/e-agreement/${id}`}
       className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center cursor-pointer"
-      onClick={() => onClickToDetail(id)}
     >
       <div className="flex-1 pr-3">
         <StatusLabel status={status} />
@@ -44,8 +44,7 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
             <CustomImage
               src={getAgreed ? Images.checkGreenIcon : Images.checkGreyIcon}
               className="mr-1"
-              height={15}
-              width={15}
+              imageStyle={{ width: 15, height: 15 }}
             />
             <CustomText textClassName="font-size-xsmall disable-text">
               {t("eAgreement.agreed")}
@@ -56,8 +55,7 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
             <CustomImage
               src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
               className="mr-1"
-              height={15}
-              width={15}
+              imageStyle={{ width: 15, height: 15 }}
             />
             <CustomText textClassName="font-size-xsmall disable-text">
               {t("eAgreement.signed")}
@@ -65,8 +63,11 @@ const EAgreementCard = ({ item, onClickToDetail, t }) => {
           </div>
         </div>
       </div>
-      <CustomImage src={Images.rightIcon} width={10} height={10} />
-    </div>
+      <CustomImage
+        src={Images.rightIcon}
+        imageStyle={{ width: 10, height: 10 }}
+      />
+    </a>
   );
 };
 

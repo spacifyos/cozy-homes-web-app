@@ -12,7 +12,6 @@ const ListingSection = ({
   title,
   listingLoading,
   onClickViewMore,
-  onClickToPropertyListing,
   className,
 }) => {
   return (
@@ -84,10 +83,7 @@ const ListingSection = ({
             {map(lists, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent
-                    item={item}
-                    onClickToPropertyListing={onClickToPropertyListing}
-                  />
+                  <ListingCardComponent item={item} />
                 </SwiperSlide>
               );
             })}

@@ -9,10 +9,7 @@ const btn = ["All", "Income", "Expense", "Withdraw", "Refund"];
 const TransactionComponent = ({
   selectedCategory,
   onClickSelectCategory,
-  onClickToInvoiceList,
   data,
-  onClickToTransactionOverview,
-  onClickViewReport,
 }) => {
   return (
     <div>
@@ -20,12 +17,11 @@ const TransactionComponent = ({
         <CustomText textClassName="font-size-xlarge font-bold">
           Transactions
         </CustomText>
-        <CustomText
-          textClassName="primary-text cursor-pointer font-size-small"
-          onClick={onClickViewReport}
-        >
-          View Report
-        </CustomText>
+        <a href={"/owner/my-report"}>
+          <CustomText textClassName="primary-text cursor-pointer font-size-small">
+            View Report
+          </CustomText>
+        </a>
       </div>
 
       <div className="flex items-center pb-3 overflow-x-scroll hide-scroll-bar">
@@ -47,13 +43,7 @@ const TransactionComponent = ({
           </div>
         ) : (
           map(data, (item, index) => {
-            return (
-              <TransactionCard
-                data={item}
-                key={index}
-                onClickToTransactionOverview={onClickToTransactionOverview}
-              />
-            );
+            return <TransactionCard data={item} key={index} />;
           })
         )}
       </div>

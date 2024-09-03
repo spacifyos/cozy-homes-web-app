@@ -4,7 +4,7 @@ import { isEmpty } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
-const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
+const ListingCardComponent = ({ item }) => {
   const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
@@ -17,7 +17,6 @@ const ListingCardComponent = ({ item, onClickToPropertyListing }) => {
     <a
       href={`/search?key=${key}&id=${value}`}
       className="flex flex-col items-center px-1 cursor-pointer"
-      onClick={() => onClickToPropertyListing(key, value)}
     >
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"

@@ -72,13 +72,6 @@ function Home() {
     router.push("/search");
   };
 
-  const onClickToPropertyListing = (key, id) => {
-    router.push({
-      pathname: `/search`,
-      query: { key: key, id: id },
-    });
-  };
-
   const onClickOpenSwitcher = () => {
     setOpenSwitcher(!openSwitcher);
   };
@@ -103,10 +96,7 @@ function Home() {
       />
 
       <div className="body-container pb-24">
-        <FeaturesSection
-          onClickToPropertyListing={onClickToPropertyListing}
-          tags={tagsListing}
-        />
+        <FeaturesSection tags={tagsListing} />
 
         {/*<ListingSection*/}
         {/*  t={t}*/}
@@ -115,7 +105,6 @@ function Home() {
         {/*  listingLoading={listingLoading}*/}
         {/*  className="pb-7"*/}
         {/*  onClickViewMore={onClickToFilter}*/}
-        {/*  onClickToPropertyListing={onClickToPropertyListing}*/}
         {/*/>*/}
 
         <ListingSection
@@ -125,7 +114,6 @@ function Home() {
           listingLoading={listingDataLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyListing={onClickToPropertyListing}
         />
 
         <ListingSection
@@ -135,16 +123,10 @@ function Home() {
           listingLoading={listingDataLoading}
           className="pb-3"
           onClickViewMore={onClickToFilter}
-          onClickToPropertyListing={onClickToPropertyListing}
         />
       </div>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
     </div>
   );
 }

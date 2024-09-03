@@ -111,14 +111,6 @@ const SignIn = () => {
     }
   };
 
-  const onClickToForgotPassword = () => {
-    router.push("/forgot-password");
-  };
-
-  const onClickChangeTab = (route) => {
-    router.push(route);
-  };
-
   return (
     <div className="bg-color">
       <NextSeo title="Sign In - Spacify Asia" />
@@ -230,12 +222,11 @@ const SignIn = () => {
               />
             </div>
 
-            <CustomText
-              textClassName="text-center mb-5 underline cursor-pointer"
-              onClick={onClickToForgotPassword}
-            >
-              {t("signIn.forgotPassword")}
-            </CustomText>
+            <a href="/forgot-password">
+              <CustomText textClassName="text-center mb-5 underline cursor-pointer">
+                {t("signIn.forgotPassword")}
+              </CustomText>
+            </a>
 
             <CustomText textClassName="font-size-small my-5">
               By using our services, you are deemed unconditionally agree,
@@ -254,12 +245,7 @@ const SignIn = () => {
         <LoadingOverlay loading={signInLoading} />
       </div>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
     </div>
   );
 };
