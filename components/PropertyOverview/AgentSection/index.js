@@ -1,19 +1,18 @@
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
-import propertyDetail from "@/pages/property-overview/[slug]";
 import * as listingSelector from "@/src/selectors/listing";
 import moment from "moment";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const AgentSection = ({
   t,
   onClickBooking,
-  onClickOpenWhatsApp,
   onClickToBookAppointment,
   data,
   onClickOpenMoveInCostModal,
   totalMoveInCost,
+  propertyId,
 }) => {
   const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
   const picName = listingSelector.getPicName(data);
@@ -43,7 +42,7 @@ const AgentSection = ({
 
           <div className="flex flex-col items-start pl-2 flex-1">
             <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
-              {_.isEmpty(picName) ? "-" : picName}
+              {isEmpty(picName) ? "-" : picName}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall">
               {t("propertyDetail.memberSince")}{" "}
@@ -68,12 +67,17 @@ const AgentSection = ({
             >
               <CustomImage src={Images.callIcon} width={28} />
             </a>
-            <div
+            <a
+              href={`${
+                isEmpty(picContactNumber)
+                  ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
+                  : `https://api.whatsapp.com/send/?phone=${picContactNumber}&text=Hi, I need some help.`
+              }`}
+              target="_blank"
               className="global-box-shadow global-border-radius agent-section-icon cursor-pointer"
-              onClick={() => onClickOpenWhatsApp(picContactNumber)}
             >
               <CustomImage src={Images.whatsappIcon} width={45} />
-            </div>
+            </a>
           </div>
         </div>
 
@@ -84,7 +88,7 @@ const AgentSection = ({
                 {t("propertyDetail.totalMoveInCost")}
               </CustomText>
               <CustomText textClassName="font-size-small primary-text font-bold">
-                RM{_.isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
+                RM{isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
               </CustomText>
             </div>
 
@@ -95,15 +99,33 @@ const AgentSection = ({
               onClick={onClickOpenMoveInCostModal}
             />
           </div>
-          <div
-            className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
-            onClick={onClickBooking}
-          >
-            <CustomText textClassName="font-size-large font-bold white-text">
-              {t("propertyDetail.bookNow")}
-            </CustomText>
-            <CustomImage src={Images.righWhiteIcon} imageStyle={{ width: 8 }} />
-          </div>
+          {isEmpty(propertyId) ? (
+            <div
+              className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
+              onClick={onClickBooking}
+            >
+              <CustomText textClassName="font-size-large font-bold white-text">
+                {t("propertyDetail.bookNow")}
+              </CustomText>
+              <CustomImage
+                src={Images.righWhiteIcon}
+                imageStyle={{ width: 8 }}
+              />
+            </div>
+          ) : (
+            <a
+              href={`/booking/${propertyId}`}
+              className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
+            >
+              <CustomText textClassName="font-size-large font-bold white-text">
+                {t("propertyDetail.bookNow")}
+              </CustomText>
+              <CustomImage
+                src={Images.righWhiteIcon}
+                imageStyle={{ width: 8 }}
+              />
+            </a>
+          )}
         </div>
       </div>
     </div>

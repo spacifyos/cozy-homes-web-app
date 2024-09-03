@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
+const RoomPicCarousel = ({ recommendedList }) => {
   return (
     <Swiper
       style={{
@@ -34,9 +34,9 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
 
         return (
           <SwiperSlide style={{ minWidth: 165 }} key={index}>
-            <div
+            <a
+              href={`/property-overview/${propertyId}`}
               className="carousel-item relative flex flex-col px-1 cursor-pointer"
-              onClick={() => onClickToPropertyOverview(propertyId)}
             >
               <div
                 className="flex flex-col left-3 top-3 absolute p-1"
@@ -89,7 +89,7 @@ const RoomPicCarousel = ({ recommendedList, onClickToPropertyOverview }) => {
                   </CustomText>
                 </div>
               </div>
-            </div>
+            </a>
           </SwiperSlide>
         );
       })}

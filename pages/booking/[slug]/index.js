@@ -544,15 +544,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     setIsReadAgree(!isReadAgree);
   };
 
-  const onClickOpenWhatsApp = (contactNumber) => {
-    window.open(
-      isEmpty(contactNumber)
-        ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
-        : `https://api.whatsapp.com/send/?phone=${contactNumber}&text=Hi, I need some help.`,
-      "_blank",
-    );
-  };
-
   const onClickOpenMoveInCostModal = () => {
     Helper.documentGetElementById("move_in_cost_modal").showModal();
   };
@@ -1212,7 +1203,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           onClickBooking={onClickBooking}
           onClickToBookAppointment={onClickToBookAppointment}
           totalMoveInCost={totalMoveInCost}
-          onClickOpenWhatsApp={onClickOpenWhatsApp}
           onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
         />
 
