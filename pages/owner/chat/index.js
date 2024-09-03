@@ -53,7 +53,7 @@ const OwnerChat = () => {
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
-  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js?ref=main_menu--${phoneNumber}--${formattedProperty}`;
+  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/full.js?ref=main_menu--${phoneNumber}--${propertyDetailToString}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
