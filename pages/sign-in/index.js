@@ -16,6 +16,7 @@ import Images from "@/src/utils/Image";
 import * as commonSelector from "@/src/selectors/common";
 import { useSelector } from "react-redux";
 import BottomNavigate from "@/components/BottomNavigate";
+import Link from "next/link";
 
 export { getServerSideProps };
 
@@ -153,7 +154,7 @@ const SignIn = () => {
             </div>
           </div>
           <div
-            className="p-3 global-box-shadow primaryWhite-bg-color py-10 mb-4"
+            className="p-3 global-box-shadow primaryWhite-bg-color py-10 mb-3"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <CustomText textClassName="pb-4 font-bold font-size-large">
@@ -222,11 +223,11 @@ const SignIn = () => {
               />
             </div>
 
-            <a href="/forgot-password">
+            <Link href="/forgot-password">
               <CustomText textClassName="text-center mb-5 underline cursor-pointer">
                 {t("signIn.forgotPassword")}
               </CustomText>
-            </a>
+            </Link>
 
             <CustomText textClassName="font-size-small my-5">
               By using our services, you are deemed unconditionally agree,
