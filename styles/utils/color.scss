@@ -1,6 +1,10 @@
 $primary-color: #d71440;
-$secondary-color: #fff4e0;
+$secondary-color: #d71440;
 $primary-bg-color: #f5f8fd;
+$secondary-bg-color: #f5f8fd;
+$primary-border-color: #d71440;
+$secondary-border-color: #f5f8fd;
+
 $primary-black-color: #000000;
 $primary-white-color: #ffffff;
 $disable-color: #94a1a6;
@@ -31,7 +35,7 @@ $owner-color: linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%);
 }
 
 .secondary-bg-color {
-  background-color: $secondary-color;
+  background-color: $secondary-bg-color;
 }
 
 .primaryWhite-text-color {
