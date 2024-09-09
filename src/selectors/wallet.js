@@ -20,6 +20,7 @@ export const getIsAdd = (state) => get(state, ["isAdd"], false);
 export const getPaymentMethod = (state) => get(state, ["payment_method"], "");
 export const getRequestStatus = (state) => get(state, ["request_status"], "");
 export const getStatus = (state) => get(state, ["status"], "");
+export const getInvoiceNumber = (state) => get(state, ["invoice"], "");
 export const getTransferTo = (state) => get(state, ["transfer_to"], "");
 
 export const getHasMorePages = (state) => get(state, ["has_more_pages"], false);

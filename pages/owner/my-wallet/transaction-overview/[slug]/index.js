@@ -13,14 +13,17 @@ import * as walletSelector from "@/src/selectors/wallet";
 import { isEmpty } from "lodash";
 import moment from "moment/moment";
 import Constant from "@/src/utils/Constant";
+import { getInvoiceNumber } from "@/src/selectors/wallet";
 
 export { getServerSideProps };
 
-const DetailLabel = ({ title, value }) => {
+const DetailLabel = ({ title, value, highlight = false }) => {
   return (
     <div className="grid grid-cols-3 gap-3">
       <CustomText textClassName="font-size-small">{title}</CustomText>
-      <CustomText textClassName="text-end font-size-small col-span-2">
+      <CustomText
+        textClassName={`text-end font-size-small col-span-2 ${highlight ? "primary-text" : ""}`}
+      >
         {value}
       </CustomText>
     </div>
@@ -53,6 +56,9 @@ const TransactionOverview = ({ id }) => {
     walletTransactionDetail,
   );
   const status = walletSelector.getStatus(walletTransactionDetail);
+  const invoiceNumber = walletSelector.getInvoiceNumber(
+    walletTransactionDetail,
+  );
 
   useEffect(() => {
     fetchWalletTransactionDetail();
@@ -123,18 +129,35 @@ const TransactionOverview = ({ id }) => {
           title="Transaction Type"
           value={isEmpty(typeLabel) ? "-" : typeLabel}
         />
+
+        <div className="divider-line" style={{ margin: "20px 0" }}></div>
+
+        <a
+          href={
+            isEmpty(invoiceNumber) ? "#" : `/owner/my-invoice/${invoiceNumber}`
+          }
+        >
+          <DetailLabel
+            title="Invoice Number"
+            value={isEmpty(invoiceNumber) ? "-" : invoiceNumber}
+            highlight
+          />
+        </a>
+
         <div className="divider-line" style={{ margin: "20px 0" }}></div>
 
         <DetailLabel
           title="Payment Details"
           value={isEmpty(remarks) ? "-" : remarks}
         />
+
         <div className="divider-line" style={{ margin: "20px 0" }}></div>
 
         <DetailLabel
           title="Payment Method"
           value={isEmpty(paymentMethod) ? "-" : paymentMethod}
         />
+
         <div className="divider-line" style={{ margin: "20px 0" }}></div>
 
         <DetailLabel
