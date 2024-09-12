@@ -6,7 +6,7 @@ import { isEmpty } from "lodash";
 const SpacifyCoins = ({ t, route, walletBalance }) => {
   return (
     <a
-      href={route}
+      // href={route}
       className="profile-coin-container col-span-2 cursor-pointer"
     >
       {/*<div className="absolute right-1 top-3 cursor-pointer">*/}
@@ -27,7 +27,8 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
           <CustomText textClassName="primary-text font-size-xxlarge font-bold text-center ">
-            {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}
+            {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
+            Coming Soon
           </CustomText>
           {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}
         </div>

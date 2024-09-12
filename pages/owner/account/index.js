@@ -236,14 +236,14 @@ const OwnerAccount = () => {
       {/*<div className="divider-line"></div>*/}
       <div className="body-container bg-color flex-1 pb-24">
         <div className="pt-28">
-          <FeatureComponent
-            title="My Bank"
-            icon={Images.bankIcon}
-            imageWidth={20}
-            imageHeight={20}
-            pb={3}
-            route={"/owner/my-bank"}
-          />
+          {/*<FeatureComponent*/}
+          {/*  title="My Bank"*/}
+          {/*  icon={Images.bankIcon}*/}
+          {/*  imageWidth={20}*/}
+          {/*  imageHeight={20}*/}
+          {/*  pb={3}*/}
+          {/*  route={"/owner/my-bank"}*/}
+          {/*/>*/}
 
           <FeatureComponent
             title={t("account.myInvoice")}

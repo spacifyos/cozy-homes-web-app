@@ -43,25 +43,25 @@ const UserDetailComponent = ({ data }) => {
           </div>
         </div>
 
-        <a
-          href={"/owner/my-wallet"}
-          className="flex justify-end items-center cursor-pointer"
-        >
-          <CustomImage
-            className="bg-color global-box-shadow global-border-radius"
-            src={Images.logoImage}
-            imageStyle={{ width: 40, height: 40 }}
-          />
+        {/*<a*/}
+        {/*  href={"/owner/my-wallet"}*/}
+        {/*  className="flex justify-end items-center cursor-pointer"*/}
+        {/*>*/}
+        {/*  <CustomImage*/}
+        {/*    className="bg-color global-box-shadow global-border-radius"*/}
+        {/*    src={Images.logoImage}*/}
+        {/*    imageStyle={{ width: 40, height: 40 }}*/}
+        {/*  />*/}
 
-          <div className="flex flex-col pl-2">
-            <CustomText textClassName="disable-text font-size-xxsmall">
-              My Wallet
-            </CustomText>
-            <CustomText textClassName="primary-text font-size-xlarge font-bold">
-              {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}
-            </CustomText>
-          </div>
-        </a>
+        {/*  <div className="flex flex-col pl-2">*/}
+        {/*    <CustomText textClassName="disable-text font-size-xxsmall">*/}
+        {/*      My Wallet*/}
+        {/*    </CustomText>*/}
+        {/*    <CustomText textClassName="primary-text font-size-xlarge font-bold">*/}
+        {/*      {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
+        {/*    </CustomText>*/}
+        {/*  </div>*/}
+        {/*</a>*/}
       </div>
     </div>
   );

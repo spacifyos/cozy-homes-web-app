@@ -25,7 +25,7 @@ const RentalIncomeCard = ({ item }) => {
             {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xxsmall">
-            Transferred to Wallet
+            {/*Transferred to Wallet*/}
           </CustomText>
         </div>
       </div>
