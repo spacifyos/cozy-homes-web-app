@@ -17,9 +17,10 @@ const Description = ({ t, description }) => {
             />
           </div>
         ) : (
-          <CustomText textClassName="font-size-xsmall">
-            {description}
-          </CustomText>
+            false
+          // <CustomText textClassName="font-size-xsmall">
+          //   {description}
+          // </CustomText>
         )}
       </div>
     </div>
