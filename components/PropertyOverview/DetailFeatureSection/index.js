@@ -36,10 +36,12 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
             key={index}
           >
             {/*<div>*/}
-            <CustomImage
-              src={_.get(list, ["icon"], "")}
-              imageStyle={{ width: 25 }}
-            />
+            <div style={{ width: 25, height: 25 }}>
+              <CustomImage
+                src={_.get(list, ["icon"], "")}
+                imageStyle={{ width: 25 }}
+              />
+            </div>
             {/*<CustomText textClassName="disable-text font-size-xxsmall max-h-9 leading-3 my-1">*/}
             {/*  {_.get(list, ["title"], "")}*/}
             {/*</CustomText>*/}
