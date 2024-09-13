@@ -18,12 +18,12 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
     {
       icon: Images.squareIcon,
       title: t("propertyDetail.squareFt"),
-      value: _.isEmpty(squareFeet) ? "-" : squareFeet + " Sqft",
+      value: `${_.isEmpty(squareFeet) ? "-" : squareFeet} Sqft`,
     },
     {
       icon: Images.rentalFeeIcon,
       title: t("propertyDetail.rentalFee"),
-      value: "RM " + (_.isEmpty(rental) ? "0" : rental + " / mth"),
+      value: `RM ${_.isEmpty(rental) ? "0" : rental} / mth`,
     },
   ];
 
@@ -32,7 +32,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
       {_.map(lists, (list, index) => {
         return (
           <div
-            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""}`}
+            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""} flex flex-col`}
             key={index}
           >
             {/*<div>*/}
