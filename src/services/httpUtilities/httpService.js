@@ -181,8 +181,11 @@ const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
 const getOwnerReportListing = (params) => {
   const { property_id, unit_id, month } = params;
 
+  const targetMonth = isEmpty(month) ? "" : moment(month).month();
+  const targetYear = isEmpty(month) ? "" : moment(month).year();
+
   return apiInstance.get(
-    `/owner/p-and-l?property_id=${isEmpty(property_id) ? "" : property_id}&unit_id=${isEmpty(unit_id) ? "" : unit_id}&month=${isEmpty(month) ? "" : moment(month).format("D-M-YYYY")}`,
+    `/owner/p-and-l?property_id=${isEmpty(property_id) ? "" : property_id}&unit_id=${isEmpty(unit_id) ? "" : unit_id}&month=${targetMonth}&year=${targetYear}`,
   );
 };
 
@@ -243,5 +246,5 @@ export default {
   getOwnerReportListing,
   getOwnerReportOverview,
   postWalletWithdraw,
-  getRentTracker
+  getRentTracker,
 };
