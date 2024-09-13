@@ -47,7 +47,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
                   onClick={() => onClickPopupImage(index)}
                 >
                   <Image
-                      loader={() => item}
+                    loader={() => item}
                     alt={item}
                     src={item}
                     style={{ objectFit: "cover" }}
@@ -61,9 +61,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
         )}
       </Swiper>
 
-      {_.isEmpty(imageUrl) ? (
-        false
-      ) : (
+      {!_.isEmpty(imageUrl) ? (
         <div className="my-4 flex justify-center items-center">
           {_.map(imageUrl, (item, index) => {
             return (
@@ -76,6 +74,8 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
             );
           })}
         </div>
+      ) : (
+        false
       )}
     </div>
   );
