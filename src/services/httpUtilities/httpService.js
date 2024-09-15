@@ -181,16 +181,22 @@ const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
 const getOwnerReportListing = (params) => {
   const { property_id, unit_id, month } = params;
 
-  const targetMonth = isEmpty(month) ? "" : moment(month).month();
-  const targetYear = isEmpty(month) ? "" : moment(month).year();
+  const targetMonth = isEmpty(month) ? moment().month() : moment(month).month();
+  const targetYear = isEmpty(month) ? moment().year() : moment(month).year();
 
   return apiInstance.get(
     `/owner/p-and-l?property_id=${isEmpty(property_id) ? "" : property_id}&unit_id=${isEmpty(unit_id) ? "" : unit_id}&month=${targetMonth}&year=${targetYear}`,
   );
 };
 
-const getOwnerReportOverview = (id, month) =>
-  apiInstance.get(`/owner/p-and-l/${id}?month=${month}`);
+const getOwnerReportOverview = (id, month) => {
+  const targetMonth = isEmpty(month) ? moment().month() : moment(month).month();
+  const targetYear = isEmpty(month) ? moment().year() : moment(month).year();
+
+  return apiInstance.get(
+    `/owner/p-and-l/${id}?month=${targetMonth}&year=${targetYear}`,
+  );
+};
 
 const postWalletWithdraw = (postData) =>
   apiInstance.post(`/wallet/request-withdrawal`, postData);
