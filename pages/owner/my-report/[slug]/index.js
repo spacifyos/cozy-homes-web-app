@@ -22,7 +22,7 @@ const MyReport = ({ id }) => {
   const monthQuery = get(
     router,
     ["query", "month"],
-    moment().format("D-M-YYYY"),
+    moment().format("DD-MM-YYYY"),
   );
 
   const [loading, setLoading] = useState(false);
