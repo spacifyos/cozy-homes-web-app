@@ -181,9 +181,11 @@ const getWalletTransactionDetail = (id) => apiInstance.get(`/wallet/${id}`);
 const getOwnerReportListing = (params) => {
   const { property_id, unit_id, month } = params;
 
-  const targetMonth = isEmpty(month)
-    ? moment().month()
-    : moment(month).format("D");
+  const formatDate = isEmpty(month)
+    ? moment().startOf("month").format("DD-MM-YYYY")
+    : moment(month).startOf("month").format("DD-MM-YYYY");
+
+  const targetMonth = moment(formatDate).format("D");
   const targetYear = isEmpty(month) ? moment().year() : moment(month).year();
 
   return apiInstance.get(
