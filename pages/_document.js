@@ -66,21 +66,21 @@ export default function Document() {
             {`{
               "@context": "https://schema.org",
               "@type": "Organization",
-              address: {
+              "address": {
                 "@type": "PostalAddress",
-                addressCountry: "MY",
-                addressLocality: "Malaysia, Selangor",
-                postalCode: "47500",
-                streetAddress:
+                "addressCountry": "MY",
+                "addressLocality": "Malaysia, Selangor",
+                "postalCode": "47500",
+                "streetAddress":
                   "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor.",
               },
-              email: "spacify.asia@gmail.com",
-              name: "Spacify Asia | BELIVE VENTURES SDN BHD",
-              telephone: "+603-58789831",
-              url: "https://www.sapcify.asia/",
-              image: Images.logoImage,
-              logo: Images.logoImage,
-              description:
+              "email": "spacify.asia@gmail.com",
+              "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+              "telephone": "+603-58789831",
+              "url": "https://www.sapcify.asia/",
+              "image": "${Images.logoImage}",
+              "logo": "${Images.logoImage}",
+              "description":
                 "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
             }`}
           </Script>
@@ -93,21 +93,21 @@ export default function Document() {
             {`{
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
-                address: {
+                "address": {
                   "@type": "PostalAddress",
-                  addressCountry: "MY",
-                  postalCode: "47500",
-                  addressLocality: "Malaysia, Selangor",
-                  addressRegion: "MY",
-                  streetAddress:
+                  "addressCountry": "MY",
+                  "postalCode": "47500",
+                  "addressLocality": "Malaysia, Selangor",
+                  "addressRegion": "MY",
+                  "streetAddress":
                     "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor.",
                 },
-                description:
+                "description":
                   "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
-                name: "Spacify Asia | BELIVE VENTURES SDN BHD",
-                telephone: "+603-58789831",
-                url: "https://www.sapcify.asia/",
-                image: Images.logoImage,
+                "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+                "telephone": "+603-58789831",
+                "url": "https://www.sapcify.asia/",
+                "image": "${Images.logoImage}",
               }`}
           </Script>
         ) : (
@@ -119,10 +119,10 @@ export default function Document() {
             {`{
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                name: "Spacify Asia | BELIVE VENTURES SDN BHD",
-                image: Images.logoImage,
-                url: "https://www.sapcify.asia/",
-                description:
+                "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+                "image": "${Images.logoImage}",
+                "url": "https://www.sapcify.asia/",
+                "description":
                   "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
               }`}
           </Script>
