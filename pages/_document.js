@@ -119,7 +119,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
+          <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={generateJsonLd(organizationSchema)}
           />
@@ -128,7 +128,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
+          <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={generateJsonLd(localBusinessSchema)}
           />
@@ -137,7 +137,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
+          <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={generateJsonLd(websiteSchema)}
           />
