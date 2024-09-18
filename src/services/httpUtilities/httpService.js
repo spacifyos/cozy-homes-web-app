@@ -182,10 +182,10 @@ const getOwnerReportListing = (params) => {
   const { property_id, unit_id, month } = params;
 
   const formatDate = isEmpty(month)
-    ? moment().startOf("month").format("DD-MM-YYYY")
-    : moment(month).startOf("month").format("DD-MM-YYYY");
+    ? moment().startOf("month")
+    : moment(month).startOf("month");
 
-  const targetMonth = moment(formatDate).format("D");
+  const targetMonth = moment(formatDate, "DD-MM-YYYY").format("M");
   const targetYear = moment(formatDate).year();
 
   return apiInstance.get(
@@ -195,11 +195,11 @@ const getOwnerReportListing = (params) => {
 
 const getOwnerReportOverview = (id, month) => {
   const monthFormatted = isEmpty(month)
-    ? moment().subtract(1, "months").format("DD-MM-YYYY")
+    ? moment().subtract(1, "months")
     : month;
 
-  const targetMonth = moment(monthFormatted).format("D");
-  const targetYear = moment(monthFormatted).year();
+  const targetMonth = moment(monthFormatted, "DD-MM-YYYY").format("M");
+  const targetYear = moment(monthFormatted, "DD-MM-YYYY").year();
 
   return apiInstance.get(
     `/owner/p-and-l/${id}?month=${targetMonth}&year=${targetYear}`,
