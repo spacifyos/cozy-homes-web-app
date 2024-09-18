@@ -3,7 +3,6 @@ import Images from "@/src/utils/Image";
 import { isEqual } from "lodash";
 import Script from "next/script";
 import React, { useEffect } from "react";
-import GoogleAnalytic from "@/components/GoogleAnalytic";
 
 export default function Document() {
   const organizationSchema = {
@@ -11,17 +10,19 @@ export default function Document() {
     "@type": "Organization",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Malaysia, Kuala Lumpur",
-      postalCode: "F-75002",
-      streetAddress: "38 avenue de l'Opéra",
+      addressLocality: "Malaysia, Selangor",
+      postalCode: "47500",
+      streetAddress:
+        "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor.",
     },
-    email: "",
-    name: "Spacify Asia",
-    telephone: "",
+    email: "spacify.asia@gmail.com",
+    name: "Spacify Asia | BELIVE VENTURES SDN BHD",
+    telephone: "+603-58789831",
     url: "https://www.sapcify.asia/",
     image: Images.logoImage,
     logo: Images.logoImage,
-    description: "",
+    description:
+      "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
   };
 
   const localBusinessSchema = {
@@ -29,13 +30,15 @@ export default function Document() {
     "@type": "LocalBusiness",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Mexico Beach",
+      addressLocality: "Malaysia, Selangor",
       addressRegion: "MY",
-      streetAddress: "3102 Highway 98",
+      streetAddress:
+        "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor.",
     },
-    description: "",
+    description:
+      "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
     name: "Spacify Asia",
-    telephone: "",
+    telephone: "+603-58789831",
     url: "https://www.sapcify.asia/",
     image: Images.logoImage,
   };
@@ -46,7 +49,8 @@ export default function Document() {
     name: "Spacify Asia",
     image: Images.logoImage,
     url: "https://www.sapcify.asia/",
-    description: "",
+    description:
+      "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
   };
 
   const generateJsonLd = (schema) => {
@@ -111,32 +115,32 @@ export default function Document() {
           false
         )}
 
-        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
-        {/*  <script*/}
-        {/*    type="application/ld+json"*/}
-        {/*    dangerouslySetInnerHTML={generateJsonLd(organizationSchema)}*/}
-        {/*  />*/}
-        {/*) : (*/}
-        {/*  false*/}
-        {/*)}*/}
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateJsonLd(organizationSchema)}
+          />
+        ) : (
+          false
+        )}
 
-        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
-        {/*  <script*/}
-        {/*    type="application/ld+json"*/}
-        {/*    dangerouslySetInnerHTML={generateJsonLd(localBusinessSchema)}*/}
-        {/*  />*/}
-        {/*) : (*/}
-        {/*  false*/}
-        {/*)}*/}
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateJsonLd(localBusinessSchema)}
+          />
+        ) : (
+          false
+        )}
 
-        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
-        {/*  <script*/}
-        {/*    type="application/ld+json"*/}
-        {/*    dangerouslySetInnerHTML={generateJsonLd(websiteSchema)}*/}
-        {/*  />*/}
-        {/*) : (*/}
-        {/*  false*/}
-        {/*)}*/}
+        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={generateJsonLd(websiteSchema)}
+          />
+        ) : (
+          false
+        )}
       </Head>
       <body id="root-body">
         <Main />

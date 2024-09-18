@@ -6,6 +6,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import AuthManager from "@/src/utils/AuthManager";
 import { get, isEmpty, isEqual } from "lodash";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -40,6 +41,8 @@ function Home() {
           "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)",
       }}
     >
+      <NextSeo title="Spacify Asia" />
+
       <div
         className="flex flex-col justify-start items-center h-screen"
         style={{ paddingTop: "50%" }}

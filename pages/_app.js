@@ -102,7 +102,8 @@ function AppContent({ Component, pageProps }) {
         openGraph={{
           url: process.env.DOMAIN,
           title: "Spacify Asia",
-          description: "",
+          description:
+            "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
           images: [
             {
               url: Images.logoImage,
