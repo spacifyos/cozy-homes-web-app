@@ -18,6 +18,8 @@ export default function Document() {
         <meta name="msapplication-navbutton-color" content="#d71440" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#d71440" />
 
+        <meta name="google-site-verification" content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk" />
+
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" sizes="16x16" href="/favicon-16x16.png" />
