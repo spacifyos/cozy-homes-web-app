@@ -10,6 +10,7 @@ export default function Document() {
     "@type": "Organization",
     address: {
       "@type": "PostalAddress",
+      addressCountry: "Malaysia",
       addressLocality: "Malaysia, Selangor",
       postalCode: "47500",
       streetAddress:
@@ -30,6 +31,8 @@ export default function Document() {
     "@type": "LocalBusiness",
     address: {
       "@type": "PostalAddress",
+      addressCountry: "Malaysia",
+      postalCode: "47500",
       addressLocality: "Malaysia, Selangor",
       addressRegion: "MY",
       streetAddress:
