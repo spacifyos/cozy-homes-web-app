@@ -89,7 +89,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script id="" type="application/ld+json">
+          <Script id="" type="application/ld+json" strategy="afterInteractive">
             {`{
                 "@context": "https://schema.org",
                 "@type": "LocalBusiness",
@@ -115,7 +115,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script type="application/ld+json">
+          <Script type="application/ld+json" strategy="afterInteractive">
             {`{
                 "@context": "https://schema.org",
                 "@type": "WebSite",
