@@ -62,7 +62,7 @@ export default function Document() {
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script id="" type="application/ld+json">
+          <Script id="" type="application/ld+json" strategy="afterInteractive">
             {`{
               "@context": "https://schema.org",
               "@type": "Organization",
