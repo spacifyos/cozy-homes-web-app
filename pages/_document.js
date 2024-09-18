@@ -40,7 +40,7 @@ export default function Document() {
     },
     description:
       "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
-    name: "Spacify Asia",
+    name: "Spacify Asia | BELIVE VENTURES SDN BHD",
     telephone: "+603-58789831",
     url: "https://www.sapcify.asia/",
     image: Images.logoImage,
@@ -49,7 +49,7 @@ export default function Document() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Spacify Asia",
+    name: "Spacify Asia | BELIVE VENTURES SDN BHD",
     image: Images.logoImage,
     url: "https://www.sapcify.asia/",
     description:
