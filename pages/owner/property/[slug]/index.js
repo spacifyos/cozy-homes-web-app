@@ -17,6 +17,7 @@ import CustomButton from "@/components/CustomButton";
 import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
+import { getOccupancyRoom } from "@/src/selectors/owner";
 
 export { getServerSideProps };
 
@@ -51,12 +52,12 @@ const PropertyDetail = ({ id }) => {
     },
     {
       name: "Room Occupancy",
-      value: `${ownerSelector.getTotalRoom(propertyDetail)}%`,
+      value: `${ownerSelector.getOccupancyRoom(propertyDetail)}%`,
       icon: Images.occupancyIcon,
     },
     {
       name: "Car Park Occupancy",
-      value: `${ownerSelector.getTotalCarPark(propertyDetail)}%`,
+      value: `${ownerSelector.getOccupancyCarPark(propertyDetail)}%`,
       icon: Images.carParkOccupancyIcon,
     },
   ];
@@ -164,7 +165,7 @@ const PropertyDetail = ({ id }) => {
           {isEqual(selectedCategory, "Space Details") ? (
             <SpaceDetailComponent data={selectedRoom} />
           ) : (
-            <RentTrackerComponent data={rentTrackerData}/>
+            <RentTrackerComponent data={rentTrackerData} />
           )}
         </div>
       </div>

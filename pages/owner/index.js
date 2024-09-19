@@ -77,12 +77,12 @@ const OwnerHome = () => {
     },
     {
       name: "Room",
-      value: `${ownerSelector.getTotalRoom(propertyListing)}%`,
+      value: `${ownerSelector.getTotalRoom(propertyListing)}`,
       icon: Images.bedIconActive,
     },
     {
       name: "Car Park",
-      value: `${ownerSelector.getTotalCarPark(propertyListing)}%`,
+      value: `${ownerSelector.getTotalCarPark(propertyListing)}`,
       icon: Images.carParkOccupancyIcon,
     },
   ];

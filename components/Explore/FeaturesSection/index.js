@@ -30,7 +30,7 @@ const FeaturesSection = ({ tags }) => {
           buttonClassName="flex-row-reverse flex-nowrap primaryWhite-bg-color border-none global-box-shadow feature-button"
           textClassName="black-text font-normal font-size-small line-clamp-1"
           buttonText="Car Park"
-          icon={Image.carParkIcon}
+          icon={Image.carParkSpaceIcon}
           imageHeight={25}
           imageWidth={25}
         />

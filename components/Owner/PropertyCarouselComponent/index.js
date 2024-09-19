@@ -43,7 +43,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
             {
               name: "Car Park",
               value: `${ownerSelector.getTotalCarPark(item)}`,
-              icon: Images.carParkOccupancyIcon,
+              icon: Images.carParkIcon,
             },
             {
               name: "Room Occupancy",

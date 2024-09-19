@@ -24,7 +24,8 @@ const PropertyInfoComponent = ({ paddingTop = "4.5rem", lists }) => {
                 {value}
               </CustomText>
               <CustomText
-                textClassName="disable-text font-size-xxsmall text-center"
+                styles={{ height: 30 }}
+                textClassName="disable-text font-size-xxsmall text-center flex items-center"
               >
                 {name}
               </CustomText>
