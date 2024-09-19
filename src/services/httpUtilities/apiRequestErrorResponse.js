@@ -1,11 +1,18 @@
 import _ from "lodash";
 import Toast from "@/src/utils/Toast";
 import Router from "next/router";
+import AuthManager from "@/src/utils/AuthManager";
 
 export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   const response = _.get(err, ["response"], "");
   const message = _.get(err, ["message"], "");
   const statusCode = _.get(response, "status", null);
+
+  if (statusCode === 401) {
+    AuthManager.removeLoginType();
+    AuthManager.removeToken().then(() => Router.replace("/sign-in"));
+    return;
+  }
 
   if (statusCode === 403) {
     Router.replace("/403");
