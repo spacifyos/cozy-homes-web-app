@@ -50,6 +50,8 @@ export const getLabel = (state) => get(state, ["label"], "");
 export const getRentDetail = (state) => get(state, ["rental_details"], []);
 export const getRoom = (state) => get(state, ["room"], "");
 export const getRental = (state) => get(state, ["rental"], "");
+export const getStartDate = (state) => get(state, ["start_date"], "");
+export const getEndDate = (state) => get(state, ["end_date"], "");
 export const getRoomType = (state) => get(state, ["room_type"], "");
 export const getTenant = (state) => get(state, ["tenant"], []);
 export const getRentalMonth = (state) => get(state, ["rental", "month"], "");

@@ -13,6 +13,8 @@ const SpaceDetailCard = ({ item }) => {
   const rentalFee = ownerSelector.getRentalFee(item);
   const tenantName = ownerSelector.getTenantName(item);
   const roomImage = ownerSelector.getRoomImage(item);
+  const startDate = ownerSelector.getStartDate(item);
+  const endDate = ownerSelector.getEndDate(item);
 
   return (
     <div
@@ -66,7 +68,7 @@ const SpaceDetailCard = ({ item }) => {
             style={{ marginTop: 12, marginBottom: 12 }}
           ></div>
 
-          <div className="flex justify-between">
+          <div className="grid-cols-2 grid">
             <CustomLabelValue
               label="Tenant Name"
               value={isEmpty(tenantName) ? "-" : tenantName}
@@ -74,6 +76,17 @@ const SpaceDetailCard = ({ item }) => {
             <CustomLabelValue
               label="Monthly Rental"
               value={`RM${isEmpty(rentalFee) ? "0" : rentalFee}`}
+            />
+          </div>
+
+          <div className="grid-cols-2 grid">
+            <CustomLabelValue
+              label="Start Date"
+              value={isEmpty(startDate) ? "-" : startDate}
+            />
+            <CustomLabelValue
+              label="End Date"
+              value={`${isEmpty(endDate) ? "-" : endDate}`}
             />
           </div>
         </div>
