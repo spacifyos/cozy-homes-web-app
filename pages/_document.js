@@ -8,7 +8,15 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="description" content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!" />
+        <link rel="canonical" href="http://www.spacify.asia" />
+        <meta
+          name="keywords"
+          content="Spacify Asia, Property, Rental Management, Smart Meter"
+        />
+        <meta
+          name="description"
+          content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
+        />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="viewport"
@@ -18,7 +26,10 @@ export default function Document() {
         <meta name="msapplication-navbutton-color" content="#d71440" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#d71440" />
 
-        <meta name="google-site-verification" content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk" />
+        <meta
+          name="google-site-verification"
+          content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"
+        />
 
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
