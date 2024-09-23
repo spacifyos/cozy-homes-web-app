@@ -122,6 +122,7 @@ const NewRequest = ({}) => {
             subtitle={t("newRequest.howCanWeHelpYou")}
             hideLine
           />
+
           <HelpCenterSection
             t={t}
             onClickChangeSection={onClickChangeSection}

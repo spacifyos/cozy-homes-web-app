@@ -5,6 +5,8 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomButton from "@/components/CustomButton";
 import { useState } from "react";
 import moment from "moment/moment";
+import BookingDateInput from "@/components/Booking/BookingDateInput";
+import { isEmpty } from "lodash";
 const MaintenanceScheduleInformation = ({ t }) => {
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
@@ -30,8 +32,7 @@ const MaintenanceScheduleInformation = ({ t }) => {
         </CustomText>
         <CustomImage
           src={Images.refreshIconActive}
-          width={15}
-          height={15}
+          imageStyle={{ width: 20, height: 20 }}
           className="cursor-pointer"
         />
       </div>
@@ -42,36 +43,39 @@ const MaintenanceScheduleInformation = ({ t }) => {
       ></div>
 
       <BookingSelect
-        title={t("requestOverview.technician")}
-        placeholder={t("requestOverview.selectTechnician")}
-        lists={[{ name: "Daniel", value: "daniel" }]}
+        className="pb-2"
+        bgColor="primaryWhite-bg-color"
+        placeholder="Tenure Period"
+        title="Technician"
+        lists={[]}
+        required
       />
 
-      <CustomText textClassName="input-title">
-        {t("requestOverview.date")}
-      </CustomText>
+      <BookingDateInput
+        // type="datetime"
+        bgColor="primaryWhite-bg-color"
+        className="pb-2"
+        placeholder="12/02/2023"
+        title="Date"
+        required
+      />
 
-      <div
-        className="flex items-center global-border-radius relative booking-input"
-        style={{ marginBottom: 12 }}
-      >
-        <input
-          className="bg-color flex-1 w-full resize-input-icon"
-          type="date"
-          value={dateValue}
-          onChange={onChangeDate}
-        />
-
-        <CustomImage
-          src={Images.calendarIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
+      <BookingDateInput
+        type="time"
+        bgColor="primaryWhite-bg-color"
+        className="pb-2"
+        placeholder="12/02/2023"
+        title="Time"
+        required
+      />
 
       <BookingSelect
-        title={t("requestOverview.time")}
-        placeholder={t("requestOverview.selectTime")}
-        lists={[{ name: "8:30am - 12.00pm", value: "8:30am - 12.00pm" }]}
+        className="pb-2"
+        bgColor="primaryWhite-bg-color"
+        placeholder="Tenure Period"
+        title="Status"
+        lists={[]}
+        required
       />
 
       <div className="flex flex-col justify-center items-center">

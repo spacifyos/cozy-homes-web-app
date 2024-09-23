@@ -1,12 +1,13 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
+import { map, get, isEqual } from "lodash";
 import CustomText from "@/components/CustomText";
 import DividerSection from "@/components/Help-center/DividerSection";
 import BookingInput from "@/components/Booking/BookingInput";
 import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 import Constant from "@/src/utils/Constant";
+
 const EnquiriesForm = ({
   t,
   selectNestedHelpCenterSection,
@@ -39,9 +40,9 @@ const EnquiriesForm = ({
               subtitle={t("newRequest.shareYourThoughtsWithUs")}
             />
             <div className="flex items-center justify-center">
-              {_.map(formList, (item, index) => {
-                const name = _.get(item, ["name"], "");
-                const value = _.get(item, ["value"], "");
+              {map(formList, (item, index) => {
+                const name = get(item, ["name"], "");
+                const value = get(item, ["value"], "");
 
                 return (
                   <div key={index}>
@@ -49,7 +50,7 @@ const EnquiriesForm = ({
                       <CustomImage
                         className="cursor-pointer"
                         src={
-                          _.isEqual(checkFeedbackMatters, value)
+                          isEqual(checkFeedbackMatters, value)
                             ? Images.checkGreenIcon
                             : Images.uncheckIcon
                         }
@@ -83,6 +84,7 @@ const EnquiriesForm = ({
           buttonClassName="default-btn-outline"
           buttonText={t("newRequest.cancel")}
         />
+
         <CustomButton
           buttonClassName="primary-btn"
           buttonText={t("newRequest.submit")}

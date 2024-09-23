@@ -1,8 +1,7 @@
-import CustomImage from "@/components/CustomImage";
-import _ from "lodash";
-import CustomText from "@/components/CustomText";
+import { map, get } from "lodash";
 import DividerSection from "@/components/Help-center/DividerSection";
 import Images from "@/src/utils/Image";
+import CategoryCard from "@/components/Help-center/NewRequest/CategoryCard";
 
 const NestedMaintenanceRequestComponents = ({
   t,
@@ -49,50 +48,32 @@ const NestedMaintenanceRequestComponents = ({
     },
   ];
   return (
-    <div>
-      <div className="grid grid-cols-4">
-        <DividerSection
-          className="col-span-4"
-          title={t("newRequest.whatIsThisRequestAbout")}
-          subtitle={t("newRequest.chooseTheCategoryToSpecifyTheIssue")}
-        />
-        {_.map(maintenanceSection, (item, index) => {
-          const name = _.get(item, ["name"], "");
-          const value = _.get(item, ["value"], "");
-          const icon = _.get(item, ["icon"], "");
-          const iconActive = _.get(item, ["iconActive"]);
-          const description = _.get(item, ["description"], "");
+    <div className="grid grid-cols-4">
+      <DividerSection
+        className="col-span-4"
+        title={t("newRequest.whatIsThisRequestAbout")}
+        subtitle={t("newRequest.chooseTheCategoryToSpecifyTheIssue")}
+      />
+      {map(maintenanceSection, (item, index) => {
+        const name = get(item, ["name"], "");
+        const value = get(item, ["value"], "");
+        const icon = get(item, ["icon"], "");
+        const iconActive = get(item, ["iconActive"]);
+        const description = get(item, ["description"], "");
 
-          return (
-            <div className="col-span-2" key={index}>
-              <div className=" flex flex-col justify-center items-center pb-6">
-                <div
-                  className={`${_.isEqual(selectNestedHelpCenterSection, value) ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
-                  style={{ borderRadius: 100 }}
-                >
-                  <CustomImage
-                    className="cursor-pointer"
-                    src={
-                      _.isEqual(selectNestedHelpCenterSection, value)
-                        ? icon
-                        : iconActive
-                    }
-                    width={30}
-                    height={30}
-                    onClick={() => onClickSelectNestedHelpCenterSection(value)}
-                  />
-                </div>
-                <CustomText textClassName="font-bold font-size-xsmall">
-                  {name}
-                </CustomText>
-                <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-                  {description}
-                </CustomText>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+        return (
+          <CategoryCard
+            key={index}
+            icon={icon}
+            iconActive={iconActive}
+            value={value}
+            selectedValue={selectNestedHelpCenterSection}
+            btnDescription={description}
+            btnText={name}
+            onClickChangeSection={onClickSelectNestedHelpCenterSection}
+          />
+        );
+      })}
     </div>
   );
 };

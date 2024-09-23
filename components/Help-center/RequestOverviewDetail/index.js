@@ -3,6 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
+
 const RequestOverviewDetail = ({ t }) => {
   return (
     <div className="global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
@@ -73,15 +74,13 @@ const RequestOverviewDetail = ({ t }) => {
 
       <div className="flex items-start gap-2 pb-2">
         <CustomImage
-          src={Images.washer}
-          width={60}
-          height={60}
+          src={Images.imageNotFound}
+          imageStyle={{ width: 100, height: 100 }}
           className="global-border-radius"
         />
         <CustomImage
-          src={Images.washerVideoImages}
-          width={60}
-          height={60}
+          src={Images.imageNotFound}
+          imageStyle={{ width: 100, height: 100 }}
           className="global-border-radius"
         />
       </div>
@@ -94,7 +93,6 @@ const RequestOverviewDetail = ({ t }) => {
       <CustomLabelValue
         label={t("requestOverview.availability")}
         value="12 Dec 2023, 8.30am -12.00pm"
-        className=""
       />
     </div>
   );

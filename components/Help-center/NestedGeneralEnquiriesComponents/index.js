@@ -1,8 +1,7 @@
-import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
-import CustomText from "@/components/CustomText";
+import { map, get } from "lodash";
 import DividerSection from "@/components/Help-center/DividerSection";
+import CategoryCard from "@/components/Help-center/NewRequest/CategoryCard";
 
 const NestedGeneralEnquiriesComponents = ({
   t,
@@ -26,48 +25,32 @@ const NestedGeneralEnquiriesComponents = ({
     },
   ];
   return (
-    <div>
-      <div className="grid grid-cols-4 pb-4">
-        <DividerSection
-          className="col-span-4"
-          title={t("newRequest.whatIsThisEnquiryAbout")}
-          subtitle={t("newRequest.chooseTheCategoryToSpecifyTheEnquiry")}
-        />
-        {_.map(enquiriesSection, (item, index) => {
-          const btnText = _.get(item, "btnText", "");
-          const btnDescription = _.get(item, "btnDescription", "");
-          const value = _.get(item, "value", "");
-          const icon = _.get(item, "icon", "");
-          const iconActive = _.get(item, "iconActive", "");
-          return (
-            <div className="col-span-2" key={index}>
-              <div className=" flex flex-col justify-center items-center">
-                <div
-                  className={`${_.isEqual(selectNestedHelpCenterSection, value) ? "primary-bg-color" : "bg-color"}  p-2 mb-2`}
-                  style={{ borderRadius: 100 }}
-                >
-                  <CustomImage
-                    className="cursor-pointer"
-                    src={
-                      _.isEqual(selectNestedHelpCenterSection, value) ? icon : iconActive
-                    }
-                    width={30}
-                    height={30}
-                    onClick={() => onClickSelectNestedHelpCenterSection(value)}
-                  />
-                </div>
+    <div className="grid grid-cols-4">
+      <DividerSection
+        className="col-span-4"
+        title={t("newRequest.whatIsThisEnquiryAbout")}
+        subtitle={t("newRequest.chooseTheCategoryToSpecifyTheEnquiry")}
+      />
+      {map(enquiriesSection, (item, index) => {
+        const btnText = get(item, "btnText", "");
+        const btnDescription = get(item, "btnDescription", "");
+        const value = get(item, "value", "");
+        const icon = get(item, "icon", "");
+        const iconActive = get(item, "iconActive", "");
 
-                <CustomText textClassName="font-bold font-size-xsmall">
-                  {btnText}
-                </CustomText>
-                <CustomText textClassName="disable-text font-size-xxsmall text-center ">
-                  {btnDescription}
-                </CustomText>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+        return (
+          <CategoryCard
+            key={index}
+            icon={icon}
+            iconActive={iconActive}
+            value={value}
+            selectedValue={selectNestedHelpCenterSection}
+            btnDescription={btnDescription}
+            btnText={btnText}
+            onClickChangeSection={onClickSelectNestedHelpCenterSection}
+          />
+        );
+      })}
     </div>
   );
 };

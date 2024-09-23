@@ -20,7 +20,7 @@ const BookingInput = ({
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
-      <div className="flex items-center" style={{height:19}}>
+      <div className="flex items-center" style={{ height: 19 }}>
         {required ? (
           <CustomText textClassName="error-message pr-1">*</CustomText>
         ) : (

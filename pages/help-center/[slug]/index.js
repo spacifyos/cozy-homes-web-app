@@ -11,7 +11,7 @@ export { getServerSideProps };
 const chatList = [
   {
     date: "10 Dec 23, 10.02am",
-    img: Images.filterDefaultImage,
+    img: Images.agentIcon,
     name: "Joan Lim",
     chat: "Hi, may I know when the technician can come?",
     icon: Images.ellipseGreenIcon,
@@ -26,7 +26,7 @@ const chatList = [
   },
   {
     date: "10 Dec 23, 11.36am",
-    img: Images.filterDefaultImage,
+    img: Images.agentIcon,
     name: "Joan Lim",
     chat: "Thank you for the reply.",
     icon: Images.ellipseGreenIcon,
