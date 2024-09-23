@@ -15,46 +15,53 @@ function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuthentication = async () => {
-      const token = await AuthManager.retrieveToken();
-      const type = await AuthManager.retrieveType();
-
-      if (!isEmpty(token) && !isEmpty(type)) {
-        if (isEqual(type, "tenant")) {
-          return router.push("/my-property");
-        } else {
-          return router.push("/owner");
-        }
-      } else {
-        return router.push("/sign-in");
-      }
-    };
-
-    setTimeout(() => checkAuthentication(), 1000);
+    router.replace("/explore");
   }, []);
 
-  return (
-    <div
-      className={"container flex-1 h-screen"}
-      style={{
-        background:
-          "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)",
-      }}
-    >
-      <NextSeo title="Spacify Asia" />
+  // useEffect(() => {
+  //   const checkAuthentication = async () => {
+  //     const token = await AuthManager.retrieveToken();
+  //     const type = await AuthManager.retrieveType();
+  //
+  //     if (!isEmpty(token) && !isEmpty(type)) {
+  //       if (isEqual(type, "tenant")) {
+  //         return router.push("/my-property");
+  //       } else {
+  //         return router.push("/owner");
+  //       }
+  //     } else {
+  //       return router.push("/explore");
+  //     }
+  //   };
+  //
+  //   setTimeout(() => checkAuthentication(), 1000);
+  // }, []);
 
-      <div
-        className="flex flex-col justify-start items-center h-screen"
-        style={{ paddingTop: "50%" }}
-      >
-        <div>
-          <CustomImage
-            src={Images.blackLogoWithText}
-            imageStyle={{ width: 180 }}
-          />
-        </div>
-      </div>
+  return (
+    <div>
+      <NextSeo title="Spacify Asia" />
     </div>
+    // <div
+    //   className={"container flex-1 h-screen"}
+    //   style={{
+    //     background:
+    //       "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)",
+    //   }}
+    // >
+    //
+    //
+    //   <div
+    //     className="flex flex-col justify-start items-center h-screen"
+    //     style={{ paddingTop: "50%" }}
+    //   >
+    //     <div>
+    //       <CustomImage
+    //         src={Images.blackLogoWithText}
+    //         imageStyle={{ width: 180 }}
+    //       />
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
