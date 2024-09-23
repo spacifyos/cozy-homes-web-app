@@ -271,7 +271,7 @@ const getWalletRequest = async (setLoading, successCallback) => {
     api.getWallet(),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
@@ -288,7 +288,7 @@ const getWalletTransactionListingRequest = async (
     api.getWalletTransactionListing(perPage, page, params),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
@@ -303,7 +303,7 @@ const getWalletTransactionDetailRequest = async (
     api.getWalletTransactionDetail(id),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
@@ -318,7 +318,7 @@ const getOwnerReportListingRequest = async (
     api.getOwnerReportListing(params),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
@@ -334,7 +334,7 @@ const getOwnerReportOverviewRequest = async (
     api.getOwnerReportOverview(id, month),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
@@ -357,7 +357,7 @@ const getRentTrackerRequest = async (id, setLoading, successCallback) => {
     api.getRentTracker(id),
     setLoading,
     successCallback,
-    null,
+    () => {},
     "",
     true,
   );
