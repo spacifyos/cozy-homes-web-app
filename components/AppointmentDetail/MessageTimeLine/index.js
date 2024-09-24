@@ -23,15 +23,18 @@ const MessageTimeLine = ({ t, item }) => {
               ? Images.ellipseRedIcon
               : Images.ellipseGreenIcon
           }
-          width={15}
-          height={15}
+          imageStyle={{ width: 15, height: 15 }}
         />
         <div className="divider divider-horizontal pt-1 w-full h-full"></div>
       </div>
 
       <div className="flex-col flex w-full col-span-9">
         <div className="flex gap-2 items-center pb-2">
-          <CustomImage src={img} width={30} className="rounded-3xl" />
+          <CustomImage
+            src={img}
+            imageStyle={{ width: 40, height: 40 }}
+            className="rounded-3xl"
+          />
           <CustomText textClassName="w-full">{name}</CustomText>
         </div>
         <CustomText textClassName="bg-color p-1 px-3 global-border-radius disable-text font-size-small">

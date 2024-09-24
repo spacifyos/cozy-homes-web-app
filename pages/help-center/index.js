@@ -7,6 +7,7 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import { useState } from "react";
 import HelpCenterListingCard from "@/components/HelpCenterListingCard";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 const lists = [
@@ -139,4 +140,4 @@ const HelpCenter = () => {
   );
 };
 
-export default withTranslation("common")(HelpCenter);
+export default withTranslation("common")(AuthWrapper(HelpCenter));

@@ -6,12 +6,13 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import RequestOverviewDetail from "@/components/Help-center/RequestOverviewDetail";
 import MaintenanceScheduleInformationComponent from "@/components/Help-center/MaintenanceScheduleInformationComponent";
 import CommentComponent from "@/components/Help-center/CommentComponent";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 const chatList = [
   {
     date: "10 Dec 23, 10.02am",
-    img: Images.filterDefaultImage,
+    img: Images.agentIcon,
     name: "Joan Lim",
     chat: "Hi, may I know when the technician can come?",
     icon: Images.ellipseGreenIcon,
@@ -26,7 +27,7 @@ const chatList = [
   },
   {
     date: "10 Dec 23, 11.36am",
-    img: Images.filterDefaultImage,
+    img: Images.agentIcon,
     name: "Joan Lim",
     chat: "Thank you for the reply.",
     icon: Images.ellipseGreenIcon,
@@ -60,4 +61,4 @@ const RequestOverview = () => {
   );
 };
 
-export default withTranslation("common")(RequestOverview);
+export default withTranslation("common")(AuthWrapper(RequestOverview));

@@ -19,6 +19,7 @@ const DividerSection = ({
         </div>
       )}
       <CustomText textClassName="second-section-title">{title}</CustomText>
+
       <CustomText textClassName="disable-text font-size-xsmall mb-6">
         {subtitle}
       </CustomText>

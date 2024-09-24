@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const CustomHeader = ({
   children,
@@ -39,7 +39,7 @@ const CustomHeader = ({
               <CustomImage
                 className={"me-5 cursor-pointer"}
                 src={Images.leftIcon}
-                imageStyle={{width:10}}
+                imageStyle={{ width: 10, height: 10 }}
               />
             </div>
           )}
@@ -50,27 +50,28 @@ const CustomHeader = ({
         </div>
 
         <div className="flex justify-center items-center gap-4">
-          {_.isEmpty(rightSecondButtonIcon) ? (
+          {isEmpty(rightSecondButtonIcon) ? (
             false
           ) : (
             <CustomImage
               src={rightSecondButtonIcon}
-              imageStyle={{ width: 25, height: 25 }}
+              imageStyle={{ width: 23, height: 23 }}
               onClick={onClickRightSecondButton}
               className="cursor-pointer"
             />
           )}
+
           <div
-            style={{ width: 25, height: 25 }}
+            style={{ width: 23, height: 23 }}
             onClick={onClickRightButton}
             className="relative"
           >
-            {_.isEmpty(rightButtonIcon) ? (
+            {isEmpty(rightButtonIcon) ? (
               rightContent
             ) : (
               <CustomImage
                 src={rightButtonIcon}
-                imageStyle={{ width: 25, height: 25 }}
+                imageStyle={{ width: 23, height: 23 }}
                 onClick={onClickRightButton}
                 className="cursor-pointer"
               />
