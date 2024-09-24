@@ -13,6 +13,7 @@ export default function Document() {
           name="keywords"
           content="Spacify Asia, Property, Rental Management, Smart Meter"
         />
+        <meta name="title" content="Spacify Asia" />
         <meta
           name="description"
           content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
