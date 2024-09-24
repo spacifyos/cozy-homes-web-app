@@ -11,13 +11,12 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as ownerSelector from "@/src/selectors/owner";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import UnitCarouselComponent from "@/components/OwnerProperty/UnitCarouselComponent";
-import { get, isEmpty, filter, isEqual } from "lodash";
+import { get, isEmpty, filter, isEqual, map } from "lodash";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
 import CustomButton from "@/components/CustomButton";
 import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
-import { getOccupancyRoom } from "@/src/selectors/owner";
 
 export { getServerSideProps };
 
@@ -59,6 +58,23 @@ const PropertyDetail = ({ id }) => {
       name: "Car Park Occupancy",
       value: `${ownerSelector.getOccupancyCarPark(propertyDetail)}%`,
       icon: Images.carParkOccupancyIcon,
+    },
+  ];
+  const colorList = [
+    {
+      label: "Paid",
+      bgColor: "available-bg-color",
+      textColor: "power-on-text",
+    },
+    {
+      label: "Coming Due",
+      bgColor: "pending-bg-color",
+      textColor: "pending-text",
+    },
+    {
+      label: "Overdue",
+      bgColor: "error-bg-color",
+      textColor: "error-text",
     },
   ];
 
@@ -161,6 +177,28 @@ const PropertyDetail = ({ id }) => {
               onClick={() => setSelectedCategory("Rent Tracker")}
             />
           </div>
+
+          {isEqual(selectedCategory, "Rent Tracker") ? (
+            <div className="flex gap-4 px-6 pb-2">
+              {map(colorList, (item, index) => {
+                const label = get(item, ["label"], "");
+                const bgColor = get(item, ["bgColor"], "");
+                const textColor = get(item, ["textColor"], "");
+
+                return (
+                  <div key={index} className="flex items-center">
+                    <div
+                      className={`${bgColor} rounded-3xl mr-1`}
+                      style={{ width: 10, height: 10 }}
+                    ></div>
+                    <CustomText textClassName={textColor}>{label}</CustomText>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            false
+          )}
 
           {isEqual(selectedCategory, "Space Details") ? (
             <SpaceDetailComponent data={selectedRoom} />
