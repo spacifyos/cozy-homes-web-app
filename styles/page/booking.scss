@@ -10,7 +10,7 @@
   color: $primary-black-color;
   height: 100px;
   resize: none;
-  @apply font-size-xsmall mb-4;
+  @apply font-size-xsmall;
 }
 
 .booking-textarea::placeholder {

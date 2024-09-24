@@ -7,7 +7,7 @@ const BookingTextArea = ({
   errorMessage,
   title,
   name,
-  textareaClassName = "bg-color",
+  bgColor = "bg-color",
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
@@ -15,7 +15,7 @@ const BookingTextArea = ({
       <textarea
         typeof="text"
         placeholder={placeholder}
-        className={`booking-textarea ${textareaClassName}`}
+        className={`booking-textarea ${bgColor}`}
         name={name}
         required
       />

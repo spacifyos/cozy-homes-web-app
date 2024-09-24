@@ -6,6 +6,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import RequestOverviewDetail from "@/components/Help-center/RequestOverviewDetail";
 import MaintenanceScheduleInformationComponent from "@/components/Help-center/MaintenanceScheduleInformationComponent";
 import CommentComponent from "@/components/Help-center/CommentComponent";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 const chatList = [
@@ -60,4 +61,4 @@ const RequestOverview = () => {
   );
 };
 
-export default withTranslation("common")(RequestOverview);
+export default withTranslation("common")(AuthWrapper(RequestOverview));

@@ -14,6 +14,7 @@ import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
 import SpecificRequestComponent from "@/components/Help-center/RequestComponent";
 import GeneralInformationSection from "@/components/Help-center/GenerallnformationSection";
 import Constant from "@/src/utils/Constant";
+import AuthWrapper from "@/components/AuthWrapper";
 
 export { getServerSideProps };
 
@@ -157,6 +158,7 @@ const NewRequest = ({}) => {
                 selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                 onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
               />
+
               {displayAuthorizationComponent ? (
                 <AuthorizationComponent
                   t={t}
@@ -188,6 +190,7 @@ const NewRequest = ({}) => {
           onClickOpenCamera={onClickOpenCamera}
           onClickSelectFile={onClickSelectFile}
         />
+
         <input
           capture="environment"
           accept="image/*"
@@ -196,9 +199,10 @@ const NewRequest = ({}) => {
           ref={uploadImageRef}
         ></input>
         <input accept="video/*" type="file" hidden ref={uploadVideoRef}></input>
+
       </div>
     </CustomHeader>
   );
 };
 
-export default NewRequest;
+export default withTranslation("common")(AuthWrapper(NewRequest));

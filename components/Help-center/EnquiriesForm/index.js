@@ -29,39 +29,42 @@ const EnquiriesForm = ({
               title={t("newRequest.describeYourEnquiry")}
               subtitle={t("newRequest.tellUsHowWeCanAssistYou")}
             />
-            <BookingInput placeholder={t("newRequest.subject")} />
+
+            <BookingInput
+              className="pb-2"
+              title="Subject"
+              bgColor="primaryWhite-bg-color"
+              placeholder={t("newRequest.subject")}
+            />
           </div>
         );
       case Constant.FEEDBACK:
         return (
-          <div className="flex flex-col justify-center items-center pb-4">
+          <div className="flex flex-col justify-center items-center">
             <DividerSection
               title={t("newRequest.yourFeedbackMatters")}
               subtitle={t("newRequest.shareYourThoughtsWithUs")}
             />
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center gap-4 pb-4">
               {map(formList, (item, index) => {
                 const name = get(item, ["name"], "");
                 const value = get(item, ["value"], "");
 
                 return (
-                  <div key={index}>
-                    <div className="flex gap-2 pr-4 items-center">
-                      <CustomImage
-                        className="cursor-pointer"
-                        src={
-                          isEqual(checkFeedbackMatters, value)
-                            ? Images.checkGreenIcon
-                            : Images.uncheckIcon
-                        }
-                        height={20}
-                        width={20}
-                        onClick={() => onClickCheckFeedbackMatters(value)}
-                      />
-                      <CustomText textClassName="font-size-xsmall">
-                        {name}
-                      </CustomText>
-                    </div>
+                  <div className="flex gap-2 items-center" key={index}>
+                    <CustomImage
+                      className="cursor-pointer"
+                      src={
+                        isEqual(checkFeedbackMatters, value)
+                          ? Images.checkGreenIcon
+                          : Images.uncheckIcon
+                      }
+                      imageStyle={{ width: 20, height: 20 }}
+                      onClick={() => onClickCheckFeedbackMatters(value)}
+                    />
+                    <CustomText textClassName="font-size-xsmall">
+                      {name}
+                    </CustomText>
                   </div>
                 );
               })}
@@ -77,7 +80,12 @@ const EnquiriesForm = ({
     <div>
       {displayForm(selectNestedHelpCenterSection)}
 
-      <BookingTextArea placeholder={t("newRequest.enterYourMessage")} />
+      <BookingTextArea
+        title="Description"
+        bgColor="primaryWhite-bg-color"
+        className="pb-2"
+        placeholder="Description"
+      />
 
       <div className="grid grid-cols-2 gap-2">
         <CustomButton

@@ -153,6 +153,7 @@ const Image = {
   blackLogo: "/images/logo_black_with_text.png",
   amenitiesIconActive: `/images/icon/amenities_icon_active.png`,
   amenitiesIcon: `/images/icon/amenities_icon.png`,
+  albumIcon: `/images/icon/album_icon.png`,
 };
 
 export default { ...Image };

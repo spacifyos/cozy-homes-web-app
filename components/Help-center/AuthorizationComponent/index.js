@@ -6,6 +6,7 @@ import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import { useState } from "react";
 import moment from "moment";
+import BookingDateInput from "@/components/Booking/BookingDateInput";
 const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
@@ -13,12 +14,14 @@ const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
   const onChangeDate = (e) => {
     setDateValue(e.target.value);
   };
+
   return (
     <div>
       <DividerSection
         title={t("newRequest.authorization&Availability")}
         subtitle={t("newRequest.pleaseProvideThePossibleOptionsBelow")}
       />
+
       <BookingSelect
         title={t("newRequest.canOurTechnicianEnterWhenYou'reNotThere")}
         placeholder={t("newRequest.selectYesOrNo")}
@@ -26,28 +29,24 @@ const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
           { name: t("newRequest.yes"), value: "yes" },
           { name: t("newRequest.no"), value: "no" },
         ]}
+        className="pb-2"
+        bgColor="primaryWhite-bg-color"
       />
-      <CustomText textClassName="input-title">
-        {t("newRequest.date")}
-      </CustomText>
-      <div className="flex items-center global-border-radius p-2 relative booking-input ">
-        <input
-          className="bg-color flex-1 w-full resize-input-icon"
-          type="date"
-          value={dateValue}
-          onChange={onChangeDate}
-        />
-        <CustomImage
-          src={Images.calendarIcon}
-          imageStyle={{ width: 20, height: 20 }}
-        />
-      </div>
+
+      <BookingDateInput
+        title="Date"
+        className="pb-2"
+        bgColor="primaryWhite-bg-color"
+      />
+
       <BookingSelect
-        className="mt-3"
+        className="pb-2"
+        bgColor="primaryWhite-bg-color"
         title={t("newRequest.time")}
         placeholder={t("newRequest.selectTime")}
         lists={[{ name: "8:30am - 12.00pm", value: "8:30am - 12.00pm" }]}
       />
+
       <div className="flex justify-center items-center pt-2">
         <CustomButton
           buttonStyles={{ padding: "5px 30px" }}
