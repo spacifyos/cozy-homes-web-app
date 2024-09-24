@@ -45,7 +45,7 @@ const EditProfile = () => {
 
   const [editProfileLoading, setEditProfileLoading] = useState(false);
 
-  const [nameValue, setNameValue] = useState();
+  const [nameValue, setNameValue] = useState("");
   const [currentPasswordValue, setCurrentPasswordValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
@@ -54,7 +54,7 @@ const EditProfile = () => {
     if (!isEmpty(name)) {
       setNameValue(name);
     }
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     fetchUserprofileData();

@@ -132,6 +132,7 @@ const RentTrackerComponent = ({ data }) => {
 
                             {map(rentals, (rental, rentalIndex) => {
                               const amount = ownerSelector.getRental(rental);
+
                               const renderTextColor = () => {
                                 const status = ownerSelector.getStatus(rental);
 
@@ -142,7 +143,7 @@ const RentTrackerComponent = ({ data }) => {
                                     return "error-text";
                                   case "coming_due":
                                     return "pending-text";
-                                  case "full_paid":
+                                  default:
                                     return "black-text";
                                 }
                               };
