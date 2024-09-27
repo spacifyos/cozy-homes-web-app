@@ -5,7 +5,7 @@ $secondary-bg-color: #f5f8fd;
 $primary-border-color: #d71440;
 $secondary-border-color: #fff4e0;
 $primary-button-color: #d71440;
-$secondary-button-color: #E9F8FF;
+$secondary-button-color: #e9f8ff;
 
 $primary-black-color: #000000;
 $primary-white-color: #ffffff;
@@ -19,9 +19,14 @@ $pending-color: #ff8a00;
 $completed-color: #03b78c;
 
 $owner-color: linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%);
+$tenant-color: linear-gradient(125.08deg, #f05a22 54.69%, #d71440 96.79%);
 
 .owner-bg-color {
   background: $owner-color !important;
+}
+
+.tenant-bg-color {
+  background: $tenant-color !important;
 }
 
 .primaryWhite-bg-color {

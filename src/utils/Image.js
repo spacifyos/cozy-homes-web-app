@@ -154,6 +154,8 @@ const Image = {
   amenitiesIconActive: `/images/icon/amenities_icon_active.png`,
   amenitiesIcon: `/images/icon/amenities_icon.png`,
   albumIcon: `/images/icon/album_icon.png`,
+  tenantCard: `/images/tenant_card.png`,
+  ownerCard: `/images/owner_card.png`,
 };
 
 export default { ...Image };

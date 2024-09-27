@@ -50,7 +50,7 @@ function* clearAccessToken() {
   AuthManager.removeLoginType();
   AuthManager.removeToken().then(() => {
     // Router.reload();
-    Router.replace("/sign-in");
+    Router.replace("/sign-in-type");
   });
 }
 
