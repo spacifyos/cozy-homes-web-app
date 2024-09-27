@@ -13,6 +13,8 @@ const Image = {
   userIcon: `/images/icon/user_icon.png`,
   phoneIcon: `/images/icon/phone_icon.png`,
   emailIcon: `/images/icon/email_icon.png`,
+  phoneIconActive: `/images/icon/phone_icon_active.png`,
+  emailIconActive: `/images/icon/email_icon_active.png`,
   refreshIcon: `/images/icon/refresh_icon.png`,
   buildingIcon: `/images/icon/building_icon.png`,
   qrIcon: `/images/icon/qr_icon.png`,
@@ -154,6 +156,13 @@ const Image = {
   amenitiesIconActive: `/images/icon/amenities_icon_active.png`,
   amenitiesIcon: `/images/icon/amenities_icon.png`,
   albumIcon: `/images/icon/album_icon.png`,
+  registerIcon: `/images/icon/register_icon.png`,
+  youtubeIcon: `/images/icon/Youtube.png`,
+  twitterIcon: `/images/icon/TwitterX.png`,
+  tiktokIcon: `/images/icon/Tiktok.png`,
+  linkinIcon: `/images/icon/Linkin.png`,
+  instagramIcon: `/images/icon/Instagram.png`,
+  facebookIcon: `/images/icon/Facebook.png`,
 };
 
 export default { ...Image };

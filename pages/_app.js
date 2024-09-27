@@ -92,10 +92,10 @@ function AppContent({ Component, pageProps }) {
   return (
     <div
       ref={divRef}
-      className={
-        "flex flex-col justify-center items-center h-full overflow-hidden"
-      }
-      style={{ backgroundColor: Color.primaryBgColor }}
+      // className={
+      //   "flex flex-col justify-center items-center h-full overflow-hidden"
+      // }
+      // style={{ backgroundColor: Color.primaryBgColor }}
     >
       <DefaultSeo
         title="Spacify Asia"
@@ -115,16 +115,10 @@ function AppContent({ Component, pageProps }) {
           siteName: process.env.DOMAIN,
         }}
       />
-      <div
-        style={{ maxWidth: 500, zIndex: 1 }}
-        className={
-          "primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
-        }
-      >
-        <Toaster />
 
-        <Component {...pageProps} />
-      </div>
+      <Toaster />
+
+      <Component {...pageProps} />
     </div>
   );
 }
