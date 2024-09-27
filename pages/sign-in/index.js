@@ -49,6 +49,7 @@ const SignIn = () => {
     router
       .push({
         pathname: `/sign-up`,
+        query: { type: typeQuery },
       })
       .then(() => router.reload());
   };
