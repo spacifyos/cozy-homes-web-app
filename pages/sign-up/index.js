@@ -133,7 +133,12 @@ const SignUp = () => {
 
   return (
     <div
-      className={`${isEqual(typeQuery, Constant.OWNER) ? "owner-bg-color" : "tenant-bg-color"} min-h-screen pb-4`}
+      style={{
+        background: isEqual(typeQuery, Constant.OWNER)
+          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
+          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+      }}
+      className={`min-h-screen pb-4`}
     >
       <NextSeo title="Sign Up - Spacify Asia" />
 
@@ -189,11 +194,12 @@ const SignUp = () => {
             </CustomText>
 
             <CustomText
-              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic`}
+              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
               styles={{
                 color: isEqual(typeQuery, Constant.TENANT)
                   ? "#F05A22"
                   : "#D71440",
+                fontSize: 32,
               }}
             >
               {typeQuery}
@@ -295,7 +301,7 @@ const SignUp = () => {
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName="primary-btn w-2/4 mb-2"
+                buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
                 buttonText="Sign Up for FREE"
                 onClick={handleSubmit}
               />

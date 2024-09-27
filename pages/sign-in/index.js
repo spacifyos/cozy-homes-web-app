@@ -121,7 +121,12 @@ const SignIn = () => {
 
   return (
     <div
-      className={`${isEqual(typeQuery, Constant.OWNER) ? "owner-bg-color" : "tenant-bg-color"} min-h-screen pb-4`}
+      style={{
+        background: isEqual(typeQuery, Constant.OWNER)
+          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
+          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+      }}
+      className={`min-h-screen pb-4`}
     >
       <NextSeo title="Sign In - Spacify Asia" />
 
@@ -241,13 +246,13 @@ const SignIn = () => {
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName="primary-btn w-2/4 mb-2"
+                buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
                 buttonText={t("signIn.signIn")}
                 onClick={onClickToLogin}
               />
             </div>
 
-            <Link href="/forgot-password">
+            <Link href={`/forgot-password?type=${typeQuery}`}>
               <CustomText textClassName="text-center pb-2 underline cursor-pointer">
                 {t("signIn.forgotPassword")}
               </CustomText>

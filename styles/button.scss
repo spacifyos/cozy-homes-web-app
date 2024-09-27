@@ -56,6 +56,28 @@
   }
 }
 
+.secondary-btn:hover {
+  border: 1px solid $secondary-color;
+  background-color: $secondary-color;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
+.secondary-btn {
+  border: 1px solid $secondary-color;
+  background-color: $secondary-color !important;
+  @include custom-button;
+
+  p {
+    font-weight: bold !important;
+    @extend .white-text;
+  }
+}
+
 .disable-btn:hover {
   border: 1px solid $disable-color;
   background-color: $disable-color;

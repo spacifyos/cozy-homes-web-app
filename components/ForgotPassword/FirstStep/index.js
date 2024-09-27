@@ -1,5 +1,6 @@
 import { isEqual, map, get } from "lodash";
 import CustomButton from "@/components/CustomButton";
+import Constant from "@/src/utils/Constant";
 
 const FirstStep = ({
   t,
@@ -11,21 +12,22 @@ const FirstStep = ({
   setSelectedRole,
   onClickSendOtp,
   phonePrefixOption,
+  typeQuery,
 }) => {
   return (
     <div>
-      <div className="grid grid-cols-2 gap-2 mb-8">
-        <CustomButton
-          buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
-          buttonText={t("signIn.tenant")}
-          onClick={() => setSelectedRole("tenant")}
-        />
-        <CustomButton
-          buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
-          buttonText={t("signIn.owner")}
-          onClick={() => setSelectedRole("owner")}
-        />
-      </div>
+      {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
+      {/*  <CustomButton*/}
+      {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
+      {/*    buttonText={t("signIn.tenant")}*/}
+      {/*    onClick={() => setSelectedRole("tenant")}*/}
+      {/*  />*/}
+      {/*  <CustomButton*/}
+      {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
+      {/*    buttonText={t("signIn.owner")}*/}
+      {/*    onClick={() => setSelectedRole("owner")}*/}
+      {/*  />*/}
+      {/*</div>*/}
 
       <div className="grid grid-cols-3 gap-2 mb-8">
         <select
@@ -57,7 +59,7 @@ const FirstStep = ({
       <div className="grid grid-cols-4">
         <CustomButton
           buttonText="Send Code"
-          buttonClassName="primary-btn col-start-2 col-span-2"
+          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
           onClick={onClickSendOtp}
         />
       </div>

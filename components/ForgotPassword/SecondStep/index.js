@@ -1,7 +1,8 @@
 import CustomText from "@/components/CustomText";
 import OtpInput from "react-otp-input";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import _, { isEqual } from "lodash";
+import Constant from "@/src/utils/Constant";
 
 const SecondStep = ({
   otp,
@@ -13,6 +14,7 @@ const SecondStep = ({
   setOtp,
   phonePrefix,
   phoneNumber,
+  typeQuery,
 }) => {
   const isOtpValid = _.size(otp) == 6;
 
@@ -60,7 +62,7 @@ const SecondStep = ({
 
       <div className="grid grid-cols-4">
         <CustomButton
-          buttonClassName={`${isOtpValid ? "primary-btn" : "disable-btn"} col-start-2 col-span-2`}
+          buttonClassName={`${isOtpValid ? (isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn") : "disable-btn"} col-start-2 col-span-2`}
           buttonText="Verify Code"
           disable={!isOtpValid || otpVerifyLoading}
           loading={otpVerifyLoading}
