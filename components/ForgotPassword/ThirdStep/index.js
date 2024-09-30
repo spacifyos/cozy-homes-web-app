@@ -1,4 +1,6 @@
 import CustomButton from "@/components/CustomButton";
+import { isEqual } from "lodash";
+import Constant from "@/src/utils/Constant";
 
 const ThirdStep = ({
   t,
@@ -7,6 +9,7 @@ const ThirdStep = ({
   onChangePasswordValue,
   onChangeConfirmPasswordValue,
   onClickSubmitChangePassword,
+  typeQuery,
 }) => {
   return (
     <div>
@@ -29,7 +32,7 @@ const ThirdStep = ({
       <div className="grid grid-cols-4">
         <CustomButton
           buttonText="Submit"
-          buttonClassName="primary-btn col-start-2 col-span-2"
+          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
           onClick={onClickSubmitChangePassword}
         />
       </div>

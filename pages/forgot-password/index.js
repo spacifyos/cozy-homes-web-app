@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import { isEmpty, isEqual, get } from "lodash";
+import { isEmpty, isEqual, get, toLower } from "lodash";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { useEffect, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -14,6 +14,9 @@ import CustomHeader from "@/components/CustomHeader";
 import { NextSeo } from "next-seo";
 import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
+import Constant from "@/src/utils/Constant";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -21,6 +24,8 @@ const ForgotPassword = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const initialTime = 60;
+  const routeQuery = get(router, ["query"], "");
+  const typeQuery = get(routeQuery, ["type"], "Tenant");
 
   const selectOptionData = useSelector((state) =>
     commonSelector.getSelectOptionData(state),
@@ -66,7 +71,7 @@ const ForgotPassword = () => {
     const postData = {
       case: "reset_password",
       destination: phonePrefix + phoneNumber,
-      type: selectedRole,
+      type: toLower(typeQuery),
     };
 
     await apiRequest.postOtpRequest(
@@ -93,7 +98,7 @@ const ForgotPassword = () => {
     const postData = {
       otp: otp,
       token: otpToken,
-      type: selectedRole,
+      type: toLower(typeQuery),
       phone_number: phonePrefix + phoneNumber,
     };
 
@@ -134,7 +139,7 @@ const ForgotPassword = () => {
     }
 
     const postData = {
-      type: selectedRole,
+      type: toLower(typeQuery),
       phone_number: phonePrefix + phoneNumber,
       password: passwordValue,
       password_confirmation: confirmPasswordValue,
@@ -149,7 +154,7 @@ const ForgotPassword = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace("/sign-in");
+    router.replace(`/sign-in?type=${typeQuery}`);
   };
 
   const renderContent = (step) => {
@@ -167,6 +172,7 @@ const ForgotPassword = () => {
             onChangePhoneNumber={onChangePhoneNumber}
             setSelectedRole={setSelectedRole}
             onClickSendOtp={onClickSendOtp}
+            typeQuery={typeQuery}
           />
         );
       case 2:
@@ -182,6 +188,7 @@ const ForgotPassword = () => {
             onClickSubmit={onClickSubmit}
             phonePrefix={phonePrefix}
             phoneNumber={phoneNumber}
+            typeQuery={typeQuery}
           />
         );
       case 3:
@@ -194,6 +201,7 @@ const ForgotPassword = () => {
             onChangePasswordValue={onChangePasswordValue}
             onChangeConfirmPasswordValue={onChangeConfirmPasswordValue}
             onClickSubmitChangePassword={onClickSubmitChangePassword}
+            typeQuery={typeQuery}
           />
         );
       default:
@@ -207,37 +215,76 @@ const ForgotPassword = () => {
             onChangePhonePrefix={onChangePhonePrefix}
             onChangePhoneNumber={onChangePhoneNumber}
             setSelectedRole={setSelectedRole}
+            typeQuery={typeQuery}
           />
         );
     }
   };
 
   const onClickGoBack = () => {
-    router.back();
+    router.replace(`/sign-in?type=${typeQuery}`);
   };
 
   return (
-    <CustomHeader onClickGoBack={onClickGoBack}>
+    <div
+      style={{
+        background: isEqual(typeQuery, Constant.OWNER)
+          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
+          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+      }}
+      className={`min-h-screen pb-4`}
+    >
       <NextSeo title="Forgot Password - Spacify Asia" />
-      <div className="body-container mb-4" style={{ paddingTop: "" }}>
-        <div className="py-6">
+
+      <div className="body-container">
+        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
+          <CustomImage
+            className={"me-5 cursor-pointer"}
+            src={Images.leftIconWhite}
+            imageStyle={{ width: 10, height: 10 }}
+          />
+        </div>
+
+        <div className="py-6 flex flex-col items-center">
+          <CustomImage
+            src={Images.blackLogo}
+            imageStyle={{ width: 120 }}
+            className="mb-2"
+          />
+
           <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 36 }}
+            textClassName="white-text font-bold leading-10"
+            styles={{ fontSize: 32 }}
           >
             Reset Password
           </CustomText>
         </div>
 
         <div className="w-full">
-          <div className="p-4 global-box-shadow primaryWhite-bg-color py-8 global-border-radius">
+          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+            <CustomText textClassName="text-center pb-1 pt-3 font-bold font-size-xxlarge">
+              Reset password as
+            </CustomText>
+
+            <CustomText
+              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
+              styles={{
+                color: isEqual(typeQuery, Constant.TENANT)
+                  ? "#F05A22"
+                  : "#D71440",
+                fontSize: 32,
+              }}
+            >
+              {typeQuery}
+            </CustomText>
+
             {renderContent(step)}
           </div>
         </div>
 
         <LoadingOverlay loading={otpRequestLoading || forgotPasswordLoading} />
       </div>
-    </CustomHeader>
+    </div>
   );
 };
 

@@ -1,4 +1,7 @@
 const Constant = {
+  TENANT: "Tenant",
+  OWNER: "Owner",
+
   AGREEMENT_ALL: 0,
   AGREEMENT_DRAFT: 1,
   AGREEMENT_PENDING: 2,

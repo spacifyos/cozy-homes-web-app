@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { isEmpty, isEqual, includes, map, get } from "lodash";
+import { isEmpty, isEqual, includes, map, get, toLower } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
@@ -20,12 +20,15 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
+import Constant from "@/src/utils/Constant";
+import Link from "next/link";
 
 export { getServerSideProps };
 
 const SignUp = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const typeQuery = get(router, ["query", "type"], "Tenant");
   const ref = useRef();
 
   const selectOptionData = useSelector((state) =>
@@ -69,7 +72,7 @@ const SignUp = () => {
     }
 
     const postData = {
-      type: selectedRole,
+      type: toLower(typeQuery),
       name: nameValue,
       phone_prefix: countryCode,
       phone_suffix: phoneValue,
@@ -117,71 +120,103 @@ const SignUp = () => {
   const signUpSuccessCallback = () => {
     router.push({
       pathname: "/otp-verification",
-      query: { phoneNumber: countryCode + phoneValue, type: selectedRole },
+      query: {
+        phoneNumber: countryCode + phoneValue,
+        type: toLower(typeQuery),
+      },
     });
   };
 
+  const onClickGoBack = () => {
+    router.replace(`/sign-in?type=${typeQuery}`);
+  };
+
   return (
-    <div className="bg-color">
+    <div
+      style={{
+        background: isEqual(typeQuery, Constant.OWNER)
+          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
+          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+      }}
+      className={`min-h-screen pb-4`}
+    >
       <NextSeo title="Sign Up - Spacify Asia" />
-      <div className="body-container py-4">
-        <div className="pb-6 flex flex-col items-center">
+
+      <div className="body-container">
+        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
           <CustomImage
-            src={Images.logoHorizontalColor}
-            imageStyle={{ width: 180 }}
+            className={"me-5 cursor-pointer"}
+            src={Images.leftIconWhite}
+            imageStyle={{ width: 10, height: 10 }}
+          />
+        </div>
+
+        <div className="py-6 flex flex-col items-center">
+          <CustomImage
+            src={Images.blackLogo}
+            imageStyle={{ width: 120 }}
             className="mb-2"
           />
 
           <CustomText
-            textClassName="primary-text font-bold leading-10"
-            styles={{ fontSize: 36 }}
+            textClassName="white-text font-bold leading-10"
+            styles={{ fontSize: 32 }}
           >
             Let’s Get Started
           </CustomText>
         </div>
 
         <div className="w-full">
-          <div className="grid grid-cols-2">
-            <div onClick={onClickToSignIn} className="cursor-pointer">
-              <CustomText
-                textClassName="text-center p-4 primary-text font-bold font-size-large"
-                styles={{
-                  borderRadius: "10px 10px 0 0",
-                  backgroundColor: "#E8E8E8",
-                  color: "#C3C4C6",
-                }}
-              >
-                {t("signUp.signIn")}
-              </CustomText>
-            </div>
+          {/*<div className="grid grid-cols-2">*/}
+          {/*  <div onClick={onClickToSignIn} className="cursor-pointer">*/}
+          {/*    <CustomText*/}
+          {/*      textClassName="text-center p-4 primary-text font-bold font-size-large"*/}
+          {/*      styles={{*/}
+          {/*        borderRadius: "10px 10px 0 0",*/}
+          {/*        backgroundColor: "#E8E8E8",*/}
+          {/*        color: "#C3C4C6",*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      {t("signUp.signIn")}*/}
+          {/*    </CustomText>*/}
+          {/*  </div>*/}
+
+          {/*  <CustomText*/}
+          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"*/}
+          {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
+          {/*  >*/}
+          {/*    {t("signUp.signUp")}*/}
+          {/*  </CustomText>*/}
+          {/*</div>*/}
+          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+            <CustomText textClassName="text-center pb-1 pt-3 font-bold font-size-xxlarge">
+              You’re signing up as
+            </CustomText>
 
             <CustomText
-              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
-              styles={{ borderRadius: "10px 10px 0 0" }}
+              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
+              styles={{
+                color: isEqual(typeQuery, Constant.TENANT)
+                  ? "#F05A22"
+                  : "#D71440",
+                fontSize: 32,
+              }}
             >
-              {t("signUp.signUp")}
-            </CustomText>
-          </div>
-          <div
-            className="p-3 global-box-shadow primaryWhite-bg-color py-5"
-            style={{ borderRadius: "0 0 10px 10px" }}
-          >
-            <CustomText textClassName="pb-4 font-bold font-size-large">
-              Sign up with ...
+              {typeQuery}
             </CustomText>
 
-            <div className="grid grid-cols-2 gap-2 mb-8">
-              <CustomButton
-                buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText={t("signIn.tenant")}
-                onClick={() => setSelectedRole("tenant")}
-              />
-              <CustomButton
-                buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}
-                buttonText={t("signIn.owner")}
-                onClick={() => setSelectedRole("owner")}
-              />
-            </div>
+            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
+            {/*  <CustomButton*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonText={t("signIn.tenant")}*/}
+            {/*    onClick={() => setSelectedRole("tenant")}*/}
+            {/*  />*/}
+            {/*  <CustomButton*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonText={t("signIn.owner")}*/}
+            {/*    onClick={() => setSelectedRole("owner")}*/}
+            {/*  />*/}
+            {/*</div>*/}
 
             <input
               type="text"
@@ -264,10 +299,10 @@ const SignUp = () => {
               {/*/>*/}
             </div>
 
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName="primary-btn w-2/4 mb-2"
-                buttonText="Sign Up"
+                buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
+                buttonText="Sign Up for FREE"
                 onClick={handleSubmit}
               />
             </div>
