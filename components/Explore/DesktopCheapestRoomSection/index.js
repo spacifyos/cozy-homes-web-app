@@ -1,3 +1,5 @@
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { isEmpty, map } from "lodash";
@@ -7,18 +9,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
 
-const DesktopCarouselListingSection = () => {
+const DesktopCheapestRoomSection = () => {
   return (
-    <div className="container mx-auto py-6">
+    <div className="container mx-auto py-10">
       <div className="flex justify-between items-center pb-4">
-        <div className="flex gap-2">
-          <CustomText textClassName="font-size-xxlarge font-bold primary-text">
-            Featured Rooms
-          </CustomText>
-          <CustomText textClassName="font-size-xxlarge font-bold">
-            Just For You
-          </CustomText>
+        <div className="flex items-center">
+          <CustomImage
+            src={Images.outlineStartIcon}
+            imageStyle={{ width: 20, height: 20 }}
+          />
+          <div className="flex gap-2 pl-2">
+            <CustomText textClassName="font-size-xxlarge font-bold primary-text">
+              Cheapest Rooms
+            </CustomText>
+            <CustomText textClassName="font-size-xxlarge font-bold">
+              Just For You
+            </CustomText>
+          </div>
         </div>
+
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
@@ -52,7 +61,7 @@ const DesktopCarouselListingSection = () => {
             {map(Array(10), (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} />
+                  <ListingCardComponent item={item} imageHeight={200} />
                 </SwiperSlide>
               );
             })}
@@ -63,4 +72,4 @@ const DesktopCarouselListingSection = () => {
   );
 };
 
-export default DesktopCarouselListingSection;
+export default DesktopCheapestRoomSection;

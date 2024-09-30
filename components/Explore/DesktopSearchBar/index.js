@@ -51,7 +51,8 @@ const DesktopSearchBar = ({ onClickRoomSearch, onClickCarParkSearch }) => {
 
             <CustomSelect
               placeholder={"Select State"}
-              className="col-span-1 max-w-none"
+              className="col-span-1"
+              styles={{ maxWidth: "none" }}
               // optionList={Constant.STATE_CODE}
               // onChange={onChangeStateValue}
               // value={stateValue}
@@ -59,7 +60,8 @@ const DesktopSearchBar = ({ onClickRoomSearch, onClickCarParkSearch }) => {
 
             <CustomSelect
               placeholder={"Select State"}
-              className="col-span-1 max-w-none"
+              className="col-span-1"
+              styles={{ maxWidth: "none" }}
               // optionList={Constant.STATE_CODE}
               // onChange={onChangeStateValue}
               // value={stateValue}

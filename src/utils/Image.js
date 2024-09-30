@@ -165,6 +165,12 @@ const Image = {
   linkinIcon: `/images/icon/Linkin.png`,
   instagramIcon: `/images/icon/Instagram.png`,
   facebookIcon: `/images/icon/Facebook.png`,
+  promotionIcon: `/images/icon/promotion_icon.png`,
+  outlineStartIcon: `/images/icon/outline_start_icon.png`,
+  klccIcon: `/images/icon/klcc_icon.png`,
+  collegeIcon: `/images/icon/college_icon.png`,
+  chatOutlineIcon: "/images/icon/chat_outline_active.png",
+  closeIconWhite: "/images/icon/close_icon.png",
 };
 
 export default { ...Image };

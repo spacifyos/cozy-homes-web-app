@@ -4,7 +4,11 @@ import { isEmpty } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
-const ListingCardComponent = ({ item }) => {
+const ListingCardComponent = ({
+  item,
+  imageHeight = 100,
+  imageWidth = 100,
+}) => {
   const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
@@ -21,7 +25,7 @@ const ListingCardComponent = ({ item }) => {
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        imageStyle={{ height: 100, width: 100 }}
+        imageStyle={{ height: imageHeight, width: imageWidth }}
       />
       <CustomText
         textClassName="font-size-xsmall font-bold text-center"

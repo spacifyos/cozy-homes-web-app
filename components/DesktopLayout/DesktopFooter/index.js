@@ -15,7 +15,7 @@ const DesktopFooter = () => {
 
   return (
     <div className="primaryWhite-bg-color">
-      <div className="bg-color py-5">
+      <div className="bg-color py-10">
         <div className="container mx-auto grid grid-cols-3">
           <div className="flex flex-col">
             <div className="flex justify-center">
@@ -43,9 +43,7 @@ const DesktopFooter = () => {
                 src={Image.emailIconActive}
                 imageStyle={{ width: 20 }}
               />
-              <CustomText textClassName="pl-2">
-                info@belive.asia
-              </CustomText>
+              <CustomText textClassName="pl-2">info@belive.asia</CustomText>
             </div>
           </div>
 
@@ -94,7 +92,9 @@ const DesktopFooter = () => {
       </div>
 
       <div className="container mx-auto py-6">
-        <CustomText>Copyright © 2024 BeLive Ventures Sdn Bhd. All rights reserved.</CustomText>
+        <CustomText>
+          Copyright © 2024 BeLive Ventures Sdn Bhd. All rights reserved.
+        </CustomText>
       </div>
     </div>
   );

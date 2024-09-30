@@ -14,10 +14,11 @@ const CustomButton = ({
   imageStyle,
   imageWidth = 20,
   imageHeight = 20,
+  reverse = false,
 }) => {
   return (
     <button
-      className={`btn ${disable || loading ? "no-animation" : ""} ${buttonClassName}`}
+      className={`btn ${disable || loading ? "no-animation" : ""} ${reverse ? "flex-row-reverse" : "flex"} ${buttonClassName}`}
       style={{ ...buttonStyles }}
       onClick={disable ? () => {} : onClick}
     >

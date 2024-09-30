@@ -28,8 +28,13 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
-import DesktopListingSection from "@/components/Explore/DesktopListingSection";
-import DesktopCarouselListingSection from "@/components/Explore/DesktopCarouselListingSection";
+import DesktopPopularCitySection from "@/components/Explore/DesktopPopularCitySection";
+import DesktopFeaturedRoomSection from "@/components/Explore/DesktopFeaturedRoomSection";
+import DesktopPopularUniversitySection from "@/components/Explore/DesktopPopularUniversitySection";
+import DesktopCheapestRoomSection from "@/components/Explore/DesktopCheapestRoomSection";
+import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSection";
+import SignInModal from "@/components/Explore/SignInModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -106,8 +111,8 @@ function Home() {
           <DesktopSearchBar />
         </div>
 
-        <div className="pt-28">
-          <div className="flex justify-center items-center gap-4 pb-6 container mx-auto">
+        <div className="pt-32">
+          <div className="flex justify-center items-center gap-4 pb-10 container mx-auto">
             <CustomText
               textClassName="primary-text font-bold"
               styles={{ fontSize: 24 }}
@@ -120,7 +125,7 @@ function Home() {
             </CustomText>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 pb-6 container mx-auto">
+          <div className="grid grid-cols-2 gap-10 pb-10 container mx-auto">
             <div
               className="col-span-1 relative global-box-shadow global-border-radius"
               style={{ height: 350 }}
@@ -146,11 +151,47 @@ function Home() {
             </div>
           </div>
 
-          <div className="bg-color py-6">
-            <DesktopListingSection />
+          <div className="bg-color py-10">
+            <DesktopPopularCitySection />
           </div>
 
-          <DesktopCarouselListingSection />
+          <DesktopFeaturedRoomSection />
+
+          <div className="bg-color py-10">
+            <DesktopPopularUniversitySection />
+          </div>
+
+          <DesktopCheapestRoomSection />
+
+          <div className="primary-bg-color py-10">
+            <DesktopPromotionSection />
+          </div>
+
+          <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
+            <div
+                className="col-span-1 relative global-box-shadow global-border-radius"
+                style={{ height: 350 }}
+            >
+              <Image
+                  src={Images.imageNotFound}
+                  sizes="100vw"
+                  fill
+                  style={{ objectFit: "contain" }}
+              />
+            </div>
+
+            <div
+                className="col-span-1 relative global-box-shadow global-border-radius"
+                style={{ height: 350 }}
+            >
+              <Image
+                  src={Images.imageNotFound}
+                  sizes="100vw"
+                  fill
+                  style={{ objectFit: "contain" }}
+              />
+            </div>
+          </div>
         </div>
       </DesktopLayout>
       {/*<div className="bg-color pt-7">*/}

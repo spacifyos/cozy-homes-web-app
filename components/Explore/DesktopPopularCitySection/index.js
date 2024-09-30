@@ -3,16 +3,23 @@ import CustomButton from "@/components/CustomButton";
 import { isEmpty, map } from "lodash";
 import Skeleton from "@/components/Skeleton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
-import DesktopListingCardComponent from "@/components/Explore/DesktopListingCardComponent";
 
-const DesktopListingSection = () => {
+const DesktopPopularCitySection = () => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center pb-4">
-        <CustomText textClassName="font-size-xxlarge font-bold primary-text">
-          Popular City
-        </CustomText>
+        <div className="flex items-center">
+          <CustomImage
+            src={Images.klccIcon}
+            imageStyle={{ width: 20, height: 20 }}
+          />
+          <CustomText textClassName="font-size-xxlarge font-bold primary-text pl-2">
+            Popular City
+          </CustomText>
+        </div>
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
@@ -32,7 +39,13 @@ const DesktopListingSection = () => {
           </div>
         ) : (
           map(Array(12), (item, index) => {
-            return <DesktopListingCardComponent item={item} />;
+            return (
+              <ListingCardComponent
+                item={item}
+                imageHeight="100%"
+                imageWidth="100%"
+              />
+            );
           })
         )}
       </div>
@@ -40,4 +53,4 @@ const DesktopListingSection = () => {
   );
 };
 
-export default DesktopListingSection;
+export default DesktopPopularCitySection;
