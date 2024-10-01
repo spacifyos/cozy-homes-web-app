@@ -105,7 +105,7 @@ function Home() {
       <NextSeo title="Explore - Spacify Asia" />
 
       <DesktopLayout hideNav>
-        <div className="relative">
+        <div className="relative" style={{ height: 400 }}>
           <DesktopBanner />
 
           <DesktopSearchBar />
@@ -169,77 +169,78 @@ function Home() {
 
           <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
             <div
-                className="col-span-1 relative global-box-shadow global-border-radius"
-                style={{ height: 350 }}
+              className="col-span-1 relative global-box-shadow global-border-radius"
+              style={{ height: 350 }}
             >
               <Image
-                  src={Images.imageNotFound}
-                  sizes="100vw"
-                  fill
-                  style={{ objectFit: "contain" }}
+                src={Images.imageNotFound}
+                sizes="100vw"
+                fill
+                style={{ objectFit: "contain" }}
               />
             </div>
 
             <div
-                className="col-span-1 relative global-box-shadow global-border-radius"
-                style={{ height: 350 }}
+              className="col-span-1 relative global-box-shadow global-border-radius"
+              style={{ height: 350 }}
             >
               <Image
-                  src={Images.imageNotFound}
-                  sizes="100vw"
-                  fill
-                  style={{ objectFit: "contain" }}
+                src={Images.imageNotFound}
+                sizes="100vw"
+                fill
+                style={{ objectFit: "contain" }}
               />
             </div>
           </div>
         </div>
       </DesktopLayout>
-      {/*<div className="bg-color pt-7">*/}
-      {/*<LanguageSwitcher*/}
-      {/*  locale={locale}*/}
-      {/*  openSwitcher={openSwitcher}*/}
-      {/*  onClickOpenSwitcher={onClickOpenSwitcher}*/}
-      {/*  onClickChangeLanguage={onClickChangeLanguage}*/}
-      {/*/>*/}
 
-      {/*  <BannerCarousel*/}
-      {/*    listingBannerData={listingBannerData}*/}
-      {/*    listingBannerDataLoading={listingBannerDataLoading}*/}
-      {/*  />*/}
+      <div className="bg-color pt-7 mobile-response">
+        {/*<LanguageSwitcher*/}
+        {/*  locale={locale}*/}
+        {/*  openSwitcher={openSwitcher}*/}
+        {/*  onClickOpenSwitcher={onClickOpenSwitcher}*/}
+        {/*  onClickChangeLanguage={onClickChangeLanguage}*/}
+        {/*/>*/}
 
-      {/*  <div className="body-container pb-24">*/}
-      {/*    <FeaturesSection tags={tagsListing} />*/}
+        <BannerCarousel
+          listingBannerData={listingBannerData}
+          listingBannerDataLoading={listingBannerDataLoading}
+        />
 
-      {/*    /!*<ListingSection*!/*/}
-      {/*    /!*  t={t}*!/*/}
-      {/*    /!*  title={t("explore.popularCity")}*!/*/}
-      {/*    /!*  lists={cityListing}*!/*/}
-      {/*    /!*  listingLoading={listingLoading}*!/*/}
-      {/*    /!*  className="pb-7"*!/*/}
-      {/*    /!*  onClickViewMore={onClickToFilter}*!/*/}
-      {/*/>*/}
+        <div className="body-container pb-24">
+          <FeaturesSection tags={tagsListing} />
 
-      {/*    <ListingSection*/}
-      {/*      t={t}*/}
-      {/*      title={t("explore.popularUniversity")}*/}
-      {/*      lists={universityListing}*/}
-      {/*      listingLoading={listingDataLoading}*/}
-      {/*      className="pb-7"*/}
-      {/*      onClickViewMore={onClickToFilter}*/}
-      {/*    />*/}
+          {/*<ListingSection*/}
+          {/*  t={t}*/}
+          {/*  title={t("explore.popularCity")}*/}
+          {/*  lists={cityListing}*/}
+          {/*  listingLoading={listingLoading}*/}
+          {/*  className="pb-7"*/}
+          {/*  onClickViewMore={onClickToFilter}*/}
+          {/*/>*/}
 
-      {/*    <ListingSection*/}
-      {/*      t={t}*/}
-      {/*      title={t("explore.popularCondo")}*/}
-      {/*      lists={condoListing}*/}
-      {/*      listingLoading={listingDataLoading}*/}
-      {/*      className="pb-3"*/}
-      {/*      onClickViewMore={onClickToFilter}*/}
-      {/*    />*/}
-      {/*  </div>*/}
+          <ListingSection
+            t={t}
+            title={t("explore.popularUniversity")}
+            lists={universityListing}
+            listingLoading={listingDataLoading}
+            className="pb-7"
+            onClickViewMore={onClickToFilter}
+          />
 
-      {/*  <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />*/}
-      {/*</div>*/}
+          <ListingSection
+            t={t}
+            title={t("explore.popularCondo")}
+            lists={condoListing}
+            listingLoading={listingDataLoading}
+            className="pb-3"
+            onClickViewMore={onClickToFilter}
+          />
+        </div>
+
+        <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
+      </div>
     </div>
   );
 }

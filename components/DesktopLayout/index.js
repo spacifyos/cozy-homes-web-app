@@ -6,27 +6,22 @@ import { isEmpty } from "lodash";
 import Helper from "@/src/utils/Helper";
 import SignInModal from "@/components/Explore/SignInModal";
 import SignUpModal from "@/components/Explore/SignUpModal";
-import UserTypeSelectModal from "@/components/Explore/UserTypeSelectModal";
-import {useEffect, useState} from "react";
+import UserTypeSelectModal from "@/components/Explore/UserTypeSelectSection";
+import { useEffect, useState } from "react";
 
 const DesktopLayout = ({ children, page, hideNav = false }) => {
-  const [userType, setUserType] = useState("Tenant");
+  const [userType, setUserType] = useState("");
 
   const onClickSignIn = () => {
     Helper.documentGetElementById("sign_in_modal").showModal();
   };
 
   const onClickSignUp = () => {
-    openUserTypeSelectModal();
-    // Helper.documentGetElementById("sign_up_modal").showModal();
-  };
-
-  const openUserTypeSelectModal = () => {
-    Helper.documentGetElementById("user_type_modal").showModal();
+    Helper.documentGetElementById("sign_up_modal").showModal();
   };
 
   return (
-    <div className="flex flex-col primaryWhite-bg-color w-full h-full relative">
+    <div className="flex flex-col primaryWhite-bg-color w-full h-full relative desktop-response">
       <DesktopHeader
         onClickSignIn={onClickSignIn}
         onClickSignUp={onClickSignUp}
@@ -52,9 +47,8 @@ const DesktopLayout = ({ children, page, hideNav = false }) => {
 
       <DesktopFooter />
 
-      <UserTypeSelectModal />
-      <SignInModal />
-      <SignUpModal />
+      <SignInModal userType={userType} setUserType={setUserType} />
+      <SignUpModal userType={userType} setUserType={setUserType} />
     </div>
   );
 };

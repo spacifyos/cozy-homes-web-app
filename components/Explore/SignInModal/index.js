@@ -16,8 +16,9 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as authSelector from "@/src/selectors/auth";
 import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
+import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 
-const SignInModal = ({ typeQuery = "Tenant" }) => {
+const SignInModal = ({ userType, setUserType }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
@@ -39,9 +40,10 @@ const SignInModal = ({ typeQuery = "Tenant" }) => {
     router
       .push({
         pathname: `/sign-up`,
-        query: { type: typeQuery },
+        query: { type: userType },
       })
-      .then(() => router.reload());u1
+      .then(() => router.reload());
+    u1;
   };
 
   const onClickToLogin = async () => {
@@ -56,7 +58,7 @@ const SignInModal = ({ typeQuery = "Tenant" }) => {
     }
 
     const postData = {
-      type: toLower(typeQuery),
+      type: toLower(userType),
       phone_prefix: phonePrefix,
       phone_suffix: phoneNumber,
       password: password,
@@ -107,119 +109,126 @@ const SignInModal = ({ typeQuery = "Tenant" }) => {
 
   return (
     <DesktopModal id="sign_in_modal" closeButtonPosition>
-      <div
-        style={{
-          background: isEqual(typeQuery, Constant.OWNER)
-            ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
-            : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
-        }}
-      >
-        <div className="p-6">
-          <form method="dialog" className={`flex justify-end `}>
-            <button className="btn btn-sm btn-circle btn-ghost right-2">
+      {isEmpty(userType) ? (
+        <UserTypeSelectSection setUserType={setUserType} />
+      ) : (
+        <div
+          style={{
+            background: isEqual(userType, Constant.OWNER)
+              ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
+              : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+          }}
+        >
+          <div className="p-6">
+            <form method="dialog" className={`flex justify-end`}>
+              <button
+                className="btn btn-sm btn-circle btn-ghost right-2"
+                onClick={() => setUserType("")}
+              >
+                <CustomImage
+                  src={Images.closeIconWhite}
+                  imageStyle={{ width: 20, height: 20 }}
+                />
+              </button>
+            </form>
+            <div className="pb-6 flex flex-col items-center">
               <CustomImage
-                src={Images.closeIconWhite}
-                imageStyle={{ width: 20, height: 20 }}
-              />
-            </button>
-          </form>
-          <div className="pb-6 flex flex-col items-center">
-            <CustomImage
-              src={Images.blackLogo}
-              imageStyle={{ width: 120 }}
-              className="mb-4"
-            />
-
-            <CustomText
-              textClassName="white-text font-bold leading-10"
-              styles={{ fontSize: 32 }}
-            >
-              Welcome Back, {typeQuery}
-            </CustomText>
-          </div>
-
-          <div className="w-full">
-            <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
-              <CustomText textClassName="text-center pb-6 font-bold font-size-xxlarge">
-                Sign In
-              </CustomText>
-
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <select
-                  className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
-                  value={phonePrefix}
-                  onChange={onChangePhonePrefix}
-                >
-                  {map(phonePrefixOption, (list) => {
-                    const name = get(list, ["label"], "");
-                    const value = get(list, ["value"], "");
-
-                    return (
-                      <option key={value} value={value}>
-                        {name}
-                      </option>
-                    );
-                  })}
-                </select>
-
-                <input
-                  value={phoneNumber}
-                  onChange={onChangePhoneNumber}
-                  type="number"
-                  placeholder={t("signIn.phoneNumber")}
-                  className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
-                />
-              </div>
-
-              <input
-                value={password}
-                onChange={onChangePassword}
-                type="password"
-                placeholder={t("signIn.password")}
-                className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
-                onKeyDown={handleKeyDown}
+                src={Images.blackLogo}
+                imageStyle={{ width: 120 }}
+                className="mb-4"
               />
 
-              <div className="flex justify-center pb-2">
-                <CustomButton
-                  buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
-                  buttonText={t("signIn.signIn")}
-                  onClick={onClickToLogin}
-                />
-              </div>
-
-              <Link href={`/forgot-password?type=${typeQuery}`}>
-                <CustomText textClassName="text-center pb-2 underline cursor-pointer">
-                  {t("signIn.forgotPassword")}
-                </CustomText>
-              </Link>
-
-              <div className="flex justify-center items-center mb-5">
-                <CustomText>Don’t have account? Click </CustomText>
-                <div onClick={onClickToSignUp} className="cursor-pointer">
-                  <CustomText textClassName="primary-text font-bold pl-1 underline">
-                    here
-                  </CustomText>
-                </div>
-              </div>
-
-              <CustomText textClassName="font-size-small my-5">
-                By using our services, you are deemed unconditionally agree,
-                consent and be bound by our terms and conditions and privacy
-                policy.
-              </CustomText>
-
-              <CustomText textClassName="font-size-xxsmall text-center disable-text">
-                This site is protected by reCAPTCHA and the Google{" "}
-                <span className="underline">Privacy Policy</span> and{" "}
-                <span className="underline">Terms of Service</span> apply.
+              <CustomText
+                textClassName="white-text font-bold leading-10"
+                styles={{ fontSize: 32 }}
+              >
+                Welcome Back, {userType}
               </CustomText>
             </div>
-          </div>
 
-          <LoadingOverlay loading={signInLoading} />
+            <div className="w-full">
+              <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
+                <CustomText textClassName="text-center pb-6 font-bold font-size-xxlarge">
+                  Sign In
+                </CustomText>
+
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  <select
+                    className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                    value={phonePrefix}
+                    onChange={onChangePhonePrefix}
+                  >
+                    {map(phonePrefixOption, (list) => {
+                      const name = get(list, ["label"], "");
+                      const value = get(list, ["value"], "");
+
+                      return (
+                        <option key={value} value={value}>
+                          {name}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <input
+                    value={phoneNumber}
+                    onChange={onChangePhoneNumber}
+                    type="number"
+                    placeholder={t("signIn.phoneNumber")}
+                    className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                  />
+                </div>
+
+                <input
+                  value={password}
+                  onChange={onChangePassword}
+                  type="password"
+                  placeholder={t("signIn.password")}
+                  className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+                  onKeyDown={handleKeyDown}
+                />
+
+                <div className="flex justify-center pb-2">
+                  <CustomButton
+                    buttonClassName={`${isEqual(userType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
+                    buttonText={t("signIn.signIn")}
+                    onClick={onClickToLogin}
+                  />
+                </div>
+
+                <Link href={`/forgot-password?type=${userType}`}>
+                  <CustomText textClassName="text-center pb-2 underline cursor-pointer">
+                    {t("signIn.forgotPassword")}
+                  </CustomText>
+                </Link>
+
+                <div className="flex justify-center items-center mb-5">
+                  <CustomText>Don’t have account? Click </CustomText>
+                  <div onClick={onClickToSignUp} className="cursor-pointer">
+                    <CustomText textClassName="primary-text font-bold pl-1 underline">
+                      here
+                    </CustomText>
+                  </div>
+                </div>
+
+                <CustomText textClassName="font-size-small my-5">
+                  By using our services, you are deemed unconditionally agree,
+                  consent and be bound by our terms and conditions and privacy
+                  policy.
+                </CustomText>
+
+                <CustomText textClassName="font-size-xxsmall text-center disable-text">
+                  This site is protected by reCAPTCHA and the Google{" "}
+                  <span className="underline">Privacy Policy</span> and{" "}
+                  <span className="underline">Terms of Service</span> apply.
+                </CustomText>
+              </div>
+            </div>
+
+            <LoadingOverlay loading={signInLoading} />
+          </div>
         </div>
-      </div>
+      )}
     </DesktopModal>
   );
 };

@@ -175,3 +175,11 @@ body {
 .global-border {
   border: 1px solid #e0ecff;
 }
+
+.desktop-response {
+  @apply 2xl:block xl:block lg:block md:block sm:block hidden;
+}
+
+.mobile-response {
+  @apply 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden;
+}

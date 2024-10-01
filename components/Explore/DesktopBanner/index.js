@@ -26,7 +26,7 @@ const DesktopBanner = ({ onSlideChange }) => {
                 src={image}
                 imageStyle={{
                   width: "100%",
-                  height: "100%",
+                  height: 400,
                   objectFit: "cover",
                 }}
               />

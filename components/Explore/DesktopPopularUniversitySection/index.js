@@ -42,7 +42,7 @@ const DesktopPopularUniversitySection = () => {
         ) : (
           <Swiper
             style={{ width: "100%" }}
-            slidesPerView={7}
+            slidesPerView={6}
             spaceBetween={10}
             loop={true}
             pagination={{

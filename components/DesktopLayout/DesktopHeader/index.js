@@ -4,7 +4,10 @@ import CustomButton from "@/components/CustomButton";
 
 const DesktopHeader = ({ onClickSignIn, onClickSignUp }) => {
   return (
-    <div className="container mx-auto py-4 primaryWhite-bg-color flex justify-between items-center">
+    <div
+      className="container mx-auto py-4 primaryWhite-bg-color flex justify-between items-center"
+      style={{ height: 100 }}
+    >
       <CustomImage
         src={Image.logoHorizontalColor}
         imageStyle={{ width: 130 }}
