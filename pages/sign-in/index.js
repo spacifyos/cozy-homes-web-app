@@ -91,7 +91,7 @@ const SignIn = () => {
     } else {
       return router.push({
         pathname: "/otp-verification",
-        query: { phoneNumber: userPhoneNumber, type: selectedRole },
+        query: { phoneNumber: userPhoneNumber, type: typeQuery },
       });
     }
   };
