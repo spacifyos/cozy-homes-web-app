@@ -1,4 +1,3 @@
-import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import LoadingOverlay from "@/components/LoadingOverlay";

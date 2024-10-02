@@ -12,11 +12,12 @@ const CustomSelect = ({
   hideDefaultOption = false,
   selectClassName = "",
   selectStyles,
+  hideShadow = false,
 }) => {
   return (
     <label
       style={styles}
-      className={`form-control w-full max-w-xs default-select ${className}`}
+      className={`form-control w-full max-w-xs default-select ${hideShadow ? "" : "global-box-shadow"} ${className}`}
     >
       {!_.isEmpty(label) ? <CustomText>{label}</CustomText> : false}
       <select

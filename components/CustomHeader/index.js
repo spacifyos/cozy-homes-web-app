@@ -18,9 +18,9 @@ const CustomHeader = ({
 }) => {
   return (
     <div
-      style={{ maxWidth: 500, zIndex: 1 }}
+      style={{ maxWidth: 640, zIndex: 1 }}
       className={
-        "sm:block primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
+        "primaryWhite-bg-color flex flex-col h-full relative overflow-hidden mobile-responsive"
       }
     >
       <div className="flex-1 relative bg-color overflow-hidden flex flex-col">

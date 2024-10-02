@@ -176,10 +176,10 @@ body {
   border: 1px solid #e0ecff;
 }
 
-.desktop-response {
+.desktop-responsive {
   @apply 2xl:block xl:block lg:block md:block sm:block hidden;
 }
 
-.mobile-response {
+.mobile-responsive {
   @apply 2xl:hidden xl:hidden lg:hidden md:hidden sm:hidden;
 }

@@ -101,7 +101,7 @@ function Home() {
   };
 
   return (
-    <div className="m-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Explore - Spacify Asia" />
 
       <DesktopLayout hideNav>
@@ -152,7 +152,7 @@ function Home() {
           </div>
 
           <div className="bg-color py-10">
-            <DesktopPopularCitySection />
+            <DesktopPopularCitySection onClickToFilter={onClickToFilter}/>
           </div>
 
           <DesktopFeaturedRoomSection />
@@ -195,7 +195,7 @@ function Home() {
         </div>
       </DesktopLayout>
 
-      <div className="bg-color pt-7 mobile-response">
+      <div className="bg-color pt-7 mobile-responsive">
         {/*<LanguageSwitcher*/}
         {/*  locale={locale}*/}
         {/*  openSwitcher={openSwitcher}*/}

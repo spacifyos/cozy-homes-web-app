@@ -4,7 +4,6 @@
 
 @mixin custom-select($bgColor) {
   border-radius: 0.5rem;
-  @extend .global-box-shadow;
 
   select {
     color: $primary-black-color;

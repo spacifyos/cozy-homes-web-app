@@ -21,7 +21,7 @@ const DesktopLayout = ({ children, page, hideNav = false }) => {
   };
 
   return (
-    <div className="flex flex-col primaryWhite-bg-color w-full h-full relative desktop-response">
+    <div className="flex flex-col primaryWhite-bg-color w-full h-full relative desktop-responsive">
       <DesktopHeader
         onClickSignIn={onClickSignIn}
         onClickSignUp={onClickSignUp}

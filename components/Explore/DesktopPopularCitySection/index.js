@@ -7,7 +7,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 
-const DesktopPopularCitySection = () => {
+const DesktopPopularCitySection = ({ onClickToFilter }) => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center pb-4">
@@ -23,6 +23,7 @@ const DesktopPopularCitySection = () => {
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
+          onClick={onClickToFilter}
         />
       </div>
 

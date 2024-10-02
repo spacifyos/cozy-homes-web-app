@@ -18,6 +18,8 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -296,129 +298,224 @@ const Search = () => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.search")}
-      hideBgImage
-      hideRightButton
-      onClickGoBack={onClickGoBack}
-    >
-      <NextSeo title="Spacify Listing - Spacify Asia" />
-      <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
-        <CustomInput
-          rightIcon={Images.searchOutlineActiveIcon}
-          className="col-span-2"
-          placeholder={t("search.keyword")}
-          value={keywordValue}
-          onChange={onChangeKeywordValue}
-          onClickRightIcon={onClickSubmitKeyword}
-        />
+    <div className="min-h-screen primaryWhite-bg-color">
+      <DesktopLayout hideNav>
+        <div className="container mx-auto flex-1 py-10">
+          <div className="grid grid-cols-12">
+            <div className="col-span-4 ">
+              <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-6 flex flex-col">
+                <CustomInput
+                  rightIcon={Images.searchOutlineActiveIcon}
+                  className="col-span-1 pb-4"
+                  placeholder="Keyword"
+                  // value={keywordValue}
+                  // onChange={onChangeKeywordValue}
+                  // onClickRightIcon={onClickSubmitKeyword}
+                />
 
-        <CustomSelect
-          placeholder={t("search.state")}
-          optionList={Constant.STATE_CODE}
-          onChange={onChangeStateValue}
-          value={stateValue}
-        />
+                <CustomText textClassName="font-bold pb-2">
+                  Sort Result By
+                </CustomText>
 
-        <CustomInput
-          placeholder={t("search.city")}
-          value={cityValue}
-          onChange={onChangeCityValue}
-          onClickRightIcon={onClickSubmitCity}
-        />
-      </div>
+                <div className="flex justify-between items-center">
+                  <CustomText>Lowest Price</CustomText>
+                  <input type="radio" name="radio-1" className="radio" />
+                </div>
 
-      {isEmpty(newGeneralTag) ? (
-        false
-      ) : (
-        <TagComponent
-          lists={newGeneralTag}
-          onClickGeneralTag={onClickGeneralTag}
-        />
-      )}
+                <div className="flex justify-between items-center">
+                  <CustomText>Lowest Price</CustomText>
+                  <input type="radio" name="radio-1" className="radio" />
+                </div>
 
-      {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
+                <div className="flex justify-between items-center">
+                  <CustomText>Lowest Price</CustomText>
+                  <input type="radio" name="radio-1" className="radio" />
+                </div>
 
-      <div className="pb-4">
-        <div className="w-full flex gap-5">
-          <div className="w-1/5" ref={amenitiesTarget}>
-            <div
-              className="fixed"
-              style={{
-                width: dimensions,
-                top: scrollTop,
-              }}
-            >
-              <AmenitiesComponent
-                data={newAmenitiesTag}
-                loading={listingTagOptionDataLoading}
-                onClickSelectAmenities={onClickSelectAmenities}
-              />
+                <div className="divider-line"></div>
+
+                <CustomText textClassName="font-bold pb-2">Location</CustomText>
+
+                <CustomSelect
+                  hideShadow
+                  placeholder={"Select State"}
+                  className="col-span-1 mb-2"
+                  selectClassName="bg-color"
+                  styles={{ maxWidth: "none" }}
+                  // optionList={Constant.STATE_CODE}
+                  // onChange={onChangeStateValue}
+                  // value={stateValue}
+                />
+
+                <CustomSelect
+                  hideShadow
+                  placeholder={"Select City"}
+                  className="col-span-1"
+                  selectClassName="bg-color"
+                  styles={{ maxWidth: "none" }}
+                  // optionList={Constant.STATE_CODE}
+                  // onChange={onChangeStateValue}
+                  // value={stateValue}
+                />
+
+                <div className="divider-line"></div>
+
+                <CustomText textClassName="font-bold pb-2">Room Amenities</CustomText>
+
+                <div className="flex justify-between items-center">
+                  <input type="checkbox" defaultChecked className="checkbox" />
+                  <CustomText>Window</CustomText>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <input type="checkbox" defaultChecked className="checkbox" />
+                  <CustomText>Window</CustomText>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <input type="checkbox" defaultChecked className="checkbox" />
+                  <CustomText>Window</CustomText>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <input type="checkbox" defaultChecked className="checkbox" />
+                  <CustomText>Window</CustomText>
+                </div>
+
+                <div className="divider-line"></div>
+
+                <CustomText textClassName="font-bold pb-2">Label</CustomText>
+              </div>
             </div>
-          </div>
-
-          <div className="w-4/5 pr-4">
-            <div className="flex pb-5 justify-end">
-              <CustomSelect
-                hideDefaultOption
-                selectClassName="select-sm min-h-10"
-                styles={{ width: "75%" }}
-                optionList={[
-                  {
-                    name:
-                      t("search.sortBy") + ": " + t("search.priceLowToHigh"),
-                    value: "asc",
-                  },
-                  {
-                    name:
-                      t("search.sortBy") + ": " + t("search.priceHighToLow"),
-                    value: "desc",
-                  },
-                ]}
-                onChange={onChangeSortValue}
-                value={sortValue}
-                // placeholder={
-                //   t("search.sortBy") + ": " + t("search.priceLowToHigh")
-                // }
-              />
-            </div>
-
-            {listingPropertyDataLoading ? (
-              <div className="grid grid-cols-2 gap-3">
-                {map(Array(6), (item, index) => (
-                  <Skeleton width="100%" height={140} key={index} />
-                ))}
-              </div>
-            ) : isEmpty(listingPropertyData) ? (
-              <div
-                className="flex items-center justify-center"
-                style={{ height: "200%" }}
-              >
-                <CustomEmptyBox />
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3">
-                {map(listingPropertyData, (item, index) => (
-                  <ListingCardComponent key={index} item={item} t={t} />
-                ))}
-              </div>
-            )}
+            <div className="col-span-8"></div>
           </div>
         </div>
+      </DesktopLayout>
 
-        {lastPage > 1 ? (
-          <CustomPagination
-            totalPages={lastPage}
-            currentPage={currentPage}
-            onPageChange={onPageChange}
-            disableNext={currentPage === lastPage}
-            disablePrevious={currentPage === 1}
+      <CustomHeader
+        pageTitle={t("pageTitle.search")}
+        hideBgImage
+        hideRightButton
+        onClickGoBack={onClickGoBack}
+      >
+        <NextSeo title="Spacify Listing - Spacify Asia" />
+        <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
+          <CustomInput
+            rightIcon={Images.searchOutlineActiveIcon}
+            className="col-span-2"
+            placeholder={t("search.keyword")}
+            value={keywordValue}
+            onChange={onChangeKeywordValue}
+            onClickRightIcon={onClickSubmitKeyword}
           />
-        ) : (
+
+          <CustomSelect
+            placeholder={t("search.state")}
+            optionList={Constant.STATE_CODE}
+            onChange={onChangeStateValue}
+            value={stateValue}
+          />
+
+          <CustomInput
+            placeholder={t("search.city")}
+            value={cityValue}
+            onChange={onChangeCityValue}
+            onClickRightIcon={onClickSubmitCity}
+          />
+        </div>
+
+        {isEmpty(newGeneralTag) ? (
           false
+        ) : (
+          <TagComponent
+            lists={newGeneralTag}
+            onClickGeneralTag={onClickGeneralTag}
+          />
         )}
-      </div>
-    </CustomHeader>
+
+        {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
+
+        <div className="pb-4">
+          <div className="w-full flex gap-5">
+            <div className="w-1/5" ref={amenitiesTarget}>
+              <div
+                className="fixed"
+                style={{
+                  width: dimensions,
+                  top: scrollTop,
+                }}
+              >
+                <AmenitiesComponent
+                  data={newAmenitiesTag}
+                  loading={listingTagOptionDataLoading}
+                  onClickSelectAmenities={onClickSelectAmenities}
+                />
+              </div>
+            </div>
+
+            <div className="w-4/5 pr-4">
+              <div className="flex pb-5 justify-end">
+                <CustomSelect
+                  hideDefaultOption
+                  selectClassName="select-sm min-h-10"
+                  styles={{ width: "75%" }}
+                  optionList={[
+                    {
+                      name:
+                        t("search.sortBy") + ": " + t("search.priceLowToHigh"),
+                      value: "asc",
+                    },
+                    {
+                      name:
+                        t("search.sortBy") + ": " + t("search.priceHighToLow"),
+                      value: "desc",
+                    },
+                  ]}
+                  onChange={onChangeSortValue}
+                  value={sortValue}
+                  // placeholder={
+                  //   t("search.sortBy") + ": " + t("search.priceLowToHigh")
+                  // }
+                />
+              </div>
+
+              {listingPropertyDataLoading ? (
+                <div className="grid grid-cols-2 gap-3">
+                  {map(Array(6), (item, index) => (
+                    <Skeleton width="100%" height={140} key={index} />
+                  ))}
+                </div>
+              ) : isEmpty(listingPropertyData) ? (
+                <div
+                  className="flex items-center justify-center"
+                  style={{ height: "200%" }}
+                >
+                  <CustomEmptyBox />
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-3">
+                  {map(listingPropertyData, (item, index) => (
+                    <ListingCardComponent key={index} item={item} t={t} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {lastPage > 1 ? (
+            <CustomPagination
+              totalPages={lastPage}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+              disableNext={currentPage === lastPage}
+              disablePrevious={currentPage === 1}
+            />
+          ) : (
+            false
+          )}
+        </div>
+      </CustomHeader>
+    </div>
   );
 };
 
