@@ -4,13 +4,12 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { isEmpty, isEqual, includes, map, get, toLower } from "lodash";
+import { isEmpty, isEqual, includes, map, get } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import {
-  DEFAULT_ONLOAD_NAME,
   DEFAULT_SCRIPT_ID,
   SCRIPT_URL,
   Turnstile,
@@ -21,14 +20,12 @@ import Images from "@/src/utils/Image";
 import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
 import Constant from "@/src/utils/Constant";
-import Link from "next/link";
 
 export { getServerSideProps };
 
-const SignUp = () => {
+const SignUpOwner = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const typeQuery = get(router, ["query", "type"], "Tenant");
   const ref = useRef();
 
   const selectOptionData = useSelector((state) =>
@@ -38,7 +35,6 @@ const SignUp = () => {
 
   const [signUpLoading, setSignUpLoading] = useState(false);
 
-  const [selectedRole, setSelectedRole] = useState("tenant");
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("+60");
@@ -47,10 +43,6 @@ const SignUp = () => {
   const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
 
   const [recaptchaToken, setRecaptchaToken] = useState("");
-
-  const onClickToSignIn = () => {
-    router.push("/sign-in");
-  };
 
   const handleSubmit = async () => {
     if (
@@ -72,7 +64,7 @@ const SignUp = () => {
     }
 
     const postData = {
-      type: toLower(typeQuery),
+      type: Constant.OWNER,
       name: nameValue,
       phone_prefix: countryCode,
       phone_suffix: phoneValue,
@@ -122,21 +114,20 @@ const SignUp = () => {
       pathname: "/otp-verification",
       query: {
         phoneNumber: countryCode + phoneValue,
-        type: toLower(typeQuery),
+        type: Constant.OWNER,
       },
     });
   };
 
   const onClickGoBack = () => {
-    router.replace(`/sign-in?type=${typeQuery}`);
+    router.replace(`/sign-in/${Constant.OWNER}`);
   };
 
   return (
     <div
       style={{
-        background: isEqual(typeQuery, Constant.OWNER)
-          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
-          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+        background:
+          "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)",
       }}
       className={`min-h-screen pb-4`}
     >
@@ -167,56 +158,17 @@ const SignUp = () => {
         </div>
 
         <div className="w-full">
-          {/*<div className="grid grid-cols-2">*/}
-          {/*  <div onClick={onClickToSignIn} className="cursor-pointer">*/}
-          {/*    <CustomText*/}
-          {/*      textClassName="text-center p-4 primary-text font-bold font-size-large"*/}
-          {/*      styles={{*/}
-          {/*        borderRadius: "10px 10px 0 0",*/}
-          {/*        backgroundColor: "#E8E8E8",*/}
-          {/*        color: "#C3C4C6",*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      {t("signUp.signIn")}*/}
-          {/*    </CustomText>*/}
-          {/*  </div>*/}
-
-          {/*  <CustomText*/}
-          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"*/}
-          {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
-          {/*  >*/}
-          {/*    {t("signUp.signUp")}*/}
-          {/*  </CustomText>*/}
-          {/*</div>*/}
           <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
             <CustomText textClassName="text-center pb-1 pt-3 font-bold font-size-xxlarge">
               You’re signing up as
             </CustomText>
 
             <CustomText
-              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
-              styles={{
-                color: isEqual(typeQuery, Constant.TENANT)
-                  ? "#F05A22"
-                  : "#D71440",
-                fontSize: 32,
-              }}
+              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10 primary-text`}
+              styles={{ fontSize: 32 }}
             >
-              {typeQuery}
+              Owner
             </CustomText>
-
-            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.tenant")}*/}
-            {/*    onClick={() => setSelectedRole("tenant")}*/}
-            {/*  />*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.owner")}*/}
-            {/*    onClick={() => setSelectedRole("owner")}*/}
-            {/*  />*/}
-            {/*</div>*/}
 
             <input
               type="text"
@@ -292,16 +244,11 @@ const SignUp = () => {
                 onError={(err) => console.error(err)}
                 onSuccess={(token) => setRecaptchaToken(token)}
               />
-              {/*<Turnstile*/}
-              {/*  theme="light"*/}
-              {/*  sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}*/}
-              {/*  onVerify={(token) => setRecaptchaToken(token)}*/}
-              {/*/>*/}
             </div>
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
+                buttonClassName={`primary-btn w-2/4 mb-2`}
                 buttonText="Sign Up for FREE"
                 onClick={handleSubmit}
               />
@@ -327,4 +274,4 @@ const SignUp = () => {
   );
 };
 
-export default withTranslation("common")(SignUp);
+export default withTranslation("common")(SignUpOwner);
