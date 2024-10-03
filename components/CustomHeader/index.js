@@ -20,7 +20,7 @@ const CustomHeader = ({
     <div
       style={{ maxWidth: 640, zIndex: 1 }}
       className={
-        "primaryWhite-bg-color flex flex-col h-full relative overflow-hidden mobile-responsive"
+        "primaryWhite-bg-color flex flex-col min-h-screen relative overflow-hidden mobile-responsive"
       }
     >
       <div className="flex-1 relative bg-color overflow-hidden flex flex-col">

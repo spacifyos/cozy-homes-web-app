@@ -1,0 +1,199 @@
+import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
+import _, { isEmpty } from "lodash";
+import moment from "moment/moment";
+import * as listingSelector from "@/src/selectors/listing";
+import RentChargesComponent from "@/components/Booking/RentChargesComponent";
+import CustomButton from "@/components/CustomButton";
+
+const DesktopPropertyPriceSection = ({
+  t,
+  data,
+  lists,
+  totalMoveInCost,
+  rental,
+  openModalFirstMonthCharges,
+  openModalLastMonthCharges,
+  onClickOpenModalFirstMonthCharges,
+  onClickOpenModalLastMonthCharges,
+}) => {
+  const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
+  const picName = listingSelector.getPicName(data);
+  const picContactNumber = listingSelector.getContactNumber(data);
+
+  const firstMonthRentCharges = listingSelector.getFirstMonthRentCharges(lists);
+  const lastMonthRentCharges = listingSelector.getLastMonthRentCharges(lists);
+  const othersList = listingSelector.getOthers(lists);
+  const totalMoveInCostFull = listingSelector.getTotalCostFull(lists);
+  const totalMoveInCostPartial = listingSelector.getTotalCostPartial(lists);
+  const totalMoveInCostFirstMonth =
+    listingSelector.getTotalCostFirstMonthRentCharges(lists);
+  const totalMoveInCostLastMonth =
+    listingSelector.getTotalCostLastMonthRentCharges(lists);
+
+  return (
+    <div className="global-box-shadow global-border-radius mt-3 overflow-hidden">
+      <div className="primary-bg-color p-3">
+        <div className="flex items-end">
+          <CustomText textClassName="white-text font-size-large font-bold pr-2">
+            RM{rental}
+          </CustomText>
+          <CustomText textClassName="white-text font-size-small">
+            / month
+          </CustomText>
+        </div>
+      </div>
+
+      <div className="primaryWhite-bg-color">
+        <div className="flex p-3 justify-between items-center">
+          <div className="relative ">
+            <CustomImage
+              src={Images.userIcon}
+              className="rounded-2xl"
+              imageStyle={{ width: 43 }}
+            />
+
+            {/*<div*/}
+            {/*  className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"*/}
+            {/*  style={{ right: -3 }}*/}
+            {/*>*/}
+            {/*  <CustomImage src={Images.paidIcon} width={14} />*/}
+            {/*</div>*/}
+          </div>
+
+          <div className="flex flex-col items-start pl-2 flex-1">
+            <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
+              {isEmpty(picName) ? "-" : picName}
+            </CustomText>
+            <CustomText textClassName="disable-text font-size-xxsmall">
+              {t("propertyDetail.memberSince")}{" "}
+              {moment(picMemberStartDate).format("YYYY-MM-DD")}
+            </CustomText>
+            {/*<CustomText textClassName="font-size-xxsmall power-on-text">*/}
+            {/*  15 Active Listing*/}
+            {/*</CustomText>*/}
+          </div>
+
+          <div className="flex gap-3 items-center flex-2 pr-1">
+            {/*<div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
+            {/*  <CustomImage*/}
+            {/*    src={Images.bookingIconActive}*/}
+            {/*    width={28}*/}
+            {/*    onClick={onClickToBookAppointment}*/}
+            {/*  />*/}
+            {/*</div>*/}
+            <a
+              href={`tel:${picContactNumber}`}
+              className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
+            >
+              <CustomImage src={Images.callIcon} width={28} />
+            </a>
+            <a
+              href={`${
+                isEmpty(picContactNumber)
+                  ? `https://api.whatsapp.com/send/?text=Hi, I need some help.`
+                  : `https://api.whatsapp.com/send/?phone=${picContactNumber}&text=Hi, I need some help.`
+              }`}
+              target="_blank"
+              className="global-box-shadow global-border-radius agent-section-icon cursor-pointer"
+            >
+              <CustomImage src={Images.whatsappIcon} width={45} />
+            </a>
+          </div>
+        </div>
+
+        <div className="p-3 bg-color flex items-center justify-between">
+          <CustomText textClassName="font-bold">Total Move-In Cost</CustomText>
+          <CustomText textClassName="primary-text font-bold">
+            RM {totalMoveInCost}
+          </CustomText>
+        </div>
+
+        <div className="px-3 py-5">
+          <CustomText>Move In Cost</CustomText>
+          <CustomText textClassName="disable-text font-size-xxsmall">
+            Please check the payment breakdown below. Should you have any
+            inquiries, please contact the owner or agent before proceeding with
+            your payment.
+          </CustomText>
+
+          <div className="divider-line"></div>
+
+          {isEmpty(firstMonthRentCharges) ? (
+            false
+          ) : (
+            <RentChargesComponent
+              title="First Month Rent Charges"
+              onClickOpenCharges={onClickOpenModalFirstMonthCharges}
+              openCharges={openModalFirstMonthCharges}
+              rentChargesAmount={totalMoveInCostFirstMonth}
+              rentChargesLists={firstMonthRentCharges}
+            />
+          )}
+
+          {isEmpty(lastMonthRentCharges) ? (
+            false
+          ) : (
+            <RentChargesComponent
+              title="Last Month Rent Charges"
+              onClickOpenCharges={onClickOpenModalLastMonthCharges}
+              openCharges={openModalLastMonthCharges}
+              rentChargesAmount={totalMoveInCostLastMonth}
+              rentChargesLists={lastMonthRentCharges}
+            />
+          )}
+
+          {_.isEmpty(othersList)
+            ? false
+            : _.map(othersList, (feesList, index) => {
+                const label = listingSelector.getLabel(feesList);
+                const amount = listingSelector.getFeeAmount(feesList);
+
+                return (
+                  <div
+                    className="flex justify-between items-center pb-1"
+                    key={index}
+                  >
+                    <CustomText textClassName="font-bold pr-2">
+                      {_.isEmpty(label) ? "-" : label}
+                    </CustomText>
+                    <CustomText>
+                      RM{_.isEmpty(amount) ? "0" : amount}
+                    </CustomText>
+                  </div>
+                );
+              })}
+
+          <div className="divider-line"></div>
+
+          <CustomText textClassName="font-bold pr-2 pb-1">
+            Total Move-in Cost
+          </CustomText>
+
+          <div className="flex justify-between items-center">
+            <CustomText textClassName="pr-2">Full Amount</CustomText>
+            <CustomText textClassName="primary-text font-bold">
+              RM{_.isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
+            </CustomText>
+          </div>
+
+          <div className="flex justify-between items-center">
+            <CustomText textClassName="pr-2">Partial Amount</CustomText>
+            <CustomText textClassName="primary-text font-bold">
+              RM
+              {_.isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
+            </CustomText>
+          </div>
+
+          <CustomButton
+            buttonText="Book Now"
+            buttonClassName="primary-btn w-full mt-5"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DesktopPropertyPriceSection;

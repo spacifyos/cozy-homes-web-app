@@ -26,6 +26,11 @@ import RentChargeModal from "@/components/Booking/RentChargeModal";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomImage from "@/components/CustomImage";
+import DesktopRecommendSection from "@/components/PropertyOverview/DesktopRecommendSection";
+import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearbyRoomSection";
+import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -163,112 +168,222 @@ const PropertyOverview = ({ id }) => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.propertyDetail")}
-      hideBgImage
-      onClickGoBack={onClickGoBack}
-      // onClickRightButton={onClickRightButton}
-      HeaderImageStyle={{ width: "30px", height: "30px" }}
-      // rightButtonIcon={
-      //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
-      // }
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Property Overview - Spacify Asia" />
-      <div className="body-container pb-32">
-        <RoomPicCarousel
-          imageUrl={imageUrl}
-          onClickPopupImage={onClickPopupImage}
-        />
 
-        <DetailComponent
-          propertyName={propertyName}
-          unitRoomName={unitRoomName}
-          address={address}
-        />
+      <DesktopLayout hideNav>
+        <div className="container mx-auto flex-1 py-10">
+          <div className="grid grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
+            <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+          </div>
 
-        <div className="grid grid-cols-6 gap-3 items-center pb-5">
-          <CustomButton
-            icon={
-              isEqual(selectDetail, Constant.TENANCY)
-                ? Images.tenancyIconActive
-                : Images.tenancyIcon
-            }
-            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-            textClassName="font-size-normal"
-            buttonText={t("propertyDetail.tenancy")}
-            imageStyle={{ width: 18 }}
-            onClick={() => onClickSelectDetail(Constant.TENANCY)}
-          />
+          <div class="grid grid-cols-3 gap-10">
+            <div className="col-span-2">
+              <DetailComponent
+                propertyName={propertyName}
+                unitRoomName={unitRoomName}
+                address={address}
+              />
 
-          <CustomButton
-            icon={
-              isEqual(selectDetail, Constant.TENANCY)
-                ? Images.policyIcon
-                : Images.policyIconActive
-            }
-            imageStyle={{ width: 18 }}
-            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-            textClassName="font-size-normal disable-text"
-            buttonText={t("propertyDetail.policy")}
-            onClick={() => onClickSelectDetail(Constant.POLICY)}
-          />
+              <div className="grid grid-cols-6 gap-3 items-center pb-5">
+                <CustomButton
+                  icon={
+                    isEqual(selectDetail, Constant.TENANCY)
+                      ? Images.tenancyIconActive
+                      : Images.tenancyIcon
+                  }
+                  buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+                  textClassName="font-size-normal"
+                  buttonText={t("propertyDetail.tenancy")}
+                  imageStyle={{ width: 18 }}
+                  onClick={() => onClickSelectDetail(Constant.TENANCY)}
+                />
+
+                <CustomButton
+                  icon={
+                    isEqual(selectDetail, Constant.TENANCY)
+                      ? Images.policyIcon
+                      : Images.policyIconActive
+                  }
+                  imageStyle={{ width: 18 }}
+                  buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+                  textClassName="font-size-normal disable-text"
+                  buttonText={t("propertyDetail.policy")}
+                  onClick={() => onClickSelectDetail(Constant.POLICY)}
+                />
+              </div>
+
+              {isEqual(selectDetail, Constant.TENANCY) ? (
+                <div>
+                  <DetailFeatureSection
+                    t={t}
+                    rental={rental}
+                    bedType={bedType}
+                    bathroom={bathroom}
+                    squareFeet={squareFeet}
+                  />
+
+                  <Description t={t} description={description} />
+
+                  <Facilities t={t} facilitiesList={facilitiesList} />
+
+                  {/*<SpacifyMap t={t} />*/}
+                </div>
+              ) : (
+                <PolicyDetail
+                  t={t}
+                  loading={listingCancellationDataLoading}
+                  data={listingCancellationData}
+                />
+              )}
+            </div>
+            <div className="col-span-1">
+              <DesktopPropertyPriceSection
+                t={t}
+                data={listingPropertyDetailData}
+                lists={targetItems}
+                totalMoveInCost={totalMoveInCost}
+                rental={rental}
+                openModalFirstMonthCharges={openModalFirstMonthCharges}
+                openModalLastMonthCharges={openModalLastMonthCharges}
+                onClickOpenModalFirstMonthCharges={
+                  onClickOpenModalFirstMonthCharges
+                }
+                onClickOpenModalLastMonthCharges={
+                  onClickOpenModalLastMonthCharges
+                }
+              />
+            </div>
+          </div>
+
+          <DesktopRecommendSection t={t} recommendedList={recommendedList} />
+
+          <DesktopNearbyRoomSection t={t} recommendedList={recommendedList} />
         </div>
+      </DesktopLayout>
 
-        {isEqual(selectDetail, Constant.TENANCY) ? (
-          <div>
-            <DetailFeatureSection
-              t={t}
-              rental={rental}
-              bedType={bedType}
-              bathroom={bathroom}
-              squareFeet={squareFeet}
+      <CustomHeader
+        pageTitle={t("pageTitle.propertyDetail")}
+        hideBgImage
+        onClickGoBack={onClickGoBack}
+        // onClickRightButton={onClickRightButton}
+        HeaderImageStyle={{ width: "30px", height: "30px" }}
+        // rightButtonIcon={
+        //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
+        // }
+      >
+        <div className="body-container pb-32">
+          <RoomPicCarousel
+            imageUrl={imageUrl}
+            onClickPopupImage={onClickPopupImage}
+          />
+
+          <DetailComponent
+            propertyName={propertyName}
+            unitRoomName={unitRoomName}
+            address={address}
+          />
+
+          <div className="grid grid-cols-6 gap-3 items-center pb-5">
+            <CustomButton
+              icon={
+                isEqual(selectDetail, Constant.TENANCY)
+                  ? Images.tenancyIconActive
+                  : Images.tenancyIcon
+              }
+              buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+              textClassName="font-size-normal"
+              buttonText={t("propertyDetail.tenancy")}
+              imageStyle={{ width: 18 }}
+              onClick={() => onClickSelectDetail(Constant.TENANCY)}
             />
 
-            <Description t={t} description={description} />
-
-            <Facilities t={t} facilitiesList={facilitiesList} />
-
-            {/*<SpacifyMap t={t} />*/}
-
-            <RecommendSection t={t} recommendedList={recommendedList} />
+            <CustomButton
+              icon={
+                isEqual(selectDetail, Constant.TENANCY)
+                  ? Images.policyIcon
+                  : Images.policyIconActive
+              }
+              imageStyle={{ width: 18 }}
+              buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
+              textClassName="font-size-normal disable-text"
+              buttonText={t("propertyDetail.policy")}
+              onClick={() => onClickSelectDetail(Constant.POLICY)}
+            />
           </div>
-        ) : (
-          <PolicyDetail
+
+          {isEqual(selectDetail, Constant.TENANCY) ? (
+            <div>
+              <DetailFeatureSection
+                t={t}
+                rental={rental}
+                bedType={bedType}
+                bathroom={bathroom}
+                squareFeet={squareFeet}
+              />
+
+              <Description t={t} description={description} />
+
+              <Facilities t={t} facilitiesList={facilitiesList} />
+
+              {/*<SpacifyMap t={t} />*/}
+
+              <RecommendSection t={t} recommendedList={recommendedList} />
+            </div>
+          ) : (
+            <PolicyDetail
+              t={t}
+              loading={listingCancellationDataLoading}
+              data={listingCancellationData}
+            />
+          )}
+
+          <AgentSection
             t={t}
-            loading={listingCancellationDataLoading}
-            data={listingCancellationData}
+            onClickToBookAppointment={onClickToBookAppointment}
+            data={listingPropertyDetailData}
+            onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+            totalMoveInCost={totalMoveInCost}
+            propertyId={id}
           />
-        )}
 
-        <AgentSection
-          t={t}
-          onClickToBookAppointment={onClickToBookAppointment}
-          data={listingPropertyDetailData}
-          onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
-          totalMoveInCost={totalMoveInCost}
-          propertyId={id}
-        />
+          <MoveInCostModal
+            openModalFirstMonthCharges={openModalFirstMonthCharges}
+            openModalLastMonthCharges={openModalLastMonthCharges}
+            onClickOpenModalFirstMonthCharges={
+              onClickOpenModalFirstMonthCharges
+            }
+            onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+            lists={targetItems}
+          />
 
-        <MoveInCostModal
-          openModalFirstMonthCharges={openModalFirstMonthCharges}
-          openModalLastMonthCharges={openModalLastMonthCharges}
-          onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
-          onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
-          lists={targetItems}
-        />
+          <ImageModal
+            data={imageUrl}
+            selectedImage={selectedImage}
+            onClickCloseImageModal={onClickCloseImageModal}
+            openImageModal={openImageModal}
+          />
 
-        <ImageModal
-          data={imageUrl}
-          selectedImage={selectedImage}
-          onClickCloseImageModal={onClickCloseImageModal}
-          openImageModal={openImageModal}
-        />
+          <RentChargeModal />
 
-        <RentChargeModal />
-
-        <LoadingOverlay loading={listingPropertyDetailDataLoading} />
-      </div>
-    </CustomHeader>
+          <LoadingOverlay loading={listingPropertyDetailDataLoading} />
+        </div>
+      </CustomHeader>
+    </div>
   );
 };
 

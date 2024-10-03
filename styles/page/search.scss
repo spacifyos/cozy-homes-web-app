@@ -53,3 +53,16 @@
   outline-offset: unset;
   border: none;
 }
+
+.price-range-slider {
+  .range-slider__thumb {
+    background: $primary-white-color !important;
+    border: 2px $primary-color solid;
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .range-slider__range {
+    background: $primary-color !important;
+  }
+}

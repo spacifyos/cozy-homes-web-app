@@ -5,39 +5,43 @@ import CustomButton from "@/components/CustomButton";
 const DesktopHeader = ({ onClickSignIn, onClickSignUp }) => {
   return (
     <div
-      className="container mx-auto py-4 primaryWhite-bg-color flex justify-between items-center"
-      style={{ height: 100 }}
+      className="py-4 primaryWhite-bg-color"
+      style={{ height: 100, borderBottom: "3px #f5f8fd solid" }}
     >
-      <CustomImage
-        src={Image.logoHorizontalColor}
-        imageStyle={{ width: 130 }}
-      />
+      <div className="container mx-auto flex justify-between items-center">
+        <a href={"/explore"}>
+          <CustomImage
+            src={Image.logoHorizontalColor}
+            imageStyle={{ width: 130 }}
+          />
+        </a>
 
-      <div className="flex gap-3">
-        <CustomButton
-          icon={Image.registerIcon}
-          imageStyle={{ width: 13 }}
-          buttonText="Register"
-          buttonClassName="primary-btn w-32"
-          reverse
-          onClick={onClickSignUp}
-        />
+        <div className="flex gap-3">
+          <CustomButton
+            icon={Image.registerIcon}
+            imageStyle={{ width: 13 }}
+            buttonText="Register"
+            buttonClassName="primary-btn w-32"
+            reverse
+            onClick={onClickSignUp}
+          />
 
-        <CustomButton
-          icon={Image.primaryLogoutIcon}
-          buttonText="Sign In"
-          buttonClassName="default-btn w-32"
-          reverse
-          onClick={onClickSignIn}
-        />
+          <CustomButton
+            icon={Image.primaryLogoutIcon}
+            buttonText="Sign In"
+            buttonClassName="default-btn w-32"
+            reverse
+            onClick={onClickSignIn}
+          />
 
-        <CustomButton
-          icon={Image.chatOutlineIcon}
-          buttonText="Chat"
-          imageStyle={{ width: 18 }}
-          buttonClassName="default-btn w-32"
-          reverse
-        />
+          <CustomButton
+            icon={Image.chatOutlineIcon}
+            buttonText="Chat"
+            imageStyle={{ width: 18 }}
+            buttonClassName="default-btn w-32"
+            reverse
+          />
+        </div>
       </div>
     </div>
   );

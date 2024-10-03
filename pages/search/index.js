@@ -19,7 +19,8 @@ import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
-import CustomText from "@/components/CustomText";
+import DesktopSearchBar from "@/components/Search/DesktopSearchBar";
+import DesktopListingSection from "@/components/Search/DesktopListingSection";
 
 export { getServerSideProps };
 
@@ -40,8 +41,8 @@ const Search = () => {
     listingSelector.getListingTagOptionDataLoading(state),
   );
 
-  const getListingPropertyRequest = (postData, page) =>
-    dispatch(listingAction.getListingPropertyRequest(postData, page));
+  const getListingPropertyRequest = (postData, page, perPage) =>
+    dispatch(listingAction.getListingPropertyRequest(postData, page, perPage));
   const listingPropertyData = useSelector((state) =>
     listingSelector.getListingPropertyData(state),
   );
@@ -145,8 +146,8 @@ const Search = () => {
     getListingTagOptionRequest();
   };
 
-  const fetchListingProperty = (postData, page = 1) => {
-    getListingPropertyRequest(postData, page);
+  const fetchListingProperty = (postData, page = 1, perPage = 12) => {
+    getListingPropertyRequest(postData, page, perPage);
   };
 
   const onClickGeneralTag = (name, code) => {
@@ -294,101 +295,42 @@ const Search = () => {
   };
 
   const onPageChange = (pageNumber) => {
-    fetchListingProperty(selectedFilterParams, pageNumber);
+    fetchListingProperty(selectedFilterParams, pageNumber, 12);
   };
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="Spacify Listing - Spacify Asia" />
+
       <DesktopLayout hideNav>
         <div className="container mx-auto flex-1 py-10">
-          <div className="grid grid-cols-12">
-            <div className="col-span-4 ">
-              <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-6 flex flex-col">
-                <CustomInput
-                  rightIcon={Images.searchOutlineActiveIcon}
-                  className="col-span-1 pb-4"
-                  placeholder="Keyword"
-                  // value={keywordValue}
-                  // onChange={onChangeKeywordValue}
-                  // onClickRightIcon={onClickSubmitKeyword}
-                />
-
-                <CustomText textClassName="font-bold pb-2">
-                  Sort Result By
-                </CustomText>
-
-                <div className="flex justify-between items-center">
-                  <CustomText>Lowest Price</CustomText>
-                  <input type="radio" name="radio-1" className="radio" />
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <CustomText>Lowest Price</CustomText>
-                  <input type="radio" name="radio-1" className="radio" />
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <CustomText>Lowest Price</CustomText>
-                  <input type="radio" name="radio-1" className="radio" />
-                </div>
-
-                <div className="divider-line"></div>
-
-                <CustomText textClassName="font-bold pb-2">Location</CustomText>
-
-                <CustomSelect
-                  hideShadow
-                  placeholder={"Select State"}
-                  className="col-span-1 mb-2"
-                  selectClassName="bg-color"
-                  styles={{ maxWidth: "none" }}
-                  // optionList={Constant.STATE_CODE}
-                  // onChange={onChangeStateValue}
-                  // value={stateValue}
-                />
-
-                <CustomSelect
-                  hideShadow
-                  placeholder={"Select City"}
-                  className="col-span-1"
-                  selectClassName="bg-color"
-                  styles={{ maxWidth: "none" }}
-                  // optionList={Constant.STATE_CODE}
-                  // onChange={onChangeStateValue}
-                  // value={stateValue}
-                />
-
-                <div className="divider-line"></div>
-
-                <CustomText textClassName="font-bold pb-2">Room Amenities</CustomText>
-
-                <div className="flex justify-between items-center">
-                  <input type="checkbox" defaultChecked className="checkbox" />
-                  <CustomText>Window</CustomText>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <input type="checkbox" defaultChecked className="checkbox" />
-                  <CustomText>Window</CustomText>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <input type="checkbox" defaultChecked className="checkbox" />
-                  <CustomText>Window</CustomText>
-                </div>
-
-                <div className="flex justify-between items-center">
-                  <input type="checkbox" defaultChecked className="checkbox" />
-                  <CustomText>Window</CustomText>
-                </div>
-
-                <div className="divider-line"></div>
-
-                <CustomText textClassName="font-bold pb-2">Label</CustomText>
-              </div>
+          <div className="grid grid-cols-12 gap-10">
+            <div className="col-span-3">
+              <DesktopSearchBar />
             </div>
-            <div className="col-span-8"></div>
+            <div className="col-span-9">
+              <DesktopListingSection
+                t={t}
+                listingPropertyDataLoading={listingPropertyDataLoading}
+                listingPropertyData={listingPropertyData}
+                lastPage={lastPage}
+                currentPage={currentPage}
+                onPageChange={onPageChange}
+              />
+            </div>
           </div>
+
+          {lastPage > 1 ? (
+            <CustomPagination
+              totalPages={lastPage}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+              disableNext={currentPage === lastPage}
+              disablePrevious={currentPage === 1}
+            />
+          ) : (
+            false
+          )}
         </div>
       </DesktopLayout>
 
@@ -398,7 +340,6 @@ const Search = () => {
         hideRightButton
         onClickGoBack={onClickGoBack}
       >
-        <NextSeo title="Spacify Listing - Spacify Asia" />
         <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
           <CustomInput
             rightIcon={Images.searchOutlineActiveIcon}

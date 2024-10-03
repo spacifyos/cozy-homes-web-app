@@ -171,6 +171,8 @@ const Image = {
   collegeIcon: `/images/icon/college_icon.png`,
   chatOutlineIcon: "/images/icon/chat_outline_active.png",
   closeIconWhite: "/images/icon/close_icon.png",
+  recommendIcon: "/images/icon/recommend_icon.png",
+  nearbyIcon: "/images/icon/nearby_icon.png",
 };
 
 export default { ...Image };

@@ -40,10 +40,11 @@ export const getListingTagOptionFailure = (messages) => ({
   messages,
 });
 
-export const getListingPropertyRequest = (postData, page) => ({
+export const getListingPropertyRequest = (postData, page, perPage) => ({
   type: "GET_LISTING_PROPERTY_REQUEST",
   postData,
   page,
+  perPage,
 });
 
 export const getListingPropertySuccess = (data) => ({
