@@ -54,6 +54,24 @@ const DesktopCheapestRoomSection = () => {
               clickable: true,
               enabled: false,
             }}
+            breakpoints={{
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+            }}
             // navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper explore-swiper"

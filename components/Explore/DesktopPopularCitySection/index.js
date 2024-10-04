@@ -27,7 +27,7 @@ const DesktopPopularCitySection = ({ onClickToFilter }) => {
         />
       </div>
 
-      <div className="grid grid-cols-5 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-8">
+      <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6">
         {false ? (
           <div className="flex" style={{ height: 144 }}>
             {map(Array(4), (item, index) => (

@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
 
-const DesktopNearbyRoomSection = ({recommendedList}) => {
+const DesktopNearbyRoomSection = ({ recommendedList }) => {
   return (
     <div className="pt-10">
       <div className="flex justify-between items-center pb-4">
@@ -37,20 +37,38 @@ const DesktopNearbyRoomSection = ({recommendedList}) => {
           </div>
         ) : isEmpty(recommendedList) ? (
           <div className="flex justify-center" style={{ height: 144 }}>
-              <CustomEmptyBox
-                  emptyTitle="No recommend property found"
-                  emptyDesc="Recommend property not available for now. "
-              />
+            <CustomEmptyBox
+              emptyTitle="No recommend property found"
+              emptyDesc="Recommend property not available for now. "
+            />
           </div>
         ) : (
           <Swiper
             style={{ width: "100%" }}
             slidesPerView={5}
-            spaceBetween={32}
+            spaceBetween={10}
             loop={true}
             pagination={{
               clickable: true,
               enabled: false,
+            }}
+            breakpoints={{
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}

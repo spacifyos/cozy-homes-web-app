@@ -43,19 +43,37 @@ const DesktopRecommendSection = ({ recommendedList }) => {
         ) : isEmpty(recommendedList) ? (
           <div className="flex justify-center" style={{ height: 144 }}>
             <CustomEmptyBox
-                emptyTitle="No recommend property found"
-                emptyDesc="Recommend property not available for now. "
+              emptyTitle="No recommend property found"
+              emptyDesc="Recommend property not available for now. "
             />
           </div>
         ) : (
           <Swiper
             style={{ width: "100%" }}
             slidesPerView={5}
-            spaceBetween={32}
+            spaceBetween={10}
             loop={true}
             pagination={{
               clickable: true,
               enabled: false,
+            }}
+            breakpoints={{
+              1280: {
+                slidesPerView: 5,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}

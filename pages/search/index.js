@@ -305,10 +305,10 @@ const Search = () => {
       <DesktopLayout hideNav>
         <div className="container mx-auto flex-1 py-10">
           <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-3">
+            <div className="xl:col-span-3 lg:col-span-4 md:col-span-4 sm:col-span-4">
               <DesktopSearchBar />
             </div>
-            <div className="col-span-9">
+            <div className="xl:col-span-9 lg:col-span-8 md:col-span-8 sm:col-span-8">
               <DesktopListingSection
                 t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
