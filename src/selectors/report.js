@@ -9,6 +9,7 @@ export const getPeriod = (state) => get(state, ["period"], "");
 export const getPropertyUnitName = (state) =>
   get(state, ["property_unit_name"], "");
 export const getExpense = (state) => get(state, ["expense"], []);
+export const getId = (state) => get(state, ["id"], "");
 export const getUnitId = (state) => get(state, ["unit_id"], "");
 export const getIncome = (state) => get(state, ["income"], "");
 export const getMonth = (state) => get(state, ["month"], "");

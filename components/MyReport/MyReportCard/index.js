@@ -12,7 +12,7 @@ const MyReportCard = ({ data, targetMonth }) => {
         const description = reportSelector.getDescription(item);
         const propertyName = reportSelector.getPropertyUnitName(item);
         const period = reportSelector.getPeriod(item);
-        const id = reportSelector.getUnitId(item);
+        const id = reportSelector.getId(item);
 
         return (
           <a
