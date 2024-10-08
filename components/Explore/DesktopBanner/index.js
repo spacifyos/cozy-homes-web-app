@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "@/src/lib/swiper/swiper-react";
 import { EffectCards } from "@/src/lib/swiper/modules/index.mjs";
 import { get, map } from "lodash";
 import CustomImage from "@/components/CustomImage";
+import Image from "next/image";
 
 const DesktopBanner = ({ onSlideChange }) => {
   return (
@@ -14,21 +15,18 @@ const DesktopBanner = ({ onSlideChange }) => {
         className="mySwiper"
       >
         {map([1], (item, index) => {
-          const image = get(
-            item,
-            ["image_url"],
-            "/images/photo-kuala-lumpur-skyline-view-city-skyscrapers-with-beautiful-sky-afternoon 1.png",
-          );
+          const image = get(item, ["image_url"], "/images/desktop_banner.png");
 
           return (
             <SwiperSlide key={index} style={{}}>
-              <CustomImage
+              <Image
+                loader={() => image}
+                loading="lazy"
+                alt={"image"}
                 src={image}
-                imageStyle={{
-                  width: "100%",
-                  height: 400,
-                  objectFit: "cover",
-                }}
+                width={0}
+                height={0}
+                style={{ width: "100%", height: 500, objectFit: "cover" }}
               />
             </SwiperSlide>
           );

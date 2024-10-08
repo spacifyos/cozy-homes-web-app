@@ -111,7 +111,7 @@ function Home() {
           <DesktopSearchBar />
         </div>
 
-        <div className="pt-32">
+        <div className="pt-60">
           <div className="flex justify-center items-center gap-4 pb-10 container mx-auto">
             <CustomText
               textClassName="primary-text font-bold"
@@ -152,7 +152,7 @@ function Home() {
           </div>
 
           <div className="bg-color py-10">
-            <DesktopPopularCitySection onClickToFilter={onClickToFilter}/>
+            <DesktopPopularCitySection onClickToFilter={onClickToFilter} />
           </div>
 
           <DesktopFeaturedRoomSection />

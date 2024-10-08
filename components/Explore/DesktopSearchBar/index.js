@@ -10,7 +10,7 @@ import Constant from "@/src/utils/Constant";
 const DesktopSearchBar = ({ onClickRoomSearch, onClickCarParkSearch }) => {
   return (
     <div className="flex justify-center">
-      <div className="w-4/5 absolute z-10" style={{ bottom: -100 }}>
+      <div className="absolute z-10" style={{ bottom: -210, width: "75%" }}>
         <div className="flex">
           <div
             onClick={onClickCarParkSearch}
