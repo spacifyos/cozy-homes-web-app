@@ -14,6 +14,17 @@ import * as reportSelector from "@/src/selectors/report";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
+import {
+  getCurrentMonthPayoutAmount,
+  getCurrentMonthPayoutIsAmountNegative,
+  getOutstanding,
+  getTotalNetPayoutAmount,
+  getTotalNetPayoutIsAmountNegative,
+  getTotalOutstandingAmount,
+  getTotalOutstandingIsAmountNegative,
+  getTotalPayoutAIsAmountNegative,
+  getTotalPayoutAmount,
+} from "@/src/selectors/report";
 
 export { getServerSideProps };
 
@@ -22,7 +33,7 @@ const MyReport = ({ id }) => {
   const monthQuery = get(
     router,
     ["query", "month"],
-    moment().startOf('month').format("DD-MM-YYYY"),
+    moment().startOf("month").format("DD-MM-YYYY"),
   );
 
   const [loading, setLoading] = useState(false);
@@ -34,9 +45,29 @@ const MyReport = ({ id }) => {
   const incomeList = reportSelector.getIncome(reportDetail);
   const totalIncome = reportSelector.getTotalIncome(reportDetail);
   const expenseList = reportSelector.getExpense(reportDetail);
+  const outstandingList = reportSelector.getOutstanding(reportDetail);
   const totalExpense = reportSelector.getTotalExpense(reportDetail);
   const grandTotal = reportSelector.getGrandTotal(reportDetail);
   const pdf = reportSelector.getPdf(reportDetail);
+  const carryForwardDeductionAmount =
+    reportSelector.getCarryForwardDeductionAmount(reportDetail);
+  const carryForwardDeductionIsAmountNegative =
+    reportSelector.getCarryForwardDeductionIsAmountNegative(reportDetail);
+  const currentMonthPayoutAmount =
+    reportSelector.getCurrentMonthPayoutAmount(reportDetail);
+  const currentMonthPayoutIsAmountNegative =
+    reportSelector.getCurrentMonthPayoutIsAmountNegative(reportDetail);
+  const totalNetPayoutAmount =
+    reportSelector.getTotalNetPayoutAmount(reportDetail);
+  const totalNetPayoutIsAmountNegative =
+    reportSelector.getTotalNetPayoutIsAmountNegative(reportDetail);
+  const totalOutstandingAmount =
+    reportSelector.getTotalOutstandingAmount(reportDetail);
+  const totalOutstandingIsAmountNegative =
+    reportSelector.getTotalOutstandingIsAmountNegative(reportDetail);
+  const totalPayoutAmount = reportSelector.getTotalPayoutAmount(reportDetail);
+  const totalPayoutAIsAmountNegative =
+    reportSelector.getTotalPayoutAIsAmountNegative(reportDetail);
 
   useEffect(() => {
     fetchOwnerReportListing();
@@ -231,16 +262,172 @@ const MyReport = ({ id }) => {
             </CustomText>
           </div>
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          <div className="divider-line" style={{ margin: "10px 0 24px" }}></div>
 
-          <div className="flex justify-between">
-            <CustomText textClassName="font-bold">Grand Total</CustomText>
-            <CustomText textClassName="font-bold">
-              {isEmpty(grandTotal) ? "0" : grandTotal}
+          {isEmpty(outstandingList) ? (
+            false
+          ) : (
+            <CustomText textClassName="disable-text font-size-xxsmall">
+              Outstanding
             </CustomText>
-          </div>
+          )}
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          {isEmpty(outstandingList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(outstandingList)
+            ? false
+            : map(outstandingList, (outstanding) => {
+                const label = reportSelector.getLabel(outstanding);
+                const amount = reportSelector.getAmount(outstanding);
+                const description = reportSelector.getDescription(outstanding);
+
+                return (
+                  <div className="flex justify-between items-center pb-1">
+                    <div>
+                      <CustomText textClassName="font-bold">
+                        {isEmpty(label) ? "-" : label}
+                      </CustomText>
+                      <CustomText textClassName="disable-text font-size-xsmall">
+                        {isEmpty(description) ? "-" : description}
+                      </CustomText>
+                    </div>
+
+                    <CustomText textClassName="disable-text font-size-xsmall">
+                      {isEmpty(amount) ? "0" : amount}
+                    </CustomText>
+                  </div>
+                );
+              })}
+
+          {isEmpty(outstandingList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(totalOutstandingAmount) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">
+                Total Outstanding
+              </CustomText>
+              <CustomText
+                textClassName={`font-bold ${totalOutstandingIsAmountNegative ? "primary-text" : "power-on-text"}`}
+              >
+                {isEmpty(totalOutstandingAmount) ? "0" : totalOutstandingAmount}
+              </CustomText>
+            </div>
+          )}
+
+          {isEmpty(currentMonthPayoutAmount) ? (
+            false
+          ) : (
+            <div
+              className="divider-line"
+              style={{ margin: "10px 0 24px" }}
+            ></div>
+          )}
+
+          {isEmpty(currentMonthPayoutAmount) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Monthly Payout</CustomText>
+              <CustomText
+                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
+              >
+                {currentMonthPayoutAmount}
+              </CustomText>
+            </div>
+          )}
+
+          {isEmpty(carryForwardDeductionAmount) ? (
+            false
+          ) : (
+            <div
+              className="divider-line"
+              style={{ margin: "10px 0" }}
+            ></div>
+          )}
+
+          {isEmpty(carryForwardDeductionAmount) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Last Monthly Payout</CustomText>
+              <CustomText
+                textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "primary-text" : "power-on-text"}`}
+              >
+                {carryForwardDeductionAmount}
+              </CustomText>
+            </div>
+          )}
+
+          {isEmpty(totalPayoutAmount) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(totalPayoutAmount) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Total Payout</CustomText>
+              <CustomText
+                textClassName={`font-bold ${totalPayoutAIsAmountNegative ? "primary-text" : "power-on-text"}`}
+              >
+                {totalPayoutAmount}
+              </CustomText>
+            </div>
+          )}
+
+          {isEmpty(totalNetPayoutAmount) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(totalNetPayoutAmount) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">
+                Total Net Payout
+              </CustomText>
+              <CustomText
+                textClassName={`font-bold ${totalNetPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
+              >
+                {totalNetPayoutAmount}
+              </CustomText>
+            </div>
+          )}
+
+          {isEmpty(currentMonthPayoutAmount) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
+
+          {isEmpty(grandTotal) ? (
+            false
+          ) : (
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Grand Total</CustomText>
+              <CustomText textClassName="font-bold">{grandTotal}</CustomText>
+            </div>
+          )}
+
+          {isEmpty(grandTotal) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
         </div>
       </div>
 
