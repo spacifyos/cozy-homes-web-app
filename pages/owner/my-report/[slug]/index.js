@@ -25,6 +25,7 @@ import {
   getTotalPayoutAIsAmountNegative,
   getTotalPayoutAmount,
 } from "@/src/selectors/report";
+import CustomLabelValue from "@/components/CustomLabelValue";
 
 export { getServerSideProps };
 
@@ -116,53 +117,27 @@ const MyReport = ({ id }) => {
       <NextSeo title="Statement Overview | Owner - Spacify Asia" />
 
       <div className="bg-color flex flex-col flex-1 global-horizontal-padding py-5">
-        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
-          <div className="flex justify-between">
-            <CustomText textClassName="font-bold primary-text">
-              Monthly P&L Statement
-            </CustomText>
-            <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
-          </div>
-
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
-
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            Property
+        <div className="flex justify-between pb-2">
+          <CustomText textClassName="font-bold primary-text">
+            Monthly P&L Statement
           </CustomText>
+          <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
+        </div>
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+        <CustomLabelValue
+          label="Property"
+          value={isEmpty(property) ? "-" : property}
+        />
 
-          <CustomText textClassName="font-bold">
-            {isEmpty(property) ? "-" : property}
-          </CustomText>
+        <CustomLabelValue label="Unit" value={isEmpty(unit) ? "-" : unit} />
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+        <div className="divider-line" style={{ margin: "10px 0 18px 0" }}></div>
 
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            Unit
-          </CustomText>
+        <CustomText textClassName="disable-text font-size-xsmall pb-1">
+          Income
+        </CustomText>
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
-
-          <CustomText textClassName="font-bold">
-            {isEmpty(unit) ? "-" : unit}
-          </CustomText>
-
-          <div
-            className="divider-line"
-            style={{ margin: "10px 0 24px 0" }}
-          ></div>
-
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            Income
-          </CustomText>
-
-          {isEmpty(incomeList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
+        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
           {isEmpty(incomeList)
             ? false
             : map(incomeList, (income) => {
@@ -207,7 +182,11 @@ const MyReport = ({ id }) => {
                 );
               })}
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          {isEmpty(incomeList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
 
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Income</CustomText>
@@ -215,19 +194,13 @@ const MyReport = ({ id }) => {
               {isEmpty(totalIncome) ? "0" : totalIncome}
             </CustomText>
           </div>
+        </div>
 
-          <div className="divider-line" style={{ margin: "10px 0 24px" }}></div>
+        <CustomText textClassName="disable-text font-size-xsmall pb-1">
+          Expenses
+        </CustomText>
 
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            Expenses
-          </CustomText>
-
-          {isEmpty(expenseList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
+        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
           {isEmpty(expenseList)
             ? false
             : map(expenseList, (expense) => {
@@ -253,7 +226,11 @@ const MyReport = ({ id }) => {
                 );
               })}
 
-          <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          {isEmpty(expenseList) ? (
+            false
+          ) : (
+            <div className="divider-line" style={{ margin: "10px 0" }}></div>
+          )}
 
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Expenses</CustomText>
@@ -261,57 +238,49 @@ const MyReport = ({ id }) => {
               {isEmpty(totalExpense) ? "0" : totalExpense}
             </CustomText>
           </div>
+        </div>
 
-          <div className="divider-line" style={{ margin: "10px 0 24px" }}></div>
+        {isEmpty(outstandingList) ? (
+          false
+        ) : (
+          <CustomText textClassName="disable-text font-size-xsmall pb-1">
+            Outstanding
+          </CustomText>
+        )}
 
-          {isEmpty(outstandingList) ? (
-            false
-          ) : (
-            <CustomText textClassName="disable-text font-size-xxsmall">
-              Outstanding
-            </CustomText>
-          )}
+        {isEmpty(outstandingList) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+            {map(outstandingList, (outstanding) => {
+              const label = reportSelector.getLabel(outstanding);
+              const amount = reportSelector.getAmount(outstanding);
+              const description = reportSelector.getDescription(outstanding);
 
-          {isEmpty(outstandingList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
-          {isEmpty(outstandingList)
-            ? false
-            : map(outstandingList, (outstanding) => {
-                const label = reportSelector.getLabel(outstanding);
-                const amount = reportSelector.getAmount(outstanding);
-                const description = reportSelector.getDescription(outstanding);
-
-                return (
-                  <div className="flex justify-between items-center pb-1">
-                    <div>
-                      <CustomText textClassName="font-bold">
-                        {isEmpty(label) ? "-" : label}
-                      </CustomText>
-                      <CustomText textClassName="disable-text font-size-xsmall">
-                        {isEmpty(description) ? "-" : description}
-                      </CustomText>
-                    </div>
-
+              return (
+                <div className="flex justify-between items-center pb-1">
+                  <div>
+                    <CustomText textClassName="font-bold">
+                      {isEmpty(label) ? "-" : label}
+                    </CustomText>
                     <CustomText textClassName="disable-text font-size-xsmall">
-                      {isEmpty(amount) ? "0" : amount}
+                      {isEmpty(description) ? "-" : description}
                     </CustomText>
                   </div>
-                );
-              })}
 
-          {isEmpty(outstandingList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
+                  <CustomText textClassName="disable-text font-size-xsmall">
+                    {isEmpty(amount) ? "0" : amount}
+                  </CustomText>
+                </div>
+              );
+            })}
 
-          {isEmpty(totalOutstandingAmount) ? (
-            false
-          ) : (
+            {isEmpty(outstandingList) ? (
+              false
+            ) : (
+              <div className="divider-line" style={{ margin: "10px 0" }}></div>
+            )}
+
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Total Outstanding
@@ -322,61 +291,47 @@ const MyReport = ({ id }) => {
                 {isEmpty(totalOutstandingAmount) ? "0" : totalOutstandingAmount}
               </CustomText>
             </div>
-          )}
+          </div>
+        )}
 
-          {isEmpty(currentMonthPayoutAmount) ? (
-            false
-          ) : (
-            <div
-              className="divider-line"
-              style={{ margin: "10px 0 24px" }}
-            ></div>
-          )}
-
-          {isEmpty(currentMonthPayoutAmount) ? (
-            false
-          ) : (
+        {isEmpty(currentMonthPayoutAmount) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Monthly Payout</CustomText>
+              <CustomText textClassName="font-bold">
+                Current Month Payout
+              </CustomText>
               <CustomText
                 textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
               >
                 {currentMonthPayoutAmount}
               </CustomText>
             </div>
-          )}
+          </div>
+        )}
 
-          {isEmpty(carryForwardDeductionAmount) ? (
-            false
-          ) : (
-            <div
-              className="divider-line"
-              style={{ margin: "10px 0" }}
-            ></div>
-          )}
-
-          {isEmpty(carryForwardDeductionAmount) ? (
-            false
-          ) : (
+        {isEmpty(carryForwardDeductionAmount) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Last Monthly Payout</CustomText>
+              <CustomText textClassName="font-bold">
+                Carry Forward Deduction
+              </CustomText>
               <CustomText
                 textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "primary-text" : "power-on-text"}`}
               >
                 {carryForwardDeductionAmount}
               </CustomText>
             </div>
-          )}
+          </div>
+        )}
 
-          {isEmpty(totalPayoutAmount) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
-          {isEmpty(totalPayoutAmount) ? (
-            false
-          ) : (
+        {isEmpty(totalPayoutAmount) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">Total Payout</CustomText>
               <CustomText
@@ -385,17 +340,13 @@ const MyReport = ({ id }) => {
                 {totalPayoutAmount}
               </CustomText>
             </div>
-          )}
+          </div>
+        )}
 
-          {isEmpty(totalNetPayoutAmount) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
-          {isEmpty(totalNetPayoutAmount) ? (
-            false
-          ) : (
+        {isEmpty(totalNetPayoutAmount) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Total Net Payout
@@ -406,29 +357,19 @@ const MyReport = ({ id }) => {
                 {totalNetPayoutAmount}
               </CustomText>
             </div>
-          )}
+          </div>
+        )}
 
-          {isEmpty(currentMonthPayoutAmount) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-
-          {isEmpty(grandTotal) ? (
-            false
-          ) : (
+        {isEmpty(grandTotal) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">Grand Total</CustomText>
               <CustomText textClassName="font-bold">{grandTotal}</CustomText>
             </div>
-          )}
-
-          {isEmpty(grandTotal) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <LoadingOverlay loading={loading} />

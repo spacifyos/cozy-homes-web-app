@@ -13,7 +13,7 @@ export const getOutstanding = (state) => get(state, ["outstanding"], []);
 export const getId = (state) => get(state, ["id"], "");
 export const getUnitId = (state) => get(state, ["unit_id"], "");
 export const getIncome = (state) => get(state, ["income"], "");
-export const getMonth = (state) => get(state, ["current_month"], "");
+export const getMonth = (state) => get(state, ["month"], "");
 export const getPdf = (state) => get(state, ["pdf"], "");
 export const getProperty = (state) => get(state, ["property"], "");
 export const getUnit = (state) => get(state, ["unit"], "");
