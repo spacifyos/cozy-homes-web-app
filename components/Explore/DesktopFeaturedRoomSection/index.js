@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import { isEmpty, map } from "lodash";
+import { get, isEmpty, map } from "lodash";
 import Skeleton from "@/components/Skeleton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,8 +8,16 @@ import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import { useState } from "react";
 
 const DesktopFeaturedRoomSection = () => {
+  const [selectedSlide, setSelectedSlide] = useState(0);
+
+  const onSlideChange = (value) => {
+    const activeIndex = get(value, ["activeIndex"], 0);
+    setSelectedSlide(activeIndex);
+  };
+
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center pb-4">
@@ -47,11 +55,12 @@ const DesktopFeaturedRoomSection = () => {
         ) : (
           <Swiper
             style={{ width: "100%" }}
+            onSlideChange={onSlideChange}
             slidesPerView={6}
             spaceBetween={10}
-            loop={true}
+            loop={false}
             pagination={{
-              clickable: true,
+              clickable: false,
               enabled: false,
             }}
             breakpoints={{
@@ -74,7 +83,6 @@ const DesktopFeaturedRoomSection = () => {
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper explore-swiper"
           >
             {map(Array(10), (item, index) => {
               return (
