@@ -7,8 +7,8 @@ const DesktopModal = ({
   return (
     <dialog id={id} className="modal modal-center flex justify-center">
       <div
-        className="modal-box primaryWhite-bg-color hide-scroll-bar"
-        style={{ maxWidth: "30vw", padding: 0 }}
+        className="modal-box primaryWhite-bg-color hide-scroll-bar w-5/6"
+        style={{ padding: 0 }}
       >
         {children}
       </div>

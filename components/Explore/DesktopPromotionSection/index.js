@@ -24,15 +24,15 @@ const DesktopPromotionSection = () => {
         </div>
       </div>
 
-      <div className="gap-1">
+      <div className="gap-1" style={{ height: 250 }}>
         {false ? (
-          <div className="flex" style={{ height: 144 }}>
+          <div className="flex">
             {map(Array(4), (item, index) => (
               <Skeleton width={105} height={105} key={index} />
             ))}
           </div>
         ) : isEmpty(Array(10)) ? (
-          <div className="flex justify-center" style={{ height: 144 }}>
+          <div className="flex justify-center">
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (
@@ -46,28 +46,28 @@ const DesktopPromotionSection = () => {
               enabled: false,
             }}
             breakpoints={{
-                1280: {
-                    slidesPerView: 5,
-                    spaceBetween: 10,
-                },
-                1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                },
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper explore-swiper"
           >
-            {map(Array(10), (item, index) => {
+            {map(Array(5), (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <div className="primaryWhite-bg-color flex justify-center global-border-radius">

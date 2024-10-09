@@ -9,7 +9,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 
-const DesktopPopularUniversitySection = () => {
+const DesktopPopularUniversitySection = ({
+  onClickViewMore,
+  data,
+  loading,
+}) => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center pb-4">
@@ -25,18 +29,19 @@ const DesktopPopularUniversitySection = () => {
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
+          onClick={onClickViewMore}
         />
       </div>
 
-      <div className="gap-1">
-        {false ? (
-          <div className="flex" style={{ height: 144 }}>
-            {map(Array(4), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
+      <div className="gap-1 flex items-center justify-center" style={{ height: 208 }}>
+        {loading ? (
+          <div className="flex flex-1">
+            {map(Array(5), (item, index) => (
+              <Skeleton width="100%" height={200} key={index} />
             ))}
           </div>
-        ) : isEmpty(Array(10)) ? (
-          <div className="flex justify-center" style={{ height: 144 }}>
+        ) : isEmpty(data) ? (
+          <div className="flex justify-center">
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (
@@ -71,12 +76,12 @@ const DesktopPopularUniversitySection = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper explore-swiper"
           >
-            {map(Array(10), (item, index) => {
+            {map(data, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageWidth={200}
+                    imageWidth="100%"
                     imageHeight={200}
                   />
                 </SwiperSlide>

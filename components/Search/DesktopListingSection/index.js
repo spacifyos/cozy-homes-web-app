@@ -15,9 +15,9 @@ const DesktopListingSection = ({
   return (
     <div className="">
       {listingPropertyDataLoading ? (
-        <div className="grid grid-cols-3 gap-3">
-          {map(Array(9), (item, index) => (
-            <Skeleton width="100%" height={250} key={index} />
+        <div className="grid grid-cols-4 gap-3">
+          {map(Array(12), (item, index) => (
+            <Skeleton width="100%" height={200} key={index} />
           ))}
         </div>
       ) : isEmpty(listingPropertyData) ? (
@@ -25,13 +25,13 @@ const DesktopListingSection = ({
           <CustomEmptyBox />
         </div>
       ) : (
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-3">
           {map(listingPropertyData, (item, index) => (
             <ListingCardComponent
               key={index}
               item={item}
               t={t}
-              imageHeight={250}
+              imageHeight={200}
             />
           ))}
         </div>

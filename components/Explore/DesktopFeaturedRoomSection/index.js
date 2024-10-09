@@ -10,7 +10,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
 
-const DesktopFeaturedRoomSection = () => {
+const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
   const onSlideChange = (value) => {
@@ -39,17 +39,21 @@ const DesktopFeaturedRoomSection = () => {
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
+          onClick={onClickViewMore}
         />
       </div>
-      <div className="gap-1">
-        {false ? (
-          <div className="flex" style={{ height: 144 }}>
-            {map(Array(4), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
+      <div
+        className="gap-1 flex items-center justify-center"
+        style={{ height: 255 }}
+      >
+        {loading ? (
+          <div className="flex-1 flex">
+            {map(Array(5), (item, index) => (
+              <Skeleton width="100%" height={200} key={index} />
             ))}
           </div>
-        ) : isEmpty(Array(10)) ? (
-          <div className="flex justify-center" style={{ height: 144 }}>
+        ) : isEmpty(data) ? (
+          <div className="flex justify-center">
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (

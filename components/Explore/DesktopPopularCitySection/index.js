@@ -7,7 +7,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 
-const DesktopPopularCitySection = ({ onClickToFilter }) => {
+const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center pb-4">
@@ -23,27 +23,28 @@ const DesktopPopularCitySection = ({ onClickToFilter }) => {
         <CustomButton
           buttonText="View More"
           buttonClassName="primary-btn btn-sm"
-          onClick={onClickToFilter}
+          onClick={onClickViewMore}
         />
       </div>
 
-      <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-6">
-        {false ? (
-          <div className="flex" style={{ height: 144 }}>
-            {map(Array(4), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
-            ))}
-          </div>
-        ) : isEmpty(Array(12)) ? (
-          <div className="flex justify-center" style={{ height: 144 }}>
+      <div
+        className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 gap-5"
+        style={{ minHeight: 410 }}
+      >
+        {loading ? (
+            map(Array(10), (item, index) => (
+              <Skeleton width="100%" height={162} key={index} />
+            ))
+        ) : isEmpty(data) ? (
+          <div className="flex justify-center">
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (
-          map(Array(12), (item, index) => {
+          map(data, (item, index) => {
             return (
               <ListingCardComponent
                 item={item}
-                imageHeight="100%"
+                imageHeight={160}
                 imageWidth="100%"
               />
             );

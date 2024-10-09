@@ -167,6 +167,10 @@ const PropertyOverview = ({ id }) => {
     setOpenModalLastMonthCharges(!openModalLastMonthCharges);
   };
 
+  const onClickViewMore = () => {
+    router.push("search");
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Property Overview - Spacify Asia" />
@@ -270,9 +274,19 @@ const PropertyOverview = ({ id }) => {
             </div>
           </div>
 
-          <DesktopRecommendSection t={t} recommendedList={recommendedList} />
+          <DesktopRecommendSection
+            t={t}
+            data={recommendedList}
+            loading={listingPropertyDetailDataLoading}
+            onClickViewMore={onClickViewMore}
+          />
 
-          <DesktopNearbyRoomSection t={t} recommendedList={recommendedList} />
+          <DesktopNearbyRoomSection
+            t={t}
+            data={[]}
+            loading={listingPropertyDetailDataLoading}
+            onClickViewMore={onClickViewMore}
+          />
         </div>
       </DesktopLayout>
 

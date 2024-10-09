@@ -152,16 +152,32 @@ function Home() {
           </div>
 
           <div className="bg-color py-10">
-            <DesktopPopularCitySection onClickToFilter={onClickToFilter} />
+            <DesktopPopularCitySection
+              onClickViewMore={onClickToFilter}
+              data={condoListing}
+              loading={listingDataLoading}
+            />
           </div>
 
-          <DesktopFeaturedRoomSection />
+          <DesktopFeaturedRoomSection
+            data={[]}
+            loading={listingDataLoading}
+            onClickViewMore={onClickToFilter}
+          />
 
           <div className="bg-color py-10">
-            <DesktopPopularUniversitySection />
+            <DesktopPopularUniversitySection
+              data={[]}
+              loading={listingDataLoading}
+              onClickViewMore={onClickToFilter}
+            />
           </div>
 
-          <DesktopCheapestRoomSection />
+          <DesktopCheapestRoomSection
+            data={[]}
+            loading={listingDataLoading}
+            onClickViewMore={onClickToFilter}
+          />
 
           <div className="primary-bg-color py-10">
             <DesktopPromotionSection />
