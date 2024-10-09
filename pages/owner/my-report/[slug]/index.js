@@ -66,9 +66,10 @@ const MyReport = ({ id }) => {
     reportSelector.getTotalOutstandingAmount(reportDetail);
   const totalOutstandingIsAmountNegative =
     reportSelector.getTotalOutstandingIsAmountNegative(reportDetail);
-  const totalPayoutAmount = reportSelector.getTotalPayoutAmount(reportDetail);
-  const totalPayoutAIsAmountNegative =
-    reportSelector.getTotalPayoutAIsAmountNegative(reportDetail);
+  const currentMonthPNLAmount =
+    reportSelector.getCurrentMonthPNLAmount(reportDetail);
+  const currentMonthPNLIsAmountNegative =
+    reportSelector.getCurrentMonthPNLIsAmountNegative(reportDetail);
 
   useEffect(() => {
     fetchOwnerReportListing();
@@ -294,18 +295,44 @@ const MyReport = ({ id }) => {
           </div>
         )}
 
-        {isEmpty(currentMonthPayoutAmount) ? (
+        {isEmpty(totalIncome) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Total Income</CustomText>
+              <CustomText textClassName={`font-bold power-on-text`}>
+                {totalIncome}
+              </CustomText>
+            </div>
+          </div>
+        )}
+
+        {isEmpty(totalExpense) ? (
+          false
+        ) : (
+          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Total Expense</CustomText>
+              <CustomText textClassName={`font-bold primary-text`}>
+                {totalExpense}
+              </CustomText>
+            </div>
+          </div>
+        )}
+
+        {isEmpty(currentMonthPNLAmount) ? (
           false
         ) : (
           <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
-                Current Month Payout
+                Current Month P&L
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${currentMonthPNLIsAmountNegative ? "primary-text" : "power-on-text"}`}
               >
-                {currentMonthPayoutAmount}
+                {currentMonthPNLAmount}
               </CustomText>
             </div>
           </div>
@@ -328,16 +355,18 @@ const MyReport = ({ id }) => {
           </div>
         )}
 
-        {isEmpty(totalPayoutAmount) ? (
+        {isEmpty(currentMonthPayoutAmount) ? (
           false
         ) : (
           <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Total Payout</CustomText>
+              <CustomText textClassName="font-bold">
+                Current Month Payout
+              </CustomText>
               <CustomText
-                textClassName={`font-bold ${totalPayoutAIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
               >
-                {totalPayoutAmount}
+                {currentMonthPayoutAmount}
               </CustomText>
             </div>
           </div>

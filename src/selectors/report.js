@@ -40,7 +40,7 @@ export const getTotalOutstandingAmount = (state) =>
   get(state, ["total_outstanding", "amount"], "");
 export const getTotalOutstandingIsAmountNegative = (state) =>
   get(state, ["total_outstanding", "is_amount_negative"], false);
-export const getTotalPayoutAmount = (state) =>
-  get(state, ["total_payout", "amount"], "");
-export const getTotalPayoutAIsAmountNegative = (state) =>
-  get(state, ["total_payout", "is_amount_negative"], false);
+export const getCurrentMonthPNLAmount = (state) =>
+  get(state, ["current_month_p_n_l", "amount"], "");
+export const getCurrentMonthPNLIsAmountNegative = (state) =>
+  get(state, ["current_month_p_n_l", "is_amount_negative"], false);
