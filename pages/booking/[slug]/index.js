@@ -637,7 +637,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
       <DesktopLayout hideNav>
         <div className="container mx-auto flex-1 py-10">
-          <form ref={formRef} className="grid grid-cols-5 gap-5">
+          <form ref={formRef} className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 gap-5">
             <DesktopPriceSection
               targetRental={targetRental}
               propertyName={propertyName}

@@ -12,6 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
+import { getTotalFeesAmount, getUnitName } from "@/src/selectors/listing";
+import DesktopBookingStatusSection from "@/components/BookingOverview/DesktopBookingStatusSection";
 
 export { getServerSideProps };
 
@@ -28,6 +32,14 @@ const BookingOverview = ({ id }) => {
   const bookingOverviewLoading = useSelector((state) =>
     listingSelector.getBookingOverviewLoading(state),
   );
+
+  const title = listingSelector.getTitle(bookingOverviewData);
+  const propertyName = listingSelector.getPropertyName(bookingOverviewData);
+  const unitRoomName = listingSelector.getUnitName(bookingOverviewData);
+  const address = listingSelector.getAddress(bookingOverviewData);
+  const totalMoveInCost =
+    listingSelector.getTotalFeesAmount(bookingOverviewData);
+  const moveInFees = listingSelector.getFees(bookingOverviewData);
 
   const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
   const [openLastMonthCharges, setOpenLastMonthCharges] = useState(false);
@@ -53,31 +65,56 @@ const BookingOverview = ({ id }) => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.bookingOverview")}
-      hideBgImage
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Booking Overview - Spacify Asia" />
-      <div className="body-container pb-4">
-        <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 
-        <StepSection t={t} data={bookingOverviewData} />
+      <DesktopLayout hideNav>
+        <div className="container mx-auto flex-1 py-10">
+          <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 gap-5">
+            <DesktopPriceSection
+              isBookingOverview
+              title={title}
+              propertyName={propertyName}
+              unitRoomName={unitRoomName}
+              address={address}
+              totalMoveInCost={totalMoveInCost}
+              openFirstMonthCharges={openFirstMonthCharges}
+              onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
+              openLastMonthCharges={openLastMonthCharges}
+              onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
+              moveInFees={moveInFees}
+            />
 
-        <OverviewModal
-          t={t}
-          data={bookingOverviewData}
-          openFirstMonthCharges={openFirstMonthCharges}
-          onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
-          openLastMonthCharges={openLastMonthCharges}
-          onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
-        />
+            <DesktopBookingStatusSection t={t} data={bookingOverviewData} />
+          </div>
+        </div>
+      </DesktopLayout>
 
-        <RentChargeModal />
+      <CustomHeader
+        pageTitle={t("pageTitle.bookingOverview")}
+        hideBgImage
+        onClickGoBack={onClickGoBack}
+      >
+        <div className="body-container pb-4">
+          <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
 
-        <LoadingOverlay loading={bookingOverviewLoading} />
-      </div>
-    </CustomHeader>
+          <StepSection t={t} data={bookingOverviewData} />
+
+          <OverviewModal
+            t={t}
+            data={bookingOverviewData}
+            openFirstMonthCharges={openFirstMonthCharges}
+            onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
+            openLastMonthCharges={openLastMonthCharges}
+            onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
+          />
+
+          <RentChargeModal />
+
+          <LoadingOverlay loading={bookingOverviewLoading} />
+        </div>
+      </CustomHeader>
+    </div>
   );
 };
 
