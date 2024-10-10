@@ -23,14 +23,13 @@ import Constant from "@/src/utils/Constant";
 import Helper from "@/src/utils/Helper";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
-
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomImage from "@/components/CustomImage";
 import DesktopRecommendSection from "@/components/PropertyOverview/DesktopRecommendSection";
 import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearbyRoomSection";
 import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -42,6 +41,7 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
 const PropertyOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -270,6 +270,7 @@ const PropertyOverview = ({ id }) => {
                 onClickOpenModalLastMonthCharges={
                   onClickOpenModalLastMonthCharges
                 }
+                propertyId={id}
               />
             </div>
           </div>

@@ -78,6 +78,7 @@ const Image = {
   icFront: `/images/ic_front_sample.png`,
   icBack: `/images/ic_back_sample.png`,
   uploadIcon: `/images/icon/upload_icon.png`,
+  uploadIconActive: `/images/icon/upload_icon_active.png`,
   infoIcon: `/images/icon/information.png`,
   upIcon: `/images/icon/up_icon.png`,
   checkIcon: `/images/icon/check_icon.png`,

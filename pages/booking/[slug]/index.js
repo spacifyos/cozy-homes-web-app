@@ -42,7 +42,10 @@ import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Helper from "@/src/utils/Helper";
-import { getRentalWithSecurityDeposit } from "@/src/selectors/listing";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
+import DesktopFormSection from "@/components/Booking/DesktopFormSection";
+import ImageUploading from "@/components/Booking/ImageUploading";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -70,23 +73,6 @@ export async function getServerSideProps(context) {
 }
 
 const defaultOption = [{ label: "Not option provided", value: "" }];
-
-const ImageUploading = ({ loading }) => {
-  return loading ? (
-    <div
-      className="flex justify-center items-center absolute"
-      style={{
-        height: 155,
-        width: "100%",
-        backgroundColor: "rgba(255,255,255,0.7)",
-      }}
-    >
-      <span className="loading loading-spinner loading-lg primary-text"></span>
-    </div>
-  ) : (
-    false
-  );
-};
 
 const Booking = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
@@ -620,12 +606,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.booking")}
-      hideBgImage
-      hideRightButton
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
         title="Booking Form - Spacify Asia"
         canonical={`${process.env.DOMAIN}/booking/${id}`}
@@ -654,508 +635,24 @@ const Booking = ({ id, listingPropertyDetailData }) => {
         }}
       />
 
-      <div className="pb-36">
-        <div className="global-horizontal-padding pb-3">
-          <RoomPicCarousel
-            imageUrl={imageUrl}
-            onClickPopupImage={onClickPopupImage}
-          />
-
-          <CustomText textClassName="primary-text font-bold">
-            {isEmpty(title) ? "-" : title}
-          </CustomText>
-
-          <CustomText textClassName="font-bold pb-3">
-            {`RM${isEmpty(targetRental) ? "0" : targetRental} / Monthly`}
-          </CustomText>
-
-          <CustomText textClassName="font-bold">
-            {isEmpty(propertyName) ? "-" : propertyName}
-          </CustomText>
-
-          <CustomText textClassName="primary-text font-size-small">
-            {isEmpty(unitRoomName) ? "-" : unitRoomName}
-          </CustomText>
-
-          <CustomText textClassName="disable-text font-size-xxsmall">
-            {isEmpty(address) ? "-" : address}
-          </CustomText>
-        </div>
-
-        <form ref={formRef} className="grid grid-cols-21">
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-            <CustomText textClassName="col-span-4 font-bold">
-              Tenancy Period
-            </CustomText>
-            <BookingDateInput
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              placeholder="12/02/2023"
-              title="Check in date"
-              name="booking_date_from"
-              errorMessage={errorMessage.booking_date_from}
-              onChange={onChangeCheckInDate}
-              required
-            />
-
-            <BookingInput
-              required
-              disabled
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              title="Check out date"
-              value={
-                isEmpty(calculateCheckOutDate("DD/MM/YYYY"))
-                  ? "Please select check in date"
-                  : calculateCheckOutDate("DD/MM/YYYY")
-              }
-            />
-
-            <BookingSelect
-              className="col-span-6"
-              bgColor="primaryWhite-bg-color"
-              placeholder="Tenure Period"
-              title="Tenure Period"
-              lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
-              name="tenure_period"
-              errorMessage={errorMessage.tenure_period}
-              required
-              onChange={onChangeTenurePeriod}
-            />
-          </div>
-
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
-            <CustomText textClassName="col-span-6 font-bold">
-              Please Fill in The Form
-            </CustomText>
-            <BookingInput
-              className="col-span-6"
-              placeholder="Name"
-              name="applicant_name"
-              title="Name"
-              errorMessage={errorMessage.applicant_name}
-              required
-            />
-
-            <BookingSelect
-              className="col-span-2"
-              placeholder="Select ID type"
-              title="ID Type"
-              lists={isEmpty(idTypeOption) ? defaultOption : idTypeOption}
-              name="applicant_id_type"
-              errorMessage={errorMessage.applicant_id_type}
-              onChange={onChangeIdType}
-              required
-            />
-
-            <BookingInput
-              className="col-span-4"
-              type={"text"}
-              placeholder={
-                isEqual(idType, "nric")
-                  ? "XXXXXXXXXXXX"
-                  : isEqual(idType, "passport")
-                    ? "AXXXXXXXX"
-                    : "ID Number"
-              }
-              title={"ID Number"}
-              name="applicant_id_value"
-              errorMessage={errorMessage.applicant_id_value}
-              maxLength={
-                isEqual(idType, "nric")
-                  ? 12
-                  : isEqual(idType, "passport")
-                    ? 14
-                    : 20
-              }
-              required
-            />
-
-            <BookingSelect
-              className="col-span-6"
-              placeholder="Select Race"
-              title="Race"
-              name="applicant_race"
-              lists={isEmpty(raceOption) ? defaultOption : raceOption}
-              errorMessage={errorMessage.applicant_race}
-              required
-            />
-
-            <BookingSelect
-              className="col-span-6"
-              placeholder="Select Gender"
-              title="Gender"
-              lists={isEmpty(genderOption) ? defaultOption : genderOption}
-              name="applicant_gender"
-              errorMessage={errorMessage.applicant_gender}
-              required
-            />
-
-            <BookingInput
-              className="col-span-6"
-              placeholder="Email"
-              title="Email"
-              name="applicant_email"
-              errorMessage={errorMessage.applicant_email}
-              required
-            />
-
-            <BookingSelect
-              className="col-span-2"
-              placeholder="Select Area Code"
-              title="Area Code"
-              lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
-              name="applicant_area_code"
-              errorMessage={errorMessage.applicant_area_code}
-              required
-            />
-
-            <BookingInput
-              className="col-span-4"
-              type="number"
-              placeholder="Phone Number"
-              title="Phone Number"
-              name="applicant_phone_number"
-              errorMessage={errorMessage.applicant_phone_number}
-              required
-            />
-
-            <BookingSelect
-              className="col-span-6"
-              placeholder="Select Nationality"
-              title="Nationality"
-              lists={
-                isEmpty(nationalityOption) ? defaultOption : nationalityOption
-              }
-              name="applicant_nationality"
-              errorMessage={errorMessage.applicant_nationality}
-              required
-            />
-
-            <BookingSelect
-              className="col-span-6"
-              placeholder="Select Occupation"
-              title="Occupation"
-              lists={
-                isEmpty(occupationOption) ? defaultOption : occupationOption
-              }
-              name="occupation_type"
-              errorMessage={errorMessage.occupation_type}
-              required
-            />
-
-            <BookingInput
-              className="col-span-6"
-              placeholder="Company Name / College Name"
-              title="Company Name / College Name"
-              name="institution_name"
-              errorMessage={errorMessage.institution_name}
-              required
-            />
-          </div>
-
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-            <CustomText textClassName="col-span-6 font-bold">
-              Address Information
-            </CustomText>
-
-            <BookingInput
-              bgColor="primaryWhite-bg-color"
-              className="col-span-6"
-              placeholder="Your Address"
-              title="Your Address"
-              name="line"
-              errorMessage={errorMessage.line}
-              required
-            />
-
-            <BookingInput
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              placeholder="City"
-              title="City"
-              name="city"
-              errorMessage={errorMessage.city}
-              required
-            />
-
-            <BookingInput
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              placeholder="Postcode"
-              title="PostCode"
-              name="postcode"
-              errorMessage={errorMessage.postcode}
-              required
-            />
-
-            <BookingSelect
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              placeholder="Select Country"
-              title="Country"
-              lists={isEmpty(countryOption) ? defaultOption : countryOption}
-              name="country_code"
-              errorMessage={errorMessage.country_code}
-              required
-            />
-
-            <BookingSelect
-              bgColor="primaryWhite-bg-color"
-              className="col-span-3"
-              placeholder="Select State"
-              title="State"
-              lists={isEmpty(stateOption) ? defaultOption : stateOption}
-              name="state_code"
-              errorMessage={errorMessage.state_code}
-              required
-            />
-          </div>
-
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
-            <CustomText textClassName="col-span-6 font-bold">
-              Emergency Contact Information
-            </CustomText>
-
-            {map(emergencyContactNumber, (item, index) => {
-              return (
-                <div
-                  className="col-span-6 grid grid-cols-6 gap-2 pt-2"
-                  key={index}
-                >
-                  {/*<CustomText textClassName="font-bold col-span-3">*/}
-                  {/*  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}*/}
-                  {/*</CustomText>*/}
-
-                  {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
-                  {/*  <div*/}
-                  {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
-                  {/*    onClick={() => onClickRemoveContact(index)}*/}
-                  {/*  >*/}
-                  {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
-                  {/*  </div>*/}
-                  {/*) : (*/}
-                  {/*  false*/}
-                  {/*)}*/}
-
-                  <BookingInput
-                    className="col-span-6"
-                    placeholder="your Name"
-                    title="Your Name"
-                    name={`emergency_contacts_name_${index + 1}`}
-                    errorMessage={
-                      errorMessage[`emergency_contacts_name_${index + 1}`]
-                    }
-                    required={index === 0}
-                  />
-
-                  <BookingInput
-                    className="col-span-6"
-                    placeholder="Enter Relationship"
-                    title="Enter Relationship"
-                    name={`emergency_contacts_relationship_${index + 1}`}
-                    errorMessage={
-                      errorMessage[
-                        `emergency_contacts_relationship_${index + 1}`
-                      ]
-                    }
-                    required={index === 0}
-                  />
-
-                  <BookingSelect
-                    className="col-span-2"
-                    placeholder="Select Area Code"
-                    title="Area Code"
-                    lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
-                    name={`emergency_contacts_phone_prefix_${index + 1}`}
-                    errorMessage={
-                      errorMessage[
-                        `emergency_contacts_phone_prefix_${index + 1}`
-                      ]
-                    }
-                    required={index === 0}
-                  />
-
-                  <BookingInput
-                    className="col-span-4"
-                    type="number"
-                    placeholder="Phone Number"
-                    title="Phone Number"
-                    name={`emergency_contacts_phone_suffix_${index + 1}`}
-                    errorMessage={
-                      errorMessage[
-                        `emergency_contacts_phone_suffix_${index + 1}`
-                      ]
-                    }
-                    required={index === 0}
-                  />
-
-                  <BookingInput
-                    className="col-span-6"
-                    placeholder="Your Email"
-                    title="Your Email"
-                    name={`emergency_contacts_email_${index + 1}`}
-                    errorMessage={
-                      errorMessage[`emergency_contacts_email_${index + 1}`]
-                    }
-                    required={index === 0}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </form>
-        {/*<CustomButton*/}
-        {/*  buttonText={"+ Add Contact"}*/}
-        {/*  buttonClassName="col-span-6 primary-btn"*/}
-        {/*  onClick={onClickAddEmergencyContact}*/}
-        {/*/>*/}
-
-        <div className="grid">
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-            <CustomText textClassName="col-span-6 font-bold">
-              Verification
-            </CustomText>
-
-            <BookingInput
-              bgColor="primaryWhite-bg-color"
-              className="col-span-6"
-              value={otpValue}
-              placeholder="000000"
-              onChange={onChangeOtpValue}
-              type="number"
-              title="Code"
-              name="otp"
-              errorMessage={errorMessage.otp}
-              required
-            />
-
-            <CustomButton
-              buttonText={
-                isResendEnabled
-                  ? "Send Code"
-                  : `Resend OTP in ${timeLeft} seconds`
-              }
-              buttonClassName={`${isResendEnabled ? "primary-btn" : "disable-btn"} col-span-6`}
-              onClick={onClickGenerateOtp}
-              loading={otpRequestLoading}
-              disable={otpRequestLoading || !isResendEnabled}
-            />
-          </div>
-
-          {isAllowedZeroDeposit ? (
-            <div className="global-horizontal-padding pt-3 pb-4 grid grid-cols-6 gap-2">
-              <div className="flex items-end col-span-6">
-                <CustomText textClassName="font-bold pr-1">
-                  ZERO Deposit Solution
-                </CustomText>
-                <CustomText textClassName="font-size-xxsmall pb-0.5">
-                  (*Select either one)
-                </CustomText>
-              </div>
-
-              <div className="flex items-center col-span-3">
-                <input
-                  type="radio"
-                  name="is_zero_deposit"
-                  value="true"
-                  checked={isEqual(isZeroDeposit, "true") ? true : false}
-                  onClick={onClickSelectIsZeroDeposit}
-                  className="radio booking-radio mr-2"
-                />
-                <CustomText>ZERO Deposit</CustomText>
-              </div>
-
-              <div className="flex items-center col-span-3">
-                <input
-                  type="radio"
-                  name="is_zero_deposit"
-                  value="false"
-                  checked={isEqual(isZeroDeposit, "false") ? true : false}
-                  onClick={onClickSelectIsZeroDeposit}
-                  className="radio booking-radio mr-2"
-                />
-                <CustomText>Pay 2 Months Security Deposit</CustomText>
-              </div>
-            </div>
-          ) : (
-            false
-          )}
-
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-            <CustomText textClassName="col-span-6 font-bold">
-              Supporting Documents
-            </CustomText>
-
-            <div className="col-span-6 pl-1">
-              <CustomText textClassName="font-light font-size-xsmall ">
-                1. Please make sure your IC or passport is clear and readable.
-              </CustomText>
-              <CustomText textClassName="font-light font-size-xsmall ">
-                2. Please avoid flash or glare.
-              </CustomText>
-            </div>
-
-            <CustomText textClassName="col-span-6 font-light disable-text font-size-small">
-              Example:
-            </CustomText>
-
-            <div className="col-span-3 flex flex-col items-center">
-              <div className="relative">
-                <ImageUploading loading={frontIcUploading} />
-
-                <CustomImage
-                  src={isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
-                  imageStyle={{
-                    width: "100%",
-                    height: 155,
-                    objectFit: "contain",
-                  }}
-                />
-              </div>
-
-              <UploadIcButton
-                name="front_image"
-                icon={Images.uploadIcon}
-                buttonText="Front Image"
-                imageStyle={{ width: 20 }}
-                buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
-                onChangeImage={onChangeFrontICImage}
-                onClickSelectImage={() =>
-                  Helper.documentGetElementById("front_image").click()
-                }
-              />
-            </div>
-            <div className="col-span-3 flex flex-col items-center">
-              <div className="relative">
-                <ImageUploading loading={backIcUploading} />
-
-                <CustomImage
-                  src={isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
-                  imageStyle={{
-                    width: "100%",
-                    height: 155,
-                    objectFit: "contain",
-                  }}
-                />
-              </div>
-
-              <UploadIcButton
-                name="back_image"
-                icon={Images.uploadIcon}
-                imageStyle={{ width: 20 }}
-                buttonText="Back Image"
-                buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
-                onChangeImage={onChangeBackICImage}
-                onClickSelectImage={() =>
-                  Helper.documentGetElementById("back_image").click()
-                }
-              />
-            </div>
-          </div>
-
-          <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
-            <RentChargesSection
+      <DesktopLayout hideNav>
+        <div className="container mx-auto flex-1 py-10">
+          <form ref={formRef} className="grid grid-cols-5 gap-5">
+            <DesktopPriceSection
+              targetRental={targetRental}
+              propertyName={propertyName}
+              unitRoomName={unitRoomName}
+              address={address}
+              errorMessage={errorMessage}
+              onChangeCheckInDate={onChangeCheckInDate}
+              calculateCheckOutDate={calculateCheckOutDate}
+              tenureOption={tenureOption}
+              defaultOption={defaultOption}
+              onChangeTenurePeriod={onChangeTenurePeriod}
+              isAllowedZeroDeposit={isAllowedZeroDeposit}
+              isZeroDeposit={isZeroDeposit}
+              onClickSelectIsZeroDeposit={onClickSelectIsZeroDeposit}
+              totalMoveInCost={totalMoveInCost}
               openFirstMonthCharges={openFirstMonthCharges}
               onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
               openLastMonthCharges={openLastMonthCharges}
@@ -1164,74 +661,630 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               title={title}
               onClickSelectPaymentAmount={onClickSelectPaymentAmount}
             />
+
+            <DesktopFormSection
+              emergencyContactNumber={emergencyContactNumber}
+              errorMessage={errorMessage}
+              idTypeOption={idTypeOption}
+              defaultOption={defaultOption}
+              onChangeIdType={onChangeIdType}
+              idType={idType}
+              raceOption={raceOption}
+              genderOption={genderOption}
+              phonePrefix={phonePrefix}
+              nationalityOption={nationalityOption}
+              occupationOption={occupationOption}
+              countryOption={countryOption}
+              stateOption={stateOption}
+              otpValue={otpValue}
+              onChangeOtpValue={onChangeOtpValue}
+              isResendEnabled={isResendEnabled}
+              timeLeft={timeLeft}
+              onClickGenerateOtp={onClickGenerateOtp}
+              otpRequestLoading={otpRequestLoading}
+              frontIcUploading={frontIcUploading}
+              icFrontBase64={icFrontBase64}
+              onChangeFrontICImage={onChangeFrontICImage}
+              backIcUploading={backIcUploading}
+              icBackBase64={icBackBase64}
+              onChangeBackICImage={onChangeBackICImage}
+              isReadAgree={isReadAgree}
+              onClickReadAgree={onClickReadAgree}
+              onClickBooking={onClickBooking}
+            />
+          </form>
+        </div>
+      </DesktopLayout>
+
+      <CustomHeader
+        pageTitle={t("pageTitle.booking")}
+        hideBgImage
+        hideRightButton
+        onClickGoBack={onClickGoBack}
+      >
+        <div className="pb-36">
+          <div className="global-horizontal-padding pb-3">
+            <RoomPicCarousel
+              imageUrl={imageUrl}
+              onClickPopupImage={onClickPopupImage}
+            />
+
+            <CustomText textClassName="primary-text font-bold">
+              {isEmpty(title) ? "-" : title}
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-3">
+              {`RM${isEmpty(targetRental) ? "0" : targetRental} / Monthly`}
+            </CustomText>
+
+            <CustomText textClassName="font-bold">
+              {isEmpty(propertyName) ? "-" : propertyName}
+            </CustomText>
+
+            <CustomText textClassName="primary-text font-size-small">
+              {isEmpty(unitRoomName) ? "-" : unitRoomName}
+            </CustomText>
+
+            <CustomText textClassName="disable-text font-size-xxsmall">
+              {isEmpty(address) ? "-" : address}
+            </CustomText>
           </div>
 
-          <div className="flex items-start px-4 pt-3">
-            <div style={{ width: 25 }}>
-              <CustomImage
-                src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-                imageStyle={{ width: 25 }}
-                onClick={onClickReadAgree}
-                className="cursor-pointer"
+          <form ref={formRef} className="grid grid-cols-21">
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+              <CustomText textClassName="col-span-4 font-bold">
+                Tenancy Period
+              </CustomText>
+              <BookingDateInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                placeholder="12/02/2023"
+                title="Check in date"
+                name="booking_date_from"
+                errorMessage={errorMessage.booking_date_from}
+                onChange={onChangeCheckInDate}
+                required
+              />
+
+              <BookingInput
+                required
+                disabled
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                title="Check out date"
+                value={
+                  isEmpty(calculateCheckOutDate("DD/MM/YYYY"))
+                    ? "Please select check in date"
+                    : calculateCheckOutDate("DD/MM/YYYY")
+                }
+              />
+
+              <BookingSelect
+                className="col-span-6"
+                bgColor="primaryWhite-bg-color"
+                placeholder="Tenure Period"
+                title="Tenure Period"
+                lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
+                name="tenure_period"
+                errorMessage={errorMessage.tenure_period}
+                required
+                onChange={onChangeTenurePeriod}
               />
             </div>
 
-            <CustomText textClassName="pl-3 font-bold disable-text">
-              I understand and agree to give Spacify and CTOS the consent to
-              process my personal data as per PDPA Act.
-            </CustomText>
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
+              <CustomText textClassName="col-span-6 font-bold">
+                Please Fill in The Form
+              </CustomText>
+              <BookingInput
+                className="col-span-6"
+                placeholder="Name"
+                name="applicant_name"
+                title="Name"
+                errorMessage={errorMessage.applicant_name}
+                required
+              />
+
+              <BookingSelect
+                className="col-span-2"
+                placeholder="Select ID type"
+                title="ID Type"
+                lists={isEmpty(idTypeOption) ? defaultOption : idTypeOption}
+                name="applicant_id_type"
+                errorMessage={errorMessage.applicant_id_type}
+                onChange={onChangeIdType}
+                required
+              />
+
+              <BookingInput
+                className="col-span-4"
+                type={"text"}
+                placeholder={
+                  isEqual(idType, "nric")
+                    ? "XXXXXXXXXXXX"
+                    : isEqual(idType, "passport")
+                      ? "AXXXXXXXX"
+                      : "ID Number"
+                }
+                title={"ID Number"}
+                name="applicant_id_value"
+                errorMessage={errorMessage.applicant_id_value}
+                maxLength={
+                  isEqual(idType, "nric")
+                    ? 12
+                    : isEqual(idType, "passport")
+                      ? 14
+                      : 20
+                }
+                required
+              />
+
+              <BookingSelect
+                className="col-span-6"
+                placeholder="Select Race"
+                title="Race"
+                name="applicant_race"
+                lists={isEmpty(raceOption) ? defaultOption : raceOption}
+                errorMessage={errorMessage.applicant_race}
+                required
+              />
+
+              <BookingSelect
+                className="col-span-6"
+                placeholder="Select Gender"
+                title="Gender"
+                lists={isEmpty(genderOption) ? defaultOption : genderOption}
+                name="applicant_gender"
+                errorMessage={errorMessage.applicant_gender}
+                required
+              />
+
+              <BookingInput
+                className="col-span-6"
+                placeholder="Email"
+                title="Email"
+                name="applicant_email"
+                errorMessage={errorMessage.applicant_email}
+                required
+              />
+
+              <BookingSelect
+                className="col-span-2"
+                placeholder="Select Area Code"
+                title="Area Code"
+                lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+                name="applicant_area_code"
+                errorMessage={errorMessage.applicant_area_code}
+                required
+              />
+
+              <BookingInput
+                className="col-span-4"
+                type="number"
+                placeholder="Phone Number"
+                title="Phone Number"
+                name="applicant_phone_number"
+                errorMessage={errorMessage.applicant_phone_number}
+                required
+              />
+
+              <BookingSelect
+                className="col-span-6"
+                placeholder="Select Nationality"
+                title="Nationality"
+                lists={
+                  isEmpty(nationalityOption) ? defaultOption : nationalityOption
+                }
+                name="applicant_nationality"
+                errorMessage={errorMessage.applicant_nationality}
+                required
+              />
+
+              <BookingSelect
+                className="col-span-6"
+                placeholder="Select Occupation"
+                title="Occupation"
+                lists={
+                  isEmpty(occupationOption) ? defaultOption : occupationOption
+                }
+                name="occupation_type"
+                errorMessage={errorMessage.occupation_type}
+                required
+              />
+
+              <BookingInput
+                className="col-span-6"
+                placeholder="Company Name / College Name"
+                title="Company Name / College Name"
+                name="institution_name"
+                errorMessage={errorMessage.institution_name}
+                required
+              />
+            </div>
+
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+              <CustomText textClassName="col-span-6 font-bold">
+                Address Information
+              </CustomText>
+
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-6"
+                placeholder="Your Address"
+                title="Your Address"
+                name="line"
+                errorMessage={errorMessage.line}
+                required
+              />
+
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                placeholder="City"
+                title="City"
+                name="city"
+                errorMessage={errorMessage.city}
+                required
+              />
+
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                placeholder="Postcode"
+                title="PostCode"
+                name="postcode"
+                errorMessage={errorMessage.postcode}
+                required
+              />
+
+              <BookingSelect
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                placeholder="Select Country"
+                title="Country"
+                lists={isEmpty(countryOption) ? defaultOption : countryOption}
+                name="country_code"
+                errorMessage={errorMessage.country_code}
+                required
+              />
+
+              <BookingSelect
+                bgColor="primaryWhite-bg-color"
+                className="col-span-3"
+                placeholder="Select State"
+                title="State"
+                lists={isEmpty(stateOption) ? defaultOption : stateOption}
+                name="state_code"
+                errorMessage={errorMessage.state_code}
+                required
+              />
+            </div>
+
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
+              <CustomText textClassName="col-span-6 font-bold">
+                Emergency Contact Information
+              </CustomText>
+
+              {map(emergencyContactNumber, (item, index) => {
+                return (
+                  <div
+                    className="col-span-6 grid grid-cols-6 gap-2 pt-2"
+                    key={index}
+                  >
+                    {/*<CustomText textClassName="font-bold col-span-3">*/}
+                    {/*  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}*/}
+                    {/*</CustomText>*/}
+
+                    {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
+                    {/*  <div*/}
+                    {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
+                    {/*    onClick={() => onClickRemoveContact(index)}*/}
+                    {/*  >*/}
+                    {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
+                    {/*  </div>*/}
+                    {/*) : (*/}
+                    {/*  false*/}
+                    {/*)}*/}
+
+                    <BookingInput
+                      className="col-span-6"
+                      placeholder="your Name"
+                      title="Your Name"
+                      name={`emergency_contacts_name_${index + 1}`}
+                      errorMessage={
+                        errorMessage[`emergency_contacts_name_${index + 1}`]
+                      }
+                      required={index === 0}
+                    />
+
+                    <BookingInput
+                      className="col-span-6"
+                      placeholder="Enter Relationship"
+                      title="Enter Relationship"
+                      name={`emergency_contacts_relationship_${index + 1}`}
+                      errorMessage={
+                        errorMessage[
+                          `emergency_contacts_relationship_${index + 1}`
+                        ]
+                      }
+                      required={index === 0}
+                    />
+
+                    <BookingSelect
+                      className="col-span-2"
+                      placeholder="Select Area Code"
+                      title="Area Code"
+                      lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+                      name={`emergency_contacts_phone_prefix_${index + 1}`}
+                      errorMessage={
+                        errorMessage[
+                          `emergency_contacts_phone_prefix_${index + 1}`
+                        ]
+                      }
+                      required={index === 0}
+                    />
+
+                    <BookingInput
+                      className="col-span-4"
+                      type="number"
+                      placeholder="Phone Number"
+                      title="Phone Number"
+                      name={`emergency_contacts_phone_suffix_${index + 1}`}
+                      errorMessage={
+                        errorMessage[
+                          `emergency_contacts_phone_suffix_${index + 1}`
+                        ]
+                      }
+                      required={index === 0}
+                    />
+
+                    <BookingInput
+                      className="col-span-6"
+                      placeholder="Your Email"
+                      title="Your Email"
+                      name={`emergency_contacts_email_${index + 1}`}
+                      errorMessage={
+                        errorMessage[`emergency_contacts_email_${index + 1}`]
+                      }
+                      required={index === 0}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </form>
+          {/*<CustomButton*/}
+          {/*  buttonText={"+ Add Contact"}*/}
+          {/*  buttonClassName="col-span-6 primary-btn"*/}
+          {/*  onClick={onClickAddEmergencyContact}*/}
+          {/*/>*/}
+
+          <div className="grid">
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+              <CustomText textClassName="col-span-6 font-bold">
+                Verification
+              </CustomText>
+
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-6"
+                value={otpValue}
+                placeholder="000000"
+                onChange={onChangeOtpValue}
+                type="number"
+                title="Code"
+                name="otp"
+                errorMessage={errorMessage.otp}
+                required
+              />
+
+              <CustomButton
+                buttonText={
+                  isResendEnabled
+                    ? "Send Code"
+                    : `Resend OTP in ${timeLeft} seconds`
+                }
+                buttonClassName={`${isResendEnabled ? "primary-btn" : "disable-btn"} col-span-6`}
+                onClick={onClickGenerateOtp}
+                loading={otpRequestLoading}
+                disable={otpRequestLoading || !isResendEnabled}
+              />
+            </div>
+
+            {isAllowedZeroDeposit ? (
+              <div className="global-horizontal-padding pt-3 pb-4 grid grid-cols-6 gap-2">
+                <div className="flex items-end col-span-6">
+                  <CustomText textClassName="font-bold pr-1">
+                    ZERO Deposit Solution
+                  </CustomText>
+                  <CustomText textClassName="font-size-xxsmall pb-0.5">
+                    (*Select either one)
+                  </CustomText>
+                </div>
+
+                <div className="flex items-center col-span-3">
+                  <input
+                    type="radio"
+                    name="is_zero_deposit"
+                    value="true"
+                    checked={isEqual(isZeroDeposit, "true") ? true : false}
+                    onClick={onClickSelectIsZeroDeposit}
+                    className="radio booking-radio mr-2"
+                  />
+                  <CustomText>ZERO Deposit</CustomText>
+                </div>
+
+                <div className="flex items-center col-span-3">
+                  <input
+                    type="radio"
+                    name="is_zero_deposit"
+                    value="false"
+                    checked={isEqual(isZeroDeposit, "false") ? true : false}
+                    onClick={onClickSelectIsZeroDeposit}
+                    className="radio booking-radio mr-2"
+                  />
+                  <CustomText>Pay 2 Months Security Deposit</CustomText>
+                </div>
+              </div>
+            ) : (
+              false
+            )}
+
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+              <CustomText textClassName="col-span-6 font-bold">
+                Supporting Documents
+              </CustomText>
+
+              <div className="col-span-6 pl-1">
+                <CustomText textClassName="font-light font-size-xsmall ">
+                  1. Please make sure your IC or passport is clear and readable.
+                </CustomText>
+                <CustomText textClassName="font-light font-size-xsmall ">
+                  2. Please avoid flash or glare.
+                </CustomText>
+              </div>
+
+              <CustomText textClassName="col-span-6 font-light disable-text font-size-small">
+                Example:
+              </CustomText>
+
+              <div className="col-span-3 flex flex-col items-center">
+                <div className="relative">
+                  <ImageUploading loading={frontIcUploading} />
+
+                  <CustomImage
+                    src={
+                      isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64
+                    }
+                    imageStyle={{
+                      width: "100%",
+                      height: 155,
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+
+                <UploadIcButton
+                  name="front_image"
+                  icon={Images.uploadIcon}
+                  buttonText="Front Image"
+                  imageStyle={{ width: 20 }}
+                  buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
+                  onChangeImage={onChangeFrontICImage}
+                  onClickSelectImage={() =>
+                    Helper.documentGetElementById("front_image").click()
+                  }
+                />
+              </div>
+              <div className="col-span-3 flex flex-col items-center">
+                <div className="relative">
+                  <ImageUploading loading={backIcUploading} />
+
+                  <CustomImage
+                    src={isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
+                    imageStyle={{
+                      width: "100%",
+                      height: 155,
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+
+                <UploadIcButton
+                  name="back_image"
+                  icon={Images.uploadIcon}
+                  imageStyle={{ width: 20 }}
+                  buttonText="Back Image"
+                  buttonClassName="primary-btn flex-row-reverse mt-1 w-full"
+                  onChangeImage={onChangeBackICImage}
+                  onClickSelectImage={() =>
+                    Helper.documentGetElementById("back_image").click()
+                  }
+                />
+              </div>
+            </div>
+
+            <div className="global-horizontal-padding py-3 grid grid-cols-6 gap-2">
+              <RentChargesSection
+                openFirstMonthCharges={openFirstMonthCharges}
+                onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
+                openLastMonthCharges={openLastMonthCharges}
+                onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
+                moveInFees={targetItems}
+                title={title}
+                onClickSelectPaymentAmount={onClickSelectPaymentAmount}
+              />
+            </div>
+
+            <div className="flex items-start px-4 pt-3">
+              <div style={{ width: 25 }}>
+                <CustomImage
+                  src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                  imageStyle={{ width: 25 }}
+                  onClick={onClickReadAgree}
+                  className="cursor-pointer"
+                />
+              </div>
+
+              <CustomText textClassName="pl-3 font-bold disable-text">
+                I understand and agree to give Spacify and CTOS the consent to
+                process my personal data as per PDPA Act.
+              </CustomText>
+            </div>
+
+            <div className="global-horizontal-padding pt-3 grid grid-cols-6 gap-2">
+              <CustomText textClassName="col-span-6 font-light font-size-xsmall">
+                This site is protected by reCAPTCHA and the Google{" "}
+                <span style={{ textDecoration: "underline" }}>
+                  Privacy Policy
+                </span>{" "}
+                and{" "}
+                <span style={{ textDecoration: "underline" }}>
+                  Terms of Service
+                </span>{" "}
+                apply.
+              </CustomText>
+            </div>
           </div>
 
-          <div className="global-horizontal-padding pt-3 grid grid-cols-6 gap-2">
-            <CustomText textClassName="col-span-6 font-light font-size-xsmall">
-              This site is protected by reCAPTCHA and the Google{" "}
-              <span style={{ textDecoration: "underline" }}>
-                Privacy Policy
-              </span>{" "}
-              and{" "}
-              <span style={{ textDecoration: "underline" }}>
-                Terms of Service
-              </span>{" "}
-              apply.
-            </CustomText>
-          </div>
+          <AgentSection
+            t={t}
+            data={listingPropertyDetailData}
+            onClickBooking={onClickBooking}
+            onClickToBookAppointment={onClickToBookAppointment}
+            totalMoveInCost={totalMoveInCost}
+            onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+          />
+
+          <RentChargeModal />
+
+          <MoveInCostModal
+            openModalFirstMonthCharges={openModalFirstMonthCharges}
+            openModalLastMonthCharges={openModalLastMonthCharges}
+            onClickOpenModalFirstMonthCharges={
+              onClickOpenModalFirstMonthCharges
+            }
+            onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+            lists={targetItems}
+          />
+
+          <ImageModal
+            data={imageUrl}
+            selectedImage={selectedImage}
+            onClickCloseImageModal={onClickCloseImageModal}
+            openImageModal={openImageModal}
+          />
+
+          <LoadingOverlay
+            loading={
+              selectOptionDataLoading ||
+              getGalleryLinkLoading ||
+              createBookingLoading
+            }
+          />
         </div>
-
-        <AgentSection
-          t={t}
-          data={listingPropertyDetailData}
-          onClickBooking={onClickBooking}
-          onClickToBookAppointment={onClickToBookAppointment}
-          totalMoveInCost={totalMoveInCost}
-          onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
-        />
-
-        <RentChargeModal />
-
-        <MoveInCostModal
-          openModalFirstMonthCharges={openModalFirstMonthCharges}
-          openModalLastMonthCharges={openModalLastMonthCharges}
-          onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
-          onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
-          lists={targetItems}
-        />
-
-        <ImageModal
-          data={imageUrl}
-          selectedImage={selectedImage}
-          onClickCloseImageModal={onClickCloseImageModal}
-          openImageModal={openImageModal}
-        />
-
-        <LoadingOverlay
-          loading={
-            selectOptionDataLoading ||
-            getGalleryLinkLoading ||
-            createBookingLoading
-          }
-        />
-      </div>
-    </CustomHeader>
+      </CustomHeader>
+    </div>
   );
 };
 

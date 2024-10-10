@@ -1,11 +1,10 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _, { isEmpty } from "lodash";
+import { isEmpty, map } from "lodash";
 import moment from "moment/moment";
 import * as listingSelector from "@/src/selectors/listing";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
-import CustomButton from "@/components/CustomButton";
 
 const DesktopPropertyPriceSection = ({
   t,
@@ -17,6 +16,7 @@ const DesktopPropertyPriceSection = ({
   openModalLastMonthCharges,
   onClickOpenModalFirstMonthCharges,
   onClickOpenModalLastMonthCharges,
+  propertyId,
 }) => {
   const picMemberStartDate = listingSelector.getPicMemberStartDate(data);
   const picName = listingSelector.getPicName(data);
@@ -53,13 +53,6 @@ const DesktopPropertyPriceSection = ({
               className="rounded-2xl"
               imageStyle={{ width: 43 }}
             />
-
-            {/*<div*/}
-            {/*  className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"*/}
-            {/*  style={{ right: -3 }}*/}
-            {/*>*/}
-            {/*  <CustomImage src={Images.paidIcon} width={14} />*/}
-            {/*</div>*/}
           </div>
 
           <div className="flex flex-col items-start pl-2 flex-1">
@@ -70,19 +63,9 @@ const DesktopPropertyPriceSection = ({
               {t("propertyDetail.memberSince")}{" "}
               {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
-            {/*<CustomText textClassName="font-size-xxsmall power-on-text">*/}
-            {/*  15 Active Listing*/}
-            {/*</CustomText>*/}
           </div>
 
           <div className="flex gap-3 items-center flex-2 pr-1">
-            {/*<div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
-            {/*  <CustomImage*/}
-            {/*    src={Images.bookingIconActive}*/}
-            {/*    width={28}*/}
-            {/*    onClick={onClickToBookAppointment}*/}
-            {/*  />*/}
-            {/*</div>*/}
             <a
               href={`tel:${picContactNumber}`}
               className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
@@ -144,9 +127,9 @@ const DesktopPropertyPriceSection = ({
             />
           )}
 
-          {_.isEmpty(othersList)
+          {isEmpty(othersList)
             ? false
-            : _.map(othersList, (feesList, index) => {
+            : map(othersList, (feesList, index) => {
                 const label = listingSelector.getLabel(feesList);
                 const amount = listingSelector.getFeeAmount(feesList);
 
@@ -156,11 +139,9 @@ const DesktopPropertyPriceSection = ({
                     key={index}
                   >
                     <CustomText textClassName="font-bold pr-2">
-                      {_.isEmpty(label) ? "-" : label}
+                      {isEmpty(label) ? "-" : label}
                     </CustomText>
-                    <CustomText>
-                      RM{_.isEmpty(amount) ? "0" : amount}
-                    </CustomText>
+                    <CustomText>RM{isEmpty(amount) ? "0" : amount}</CustomText>
                   </div>
                 );
               })}
@@ -174,22 +155,26 @@ const DesktopPropertyPriceSection = ({
           <div className="flex justify-between items-center">
             <CustomText textClassName="pr-2">Full Amount</CustomText>
             <CustomText textClassName="primary-text font-bold">
-              RM{_.isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
+              RM{isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
             </CustomText>
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center pb-4">
             <CustomText textClassName="pr-2">Partial Amount</CustomText>
             <CustomText textClassName="primary-text font-bold">
               RM
-              {_.isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
+              {isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
             </CustomText>
           </div>
 
-          <CustomButton
-            buttonText="Book Now"
-            buttonClassName="primary-btn w-full mt-5"
-          />
+          <a
+            href={`/booking/${propertyId}`}
+            className="primary-bg-color p-2 px-4 flex justify-center items-center cursor-pointer global-border-radius"
+          >
+            <CustomText textClassName="font-size-large font-bold white-text">
+              Book Now
+            </CustomText>
+          </a>
         </div>
       </div>
     </div>
