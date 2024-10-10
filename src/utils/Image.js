@@ -80,6 +80,7 @@ const Image = {
   uploadIcon: `/images/icon/upload_icon.png`,
   uploadIconActive: `/images/icon/upload_icon_active.png`,
   infoIcon: `/images/icon/information.png`,
+  infoIconBlack: `/images/icon/info_icon_black.png`,
   upIcon: `/images/icon/up_icon.png`,
   checkIcon: `/images/icon/check_icon.png`,
   checkGreyIcon: `/images/icon/check_grey_icon.png`,

@@ -37,7 +37,7 @@ function OwnerAuthWrapper(WrappedComponent) {
       // Toast.error("You need to sign in to your account.");
 
       router.push({
-        pathname: "/sign-in-type",
+        pathname: "/sign-in",
         query: { tab: replace(pathname, "/", "") },
       });
       return null;

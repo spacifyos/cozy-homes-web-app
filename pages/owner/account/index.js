@@ -303,7 +303,7 @@ const OwnerAccount = () => {
             </div>
 
             <CustomText textClassName="disable-text font-size-small">
-              {t("account.version")} 1.5.1
+              {t("account.version")} 1.5.2
             </CustomText>
           </div>
         </div>

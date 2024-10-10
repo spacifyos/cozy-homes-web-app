@@ -1,22 +1,11 @@
 import CustomText from "@/components/CustomText";
-import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import { useState } from "react";
-import { get, isEmpty, map, isEqual, toLower } from "lodash";
-import * as authSelector from "@/src/selectors/auth";
-import LoadingOverlay from "@/components/LoadingOverlay";
-import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import Toast from "@/src/utils/Toast";
-import AuthManager from "@/src/utils/AuthManager";
-import { NextSeo } from "next-seo";
+import { get } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import * as commonSelector from "@/src/selectors/common";
-import { useSelector } from "react-redux";
 import BottomNavigate from "@/components/BottomNavigate";
-import Link from "next/link";
 import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
@@ -26,263 +15,38 @@ const SignIn = () => {
   const router = useRouter();
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
-  const typeQuery = get(routeQuery, ["type"], "Tenant");
-
-  const selectOptionData = useSelector((state) =>
-    commonSelector.getSelectOptionData(state),
-  );
-
-  const [signInLoading, setSignInLoading] = useState(false);
-
-  const [selectedRole, setSelectedRole] = useState("tenant");
-  const [phonePrefix, setPhonePrefix] = useState("+60");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [password, setPassword] = useState("");
-
-  const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
-
-  const onClickToAgencySignIn = () => {
-    router.push("/agency-sign-in");
-  };
-
-  const onClickToSignUp = () => {
-    router
-      .push({
-        pathname: `/sign-up`,
-        query: { type: typeQuery },
-      })
-      .then(() => router.reload());
-  };
-
-  const onClickToLogin = async () => {
-    if (isEmpty(phoneNumber)) {
-      Toast.error("Phone number is required.");
-      return;
-    }
-
-    if (isEmpty(password)) {
-      Toast.error("Password is required.");
-      return;
-    }
-
-    const postData = {
-      type: toLower(typeQuery),
-      phone_prefix: phonePrefix,
-      phone_suffix: phoneNumber,
-      password: password,
-    };
-
-    await apiRequest.signInRequest(postData, setSignInLoading, signInSuccess);
-  };
-
-  const signInSuccess = (res) => {
-    const authToken = authSelector.getToken(res);
-    const isUserVerify = authSelector.getUserVerify(res);
-    const userPhoneNumber = authSelector.getUserPhoneNumber(res);
-    const userType = authSelector.getUserType(res);
-
-    if (!isEmpty(authToken) && isUserVerify) {
-      AuthManager.setToken(authToken);
-      AuthManager.setLoginType(userType);
-
-      const tab = get(routeQuery, ["tab"], "");
-
-      return router.replace(`/loading?tab=${tab}`);
-    } else {
-      return router.push({
-        pathname: "/otp-verification",
-        query: { phoneNumber: userPhoneNumber, type: toLower(typeQuery) },
-      });
-    }
-  };
-
-  const onChangePhonePrefix = (e) => {
-    setPhonePrefix(e.target.value);
-  };
-
-  const onChangePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleKeyDown = async (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      await onClickToLogin();
-    }
-  };
-
-  const onClickGoBack = () => {
-    router.replace("/sign-in-type");
-  };
+  const routeQueryTab = get(routeQuery, ["tab"], "my-property");
 
   return (
-    <div
-      style={{
-        background: isEqual(typeQuery, Constant.OWNER)
-          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
-          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
-      }}
-      className={`min-h-screen pb-4`}
-    >
-      <NextSeo title="Sign In - Spacify Asia" />
+    <div className={`min-h-screen flex flex-col items-center px-10 bg-color`}>
+      <CustomText
+        styles={{ fontSize: 32, paddingTop: "5vh" }}
+        textClassName="italic font-bold primary-text"
+      >
+        Welcome To
+      </CustomText>
 
-      <div className="body-container">
-        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
-          <CustomImage
-            className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
-            imageStyle={{ width: 10, height: 10 }}
-          />
-        </div>
+      <CustomImage
+        src={Images.logoHorizontalColor}
+        imageStyle={{ width: 150 }}
+        className="mb-4"
+      />
 
-        <div className="py-6 flex flex-col items-center">
-          <CustomImage
-            src={Images.blackLogo}
-            imageStyle={{ width: 120 }}
-            className="mb-4"
-          />
+      <a
+        href={`/sign-in/${Constant.TENANT}?tab=${routeQueryTab}`}
+        className="global-box-shadow global-border-radius mb-6 w-full cursor-pointer"
+      >
+        <CustomImage src={Images.tenantCard} imageStyle={{ width: "100%" }} />
+      </a>
 
-          <CustomText
-            textClassName="white-text font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            Welcome Back,
-          </CustomText>
-          <CustomText
-            textClassName="white-text font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            {typeQuery}
-          </CustomText>
-        </div>
+      <a
+        href={`/sign-in/${Constant.OWNER}?tab=${routeQueryTab}`}
+        className="global-box-shadow global-border-radius w-full cursor-pointer"
+      >
+        <CustomImage src={Images.ownerCard} imageStyle={{ width: "100%" }} />
+      </a>
 
-        <div className="w-full">
-          {/*<div className="grid grid-cols-2">*/}
-          {/*  <CustomText*/}
-          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"*/}
-          {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
-          {/*  >*/}
-          {/*    {t("signIn.signIn")}*/}
-          {/*  </CustomText>*/}
-
-          {/*  <div onClick={onClickToSignUp} className="cursor-pointer">*/}
-          {/*    <CustomText*/}
-          {/*      textClassName="text-center p-4 primary-text font-bold font-size-large"*/}
-          {/*      styles={{*/}
-          {/*        borderRadius: "10px 10px 0 0",*/}
-          {/*        backgroundColor: "#E8E8E8",*/}
-          {/*        color: "#C3C4C6",*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      {t("signIn.signUp")}*/}
-          {/*    </CustomText>*/}
-          {/*  </div>*/}
-          {/*</div>*/}
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-6 pt-3 font-bold font-size-xxlarge">
-              Sign In
-            </CustomText>
-            {/*<CustomText textClassName="pb-4 font-bold font-size-large">*/}
-            {/*  {t("signIn.iAm")} ...*/}
-            {/*</CustomText>*/}
-
-            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.tenant")}*/}
-            {/*    onClick={() => setSelectedRole("tenant")}*/}
-            {/*  />*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
-            {/*    buttonText={t("signIn.owner")}*/}
-            {/*    onClick={() => setSelectedRole("owner")}*/}
-            {/*  />*/}
-            {/*<CustomButton*/}
-            {/*  buttonClassName="default-btn-outline"*/}
-            {/*  buttonText={t("signIn.agency")}*/}
-            {/*  onClick={onClickToAgencySignIn}*/}
-            {/*/>*/}
-            {/*</div>*/}
-
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <select
-                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
-                value={phonePrefix}
-                onChange={onChangePhonePrefix}
-              >
-                {map(phonePrefixOption, (list) => {
-                  const name = get(list, ["label"], "");
-                  const value = get(list, ["value"], "");
-
-                  return (
-                    <option key={value} value={value}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <input
-                value={phoneNumber}
-                onChange={onChangePhoneNumber}
-                type="number"
-                placeholder={t("signIn.phoneNumber")}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
-              />
-            </div>
-
-            <input
-              value={password}
-              onChange={onChangePassword}
-              type="password"
-              placeholder={t("signIn.password")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
-              onKeyDown={handleKeyDown}
-            />
-
-            <div className="flex justify-center pb-2">
-              <CustomButton
-                buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
-                buttonText={t("signIn.signIn")}
-                onClick={onClickToLogin}
-              />
-            </div>
-
-            <Link href={`/forgot-password?type=${typeQuery}`}>
-              <CustomText textClassName="text-center pb-2 underline cursor-pointer">
-                {t("signIn.forgotPassword")}
-              </CustomText>
-            </Link>
-
-            <div className="flex justify-center items-center mb-5">
-              <CustomText>Don’t have account? Click </CustomText>
-              <div onClick={onClickToSignUp} className="cursor-pointer">
-                <CustomText textClassName="primary-text font-bold pl-1 underline">
-                  here
-                </CustomText>
-              </div>
-            </div>
-
-            <CustomText textClassName="font-size-small my-5">
-              By using our services, you are deemed unconditionally agree,
-              consent and be bound by our terms and conditions and privacy
-              policy.
-            </CustomText>
-
-            <CustomText textClassName="font-size-xxsmall text-center disable-text">
-              This site is protected by reCAPTCHA and the Google{" "}
-              <span className="underline">Privacy Policy</span> and{" "}
-              <span className="underline">Terms of Service</span> apply.
-            </CustomText>
-          </div>
-        </div>
-
-        <LoadingOverlay loading={signInLoading} />
-      </div>
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
     </div>
   );
 };
