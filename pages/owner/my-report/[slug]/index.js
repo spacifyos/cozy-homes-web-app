@@ -469,7 +469,7 @@ const MyReport = ({ id }) => {
         </CustomText>
         <CustomText textClassName="pb-4 font-light">
           This section is determined by adding the{" "}
-          <span className="font-bold">Current Month P&L</span> to the
+          <span className="font-bold">Current Month P&L</span> to the{" "}
           <span className="font-bold">Carry Forward Deduction</span>. It
           reflects the payout for the current month, accounting for any past
           adjustments.
@@ -478,8 +478,8 @@ const MyReport = ({ id }) => {
         <CustomText textClassName="font-bold pb-2">Total Net Payout</CustomText>
         <CustomText textClassName="font-light">
           This section displays the final net payout for the month. If the{" "}
-          <span className="font-bold black-text">Current Month Payout</span> is positive,
-          it will match the net payout. However, if the{" "}
+          <span className="font-bold black-text">Current Month Payout</span> is
+          positive, it will match the net payout. However, if the{" "}
           <span className="font-bold">Current Month Payout</span> is negative,
           the net payout will be zero.
         </CustomText>
