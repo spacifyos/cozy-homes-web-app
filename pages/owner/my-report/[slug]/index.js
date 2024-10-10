@@ -416,13 +416,65 @@ const MyReport = ({ id }) => {
       </div>
 
       <CustomModal id="report_information_modal">
-        <CustomText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
-          dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
-          pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
-          porttitor quis nisi. Phasellus sodales tincidunt lacus, nec dignissim
-          nulla blandit in. Donec vel turpis id augue dignissim hendrerit vitae
-          eu nulla.
+        <CustomText textClassName="font-bold pb-4">
+          How to Read Your Profit and Loss Report
+        </CustomText>
+
+        <CustomText textClassName="font-bold pb-2">Total Income</CustomText>
+        <CustomText textClassName="pb-4">
+          This section reflects all rental payments received during the
+          specified month. It includes both the current month’s rental paid
+          within the same month as well as any outstanding rentals that were
+          cleared during the payout month.
+        </CustomText>
+
+        <CustomText textClassName="font-bold pb-2">Total Expenses</CustomText>
+        <CustomText textClassName="pb-4">
+          This section outlines all expenses incurred during the payout month.
+          It covers costs such as maintenance, repairs, or any other charges
+          deducted from your income.
+        </CustomText>
+
+        <CustomText textClassName="font-bold pb-2">
+          Total Outstanding
+        </CustomText>
+        <CustomText textClassName="pb-4">
+          This section displays the total amount of rent still owed by tenants,
+          as of the end of the payout month. It helps you track any unpaid
+          rentals for future reference.
+        </CustomText>
+
+        <CustomText textClassName="font-bold pb-2">
+          Current Month P&L (Profit & Loss)
+        </CustomText>
+        <CustomText textClassName="pb-4">
+          This section is calculated by subtracting Total Expenses from Total
+          Income for the payout month. It gives you an overview of your profit
+          or loss during the current month.
+        </CustomText>
+
+        <CustomText textClassName="font-bold pb-2">
+          Carry Forward Deduction
+        </CustomText>
+        <CustomText textClassName="pb-4">
+          This section shows any deductions carried over from the previous
+          month’s Payout Report. These are typically unresolved amounts that
+          affect your current month’s balance.
+        </CustomText>
+
+        <CustomText textClassName="font-bold">Current Month Payout</CustomText>
+        <CustomText textClassName="pb-4">
+          This section is determined by adding the Current Month P&L to the
+          Carry Forward Deduction. It reflects the payout for the current month,
+          accounting for any past adjustments.
+        </CustomText>
+
+        <CustomText textClassName="font-bold">Total Net Payout</CustomText>
+        <CustomText textClassName="pb-2">
+          This section displays the final net payout for the month. If the
+          Current Month Payout is positive, it will match the net payout.
+          However, if the Current Month Payout is negative, the net payout will
+          be zero.
         </CustomText>
       </CustomModal>
 
