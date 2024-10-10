@@ -271,16 +271,28 @@ const MyReport = ({ id }) => {
               const label = reportSelector.getLabel(outstanding);
               const amount = reportSelector.getAmount(outstanding);
               const description = reportSelector.getDescription(outstanding);
+              const title = reportSelector.getTitle(outstanding);
 
               return (
                 <div className="flex justify-between items-center pb-1">
                   <div>
-                    <CustomText textClassName="font-bold">
+                    <CustomText textClassName="font-bold pb-2">
                       {isEmpty(label) ? "-" : label}
                     </CustomText>
-                    <CustomText textClassName="disable-text font-size-xsmall">
-                      {isEmpty(description) ? "-" : description}
-                    </CustomText>
+                    <div className="flex items-start justify-center">
+                      <div
+                        className="cancelled-bg-color rounded mr-1.5 mt-2"
+                        style={{ width: 3, height: 3 }}
+                      ></div>
+                      <div className="">
+                        <CustomText textClassName="disable-text font-size-xsmall">
+                          {isEmpty(title) ? "-" : title}
+                        </CustomText>
+                        <CustomText textClassName="disable-text font-size-xsmall leading-1">
+                          {isEmpty(description) ? "-" : description}
+                        </CustomText>
+                      </div>
+                    </div>
                   </div>
 
                   <CustomText textClassName="disable-text font-size-xsmall">
