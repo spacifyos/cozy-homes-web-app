@@ -26,6 +26,8 @@ import {
   getTotalPayoutAmount,
 } from "@/src/selectors/report";
 import CustomLabelValue from "@/components/CustomLabelValue";
+import Helper from "@/src/utils/Helper";
+import CustomModal from "@/components/CustomModal";
 
 export { getServerSideProps };
 
@@ -107,6 +109,10 @@ const MyReport = ({ id }) => {
     }
   };
 
+  const onClickOpenInformationModal = () => {
+    Helper.documentGetElementById("report_information_modal").showModal();
+  };
+
   return (
     <CustomOwnerHeader
       className="pb-0"
@@ -119,9 +125,17 @@ const MyReport = ({ id }) => {
 
       <div className="bg-color flex flex-col flex-1 global-horizontal-padding py-5">
         <div className="flex justify-between pb-2">
-          <CustomText textClassName="font-bold primary-text">
-            Monthly P&L Statement
-          </CustomText>
+          <div className="flex justify-center items-center">
+            <CustomText textClassName="font-bold primary-text pr-2">
+              Monthly P&L Statement
+            </CustomText>
+
+            <CustomImage
+              onClick={onClickOpenInformationModal}
+              src={Images.infoIconBlack}
+              imageStyle={{ width: 16, height: 16 }}
+            />
+          </div>
           <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
         </div>
 
@@ -400,6 +414,17 @@ const MyReport = ({ id }) => {
           </div>
         )}
       </div>
+
+      <CustomModal id="report_information_modal">
+        <CustomText>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim,
+          dui placerat dignissim vestibulum, dolor dui tempus ex, sit amet
+          pulvinar lectus sapien at dui. Proin et lacus sed velit iaculis dictum
+          porttitor quis nisi. Phasellus sodales tincidunt lacus, nec dignissim
+          nulla blandit in. Donec vel turpis id augue dignissim hendrerit vitae
+          eu nulla.
+        </CustomText>
+      </CustomModal>
 
       <LoadingOverlay loading={loading} />
     </CustomOwnerHeader>
