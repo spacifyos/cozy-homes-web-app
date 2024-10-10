@@ -21,6 +21,9 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import BottomNavigate from "@/components/BottomNavigate";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
+import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
 
 export { getServerSideProps };
 
@@ -225,122 +228,140 @@ const Account = () => {
   };
 
   return (
-    <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account - Spacify Asia" />
+      <DesktopLayout page="My Account">
+        <div className="grid grid-cols-7 gap-10 flex-1">
+          <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-7">
+            <DesktopProfileCard data={userProfileData} />
+          </div>
 
-      <div className="body-container pb-24">
-        <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
-          <ProfileCard data={userProfileData} />
-
-          <SpacifyCoins
-            t={t}
-            onClickToCoinsTransaction={onClickToCoinsTransaction}
-          />
-        </div>
-
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.smartMeterPairing")}*/}
-        {/*  icon={Images.primaryMeterIcon}*/}
-        {/*/>*/}
-
-        {/*<FeatureComponent*/}
-        {/*  title="Transfer Lock"*/}
-        {/*  icon={Images.lockIcon}*/}
-        {/*/>*/}
-
-        {/*<div className="divider-line"></div>*/}
-
-        <FeatureComponent
-          title={t("account.myInvoice")}
-          icon={Images.primaryInvoiceIcon}
-          pb={3}
-          route={"/my-invoice"}
-        />
-
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.myAppointment")}*/}
-        {/*  icon={Images.appointmentIconActive}*/}
-        {/*  imageHeight={23}*/}
-        {/*  imageWidth={23}*/}
-        {/*  pb={3}*/}
-        {/*  onClick={onClickToMyAppointment}*/}
-        {/*/>*/}
-
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.latestUpdate")}*/}
-        {/*  icon={Images.primaryRingIcon}*/}
-        {/*  pb={3}*/}
-        {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
-        {/*/>*/}
-
-        <FeatureComponent
-          title={t("account.setPinNumber")}
-          icon={Images.primaryLockIcon}
-          pb={3}
-          onClick={onClickOpenSetPinNumberModal}
-        />
-
-        <div className="divider-line"></div>
-
-        <FeatureComponent
-          title={t("account.termAndCondition")}
-          icon={Images.primaryTermAndConditionIcon}
-          pb={3}
-          route={"https://tms.spacify.asia/privacy-policy"}
-          target="_blank"
-        />
-
-        <div className="divider-line"></div>
-
-        <div className="flex justify-between items-center pb-3">
-          <div
-            className="logout-container cursor-pointer"
-            onClick={onClickLogout}
-          >
-            <CustomImage
-              src={Images.primaryLogoutIcon}
-              imageStyle={{ width: 25 }}
-              className="mr-2"
+          <div className="xl:col-span-3 lg:col-span-3 md:col-span-7 sm:col-span-7">
+            <DesktopSpacifyCoins
+              t={t}
+              onClickToCoinsTransaction={onClickToCoinsTransaction}
             />
-            <CustomText textClassName="font-size-small">
-              {t("account.logout")}
+          </div>
+        </div>
+      </DesktopLayout>
+
+      <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
+        <div className="body-container pb-24">
+          <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
+            <ProfileCard data={userProfileData} />
+
+            <SpacifyCoins
+              t={t}
+              onClickToCoinsTransaction={onClickToCoinsTransaction}
+            />
+          </div>
+
+          {/*<FeatureComponent*/}
+          {/*  title={t("account.smartMeterPairing")}*/}
+          {/*  icon={Images.primaryMeterIcon}*/}
+          {/*/>*/}
+
+          {/*<FeatureComponent*/}
+          {/*  title="Transfer Lock"*/}
+          {/*  icon={Images.lockIcon}*/}
+          {/*/>*/}
+
+          {/*<div className="divider-line"></div>*/}
+
+          <FeatureComponent
+            title={t("account.myInvoice")}
+            icon={Images.primaryInvoiceIcon}
+            pb={3}
+            route={"/my-invoice"}
+          />
+
+          {/*<FeatureComponent*/}
+          {/*  title={t("account.myAppointment")}*/}
+          {/*  icon={Images.appointmentIconActive}*/}
+          {/*  imageHeight={23}*/}
+          {/*  imageWidth={23}*/}
+          {/*  pb={3}*/}
+          {/*  onClick={onClickToMyAppointment}*/}
+          {/*/>*/}
+
+          {/*<FeatureComponent*/}
+          {/*  title={t("account.latestUpdate")}*/}
+          {/*  icon={Images.primaryRingIcon}*/}
+          {/*  pb={3}*/}
+          {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
+          {/*/>*/}
+
+          <FeatureComponent
+            title={t("account.setPinNumber")}
+            icon={Images.primaryLockIcon}
+            pb={3}
+            onClick={onClickOpenSetPinNumberModal}
+          />
+
+          <div className="divider-line"></div>
+
+          <FeatureComponent
+            title={t("account.termAndCondition")}
+            icon={Images.primaryTermAndConditionIcon}
+            pb={3}
+            route={"https://tms.spacify.asia/privacy-policy"}
+            target="_blank"
+          />
+
+          <div className="divider-line"></div>
+
+          <div className="flex justify-between items-center pb-3">
+            <div
+              className="logout-container cursor-pointer"
+              onClick={onClickLogout}
+            >
+              <CustomImage
+                src={Images.primaryLogoutIcon}
+                imageStyle={{ width: 25 }}
+                className="mr-2"
+              />
+              <CustomText textClassName="font-size-small">
+                {t("account.logout")}
+              </CustomText>
+            </div>
+
+            <CustomText textClassName="disable-text font-size-small">
+              {t("account.version")} 1.5.2
             </CustomText>
           </div>
 
-          <CustomText textClassName="disable-text font-size-small">
-            {t("account.version")} 1.5.2
-          </CustomText>
+          <LoadingOverlay
+            loading={
+              userProfileLoading || signOutLoading || setPinNumberLoading
+            }
+          />
+
+          <SetPinNumberModal
+            pinNumberValue={pinNumberValue}
+            confirmPinNumberValue={confirmPinNumberValue}
+            onChangePinNumber={onChangePinNumber}
+            onChangeConfirmPinNumber={onChangeConfirmPinNumber}
+            errorMessage={errorMessage}
+            setPinNumberLoading={setPinNumberLoading}
+            onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
+            onClickSetPinNumber={onClickSetPinNumber}
+            onChangeOtpValue={onChangeOtpValue}
+            otpValue={otpValue}
+            onClickGenerateOtp={onClickGenerateOtp}
+            timeLeft={timeLeft}
+            isResendEnabled={isResendEnabled}
+            otpRequestLoading={otpRequestLoading}
+          />
         </div>
 
-        <LoadingOverlay
-          loading={userProfileLoading || signOutLoading || setPinNumberLoading}
+        <BottomNavigate
+          t={t}
+          routeName={routeName}
+          routeQuery={routeQuery}
+          onClickChangeTab={onClickChangeTab}
         />
-
-        <SetPinNumberModal
-          pinNumberValue={pinNumberValue}
-          confirmPinNumberValue={confirmPinNumberValue}
-          onChangePinNumber={onChangePinNumber}
-          onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-          errorMessage={errorMessage}
-          setPinNumberLoading={setPinNumberLoading}
-          onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-          onClickSetPinNumber={onClickSetPinNumber}
-          onChangeOtpValue={onChangeOtpValue}
-          otpValue={otpValue}
-          onClickGenerateOtp={onClickGenerateOtp}
-          timeLeft={timeLeft}
-          isResendEnabled={isResendEnabled}
-          otpRequestLoading={otpRequestLoading}
-        />
-      </div>
-
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
-    </CustomHeader>
+      </CustomHeader>
+    </div>
   );
 };
 

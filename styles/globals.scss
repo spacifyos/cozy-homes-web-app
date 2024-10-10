@@ -175,7 +175,7 @@ body {
 }
 
 .desktop-responsive {
-  @apply 2xl:block xl:block lg:block md:block sm:block hidden;
+  @apply 2xl:flex xl:flex lg:flex md:flex sm:flex hidden;
 }
 
 .mobile-responsive {

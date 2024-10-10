@@ -21,7 +21,7 @@ const DesktopLayout = ({ children, page, hideNav = false }) => {
   };
 
   return (
-    <div className="flex flex-col primaryWhite-bg-color w-full h-full relative desktop-responsive">
+    <div className="flex flex-col primaryWhite-bg-color w-full min-h-screen relative desktop-responsive">
       <DesktopHeader
         onClickSignIn={onClickSignIn}
         onClickSignUp={onClickSignUp}
@@ -30,12 +30,12 @@ const DesktopLayout = ({ children, page, hideNav = false }) => {
       {hideNav ? (
         <div className="flex-1 h-full">{children}</div>
       ) : (
-        <div className="flex-1 h-full flex flex-col container mx-auto">
+        <div className="flex-1 h-full flex flex-col container mx-auto py-10">
           <CustomText textClassName="font-size-xxlarge font-bold pb-5">
             {isEmpty(page) ? "-" : page}
           </CustomText>
 
-          <div className="grid grid-cols-4">
+          <div className="grid grid-cols-4 gap-10">
             <div className="col-span-1">
               <DesktopNavigationBar />
             </div>
