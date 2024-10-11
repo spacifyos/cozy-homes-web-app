@@ -13,8 +13,19 @@ import { useRouter } from "next/router";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
+import CustomImage from "@/components/CustomImage";
 
-const DesktopLayout = ({ children, page, hideNav = false }) => {
+const DesktopLayout = ({
+  children,
+  page,
+  hideNav = false,
+  rightSecondButtonIcon,
+  onClickRightSecondButton,
+  onClickRightButton,
+  rightButtonIcon,
+  rightContent,
+  isFiltered,
+}) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -76,9 +87,49 @@ const DesktopLayout = ({ children, page, hideNav = false }) => {
         <div className="flex-1 h-full">{children}</div>
       ) : (
         <div className="flex-1 h-full flex flex-col container mx-auto py-10">
-          <CustomText textClassName="font-size-xxlarge font-bold pb-5">
-            {isEmpty(page) ? "-" : page}
-          </CustomText>
+          <div className="flex justify-between items-center pb-5">
+            <CustomText textClassName="font-size-xxlarge font-bold">
+              {isEmpty(page) ? "-" : page}
+            </CustomText>
+
+            <div className="flex justify-center items-center gap-4">
+              {isEmpty(rightSecondButtonIcon) ? (
+                false
+              ) : (
+                <CustomImage
+                  src={rightSecondButtonIcon}
+                  imageStyle={{ width: 23, height: 23 }}
+                  onClick={onClickRightSecondButton}
+                  className="cursor-pointer"
+                />
+              )}
+
+              <div
+                style={{ width: 23, height: 23 }}
+                onClick={onClickRightButton}
+                className="relative"
+              >
+                {isEmpty(rightButtonIcon) ? (
+                  rightContent
+                ) : (
+                  <CustomImage
+                    src={rightButtonIcon}
+                    imageStyle={{ width: 23, height: 23 }}
+                    onClick={onClickRightButton}
+                    className="cursor-pointer"
+                  />
+                )}
+                {isFiltered ? (
+                  <div
+                    className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
+                    style={{ top: -10, right: -10 }}
+                  ></div>
+                ) : (
+                  false
+                )}
+              </div>
+            </div>
+          </div>
 
           <div className="grid grid-cols-4 gap-10">
             <div className="col-span-1">
