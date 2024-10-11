@@ -18,8 +18,8 @@
   @include custom-button;
 
   p {
-    font-weight: bold !important;
-    @extend .disable-text;
+    font-weight: normal !important;
+    @extend .black-text;
   }
 }
 
@@ -29,8 +29,8 @@
   @include custom-button;
 
   p {
-    font-weight: bold !important;
-    @extend .disable-text;
+    font-weight: normal !important;
+    @extend .black-text;
   }
 }
 

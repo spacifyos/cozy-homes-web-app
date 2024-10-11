@@ -13,17 +13,6 @@ import * as reportSelector from "@/src/selectors/report";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
-import {
-  getCurrentMonthPayoutAmount,
-  getCurrentMonthPayoutIsAmountNegative,
-  getOutstanding,
-  getTotalNetPayoutAmount,
-  getTotalNetPayoutIsAmountNegative,
-  getTotalOutstandingAmount,
-  getTotalOutstandingIsAmountNegative,
-  getTotalPayoutAIsAmountNegative,
-  getTotalPayoutAmount,
-} from "@/src/selectors/report";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import Helper from "@/src/utils/Helper";
 import CustomModal from "@/components/CustomModal";

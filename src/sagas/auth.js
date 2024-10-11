@@ -24,7 +24,7 @@ import Router from "next/router";
 //     }
 // }
 
-function* getUserProfileRequest({}) {
+function* getUserProfileRequest({}, effects) {
   try {
     const response = yield call(api.getUserProfile);
 
@@ -32,7 +32,13 @@ function* getUserProfileRequest({}) {
 
     yield put(authActions.getUserProfileSuccess(data));
   } catch (error) {
-    yield call(httpErrorHelpers, error, authActions.getUserProfileFailure);
+    yield call(
+      httpErrorHelpers,
+      error,
+      authActions.getUserProfileFailure,
+      effects,
+      true,
+    );
   }
 }
 

@@ -77,7 +77,9 @@ const Account = () => {
   }, [timeLeft, isResendEnabled]);
 
   useEffect(() => {
-    fetchUserprofileData();
+    if (isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
   }, []);
 
   const fetchUserprofileData = () => {

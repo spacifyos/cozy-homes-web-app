@@ -161,6 +161,7 @@ const Image = {
   tenantCard: `/images/tenant_card.png`,
   ownerCard: `/images/owner_card.png`,
   registerIcon: `/images/icon/register_icon.png`,
+  registerIconActive: `/images/icon/register_icon_active.png`,
   youtubeIcon: `/images/icon/Youtube.png`,
   twitterIcon: `/images/icon/TwitterX.png`,
   tiktokIcon: `/images/icon/Tiktok.png`,
