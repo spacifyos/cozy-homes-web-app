@@ -22,6 +22,8 @@ import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopFeatureSection from "@/components/MyStay/DesktopFeatureSection";
 
 export { getServerSideProps };
 
@@ -109,42 +111,70 @@ const MyStay = () => {
   };
 
   return (
-    <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
-      <NextSeo title="My Stay - Spacify Asia" />
+      <div className="min-h-screen primaryWhite-bg-color">
+        <DesktopLayout page="My Property">
+          <div className="">
+            <UserSection t={t} data={userProfileData} />
 
-      <div className="body-container pb-24">
-        <UserSection t={t} data={userProfileData} />
+            <TenancySection
+                t={t}
+                onChangeAutoPay={onChangeAutoPay}
+                isChecked={isChecked}
+                data={tenancyListingData}
+            />
 
-        <TenancySection
-          t={t}
-          onChangeAutoPay={onChangeAutoPay}
-          isChecked={isChecked}
-          data={tenancyListingData}
-        />
+            <DesktopFeatureSection t={t} />
 
-        <FeatureSection t={t} />
+            <MeterSection t={t} data={meterListingData} />
 
-        <MeterSection t={t} data={meterListingData} />
+            <InvoiceSection
+                t={t}
+                onClickSelectCategory={onClickSelectCategory}
+                selectedCategory={selectedCategory}
+                data={invoiceListingData}
+            />
 
-        <InvoiceSection
-          t={t}
-          onClickSelectCategory={onClickSelectCategory}
-          selectedCategory={selectedCategory}
-          data={invoiceListingData}
-        />
+          </div>
+        </DesktopLayout>
 
-        <LoadingOverlay
-          loading={
-            userProfileLoading ||
-            tenancyListingLoading ||
-            invoiceListingLoading ||
-            meterListingLoading
-          }
-        />
+        <NextSeo title="My Stay - Spacify Asia" />
+
+        <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
+          <div className="body-container pb-24">
+            <UserSection t={t} data={userProfileData} />
+
+            <TenancySection
+                t={t}
+                onChangeAutoPay={onChangeAutoPay}
+                isChecked={isChecked}
+                data={tenancyListingData}
+            />
+
+            <FeatureSection t={t} />
+
+            <MeterSection t={t} data={meterListingData} />
+
+            <InvoiceSection
+                t={t}
+                onClickSelectCategory={onClickSelectCategory}
+                selectedCategory={selectedCategory}
+                data={invoiceListingData}
+            />
+
+            <LoadingOverlay
+                loading={
+                    userProfileLoading ||
+                    tenancyListingLoading ||
+                    invoiceListingLoading ||
+                    meterListingLoading
+                }
+            />
+          </div>
+
+          <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
+        </CustomHeader>
       </div>
 
-      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
-    </CustomHeader>
   );
 };
 

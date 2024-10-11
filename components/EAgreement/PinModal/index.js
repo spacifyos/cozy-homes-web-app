@@ -15,7 +15,7 @@ const PinModal = ({
   errorMessage,
 }) => {
   return (
-    <CustomModal id="pin_modal">
+    <CustomModal id="mobile_pin_modal">
       <CustomText textClassName="font-size-large font-bold pb-5">
         {t("viewAgreement.insertPinNumber")}
       </CustomText>
@@ -35,12 +35,12 @@ const PinModal = ({
         <CustomButton
           buttonText={t("viewAgreement.cancel")}
           buttonClassName="default-btn-outline"
-          onClick={onClickClosePinModal}
+          onClick={() => onClickClosePinModal("mobile")}
         />
         <CustomButton
           buttonText={t("viewAgreement.submit")}
           buttonClassName="primary-btn"
-          onClick={onClickSubmitSignature}
+          onClick={() => onClickSubmitSignature("mobile")}
         />
       </div>
     </CustomModal>

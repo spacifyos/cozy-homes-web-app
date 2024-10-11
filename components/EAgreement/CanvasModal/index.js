@@ -27,7 +27,7 @@ const CanvasModal = ({
   }, [targetRef]);
 
   return (
-    <CustomModal id="canvas_modal" disableClose>
+    <CustomModal id="mobile_signature_modal" disableClose>
       <CustomText textClassName="font-bold font-size-large pb-5">
         {t("viewAgreement.pleaseSignBelow")}
       </CustomText>
@@ -83,12 +83,12 @@ const CanvasModal = ({
         <CustomButton
           buttonText={"Cancel"}
           buttonClassName="default-btn-outline"
-          onClick={onClickCloseSignatureModal}
+          onClick={() => onClickCloseSignatureModal("mobile")}
         />
         <CustomButton
           buttonText={t("viewAgreement.sign")}
           buttonClassName="primary-btn"
-          onClick={onClickSubmitSignature}
+          onClick={() => onClickSubmitSignature("mobile")}
         />
       </div>
     </CustomModal>

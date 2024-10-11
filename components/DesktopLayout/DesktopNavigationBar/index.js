@@ -2,9 +2,16 @@ import FeatureComponent from "@/components/Account/FeatureComponent";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 
-const DesktopNavigationBar = ({ }) => {
+const DesktopNavigationBar = ({}) => {
   return (
     <div>
+      <FeatureComponent
+        title="My Property"
+        icon={Images.homeActiveOutline}
+        pb={3}
+        route={"/my-property"}
+      />
+
       <FeatureComponent
         title="My Invoice"
         icon={Images.primaryInvoiceIcon}

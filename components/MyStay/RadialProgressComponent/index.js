@@ -32,7 +32,7 @@ const RadialProgressComponent = ({
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"
       style={{
         "--value": percentage,
-        "--size": `${dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,
+        "--size": `${dimensions > 250 ? dimensions * 0.25 :dimensions > 290 ? dimensions * 0.4 : dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,
         "--thickness": "0.5rem",
       }}
       role="progressbar"

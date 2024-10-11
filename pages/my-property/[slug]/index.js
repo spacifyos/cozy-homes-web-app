@@ -1,212 +1,148 @@
 import CustomHeader from "@/components/CustomHeader";
-import { withTranslation, useTranslation } from "next-i18next";
+import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
-import CustomLabelValue from "@/components/CustomLabelValue";
-import CustomText from "@/components/CustomText";
-import StatusLabel from "@/components/StatusLabel";
-import CustomImage from "@/components/CustomImage";
-import CustomButton from "@/components/CustomButton";
-import * as agreementSelector from "@/src/selectors/agreement";
-import * as agreementAction from "@/src/actions/agreement";
-import { useDispatch, useSelector } from "react-redux";
+import TenancyUserSection from "@/components/MyTenancy/TenancyUserSection";
+import TenancyDetail from "@/components/MyTenancy/TenancyDetail";
+import TenancyFeeDetail from "@/components/MyTenancy/TenancyFeeDetail";
+import SubscribeAutoPayModal from "@/components/MyTenancy/SubscribeAutoPayModal";
+import EAgreement from "@/components/MyTenancy/E-AgreementSection";
+import InsuranceSection from "@/components/MyTenancy/InsuranceSection";
 import { useEffect, useState } from "react";
+import UnsubscribeAutoPayModal from "@/components/MyTenancy/UnsubscribeAutoPayModal";
+import * as tenancyAction from "@/src/actions/tenancy";
+import * as tenancySelector from "@/src/selectors/tenancy";
+import { useDispatch, useSelector } from "react-redux";
+import * as authAction from "@/src/actions/auth";
+import * as authSelector from "@/src/selectors/auth";
 import LoadingOverlay from "@/components/LoadingOverlay";
-import { get, isEmpty } from "lodash";
-import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
-import CustomOwnerHeader from "@/components/CustomOwnerHeader";
-import {NextSeo} from "next-seo";
+import Helper from "@/src/utils/Helper";
+import { NextSeo } from "next-seo";
+import AuthWrapper from "@/components/AuthWrapper";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
-const OwnerEAgreementOverview = ({ id }) => {
+const MyPropertyOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const getAgreementOverviewRequest = (id) =>
-    dispatch(agreementAction.getAgreementOverviewRequest(id));
-  const agreementOverviewData = useSelector((state) =>
-    agreementSelector.getAgreementOverviewData(state, id),
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
   );
-  const agreementOverviewDataLoading = useSelector((state) =>
-    agreementSelector.getAgreementOverviewLoading(state),
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
   );
 
-  const referenceNumber = agreementSelector.getReferenceNumber(
-    agreementOverviewData,
+  const getTenancyOverviewRequest = (id) =>
+    dispatch(tenancyAction.getTenancyOverviewRequest(id));
+  const tenancyOverviewData = useSelector((state) =>
+    tenancySelector.getTenancyOverviewData(state, id),
   );
-  const property = agreementSelector.getProperty(agreementOverviewData);
-  const status = agreementSelector.getStatus(agreementOverviewData);
-  const tenurePeriod = agreementSelector.getTenurePeriod(agreementOverviewData);
-  const getAgree = agreementSelector.getAgree(agreementOverviewData);
-  const getSigned = agreementSelector.getSigned(agreementOverviewData);
-  const agreedDate = agreementSelector.getAgreedDate(agreementOverviewData);
-  const tenantName = agreementSelector.getTenantName(agreementOverviewData);
-  const agreementDate = agreementSelector.getAgreementDate(
-    agreementOverviewData,
+  const tenancyOverviewLoading = useSelector((state) =>
+    tenancySelector.getTenancyOverviewLoading(state),
   );
-  const signedDate = agreementSelector.getSignedDate(agreementOverviewData);
-  const isCanAgree = agreementSelector.isCanAgree(agreementOverviewData);
-  const isCanSign = agreementSelector.isCanSign(agreementOverviewData);
-  const agreementId = agreementSelector.getId(agreementOverviewData);
 
-  // useEffect(() => {
-  //   fetchAgreementOverviewData(id);
-  // }, [id]);
+  const [isChecked, setIsChecked] = useState(false);
 
-  const fetchAgreementOverviewData = (id) => {
-    getAgreementOverviewRequest(id);
+  const oneTimeFee = tenancySelector.getOneTimeFee(tenancyOverviewData);
+  const recurringFee = tenancySelector.getRecurringFee(tenancyOverviewData);
+
+  useEffect(() => {
+    fetchUserprofileData();
+  }, []);
+
+  useEffect(() => {
+    if (!tenancyOverviewLoading) fetchTenancyOverview(id);
+  }, [id]);
+
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
+  };
+
+  const fetchTenancyOverview = (id) => {
+    getTenancyOverviewRequest(id);
   };
 
   const onClickGoBack = () => {
     router.back();
   };
 
-  const onClickToViewAgreement = (id) => {
-    router.push(`/e-agreement/${id}/view-agreement`);
+  const onClickToAgreementOverview = (id) => {
+    router.push(`/e-agreement/${id}`);
+  };
+
+  const onChangeAutoPay = () => {
+    setIsChecked(!isChecked);
+    if (isChecked) {
+      Helper.documentGetElementById("myTenancy_Unsubscribe_modal").showModal();
+    } else {
+      Helper.documentGetElementById("myTenancy_Subscribe_modal").showModal();
+    }
   };
 
   return (
-    <CustomOwnerHeader onClickGoBack={onClickGoBack} pageTitle="My E-Agreement Overview">
-      <NextSeo title="My E-Agreement Overview | Owner - Spacify Asia" />
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Property Overview - Spacify Asia" />
 
-      <div className="body-container bg-color relative pt-6 pb-4 flex flex justify-center">
-        <div
-          className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
-          style={{ height: 54 }}
-        >
-          <CustomImage
-            src={Images.agreementIcon}
-            imageStyle={{ width: 30, height: 30 }}
+      <DesktopLayout page="My Property Overview">
+        <TenancyUserSection t={t} data={userProfileData} />
+
+        <TenancyDetail
+          t={t}
+          onChangeAutoPay={onChangeAutoPay}
+          isChecked={isChecked}
+          data={tenancyOverviewData}
+        />
+
+        <TenancyFeeDetail title={"One Time Charges"} data={oneTimeFee} />
+
+        <TenancyFeeDetail title={"Monthly Charges"} data={recurringFee} />
+      </DesktopLayout>
+
+      <CustomHeader
+        pageTitle={t("pageTitle.myTenancyOverview")}
+        hideBgImage
+        onClickGoBack={onClickGoBack}
+        // rightButtonIcon={Images.downloadIcon}
+        // rightSecondButtonIcon={Images.shareIcon}
+      >
+        <div className="body-container">
+          <TenancyUserSection t={t} data={userProfileData} />
+
+          <TenancyDetail
+            t={t}
+            onChangeAutoPay={onChangeAutoPay}
+            isChecked={isChecked}
+            data={tenancyOverviewData}
           />
-        </div>
 
-        <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
-          <div className="flex justify-between">
-            <CustomLabelValue
-              highlight
-              value={isEmpty(referenceNumber) ? "-" : referenceNumber}
-              label={t("eAgreementOverview.referenceNumber")}
-            />
+          <TenancyFeeDetail title={"One Time Charges"} data={oneTimeFee} />
 
-            <div className="pb-2">
-              <CustomText textClassName="font-size-xxsmall disable-text">
-                {t("eAgreementOverview.status")}
-              </CustomText>
-              <StatusLabel status={status} />
-            </div>
-          </div>
+          <TenancyFeeDetail title={"Monthly Charges"} data={recurringFee} />
 
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          {/*<CustomLabelValue*/}
-          {/*  value="E-Sign & E-Stamp"*/}
-          {/*  label={t("eAgreementOverview.service")}*/}
+          {/*<EAgreement*/}
+          {/*  t={t}*/}
+          {/*  onClickToAgreementOverview={onClickToAgreementOverview}*/}
           {/*/>*/}
 
-          <CustomLabelValue
-            value={isEmpty(property) ? "-" : property}
-            label={t("eAgreementOverview.property")}
+          {/*<InsuranceSection t={t} />*/}
+
+          {/*<UnsubscribeAutoPayModal t={t} />*/}
+
+          {/*<SubscribeAutoPayModal t={t} />*/}
+
+          <LoadingOverlay
+            loading={userProfileLoading || tenancyOverviewLoading}
           />
-
-          <CustomLabelValue
-            value={isEmpty(agreementDate) ? "-" : agreementDate}
-            label={t("eAgreementOverview.agreementDate")}
-          />
-
-          <CustomLabelValue
-            value={isEmpty(tenurePeriod) ? "-" : tenurePeriod}
-            label={t("eAgreementOverview.tenure")}
-          />
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <CustomLabelValue
-            value={isEmpty(tenantName) ? "-" : tenantName}
-            label={t("eAgreementOverview.tenant")}
-          />
-
-          <div className="pb-2">
-            <CustomText textClassName="font-size-xxsmall disable-text">
-              {t("eAgreementOverview.activity")}
-            </CustomText>
-            <div className="pt-1 grid grid-cols-2 gap-2">
-              <div className="flex mr-3 items-start">
-                <CustomImage
-                  src={getAgree ? Images.checkGreenIcon : Images.checkGreyIcon}
-                  className="mr-1"
-                  height={18}
-                  width={18}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.agreed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    {isEmpty(agreedDate) ? "-" : agreedDate}
-                  </CustomText>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <CustomImage
-                  src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
-                  className="mr-1"
-                  height={18}
-                  width={18}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.signed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    {isEmpty(signedDate) ? "-" : signedDate}
-                  </CustomText>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          {/*<div className="grid grid-cols-2 gap-2">*/}
-          {/*  <CustomLabelValue*/}
-          {/*    value="Pending"*/}
-          {/*    label={t("eAgreementOverview.stampingStatus")}*/}
-          {/*  />*/}
-          {/*  <CustomLabelValue*/}
-          {/*    value="No"*/}
-          {/*    label={t("eAgreementOverview.insurance")}*/}
-          {/*  />*/}
-          {/*</div>*/}
-
-          <div className="flex justify-center pt-5 w-full">
-            <CustomButton
-              onClick={() => onClickToViewAgreement(agreementId)}
-              buttonText={
-                isCanAgree ? "View & Agree" : isCanSign ? "View & Sign" : "View"
-              }
-              buttonClassName="primary-btn w-3/5"
-            />
-          </div>
         </div>
-
-        <LoadingOverlay loading={agreementOverviewDataLoading} />
-      </div>
-    </CustomOwnerHeader>
+      </CustomHeader>
+    </div>
   );
 };
 
-export default withTranslation("common")(
-  OwnerAuthWrapper(OwnerEAgreementOverview),
-);
+export default withTranslation("common")(AuthWrapper(MyPropertyOverview));

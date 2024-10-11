@@ -20,6 +20,11 @@ import axios from "axios";
 import AuthManager from "@/src/utils/AuthManager";
 import PinNumberInfoModal from "@/components/EAgreement/PinNumberInfoModal";
 import AuthWrapper from "@/components/AuthWrapper";
+import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopPinNumberInfoModal from "@/components/EAgreement/DesktopPinNumberInfoModal";
+import DesktopPinModal from "@/components/EAgreement/DesktopPinModal";
+import DesktopCanvasModel from "@/components/EAgreement/DesktopCanvasModel";
 
 export { getServerSideProps };
 
@@ -35,6 +40,7 @@ const ViewAgreement = ({ id }) => {
   const router = useRouter();
   let pdfPageRef;
   let canvasRef;
+  let DesktopCanvasRef;
 
   const [readAgree, setReadAgree] = useState(false);
   const [readSign, setReadSign] = useState(false);
@@ -139,7 +145,7 @@ const ViewAgreement = ({ id }) => {
     }
   };
 
-  const onClickHandlePdf = async () => {
+  const onClickHandlePdf = async (responsive) => {
     if (isCanAgree) {
       if (!readAgree) {
         return Toast.error("Please check the understood and agree term.");
@@ -148,9 +154,9 @@ const ViewAgreement = ({ id }) => {
       await handleAgreeAgreement();
     } else if (isCanSign) {
       if (hasPinNumber) {
-        handleOpenSignatureModal();
+        handleOpenSignatureModal(responsive);
       } else {
-        handleOpenPinNumberInfoModal();
+        handleOpenPinNumberInfoModal(responsive);
       }
     }
   };
@@ -167,8 +173,8 @@ const ViewAgreement = ({ id }) => {
     await fetchAgreementPdf();
   };
 
-  const handleOpenSignatureModal = () => {
-    Helper.documentGetElementById("canvas_modal").showModal();
+  const handleOpenSignatureModal = (responsive) => {
+    Helper.documentGetElementById(`${responsive}_signature_modal`).showModal();
   };
 
   const handlePdfSecretData = async () => {
@@ -182,12 +188,12 @@ const ViewAgreement = ({ id }) => {
     setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
   };
 
-  const onClickCloseSignatureModal = () => {
-    Helper.documentGetElementById("canvas_modal").close();
+  const onClickCloseSignatureModal = (responsive) => {
+    Helper.documentGetElementById(`${responsive}_signature_modal`).close();
   };
 
-  const onClickSubmitSignature = () => {
-    if (canvasRef.isEmpty()) {
+  const onClickSubmitSignature = (responsive) => {
+    if (canvasRef.isEmpty() && DesktopCanvasRef.isEmpty()) {
       setSignatureEmptyMessage("Signature is required");
       return;
     }
@@ -196,38 +202,41 @@ const ViewAgreement = ({ id }) => {
       return Toast.error("Please check the understood and agree term.");
     }
 
-    openPinModal();
+    openPinModal(responsive);
   };
 
-  const handleOpenPinModal = () => {
-    Helper.documentGetElementById("pin_modal").showModal();
+  const handleOpenPinModal = (responsive) => {
+    Helper.documentGetElementById(`${responsive}_pin_modal`).showModal();
   };
 
-  const handleClosePinModal = () => {
-    Helper.documentGetElementById("pin_modal").close();
+  const handleClosePinModal = (responsive) => {
+    Helper.documentGetElementById(`${responsive}_pin_modal`).close();
   };
 
-  const onClickClosePinModal = () => {
-    handleClosePinModal();
-    handleOpenSignatureModal();
+  const onClickClosePinModal = (responsive) => {
+    handleClosePinModal(responsive);
+    handleOpenSignatureModal(responsive);
   };
 
-  const openPinModal = () => {
-    onClickCloseSignatureModal();
-    handleOpenPinModal();
+  const openPinModal = (responsive) => {
+    console.log(responsive);
+    onClickCloseSignatureModal(responsive);
+    handleOpenPinModal(responsive);
   };
 
-  const handleSignAgreement = async () => {
+  const handleSignAgreement = async (responsive) => {
     if (isEmpty(pinNumberValue)) {
       setErrorMessage("Pin number is required.");
       return;
     }
 
-    handleClosePinModal();
+    handleClosePinModal(responsive);
 
     const postData = {
       pin_number: pinNumberValue,
-      signature: canvasRef.toDataURL("image/png"),
+      signature: isEqual(responsive, "desktop")
+        ? DesktopCanvasRef.toDataURL("image/png")
+        : canvasRef.toDataURL("image/png"),
     };
 
     await apiRequest.postSignAgreement(
@@ -244,11 +253,16 @@ const ViewAgreement = ({ id }) => {
   };
 
   const onClickResetCanvas = () => {
+    DesktopCanvasRef.clear();
     canvasRef.clear();
   };
 
   const handleSignatureRef = (ref) => {
     canvasRef = ref;
+  };
+
+  const handleDesktopSignatureRef = (ref) => {
+    DesktopCanvasRef = ref;
   };
 
   const onChangePinNumberValue = (e) => {
@@ -304,144 +318,272 @@ const ViewAgreement = ({ id }) => {
     });
   };
 
-  const onClickClosePinNumberInfoModal = () => {
-    Helper.documentGetElementById("pin_number_info_modal").close();
+  const onClickClosePinNumberInfoModal = (responsive) => {
+    Helper.documentGetElementById(
+      `${responsive}_pin_number_info_modal`,
+    ).close();
   };
 
-  const handleOpenPinNumberInfoModal = () => {
-    Helper.documentGetElementById("pin_number_info_modal").showModal();
+  const handleOpenPinNumberInfoModal = (responsive) => {
+    Helper.documentGetElementById(
+      `${responsive}_pin_number_info_modal`,
+    ).showModal();
   };
 
   return (
-    <CustomHeader
-      onClickGoBack={onClickGoBack}
-      pageTitle={t("pageTitle.viewAgreement")}
-      hideBgImage
-      rightButtonIcon={Images.downloadIcon}
-      onClickRightButton={downloadPdf}
-    >
-      <div className="body-container pb-4">
-        <div
-          className="global-border-radius p-5 flex flex-col justify-center items-center"
-          style={{ backgroundColor: "#505050" }}
-        >
-          <Document
-            renderMode="canvas"
-            file={isEmpty(pdf) ? "" : pdf}
-            options={opt}
-            onLoadSuccess={({ numPages }) => {
-              setTotalPages(numPages);
-              setIsDocumentReady(true);
-            }}
-            noData={noDataRender}
-            loading={loadingRender}
-            error={errorRender}
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My E-Agreement Document - Spacify Asia" />
+
+      <DesktopLayout page="View Agreement">
+        <div className="">
+          <div
+            className="global-border-radius p-10 px-20 flex flex-col justify-center items-center"
+            style={{ backgroundColor: "#505050" }}
           >
-            <Page
-              inputRef={(ref) => (pdfPageRef = ref)}
-              pageNumber={pageNumber}
-              onLoadSuccess={() => {
-                if (pdfPageHeight === 450) {
-                  setPdfPageHeight(pdfPageRef && pdfPageRef.clientHeight);
-                }
+            <Document
+              renderMode="canvas"
+              file={isEmpty(pdf) ? "" : pdf}
+              options={opt}
+              onLoadSuccess={({ numPages }) => {
+                setTotalPages(numPages);
+                setIsDocumentReady(true);
               }}
+              noData={noDataRender}
               loading={loadingRender}
               error={errorRender}
-              noData={noDataRender}
-            />
-          </Document>
-
-          <div className="flex flex-col items-center">
-            <CustomText textClassName="white-text font-size-xsmall pt-2">
-              {t("viewAgreement.page")} {pageNumber} of {totalPages}
-            </CustomText>
-
-            <div className="flex gap-2 pt-2">
-              <CustomButton
-                buttonText={t("viewAgreement.previous")}
-                buttonClassName={`btn-sm ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
-                onClick={onClickPrevious}
-                disable={!isDocumentReady}
+            >
+              <Page
+                inputRef={(ref) => (pdfPageRef = ref)}
+                pageNumber={pageNumber}
+                onLoadSuccess={() => {
+                  if (pdfPageHeight === 450) {
+                    setPdfPageHeight(pdfPageRef && pdfPageRef.clientHeight);
+                  }
+                }}
+                loading={loadingRender}
+                error={errorRender}
+                noData={noDataRender}
               />
-              <CustomButton
-                buttonText={t("viewAgreement.next")}
-                buttonClassName={`btn-sm ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
-                onClick={onClickNext}
-                disable={!isDocumentReady}
-              />
+            </Document>
+
+            <div className="flex flex-col items-center pt-5">
+              <CustomText textClassName="white-text font-size-normal py-2">
+                {t("viewAgreement.page")} {pageNumber} of {totalPages}
+              </CustomText>
+
+              <div className="flex gap-2 pt-2">
+                <CustomButton
+                  buttonText={t("viewAgreement.previous")}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  onClick={onClickPrevious}
+                  disable={!isDocumentReady}
+                />
+                <CustomButton
+                  buttonText={t("viewAgreement.next")}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  onClick={onClickNext}
+                  disable={!isDocumentReady}
+                />
+              </div>
             </div>
           </div>
+
+          {isCanAgree ? (
+            <div className="flex items-start gap-2 pt-8">
+              <div style={{ width: 23 }} onClick={onClickReadAgree}>
+                <CustomImage
+                  className="cursor-pointer"
+                  src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                  imageStyle={{ width: 23 }}
+                />
+              </div>
+              <CustomText textClassName="font-size-small text-justify leading-4">
+                I,{" "}
+                <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
+                , hereby acknowledge and confirm that I have read, understood
+                and agree to the terms and conditions of the agreement appearing
+                and irrevocably agree to be bound by the terms and conditions
+                contained therein.
+              </CustomText>
+            </div>
+          ) : (
+            false
+          )}
+
+          {!isCanAgree && !isCanSign ? (
+            false
+          ) : (
+            <div className="grid grid-cols-2 gap-2 pt-8">
+              <CustomButton
+                buttonText="Cancel"
+                buttonClassName="default-btn-outline"
+                onClick={onClickGoBack}
+              />
+              <CustomButton
+                buttonText={isCanAgree ? "Agree" : isCanSign ? "Sign" : "View"}
+                buttonClassName="primary-btn"
+                onClick={() => onClickHandlePdf("desktop")}
+              />
+            </div>
+          )}
         </div>
 
-        {isCanAgree ? (
-          <div className="flex items-start gap-2 pt-8">
-            <div style={{ width: 23 }} onClick={onClickReadAgree}>
-              <CustomImage
-                className="cursor-pointer"
-                src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
-                imageStyle={{ width: 23 }}
+        <DesktopPinNumberInfoModal
+          onClickToSetPinNumber={onClickToSetPinNumber}
+          onClickCloseModal={onClickClosePinNumberInfoModal}
+        />
+
+        <DesktopPinModal
+          t={t}
+          onClickSubmitSignature={handleSignAgreement}
+          onClickClosePinModal={onClickClosePinModal}
+          pinNumberValue={pinNumberValue}
+          onChangePinNumberValue={onChangePinNumberValue}
+          errorMessage={errorMessage}
+        />
+
+        <DesktopCanvasModel
+          onClickReadSign={onClickReadSign}
+          readSign={readSign}
+          t={t}
+          onClickCloseSignatureModal={onClickCloseSignatureModal}
+          onClickSubmitSignature={onClickSubmitSignature}
+          handleDesktopSignatureRef={handleDesktopSignatureRef}
+          onClickResetCanvas={onClickResetCanvas}
+          signatureEmptyMessage={signatureEmptyMessage}
+        />
+      </DesktopLayout>
+
+      <CustomHeader
+        onClickGoBack={onClickGoBack}
+        pageTitle={t("pageTitle.viewAgreement")}
+        hideBgImage
+        rightButtonIcon={Images.downloadIcon}
+        onClickRightButton={downloadPdf}
+      >
+        <div className="body-container pb-4">
+          <div
+            className="global-border-radius p-5 flex flex-col justify-center items-center"
+            style={{ backgroundColor: "#505050" }}
+          >
+            <Document
+              renderMode="canvas"
+              file={isEmpty(pdf) ? "" : pdf}
+              options={opt}
+              onLoadSuccess={({ numPages }) => {
+                setTotalPages(numPages);
+                setIsDocumentReady(true);
+              }}
+              noData={noDataRender}
+              loading={loadingRender}
+              error={errorRender}
+            >
+              <Page
+                inputRef={(ref) => (pdfPageRef = ref)}
+                pageNumber={pageNumber}
+                onLoadSuccess={() => {
+                  if (pdfPageHeight === 450) {
+                    setPdfPageHeight(pdfPageRef && pdfPageRef.clientHeight);
+                  }
+                }}
+                loading={loadingRender}
+                error={errorRender}
+                noData={noDataRender}
+              />
+            </Document>
+
+            <div className="flex flex-col items-center">
+              <CustomText textClassName="white-text font-size-xsmall pt-2">
+                {t("viewAgreement.page")} {pageNumber} of {totalPages}
+              </CustomText>
+
+              <div className="flex gap-2 pt-2">
+                <CustomButton
+                  buttonText={t("viewAgreement.previous")}
+                  buttonClassName={`btn-sm ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  onClick={onClickPrevious}
+                  disable={!isDocumentReady}
+                />
+                <CustomButton
+                  buttonText={t("viewAgreement.next")}
+                  buttonClassName={`btn-sm ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  onClick={onClickNext}
+                  disable={!isDocumentReady}
+                />
+              </div>
+            </div>
+          </div>
+
+          {isCanAgree ? (
+            <div className="flex items-start gap-2 pt-8">
+              <div style={{ width: 23 }} onClick={onClickReadAgree}>
+                <CustomImage
+                  className="cursor-pointer"
+                  src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                  imageStyle={{ width: 23 }}
+                />
+              </div>
+              <CustomText textClassName="font-size-small text-justify leading-4">
+                I,{" "}
+                <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
+                , hereby acknowledge and confirm that I have read, understood
+                and agree to the terms and conditions of the agreement appearing
+                and irrevocably agree to be bound by the terms and conditions
+                contained therein.
+              </CustomText>
+            </div>
+          ) : (
+            false
+          )}
+
+          {!isCanAgree && !isCanSign ? (
+            false
+          ) : (
+            <div className="grid grid-cols-2 gap-2 pt-8">
+              <CustomButton
+                buttonText="Cancel"
+                buttonClassName="default-btn-outline"
+                onClick={onClickGoBack}
+              />
+              <CustomButton
+                buttonText={isCanAgree ? "Agree" : isCanSign ? "Sign" : "View"}
+                buttonClassName="primary-btn"
+                onClick={() => onClickHandlePdf("mobile")}
               />
             </div>
-            <CustomText textClassName="font-size-small text-justify leading-4">
-              I,{" "}
-              <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
-              , hereby acknowledge and confirm that I have read, understood and
-              agree to the terms and conditions of the agreement appearing and
-              irrevocably agree to be bound by the terms and conditions
-              contained therein.
-            </CustomText>
-          </div>
-        ) : (
-          false
-        )}
+          )}
 
-        {!isCanAgree && !isCanSign ? (
-          false
-        ) : (
-          <div className="grid grid-cols-2 gap-2 pt-8">
-            <CustomButton
-              buttonText="Cancel"
-              buttonClassName="default-btn-outline"
-              onClick={onClickGoBack}
-            />
-            <CustomButton
-              buttonText={isCanAgree ? "Agree" : isCanSign ? "Sign" : "View"}
-              buttonClassName="primary-btn"
-              onClick={onClickHandlePdf}
-            />
-          </div>
-        )}
+          <LoadingOverlay
+            loading={loading || agreeLoading || signLoading || downloading}
+          />
+        </div>
 
-        <LoadingOverlay
-          loading={loading || agreeLoading || signLoading || downloading}
+        <CanvasModal
+          onClickReadSign={onClickReadSign}
+          readSign={readSign}
+          t={t}
+          onClickCloseSignatureModal={onClickCloseSignatureModal}
+          onClickSubmitSignature={onClickSubmitSignature}
+          handleSignatureRef={handleSignatureRef}
+          onClickResetCanvas={onClickResetCanvas}
+          signatureEmptyMessage={signatureEmptyMessage}
         />
-      </div>
 
-      <CanvasModal
-        onClickReadSign={onClickReadSign}
-        readSign={readSign}
-        t={t}
-        onClickCloseSignatureModal={onClickCloseSignatureModal}
-        onClickSubmitSignature={onClickSubmitSignature}
-        handleSignatureRef={handleSignatureRef}
-        onClickResetCanvas={onClickResetCanvas}
-        signatureEmptyMessage={signatureEmptyMessage}
-      />
+        <PinModal
+          t={t}
+          onClickSubmitSignature={handleSignAgreement}
+          onClickClosePinModal={onClickClosePinModal}
+          pinNumberValue={pinNumberValue}
+          onChangePinNumberValue={onChangePinNumberValue}
+          errorMessage={errorMessage}
+        />
 
-      <PinModal
-        t={t}
-        onClickSubmitSignature={handleSignAgreement}
-        onClickClosePinModal={onClickClosePinModal}
-        pinNumberValue={pinNumberValue}
-        onChangePinNumberValue={onChangePinNumberValue}
-        errorMessage={errorMessage}
-      />
-
-      <PinNumberInfoModal
-        onClickToSetPinNumber={onClickToSetPinNumber}
-        onClickCloseModal={onClickClosePinNumberInfoModal}
-      />
-    </CustomHeader>
+        <PinNumberInfoModal
+          onClickToSetPinNumber={onClickToSetPinNumber}
+          onClickCloseModal={onClickClosePinNumberInfoModal}
+        />
+      </CustomHeader>
+    </div>
   );
 };
 

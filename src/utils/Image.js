@@ -5,6 +5,7 @@ const Image = {
   searchIconActive: `/images/icon/search_icon_active.png`,
   homeIcon: `/images/icon/home_icon.png`,
   homeIconActive: `/images/icon/home_icon_active.png`,
+  homeActiveOutline: `/images/icon/home_active_outline.png`,
   accountIcon: `/images/icon/account_icon.png`,
   accountIconActive: `/images/icon/account_icon_active.png`,
   leftIcon: `/images/icon/left_icon.png`,

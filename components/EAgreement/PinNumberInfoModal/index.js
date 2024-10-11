@@ -6,7 +6,7 @@ import Images from "@/src/utils/Image";
 
 const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
   return (
-    <CustomModal id="pin_number_info_modal">
+    <CustomModal id="mobile_pin_number_info_modal">
       <CustomText textClassName="font-bold font-size-large pb-5">
         Pin Number Unset
       </CustomText>
@@ -22,12 +22,12 @@ const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
         <CustomButton
           buttonText={"Cancel"}
           buttonClassName="default-btn-outline"
-          onClick={onClickCloseModal}
+          onClick={() => onClickCloseModal("mobile")}
         />
         <CustomButton
           buttonText={"Set pin number"}
           buttonClassName="primary-btn"
-          onClick={onClickToSetPinNumber}
+          onClick={() => onClickToSetPinNumber("mobile")}
         />
       </div>
     </CustomModal>

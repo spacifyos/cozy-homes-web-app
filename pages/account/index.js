@@ -232,6 +232,7 @@ const Account = () => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account - Spacify Asia" />
+
       <DesktopLayout page="My Account">
         <div className="grid grid-cols-7 gap-10 flex-1">
           <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-7">
