@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { isEmpty, map, get } from "lodash";
 import CustomText from "@/components/CustomText";
 
 const CustomSelect = ({
@@ -19,7 +19,7 @@ const CustomSelect = ({
       style={styles}
       className={`form-control w-full max-w-xs default-select ${hideShadow ? "" : "global-box-shadow"} ${className}`}
     >
-      {!_.isEmpty(label) ? <CustomText>{label}</CustomText> : false}
+      {!isEmpty(label) ? <CustomText>{label}</CustomText> : false}
       <select
         className={`select select-bordered font-size-small ${selectClassName}`}
         style={selectStyles}
@@ -35,13 +35,14 @@ const CustomSelect = ({
           </option>
         )}
 
-        {_.map(optionList, (item) => {
-          const name = _.get(item, ["name"], "");
-          const value = _.get(item, ["value"], "");
+        {map(optionList, (item) => {
+          const name = get(item, ["name"], "");
+          const label = get(item, ["label"], "");
+          const value = get(item, ["value"], "");
 
           return (
             <option key={name} value={value}>
-              {name}
+              {isEmpty(name) ? label : name}
             </option>
           );
         })}

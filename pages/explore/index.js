@@ -35,6 +35,7 @@ import DesktopCheapestRoomSection from "@/components/Explore/DesktopCheapestRoom
 import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSection";
 import SignInModal from "@/components/Explore/SignInModal";
 import Helper from "@/src/utils/Helper";
+import * as commonSelector from "@/src/selectors/common";
 
 export { getServerSideProps };
 
@@ -63,11 +64,16 @@ function Home() {
     listingSelector.getListingBannerDataLoading(state),
   );
 
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+
   const universityListing = listingSelector.getPopularUniCollege(listingData);
   const condoListing = listingSelector.getPopularCondo(listingData);
   const tagsListing = listingSelector.getTags(listingData);
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
+  const [searchTypeValue, setSearchTypeValue] = useState("coLiving");
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;
@@ -108,7 +114,12 @@ function Home() {
         <div className="relative" style={{ height: 400 }}>
           <DesktopBanner />
 
-          <DesktopSearchBar />
+          <DesktopSearchBar
+            optionList={selectOptionData}
+            searchTypeValue={searchTypeValue}
+            setSearchTypeValue={setSearchTypeValue}
+            onClickSearch={onClickToFilter}
+          />
         </div>
 
         <div className="pt-60">
