@@ -10,6 +10,8 @@ const DesktopNavigationBar = ({}) => {
         icon={Images.homeActiveOutline}
         pb={3}
         route={"/my-property"}
+        imageHeight={20}
+        imageWidth={20}
       />
 
       <FeatureComponent

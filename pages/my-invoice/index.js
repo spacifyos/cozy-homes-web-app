@@ -18,6 +18,8 @@ import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopInvoiceSummaryComponent from "@/components/MyInvoice/DesktopInvoiceSummaryComponent";
+import DesktopFilterModal from "@/components/MyInvoice/DesktopFilterModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -151,18 +153,21 @@ const MyInvoice = () => {
 
   const handleCloseFilter = () => {
     setIsOpenFilterModal(false);
-    // Helper.documentGetElementById("invoice_filter_modal").close();
+    Helper.documentGetElementById("desktop_invoice_filter_modal").close();
   };
 
-  const onClickOpenFilter = () => {
+  const onClickOpenFilter = (responsive) => {
     const { invoiceNumber, dateFrom, dateTo } = filterParams;
 
     setInvoiceNumberValue(invoiceNumber);
     setDateFromValue(dateFrom);
     setDateToValue(dateTo);
 
-    setIsOpenFilterModal(true);
-    // Helper.documentGetElementById("invoice_filter_modal").showModal();
+    if (isEqual(responsive, "desktop")) {
+      Helper.documentGetElementById("desktop_invoice_filter_modal").showModal();
+    } else {
+      setIsOpenFilterModal(true);
+    }
   };
 
   const isFilter = () => {
@@ -179,9 +184,9 @@ const MyInvoice = () => {
         page="My Invoice"
         rightButtonIcon={Images.filterProIcon}
         isFiltered={isFilter()}
-        onClickRightButton={onClickOpenFilter}
+        onClickRightButton={() => onClickOpenFilter("desktop")}
       >
-        <div className="body-container pb-1 flex flex-col flex-1">
+        <div className="flex flex-col flex-1">
           {invoiceSummaryDataLoading ? (
             <div
               className="w-full flex justify-center"
@@ -240,7 +245,7 @@ const MyInvoice = () => {
             false
           )}
 
-          <FilterModal
+          <DesktopFilterModal
             t={t}
             dateFromValue={dateFromValue}
             onChangeDateFrom={onChangeDateFrom}
@@ -251,7 +256,6 @@ const MyInvoice = () => {
             onClickCancel={onClickCancel}
             onClickSubmit={onClickSubmit}
             onClickReset={onClickReset}
-            isOpenFilterModal={isOpenFilterModal}
           />
         </div>
       </DesktopLayout>

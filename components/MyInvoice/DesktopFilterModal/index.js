@@ -1,10 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import CustomModal from "@/components/CustomModal";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import Helper from "@/src/utils/Helper";
-import { useEffect } from "react";
 import DesktopModal from "@/components/DesktopModal";
 
 const DesktopFilterModal = ({
@@ -15,42 +12,24 @@ const DesktopFilterModal = ({
   onChangeDateTo,
   invoiceNumberValue,
   onChangeInvoiceNumber,
-  onClickCancel,
   onClickSubmit,
   onClickReset,
-  isOpenFilterModal,
 }) => {
-  const content = Helper.documentGetElementById("root-body");
-
-  useEffect(() => {
-    if (content) {
-      content.style.overflow = isOpenFilterModal ? "hidden" : "auto";
-    }
-  }, [isOpenFilterModal]);
-
   return (
-    <DesktopModal id="">
+    <DesktopModal id="desktop_invoice_filter_modal">
       <div className="p-6">
-        <form method="dialog" className={`flex justify-end`}>
-          <button className="btn btn-sm btn-circle btn-ghost right-2">
-            <CustomImage
-              src={Images.cancelIcon}
-              imageStyle={{ width: 20, height: 20 }}
-            />
-          </button>
-        </form>
-        <div className="divider divider-custom justify-center"></div>
-        <div className="flex justify-between items-end pb-4">
+        <div className="flex justify-between items-center pb-4">
           <CustomText textClassName="font-bold font-size-large">
             Search Filter
           </CustomText>
-
-          <CustomText
-            textClassName="underline error-text font-size-xsmall cursor-pointer"
-            onClick={onClickReset}
-          >
-            Reset
-          </CustomText>
+          <form method="dialog" className={`flex justify-end`}>
+            <button className="btn btn-sm btn-circle btn-ghost right-2">
+              <CustomImage
+                src={Images.cancelIcon}
+                imageStyle={{ width: 18, height: 18 }}
+              />
+            </button>
+          </form>
         </div>
 
         <div className="grid grid-cols-2 gap-2">
@@ -110,9 +89,9 @@ const DesktopFilterModal = ({
           </div>
 
           <CustomButton
-            buttonText="Cancel"
+            buttonText="Reset"
             buttonClassName="default-btn-outline"
-            onClick={onClickCancel}
+            onClick={onClickReset}
           />
 
           <CustomButton

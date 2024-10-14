@@ -132,7 +132,7 @@ const DesktopLayout = ({
           </div>
 
           <div className="grid grid-cols-4 gap-10">
-            <div className="col-span-1">
+            <div className="col-span-1 sticky top-10">
               <DesktopNavigationBar />
             </div>
 
