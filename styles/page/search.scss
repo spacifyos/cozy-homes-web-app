@@ -55,6 +55,8 @@
 }
 
 .price-range-slider {
+  margin: 8px 0;
+
   .range-slider__thumb {
     background: $primary-white-color !important;
     border: 2px $primary-color solid;
@@ -64,5 +66,6 @@
 
   .range-slider__range {
     background: $primary-color !important;
+    height: 6px !important;
   }
 }

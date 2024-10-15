@@ -1,6 +1,6 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const CustomButton = ({
   buttonClassName,
@@ -24,13 +24,13 @@ const CustomButton = ({
     >
       {loading ? (
         <span className="loading loading-spinner white-text"></span>
-      ) : !_.isEmpty(buttonText) ? (
+      ) : !isEmpty(buttonText) ? (
         <p className={textClassName}>{buttonText}</p>
       ) : (
         false
       )}
 
-      {!_.isEmpty(icon) ? (
+      {!isEmpty(icon) ? (
         <CustomImage
           src={icon}
           imageStyle={{ width: imageWidth, height: imageHeight, ...imageStyle }}

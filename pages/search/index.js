@@ -21,6 +21,7 @@ import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopSearchBar from "@/components/Search/DesktopSearchBar";
 import DesktopListingSection from "@/components/Search/DesktopListingSection";
+import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
 
 export { getServerSideProps };
 
@@ -304,11 +305,11 @@ const Search = () => {
 
       <DesktopLayout hideNav>
         <div className="container mx-auto flex-1 py-10">
-          <div className="grid grid-cols-12 gap-10">
-            <div className="xl:col-span-3 lg:col-span-4 md:col-span-4 sm:col-span-4">
-              <DesktopSearchBar />
-            </div>
-            <div className="xl:col-span-9 lg:col-span-8 md:col-span-8 sm:col-span-8">
+          <DesktopSearchBar />
+
+          <div className="grid grid-cols-8 gap-10">
+            <div className="xl:col-span-5 lg:col-span-5 md:col-span-4 sm:col-span-4">
+
               <DesktopListingSection
                 t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
@@ -317,6 +318,9 @@ const Search = () => {
                 currentPage={currentPage}
                 onPageChange={onPageChange}
               />
+            </div>
+            <div className="xl:col-span-3 lg:col-span-3 md:col-span-4 sm:col-span-4">
+              <SpacifyMap />
             </div>
           </div>
 

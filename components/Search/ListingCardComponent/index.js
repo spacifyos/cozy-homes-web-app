@@ -29,7 +29,7 @@ const ListingCardComponent = ({ t, item, imageHeight = 150 }) => {
         />
       </div>
 
-      <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
+      <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1 pt-2">
         {isEmpty(propertyName) ? "-" : propertyName}
       </CustomText>
       <CustomText textClassName="font-size-xxsmall primary-text leading-4 line-clamp-1">
