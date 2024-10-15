@@ -22,6 +22,8 @@ import DesktopLayout from "@/components/DesktopLayout";
 import DesktopSearchBar from "@/components/Search/DesktopSearchBar";
 import DesktopListingSection from "@/components/Search/DesktopListingSection";
 import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
+import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -299,17 +301,20 @@ const Search = () => {
     fetchListingProperty(selectedFilterParams, pageNumber, 12);
   };
 
+  const onClickOpenModal = () => {
+    Helper.documentGetElementById("desktop_filter_modal").showModal();
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Spacify Listing - Spacify Asia" />
 
       <DesktopLayout hideNav>
         <div className="container mx-auto flex-1 py-10">
-          <DesktopSearchBar />
+          <DesktopSearchBar onClickOpenModal={onClickOpenModal} />
 
           <div className="grid grid-cols-8 gap-10">
             <div className="xl:col-span-5 lg:col-span-5 md:col-span-4 sm:col-span-4">
-
               <DesktopListingSection
                 t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
@@ -336,6 +341,13 @@ const Search = () => {
             false
           )}
         </div>
+
+        <DesktopFilterModal
+          sortValue={sortValue}
+          setSortValue={setStateValue}
+          amenities={newAmenitiesTag}
+          onClickSelectAmenities={onClickSelectAmenities}
+        />
       </DesktopLayout>
 
       <CustomHeader

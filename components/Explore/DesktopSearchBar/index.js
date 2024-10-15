@@ -33,7 +33,7 @@ const DesktopSearchBar = ({
   return (
     <div className="flex justify-center">
       <div
-        className="absolute z-10 container"
+        className="absolute z-10 container "
         style={{ bottom: -210, width: "100%" }}
       >
         <div className="flex">
@@ -58,10 +58,10 @@ const DesktopSearchBar = ({
         </div>
 
         <div
-          className="p-3 global-box-shadow primaryWhite-bg-color py-6 mb-3"
+          className="p-8 global-box-shadow primaryWhite-bg-color mb-3"
           style={{ borderRadius: "0 10px 10px 10px" }}
         >
-          <div className="grid grid-cols-3 gap-2 pb-5 global-horizontal-padding">
+          <div className="grid grid-cols-3 gap-2 pb-5">
             <CustomInput
               rightIcon={Images.searchOutlineActiveIcon}
               className="col-span-1"
@@ -89,7 +89,7 @@ const DesktopSearchBar = ({
             />
           </div>
 
-          <div className="grid grid-cols-12 gap-2 pb-5 global-horizontal-padding">
+          <div className="grid grid-cols-12 gap-2">
             <div className="col-span-10 grid grid-cols-4 gap-2">
               <CustomSelect
                 placeholder={"Select Space Type"}

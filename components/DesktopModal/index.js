@@ -3,12 +3,13 @@ const DesktopModal = ({
   children,
   disableClose,
   closeButtonPosition = false,
+  styles,
 }) => {
   return (
     <dialog id={id} className="modal modal-center flex justify-center">
       <div
-        className="modal-box primaryWhite-bg-color hide-scroll-bar w-5/6"
-        style={{ padding: 0 }}
+        className="modal-box primaryWhite-bg-color hide-scroll-bar"
+        style={{ padding: 0, ...styles }}
       >
         {children}
       </div>

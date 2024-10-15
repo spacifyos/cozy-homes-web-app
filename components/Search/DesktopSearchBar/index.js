@@ -9,10 +9,10 @@ import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
 
-const DesktopSearchBar = () => {
+const DesktopSearchBar = ({ onClickOpenModal }) => {
   return (
-    <div className="grid grid-cols-12 gap-5 pb-10">
-      <div className="col-span-1"></div>
+    <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 gap-5 pb-6">
+      <div className="col-span-1 xl:block hidden"></div>
       <div className="col-span-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
         <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
           Label
@@ -56,19 +56,14 @@ const DesktopSearchBar = () => {
         />
       </div>
 
-      {/*<div className="col-span-1 global-border-radius global-box-shadow primaryWhite-bg-color flex justify-center items-center px-4 py-2">*/}
       <CustomButton
         icon={Images.filterProIcon}
         imageWidth={25}
         imageHeight={25}
         buttonClassName="default-btn col-span-1 h-full"
+        onClick={onClickOpenModal}
       />
-      {/*<CustomImage*/}
-      {/*  src={Images.filterProIcon}*/}
-      {/*  imageStyle={{ width: 20, height: 20 }}*/}
-      {/*/>*/}
-      {/*<CustomText textClassName="pl-2 font-size-xxlarge">Filter</CustomText>*/}
-      {/*</div>*/}
+
       <div className="col-span-1"></div>
 
       {/*<CustomInput*/}
@@ -98,8 +93,6 @@ const DesktopSearchBar = () => {
       {/*    <input type="radio" name="radio-1" className="radio" />*/}
       {/*  </div>*/}
       {/*</div>*/}
-
-      {/*<div className="divider-line"></div>*/}
 
       {/*<div className="gap-4 flex items-center pt-4">*/}
       {/*  <BookingInput*/}
