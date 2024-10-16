@@ -1,44 +1,28 @@
 import Toast from "@/src/utils/Toast";
-import _ from "lodash";
+import { get, isEmpty } from "lodash";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import Router from "next/router";
-import AuthManager from "@/src/utils/AuthManager"; // Import the Router from next/router
+import AuthManager from "@/src/utils/AuthManager";
 
-function* httpErrorHelpers(
-  error,
-  action,
-  effects,
-  ignoreToast = false,
-  overrideErrorToastToInfo = false,
-  errorData,
-) {
+function* httpErrorHelpers(error, action, ignoreToast = false, errorData) {
   if (error.response) {
     yield call(
       handleApiResponseError,
       error.response,
-      effects,
-      ignoreToast,
-      overrideErrorToastToInfo,
       action,
+      ignoreToast,
       errorData,
     );
 
     return;
-  } else if (error.request) {
   }
 
-  const status = _.get(error, "response.status", null);
+  const status = get(error, "response.status", null);
 
-  if (!_.isEmpty(error.message)) {
-    !ignoreToast
-      ? !overrideErrorToastToInfo
-        ? Toast.error(error.message)
-        : Toast.info(error.message)
-      : false;
-    yield put(
-      action(!_.isEmpty(errorData) ? errorData : error.message),
-      status,
-    );
+  if (!isEmpty(error.message)) {
+    !ignoreToast ? Toast.error(error.message) : false;
+
+    yield put(action(!isEmpty(errorData) ? errorData : error.message), status);
   } else {
     const unknownErrorMsg = `Unknown ${status} Error`;
 
@@ -47,19 +31,12 @@ function* httpErrorHelpers(
   }
 }
 
-function* handleApiResponseError(
-  response,
-  aa,
-  ignoreToast,
-  overrideErrorToastToInfo = false,
-  action,
-  errorData,
-) {
-  const statusCode = _.get(response, "status", null);
+function* handleApiResponseError(response, action, ignoreToast, errorData) {
+  const statusCode = get(response, "status", null);
 
   if (statusCode === 401) {
     AuthManager.removeLoginType();
-    AuthManager.removeToken().then(() => Router.replace("/sign-in"));
+    // AuthManager.removeToken().then(() => Router.replace("/sign-in"));
   }
 
   if (statusCode === 403) {
@@ -70,25 +47,17 @@ function* handleApiResponseError(
     Router.replace("/404");
   }
 
-  const messages = _.get(response, "data", null);
+  const messages = get(response, "data", null);
 
-  if (!_.isEmpty(messages.message) && !ignoreToast) {
-    Toast.error(messages.message);
-    // const { text, type } = messages[0];
-    // type === "error"
-    //   ? !overrideErrorToastToInfo
-    //     ? Toast.error(text)
-    //     : Toast.info(text)
-    //   : Toast.info(text);
+  if (!isEmpty(messages.message)) {
+    !ignoreToast ? Toast.error(messages.message) : false;
 
-    yield put(
-      action(!_.isEmpty(errorData) ? errorData : messages, statusCode),
-      // statusCode
-    );
+    yield put(action(!isEmpty(errorData) ? errorData : messages, statusCode));
   } else {
     const unknownErrorMsg = `Unknown ${statusCode} Error`;
 
-    Toast.error(unknownErrorMsg);
+    !ignoreToast ? Toast.error(unknownErrorMsg) : false;
+
     yield put(action(unknownErrorMsg, statusCode));
   }
 }

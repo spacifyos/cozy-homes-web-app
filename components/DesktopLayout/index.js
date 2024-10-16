@@ -14,6 +14,7 @@ import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import CustomImage from "@/components/CustomImage";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
 
 const DesktopLayout = ({
   children,
@@ -31,24 +32,24 @@ const DesktopLayout = ({
 
   const [userType, setUserType] = useState("");
 
-  const getUserProfileRequest = () =>
-    dispatch(authAction.getUserProfileRequest());
-  const userProfileData = useSelector((state) =>
-    authSelector.getUserProfileData(state),
-  );
-  const userProfileLoading = useSelector((state) =>
-    authSelector.getUserProfileLoading(state),
-  );
+  const [userProfileData, setUserProfileData] = useState(false);
+  const [userProfileLoading, setUserProfileLoading] = useState(false);
 
   useEffect(() => {
     if (isEmpty(userProfileData)) {
-      console.log(userProfileData);
       fetchUserprofileData();
     }
   }, []);
 
-  const fetchUserprofileData = () => {
-    getUserProfileRequest();
+  const fetchUserprofileData = async () => {
+    await apiRequest.getUChatUserRequest(
+      setUserProfileLoading,
+      getUserSuccessCallback,
+    );
+  };
+
+  const getUserSuccessCallback = (res) => {
+    setUserProfileData(res);
   };
 
   const onClickSignIn = () => {

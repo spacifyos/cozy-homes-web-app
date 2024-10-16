@@ -219,7 +219,6 @@ const ViewAgreement = ({ id }) => {
   };
 
   const openPinModal = (responsive) => {
-    console.log(responsive);
     onClickCloseSignatureModal(responsive);
     handleOpenPinModal(responsive);
   };
