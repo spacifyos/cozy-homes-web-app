@@ -98,7 +98,10 @@ function AppContent({ Component, pageProps }) {
       // style={{ backgroundColor: Color.primaryBgColor }}
     >
       <DefaultSeo
+        defaultTitle="Spacify Asia"
         title="Spacify Asia"
+        description="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
+        canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
           title: "Spacify Asia",
@@ -112,7 +115,7 @@ function AppContent({ Component, pageProps }) {
               alt: `Spacify Image`,
             },
           ],
-          siteName: process.env.DOMAIN,
+          siteName: "Spacify Asia",
         }}
       />
 
