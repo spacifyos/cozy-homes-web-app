@@ -121,7 +121,7 @@ function AppContent({ Component, pageProps }) {
       <div
         style={{ maxWidth: 500, zIndex: 1 }}
         className={
-          "primaryWhite-bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
+          "bg-color flex flex-col w-screen min-h-screen h-full relative overflow-hidden"
         }
       >
         <Toaster />
