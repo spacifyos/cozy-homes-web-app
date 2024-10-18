@@ -13,7 +13,7 @@ const DesktopListingSection = ({
   onPageChange,
 }) => {
   return (
-    <div className="">
+    <div className="h-full">
       {listingPropertyDataLoading ? (
         <div className="grid grid-cols-4 gap-3">
           {map(Array(12), (item, index) => (
@@ -21,7 +21,7 @@ const DesktopListingSection = ({
           ))}
         </div>
       ) : isEmpty(listingPropertyData) ? (
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex flex-1 items-center justify-center h-full">
           <CustomEmptyBox />
         </div>
       ) : (

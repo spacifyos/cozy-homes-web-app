@@ -8,6 +8,7 @@ import TagComponent from "@/components/Search/TagComponent";
 import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
+import CustomMultiSelect from "@/components/CustomMultiSelect";
 
 const DesktopSearchBar = ({ onClickOpenModal }) => {
   return (
@@ -15,17 +16,15 @@ const DesktopSearchBar = ({ onClickOpenModal }) => {
       <div className="col-span-1 xl:block hidden"></div>
       <div className="col-span-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
         <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
-          Label
+          Keyword
         </CustomText>
-        <CustomSelect
-          hideShadow
-          placeholder={"Select Label"}
-          className="mb-2"
-          styles={{ maxWidth: "none", margin: 0 }}
-          selectStyles={{ height: 40 }}
-          // optionList={Constant.STATE_CODE}
-          // onChange={onChangeStateValue}
-          // value={stateValue}
+        <CustomInput
+          rightIcon={Images.searchOutlineActiveIcon}
+          className=""
+          placeholder="Keyword"
+          // value={keywordValue}
+          // onChange={onChangeKeywordValue}
+          // onClickRightIcon={onClickSubmitKeyword}
         />
       </div>
 

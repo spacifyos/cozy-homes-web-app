@@ -33,7 +33,7 @@ const DesktopPropertyPriceSection = ({
     listingSelector.getTotalCostLastMonthRentCharges(lists);
 
   return (
-    <div className="global-box-shadow global-border-radius mt-3 overflow-hidden">
+    <div className="global-box-shadow global-border-radius mt-3 overflow-hidden sticky top-5">
       <div className="primary-bg-color p-3">
         <div className="flex items-end">
           <CustomText textClassName="white-text font-size-large font-bold pr-2">

@@ -4,7 +4,6 @@
 @mixin custom-input($bgColor) {
   background-color: $bgColor;
   border: 1px solid $primary-white-color;
-  @extend .global-box-shadow;
 
   textarea {
     width: 100%;

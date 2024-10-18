@@ -5,12 +5,21 @@ import _, { get, map } from "lodash";
 
 const DesktopFooter = () => {
   const socialMediaIconList = [
-    { icon: Image.tiktokIcon, value: "#" },
-    { icon: Image.instagramIcon, value: "#" },
-    { icon: Image.facebookIcon, value: "#" },
-    { icon: Image.youtubeIcon, value: "#" },
-    { icon: Image.linkinIcon, value: "#" },
-    { icon: Image.twitterIcon, value: "#" },
+    { icon: Image.tiktokIcon, value: "https://www.tiktok.com/@belivecoliving" },
+    {
+      icon: Image.instagramIcon,
+      value: "https://www.instagram.com/belivecoliving",
+    },
+    {
+      icon: Image.facebookIcon,
+      value: "https://www.facebook.com/BeLiveCoLiving",
+    },
+    { icon: Image.youtubeIcon, value: "https://m.youtube.com/@BeLiveColiving" },
+    {
+      icon: Image.linkinIcon,
+      value: "https://www.linkedin.com/company/belive-co-living",
+    },
+    { icon: Image.twitterIcon, value: "https://x.com/BeLiveColiving" },
   ];
 
   return (
@@ -77,7 +86,7 @@ const DesktopFooter = () => {
                   const value = get(item, ["value"], "");
 
                   return (
-                    <a href={value}>
+                    <a href={value} target="_blank">
                       <CustomImage
                         src={icon}
                         imageStyle={{ width: 30, height: 30 }}

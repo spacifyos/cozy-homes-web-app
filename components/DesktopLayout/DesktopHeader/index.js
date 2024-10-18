@@ -40,7 +40,7 @@ const DesktopHeader = ({
             }
             imageStyle={{ width: 13 }}
             buttonText={`${loading ? "" : isEmpty(data) ? "Register" : `Hi, ${name}`}`}
-            buttonClassName={`${loading ? "primary-btn" : isEmpty(data) ? "primary-btn" : "default-btn"} w-44`}
+            buttonClassName={`${loading ? "primary-btn" : isEmpty(data) ? "primary-btn" : "default-btn"} min-w-44`}
             reverse
             loading={loading}
             onClick={

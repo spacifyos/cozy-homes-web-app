@@ -347,6 +347,8 @@ const Search = () => {
           setSortValue={setStateValue}
           amenities={newAmenitiesTag}
           onClickSelectAmenities={onClickSelectAmenities}
+          onClickGeneralTag={onClickGeneralTag}
+          newGeneralTag={newGeneralTag}
         />
       </DesktopLayout>
 

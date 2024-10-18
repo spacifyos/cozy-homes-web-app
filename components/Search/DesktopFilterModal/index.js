@@ -13,6 +13,8 @@ const DesktopFilterModal = ({
   setGenderValue,
   amenities,
   onClickSelectAmenities,
+  onClickGeneralTag,
+  newGeneralTag,
 }) => {
   const shortingList = [
     { title: "Lowest Price", value: "asc" },
@@ -66,7 +68,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Shorting By</CustomText>
+          <CustomText textClassName="font-bold">Amenities</CustomText>
 
           <div className="flex flex-wrap gap-2 pt-2">
             {map(amenities, (amenity) => {
@@ -90,8 +92,8 @@ const DesktopFilterModal = ({
           </div>
         </div>
 
-        <div className="">
-          <CustomText textClassName="font-bold">Shorting By</CustomText>
+        <div className="pb-5">
+          <CustomText textClassName="font-bold">Gender</CustomText>
 
           <div className="flex gap-2 pt-2">
             {map(genderList, (item) => {
@@ -104,6 +106,28 @@ const DesktopFilterModal = ({
                   buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="font-size-xsmall"
                   onClick={() => setGenderValue(value)}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <div>
+          <CustomText textClassName="font-bold">Specify Tag</CustomText>
+
+          <div className="pt-2 flex flex-wrap gap-2">
+            {map(newGeneralTag, (list, index) => {
+              const name = listingSelector.getName(list);
+              const code = listingSelector.getCode(list);
+              const isActive = get(list, ["isActive"], "");
+
+              return (
+                <CustomButton
+                  key={index}
+                  buttonText={name}
+                  buttonClassName={`${isActive ? "tag-button-active" : "tag-button"} btn-sm cursor-pointer mr-2`}
+                  textClassName="primary-text"
+                  onClick={() => onClickGeneralTag(name, code)}
                 />
               );
             })}
