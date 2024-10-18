@@ -32,9 +32,9 @@ const ListingCardComponent = ({ t, item }) => {
       <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1">
         {propertyName}
       </CustomText>
-      <CustomText textClassName="font-size-xxsmall primary-text leading-4 line-clamp-1">
-        {unitRoomName}
-      </CustomText>
+      {/*<CustomText textClassName="font-size-xxsmall primary-text leading-4 line-clamp-1">*/}
+      {/*  {unitRoomName}*/}
+      {/*</CustomText>*/}
       <div className="flex items-center flex-wrap">
         <CustomText textClassName="font-size-small font-bold mr-2">
           RM {rental}
