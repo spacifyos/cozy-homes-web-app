@@ -669,13 +669,13 @@ const Booking = ({ id, listingPropertyDetailData }) => {
             {`RM${isEmpty(targetRental) ? "0" : targetRental} / Monthly`}
           </CustomText>
 
-          <CustomText textClassName="font-bold">
+          <CustomText textClassName="font-bold pb-1">
             {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
 
-          <CustomText textClassName="primary-text font-size-small">
-            {isEmpty(unitRoomName) ? "-" : unitRoomName}
-          </CustomText>
+          {/*<CustomText textClassName="primary-text font-size-small">*/}
+          {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
+          {/*</CustomText>*/}
 
           <CustomText textClassName="disable-text font-size-xxsmall">
             {isEmpty(address) ? "-" : address}
