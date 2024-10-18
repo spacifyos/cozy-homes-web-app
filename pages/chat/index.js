@@ -47,7 +47,7 @@ const Chat = () => {
     tenancySelector.getTenancyRemainingDay(propertyDetails);
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
-  const secretKey = "9e768f0a4e66137d389cbe12c0060a28";
+  const secretKey = "463bd5543e3fe9c1dcb0ed08af83ba58";
   const src = `https://app.proptechai.bot/js/widget/pzh0cmyd7blgdoiw/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
