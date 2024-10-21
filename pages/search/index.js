@@ -5,7 +5,18 @@ import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
-import { get, isEmpty, map, debounce, includes, filter, isEqual } from "lodash";
+import {
+  get,
+  isEmpty,
+  map,
+  debounce,
+  includes,
+  filter,
+  isEqual,
+  size,
+  remove,
+  toArray,
+} from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -84,7 +95,11 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: isEqual(queryKey, "tags") ? [queryId] : queryId,
+          [queryKey]: isEqual(queryKey, "tags")
+            ? [queryId]
+            : size(queryId) > 1
+              ? remove(toArray(queryId), (value) => value !== ",")
+              : queryId,
         };
       });
     }
