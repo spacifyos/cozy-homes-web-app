@@ -18,6 +18,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
 import { NextSeo } from "next-seo";
+import * as commonSelector from "@/src/selectors/common";
 
 export { getServerSideProps };
 
@@ -49,6 +50,11 @@ const Search = () => {
   const listingPropertyPagination = useSelector((state) =>
     listingSelector.getListingPropertyPagination(state),
   );
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const stateOption = commonSelector.getState(selectOptionData);
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
   const [isCityTyping, setIsCityTyping] = useState(false);
@@ -315,7 +321,7 @@ const Search = () => {
 
         <CustomSelect
           placeholder={t("search.state")}
-          optionList={Constant.STATE_CODE}
+          optionList={stateOption}
           onChange={onChangeStateValue}
           value={stateValue}
         />

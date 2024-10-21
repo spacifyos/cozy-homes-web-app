@@ -55,11 +55,11 @@ const ListingSection = ({
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
 
-      <div className="gap-1">
+      <div className="" style={{ marginLeft: "-16px", marginRight: "-16px" }}>
         {listingLoading ? (
           <div className="flex" style={{ height: 144 }}>
             {map(Array(4), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
+              <Skeleton width={"100%"} height={100} key={index} />
             ))}
           </div>
         ) : isEmpty(lists) ? (
@@ -70,7 +70,7 @@ const ListingSection = ({
           <Swiper
             style={{ width: "100%" }}
             slidesPerView={4}
-            spaceBetween={8}
+            // spaceBetween={8}
             loop={true}
             pagination={{
               clickable: true,

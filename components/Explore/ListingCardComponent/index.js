@@ -21,7 +21,7 @@ const ListingCardComponent = ({ item }) => {
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        imageStyle={{ height: 100, width: 100 }}
+        imageStyle={{ height: 100, width: "100%" }}
       />
       <CustomText
         textClassName="font-size-xsmall font-bold text-center"
