@@ -24,6 +24,7 @@ import DesktopListingSection from "@/components/Search/DesktopListingSection";
 import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
 import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
+import * as commonSelector from "@/src/selectors/common";
 
 export { getServerSideProps };
 
@@ -55,6 +56,11 @@ const Search = () => {
   const listingPropertyPagination = useSelector((state) =>
     listingSelector.getListingPropertyPagination(state),
   );
+
+  const selectOptionData = useSelector((state) =>
+    commonSelector.getSelectOptionData(state),
+  );
+  const stateOption = commonSelector.getState(selectOptionData);
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
   const [isCityTyping, setIsCityTyping] = useState(false);
@@ -368,12 +374,12 @@ const Search = () => {
             onClickRightIcon={onClickSubmitKeyword}
           />
 
-          <CustomSelect
-            placeholder={t("search.state")}
-            optionList={Constant.STATE_CODE}
-            onChange={onChangeStateValue}
-            value={stateValue}
-          />
+        <CustomSelect
+          placeholder={t("search.state")}
+          optionList={stateOption}
+          onChange={onChangeStateValue}
+          value={stateValue}
+        />
 
           <CustomInput
             placeholder={t("search.city")}

@@ -38,7 +38,7 @@ function Home() {
   // }, []);
 
   return (
-    <div>
+    <div className="min-h-screen">
       <NextSeo title="Spacify Asia" />
     </div>
     // <div
