@@ -1,6 +1,6 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import { isEmpty } from "lodash";
+import { get, isEmpty } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
@@ -10,8 +10,8 @@ const ListingCardComponent = ({ item }) => {
   const propertyId = listingSelector.getPropertyId(item);
   const profileId = listingSelector.getProfileId(item);
 
-  const key = isEmpty(profileId) ? "property_id" : "profile_id";
-  const value = isEmpty(profileId) ? propertyId : profileId;
+  const key = get(item, ["key", "name"], "");
+  const value = get(item, ["key", "value"], "");
 
   return (
     <a

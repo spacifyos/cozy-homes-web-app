@@ -97,9 +97,11 @@ const Search = () => {
           ...prevState,
           [queryKey]: isEqual(queryKey, "tags")
             ? [queryId]
-            : size(queryId) > 1
-              ? remove(toArray(queryId), (value) => value !== ",")
-              : queryId,
+            : isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
+              ? queryId
+              : size(queryId) > 1
+                ? remove(toArray(queryId), (value) => value !== ",")
+                : queryId,
         };
       });
     }

@@ -43,8 +43,11 @@ function Home() {
     listingSelector.getListingBannerDataLoading(state),
   );
 
-  const universityListing = listingSelector.getPopularUniCollege(listingData);
-  const condoListing = listingSelector.getPopularCondo(listingData);
+  const cheapestRooms = listingSelector.getCheapestRooms(listingData);
+  const featuredRooms = listingSelector.getFeaturedRooms(listingData);
+  const popularCity = listingSelector.getPopularCity(listingData);
+  const popularUniversity = listingSelector.getPopularUniversity(listingData);
+  const specialPromotion = listingSelector.getSpecialPromotion(listingData);
   const tagsListing = listingSelector.getTags(listingData);
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
@@ -98,19 +101,10 @@ function Home() {
       <div className="body-container pb-24">
         <FeaturesSection tags={tagsListing} />
 
-        {/*<ListingSection*/}
-        {/*  t={t}*/}
-        {/*  title={t("explore.popularCity")}*/}
-        {/*  lists={cityListing}*/}
-        {/*  listingLoading={listingLoading}*/}
-        {/*  className="pb-7"*/}
-        {/*  onClickViewMore={onClickToFilter}*/}
-        {/*/>*/}
-
         <ListingSection
           t={t}
-          title={t("explore.popularUniversity")}
-          lists={universityListing}
+          title={t("explore.popularCity")}
+          lists={popularCity}
           listingLoading={listingDataLoading}
           className="pb-7"
           onClickViewMore={onClickToFilter}
@@ -118,8 +112,35 @@ function Home() {
 
         <ListingSection
           t={t}
-          title={t("explore.popularCondo")}
-          lists={condoListing}
+          title={"Featured Rooms Just For You"}
+          lists={featuredRooms}
+          listingLoading={listingDataLoading}
+          className="pb-7"
+          onClickViewMore={onClickToFilter}
+        />
+
+        <ListingSection
+          t={t}
+          title={"Popular University/College"}
+          lists={popularUniversity}
+          listingLoading={listingDataLoading}
+          className="pb-3"
+          onClickViewMore={onClickToFilter}
+        />
+
+        <ListingSection
+          t={t}
+          title={"Cheapest Rooms Just For You"}
+          lists={cheapestRooms}
+          listingLoading={listingDataLoading}
+          className="pb-3"
+          onClickViewMore={onClickToFilter}
+        />
+
+        <ListingSection
+          t={t}
+          title={"Special Promotion"}
+          lists={specialPromotion}
           listingLoading={listingDataLoading}
           className="pb-3"
           onClickViewMore={onClickToFilter}

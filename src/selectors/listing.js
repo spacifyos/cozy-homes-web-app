@@ -37,6 +37,16 @@ export const getBookingOverviewData = (state, id) =>
 export const getBookingOverviewLoading = (state) =>
   get(state, ["listing", "bookingOverview", "loading"], false);
 
+export const getCheapestRooms = (state) =>
+    get(state, ["cheapest_rooms"], []);
+export const getFeaturedRooms = (state) =>
+    get(state, ["featured_rooms"], []);
+export const getPopularCity = (state) =>
+    get(state, ["popular_city"], []);
+export const getPopularUniversity = (state) =>
+    get(state, ["popular_university"], []);
+export const getSpecialPromotion = (state) =>
+    get(state, ["special_promotion"], []);
 export const getPopularUniCollege = (state) =>
   get(state, ["uni_college_profile"], []);
 export const getPopularCondo = (state) => get(state, ["popular_condo"], []);
