@@ -116,21 +116,22 @@ function Home() {
         onClickViewMore={onClickToFilter}
       />
 
-      <ListingSection
-        t={t}
-        title={
-          <div className="flex">
-            <CustomText textClassName="font-bold primary-text pr-1">
-              Featured Rooms
-            </CustomText>
-            <CustomText textClassName="font-bold">Just For You</CustomText>
-          </div>
-        }
-        lists={featuredRooms}
-        listingLoading={listingDataLoading}
-        className="pb-7"
-        onClickViewMore={onClickToFilter}
-      />
+      <div className="primaryWhite-bg-color py-7">
+        <ListingSection
+          t={t}
+          title={
+            <div className="flex">
+              <CustomText textClassName="font-bold primary-text pr-1">
+                Featured Rooms
+              </CustomText>
+              <CustomText textClassName="font-bold">Just For You</CustomText>
+            </div>
+          }
+          lists={featuredRooms}
+          listingLoading={listingDataLoading}
+          onClickViewMore={onClickToFilter}
+        />
+      </div>
 
       <ListingSection
         t={t}
@@ -141,25 +142,26 @@ function Home() {
         }
         lists={popularUniversity}
         listingLoading={listingDataLoading}
-        className="pb-7"
+        className="py-7"
         onClickViewMore={onClickToFilter}
       />
 
-      <ListingSection
-        t={t}
-        title={
-          <div className="flex">
-            <CustomText textClassName="font-bold primary-text pr-1">
-              Cheapest Rooms
-            </CustomText>
-            <CustomText textClassName="font-bold">Just For You</CustomText>
-          </div>
-        }
-        lists={cheapestRooms}
-        listingLoading={listingDataLoading}
-        className="pb-7"
-        onClickViewMore={onClickToFilter}
-      />
+      <div className="primaryWhite-bg-color py-7">
+        <ListingSection
+          t={t}
+          title={
+            <div className="flex">
+              <CustomText textClassName="font-bold primary-text pr-1">
+                Cheapest Rooms
+              </CustomText>
+              <CustomText textClassName="font-bold">Just For You</CustomText>
+            </div>
+          }
+          lists={cheapestRooms}
+          listingLoading={listingDataLoading}
+          onClickViewMore={onClickToFilter}
+        />
+      </div>
 
       <div className="primary-bg-color py-7">
         <ListingSection
