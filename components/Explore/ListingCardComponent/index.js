@@ -1,6 +1,6 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty, map } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
@@ -9,13 +9,15 @@ const ListingCardComponent = ({ item, hideLabel = false }) => {
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
   const profileId = listingSelector.getProfileId(item);
+  const tags = listingSelector.getTags(item);
+  const tagsCode = map(tags, (tag) => listingSelector.getCode(tag));
 
   const key = get(item, ["key", "name"], "");
   const value = get(item, ["key", "value"], "");
 
   return (
     <a
-      href={`/search?key=${key}&id=${value}`}
+      href={`/search?key=${key}&id=${value}&tags=${tagsCode}`}
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage

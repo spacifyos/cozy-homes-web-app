@@ -16,6 +16,7 @@ import {
   size,
   remove,
   toArray,
+  split,
 } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
@@ -40,6 +41,9 @@ const Search = () => {
   const amenitiesTarget = useRef();
   const queryId = get(router, ["query", "id"], "");
   const queryKey = get(router, ["query", "key"], "");
+  const queryTags = get(router, ["query", "tags"], "");
+
+  const formatQueryTags = split(queryTags, ",");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -95,9 +99,9 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: isEqual(queryKey, "tags")
-            ? [queryId]
-            : isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
+          tags: formatQueryTags,
+          [queryKey]:
+            isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
               ? queryId
               : size(queryId) > 1
                 ? remove(toArray(queryId), (value) => value !== ",")
@@ -110,15 +114,17 @@ const Search = () => {
   useEffect(() => {
     if (!isEmpty(amenitiesTag)) {
       const formatFacilityTag = map(amenitiesTag, (item) => {
+        const code = get(item, ["code"], "");
+
         return {
           ...item,
-          ...{ isActive: false },
+          ...{ isActive: includes(formatQueryTags, code) ? true : false },
         };
       });
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag]);
+  }, [amenitiesTag, router]);
 
   useEffect(() => {
     if (!isEmpty(generalTag)) {

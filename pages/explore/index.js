@@ -176,7 +176,7 @@ function Home() {
               </CustomText>
             </div>
           }
-          lists={Array(123)}
+          lists={specialPromotion}
           listingLoading={listingDataLoading}
           onClickViewMore={onClickToFilter}
           hideLabel
