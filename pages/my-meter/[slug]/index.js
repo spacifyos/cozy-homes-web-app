@@ -21,6 +21,10 @@ import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
+import {
+  getBalanceCredit,
+  getIsShowBalanceInPrice,
+} from "@/src/selectors/meter";
 
 export { getServerSideProps };
 
@@ -39,9 +43,12 @@ const MyMeterOverview = ({ id }) => {
   );
 
   const balanceUnit = meterSelector.getBalanceUnit(meterOverviewData);
+  const balanceCredit = meterSelector.getBalanceCredit(meterOverviewData);
   const lastConnectedAt = meterSelector.getLastConnectAt(meterOverviewData);
   const unitPrice = meterSelector.getUnitPrice(meterOverviewData);
   const tenancy = meterSelector.getTenancy(meterOverviewData);
+  const isShowBalanceInPrice =
+    meterSelector.getIsShowBalanceInPrice(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -161,7 +168,9 @@ const MyMeterOverview = ({ id }) => {
 
         <BalanceUnit
           t={t}
+          isShowBalanceInPrice={isShowBalanceInPrice}
           balanceUnit={balanceUnit}
+          balanceCredit={balanceCredit}
           lastConnectedAt={lastConnectedAt}
         />
 

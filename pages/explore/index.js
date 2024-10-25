@@ -15,6 +15,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -84,7 +85,7 @@ function Home() {
   };
 
   return (
-    <div className="bg-color pt-7">
+    <div className="bg-color pt-7 pb-24">
       {/*<LanguageSwitcher*/}
       {/*  locale={locale}*/}
       {/*  openSwitcher={openSwitcher}*/}
@@ -98,52 +99,86 @@ function Home() {
         listingBannerDataLoading={listingBannerDataLoading}
       />
 
-      <div className="body-container pb-24">
+      <div className="body-container">
         <FeaturesSection tags={tagsListing} />
+      </div>
 
+      <ListingSection
+        t={t}
+        title={
+          <CustomText textClassName="font-bold primary-text">
+            Popular City
+          </CustomText>
+        }
+        lists={popularCity}
+        listingLoading={listingDataLoading}
+        className="pb-7"
+        onClickViewMore={onClickToFilter}
+      />
+
+      <ListingSection
+        t={t}
+        title={
+          <div className="flex">
+            <CustomText textClassName="font-bold primary-text pr-1">
+              Featured Rooms
+            </CustomText>
+            <CustomText textClassName="font-bold">Just For You</CustomText>
+          </div>
+        }
+        lists={featuredRooms}
+        listingLoading={listingDataLoading}
+        className="pb-7"
+        onClickViewMore={onClickToFilter}
+      />
+
+      <ListingSection
+        t={t}
+        title={
+          <CustomText textClassName="font-bold primary-text">
+            Popular University/College
+          </CustomText>
+        }
+        lists={popularUniversity}
+        listingLoading={listingDataLoading}
+        className="pb-7"
+        onClickViewMore={onClickToFilter}
+      />
+
+      <ListingSection
+        t={t}
+        title={
+          <div className="flex">
+            <CustomText textClassName="font-bold primary-text pr-1">
+              Cheapest Rooms
+            </CustomText>
+            <CustomText textClassName="font-bold">Just For You</CustomText>
+          </div>
+        }
+        lists={cheapestRooms}
+        listingLoading={listingDataLoading}
+        className="pb-7"
+        onClickViewMore={onClickToFilter}
+      />
+
+      <div className="primary-bg-color py-7">
         <ListingSection
           t={t}
-          title={t("explore.popularCity")}
-          lists={popularCity}
+          title={
+            <div className="flex items-center">
+              <CustomText textClassName="font-size-large italic white-text pr-1">
+                Special
+              </CustomText>
+              <CustomText textClassName="font-bold italic white-text">
+                Promotion
+              </CustomText>
+            </div>
+          }
+          lists={Array(123)}
           listingLoading={listingDataLoading}
-          className="pb-7"
           onClickViewMore={onClickToFilter}
-        />
-
-        <ListingSection
-          t={t}
-          title={"Featured Rooms Just For You"}
-          lists={featuredRooms}
-          listingLoading={listingDataLoading}
-          className="pb-7"
-          onClickViewMore={onClickToFilter}
-        />
-
-        <ListingSection
-          t={t}
-          title={"Popular University/College"}
-          lists={popularUniversity}
-          listingLoading={listingDataLoading}
-          className="pb-3"
-          onClickViewMore={onClickToFilter}
-        />
-
-        <ListingSection
-          t={t}
-          title={"Cheapest Rooms Just For You"}
-          lists={cheapestRooms}
-          listingLoading={listingDataLoading}
-          className="pb-3"
-          onClickViewMore={onClickToFilter}
-        />
-
-        <ListingSection
-          t={t}
-          title={"Special Promotion"}
-          lists={specialPromotion}
-          listingLoading={listingDataLoading}
-          className="pb-3"
-          onClickViewMore={onClickToFilter}
+          hideLabel
+          hideViewMore
         />
       </div>
 

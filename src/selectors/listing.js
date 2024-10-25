@@ -37,16 +37,13 @@ export const getBookingOverviewData = (state, id) =>
 export const getBookingOverviewLoading = (state) =>
   get(state, ["listing", "bookingOverview", "loading"], false);
 
-export const getCheapestRooms = (state) =>
-    get(state, ["cheapest_rooms"], []);
-export const getFeaturedRooms = (state) =>
-    get(state, ["featured_rooms"], []);
-export const getPopularCity = (state) =>
-    get(state, ["popular_city"], []);
+export const getCheapestRooms = (state) => get(state, ["cheapest_rooms"], []);
+export const getFeaturedRooms = (state) => get(state, ["featured_rooms"], []);
+export const getPopularCity = (state) => get(state, ["popular_city"], []);
 export const getPopularUniversity = (state) =>
-    get(state, ["popular_university"], []);
+  get(state, ["popular_university"], []);
 export const getSpecialPromotion = (state) =>
-    get(state, ["special_promotion"], []);
+  get(state, ["special_promotion"], []);
 export const getPopularUniCollege = (state) =>
   get(state, ["uni_college_profile"], []);
 export const getPopularCondo = (state) => get(state, ["popular_condo"], []);
@@ -120,9 +117,12 @@ export const getAgencyReviewStatus = (state) =>
   get(state, ["agency_review_status"], "");
 export const getAuthorizedAt = (state) => get(state, ["authorized_at"], "");
 export const getTotalFees = (state) => get(state, ["total_fees"], "");
-export const getTotalFeesAmount = (state) => get(state, ["total_fees","total"], "");
-export const getTotalFeesFirstMonthAmount = (state) => get(state, ["total_fees","total_first_month_rent_charges"], "");
-export const getTotalFeesLastMonthAmount = (state) => get(state, ["total_fees","total_last_month_rent_charges"], "");
+export const getTotalFeesAmount = (state) =>
+  get(state, ["total_fees", "total"], "");
+export const getTotalFeesFirstMonthAmount = (state) =>
+  get(state, ["total_fees", "total_first_month_rent_charges"], "");
+export const getTotalFeesLastMonthAmount = (state) =>
+  get(state, ["total_fees", "total_last_month_rent_charges"], "");
 export const getItemsWithZeroDeposit = (state) =>
   get(state, ["items_with_zero_deposit"], null);
 export const getItemsWithSecurityDeposit = (state) =>
