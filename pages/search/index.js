@@ -99,7 +99,7 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          tags: formatQueryTags,
+          tags: isEmpty(queryTags) ? "" : formatQueryTags,
           [queryKey]:
             isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
               ? queryId
