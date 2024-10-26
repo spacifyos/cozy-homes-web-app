@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { random } from "lodash";
 
 const Skeleton = ({ height, width, minWidth = "100%" }) => {
   return (
@@ -7,7 +7,7 @@ const Skeleton = ({ height, width, minWidth = "100%" }) => {
         className="skeleton"
         style={{ height: height, width: width, minWidth: minWidth }}
       ></div>
-      <div className="skeleton h-3" style={{ width: _.random(50, 80) }}></div>
+      <div className="skeleton h-3" style={{ width: random(50, 80) }}></div>
     </div>
   );
 };

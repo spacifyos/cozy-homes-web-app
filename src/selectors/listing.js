@@ -50,6 +50,7 @@ export const getPopularCondo = (state) => get(state, ["popular_condo"], []);
 export const getTags = (state) => get(state, ["tags"], []);
 export const getName = (state) => get(state, ["name"], "");
 export const getImageUrl = (state) => get(state, ["image_url"], "");
+export const getMobileImageUrl = (state) => get(state, ["mobile_image_url"], "");
 export const getImageUrlActive = (state) =>
   get(state, ["image_url_active"], "");
 export const getImagesUrl = (state) => get(state, ["images_url"], []);

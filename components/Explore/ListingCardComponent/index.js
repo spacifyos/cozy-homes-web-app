@@ -8,7 +8,7 @@ const ListingCardComponent = ({
   item,
   imageHeight = 100,
   imageWidth = 100,
-                                hideLabel = false
+  hideLabel = false,
 }) => {
   const label = listingSelector.getLabel(item);
   const name = listingSelector.getName(item);
@@ -29,7 +29,10 @@ const ListingCardComponent = ({
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        imageStyle={{ height: imageHeight, width: imageWidth }}
+        imageStyle={{
+          height: imageHeight,
+          width: imageWidth,
+        }}
       />
       {hideLabel ? (
         false

@@ -5,7 +5,7 @@ import Skeleton from "@/components/Skeleton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import ListingCardComponent from "@/components/Search/ListingCardComponent";
+import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
@@ -88,10 +88,14 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
             // navigation={true}
             modules={[Pagination, Navigation]}
           >
-            {map(Array(10), (item, index) => {
+            {map(data, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} imageHeight={200} />
+                  <ListingCardComponent
+                    item={item}
+                    imageHeight={200}
+                    imageWidth="100%"
+                  />
                 </SwiperSlide>
               );
             })}

@@ -36,6 +36,7 @@ import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSectio
 import SignInModal from "@/components/Explore/SignInModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
+import { getMobileImageUrl } from "@/src/selectors/listing";
 
 export { getServerSideProps };
 
@@ -71,6 +72,13 @@ function Home() {
   const specialPromotion = listingSelector.getSpecialPromotion(listingData);
   const selectOptionData = useSelector((state) =>
     commonSelector.getSelectOptionData(state),
+  );
+
+  const banner1 = listingSelector.getMobileImageUrl(
+    listingBannerData && listingBannerData[0],
+  );
+  const banner2 = listingSelector.getMobileImageUrl(
+    listingBannerData && listingBannerData[1],
   );
 
   const tagsListing = listingSelector.getTags(listingData);
@@ -145,10 +153,12 @@ function Home() {
               style={{ height: 350 }}
             >
               <Image
-                src={Images.imageNotFound}
+                loader={() => banner1}
+                loading="lazy"
+                src={isEmpty(banner1) ? Images.imageNotFound : banner1}
                 sizes="100vw"
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
 
@@ -157,10 +167,12 @@ function Home() {
               style={{ height: 350 }}
             >
               <Image
-                src={Images.imageNotFound}
+                loader={() => banner2}
+                loading="lazy"
+                src={isEmpty(banner2) ? Images.imageNotFound : banner2}
                 sizes="100vw"
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>
@@ -168,33 +180,37 @@ function Home() {
           <div className="bg-color py-10">
             <DesktopPopularCitySection
               onClickViewMore={onClickToFilter}
-              data={condoListing}
+              data={popularCity}
               loading={listingDataLoading}
             />
           </div>
 
           <DesktopFeaturedRoomSection
-            data={[]}
+            data={featuredRooms}
             loading={listingDataLoading}
             onClickViewMore={onClickToFilter}
           />
 
           <div className="bg-color py-10">
             <DesktopPopularUniversitySection
-              data={[]}
+              data={popularUniversity}
               loading={listingDataLoading}
               onClickViewMore={onClickToFilter}
             />
           </div>
 
           <DesktopCheapestRoomSection
-            data={[]}
+            data={cheapestRooms}
             loading={listingDataLoading}
             onClickViewMore={onClickToFilter}
           />
 
           <div className="primary-bg-color py-10">
-            <DesktopPromotionSection />
+            <DesktopPromotionSection
+              data={specialPromotion}
+              loading={listingDataLoading}
+              onClickViewMore={onClickToFilter}
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
@@ -203,10 +219,12 @@ function Home() {
               style={{ height: 350 }}
             >
               <Image
-                src={Images.imageNotFound}
+                loader={() => banner1}
+                loading="lazy"
+                src={isEmpty(banner1) ? Images.imageNotFound : banner1}
                 sizes="100vw"
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
 
@@ -215,10 +233,12 @@ function Home() {
               style={{ height: 350 }}
             >
               <Image
-                src={Images.imageNotFound}
+                loader={() => banner2}
+                loading="lazy"
+                src={isEmpty(banner2) ? Images.imageNotFound : banner2}
                 sizes="100vw"
                 fill
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>
@@ -238,90 +258,90 @@ function Home() {
           listingBannerDataLoading={listingBannerDataLoading}
         />
 
-      <div className="body-container">
-        <FeaturesSection tags={tagsListing} />
-      </div>
+        <div className="body-container">
+          <FeaturesSection tags={tagsListing} />
+        </div>
 
-      <ListingSection
-        t={t}
-        title={
-          <CustomText textClassName="font-bold primary-text">
-            Popular City
-          </CustomText>
-        }
-        lists={popularCity}
-        listingLoading={listingDataLoading}
-        className="pb-7"
-        onClickViewMore={onClickToFilter}
-      />
-
-      <div className="primaryWhite-bg-color py-7">
         <ListingSection
           t={t}
           title={
-            <div className="flex">
-              <CustomText textClassName="font-bold primary-text pr-1">
-                Featured Rooms
-              </CustomText>
-              <CustomText textClassName="font-bold">Just For You</CustomText>
-            </div>
+            <CustomText textClassName="font-bold primary-text">
+              Popular City
+            </CustomText>
           }
-          lists={featuredRooms}
+          lists={popularCity}
           listingLoading={listingDataLoading}
+          className="pb-7"
           onClickViewMore={onClickToFilter}
         />
-      </div>
 
-      <ListingSection
-        t={t}
-        title={
-          <CustomText textClassName="font-bold primary-text">
-            Popular University/College
-          </CustomText>
-        }
-        lists={popularUniversity}
-        listingLoading={listingDataLoading}
-        className="py-7"
-        onClickViewMore={onClickToFilter}
-      />
+        <div className="primaryWhite-bg-color py-7">
+          <ListingSection
+            t={t}
+            title={
+              <div className="flex">
+                <CustomText textClassName="font-bold primary-text pr-1">
+                  Featured Rooms
+                </CustomText>
+                <CustomText textClassName="font-bold">Just For You</CustomText>
+              </div>
+            }
+            lists={featuredRooms}
+            listingLoading={listingDataLoading}
+            onClickViewMore={onClickToFilter}
+          />
+        </div>
 
-      <div className="primaryWhite-bg-color py-7">
         <ListingSection
           t={t}
           title={
-            <div className="flex">
-              <CustomText textClassName="font-bold primary-text pr-1">
-                Cheapest Rooms
-              </CustomText>
-              <CustomText textClassName="font-bold">Just For You</CustomText>
-            </div>
+            <CustomText textClassName="font-bold primary-text">
+              Popular University/College
+            </CustomText>
           }
-          lists={cheapestRooms}
+          lists={popularUniversity}
           listingLoading={listingDataLoading}
+          className="py-7"
           onClickViewMore={onClickToFilter}
         />
-      </div>
 
-      <div className="primary-bg-color py-7">
-        <ListingSection
-          t={t}
-          title={
-            <div className="flex items-center">
-              <CustomText textClassName="font-size-large italic white-text pr-1">
-                Special
-              </CustomText>
-              <CustomText textClassName="font-bold italic white-text">
-                Promotion
-              </CustomText>
-            </div>
-          }
-          lists={specialPromotion}
-          listingLoading={listingDataLoading}
-          onClickViewMore={onClickToFilter}
-          hideLabel
-          hideViewMore
-        />
-      </div>
+        <div className="primaryWhite-bg-color py-7">
+          <ListingSection
+            t={t}
+            title={
+              <div className="flex">
+                <CustomText textClassName="font-bold primary-text pr-1">
+                  Cheapest Rooms
+                </CustomText>
+                <CustomText textClassName="font-bold">Just For You</CustomText>
+              </div>
+            }
+            lists={cheapestRooms}
+            listingLoading={listingDataLoading}
+            onClickViewMore={onClickToFilter}
+          />
+        </div>
+
+        <div className="primary-bg-color py-7">
+          <ListingSection
+            t={t}
+            title={
+              <div className="flex items-center">
+                <CustomText textClassName="font-size-large italic white-text pr-1">
+                  Special
+                </CustomText>
+                <CustomText textClassName="font-bold italic white-text">
+                  Promotion
+                </CustomText>
+              </div>
+            }
+            lists={specialPromotion}
+            listingLoading={listingDataLoading}
+            onClickViewMore={onClickToFilter}
+            hideLabel
+            hideViewMore
+          />
+        </div>
 
         <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
       </div>

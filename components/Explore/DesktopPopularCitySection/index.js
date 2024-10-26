@@ -32,8 +32,8 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
         style={{ minHeight: 410 }}
       >
         {loading ? (
-            map(Array(10), (item, index) => (
-              <Skeleton width="100%" height={162} key={index} />
+            map(Array(12), (item, index) => (
+              <Skeleton width="100%" height={160} key={index} />
             ))
         ) : isEmpty(data) ? (
           <div className="flex justify-center">

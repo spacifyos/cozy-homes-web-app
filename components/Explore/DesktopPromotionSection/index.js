@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 
-const DesktopPromotionSection = () => {
+const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center pb-4">
@@ -25,13 +25,13 @@ const DesktopPromotionSection = () => {
       </div>
 
       <div className="gap-1" style={{ height: 250 }}>
-        {false ? (
+        {loading ? (
           <div className="flex">
             {map(Array(4), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
+              <Skeleton width={"100%"} height={250} key={index} />
             ))}
           </div>
-        ) : isEmpty(Array(10)) ? (
+        ) : isEmpty(data) ? (
           <div className="flex justify-center">
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
@@ -67,15 +67,21 @@ const DesktopPromotionSection = () => {
             modules={[Pagination, Navigation]}
             className="mySwiper explore-swiper"
           >
-            {map(Array(5), (item, index) => {
+            {map(data, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <div className="primaryWhite-bg-color flex justify-center global-border-radius">
-                    <CustomImage
-                      src={Images.logoImage}
-                      imageStyle={{ width: 300, height: 250 }}
-                    />
-                  </div>
+                  <ListingCardComponent
+                    item={item}
+                    imageHeight={250}
+                    imageWidth={"100%"}
+                    hideLabel
+                  />
+                  {/*<div className="primaryWhite-bg-color flex justify-center global-border-radius">*/}
+                  {/*  <CustomImage*/}
+                  {/*    src={Images.logoImage}*/}
+                  {/*    imageStyle={{ width: 300, height: 250 }}*/}
+                  {/*  />*/}
+                  {/*</div>*/}
                 </SwiperSlide>
               );
             })}

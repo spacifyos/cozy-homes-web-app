@@ -7,7 +7,7 @@ import Skeleton from "@/components/Skeleton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import ListingCardComponent from "@/components/Search/ListingCardComponent";
+import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 
 const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -35,11 +35,14 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
         />
       </div>
 
-      <div className="gap-1 flex items-center justify-center" style={{ height: 255 }}>
+      <div
+        className="gap-1 flex items-center justify-center"
+        style={{ height: 255 }}
+      >
         {loading ? (
           <div className="flex flex-1">
             {map(Array(5), (item, index) => (
-              <Skeleton width={105} height={105} key={index} />
+              <Skeleton width={"100%"} height={200} key={index} />
             ))}
           </div>
         ) : isEmpty(data) ? (
@@ -81,7 +84,11 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
             {map(data, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} imageHeight={200} />
+                  <ListingCardComponent
+                    item={item}
+                    imageHeight={200}
+                    imageWidth="100%"
+                  />
                 </SwiperSlide>
               );
             })}
