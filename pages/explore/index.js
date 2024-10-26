@@ -245,7 +245,7 @@ function Home() {
         </div>
       </DesktopLayout>
 
-      <div className="bg-color pt-7 mobile-responsive">
+      <div className="bg-color pt-7 pb-24 mobile-responsive">
         {/*<LanguageSwitcher*/}
         {/*  locale={locale}*/}
         {/*  openSwitcher={openSwitcher}*/}
