@@ -149,7 +149,7 @@ function Home() {
 
           <div className="grid grid-cols-2 gap-10 pb-10 container mx-auto">
             <div
-              className="col-span-1 relative global-box-shadow global-border-radius"
+              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
               style={{ height: 350 }}
             >
               <Image
@@ -163,7 +163,7 @@ function Home() {
             </div>
 
             <div
-              className="col-span-1 relative global-box-shadow global-border-radius"
+              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
               style={{ height: 350 }}
             >
               <Image
@@ -215,7 +215,7 @@ function Home() {
 
           <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
             <div
-              className="col-span-1 relative global-box-shadow global-border-radius"
+              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
               style={{ height: 350 }}
             >
               <Image
@@ -229,7 +229,7 @@ function Home() {
             </div>
 
             <div
-              className="col-span-1 relative global-box-shadow global-border-radius"
+              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
               style={{ height: 350 }}
             >
               <Image
