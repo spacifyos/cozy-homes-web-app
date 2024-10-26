@@ -5,7 +5,19 @@ import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
 import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
-import { get, isEmpty, map, debounce, includes, filter, isEqual } from "lodash";
+import {
+  get,
+  isEmpty,
+  map,
+  debounce,
+  includes,
+  filter,
+  isEqual,
+  size,
+  remove,
+  toArray,
+  split,
+} from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -35,6 +47,9 @@ const Search = () => {
   const amenitiesTarget = useRef();
   const queryId = get(router, ["query", "id"], "");
   const queryKey = get(router, ["query", "key"], "");
+  const queryTags = get(router, ["query", "tags"], "");
+
+  const formatQueryTags = split(queryTags, ",");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -90,7 +105,13 @@ const Search = () => {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          [queryKey]: isEqual(queryKey, "tags") ? [queryId] : queryId,
+          tags: isEmpty(queryTags) ? "" : formatQueryTags,
+          [queryKey]:
+            isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
+              ? queryId
+              : size(queryId) > 1
+                ? remove(toArray(queryId), (value) => value !== ",")
+                : queryId,
         };
       });
     }
@@ -99,15 +120,17 @@ const Search = () => {
   useEffect(() => {
     if (!isEmpty(amenitiesTag)) {
       const formatFacilityTag = map(amenitiesTag, (item) => {
+        const code = get(item, ["code"], "");
+
         return {
           ...item,
-          ...{ isActive: false },
+          ...{ isActive: includes(formatQueryTags, code) ? true : false },
         };
       });
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag]);
+  }, [amenitiesTag, router]);
 
   useEffect(() => {
     if (!isEmpty(generalTag)) {

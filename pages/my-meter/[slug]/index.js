@@ -40,9 +40,12 @@ const MyMeterOverview = ({ id }) => {
   );
 
   const balanceUnit = meterSelector.getBalanceUnit(meterOverviewData);
+  const balanceCredit = meterSelector.getBalanceCredit(meterOverviewData);
   const lastConnectedAt = meterSelector.getLastConnectAt(meterOverviewData);
   const unitPrice = meterSelector.getUnitPrice(meterOverviewData);
   const tenancy = meterSelector.getTenancy(meterOverviewData);
+  const isShowBalanceInPrice =
+    meterSelector.getIsShowBalanceInPrice(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -217,11 +220,13 @@ const MyMeterOverview = ({ id }) => {
 
           <MeterDetail t={t} data={meterOverviewData} />
 
-          <BalanceUnit
-            t={t}
-            balanceUnit={balanceUnit}
-            lastConnectedAt={lastConnectedAt}
-          />
+        <BalanceUnit
+          t={t}
+          isShowBalanceInPrice={isShowBalanceInPrice}
+          balanceUnit={balanceUnit}
+          balanceCredit={balanceCredit}
+          lastConnectedAt={lastConnectedAt}
+        />
 
           <MeterTopUpSection
             t={t}

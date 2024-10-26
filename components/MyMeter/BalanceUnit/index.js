@@ -3,15 +3,27 @@ import MeterComponent from "@/components/MyStay/MeterComponent";
 import { isEmpty } from "lodash";
 import moment from "moment";
 
-const BalanceUnit = ({ t, balanceUnit, lastConnectedAt }) => {
+const BalanceUnit = ({
+  t,
+  balanceUnit,
+  balanceCredit,
+  lastConnectedAt,
+  isShowBalanceInPrice,
+}) => {
   return (
     <div className="balance-container">
       <div className="flex justify-center items-center">
         <CustomText textClassName="font-size-normal">
-          {t("myMeterOverview.balanceUnit")}:
+          {isShowBalanceInPrice ? "Balance Credit" : "Balance Unit"}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold pl-2">
-          {isEmpty(balanceUnit) ? "0" : balanceUnit}
+          {isShowBalanceInPrice
+            ? isEmpty(balanceCredit)
+              ? "0"
+              : balanceCredit
+            : isEmpty(balanceUnit)
+              ? "0"
+              : balanceUnit}
         </CustomText>
       </div>
 

@@ -1,6 +1,6 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import { isEmpty } from "lodash";
+import { get, isEmpty, map } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
@@ -8,31 +8,39 @@ const ListingCardComponent = ({
   item,
   imageHeight = 100,
   imageWidth = 100,
+                                hideLabel = false
 }) => {
+  const label = listingSelector.getLabel(item);
   const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
   const profileId = listingSelector.getProfileId(item);
+  const tags = listingSelector.getTags(item);
+  const tagsCode = map(tags, (tag) => listingSelector.getCode(tag));
 
-  const key = isEmpty(profileId) ? "property_id" : "profile_id";
-  const value = isEmpty(profileId) ? propertyId : profileId;
+  const key = get(item, ["key", "name"], "");
+  const value = get(item, ["key", "value"], "");
 
   return (
     <a
-      href={`/search?key=${key}&id=${value}`}
-      className="flex flex-col items-center px-1 cursor-pointer"
+      href={`/search?key=${key}&id=${value}&tags=${tagsCode}`}
+      className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage
         className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
         imageStyle={{ height: imageHeight, width: imageWidth }}
       />
-      <CustomText
-        textClassName="font-size-xsmall font-bold text-center"
-        lineClamp={2}
-      >
-        {name}
-      </CustomText>
+      {hideLabel ? (
+        false
+      ) : (
+        <CustomText
+          textClassName="font-size-xsmall font-bold text-center"
+          lineClamp={2}
+        >
+          {label}
+        </CustomText>
+      )}
     </a>
   );
 };

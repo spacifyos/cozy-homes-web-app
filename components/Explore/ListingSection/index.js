@@ -7,27 +7,32 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 
 const ListingSection = ({
-  t,
+  hideLabel,
   lists,
   title,
   listingLoading,
   onClickViewMore,
   className,
+  hideViewMore,
 }) => {
   return (
     <div className={className}>
-      <div className="flex justify-between items-center pb-2">
-        <CustomText textClassName="section-title">{title}</CustomText>
+      <div className="flex justify-between items-center pb-2 body-container">
+        {title}
 
-        <a
-          onClick={onClickViewMore}
-          className="cursor-pointer"
-          href={`/search`}
-        >
-          <CustomText textClassName="font-size-xsmall">
-            {"View More >"}
-          </CustomText>
-        </a>
+        {hideViewMore ? (
+          false
+        ) : (
+          <a
+            onClick={onClickViewMore}
+            className="cursor-pointer"
+            href={`/search`}
+          >
+            <CustomText textClassName="font-size-xsmall">
+              {"View More >"}
+            </CustomText>
+          </a>
+        )}
       </div>
 
       {/*<CustomButton*/}
@@ -55,11 +60,16 @@ const ListingSection = ({
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
 
-      <div className="" style={{ marginLeft: "-16px", marginRight: "-16px" }}>
+      <div className="pl-4">
         {listingLoading ? (
           <div className="flex" style={{ height: 144 }}>
             {map(Array(4), (item, index) => (
-              <Skeleton width={"100%"} height={100} key={index} />
+              <Skeleton
+                width={"100%"}
+                minWidth={100}
+                height={100}
+                key={index}
+              />
             ))}
           </div>
         ) : isEmpty(lists) ? (
@@ -70,7 +80,7 @@ const ListingSection = ({
           <Swiper
             style={{ width: "100%" }}
             slidesPerView={4}
-            // spaceBetween={8}
+            spaceBetween={10}
             loop={true}
             pagination={{
               clickable: true,
@@ -83,7 +93,7 @@ const ListingSection = ({
             {map(lists, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} />
+                  <ListingCardComponent item={item} hideLabel={hideLabel} />
                 </SwiperSlide>
               );
             })}

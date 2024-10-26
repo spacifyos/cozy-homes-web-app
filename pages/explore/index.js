@@ -64,12 +64,15 @@ function Home() {
     listingSelector.getListingBannerDataLoading(state),
   );
 
+  const cheapestRooms = listingSelector.getCheapestRooms(listingData);
+  const featuredRooms = listingSelector.getFeaturedRooms(listingData);
+  const popularCity = listingSelector.getPopularCity(listingData);
+  const popularUniversity = listingSelector.getPopularUniversity(listingData);
+  const specialPromotion = listingSelector.getSpecialPromotion(listingData);
   const selectOptionData = useSelector((state) =>
     commonSelector.getSelectOptionData(state),
   );
 
-  const universityListing = listingSelector.getPopularUniCollege(listingData);
-  const condoListing = listingSelector.getPopularCondo(listingData);
   const tagsListing = listingSelector.getTags(listingData);
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
@@ -235,36 +238,90 @@ function Home() {
           listingBannerDataLoading={listingBannerDataLoading}
         />
 
-        <div className="body-container pb-24">
-          <FeaturesSection tags={tagsListing} />
+      <div className="body-container">
+        <FeaturesSection tags={tagsListing} />
+      </div>
 
-          {/*<ListingSection*/}
-          {/*  t={t}*/}
-          {/*  title={t("explore.popularCity")}*/}
-          {/*  lists={cityListing}*/}
-          {/*  listingLoading={listingLoading}*/}
-          {/*  className="pb-7"*/}
-          {/*  onClickViewMore={onClickToFilter}*/}
-          {/*/>*/}
+      <ListingSection
+        t={t}
+        title={
+          <CustomText textClassName="font-bold primary-text">
+            Popular City
+          </CustomText>
+        }
+        lists={popularCity}
+        listingLoading={listingDataLoading}
+        className="pb-7"
+        onClickViewMore={onClickToFilter}
+      />
 
-          <ListingSection
-            t={t}
-            title={t("explore.popularUniversity")}
-            lists={universityListing}
-            listingLoading={listingDataLoading}
-            className="pb-7"
-            onClickViewMore={onClickToFilter}
-          />
+      <div className="primaryWhite-bg-color py-7">
+        <ListingSection
+          t={t}
+          title={
+            <div className="flex">
+              <CustomText textClassName="font-bold primary-text pr-1">
+                Featured Rooms
+              </CustomText>
+              <CustomText textClassName="font-bold">Just For You</CustomText>
+            </div>
+          }
+          lists={featuredRooms}
+          listingLoading={listingDataLoading}
+          onClickViewMore={onClickToFilter}
+        />
+      </div>
 
-          <ListingSection
-            t={t}
-            title={t("explore.popularCondo")}
-            lists={condoListing}
-            listingLoading={listingDataLoading}
-            className="pb-3"
-            onClickViewMore={onClickToFilter}
-          />
-        </div>
+      <ListingSection
+        t={t}
+        title={
+          <CustomText textClassName="font-bold primary-text">
+            Popular University/College
+          </CustomText>
+        }
+        lists={popularUniversity}
+        listingLoading={listingDataLoading}
+        className="py-7"
+        onClickViewMore={onClickToFilter}
+      />
+
+      <div className="primaryWhite-bg-color py-7">
+        <ListingSection
+          t={t}
+          title={
+            <div className="flex">
+              <CustomText textClassName="font-bold primary-text pr-1">
+                Cheapest Rooms
+              </CustomText>
+              <CustomText textClassName="font-bold">Just For You</CustomText>
+            </div>
+          }
+          lists={cheapestRooms}
+          listingLoading={listingDataLoading}
+          onClickViewMore={onClickToFilter}
+        />
+      </div>
+
+      <div className="primary-bg-color py-7">
+        <ListingSection
+          t={t}
+          title={
+            <div className="flex items-center">
+              <CustomText textClassName="font-size-large italic white-text pr-1">
+                Special
+              </CustomText>
+              <CustomText textClassName="font-bold italic white-text">
+                Promotion
+              </CustomText>
+            </div>
+          }
+          lists={specialPromotion}
+          listingLoading={listingDataLoading}
+          onClickViewMore={onClickToFilter}
+          hideLabel
+          hideViewMore
+        />
+      </div>
 
         <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
       </div>
