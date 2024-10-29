@@ -104,7 +104,7 @@ const Search = () => {
             isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
               ? queryId
               : size(queryId) > 1
-                ? remove(toArray(queryId), (value) => value !== ",")
+                ? split(queryId, ",")
                 : queryId,
         };
       });
