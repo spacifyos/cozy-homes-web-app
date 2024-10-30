@@ -157,6 +157,8 @@ const Image = {
   albumIcon: `/images/icon/album_icon.png`,
   tenantCard: `/images/tenant_card.png`,
   ownerCard: `/images/owner_card.png`,
+  renoExpertIcon: "/images/icon/RenoExpert_icon_active.png",
+  renoExpertIconActive: "/images/icon/RenoExpert_icon_active.png",
 };
 
 export default { ...Image };

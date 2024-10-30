@@ -261,6 +261,14 @@ const OwnerAccount = () => {
             route={"/owner/my-report"}
           />
 
+          <FeatureComponent
+            title={"My Agreement"}
+            icon={Images.agreementIconActive}
+            imageWidth={25}
+            pb={3}
+            route={"/owner/e-agreement"}
+          />
+
           {/*<FeatureComponent*/}
           {/*  title={t("account.latestUpdate")}*/}
           {/*  icon={Images.primaryRingIcon}*/}

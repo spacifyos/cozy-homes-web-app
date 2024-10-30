@@ -14,7 +14,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -54,9 +54,9 @@ const OwnerEAgreement = () => {
     agreementListingDataPagination,
   );
 
-  // useEffect(() => {
-  //   fetchAgreementListingData(selectedStatus);
-  // }, [selectedStatus]);
+  useEffect(() => {
+    fetchAgreementListingData(selectedStatus);
+  }, [selectedStatus]);
 
   const fetchAgreementListingData = (
     status = Constant.AGREEMENT_ALL,
@@ -75,7 +75,7 @@ const OwnerEAgreement = () => {
   };
 
   const onClickToDetail = (id) => {
-    router.push(`/e-agreement/${id}`);
+    router.push(`/owner/e-agreement/${id}`);
   };
 
   const onClickLoadMore = () => {
@@ -83,7 +83,11 @@ const OwnerEAgreement = () => {
   };
 
   return (
-    <CustomOwnerHeader title="My E-Agreement" onClickGoBack={onClickGoBack} className="pb-0">
+    <CustomOwnerHeader
+      title="My E-Agreement"
+      onClickGoBack={onClickGoBack}
+      className="pb-0"
+    >
       <NextSeo title="My E-Agreement | Owner - Spacify Asia" />
 
       <div className="body-container bg-color pt-4 flex flex-col flex-1">
@@ -111,12 +115,7 @@ const OwnerEAgreement = () => {
         ) : (
           <div className="flex flex-col gap-4">
             {map(agreementListingData, (item, index) => (
-              <EAgreementCard
-                item={item}
-                key={index}
-                onClickToDetail={onClickToDetail}
-                t={t}
-              />
+              <EAgreementCard item={item} key={index} t={t} />
             ))}
           </div>
         )}
