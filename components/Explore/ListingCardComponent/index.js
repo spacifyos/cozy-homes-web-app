@@ -27,7 +27,7 @@ const ListingCardComponent = ({
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage
-        className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color"
+        className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color overflow-hidden"
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
         imageStyle={{
           height: imageHeight,

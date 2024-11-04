@@ -177,6 +177,8 @@ const Image = {
   closeIconWhite: "/images/icon/close_icon.png",
   recommendIcon: "/images/icon/recommend_icon.png",
   nearbyIcon: "/images/icon/nearby_icon.png",
+  renoExpertIcon: "/images/icon/RenoExpert_icon.png",
+  renoExpertIconActive: "/images/icon/RenoExpert_icon_active.png",
 };
 
 export default { ...Image };

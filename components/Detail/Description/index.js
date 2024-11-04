@@ -1,8 +1,11 @@
 import CustomText from "@/components/CustomText";
-import _, { isEmpty } from "lodash";
+import { isEmpty } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import DOMPurify from "dompurify";
 
 const Description = ({ t, description }) => {
+  const sanitizedDescription = DOMPurify.sanitize(description);
+
   return (
     <div className="mb-5 content-container">
       <CustomText textClassName="section-title">
@@ -17,9 +20,7 @@ const Description = ({ t, description }) => {
             />
           </div>
         ) : (
-          <CustomText textClassName="font-size-xsmall">
-            {description}
-          </CustomText>
+          <div dangerouslySetInnerHTML={{ __html: sanitizedDescription }}></div>
         )}
       </div>
     </div>

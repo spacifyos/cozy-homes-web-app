@@ -261,6 +261,14 @@ const OwnerAccount = () => {
             route={"/owner/my-report"}
           />
 
+          <FeatureComponent
+            title={"My Agreement"}
+            icon={Images.agreementIconActive}
+            imageWidth={25}
+            pb={3}
+            route={"/owner/e-agreement"}
+          />
+
           {/*<FeatureComponent*/}
           {/*  title={t("account.latestUpdate")}*/}
           {/*  icon={Images.primaryRingIcon}*/}
@@ -303,7 +311,7 @@ const OwnerAccount = () => {
             </div>
 
             <CustomText textClassName="disable-text font-size-small">
-              {t("account.version")} 1.5.3
+              {t("account.version")} 1.6.0
             </CustomText>
           </div>
         </div>

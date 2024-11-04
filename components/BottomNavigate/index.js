@@ -32,6 +32,12 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
           activeIcon: Images.navigateChatIconActive,
         },
         {
+          name: "RenoXpert",
+          value: isEqual(userType, "owner") ? "/testing" : "/testing",
+          icon: Images.renoExpertIcon,
+          activeIcon: Images.renoExpertIconActive,
+        },
+        {
           name: t("root.account"),
           value: isEqual(userType, "owner") ? "/owner/account" : "/account",
           icon: Images.accountIcon,
@@ -75,7 +81,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
                       activeIcon
                     : icon
                 }
-                imageStyle={{ width: 25, height: 25 }}
+                imageStyle={{ width: 20, height: 20 }}
               />
               <CustomText
                 textClassName={`${
@@ -84,7 +90,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
                     ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                       "primary-text"
                     : "disable-text"
-                } font-size-small pt-1`}
+                } font-size-xxsmall pt-1`}
               >
                 {name}
               </CustomText>
