@@ -8,7 +8,6 @@ import TagComponent from "@/components/Search/TagComponent";
 import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
-import CustomMultiSelect from "@/components/CustomMultiSelect";
 
 const DesktopSearchBar = ({ onClickOpenModal }) => {
   return (

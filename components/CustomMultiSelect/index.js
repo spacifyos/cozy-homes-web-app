@@ -1,5 +1,3 @@
-import Select from "react-select";
-
 const CustomMultiSelect = () => {
   const options = [
     { value: "chocolate", label: "Chocolate" },
@@ -7,16 +5,7 @@ const CustomMultiSelect = () => {
     { value: "vanilla", label: "Vanilla" },
   ];
 
-  return (
-    <Select
-      defaultValue={[]}
-      isMulti
-      name="colors"
-      options={options}
-      className="basic-multi-select"
-      classNamePrefix="select"
-    />
-  );
+  return <div></div>;
 };
 
 export default CustomMultiSelect;
