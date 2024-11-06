@@ -140,6 +140,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [idType, setIdType] = useState("nric");
   const [paymentAmount, setPaymentAmount] = useState("");
   const [isZeroDeposit, setIsZeroDeposit] = useState("true");
+  const [referralCodeValue, setReferralCodeValue] = useState("");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -398,6 +399,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       ...(isAllowedZeroDeposit
         ? { is_zero_deposit: isEqual(isZeroDeposit, "true") ? true : false }
         : {}),
+      referral_code: referralCodeValue,
     };
 
     await apiRequest.postBookingCreateRequest(
@@ -406,6 +408,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       createBookingSuccess,
     );
   };
+
+  console.log(referralCodeValue);
 
   const createBookingSuccess = (res) => {
     const url = get(res, ["url"], "");
@@ -1164,6 +1168,20 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               title={title}
               onClickSelectPaymentAmount={onClickSelectPaymentAmount}
             />
+          </div>
+
+          <div className="global-horizontal-padding ">
+            <div className="global-box-shadow global-border-radius primaryWhite-bg-color grid grid-cols-1 global-horizontal-padding py-3">
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-1"
+                placeholder="Referral Code"
+                title="Referral Code (Optional)"
+                onChange={(e) => setReferralCodeValue(e.target.value)}
+                // name="postcode"
+                // errorMessage={errorMessage.postcode}
+              />
+            </div>
           </div>
 
           <div className="flex items-start px-4 pt-3">

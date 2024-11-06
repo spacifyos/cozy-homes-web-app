@@ -21,6 +21,8 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import BottomNavigate from "@/components/BottomNavigate";
+import { getReferralCode } from "@/src/selectors/auth";
+import CustomButton from "@/components/CustomButton";
 
 export { getServerSideProps };
 
@@ -46,6 +48,7 @@ const Account = () => {
 
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const type = authSelector.getType(userProfileData);
+  const referralCode = authSelector.getReferralCode(userProfileData);
 
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
@@ -60,6 +63,7 @@ const Account = () => {
   const [otpValue, setOtpValue] = useState("");
   const [otpToken, setOtpToken] = useState("");
   const [isRequestOtp, setIsRequestOtp] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -224,12 +228,22 @@ const Account = () => {
     router.push(route);
   };
 
+  const onClickCopy = () => {
+    navigator.clipboard.writeText(
+      `Earn your free rental by sharing this referral code "${referralCode}".`,
+    );
+
+    Toast.success("Copies Successful!");
+
+    setIsCopy(true);
+  };
+
   return (
     <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
       <NextSeo title="Account - Spacify Asia" />
 
       <div className="body-container pb-24">
-        <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
+        <div className="grid grid-cols-5 gap-3 flex-1 mb-4">
           <ProfileCard data={userProfileData} />
 
           <SpacifyCoins
@@ -237,6 +251,25 @@ const Account = () => {
             onClickToCoinsTransaction={onClickToCoinsTransaction}
           />
         </div>
+
+        <div className="divider-line"></div>
+
+        <div className="">
+          <CustomText textClassName="pb-1">Referral Code</CustomText>
+          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+            <CustomText textClassName="">
+              {isEmpty(referralCode) ? "" : referralCode}
+            </CustomText>
+            <CustomButton
+              textClassName="font-size-xsmall"
+              buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+              buttonText={isCopy ? "Copies" : "Copy"}
+              onClick={onClickCopy}
+            />
+          </div>
+        </div>
+
+        <div className="divider-line"></div>
 
         {/*<FeatureComponent*/}
         {/*  title={t("account.smartMeterPairing")}*/}

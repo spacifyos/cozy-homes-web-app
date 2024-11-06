@@ -46,14 +46,19 @@ export const getUserPhoneNumber = (state) =>
 export const getUserToken = (state) => _.get(state, ["user", "token"], "");
 export const getUserType = (state) => _.get(state, ["user", "type"], "");
 export const getBankDetails = (state) => _.get(state, ["bank_details"], "");
-export const getAccountHolderName = (state) => _.get(state, ["account_holder_name"], "");
+export const getAccountHolderName = (state) =>
+  _.get(state, ["account_holder_name"], "");
 export const getAccountNumber = (state) => _.get(state, ["account_number"], "");
 export const getBankLogo = (state) => _.get(state, ["logo"], "");
 export const getBankName = (state) => _.get(state, ["bank_name", "label"], "");
-export const getWalletBalance = (state) => _.get(state, ["wallet", "balance"], "");
-export const getWalletIsCanWithdraw = (state) => _.get(state, ["wallet", "isCanWithdraw"], "");
-export const getWalletUpdatedAt = (state) => _.get(state, ["wallet", "updated_at"], "");
-export const getWalletWithdrawableAmount = (state) => _.get(state, ["wallet", "withdrawableAmount"], "");
-export const getHasSetPinNumber = (state) => _.get(state, ["has_set_pin_number"], false);
-
-
+export const getWalletBalance = (state) =>
+  _.get(state, ["wallet", "balance"], "");
+export const getWalletIsCanWithdraw = (state) =>
+  _.get(state, ["wallet", "isCanWithdraw"], "");
+export const getWalletUpdatedAt = (state) =>
+  _.get(state, ["wallet", "updated_at"], "");
+export const getWalletWithdrawableAmount = (state) =>
+  _.get(state, ["wallet", "withdrawableAmount"], "");
+export const getHasSetPinNumber = (state) =>
+  _.get(state, ["has_set_pin_number"], false);
+export const getReferralCode = (state) => _.get(state, ["referral_code"], "");
