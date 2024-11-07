@@ -95,6 +95,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const dispatch = useDispatch();
   const initialTime = 60;
 
+  const queryReferralCode = get(router, ["query", "referral_code"], "");
+
   // const getListingPropertyDetailRequest = (id) =>
   //   dispatch(listingAction.getListingPropertyDetailRequest(id));
   // const listingPropertyDetailData = useSelector((state) =>
@@ -223,9 +225,11 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   fetchListingPropertyDetail(id);
-  // }, [id]);
+  useEffect(() => {
+    if (!isEmpty(queryReferralCode)) {
+      setReferralCodeValue(queryReferralCode);
+    }
+  }, [queryReferralCode]);
 
   // const fetchListingPropertyDetail = (id) => {
   //   getListingPropertyDetailRequest(id);
@@ -408,8 +412,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       createBookingSuccess,
     );
   };
-
-  console.log(referralCodeValue);
 
   const createBookingSuccess = (res) => {
     const url = get(res, ["url"], "");
@@ -1178,6 +1180,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 placeholder="Referral Code"
                 title="Referral Code (Optional)"
                 onChange={(e) => setReferralCodeValue(e.target.value)}
+                value={referralCodeValue}
                 // name="postcode"
                 // errorMessage={errorMessage.postcode}
               />
