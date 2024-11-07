@@ -2,6 +2,7 @@ import Storage from "redux-persist/lib/storage";
 
 const AUTHENTICATION_TOKEN = "SpacifyToken";
 const LOGIN_TYPE = "LoginType";
+const REFERRAL_CODE = "ReferralCode";
 
 async function setToken(token) {
   try {
@@ -51,6 +52,30 @@ async function retrieveType() {
   }
 }
 
+async function setReferralCode(code) {
+  try {
+    await Storage.setItem(REFERRAL_CODE, code);
+  } catch (error) {
+    // Error saving data
+  }
+}
+
+async function removeReferralCode() {
+  try {
+    await Storage.removeItem(REFERRAL_CODE);
+  } catch (error) {
+    // Error saving data
+  }
+}
+
+async function retrieveReferralCode() {
+  try {
+    return await Storage.getItem(REFERRAL_CODE);
+  } catch (error) {
+    // Error saving data
+  }
+}
+
 export default {
   setToken,
   retrieveToken,
@@ -58,4 +83,7 @@ export default {
   setLoginType,
   removeLoginType,
   retrieveType,
+  setReferralCode,
+  removeReferralCode,
+  retrieveReferralCode,
 };

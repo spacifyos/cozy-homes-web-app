@@ -21,6 +21,7 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import BottomNavigate from "@/components/BottomNavigate";
+import CustomButton from "@/components/CustomButton";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
 import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
@@ -49,6 +50,7 @@ const Account = () => {
 
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const type = authSelector.getType(userProfileData);
+  const referralCode = authSelector.getReferralCode(userProfileData);
 
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
@@ -63,6 +65,7 @@ const Account = () => {
   const [otpValue, setOtpValue] = useState("");
   const [otpToken, setOtpToken] = useState("");
   const [isRequestOtp, setIsRequestOtp] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -229,6 +232,16 @@ const Account = () => {
     router.push(route);
   };
 
+  const onClickCopy = () => {
+    navigator.clipboard.writeText(
+      `Earn your free rental by sharing this referral code "${referralCode}". \n\nor Click below link to find your next premium room\n\n${process.env.DOMAIN}/explore?referral_code=${referralCode}`,
+    );
+
+    Toast.success("Copied link to clipboard.");
+
+    setIsCopy(true);
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account - Spacify Asia" />
@@ -258,6 +271,25 @@ const Account = () => {
               onClickToCoinsTransaction={onClickToCoinsTransaction}
             />
           </div>
+
+        <div className="divider-line"></div>
+
+        <div className="">
+          <CustomText textClassName="pb-1">Referral Code</CustomText>
+          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+            <CustomText textClassName="">
+              {isEmpty(referralCode) ? "" : referralCode}
+            </CustomText>
+            <CustomButton
+              textClassName="font-size-xsmall"
+              buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+              buttonText={isCopy ? "Copies" : "Copy"}
+              onClick={onClickCopy}
+            />
+          </div>
+        </div>
+
+        <div className="divider-line"></div>
 
           {/*<FeatureComponent*/}
           {/*  title={t("account.smartMeterPairing")}*/}

@@ -37,6 +37,7 @@ import SignInModal from "@/components/Explore/SignInModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import { getMobileImageUrl } from "@/src/selectors/listing";
+import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
@@ -47,6 +48,8 @@ function Home() {
   const locale = get(router, ["locale"], "en");
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
+
+  const queryReferralCode = get(router, ["query", "referral_code"], "");
 
   const getListingRequest = () => dispatch(listingAction.getListingRequest());
   const listingData = useSelector((state) =>
@@ -85,6 +88,12 @@ function Home() {
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
   const [searchTypeValue, setSearchTypeValue] = useState("coLiving");
+
+  useEffect(() => {
+    if (!isEmpty(queryReferralCode)) {
+      AuthManager.setReferralCode(queryReferralCode);
+    }
+  }, [queryReferralCode]);
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;

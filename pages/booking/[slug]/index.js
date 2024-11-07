@@ -46,6 +46,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
 import DesktopFormSection from "@/components/Booking/DesktopFormSection";
 import ImageUploading from "@/components/Booking/ImageUploading";
+import AuthManager from "@/src/utils/AuthManager";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -80,6 +81,8 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const formRef = useRef();
   const dispatch = useDispatch();
   const initialTime = 60;
+
+  const queryReferralCode = get(router, ["query", "referral_code"], "");
 
   // const getListingPropertyDetailRequest = (id) =>
   //   dispatch(listingAction.getListingPropertyDetailRequest(id));
@@ -126,6 +129,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [idType, setIdType] = useState("nric");
   const [paymentAmount, setPaymentAmount] = useState("");
   const [isZeroDeposit, setIsZeroDeposit] = useState("true");
+  const [referralCodeValue, setReferralCodeValue] = useState("");
 
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
@@ -208,9 +212,22 @@ const Booking = ({ id, listingPropertyDetailData }) => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   fetchListingPropertyDetail(id);
-  // }, [id]);
+  useEffect(() => {
+    const checkLocationStorageReferralCode = async () => {
+      const LocationStorageReferralCode =
+        await AuthManager.retrieveReferralCode();
+
+      if (!isEmpty(queryReferralCode)) {
+        setReferralCodeValue(queryReferralCode);
+        return;
+      } else if (!isEmpty(LocationStorageReferralCode)) {
+        setReferralCodeValue(LocationStorageReferralCode);
+        return;
+      }
+    };
+
+    checkLocationStorageReferralCode();
+  }, [queryReferralCode]);
 
   // const fetchListingPropertyDetail = (id) => {
   //   getListingPropertyDetailRequest(id);
@@ -384,6 +401,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       ...(isAllowedZeroDeposit
         ? { is_zero_deposit: isEqual(isZeroDeposit, "true") ? true : false }
         : {}),
+      referral_code: referralCodeValue,
     };
 
     await apiRequest.postBookingCreateRequest(
@@ -1215,6 +1233,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 onClickSelectPaymentAmount={onClickSelectPaymentAmount}
               />
             </div>
+
+          <div className="global-horizontal-padding ">
+            <div className="global-box-shadow global-border-radius primaryWhite-bg-color grid grid-cols-1 global-horizontal-padding py-3">
+              <BookingInput
+                bgColor="primaryWhite-bg-color"
+                className="col-span-1"
+                placeholder="Referral Code"
+                title="Referral Code (Optional)"
+                onChange={(e) => setReferralCodeValue(e.target.value)}
+                value={referralCodeValue}
+                // name="postcode"
+                // errorMessage={errorMessage.postcode}
+              />
+            </div>
+          </div>
 
             <div className="flex items-start px-4 pt-3">
               <div style={{ width: 25 }}>

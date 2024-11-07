@@ -21,6 +21,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import BottomNavigate from "@/components/BottomNavigate";
+import CustomButton from "@/components/CustomButton";
 
 export { getServerSideProps };
 
@@ -54,6 +55,7 @@ const OwnerAccount = () => {
   const [setPinNumberLoading, setSetPinNumberLoading] = useState(false);
   const [pinNumberValue, setPinNumberValue] = useState("");
   const [confirmPinNumberValue, setConfirmPinNumberValue] = useState("");
+  const referralCode = authSelector.getReferralCode(userProfileData);
 
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isResendEnabled, setIsResendEnabled] = useState(true);
@@ -61,6 +63,7 @@ const OwnerAccount = () => {
   const [otpValue, setOtpValue] = useState("");
   const [otpToken, setOtpToken] = useState("");
   const [isRequestOtp, setIsRequestOtp] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -209,6 +212,16 @@ const OwnerAccount = () => {
     router.push(route);
   };
 
+  const onClickCopy = () => {
+    navigator.clipboard.writeText(
+      `Earn your free rental by sharing this referral code "${referralCode}". \n\nor Click below link to find your next premium room\n\n${process.env.DOMAIN}/explore?referral_code=${referralCode}`,
+    );
+
+    Toast.success("Copied link to clipboard.");
+
+    setIsCopy(true);
+  };
+
   return (
     <CustomOwnerHeader title="Account" hideGoBackButton className="pb-16">
       <NextSeo title="Account | Owner - Spacify Asia" />
@@ -235,7 +248,26 @@ const OwnerAccount = () => {
 
       {/*<div className="divider-line"></div>*/}
       <div className="body-container bg-color flex-1 pb-24">
-        <div className="pt-28">
+        <div className="pt-20">
+          <div className="divider-line"></div>
+
+          <div className="">
+            <CustomText textClassName="pb-1">Referral Code</CustomText>
+            <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+              <CustomText textClassName="">
+                {isEmpty(referralCode) ? "" : referralCode}
+              </CustomText>
+              <CustomButton
+                textClassName="font-size-xsmall"
+                buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+                buttonText={isCopy ? "Copies" : "Copy"}
+                onClick={onClickCopy}
+              />
+            </div>
+          </div>
+
+          <div className="divider-line"></div>
+
           {/*<FeatureComponent*/}
           {/*  title="My Bank"*/}
           {/*  icon={Images.bankIcon}*/}

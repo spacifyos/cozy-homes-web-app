@@ -4,7 +4,9 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import DOMPurify from "dompurify";
 
 const Description = ({ t, description }) => {
-  const sanitizedDescription = DOMPurify.sanitize(description);
+  const sanitizedDescription = isEmpty(description)
+    ? ""
+    : DOMPurify.sanitize(description);
 
   return (
     <div className="mb-5 content-container">
