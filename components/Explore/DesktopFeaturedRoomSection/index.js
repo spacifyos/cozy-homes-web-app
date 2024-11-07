@@ -44,7 +44,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
       </div>
       <div
         className="gap-1 flex items-center justify-center"
-        style={{ height: 255 }}
+        style={{ height: 205 }}
       >
         {loading ? (
           <div className="flex-1 flex">
@@ -60,32 +60,30 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           <Swiper
             style={{ width: "100%" }}
             onSlideChange={onSlideChange}
-            slidesPerView={6}
-            spaceBetween={10}
-            loop={false}
-            pagination={{
-              clickable: false,
-              enabled: false,
-            }}
+            loop={true}
             breakpoints={{
               1280: {
-                slidesPerView: 5,
+                slidesPerView: 7,
                 spaceBetween: 10,
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 6,
                 spaceBetween: 10,
               },
               768: {
-                slidesPerView: 3,
+                slidesPerView: 5,
                 spaceBetween: 10,
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              375: {
+                slidesPerView: 3,
                 spaceBetween: 10,
               },
             }}
-            // navigation={true}
+            navigation={true}
             modules={[Pagination, Navigation]}
           >
             {map(data, (item, index) => {
@@ -93,7 +91,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageHeight={200}
+                    imageHeight={150}
                     imageWidth="100%"
                   />
                 </SwiperSlide>

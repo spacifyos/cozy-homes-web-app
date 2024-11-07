@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import CustomImage from "@/components/CustomImage";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 const DesktopLayout = ({
   children,
@@ -26,6 +27,7 @@ const DesktopLayout = ({
   rightButtonIcon,
   rightContent,
   isFiltered,
+  loading,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -34,6 +36,10 @@ const DesktopLayout = ({
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
+  const [signOutLoading, setSignOutLoading] = useState(false);
+
+  const signOutAccountRequest = () =>
+    dispatch(authAction.signOutAccountRequest());
 
   useEffect(() => {
     if (isEmpty(userProfileData)) {
@@ -72,8 +78,17 @@ const DesktopLayout = ({
     router.push("/explore");
   };
 
+  const onClickLogout = () => {
+    setSignOutLoading(true);
+
+    setTimeout(() => {
+      setSignOutLoading(false);
+      signOutAccountRequest();
+    }, 2000);
+  };
+
   return (
-    <div className="flex flex-col primaryWhite-bg-color w-full min-h-screen relative desktop-responsive">
+    <div className="flex flex-col primaryWhite-bg-color w-full min-h-screen relative">
       <DesktopHeader
         onClickSignIn={onClickSignIn}
         onClickSignUp={onClickSignUp}
@@ -82,6 +97,7 @@ const DesktopLayout = ({
         onClickMyProperty={onClickMyProperty}
         onClickMyAccount={onClickMyAccount}
         onClickExplore={onClickExplore}
+        onClickLogout={onClickLogout}
       />
 
       {hideNav ? (
@@ -146,6 +162,8 @@ const DesktopLayout = ({
 
       <SignInModal userType={userType} setUserType={setUserType} />
       <SignUpModal userType={userType} setUserType={setUserType} />
+
+      <LoadingOverlay loading={loading || signOutLoading} />
     </div>
   );
 };

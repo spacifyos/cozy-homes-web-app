@@ -13,15 +13,16 @@ const DesktopHeader = ({
   onClickMyProperty,
   onClickMyAccount,
   onClickExplore,
+  onClickLogout,
 }) => {
   const name = authSelector.getName(data);
 
   return (
     <div
       className="py-4 primaryWhite-bg-color"
-      style={{ height: 100, borderBottom: "3px #f5f8fd solid" }}
+      style={{ minHeight: 100, borderBottom: "3px #f5f8fd solid" }}
     >
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-center sm:justify-center justify-center items-center">
         <CustomImage
           src={Image.logoHorizontalColor}
           imageStyle={{ width: 130 }}
@@ -29,47 +30,65 @@ const DesktopHeader = ({
           className="cursor-pointer"
         />
 
-        <div className="flex gap-3">
-          <CustomButton
-            icon={
-              loading
-                ? ""
-                : isEmpty(data)
-                  ? Image.registerIcon
-                  : Image.registerIconActive
-            }
-            imageStyle={{ width: 13 }}
-            buttonText={`${loading ? "" : isEmpty(data) ? "Register" : `Hi, ${name}`}`}
-            buttonClassName={`${loading ? "primary-btn" : isEmpty(data) ? "primary-btn" : "default-btn"} min-w-44`}
-            reverse
-            loading={loading}
-            onClick={
-              loading ? "" : isEmpty(data) ? onClickSignUp : onClickMyAccount
-            }
-          />
+        {isEmpty(data) ? (
+          <div className="flex gap-3 hidden xl:flex lg:flex">
+            <CustomButton
+              icon={loading ? "" : Image.registerIcon}
+              imageStyle={{ width: 13 }}
+              buttonText={`Register`}
+              buttonClassName={`${loading ? "primary-btn" : "primary-btn"} min-w-44`}
+              textClassName="font-size-small"
+              reverse
+              loading={loading}
+              onClick={loading ? "" : onClickSignUp}
+            />
 
-          <CustomButton
-            icon={
-              isEmpty(data) ? Image.primaryLogoutIcon : Image.homeIconActive
-            }
-            buttonText={`${isEmpty(data) ? "Sign In" : "My Property"}`}
-            buttonClassName="default-btn w-36"
-            reverse
-            onClick={isEmpty(data) ? onClickSignIn : onClickMyProperty}
-          />
+            <CustomButton
+              icon={Image.primaryLogoutIcon}
+              buttonText={`Sign In`}
+              buttonClassName="default-btn w-36"
+              textClassName="font-size-small"
+              reverse
+              onClick={onClickSignIn}
+            />
+          </div>
+        ) : (
+          <div className="flex gap-3 hidden xl:flex lg:flex">
+            <CustomButton
+              icon={Image.homeIconActive}
+              buttonText={`My Property`}
+              buttonClassName="default-btn w-36"
+              reverse
+              onClick={onClickMyProperty}
+            />
 
-          <CustomButton
-            icon={
-              isEmpty(data)
-                ? Image.chatOutlineIcon
-                : Image.navigateChatIconActive
-            }
-            buttonText="Chat"
-            imageStyle={{ width: isEmpty(data) ? 18 : 26 }}
-            buttonClassName="default-btn w-32"
-            reverse
-          />
-        </div>
+            <CustomButton
+              icon={Image.navigateChatIconActive}
+              buttonText="Chat"
+              imageStyle={{ width: isEmpty(data) ? 18 : 26 }}
+              buttonClassName="default-btn w-32"
+              reverse
+            />
+
+            <CustomButton
+              icon={Image.registerIconActive}
+              imageStyle={{ width: 13 }}
+              buttonText={`Hi, ${name}`}
+              buttonClassName={`default-btn min-w-44`}
+              reverse
+              loading={loading}
+              onClick={onClickMyAccount}
+            />
+
+            <CustomButton
+              icon={Image.primaryLogoutIcon}
+              buttonText={`Log Out`}
+              buttonClassName="default-btn w-36"
+              reverse
+              onClick={onClickLogout}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

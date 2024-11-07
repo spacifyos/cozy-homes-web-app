@@ -6,6 +6,8 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
 
 const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -27,28 +29,71 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
         />
       </div>
 
-      <div
-        className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 gap-5"
-        style={{ minHeight: 410 }}
-      >
-        {loading ? (
+      <div className="hidden xl:block lg:block md:block sm:block ">
+        <div
+          className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5"
+          style={{ minHeight: 410 }}
+        >
+          {loading ? (
             map(Array(12), (item, index) => (
               <Skeleton width="100%" height={160} key={index} />
             ))
+          ) : isEmpty(data) ? (
+            <div className="flex justify-center">
+              <CustomEmptyBox emptyTitle="Property not available now." />
+            </div>
+          ) : (
+            map(data, (item, index) => {
+              return (
+                <ListingCardComponent
+                  item={item}
+                  imageHeight={160}
+                  imageWidth="100%"
+                />
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      <div className="xl:hidden lg:hidden md:hidden sm:hidden">
+        {loading ? (
+          <div className="flex" style={{ height: 144 }}>
+            {map(Array(4), (item, index) => (
+              <Skeleton
+                width={"100%"}
+                minWidth={100}
+                height={100}
+                key={index}
+              />
+            ))}
+          </div>
         ) : isEmpty(data) ? (
-          <div className="flex justify-center">
+          <div className="flex justify-center" style={{ height: 144 }}>
             <CustomEmptyBox emptyTitle="Property not available now." />
           </div>
         ) : (
-          map(data, (item, index) => {
-            return (
-              <ListingCardComponent
-                item={item}
-                imageHeight={160}
-                imageWidth="100%"
-              />
-            );
-          })
+          <Swiper
+            style={{ width: "100%" }}
+            slidesPerView={4}
+            spaceBetween={10}
+            loop={true}
+            pagination={{
+              clickable: true,
+              enabled: false,
+            }}
+            // navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper explore-swiper"
+          >
+            {map(data, (item, index) => {
+              return (
+                <SwiperSlide style={{ minWidth: 100 }} key={index}>
+                  <ListingCardComponent item={item} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         )}
       </div>
     </div>
