@@ -214,10 +214,10 @@ const OwnerAccount = () => {
 
   const onClickCopy = () => {
     navigator.clipboard.writeText(
-      `Earn your free rental by sharing this referral code "${referralCode}".`,
+      `Earn your free rental by sharing this referral code "${referralCode}". \n\nor Click below link to find your next premium room\n\n${process.env.DOMAIN}/explore?referral_code=${referralCode}`,
     );
 
-    Toast.success("Copies Successful!");
+    Toast.success("Copied link to clipboard.");
 
     setIsCopy(true);
   };

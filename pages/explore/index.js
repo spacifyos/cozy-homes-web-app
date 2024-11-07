@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import FeaturesSection from "@/components/Explore/FeaturesSection";
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,7 @@ import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
 import CustomText from "@/components/CustomText";
+import AuthManager from "@/src/utils/AuthManager";
 
 export { getServerSideProps };
 
@@ -26,6 +27,8 @@ function Home() {
   const locale = get(router, ["locale"], "en");
   const routeName = get(router, ["route"], "");
   const routeQuery = get(router, ["query"], "");
+
+  const queryReferralCode = get(router, ["query", "referral_code"], "");
 
   const getListingRequest = () => dispatch(listingAction.getListingRequest());
   const listingData = useSelector((state) =>
@@ -52,6 +55,12 @@ function Home() {
   const tagsListing = listingSelector.getTags(listingData);
 
   const [openSwitcher, setOpenSwitcher] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(queryReferralCode)) {
+      AuthManager.setReferralCode(queryReferralCode);
+    }
+  }, [queryReferralCode]);
 
   const onClickChangeLanguage = (newLocale) => {
     const { pathname, asPath, query } = router;

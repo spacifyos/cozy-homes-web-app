@@ -42,7 +42,7 @@ import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Helper from "@/src/utils/Helper";
-import { getRentalWithSecurityDeposit } from "@/src/selectors/listing";
+import AuthManager from "@/src/utils/AuthManager";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -226,9 +226,20 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   }, []);
 
   useEffect(() => {
-    if (!isEmpty(queryReferralCode)) {
-      setReferralCodeValue(queryReferralCode);
-    }
+    const checkLocationStorageReferralCode = async () => {
+      const LocationStorageReferralCode =
+        await AuthManager.retrieveReferralCode();
+
+      if (!isEmpty(queryReferralCode)) {
+        setReferralCodeValue(queryReferralCode);
+        return;
+      } else if (!isEmpty(LocationStorageReferralCode)) {
+        setReferralCodeValue(LocationStorageReferralCode);
+        return;
+      }
+    };
+
+    checkLocationStorageReferralCode();
   }, [queryReferralCode]);
 
   // const fetchListingPropertyDetail = (id) => {
