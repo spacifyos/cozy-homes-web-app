@@ -261,133 +261,133 @@ const Account = () => {
         </div>
       </DesktopLayout>
 
-      <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
-        <div className="body-container pb-24">
-          <div className="grid grid-cols-5 gap-3 flex-1 mb-10">
-            <ProfileCard data={userProfileData} />
+      {/*<CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>*/}
+      {/*  <div className="body-container pb-24">*/}
+      {/*    <div className="grid grid-cols-5 gap-3 flex-1 mb-10">*/}
+      {/*      <ProfileCard data={userProfileData} />*/}
 
-            <SpacifyCoins
-              t={t}
-              onClickToCoinsTransaction={onClickToCoinsTransaction}
-            />
-          </div>
+      {/*      <SpacifyCoins*/}
+      {/*        t={t}*/}
+      {/*        onClickToCoinsTransaction={onClickToCoinsTransaction}*/}
+      {/*      />*/}
+      {/*    </div>*/}
 
-        <div className="divider-line"></div>
+      {/*  <div className="divider-line"></div>*/}
 
-        <div className="">
-          <CustomText textClassName="pb-1">Referral Code</CustomText>
-          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
-            <CustomText textClassName="">
-              {isEmpty(referralCode) ? "" : referralCode}
-            </CustomText>
-            <CustomButton
-              textClassName="font-size-xsmall"
-              buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-              buttonText={isCopy ? "Copies" : "Copy"}
-              onClick={onClickCopy}
-            />
-          </div>
-        </div>
+      {/*  <div className="">*/}
+      {/*    <CustomText textClassName="pb-1">Referral Code</CustomText>*/}
+      {/*    <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">*/}
+      {/*      <CustomText textClassName="">*/}
+      {/*        {isEmpty(referralCode) ? "" : referralCode}*/}
+      {/*      </CustomText>*/}
+      {/*      <CustomButton*/}
+      {/*        textClassName="font-size-xsmall"*/}
+      {/*        buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}*/}
+      {/*        buttonText={isCopy ? "Copies" : "Copy"}*/}
+      {/*        onClick={onClickCopy}*/}
+      {/*      />*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
 
-        <div className="divider-line"></div>
+      {/*  <div className="divider-line"></div>*/}
 
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.smartMeterPairing")}*/}
-          {/*  icon={Images.primaryMeterIcon}*/}
+      {/*    /!*<FeatureComponent*!/*/}
+      {/*    /!*  title={t("account.smartMeterPairing")}*!/*/}
+      {/*    /!*  icon={Images.primaryMeterIcon}*!/*/}
           {/*/>*/}
 
-          {/*<FeatureComponent*/}
-          {/*  title="Transfer Lock"*/}
-          {/*  icon={Images.lockIcon}*/}
+      {/*    /!*<FeatureComponent*!/*/}
+      {/*    /!*  title="Transfer Lock"*!/*/}
+      {/*    /!*  icon={Images.lockIcon}*!/*/}
           {/*/>*/}
 
-          {/*<div className="divider-line"></div>*/}
+      {/*    /!*<div className="divider-line"></div>*!/*/}
 
-          <FeatureComponent
-            title={t("account.myInvoice")}
-            icon={Images.primaryInvoiceIcon}
-            pb={3}
-            route={"/my-invoice"}
-          />
+      {/*    <FeatureComponent*/}
+      {/*      title={t("account.myInvoice")}*/}
+      {/*      icon={Images.primaryInvoiceIcon}*/}
+      {/*      pb={3}*/}
+      {/*      route={"/my-invoice"}*/}
+      {/*    />*/}
 
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.myAppointment")}*/}
-          {/*  icon={Images.appointmentIconActive}*/}
-          {/*  imageHeight={23}*/}
-          {/*  imageWidth={23}*/}
-          {/*  pb={3}*/}
-          {/*  onClick={onClickToMyAppointment}*/}
+      {/*    /!*<FeatureComponent*!/*/}
+      {/*    /!*  title={t("account.myAppointment")}*!/*/}
+      {/*    /!*  icon={Images.appointmentIconActive}*!/*/}
+      {/*    /!*  imageHeight={23}*!/*/}
+      {/*    /!*  imageWidth={23}*!/*/}
+      {/*    /!*  pb={3}*!/*/}
+      {/*    /!*  onClick={onClickToMyAppointment}*!/*/}
           {/*/>*/}
 
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.latestUpdate")}*/}
-          {/*  icon={Images.primaryRingIcon}*/}
-          {/*  pb={3}*/}
-          {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
+      {/*    /!*<FeatureComponent*!/*/}
+      {/*    /!*  title={t("account.latestUpdate")}*!/*/}
+      {/*    /!*  icon={Images.primaryRingIcon}*!/*/}
+      {/*    /!*  pb={3}*!/*/}
+      {/*    /!*  onClickToLatestUpdate={onClickToLatestUpdate}*!/*/}
           {/*/>*/}
 
-          <FeatureComponent
-            title={t("account.setPinNumber")}
-            icon={Images.primaryLockIcon}
-            pb={3}
-            onClick={onClickOpenSetPinNumberModal}
-          />
+      {/*    <FeatureComponent*/}
+      {/*      title={t("account.setPinNumber")}*/}
+      {/*      icon={Images.primaryLockIcon}*/}
+      {/*      pb={3}*/}
+      {/*      onClick={onClickOpenSetPinNumberModal}*/}
+      {/*    />*/}
 
-          <div className="divider-line"></div>
+      {/*    <div className="divider-line"></div>*/}
 
-          <FeatureComponent
-            title={t("account.termAndCondition")}
-            icon={Images.primaryTermAndConditionIcon}
-            pb={3}
-            route={"https://tms.spacify.asia/privacy-policy"}
-            target="_blank"
-          />
+      {/*    <FeatureComponent*/}
+      {/*      title={t("account.termAndCondition")}*/}
+      {/*      icon={Images.primaryTermAndConditionIcon}*/}
+      {/*      pb={3}*/}
+      {/*      route={"https://tms.spacify.asia/privacy-policy"}*/}
+      {/*      target="_blank"*/}
+      {/*    />*/}
 
-          <div className="divider-line"></div>
+      {/*    <div className="divider-line"></div>*/}
 
-          <div className="flex justify-between items-center pb-3">
-            <div
-              className="logout-container cursor-pointer"
-              onClick={onClickLogout}
-            >
-              <CustomImage
-                src={Images.primaryLogoutIcon}
-                imageStyle={{ width: 25 }}
-                className="mr-2"
-              />
-              <CustomText textClassName="font-size-small">
-                {t("account.logout")}
-              </CustomText>
-            </div>
+      {/*    <div className="flex justify-between items-center pb-3">*/}
+      {/*      <div*/}
+      {/*        className="logout-container cursor-pointer"*/}
+      {/*        onClick={onClickLogout}*/}
+      {/*      >*/}
+      {/*        <CustomImage*/}
+      {/*          src={Images.primaryLogoutIcon}*/}
+      {/*          imageStyle={{ width: 25 }}*/}
+      {/*          className="mr-2"*/}
+      {/*        />*/}
+      {/*        <CustomText textClassName="font-size-small">*/}
+      {/*          {t("account.logout")}*/}
+      {/*        </CustomText>*/}
+      {/*      </div>*/}
 
-          <CustomText textClassName="disable-text font-size-small">
-            {t("account.version")} 1.6.0
-          </CustomText>
-        </div>
+      {/*    <CustomText textClassName="disable-text font-size-small">*/}
+      {/*      {t("account.version")} 1.6.0*/}
+      {/*    </CustomText>*/}
+      {/*  </div>*/}
 
-          <LoadingOverlay
-            loading={
-              userProfileLoading || signOutLoading || setPinNumberLoading
-            }
-          />
+      {/*    <LoadingOverlay*/}
+      {/*      loading={*/}
+      {/*        userProfileLoading || signOutLoading || setPinNumberLoading*/}
+      {/*      }*/}
+      {/*    />*/}
 
-          <SetPinNumberModal
-            pinNumberValue={pinNumberValue}
-            confirmPinNumberValue={confirmPinNumberValue}
-            onChangePinNumber={onChangePinNumber}
-            onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-            errorMessage={errorMessage}
-            setPinNumberLoading={setPinNumberLoading}
-            onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-            onClickSetPinNumber={onClickSetPinNumber}
-            onChangeOtpValue={onChangeOtpValue}
-            otpValue={otpValue}
-            onClickGenerateOtp={onClickGenerateOtp}
-            timeLeft={timeLeft}
-            isResendEnabled={isResendEnabled}
-            otpRequestLoading={otpRequestLoading}
-          />
-        </div>
+      {/*    <SetPinNumberModal*/}
+      {/*      pinNumberValue={pinNumberValue}*/}
+      {/*      confirmPinNumberValue={confirmPinNumberValue}*/}
+      {/*      onChangePinNumber={onChangePinNumber}*/}
+      {/*      onChangeConfirmPinNumber={onChangeConfirmPinNumber}*/}
+      {/*      errorMessage={errorMessage}*/}
+      {/*      setPinNumberLoading={setPinNumberLoading}*/}
+      {/*      onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}*/}
+      {/*      onClickSetPinNumber={onClickSetPinNumber}*/}
+      {/*      onChangeOtpValue={onChangeOtpValue}*/}
+      {/*      otpValue={otpValue}*/}
+      {/*      onClickGenerateOtp={onClickGenerateOtp}*/}
+      {/*      timeLeft={timeLeft}*/}
+      {/*      isResendEnabled={isResendEnabled}*/}
+      {/*      otpRequestLoading={otpRequestLoading}*/}
+      {/*    />*/}
+      {/*  </div>*/}
 
         <BottomNavigate
           t={t}
@@ -395,7 +395,7 @@ const Account = () => {
           routeQuery={routeQuery}
           onClickChangeTab={onClickChangeTab}
         />
-      </CustomHeader>
+      {/*</CustomHeader>*/}
     </div>
   );
 };

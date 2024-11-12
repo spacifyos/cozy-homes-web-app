@@ -23,7 +23,7 @@ const DesktopFooter = () => {
   ];
 
   return (
-    <div className="primaryWhite-bg-color">
+    <div className="primaryWhite-bg-color hidden xl:block lg:block md:block sm:hidden">
       <div className="bg-color py-10">
         <div className="container mx-auto grid grid-cols-3">
           <div className="flex flex-col">

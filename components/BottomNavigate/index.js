@@ -54,49 +54,51 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
   return (
     <div
       id="bottom_navbar"
-      className="fixed bottom-0 w-full z-10"
-      style={{ maxWidth: 640, zIndex: 9999 }}
+      className="bottom-0 w-full fixed xl:hidden lg:hidden md:hidden sm:fixed"
+      style={{ zIndex: 9999 }}
     >
-      <div
-        className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
-        style={{ margin: 10 }}
-      >
-        {map(lists, (item, index) => {
-          const name = get(item, ["name"], "");
-          const value = get(item, ["value"], "");
-          const icon = get(item, ["icon"], "");
-          const activeIcon = get(item, ["activeIcon"], "");
+      <div className="container mx-auto">
+        <div
+          className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius"
+          // style={{ margin: 10 }}
+        >
+          {map(lists, (item, index) => {
+            const name = get(item, ["name"], "");
+            const value = get(item, ["value"], "");
+            const icon = get(item, ["icon"], "");
+            const activeIcon = get(item, ["activeIcon"], "");
 
-          return (
-            <a
-              href={`${value}`}
-              key={index}
-              className="flex flex-col justify-center items-center cursor-pointer"
-            >
-              <CustomImage
-                src={
-                  isEqual(value, routeName) ||
-                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                      activeIcon
-                    : icon
-                }
-                imageStyle={{ width: 20, height: 20 }}
-              />
-              <CustomText
-                textClassName={`${
-                  isEqual(value, routeName) ||
-                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                      "primary-text"
-                    : "disable-text"
-                } font-size-xxsmall pt-1`}
+            return (
+              <a
+                href={`${value}`}
+                key={index}
+                className="flex flex-col justify-center items-center cursor-pointer"
               >
-                {name}
-              </CustomText>
-            </a>
-          );
-        })}
+                <CustomImage
+                  src={
+                    isEqual(value, routeName) ||
+                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                        activeIcon
+                      : icon
+                  }
+                  imageStyle={{ width: 20, height: 20 }}
+                />
+                <CustomText
+                  textClassName={`${
+                    isEqual(value, routeName) ||
+                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                        "primary-text"
+                      : "disable-text"
+                  } font-size-xxsmall pt-1`}
+                >
+                  {name}
+                </CustomText>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

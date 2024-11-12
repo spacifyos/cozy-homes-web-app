@@ -103,7 +103,7 @@ const DesktopLayout = ({
       {hideNav ? (
         <div className="flex-1 h-full">{children}</div>
       ) : (
-        <div className="flex-1 h-full flex flex-col container mx-auto py-10">
+        <div className="flex-1 h-full flex flex-col container mx-auto py-4 xl:py-8 lg:py-8 md:py-8 sm:py-8">
           <div className="flex justify-between items-center pb-5">
             <CustomText textClassName="font-size-xxlarge font-bold">
               {isEmpty(page) ? "-" : page}
@@ -149,11 +149,13 @@ const DesktopLayout = ({
           </div>
 
           <div className="grid grid-cols-4 gap-10">
-            <div className="col-span-1 sticky top-10">
+            <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
               <DesktopNavigationBar />
             </div>
 
-            <div className="col-span-3"> {children}</div>
+            <div className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4">
+              {children}
+            </div>
           </div>
         </div>
       )}

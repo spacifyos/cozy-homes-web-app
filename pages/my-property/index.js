@@ -111,70 +111,68 @@ const MyStay = () => {
   };
 
   return (
-      <div className="min-h-screen primaryWhite-bg-color">
-        <DesktopLayout page="My Property">
-          <div className="">
-            <UserSection t={t} data={userProfileData} />
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Stay - Spacify Asia" />
 
-            <TenancySection
-                t={t}
-                onChangeAutoPay={onChangeAutoPay}
-                isChecked={isChecked}
-                data={tenancyListingData}
-            />
+      <DesktopLayout page="My Property">
+        <div className="pb-16">
+          <UserSection t={t} data={userProfileData} />
 
-            <DesktopFeatureSection t={t} />
+          <TenancySection
+            t={t}
+            onChangeAutoPay={onChangeAutoPay}
+            isChecked={isChecked}
+            data={tenancyListingData}
+          />
 
-            <MeterSection t={t} data={meterListingData} />
+          <DesktopFeatureSection t={t} />
 
-            <InvoiceSection
-                t={t}
-                onClickSelectCategory={onClickSelectCategory}
-                selectedCategory={selectedCategory}
-                data={invoiceListingData}
-            />
+          <MeterSection t={t} data={meterListingData} />
 
-          </div>
-        </DesktopLayout>
+          <InvoiceSection
+            t={t}
+            onClickSelectCategory={onClickSelectCategory}
+            selectedCategory={selectedCategory}
+            data={invoiceListingData}
+          />
+        </div>
+      </DesktopLayout>
 
-        <NextSeo title="My Stay - Spacify Asia" />
+      {/*<CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>*/}
+      {/*  <div className="body-container pb-24">*/}
+      {/*    <UserSection t={t} data={userProfileData} />*/}
 
-        <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
-          <div className="body-container pb-24">
-            <UserSection t={t} data={userProfileData} />
+      {/*    <TenancySection*/}
+      {/*        t={t}*/}
+      {/*        onChangeAutoPay={onChangeAutoPay}*/}
+      {/*        isChecked={isChecked}*/}
+      {/*        data={tenancyListingData}*/}
+      {/*    />*/}
 
-            <TenancySection
-                t={t}
-                onChangeAutoPay={onChangeAutoPay}
-                isChecked={isChecked}
-                data={tenancyListingData}
-            />
+      {/*    <FeatureSection t={t} />*/}
 
-            <FeatureSection t={t} />
+      {/*    <MeterSection t={t} data={meterListingData} />*/}
 
-            <MeterSection t={t} data={meterListingData} />
+      {/*    <InvoiceSection*/}
+      {/*        t={t}*/}
+      {/*        onClickSelectCategory={onClickSelectCategory}*/}
+      {/*        selectedCategory={selectedCategory}*/}
+      {/*        data={invoiceListingData}*/}
+      {/*    />*/}
 
-            <InvoiceSection
-                t={t}
-                onClickSelectCategory={onClickSelectCategory}
-                selectedCategory={selectedCategory}
-                data={invoiceListingData}
-            />
+      {/*    <LoadingOverlay*/}
+      {/*        loading={*/}
+      {/*            userProfileLoading ||*/}
+      {/*            tenancyListingLoading ||*/}
+      {/*            invoiceListingLoading ||*/}
+      {/*            meterListingLoading*/}
+      {/*        }*/}
+      {/*    />*/}
+      {/*  </div>*/}
 
-            <LoadingOverlay
-                loading={
-                    userProfileLoading ||
-                    tenancyListingLoading ||
-                    invoiceListingLoading ||
-                    meterListingLoading
-                }
-            />
-          </div>
-
-          <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
-        </CustomHeader>
-      </div>
-
+      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
+      {/*</CustomHeader>*/}
+    </div>
   );
 };
 
