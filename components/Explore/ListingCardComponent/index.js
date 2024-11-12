@@ -9,6 +9,7 @@ const ListingCardComponent = ({
   imageHeight = 100,
   imageWidth = 100,
   hideLabel = false,
+  imageClassName,
 }) => {
   const label = listingSelector.getLabel(item);
   const name = listingSelector.getName(item);
@@ -27,17 +28,14 @@ const ListingCardComponent = ({
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage
-        className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color overflow-hidden"
+        className={`rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color overflow-hidden ${imageClassName}`}
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        imageStyle={{
-          height: imageHeight,
-          width: imageWidth,
-        }}
       />
       {hideLabel ? (
         false
       ) : (
         <CustomText
+          styles={{ height: 36 }}
           textClassName="font-size-xsmall font-bold text-center"
           lineClamp={2}
         >

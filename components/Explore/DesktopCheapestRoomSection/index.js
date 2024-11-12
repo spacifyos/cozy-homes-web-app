@@ -35,10 +35,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
         />
       </div>
 
-      <div
-        className="gap-1 flex items-center justify-center"
-        style={{ height: 255 }}
-      >
+      <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex flex-1">
             {map(Array(5), (item, index) => (
@@ -51,43 +48,44 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : (
           <Swiper
+            className="mySwiper"
             style={{ width: "100%" }}
-            slidesPerView={6}
-            spaceBetween={32}
             loop={true}
-            pagination={{
-              clickable: true,
-              enabled: false,
-            }}
             breakpoints={{
               1280: {
-                slidesPerView: 5,
+                slidesPerView: 7,
                 spaceBetween: 10,
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetween: 10,
               },
               768: {
-                slidesPerView: 3,
+                slidesPerView: 5,
                 spaceBetween: 10,
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              420: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
+              375: {
+                slidesPerView: 3,
                 spaceBetween: 10,
               },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper explore-swiper"
           >
             {map(data, (item, index) => {
               return (
-                <SwiperSlide style={{ minWidth: 100 }} key={index}>
+                <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageHeight={200}
-                    imageWidth="100%"
+                    imageClassName="h-24 xl:h-44 lg:h-44 md:h-36 sm:h-32 w-full"
                   />
                 </SwiperSlide>
               );

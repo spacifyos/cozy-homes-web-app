@@ -156,32 +156,19 @@ function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-10 pb-10 container mx-auto">
-            <div
-              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
-              style={{ height: 350 }}
-            >
-              <Image
-                loader={() => banner1}
-                loading="lazy"
+            <div className="col-span-1 relative global-box-shadow overflow-hidden rounded-3xl">
+              <CustomImage
                 src={isEmpty(banner1) ? Images.imageNotFound : banner1}
-                sizes="100vw"
-                fill
-                style={{ objectFit: "cover" }}
               />
             </div>
 
-            <div
-              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
-              style={{ height: 350 }}
-            >
-              <Image
-                loader={() => banner2}
-                loading="lazy"
-                src={isEmpty(banner2) ? Images.imageNotFound : banner2}
-                sizes="100vw"
-                fill
-                style={{ objectFit: "cover" }}
-              />
+            <div className="col-span-1 relative global-box-shadow overflow-hidden">
+              {/*<Image*/}
+              {/*  loader={() => banner2}*/}
+              {/*  loading="lazy"*/}
+              {/*  src={isEmpty(banner2) ? Images.imageNotFound : banner2}*/}
+              {/*  style={{ objectFit: "contain", width: "100%", height: "100%" }}*/}
+              {/*/>*/}
             </div>
           </div>
 
@@ -259,7 +246,7 @@ function Home() {
       {/*  /!*  openSwitcher={openSwitcher}*!/*/}
       {/*  /!*  onClickOpenSwitcher={onClickOpenSwitcher}*!/*/}
       {/*  /!*  onClickChangeLanguage={onClickChangeLanguage}*!/*/}
-        {/*/>*/}
+      {/*/>*/}
 
       {/*  <BannerCarousel*/}
       {/*    listingBannerData={listingBannerData}*/}

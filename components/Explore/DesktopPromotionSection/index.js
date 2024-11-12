@@ -24,7 +24,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
         </div>
       </div>
 
-      <div className="gap-1" style={{ height: 250 }}>
+      <div className="gap-1">
         {loading ? (
           <div className="flex">
             {map(Array(4), (item, index) => (
@@ -37,9 +37,8 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : (
           <Swiper
+            className="mySwiper explore-swiper"
             style={{ width: "100%" }}
-            slidesPerView={4}
-            spaceBetween={30}
             loop={true}
             pagination={{
               clickable: true,
@@ -47,7 +46,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
             }}
             breakpoints={{
               1280: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 10,
               },
               1024: {
@@ -59,21 +58,27 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
                 spaceBetween: 10,
               },
               640: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              420: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              375: {
                 slidesPerView: 2,
                 spaceBetween: 10,
               },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper explore-swiper"
           >
             {map(data, (item, index) => {
               return (
-                <SwiperSlide style={{ minWidth: 100 }} key={index}>
+                <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageHeight={250}
-                    imageWidth={"100%"}
+                    imageClassName="h-40 xl:h-52 lg:h-52 md:h-44 sm:h-40 w-full"
                     hideLabel
                   />
                   {/*<div className="primaryWhite-bg-color flex justify-center global-border-radius">*/}

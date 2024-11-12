@@ -11,13 +11,6 @@ import Images from "@/src/utils/Image";
 import { useState } from "react";
 
 const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
-  const [selectedSlide, setSelectedSlide] = useState(0);
-
-  const onSlideChange = (value) => {
-    const activeIndex = get(value, ["activeIndex"], 0);
-    setSelectedSlide(activeIndex);
-  };
-
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center pb-4">
@@ -42,10 +35,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           onClick={onClickViewMore}
         />
       </div>
-      <div
-        className="gap-1 flex items-center justify-center"
-        style={{ height: 205 }}
-      >
+      <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex-1 flex">
             {map(Array(5), (item, index) => (
@@ -58,8 +48,8 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : (
           <Swiper
+            className="mySwiper"
             style={{ width: "100%" }}
-            onSlideChange={onSlideChange}
             loop={true}
             breakpoints={{
               1280: {
@@ -67,7 +57,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
                 spaceBetween: 10,
               },
               1024: {
-                slidesPerView: 6,
+                slidesPerView: 5,
                 spaceBetween: 10,
               },
               768: {
@@ -78,21 +68,24 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
                 slidesPerView: 4,
                 spaceBetween: 10,
               },
+              420: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+              },
               375: {
                 slidesPerView: 3,
                 spaceBetween: 10,
               },
             }}
-            navigation={true}
+            // navigation={true}
             modules={[Pagination, Navigation]}
           >
             {map(data, (item, index) => {
               return (
-                <SwiperSlide style={{ minWidth: 100 }} key={index}>
+                <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageHeight={150}
-                    imageWidth="100%"
+                    imageClassName="h-24 xl:h-44 lg:h-44 md:h-36 sm:h-32 w-full"
                   />
                 </SwiperSlide>
               );
