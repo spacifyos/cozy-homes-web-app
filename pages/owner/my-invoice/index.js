@@ -17,6 +17,11 @@ import CustomImage from "@/components/CustomImage";
 import InvoiceSummary from "@/components/OwnerMyInvoice/InvoiceSummary";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import CustomText from "@/components/CustomText";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopInvoiceSummaryComponent from "@/components/MyInvoice/DesktopInvoiceSummaryComponent";
+import DesktopFilterModal from "@/components/MyInvoice/DesktopFilterModal";
+import Helper from "@/src/utils/Helper";
 
 export { getServerSideProps };
 
@@ -111,6 +116,10 @@ const OwnerMyInvoice = () => {
     router.back();
   };
 
+  const onClickToOverView = (code) => {
+    router.push(`my-invoice/${code}`);
+  };
+
   const onClickLoadMore = () => {
     fetchInvoiceListingData(
       selectedCategory,
@@ -146,16 +155,21 @@ const OwnerMyInvoice = () => {
 
   const handleCloseFilter = () => {
     setIsOpenFilterModal(false);
+    Helper.documentGetElementById("desktop_invoice_filter_modal").close();
   };
 
-  const onClickOpenFilter = () => {
+  const onClickOpenFilter = (responsive) => {
     const { invoiceNumber, dateFrom, dateTo } = filterParams;
 
     setInvoiceNumberValue(invoiceNumber);
     setDateFromValue(dateFrom);
     setDateToValue(dateTo);
 
-    setIsOpenFilterModal(true);
+    if (isEqual(responsive, "desktop")) {
+      Helper.documentGetElementById("desktop_invoice_filter_modal").showModal();
+    } else {
+      setIsOpenFilterModal(true);
+    }
   };
 
   const isFilter = () => {
@@ -165,11 +179,34 @@ const OwnerMyInvoice = () => {
   };
 
   return (
-    <CustomOwnerHeader
-      title="My Invoice"
-      onClickGoBack={onClickGoBack}
-      headerContent={
-        <div>
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Invoice | Owner - Spacify Asia" />
+
+      <DesktopLayout
+        loading={invoiceListingLoading && isEmpty(invoiceListingData)}
+        rightButtonIcon={Images.filterProIcon}
+        isFiltered={isFilter()}
+        onClickRightButton={() => onClickOpenFilter("desktop")}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul className="flex-wrap">
+              <li>
+                <a href={"/owner"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Invoice
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="flex flex-col flex-1">
           {invoiceSummaryDataLoading ? (
             <div
               className="w-full flex justify-center"
@@ -178,94 +215,86 @@ const OwnerMyInvoice = () => {
               <span className="loading loading-spinner loading-lg primary-text"></span>
             </div>
           ) : (
-            <InvoiceSummary data={invoiceSummaryData} />
+            <DesktopInvoiceSummaryComponent data={invoiceSummaryData} />
           )}
-        </div>
-      }
-      rightButton={
-        <div style={{ width: 25, height: 25 }} className="relative">
-          <CustomImage
-            src={Images.filterProWhiteIcon}
-            imageStyle={{ width: 25, height: 25 }}
-            onClick={onClickOpenFilter}
-            className="cursor-pointer"
-          />
-          {isFilter() ? (
-            <div
-              className="w-2.5 h-2.5 rounded-2xl primaryWhite-bg-color absolute z-10"
-              style={{ top: -10, left: -10 }}
-            ></div>
+
+          <div className="flex items-center pb-5">
+            <CustomButton
+              buttonText="All"
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectCategory("All")}
+            />
+            <CustomButton
+              buttonText="Unpaid"
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectCategory("Unpaid")}
+            />
+            <CustomButton
+              buttonText="Paid"
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
+              textClassName="font-size-xsmall"
+              onClick={() => onClickSelectCategory("Paid")}
+            />
+          </div>
+
+          {isEmpty(invoiceListingData) ? (
+            <div className="flex flex-1 items-center justify-center py-10">
+              <CustomEmptyBox emptyTitle="No invoice found" />
+            </div>
+          ) : (
+            <InvoiceComponent
+              type="owner"
+              data={invoiceListingData}
+              t={t}
+              onClickToOverView={onClickToOverView}
+            />
+          )}
+
+          {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
+            <div className="flex justify-center pt-4">
+              <CustomButton
+                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonText="Load More"
+                textClassName="font-size-xsmall"
+                loading={invoiceListingLoading && !isEmpty(invoiceListingData)}
+                onClick={onClickLoadMore}
+              />
+            </div>
           ) : (
             false
           )}
+
+          <DesktopFilterModal
+            t={t}
+            dateFromValue={dateFromValue}
+            onChangeDateFrom={onChangeDateFrom}
+            dateToValue={dateToValue}
+            onChangeDateTo={onChangeDateTo}
+            invoiceNumberValue={invoiceNumberValue}
+            onChangeInvoiceNumber={onChangeInvoiceNumber}
+            onClickCancel={onClickCancel}
+            onClickSubmit={onClickSubmit}
+            onClickReset={onClickReset}
+          />
+
+          <FilterModal
+            t={t}
+            dateFromValue={dateFromValue}
+            onChangeDateFrom={onChangeDateFrom}
+            dateToValue={dateToValue}
+            onChangeDateTo={onChangeDateTo}
+            invoiceNumberValue={invoiceNumberValue}
+            onChangeInvoiceNumber={onChangeInvoiceNumber}
+            onClickCancel={onClickCancel}
+            onClickSubmit={onClickSubmit}
+            onClickReset={onClickReset}
+            isOpenFilterModal={isOpenFilterModal}
+          />
         </div>
-      }
-    >
-      <NextSeo title="My Invoice | Owner - Spacify Asia" />
-
-      <div className="body-container bg-color pb-1 flex flex-col flex-1 pt-5">
-        <div className="flex items-center pb-3">
-          <CustomButton
-            buttonText="All"
-            buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("All")}
-          />
-          <CustomButton
-            buttonText="Unpaid"
-            buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Unpaid")}
-          />
-          <CustomButton
-            buttonText="Paid"
-            buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
-            textClassName="font-size-xsmall"
-            onClick={() => onClickSelectCategory("Paid")}
-          />
-        </div>
-
-        {isEmpty(invoiceListingData) ? (
-          <div className="flex flex-1 items-center justify-center">
-            <CustomEmptyBox />
-          </div>
-        ) : (
-          <InvoiceComponent type="owner" data={invoiceListingData} t={t} />
-        )}
-
-        {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
-          <div className="flex justify-center pb-3 pt-1">
-            <CustomButton
-              buttonClassName="primary-btn min-h-9 h-9 w-32"
-              buttonText="Load More"
-              textClassName="font-size-xsmall"
-              loading={invoiceListingLoading && !isEmpty(invoiceListingData)}
-              onClick={onClickLoadMore}
-            />
-          </div>
-        ) : (
-          false
-        )}
-
-        <FilterModal
-          t={t}
-          dateFromValue={dateFromValue}
-          onChangeDateFrom={onChangeDateFrom}
-          dateToValue={dateToValue}
-          onChangeDateTo={onChangeDateTo}
-          invoiceNumberValue={invoiceNumberValue}
-          onChangeInvoiceNumber={onChangeInvoiceNumber}
-          onClickCancel={onClickCancel}
-          onClickSubmit={onClickSubmit}
-          onClickReset={onClickReset}
-          isOpenFilterModal={isOpenFilterModal}
-        />
-
-        <LoadingOverlay
-          loading={invoiceListingLoading && isEmpty(invoiceListingData)}
-        />
-      </div>
-    </CustomOwnerHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

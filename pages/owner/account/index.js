@@ -22,6 +22,9 @@ import Helper from "@/src/utils/Helper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import BottomNavigate from "@/components/BottomNavigate";
 import CustomButton from "@/components/CustomButton";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
+import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
 
 export { getServerSideProps };
 
@@ -64,6 +67,9 @@ const OwnerAccount = () => {
   const [otpToken, setOtpToken] = useState("");
   const [isRequestOtp, setIsRequestOtp] = useState(false);
   const [isCopy, setIsCopy] = useState(false);
+
+  const referralText = `🏠 Looking for a premium room? Here’s an exclusive offer! 🏠\n\nUse my referral code "${referralCode}" and enjoy 1 FREE month of rent on your next room with BeLive Co-Living! 🎉 Experience premium co-living in a welcoming community, and start saving right from the beginning.\n\nOr, simply click the link below to explore available rooms and claim your free month:\n\n👉 ${process.env.DOMAIN}/explore?referral_code=${referralCode}\n\nDon’t miss out on this chance for a free month of rent! Join us, live in style, and start earning when you refer friends, too!`;
+  const whatsAppReferralText = `%F0%9F%8F%A0+Looking+for+a+premium+room%3F+Here%E2%80%99s+an+exclusive+offer%21+%F0%9F%8F%A0%0D%0A%0D%0AUse+my+referral+code+%22${referralCode}%22+and+enjoy+1+FREE+month+of+rent+on+your+next+room+with+BeLive+Co-Living%21+%F0%9F%8E%89+Experience+premium+co-living+in+a+welcoming+community%2C+and+start+saving+right+from+the+beginning.%0D%0A%0D%0AOr%2C+simply+click+the+link+below+to+explore+available+rooms+and+claim+your+free+month%3A%0D%0A%0D%0A%F0%9F%91%89+${process.env.DOMAIN}%2Fexplore%3Freferral_code%3D${referralCode}%0D%0A%0D%0ADon%E2%80%99t+miss+out+on+this+chance+for+a+free+month+of+rent%21+Join+us%2C+live+in+style%2C+and+start+earning+when+you+refer+friends%2C+too%21`;
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -213,9 +219,7 @@ const OwnerAccount = () => {
   };
 
   const onClickCopy = () => {
-    navigator.clipboard.writeText(
-      `Earn your free rental by sharing this referral code "${referralCode}". \n\nor Click below link to find your next premium room\n\n${process.env.DOMAIN}/explore?referral_code=${referralCode}`,
-    );
+    navigator.clipboard.writeText(referralText);
 
     Toast.success("Copied link to clipboard.");
 
@@ -223,37 +227,42 @@ const OwnerAccount = () => {
   };
 
   return (
-    <CustomOwnerHeader title="Account" hideGoBackButton className="pb-16">
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account | Owner - Spacify Asia" />
 
-      <div className="grid grid-cols-5 gap-3 flex-1 mb-10 absolute top-16 w-full px-4 z-10">
-        <ProfileCard data={userProfileData} />
+      <DesktopLayout
+        loading={userProfileLoading || signOutLoading || setPinNumberLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Account
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="grid grid-cols-7 gap-8 flex-1">
+          <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-4 col-span-4">
+            <DesktopProfileCard data={userProfileData} />
+          </div>
 
-        <SpacifyCoins
-          route={"/owner/my-wallet"}
-          t={t}
-          walletBalance={walletBalance}
-        />
-      </div>
+          <div className="xl:col-span-3 lg:col-span-3 md:col-span-7 sm:col-span-3 col-span-3">
+            <DesktopSpacifyCoins t={t} />
+          </div>
+        </div>
 
-      {/*<FeatureComponent*/}
-      {/*  title={t("account.smartMeterPairing")}*/}
-      {/*  icon={Images.primaryMeterIcon}*/}
-      {/*/>*/}
+        <div className="divider-line"></div>
 
-      {/*<FeatureComponent*/}
-      {/*  title="Transfer Lock"*/}
-      {/*  icon={Images.lockIcon}*/}
-      {/*/>*/}
-
-      {/*<div className="divider-line"></div>*/}
-      <div className="body-container bg-color flex-1 pb-24">
-        <div className="pt-20">
-          <div className="divider-line"></div>
-
-          <div className="">
-            <CustomText textClassName="pb-1">Referral Code</CustomText>
-            <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+        <div className="">
+          <CustomText textClassName="">Referral Code</CustomText>
+          <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+            Share and Earn, Don’t Miss the Opportunity
+          </CustomText>
+          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+            <div>
               <CustomText textClassName="">
                 {isEmpty(referralCode) ? "" : referralCode}
               </CustomText>
@@ -264,19 +273,18 @@ const OwnerAccount = () => {
                 onClick={onClickCopy}
               />
             </div>
+
+            <a
+              href={`https://api.whatsapp.com/send/?text=${whatsAppReferralText}`}
+              target="_blank"
+            >
+              <CustomImage src={Images.whatsappIcon} className="w-8" />
+            </a>
           </div>
+        </div>
 
+        <div className="pb-16 xl:hidden lg:hidden md:hidden">
           <div className="divider-line"></div>
-
-          {/*<FeatureComponent*/}
-          {/*  title="My Bank"*/}
-          {/*  icon={Images.bankIcon}*/}
-          {/*  imageWidth={20}*/}
-          {/*  imageHeight={20}*/}
-          {/*  pb={3}*/}
-          {/*  route={"/owner/my-bank"}*/}
-          {/*/>*/}
-
           <FeatureComponent
             title={t("account.myInvoice")}
             icon={Images.primaryInvoiceIcon}
@@ -300,14 +308,6 @@ const OwnerAccount = () => {
             pb={3}
             route={"/owner/e-agreement"}
           />
-
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.latestUpdate")}*/}
-          {/*  icon={Images.primaryRingIcon}*/}
-          {/*  pb={3}*/}
-          {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
-          {/*/>*/}
-
           <FeatureComponent
             title={t("account.setPinNumber")}
             icon={Images.primaryLockIcon}
@@ -347,28 +347,24 @@ const OwnerAccount = () => {
             </CustomText>
           </div>
         </div>
-      </div>
 
-      <LoadingOverlay
-        loading={userProfileLoading || signOutLoading || setPinNumberLoading}
-      />
-
-      <SetPinNumberModal
-        pinNumberValue={pinNumberValue}
-        confirmPinNumberValue={confirmPinNumberValue}
-        onChangePinNumber={onChangePinNumber}
-        onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-        errorMessage={errorMessage}
-        setPinNumberLoading={setPinNumberLoading}
-        onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-        onClickSetPinNumber={onClickSetPinNumber}
-        onChangeOtpValue={onChangeOtpValue}
-        otpValue={otpValue}
-        onClickGenerateOtp={onClickGenerateOtp}
-        timeLeft={timeLeft}
-        isResendEnabled={isResendEnabled}
-        otpRequestLoading={otpRequestLoading}
-      />
+        <SetPinNumberModal
+          pinNumberValue={pinNumberValue}
+          confirmPinNumberValue={confirmPinNumberValue}
+          onChangePinNumber={onChangePinNumber}
+          onChangeConfirmPinNumber={onChangeConfirmPinNumber}
+          errorMessage={errorMessage}
+          setPinNumberLoading={setPinNumberLoading}
+          onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
+          onClickSetPinNumber={onClickSetPinNumber}
+          onChangeOtpValue={onChangeOtpValue}
+          otpValue={otpValue}
+          onClickGenerateOtp={onClickGenerateOtp}
+          timeLeft={timeLeft}
+          isResendEnabled={isResendEnabled}
+          otpRequestLoading={otpRequestLoading}
+        />
+      </DesktopLayout>
 
       <BottomNavigate
         t={t}
@@ -376,7 +372,7 @@ const OwnerAccount = () => {
         routeQuery={routeQuery}
         onClickChangeTab={onClickChangeTab}
       />
-    </CustomOwnerHeader>
+    </div>
   );
 };
 

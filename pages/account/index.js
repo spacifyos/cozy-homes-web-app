@@ -266,7 +266,10 @@ const Account = () => {
         <div className="divider-line"></div>
 
         <div className="">
-          <CustomText textClassName="pb-1">Referral Code</CustomText>
+          <CustomText textClassName="">Referral Code</CustomText>
+          <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+            Share and Earn, Don’t Miss the Opportunity
+          </CustomText>
           <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
             <div>
               <CustomText textClassName="">
