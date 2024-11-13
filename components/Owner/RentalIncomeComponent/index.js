@@ -2,9 +2,9 @@ import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import RentalIncomeCard from "@/components/Owner/RentalIncomeCard";
 
-const RentalIncomeComponent = ({ data, onClickViewMoreTransaction }) => {
+const RentalIncomeComponent = ({ data }) => {
   return (
-    <div className="flex flex-col flex-1 gap-3 pb-3">
+    <div className="flex flex-col flex-1 gap-3">
       {isEmpty(data) ? (
         <div className="flex items-center justify-center flex-1">
           <CustomEmptyBox emptyTitle="No transactions found" />

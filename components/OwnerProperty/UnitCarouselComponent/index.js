@@ -7,7 +7,7 @@ import CustomImage from "@/components/CustomImage";
 
 const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
   return (
-    <div className="body-container">
+    <div className="">
       <Swiper
         className="mySwiper cursor-grab mt-6"
         onSlideChange={onSlideChange}

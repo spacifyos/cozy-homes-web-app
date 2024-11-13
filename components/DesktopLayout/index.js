@@ -2,7 +2,7 @@ import DesktopHeader from "@/components/DesktopLayout/DesktopHeader";
 import DesktopFooter from "@/components/DesktopLayout/DesktopFooter";
 import DesktopNavigationBar from "@/components/DesktopLayout/DesktopNavigationBar";
 import CustomText from "@/components/CustomText";
-import { isEmpty, isEqual } from "lodash";
+import { get, isEmpty, isEqual } from "lodash";
 import Helper from "@/src/utils/Helper";
 import SignInModal from "@/components/Explore/SignInModal";
 import SignUpModal from "@/components/Explore/SignUpModal";
@@ -39,6 +39,18 @@ const DesktopLayout = ({
   const [userProfileLoading, setUserProfileLoading] = useState(false);
   const [signOutLoading, setSignOutLoading] = useState(false);
 
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const token = await AuthManager.retrieveToken();
+      const type = await AuthManager.retrieveType();
+
+      if (!isEmpty(token) && !isEmpty(type)) {
+      }
+    };
+
+    checkAuthentication();
+  }, [router]);
+
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
 
@@ -67,12 +79,34 @@ const DesktopLayout = ({
     Helper.documentGetElementById("sign_up_modal").showModal();
   };
 
-  const onClickMyProperty = () => {
-    router.push("/my-property");
+  const onClickMyProperty = async () => {
+    const type = await AuthManager.retrieveType();
+
+    if (isEqual(type, "tenant")) {
+      return router.replace("/my-property");
+    } else {
+      return router.replace("/owner");
+    }
   };
 
-  const onClickMyAccount = () => {
-    router.push("/account");
+  const onClickMyAccount = async () => {
+    const type = await AuthManager.retrieveType();
+
+    if (isEqual(type, "tenant")) {
+      return router.replace("/account");
+    } else {
+      return router.replace("/owner/account");
+    }
+  };
+
+  const onClickChat = async () => {
+    const type = await AuthManager.retrieveType();
+
+    if (isEqual(type, "tenant")) {
+      return router.replace("/chat");
+    } else {
+      return router.replace("/owner/chat");
+    }
   };
 
   const onClickExplore = () => {
@@ -99,6 +133,7 @@ const DesktopLayout = ({
         onClickMyAccount={onClickMyAccount}
         onClickExplore={onClickExplore}
         onClickLogout={onClickLogout}
+        onClickChat={onClickChat}
       />
 
       {hideNav ? (

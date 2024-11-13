@@ -14,6 +14,7 @@ const DesktopHeader = ({
   onClickMyAccount,
   onClickExplore,
   onClickLogout,
+  onClickChat,
 }) => {
   const name = authSelector.getName(data);
 
@@ -67,6 +68,7 @@ const DesktopHeader = ({
               buttonText="Chat"
               imageStyle={{ width: isEmpty(data) ? 18 : 26 }}
               buttonClassName="default-btn w-32"
+              onClick={onClickChat}
               reverse
             />
 
