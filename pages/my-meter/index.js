@@ -15,6 +15,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -55,7 +56,27 @@ const MyMeter = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Meter - Spacify Asia" />
 
-      <DesktopLayout page="My Meter">
+      <DesktopLayout
+        loading={meterListingLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My Meter
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
         <div className="flex flex-col flex-1 h-full">
           {isEmpty(meterListingData) ? (
             <div className="flex flex-col justify-center flex-1">
@@ -80,39 +101,6 @@ const MyMeter = () => {
           )}
         </div>
       </DesktopLayout>
-
-      <CustomHeader
-        pageTitle={t("pageTitle.myMeter")}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-        // rightButtonIcon={Images.filterProIcon}
-      >
-        <div className="body-container flex flex-col gap-3 pb-4 flex-1">
-          {isEmpty(meterListingData) ? (
-            <div className="flex flex-col justify-center flex-1">
-              <CustomEmptyBox emptyTitle="No meter found" />
-            </div>
-          ) : (
-            map(meterListingData, (item, index) => (
-              <MeterComponent t={t} key={index} item={item} />
-            ))
-          )}
-
-          {hasMorePage && lastPage > 1 && !isEmpty(meterListingData) ? (
-            <div className="flex justify-center">
-              <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
-                buttonText="Load More"
-                textClassName="font-size-xsmall"
-              />
-            </div>
-          ) : (
-            false
-          )}
-
-          <LoadingOverlay loading={meterListingLoading} />
-        </div>
-      </CustomHeader>
     </div>
   );
 };

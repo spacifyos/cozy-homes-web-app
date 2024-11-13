@@ -46,6 +46,7 @@ const MyMeterOverview = ({ id }) => {
   const tenancy = meterSelector.getTenancy(meterOverviewData);
   const isShowBalanceInPrice =
     meterSelector.getIsShowBalanceInPrice(meterOverviewData);
+  const meterName = meterSelector.getName(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -141,7 +142,34 @@ const MyMeterOverview = ({ id }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Meter Overview - Spacify Asia" />
 
-      <DesktopLayout page="My Meter Overview">
+      <DesktopLayout
+        loading={meterOverviewLoading || syncMeterLoading || meterTopUpLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/my-meter"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Meter
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {meterName}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
         <div className="">
           <div className="flex flex-row justify-between">
             <CustomText textClassName="section-title">
@@ -187,75 +215,8 @@ const MyMeterOverview = ({ id }) => {
           {/*  onClickChange={onClickChange}*/}
           {/*  selectChange={selectChange}*/}
           {/*/>*/}
-
-          <LoadingOverlay
-            loading={
-              meterOverviewLoading || syncMeterLoading || meterTopUpLoading
-            }
-          />
         </div>
       </DesktopLayout>
-
-      <CustomHeader
-        pageTitle={t("pageTitle.myMeterOverview")}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-      >
-        <div className="pb-4 global-horizontal-padding">
-          <div className="flex flex-row justify-between">
-            <CustomText textClassName="section-title">
-              {t("myMeterOverview.todayUsage")}
-            </CustomText>
-            <CustomImage
-              className="mr-4 cursor-pointer"
-              onClick={onClickSyncMeter}
-              src={Images.refreshIcon}
-              imageStyle={{ width: 30 }}
-            />
-          </div>
-
-          <div className="radial-container pb-7">
-            <MeterRadialProgressComponent t={t} balanceUnit={balanceUnit} />
-          </div>
-
-          <MeterDetail t={t} data={meterOverviewData} />
-
-        <BalanceUnit
-          t={t}
-          isShowBalanceInPrice={isShowBalanceInPrice}
-          balanceUnit={balanceUnit}
-          balanceCredit={balanceCredit}
-          lastConnectedAt={lastConnectedAt}
-        />
-
-          <MeterTopUpSection
-            t={t}
-            onClickSelectPrice={onClickSelectPrice}
-            selectedPrice={selectedPrice}
-            unitPrice={unitPrice}
-            onClickPayNow={onClickPayNow}
-            onChangeSelectedPriceValue={onChangeSelectedPriceValue}
-            onClickClearSelectedPrice={onClickClearSelectedPrice}
-            tenancy={tenancy}
-            tenancyValue={tenancyValue}
-            onChangeTenancyValue={onChangeTenancyValue}
-          />
-
-          {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
-
-          {/*<MeterUsageSection*/}
-          {/*  t={t}*/}
-          {/*  onClickChange={onClickChange}*/}
-          {/*  selectChange={selectChange}*/}
-          {/*/>*/}
-
-          <LoadingOverlay
-            loading={
-              meterOverviewLoading || syncMeterLoading || meterTopUpLoading
-            }
-          />
-        </div>
-      </CustomHeader>
     </div>
   );
 };
