@@ -246,7 +246,20 @@ const Account = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account - Spacify Asia" />
 
-      <DesktopLayout page="My Account">
+      <DesktopLayout
+        page="My Account"
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Account
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
         <div className="grid grid-cols-7 gap-10 flex-1">
           <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-7">
             <DesktopProfileCard data={userProfileData} />
@@ -294,12 +307,12 @@ const Account = () => {
       {/*    /!*<FeatureComponent*!/*/}
       {/*    /!*  title={t("account.smartMeterPairing")}*!/*/}
       {/*    /!*  icon={Images.primaryMeterIcon}*!/*/}
-          {/*/>*/}
+      {/*/>*/}
 
       {/*    /!*<FeatureComponent*!/*/}
       {/*    /!*  title="Transfer Lock"*!/*/}
       {/*    /!*  icon={Images.lockIcon}*!/*/}
-          {/*/>*/}
+      {/*/>*/}
 
       {/*    /!*<div className="divider-line"></div>*!/*/}
 
@@ -317,14 +330,14 @@ const Account = () => {
       {/*    /!*  imageWidth={23}*!/*/}
       {/*    /!*  pb={3}*!/*/}
       {/*    /!*  onClick={onClickToMyAppointment}*!/*/}
-          {/*/>*/}
+      {/*/>*/}
 
       {/*    /!*<FeatureComponent*!/*/}
       {/*    /!*  title={t("account.latestUpdate")}*!/*/}
       {/*    /!*  icon={Images.primaryRingIcon}*!/*/}
       {/*    /!*  pb={3}*!/*/}
       {/*    /!*  onClickToLatestUpdate={onClickToLatestUpdate}*!/*/}
-          {/*/>*/}
+      {/*/>*/}
 
       {/*    <FeatureComponent*/}
       {/*      title={t("account.setPinNumber")}*/}
@@ -389,12 +402,12 @@ const Account = () => {
       {/*    />*/}
       {/*  </div>*/}
 
-        <BottomNavigate
-          t={t}
-          routeName={routeName}
-          routeQuery={routeQuery}
-          onClickChangeTab={onClickChangeTab}
-        />
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
       {/*</CustomHeader>*/}
     </div>
   );

@@ -28,6 +28,7 @@ const DesktopLayout = ({
   rightContent,
   isFiltered,
   loading,
+  pageBreadcrumbs,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -103,11 +104,9 @@ const DesktopLayout = ({
       {hideNav ? (
         <div className="flex-1 h-full">{children}</div>
       ) : (
-        <div className="flex-1 h-full flex flex-col container mx-auto py-4 xl:py-8 lg:py-8 md:py-8 sm:py-8">
+        <div className="flex-1 h-full flex flex-col container mx-auto py-4 xl:py-6 lg:py-6 md:py-6 sm:py-6">
           <div className="flex justify-between items-center pb-5">
-            <CustomText textClassName="font-size-xxlarge font-bold">
-              {isEmpty(page) ? "-" : page}
-            </CustomText>
+            {pageBreadcrumbs}
 
             <div className="flex justify-center items-center gap-4">
               {isEmpty(rightSecondButtonIcon) ? (
