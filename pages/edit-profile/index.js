@@ -181,14 +181,36 @@ const EditProfile = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Edit Profile - Spacify Asia" />
 
-      <DesktopLayout page="My Account">
+      <DesktopLayout
+        page="My Account"
+        loading={
+          userProfileLoading || changePasswordLoading || editProfileLoading
+        }
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href="/account">
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Account
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Edit Profit
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
         <div className="grid grid-cols-1 flex-1">
           <div className="global-border-radius global-box-shadow p-5">
             <div className="flex justify-center items-center">
               <CustomImage
                 src={Images.userIcon}
-                imageStyle={{ width: 150 }}
-                className="my-2"
+                className="my-2 xl:w-36 lg:w-36 md:w-32 sm:w-28 w-20"
               />
             </div>
 
@@ -359,12 +381,6 @@ const EditProfile = () => {
           />
         </div>
       </CustomHeader>
-
-      <LoadingOverlay
-        loading={
-          userProfileLoading || changePasswordLoading || editProfileLoading
-        }
-      />
     </div>
   );
 };

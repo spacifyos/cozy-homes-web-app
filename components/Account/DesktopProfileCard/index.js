@@ -11,7 +11,7 @@ const DesktopProfileCard = ({ data }) => {
 
   return (
     <div
-      className="p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex items-center relative"
+      className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative"
       style={{ minHeight: 140 }}
     >
       <a
@@ -23,20 +23,19 @@ const DesktopProfileCard = ({ data }) => {
 
       <CustomImage
         src={Images.userIcon}
-        imageStyle={{ width: 80 }}
-        className="rounded-2xl"
+        className="rounded-2xl xl:w-20 lg:w-20 md:w-20 sm:w-20 w-16"
       />
 
       <div className="pl-2">
-        <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2">
+        <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(name) ? "-" : name}
         </CustomText>
 
-        <CustomText textClassName="font-size-small leading-3 line-clamp-1">
+        <CustomText textClassName="font-size-small leading-3 line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(phoneNumber) ? "-" : phoneNumber}
         </CustomText>
 
-        <CustomText textClassName="font-size-small line-clamp-1">
+        <CustomText textClassName="font-size-small line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(email) ? "-" : email}
         </CustomText>
       </div>
