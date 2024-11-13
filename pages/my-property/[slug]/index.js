@@ -21,6 +21,7 @@ import Helper from "@/src/utils/Helper";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -51,6 +52,7 @@ const MyPropertyOverview = ({ id }) => {
 
   const oneTimeFee = tenancySelector.getOneTimeFee(tenancyOverviewData);
   const recurringFee = tenancySelector.getRecurringFee(tenancyOverviewData);
+  const tenancyCode = tenancySelector.getTenancyCode(tenancyOverviewData);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -89,29 +91,28 @@ const MyPropertyOverview = ({ id }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Property Overview - Spacify Asia" />
 
-      <DesktopLayout page="My Property Overview">
-        <TenancyUserSection t={t} data={userProfileData} />
-
-        <TenancyDetail
-          t={t}
-          onChangeAutoPay={onChangeAutoPay}
-          isChecked={isChecked}
-          data={tenancyOverviewData}
-        />
-
-        <TenancyFeeDetail title={"One Time Charges"} data={oneTimeFee} />
-
-        <TenancyFeeDetail title={"Monthly Charges"} data={recurringFee} />
-      </DesktopLayout>
-
-      <CustomHeader
-        pageTitle={t("pageTitle.myTenancyOverview")}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-        // rightButtonIcon={Images.downloadIcon}
-        // rightSecondButtonIcon={Images.shareIcon}
+      <DesktopLayout
+        loading={userProfileLoading || tenancyOverviewLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {tenancyCode}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
       >
-        <div className="body-container">
+        <div className="gap-6 flex flex-col">
           <TenancyUserSection t={t} data={userProfileData} />
 
           <TenancyDetail
@@ -130,17 +131,11 @@ const MyPropertyOverview = ({ id }) => {
           {/*  onClickToAgreementOverview={onClickToAgreementOverview}*/}
           {/*/>*/}
 
-          {/*<InsuranceSection t={t} />*/}
-
           {/*<UnsubscribeAutoPayModal t={t} />*/}
 
           {/*<SubscribeAutoPayModal t={t} />*/}
-
-          <LoadingOverlay
-            loading={userProfileLoading || tenancyOverviewLoading}
-          />
         </div>
-      </CustomHeader>
+      </DesktopLayout>
     </div>
   );
 };

@@ -182,7 +182,6 @@ const EditProfile = () => {
       <NextSeo title="Edit Profile - Spacify Asia" />
 
       <DesktopLayout
-        page="My Account"
         loading={
           userProfileLoading || changePasswordLoading || editProfileLoading
         }
@@ -190,7 +189,7 @@ const EditProfile = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <a href="/account">
+                <a href={"/account"}>
                   <CustomText textClassName="font-size-normal disable-text">
                     Account
                   </CustomText>

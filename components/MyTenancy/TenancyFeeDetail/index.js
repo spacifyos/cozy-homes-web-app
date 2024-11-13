@@ -6,7 +6,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const TenancyFeeDetail = ({ title, data }) => {
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-7">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 ">
       <CustomText textClassName="disable-text font-size-small">
         {title}
       </CustomText>

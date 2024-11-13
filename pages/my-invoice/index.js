@@ -20,6 +20,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import DesktopInvoiceSummaryComponent from "@/components/MyInvoice/DesktopInvoiceSummaryComponent";
 import DesktopFilterModal from "@/components/MyInvoice/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -181,10 +182,28 @@ const MyInvoice = () => {
       <NextSeo title="My Invoice - Spacify Asia" />
 
       <DesktopLayout
-        page="My Invoice"
+        loading={invoiceListingLoading && isEmpty(invoiceListingData)}
         rightButtonIcon={Images.filterProIcon}
         isFiltered={isFilter()}
         onClickRightButton={() => onClickOpenFilter("desktop")}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul className="flex-wrap">
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Invoice
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
       >
         <div className="flex flex-col flex-1">
           {invoiceSummaryDataLoading ? (
@@ -232,7 +251,7 @@ const MyInvoice = () => {
           )}
 
           {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
-            <div className="flex justify-center pt-1">
+            <div className="flex justify-center pt-4">
               <CustomButton
                 buttonClassName="primary-btn min-h-9 h-9 w-32"
                 buttonText="Load More"
@@ -257,75 +276,6 @@ const MyInvoice = () => {
             onClickSubmit={onClickSubmit}
             onClickReset={onClickReset}
           />
-        </div>
-      </DesktopLayout>
-
-      <CustomHeader
-        pageTitle={t("pageTitle.myInvoice")}
-        rightButtonIcon={Images.filterProIcon}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-        isFiltered={isFilter()}
-        onClickRightButton={onClickOpenFilter}
-      >
-        <div className="body-container pb-1 flex flex-col flex-1">
-          {invoiceSummaryDataLoading ? (
-            <div
-              className="w-full flex justify-center"
-              style={{ minHeight: 120, height: 120 }}
-            >
-              <span className="loading loading-spinner loading-lg primary-text"></span>
-            </div>
-          ) : (
-            <MyInvoiceComponent data={invoiceSummaryData} />
-          )}
-
-          <div className="flex items-center pb-3">
-            <CustomButton
-              buttonText="All"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => onClickSelectCategory("All")}
-            />
-            <CustomButton
-              buttonText="Unpaid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => onClickSelectCategory("Unpaid")}
-            />
-            <CustomButton
-              buttonText="Paid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => onClickSelectCategory("Paid")}
-            />
-          </div>
-
-          {isEmpty(invoiceListingData) ? (
-            <div className="flex flex-1 items-center justify-center">
-              <CustomEmptyBox emptyTitle="No meter found" />
-            </div>
-          ) : (
-            <InvoiceComponent
-              data={invoiceListingData}
-              t={t}
-              onClickToOverView={onClickToOverView}
-            />
-          )}
-
-          {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
-            <div className="flex justify-center pb-3 pt-1">
-              <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
-                buttonText="Load More"
-                textClassName="font-size-xsmall"
-                loading={invoiceListingLoading && !isEmpty(invoiceListingData)}
-                onClick={onClickLoadMore}
-              />
-            </div>
-          ) : (
-            false
-          )}
 
           <FilterModal
             t={t}
@@ -340,12 +290,8 @@ const MyInvoice = () => {
             onClickReset={onClickReset}
             isOpenFilterModal={isOpenFilterModal}
           />
-
-          <LoadingOverlay
-            loading={invoiceListingLoading && isEmpty(invoiceListingData)}
-          />
         </div>
-      </CustomHeader>
+      </DesktopLayout>
     </div>
   );
 };

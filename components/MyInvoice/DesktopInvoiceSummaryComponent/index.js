@@ -21,7 +21,7 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
   };
 
   return (
-    <div className="pb-10 grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 gap-5">
+    <div className="pb-10 grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-5">
       {map(data, (item, index) => {
         const name = invoiceSelector.getName(item);
         const totalAmountText = invoiceSelector.getTotalAmountText(item);

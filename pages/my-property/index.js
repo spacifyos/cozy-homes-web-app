@@ -24,6 +24,7 @@ import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopFeatureSection from "@/components/MyStay/DesktopFeatureSection";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -114,8 +115,26 @@ const MyStay = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Stay - Spacify Asia" />
 
-      <DesktopLayout page="My Property">
-        <div className="pb-16">
+      <DesktopLayout
+        loading={
+          userProfileLoading ||
+          tenancyListingLoading ||
+          invoiceListingLoading ||
+          meterListingLoading
+        }
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My Property
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
           <UserSection t={t} data={userProfileData} />
 
           <TenancySection
@@ -138,40 +157,7 @@ const MyStay = () => {
         </div>
       </DesktopLayout>
 
-      {/*<CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>*/}
-      {/*  <div className="body-container pb-24">*/}
-      {/*    <UserSection t={t} data={userProfileData} />*/}
-
-      {/*    <TenancySection*/}
-      {/*        t={t}*/}
-      {/*        onChangeAutoPay={onChangeAutoPay}*/}
-      {/*        isChecked={isChecked}*/}
-      {/*        data={tenancyListingData}*/}
-      {/*    />*/}
-
-      {/*    <FeatureSection t={t} />*/}
-
-      {/*    <MeterSection t={t} data={meterListingData} />*/}
-
-      {/*    <InvoiceSection*/}
-      {/*        t={t}*/}
-      {/*        onClickSelectCategory={onClickSelectCategory}*/}
-      {/*        selectedCategory={selectedCategory}*/}
-      {/*        data={invoiceListingData}*/}
-      {/*    />*/}
-
-      {/*    <LoadingOverlay*/}
-      {/*        loading={*/}
-      {/*            userProfileLoading ||*/}
-      {/*            tenancyListingLoading ||*/}
-      {/*            invoiceListingLoading ||*/}
-      {/*            meterListingLoading*/}
-      {/*        }*/}
-      {/*    />*/}
-      {/*  </div>*/}
-
       <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
-      {/*</CustomHeader>*/}
     </div>
   );
 };
