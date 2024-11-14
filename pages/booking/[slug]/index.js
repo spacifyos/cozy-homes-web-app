@@ -651,9 +651,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <a href={"/my-property"}>
+                <a href={"/explore"}>
                   <CustomText textClassName="font-size-normal disable-text">
-                    My Property
+                    Explore
                   </CustomText>
                 </a>
               </li>
