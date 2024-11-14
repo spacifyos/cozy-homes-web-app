@@ -31,12 +31,12 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
           icon: Images.navigateChatIcon,
           activeIcon: Images.navigateChatIconActive,
         },
-        {
-          name: "RenoXpert",
-          value: isEqual(userType, "owner") ? "/testing" : "/testing",
-          icon: Images.renoExpertIcon,
-          activeIcon: Images.renoExpertIconActive,
-        },
+        // {
+        //   name: "RenoXpert",
+        //   value: isEqual(userType, "owner") ? "/testing" : "/testing",
+        //   icon: Images.renoExpertIcon,
+        //   activeIcon: Images.renoExpertIconActive,
+        // },
         {
           name: t("root.account"),
           value: isEqual(userType, "owner") ? "/owner/account" : "/account",
@@ -57,11 +57,8 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
       className="bottom-0 w-full fixed xl:hidden lg:hidden md:hidden sm:fixed"
       style={{ zIndex: 9999 }}
     >
-      <div className="container mx-auto">
-        <div
-          className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius"
-          // style={{ margin: 10 }}
-        >
+      <div className="container mx-auto pb-2">
+        <div className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius">
           {map(lists, (item, index) => {
             const name = get(item, ["name"], "");
             const value = get(item, ["value"], "");

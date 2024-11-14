@@ -199,6 +199,18 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         />
       )}
 
+      {isTenant ? (
+        false
+      ) : (
+        <FeatureComponent
+          title={"RenoXpert"}
+          icon={Images.renoExpertIconActive}
+          imageWidth={16}
+          pb={3}
+          route={"/testing"}
+        />
+      )}
+
       <FeatureComponent
         title="Set Pin Number"
         icon={Images.primaryLockIcon}
@@ -230,7 +242,8 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       <div className="divider-line"></div>
 
-      <SetPinNumberModal id="set_pin_number_desktop_modal"
+      <SetPinNumberModal
+        id="set_pin_number_desktop_modal"
         pinNumberValue={pinNumberValue}
         confirmPinNumberValue={confirmPinNumberValue}
         onChangePinNumber={onChangePinNumber}

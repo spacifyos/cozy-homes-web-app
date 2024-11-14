@@ -141,7 +141,7 @@ function Home() {
           />
         </div>
 
-        <div className="pt-52">
+        <div className="pt-52 pb-16">
           <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 pb-10 container mx-auto">
             <CustomText
               textClassName="primary-text font-bold"
@@ -240,106 +240,12 @@ function Home() {
         </div>
       </DesktopLayout>
 
-      {/*<div className="bg-color pt-7 pb-24 mobile-responsive">*/}
-      {/*  /!*<LanguageSwitcher*!/*/}
-      {/*  /!*  locale={locale}*!/*/}
-      {/*  /!*  openSwitcher={openSwitcher}*!/*/}
-      {/*  /!*  onClickOpenSwitcher={onClickOpenSwitcher}*!/*/}
-      {/*  /!*  onClickChangeLanguage={onClickChangeLanguage}*!/*/}
-      {/*/>*/}
-
-      {/*  <BannerCarousel*/}
-      {/*    listingBannerData={listingBannerData}*/}
-      {/*    listingBannerDataLoading={listingBannerDataLoading}*/}
-      {/*  />*/}
-
-      {/*  <div className="body-container">*/}
-      {/*    <FeaturesSection tags={tagsListing} />*/}
-      {/*  </div>*/}
-
-      {/*  <ListingSectionListingSection*/}
-      {/*    t={t}*/}
-      {/*    title={*/}
-      {/*      <CustomText textClassName="font-bold primary-text">*/}
-      {/*        Popular City*/}
-      {/*      </CustomText>*/}
-      {/*    }*/}
-      {/*    lists={popularCity}*/}
-      {/*    listingLoading={listingDataLoading}*/}
-      {/*    className="pb-7"*/}
-      {/*    onClickViewMore={onClickToSearch}*/}
-      {/*  />*/}
-
-      {/*  <div className="primaryWhite-bg-color py-7">*/}
-      {/*    <ListingSection*/}
-      {/*      t={t}*/}
-      {/*      title={*/}
-      {/*        <div className="flex">*/}
-      {/*          <CustomText textClassName="font-bold primary-text pr-1">*/}
-      {/*            Featured Rooms*/}
-      {/*          </CustomText>*/}
-      {/*          <CustomText textClassName="font-bold">Just For You</CustomText>*/}
-      {/*        </div>*/}
-      {/*      }*/}
-      {/*      lists={featuredRooms}*/}
-      {/*      listingLoading={listingDataLoading}*/}
-      {/*      onClickViewMore={onClickToSearch}*/}
-      {/*    />*/}
-      {/*  </div>*/}
-
-      {/*  <ListingSection*/}
-      {/*    t={t}*/}
-      {/*    title={*/}
-      {/*      <CustomText textClassName="font-bold primary-text">*/}
-      {/*        Popular University/College*/}
-      {/*      </CustomText>*/}
-      {/*    }*/}
-      {/*    lists={popularUniversity}*/}
-      {/*    listingLoading={listingDataLoading}*/}
-      {/*    className="py-7"*/}
-      {/*    onClickViewMore={onClickToSearch}*/}
-      {/*  />*/}
-
-      {/*  <div className="primaryWhite-bg-color py-7">*/}
-      {/*    <ListingSection*/}
-      {/*      t={t}*/}
-      {/*      title={*/}
-      {/*        <div className="flex">*/}
-      {/*          <CustomText textClassName="font-bold primary-text pr-1">*/}
-      {/*            Cheapest Rooms*/}
-      {/*          </CustomText>*/}
-      {/*          <CustomText textClassName="font-bold">Just For You</CustomText>*/}
-      {/*        </div>*/}
-      {/*      }*/}
-      {/*      lists={cheapestRooms}*/}
-      {/*      listingLoading={listingDataLoading}*/}
-      {/*      onClickViewMore={onClickToSearch}*/}
-      {/*    />*/}
-      {/*  </div>*/}
-
-      {/*  <div className="primary-bg-color py-7">*/}
-      {/*    <ListingSection*/}
-      {/*      t={t}*/}
-      {/*      title={*/}
-      {/*        <div className="flex items-center">*/}
-      {/*          <CustomText textClassName="font-size-large italic white-text pr-1">*/}
-      {/*            Special*/}
-      {/*          </CustomText>*/}
-      {/*          <CustomText textClassName="font-bold italic white-text">*/}
-      {/*            Promotion*/}
-      {/*          </CustomText>*/}
-      {/*        </div>*/}
-      {/*      }*/}
-      {/*      lists={specialPromotion}*/}
-      {/*      listingLoading={listingDataLoading}*/}
-      {/*      onClickViewMore={onClickToSearch}*/}
-      {/*      hideLabel*/}
-      {/*      hideViewMore*/}
-      {/*    />*/}
-      {/*  </div>*/}
-
-      {/*  <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />*/}
-      {/*</div>*/}
+      <BottomNavigate
+        t={t}
+        routeName={routeName}
+        routeQuery={routeQuery}
+        onClickChangeTab={onClickChangeTab}
+      />
     </div>
   );
 }
