@@ -18,9 +18,10 @@ const SetPinNumberModal = ({
   timeLeft,
   isResendEnabled,
   otpRequestLoading,
+  id,
 }) => {
   return (
-    <CustomModal id="set_pin_number_modal" disableClose>
+    <CustomModal id={id} disableClose>
       <BookingInput
         title="Pin Number"
         placeholder="Pin Number"

@@ -186,11 +186,11 @@ const Account = () => {
   const onClickCloseSetPinNumberModal = () => {
     setErrorMessage([]);
 
-    Helper.documentGetElementById("set_pin_number_modal").close();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").close();
   };
 
   const onClickOpenSetPinNumberModal = () => {
-    Helper.documentGetElementById("set_pin_number_modal").showModal();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").showModal();
   };
 
   const onClickGenerateOtp = async () => {
@@ -344,6 +344,7 @@ const Account = () => {
       </DesktopLayout>
 
       <SetPinNumberModal
+        id="set_pin_number_mobile_modal"
         pinNumberValue={pinNumberValue}
         confirmPinNumberValue={confirmPinNumberValue}
         onChangePinNumber={onChangePinNumber}

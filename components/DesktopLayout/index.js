@@ -1,14 +1,11 @@
 import DesktopHeader from "@/components/DesktopLayout/DesktopHeader";
 import DesktopFooter from "@/components/DesktopLayout/DesktopFooter";
 import DesktopNavigationBar from "@/components/DesktopLayout/DesktopNavigationBar";
-import CustomText from "@/components/CustomText";
-import { get, isEmpty, isEqual } from "lodash";
+import { isEmpty, isEqual } from "lodash";
 import Helper from "@/src/utils/Helper";
 import SignInModal from "@/components/Explore/SignInModal";
 import SignUpModal from "@/components/Explore/SignUpModal";
-import UserTypeSelectModal from "@/components/Explore/UserTypeSelectSection";
 import { useEffect, useState } from "react";
-import AuthManager from "@/src/utils/AuthManager";
 import { useRouter } from "next/router";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +16,6 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 
 const DesktopLayout = ({
   children,
-  page,
   hideNav = false,
   rightSecondButtonIcon,
   onClickRightSecondButton,
@@ -33,24 +29,25 @@ const DesktopLayout = ({
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [userType, setUserType] = useState("");
+  const [selectedUserType, setSelectedUserType] = useState("");
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
   const [signOutLoading, setSignOutLoading] = useState(false);
 
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      const token = await AuthManager.retrieveToken();
-      const type = await AuthManager.retrieveType();
+  const userType = authSelector.getType(userProfileData);
 
-      if (!isEmpty(token) && !isEmpty(type)) {
-        setUserType(type);
-      }
-    };
-
-    checkAuthentication();
-  }, [router]);
+  // useEffect(() => {
+  //   const checkAuthentication = async () => {
+  //     const token = await AuthManager.retrieveToken();
+  //     const type = await AuthManager.retrieveType();
+  //
+  //     if (!isEmpty(token) && !isEmpty(type)) {
+  //     }
+  //   };
+  //
+  //   checkAuthentication();
+  // }, [router]);
 
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
@@ -80,24 +77,20 @@ const DesktopLayout = ({
     Helper.documentGetElementById("sign_up_modal").showModal();
   };
 
-  const onClickMyProperty = async () => {
-    const type = await AuthManager.retrieveType();
-
-    if (isEqual(type, "tenant")) {
+  const onClickMyProperty = () => {
+    if (isEqual(userType, "tenant")) {
       return router.replace("/my-property");
     } else {
       return router.replace("/owner");
     }
   };
 
-  const onClickMyAccount = async () => {
+  const onClickMyAccount = () => {
     return router.replace("/account");
   };
 
-  const onClickChat = async () => {
-    const type = await AuthManager.retrieveType();
-
-    if (isEqual(type, "tenant")) {
+  const onClickChat = () => {
+    if (isEqual(userType, "tenant")) {
       return router.replace("/chat");
     } else {
       return router.replace("/owner/chat");
@@ -180,7 +173,7 @@ const DesktopLayout = ({
           <div className="grid grid-cols-4 gap-10">
             <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
               <DesktopNavigationBar
-                userType={userType}
+                userData={userProfileData}
                 onClickLogout={onClickLogout}
               />
             </div>
@@ -194,8 +187,14 @@ const DesktopLayout = ({
 
       <DesktopFooter />
 
-      <SignInModal userType={userType} setUserType={setUserType} />
-      <SignUpModal userType={userType} setUserType={setUserType} />
+      <SignInModal
+        userType={selectedUserType}
+        setUserType={setSelectedUserType}
+      />
+      <SignUpModal
+        userType={selectedUserType}
+        setUserType={setSelectedUserType}
+      />
 
       <LoadingOverlay loading={loading || signOutLoading} />
     </div>
