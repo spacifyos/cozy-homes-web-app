@@ -8,7 +8,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 import * as listingSelector from "@/src/selectors/listing";
 
-const DesktopPriceSection = ({
+const   DesktopPriceSection = ({
   openFirstMonthCharges,
   onClickOpenFirstMonthCharges,
   openLastMonthCharges,
@@ -46,7 +46,7 @@ const DesktopPriceSection = ({
     listingSelector.getTotalCostLastMonthRentCharges(moveInFees);
 
   return (
-    <div className="col-span-2 relative">
+    <div className="xl:col-span-2 md:col-span-2 lg:col-span-2 sm:col-span-4 col-span-4 relative">
       <div className="global-border-radius global-box-shadow overflow-hidden sticky top-5">
         <CustomImage
           src={Images.imageNotFound}

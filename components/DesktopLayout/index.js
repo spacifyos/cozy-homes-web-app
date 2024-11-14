@@ -125,7 +125,10 @@ const DesktopLayout = ({
       />
 
       {hideNav ? (
-        <div className="flex-1 h-full">{children}</div>
+        <div className="flex-1 h-full container mx-auto py-4 xl:py-6 lg:py-6 md:py-6 sm:py-6">
+          <div className="pb-5">{pageBreadcrumbs}</div>
+          {children}
+        </div>
       ) : (
         <div className="flex-1 h-full flex flex-col container mx-auto py-4 xl:py-6 lg:py-6 md:py-6 sm:py-6">
           <div className="flex justify-between items-center pb-5">

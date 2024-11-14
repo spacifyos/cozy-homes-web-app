@@ -6,7 +6,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 const Facilities = ({ t, facilitiesList }) => {
   return (
-    <div className="mb-5 content-container">
+    <div className="content-container">
       <CustomText textClassName="section-title">
         {t("propertyDetail.facilities")}
       </CustomText>

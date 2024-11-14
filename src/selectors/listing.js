@@ -120,6 +120,8 @@ export const getAuthorizedAt = (state) => get(state, ["authorized_at"], "");
 export const getTotalFees = (state) => get(state, ["total_fees"], "");
 export const getTotalFeesAmount = (state) =>
   get(state, ["total_fees", "total"], "");
+export const getFeesTotalCostAmount = (state) =>
+    get(state, ["fees", "total_cost", "total"], "");
 export const getTotalFeesFirstMonthAmount = (state) =>
   get(state, ["total_fees", "total_first_month_rent_charges"], "");
 export const getTotalFeesLastMonthAmount = (state) =>

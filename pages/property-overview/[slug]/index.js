@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import DetailComponent from "@/components/PropertyOverview/DetailComponent";
@@ -6,7 +5,6 @@ import DetailFeatureSection from "@/components/PropertyOverview/DetailFeatureSec
 import Facilities from "@/components/PropertyOverview/Facilities";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
-import RecommendSection from "@/components/PropertyOverview/RecommendSection";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
@@ -16,7 +14,6 @@ import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomButton from "@/components/CustomButton";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
@@ -30,6 +27,7 @@ import DesktopRecommendSection from "@/components/PropertyOverview/DesktopRecomm
 import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearbyRoomSection";
 import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import CustomText from "@/components/CustomText";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -175,8 +173,36 @@ const PropertyOverview = ({ id }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Property Overview - Spacify Asia" />
 
-      <DesktopLayout hideNav>
-        <div className="container mx-auto flex-1 py-10">
+      <DesktopLayout
+        hideNav
+        loading={listingPropertyDetailDataLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/my-invoice"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Property Listing
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {propertyName}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="pb-32">
           <div className="grid grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
             <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
               <CustomImage src={Images.logoImage} />
@@ -195,8 +221,8 @@ const PropertyOverview = ({ id }) => {
             </div>
           </div>
 
-          <div class="grid grid-cols-3 gap-10">
-            <div className="col-span-2">
+          <div class="grid grid-cols-5 gap-10">
+            <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-5 col-span-5">
               <DetailComponent
                 propertyName={propertyName}
                 unitRoomName={unitRoomName}
@@ -255,7 +281,7 @@ const PropertyOverview = ({ id }) => {
                 />
               )}
             </div>
-            <div className="col-span-1">
+            <div className="xl:col-span-2 lg:col-span-2 md:col-span-2 xl:block lg:block md:block sm:hidden hidden">
               <DesktopPropertyPriceSection
                 t={t}
                 data={listingPropertyDetailData}
@@ -291,113 +317,36 @@ const PropertyOverview = ({ id }) => {
         </div>
       </DesktopLayout>
 
-      <CustomHeader
-        pageTitle={t("pageTitle.propertyDetail")}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-        // onClickRightButton={onClickRightButton}
-        HeaderImageStyle={{ width: "30px", height: "30px" }}
-        // rightButtonIcon={
-        //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
-        // }
-      >
-        <div className="body-container pb-32">
-          <RoomPicCarousel
-            imageUrl={imageUrl}
-            onClickPopupImage={onClickPopupImage}
-          />
+      {/*<RoomPicCarousel*/}
+      {/*  imageUrl={imageUrl}*/}
+      {/*  onClickPopupImage={onClickPopupImage}*/}
+      {/*/>*/}
 
-          <DetailComponent
-            propertyName={propertyName}
-            unitRoomName={unitRoomName}
-            address={address}
-          />
+      <AgentSection
+        t={t}
+        onClickToBookAppointment={onClickToBookAppointment}
+        data={listingPropertyDetailData}
+        onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+        totalMoveInCost={totalMoveInCost}
+        propertyId={id}
+      />
 
-          <div className="grid grid-cols-6 gap-3 items-center pb-5">
-            <CustomButton
-              icon={
-                isEqual(selectDetail, Constant.TENANCY)
-                  ? Images.tenancyIconActive
-                  : Images.tenancyIcon
-              }
-              buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-              textClassName="font-size-normal"
-              buttonText={t("propertyDetail.tenancy")}
-              imageStyle={{ width: 18 }}
-              onClick={() => onClickSelectDetail(Constant.TENANCY)}
-            />
+      <MoveInCostModal
+        openModalFirstMonthCharges={openModalFirstMonthCharges}
+        openModalLastMonthCharges={openModalLastMonthCharges}
+        onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
+        onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+        lists={targetItems}
+      />
 
-            <CustomButton
-              icon={
-                isEqual(selectDetail, Constant.TENANCY)
-                  ? Images.policyIcon
-                  : Images.policyIconActive
-              }
-              imageStyle={{ width: 18 }}
-              buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-              textClassName="font-size-normal disable-text"
-              buttonText={t("propertyDetail.policy")}
-              onClick={() => onClickSelectDetail(Constant.POLICY)}
-            />
-          </div>
+      {/*<ImageModal*/}
+      {/*  data={imageUrl}*/}
+      {/*  selectedImage={selectedImage}*/}
+      {/*  onClickCloseImageModal={onClickCloseImageModal}*/}
+      {/*  openImageModal={openImageModal}*/}
+      {/*/>*/}
 
-          {isEqual(selectDetail, Constant.TENANCY) ? (
-            <div>
-              <DetailFeatureSection
-                t={t}
-                rental={rental}
-                bedType={bedType}
-                bathroom={bathroom}
-                squareFeet={squareFeet}
-              />
-
-              <Description t={t} description={description} />
-
-              <Facilities t={t} facilitiesList={facilitiesList} />
-
-              {/*<SpacifyMap t={t} />*/}
-
-              <RecommendSection t={t} recommendedList={recommendedList} />
-            </div>
-          ) : (
-            <PolicyDetail
-              t={t}
-              loading={listingCancellationDataLoading}
-              data={listingCancellationData}
-            />
-          )}
-
-          <AgentSection
-            t={t}
-            onClickToBookAppointment={onClickToBookAppointment}
-            data={listingPropertyDetailData}
-            onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
-            totalMoveInCost={totalMoveInCost}
-            propertyId={id}
-          />
-
-          <MoveInCostModal
-            openModalFirstMonthCharges={openModalFirstMonthCharges}
-            openModalLastMonthCharges={openModalLastMonthCharges}
-            onClickOpenModalFirstMonthCharges={
-              onClickOpenModalFirstMonthCharges
-            }
-            onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
-            lists={targetItems}
-          />
-
-          <ImageModal
-            data={imageUrl}
-            selectedImage={selectedImage}
-            onClickCloseImageModal={onClickCloseImageModal}
-            openImageModal={openImageModal}
-          />
-
-          <RentChargeModal />
-
-          <LoadingOverlay loading={listingPropertyDetailDataLoading} />
-        </div>
-      </CustomHeader>
+      <RentChargeModal />
     </div>
   );
 };

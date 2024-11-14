@@ -1,21 +1,16 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import BookingOverviewDetail from "@/components/BookingOverview/BookingOverviewDetail";
-import StepSection from "@/components/BookingOverview/StepSection";
 import { useEffect, useState } from "react";
-import OverviewModal from "@/components/BookingOverview/OverviewModal";
 import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
-import { getTotalFeesAmount, getUnitName } from "@/src/selectors/listing";
 import DesktopBookingStatusSection from "@/components/BookingOverview/DesktopBookingStatusSection";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -38,7 +33,7 @@ const BookingOverview = ({ id }) => {
   const unitRoomName = listingSelector.getUnitName(bookingOverviewData);
   const address = listingSelector.getAddress(bookingOverviewData);
   const totalMoveInCost =
-    listingSelector.getTotalFeesAmount(bookingOverviewData);
+    listingSelector.getFeesTotalCostAmount(bookingOverviewData);
   const moveInFees = listingSelector.getFees(bookingOverviewData);
 
   const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
@@ -68,9 +63,30 @@ const BookingOverview = ({ id }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Booking Overview - Spacify Asia" />
 
-      <DesktopLayout hideNav>
-        <div className="container mx-auto flex-1 py-10">
-          <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 gap-5">
+      <DesktopLayout
+        hideNav
+        loading={bookingOverviewLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {id}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="flex-1">
+          <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5">
             <DesktopPriceSection
               isBookingOverview
               title={title}
@@ -90,30 +106,7 @@ const BookingOverview = ({ id }) => {
         </div>
       </DesktopLayout>
 
-      <CustomHeader
-        pageTitle={t("pageTitle.bookingOverview")}
-        hideBgImage
-        onClickGoBack={onClickGoBack}
-      >
-        <div className="body-container pb-4">
-          <BookingOverviewDetail t={t} data={bookingOverviewData} id={id} />
-
-          <StepSection t={t} data={bookingOverviewData} />
-
-          <OverviewModal
-            t={t}
-            data={bookingOverviewData}
-            openFirstMonthCharges={openFirstMonthCharges}
-            onClickOpenFirstMonthCharges={onClickOpenFirstMonthCharges}
-            openLastMonthCharges={openLastMonthCharges}
-            onClickOpenLastMonthCharges={onClickOpenLastMonthCharges}
-          />
-
-          <RentChargeModal />
-
-          <LoadingOverlay loading={bookingOverviewLoading} />
-        </div>
-      </CustomHeader>
+      <RentChargeModal />
     </div>
   );
 };

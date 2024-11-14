@@ -38,9 +38,11 @@ const DesktopFormSection = ({
   onClickReadAgree,
   emergencyContactNumber,
   onClickBooking,
+  setReferralCodeValue,
+  referralCodeValue,
 }) => {
   return (
-    <div className="px-5 col-span-3 overflow-hidden">
+    <div className="px-5 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
       <div className="grid grid-cols-6 gap-2">
         <CustomText textClassName="col-span-6 font-bold font-size-xxlarge primary-text">
           Please Fill in The Form
@@ -333,6 +335,17 @@ const DesktopFormSection = ({
         />
       </div>
 
+      <div className="grid grid-cols-1 pb-3">
+        <BookingInput
+          bgColor="primaryWhite-bg-color"
+          className="col-span-1"
+          placeholder="Referral Code"
+          title="Referral Code (Optional)"
+          onChange={(e) => setReferralCodeValue(e.target.value)}
+          value={referralCodeValue}
+        />
+      </div>
+
       <div className="grid grid-cols-6 gap-2">
         <CustomText textClassName="col-span-6 font-bold">
           Supporting Documents
@@ -352,16 +365,12 @@ const DesktopFormSection = ({
         </CustomText>
 
         <div className="col-span-3 flex flex-col items-center">
-          <div className="relative" style={{ height: 205 }}>
+          <div className="relative" style={{}}>
             <ImageUploading loading={frontIcUploading} />
 
             <CustomImage
               src={isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
-              imageStyle={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-              }}
+              imageStyle={{ width: "100%" }}
             />
           </div>
 
@@ -379,16 +388,12 @@ const DesktopFormSection = ({
         </div>
 
         <div className="col-span-3 flex flex-col items-center">
-          <div className="relative" style={{ height: 205 }}>
+          <div className="relative" style={{}}>
             <ImageUploading loading={backIcUploading} />
 
             <CustomImage
               src={isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
-              imageStyle={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-              }}
+              imageStyle={{ width: "100%" }}
             />
           </div>
 

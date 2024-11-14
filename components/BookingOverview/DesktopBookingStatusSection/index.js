@@ -21,7 +21,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
   };
 
   return (
-    <div className="xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-2 relative">
+    <div className="xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 relative">
       <div className="global-border-radius global-box-shadow p-5 sticky top-10">
         <CustomText textClassName="primary-text font-size-xxlarge font-bold pb-5">
           Booking Status
