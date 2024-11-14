@@ -12,6 +12,9 @@ import * as reportSelector from "@/src/selectors/report";
 import moment from "moment";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
+import Images from "@/src/utils/Image";
+import CustomText from "@/components/CustomText";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -79,47 +82,62 @@ const MyReport = () => {
   };
 
   return (
-    <CustomOwnerHeader
-      className="pb-0"
-      title="My Monthly P&L Statement"
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Report | Owner - Spacify Asia" />
-
-      <div className="bg-color flex flex-col flex-1 global-horizontal-padding">
-        <div className="grid grid-cols-3 gap-2 pt-5 pb-7">
-          <CustomSelect
-            placeholder={"Property"}
-            optionList={propertyOption}
-            onChange={onChangePropertyValue}
-            // value={stateValue}
-          />
-
-          <CustomSelect
-            placeholder={"Unit"}
-            optionList={unitOption}
-            onChange={onChangeUnitValue}
-            // value={stateValue}
-          />
-
-          <div className="relative">
-            <input
-              className="p-4 global-box-shadow global-border-radius primaryWhite-bg-color resize-input-icon font-size-xsmall"
-              type="month"
-              style={{ height: 48 }}
-              onChange={onChangeMonthValue}
-              value={get(filterParams, ["month"], "")}
-              min="2000-01"
-              max={moment().subtract(1, "months").format("YYYY-MM")}
-            />
+      <DesktopLayout
+        loading={loading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul className="flex-wrap">
+              <li>
+                <a href={"/owner"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My Report
+                </CustomText>
+              </li>
+            </ul>
           </div>
+        }
+      >
+        <div className="flex flex-col h-full">
+          <div className="grid grid-cols-3 gap-2 pb-7">
+            <CustomSelect
+              placeholder={"Property"}
+              optionList={propertyOption}
+              onChange={onChangePropertyValue}
+              // value={stateValue}
+            />
+
+            <CustomSelect
+              placeholder={"Unit"}
+              optionList={unitOption}
+              onChange={onChangeUnitValue}
+              // value={stateValue}
+            />
+
+            <div className="relative">
+              <input
+                className="p-4 global-box-shadow global-border-radius primaryWhite-bg-color resize-input-icon font-size-xsmall"
+                type="month"
+                style={{ height: 48 }}
+                onChange={onChangeMonthValue}
+                value={get(filterParams, ["month"], "")}
+                min="2000-01"
+                max={moment().subtract(1, "months").format("YYYY-MM")}
+              />
+            </div>
+          </div>
+
+          <ListingComponent data={statement} targetMonth={targetMonth} />
         </div>
-
-        <ListingComponent data={statement} targetMonth={targetMonth} />
-      </div>
-
-      <LoadingOverlay loading={loading} />
-    </CustomOwnerHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

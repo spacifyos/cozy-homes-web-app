@@ -16,7 +16,7 @@ function AuthWrapper(WrappedComponent) {
         const token = await AuthManager.retrieveToken();
         const type = await AuthManager.retrieveType();
 
-        if (!isEmpty(token) && !isEmpty(type) && isEqual(type, "tenant")) {
+        if (!isEmpty(token) && !isEmpty(type)) {
           setIsAuthenticated(true);
         }
         setIsLoading(false);

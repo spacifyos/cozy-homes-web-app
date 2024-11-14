@@ -45,6 +45,7 @@ const DesktopLayout = ({
       const type = await AuthManager.retrieveType();
 
       if (!isEmpty(token) && !isEmpty(type)) {
+        setUserType(type);
       }
     };
 
@@ -90,13 +91,7 @@ const DesktopLayout = ({
   };
 
   const onClickMyAccount = async () => {
-    const type = await AuthManager.retrieveType();
-
-    if (isEqual(type, "tenant")) {
-      return router.replace("/account");
-    } else {
-      return router.replace("/owner/account");
-    }
+    return router.replace("/account");
   };
 
   const onClickChat = async () => {
@@ -184,7 +179,10 @@ const DesktopLayout = ({
 
           <div className="grid grid-cols-4 gap-10">
             <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
-              <DesktopNavigationBar />
+              <DesktopNavigationBar
+                userType={userType}
+                onClickLogout={onClickLogout}
+              />
             </div>
 
             <div className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4">
