@@ -23,7 +23,7 @@ const DesktopHeader = ({
       className="py-4 primaryWhite-bg-color"
       style={{ minHeight: 100, borderBottom: "3px #f5f8fd solid" }}
     >
-      <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-center sm:justify-center justify-center items-center">
+      <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
         <CustomImage
           src={Image.logoHorizontalColor}
           imageStyle={{ width: 130 }}
@@ -32,7 +32,7 @@ const DesktopHeader = ({
         />
 
         {isEmpty(data) ? (
-          <div className="flex gap-3 hidden xl:flex lg:flex">
+          <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
             <CustomButton
               icon={loading ? "" : Image.registerIcon}
               imageStyle={{ width: 13 }}
@@ -54,22 +54,13 @@ const DesktopHeader = ({
             />
           </div>
         ) : (
-          <div className="flex gap-3 hidden xl:flex lg:flex">
+          <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
             <CustomButton
               icon={Image.homeIconActive}
               buttonText={`My Property`}
               buttonClassName="default-btn w-36"
               reverse
               onClick={onClickMyProperty}
-            />
-
-            <CustomButton
-              icon={Image.navigateChatIconActive}
-              buttonText="Chat"
-              imageStyle={{ width: isEmpty(data) ? 18 : 26 }}
-              buttonClassName="default-btn w-32"
-              onClick={onClickChat}
-              reverse
             />
 
             <CustomButton

@@ -11,7 +11,7 @@ export default function Custom500() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center flex-1 px-10">
+        <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-color">
             <NextSeo title="User Forbidden - Spacify Asia" />
             <div className="flex gap-1">
                 <CustomText
