@@ -9,38 +9,66 @@ import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
 
-const DesktopSearchBar = ({ onClickOpenModal }) => {
+const DesktopSearchBar = ({
+  onClickOpenModal,
+  tenureTag,
+  setTenureValue,
+  tenureValue,
+  keywordValue,
+  onChangeKeywordValue,
+  setPriceRange,
+  priceRange,
+  onClickSubmitKeyword,
+  setOnRangeDrag,
+  onChangeTenurePeriod,
+  onThumbDragEnd,
+}) => {
   return (
-    <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 gap-5 pb-6">
+    <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-5 pb-6">
       <div className="col-span-1 xl:block hidden"></div>
-      <div className="col-span-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
+
+      <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
         <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
           Keyword
         </CustomText>
         <CustomInput
+          hideShadow
           rightIcon={Images.searchOutlineActiveIcon}
           className=""
           placeholder="Keyword"
-          // value={keywordValue}
-          // onChange={onChangeKeywordValue}
-          // onClickRightIcon={onClickSubmitKeyword}
+          value={keywordValue}
+          onChange={onChangeKeywordValue}
+          onClickRightIcon={onClickSubmitKeyword}
         />
       </div>
 
-      <div className="col-span-3 global-border-radius global-box-shadow primaryWhite-bg-color px-4 py-2 flex flex-col justify-center">
+      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color px-4 py-2 flex flex-col justify-center">
         <CustomText textClassName="font-size-xxsmall">Your Budget</CustomText>
 
-        <RangeSlider className="price-range-slider" />
+        <RangeSlider
+          className="price-range-slider"
+          min={0}
+          max={10000}
+          value={priceRange}
+          onInput={setPriceRange}
+          rangeSlideDisabled
+          onThumbDragEnd={onThumbDragEnd}
+          onThumbDragStart={() => setOnRangeDrag(true)}
+        />
 
         <div className="flex justify-between items-center">
-          <CustomText textClassName="font-size-xxsmall">RM0</CustomText>
-          <CustomText textClassName="font-size-xxsmall">RM1000</CustomText>
+          <CustomText textClassName="font-size-xxsmall">
+            RM{priceRange[0]}
+          </CustomText>
+          <CustomText textClassName="font-size-xxsmall">
+            RM{priceRange[1]}
+          </CustomText>
         </div>
       </div>
 
-      <div className="col-span-3 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
+      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
         <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
-          Tenancy Period
+          Tenure Period
         </CustomText>
         <CustomSelect
           hideShadow
@@ -48,9 +76,9 @@ const DesktopSearchBar = ({ onClickOpenModal }) => {
           className="mb-2"
           styles={{ maxWidth: "none", margin: 0 }}
           selectStyles={{ height: 40 }}
-          // optionList={Constant.STATE_CODE}
-          // onChange={onChangeStateValue}
-          // value={stateValue}
+          optionList={tenureTag}
+          onChange={onChangeTenurePeriod}
+          value={tenureValue}
         />
       </div>
 
@@ -58,121 +86,11 @@ const DesktopSearchBar = ({ onClickOpenModal }) => {
         icon={Images.filterProIcon}
         imageWidth={25}
         imageHeight={25}
-        buttonClassName="default-btn col-span-1 h-full"
+        buttonClassName="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full"
         onClick={onClickOpenModal}
       />
 
       <div className="col-span-1"></div>
-
-      {/*<CustomInput*/}
-      {/*  rightIcon={Images.searchOutlineActiveIcon}*/}
-      {/*  className="pb-4"*/}
-      {/*  placeholder="Keyword"*/}
-      {/*  // value={keywordValue}*/}
-      {/*  // onChange={onChangeKeywordValue}*/}
-      {/*  // onClickRightIcon={onClickSubmitKeyword}*/}
-      {/*/>*/}
-
-      {/*<CustomText textClassName="font-bold pb-2">Sort Result By</CustomText>*/}
-
-      {/*<div className="flex flex-col gap-2">*/}
-      {/*  <div className="flex justify-between items-center">*/}
-      {/*    <CustomText>Lowest Price</CustomText>*/}
-      {/*    <input type="radio" name="radio-1" className="radio" />*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex justify-between items-center">*/}
-      {/*    <CustomText>Highest Price</CustomText>*/}
-      {/*    <input type="radio" name="radio-1" className="radio" />*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex justify-between items-center">*/}
-      {/*    <CustomText>Best Rating</CustomText>*/}
-      {/*    <input type="radio" name="radio-1" className="radio" />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
-      {/*<div className="gap-4 flex items-center pt-4">*/}
-      {/*  <BookingInput*/}
-      {/*    className="border-none"*/}
-      {/*    title="Minimum (RM)"*/}
-      {/*    value="0"*/}
-      {/*    style={{ border: "unset" }}*/}
-      {/*  />*/}
-      {/*  <CustomText textClassName="font-size-xxlarge">-</CustomText>*/}
-      {/*  <BookingInput title="Maximum (RM)" value="1000" />*/}
-      {/*</div>*/}
-
-      {/*<div className="divider-line"></div>*/}
-
-      {/*<CustomText textClassName="font-bold pb-2">Location</CustomText>*/}
-
-      {/*<CustomSelect*/}
-      {/*  hideShadow*/}
-      {/*  placeholder={"Select City"}*/}
-      {/*  className=""*/}
-      {/*  selectClassName="bg-color"*/}
-      {/*  styles={{ maxWidth: "none" }}*/}
-      {/*  // optionList={Constant.STATE_CODE}*/}
-      {/*  // onChange={onChangeStateValue}*/}
-      {/*  // value={stateValue}*/}
-      {/*/>*/}
-
-      {/*<div className="divider-line"></div>*/}
-
-      {/*<CustomText textClassName="font-bold pb-2">Room Amenities</CustomText>*/}
-
-      {/*<div className="flex flex-col gap-2">*/}
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-
-      {/*  <div className="flex items-center">*/}
-      {/*    <input type="checkbox" className="checkbox" />*/}
-      {/*    <CustomText textClassName="pl-3">Window</CustomText>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-
-      {/*<div className="divider-line"></div>*/}
-
-      {/*<CustomText textClassName="font-bold pb-2">Label</CustomText>*/}
-
-      {/*<div className="pb-1">*/}
-      {/*  <TagComponent*/}
-      {/*    className="flex-wrap gap-3"*/}
-      {/*    style={{ paddingLeft: 0 }}*/}
-      {/*    lists={[*/}
-      {/*      { name: "Verified Room", code: "" },*/}
-      {/*      { name: "Verified Host", code: "" },*/}
-      {/*      { name: "Zero Deposit", code: "", isActive: true },*/}
-      {/*      { name: "6 months", code: "" },*/}
-      {/*      { name: "1 year", code: "" },*/}
-      {/*      { name: "TARUMT", code: "" },*/}
-      {/*    ]}*/}
-      {/*    onClickGeneralTag={() => {}}*/}
-      {/*  />*/}
-      {/*</div>*/}
     </div>
   );
 };

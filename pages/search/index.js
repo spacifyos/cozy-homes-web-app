@@ -37,6 +37,7 @@ import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
 import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -83,16 +84,31 @@ const Search = () => {
   const [scrollTop, setScrollTop] = useState(187); //235
   const [newAmenitiesTag, setNewAmenitiesTag] = useState([]);
   const [newGeneralTag, setNewGeneralTag] = useState([]);
+  const [newSortTag, setNewSortTag] = useState([
+    { name: "Lowest Price", code: "asc", isActive: false },
+    { name: "Highest Price", code: "desc", isActive: false },
+  ]);
+
   const [keywordValue, setKeywordValue] = useState("");
   const [cityValue, setCityValue] = useState("");
   const [stateValue, setStateValue] = useState("");
+  const [tenureValue, setTenureValue] = useState("");
   const [sortValue, setSortValue] = useState("asc");
+  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [spaceTypeValue, setSpaceTypeValue] = useState("");
+  const [onRangeDrag, setOnRangeDrag] = useState(false);
+  const [genderValue, setGenderValue] = useState("");
+
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
   const generalTag = listingSelector.getGeneralTag(listingTagOptionData);
+  const genderTag = listingSelector.getGenderTag(listingTagOptionData);
+  const tenureTag = listingSelector.getTenureTag(listingTagOptionData);
+  const spaceTypeTag = listingSelector.getSpaceType(listingTagOptionData);
+
   const hasMorePages = listingSelector.getHasMorePages(
     listingPropertyPagination,
   );
@@ -247,22 +263,22 @@ const Search = () => {
     setIsKeywordTyping(true);
   };
 
-  const handleKeywordTypingStopped = useCallback(() => {
-    setIsKeywordTyping(false);
-    onClickSubmitKeyword();
-  }, [keywordValue]);
+  // const handleKeywordTypingStopped = useCallback(() => {
+  //   setIsKeywordTyping(false);
+  //   onClickSubmitKeyword();
+  // }, [keywordValue]);
 
-  useEffect(() => {
-    if (isKeywordTyping) {
-      const handler = setTimeout(() => {
-        handleKeywordTypingStopped();
-      }, 1000);
-
-      return () => {
-        clearTimeout(handler);
-      };
-    }
-  }, [keywordValue, isKeywordTyping, handleKeywordTypingStopped]);
+  // useEffect(() => {
+  //   if (isKeywordTyping) {
+  //     const handler = setTimeout(() => {
+  //       handleKeywordTypingStopped();
+  //     }, 1000);
+  //
+  //     return () => {
+  //       clearTimeout(handler);
+  //     };
+  //   }
+  // }, [keywordValue, isKeywordTyping, handleKeywordTypingStopped]);
 
   const onClickSubmitKeyword = () => {
     setSelectedFilterParams((prevState) => {
@@ -273,21 +289,21 @@ const Search = () => {
     });
   };
 
-  const onChangeStateValue = (e) => {
-    setStateValue(e.target.value);
+  // const onChangeStateValue = (e) => {
+  //   setStateValue(e.target.value);
+  //
+  //   setSelectedFilterParams((prevState) => {
+  //     return {
+  //       ...prevState,
+  //       state: e.target.value,
+  //     };
+  //   });
+  // };
 
-    setSelectedFilterParams((prevState) => {
-      return {
-        ...prevState,
-        state: e.target.value,
-      };
-    });
-  };
-
-  const onChangeCityValue = (e) => {
-    setCityValue(e.target.value);
-    setIsCityTyping(true);
-  };
+  // const onChangeCityValue = (e) => {
+  //   setCityValue(e.target.value);
+  //   setIsCityTyping(true);
+  // };
 
   const handleCityTypingStopped = useCallback(() => {
     setIsCityTyping(false);
@@ -334,16 +350,85 @@ const Search = () => {
     Helper.documentGetElementById("desktop_filter_modal").showModal();
   };
 
+  const onChangeTenurePeriod = (e) => {
+    setTenureValue(e.target.value);
+
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        ["tenure_period"]: e.target.value,
+      };
+    });
+  };
+
+  const onThumbDragEnd = () => {
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        ["min_price"]: priceRange[0],
+        ["max_price"]: priceRange[1],
+      };
+    });
+  };
+
+  const onClickSortTag = (name) => {
+    setNewSortTag((prevState) => {
+      return map(prevState, (item) => {
+        if (get(item, ["name"], "") === name) {
+          return {
+            ...item,
+            ...{ isActive: !get(item, ["isActive"], false) },
+          };
+        } else {
+          return item;
+        }
+      });
+    });
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Spacify Listing - Spacify Asia" />
 
-      <DesktopLayout hideNav>
-        <div className="container mx-auto flex-1 py-10">
-          <DesktopSearchBar onClickOpenModal={onClickOpenModal} />
+      <DesktopLayout
+        hideNav
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/explore"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Explore
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Search Listing
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="container mx-auto flex-1">
+          <DesktopSearchBar
+            onClickOpenModal={onClickOpenModal}
+            keywordValue={keywordValue}
+            onChangeKeywordValue={onChangeKeywordValue}
+            setTenureValue={setTenureValue}
+            tenureTag={tenureTag}
+            tenureValue={tenureValue}
+            setPriceRange={setPriceRange}
+            priceRange={priceRange}
+            onClickSubmitKeyword={onClickSubmitKeyword}
+            setOnRangeDrag={setOnRangeDrag}
+            onChangeTenurePeriod={onChangeTenurePeriod}
+            onThumbDragEnd={onThumbDragEnd}
+          />
 
-          <div className="grid grid-cols-8 gap-10">
-            <div className="xl:col-span-5 lg:col-span-5 md:col-span-4 sm:col-span-4">
+          <div className="grid grid-cols-5 gap-10">
+            <div className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5">
               <DesktopListingSection
                 t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
@@ -353,9 +438,9 @@ const Search = () => {
                 onPageChange={onPageChange}
               />
             </div>
-            <div className="xl:col-span-3 lg:col-span-3 md:col-span-4 sm:col-span-4">
-              <SpacifyMap />
-            </div>
+            {/*<div className="xl:col-span-3 lg:col-span-3 md:col-span-4 sm:col-span-4">*/}
+            {/*  <SpacifyMap />*/}
+            {/*</div>*/}
           </div>
 
           {lastPage > 1 ? (
@@ -374,135 +459,141 @@ const Search = () => {
         <DesktopFilterModal
           sortValue={sortValue}
           setSortValue={setStateValue}
+          newSortTag={newSortTag}
+          onClickSortTag={onClickSortTag}
           amenities={newAmenitiesTag}
           onClickSelectAmenities={onClickSelectAmenities}
           onClickGeneralTag={onClickGeneralTag}
           newGeneralTag={newGeneralTag}
+          genderTag={genderTag}
+          stateOption={stateOption}
+          setStateValue={setStateValue}
+          stateValue={stateValue}
+          cityValue={cityValue}
+          setCityValue={setCityValue}
+          onClickSubmitCity={onClickSubmitCity}
+          spaceTypeTag={spaceTypeTag}
+          spaceTypeValue={spaceTypeValue}
+          setSpaceTypeValue={setSpaceTypeValue}
+          priceRange={priceRange}
+          setPriceRange={setPriceRange}
+          tenureTag={tenureTag}
+          setTenureValue={setTenureValue}
+          tenureValue={tenureValue}
+          genderValue={genderValue}
+          setGenderValue={setGenderValue}
         />
       </DesktopLayout>
 
-      <CustomHeader
-        pageTitle={t("pageTitle.search")}
-        hideBgImage
-        hideRightButton
-        onClickGoBack={onClickGoBack}
-      >
-        <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">
-          <CustomInput
-            rightIcon={Images.searchOutlineActiveIcon}
-            className="col-span-2"
-            placeholder={t("search.keyword")}
-            value={keywordValue}
-            onChange={onChangeKeywordValue}
-            onClickRightIcon={onClickSubmitKeyword}
-          />
+      {/*<CustomHeader*/}
+      {/*  pageTitle={t("pageTitle.search")}*/}
+      {/*  hideBgImage*/}
+      {/*  hideRightButton*/}
+      {/*  onClickGoBack={onClickGoBack}*/}
+      {/*>*/}
+      {/*  <div className="grid grid-cols-4 gap-2 pb-5 global-horizontal-padding">*/}
+      {/*    <CustomInput*/}
+      {/*      rightIcon={Images.searchOutlineActiveIcon}*/}
+      {/*      className="col-span-2"*/}
+      {/*      placeholder={t("search.keyword")}*/}
+      {/*      value={keywordValue}*/}
+      {/*      onChange={onChangeKeywordValue}*/}
+      {/*      onClickRightIcon={onClickSubmitKeyword}*/}
+      {/*    />*/}
 
-        <CustomSelect
-          placeholder={t("search.state")}
-          optionList={stateOption}
-          onChange={onChangeStateValue}
-          value={stateValue}
-        />
+      {/*  </div>*/}
 
-          <CustomInput
-            placeholder={t("search.city")}
-            value={cityValue}
-            onChange={onChangeCityValue}
-            onClickRightIcon={onClickSubmitCity}
-          />
-        </div>
+      {/*  {isEmpty(newGeneralTag) ? (*/}
+      {/*    false*/}
+      {/*  ) : (*/}
+      {/*    <TagComponent*/}
+      {/*      lists={newGeneralTag}*/}
+      {/*      onClickGeneralTag={onClickGeneralTag}*/}
+      {/*    />*/}
+      {/*  )}*/}
 
-        {isEmpty(newGeneralTag) ? (
-          false
-        ) : (
-          <TagComponent
-            lists={newGeneralTag}
-            onClickGeneralTag={onClickGeneralTag}
-          />
-        )}
+      {/*  /!*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*!/*/}
 
-        {/*<TagComponent lists={generalTag2} onClickGeneralTag={onClickSelectTag2} />*/}
+      {/*  <div className="pb-4">*/}
+      {/*    <div className="w-full flex gap-5">*/}
+      {/*      <div className="w-1/5" ref={amenitiesTarget}>*/}
+      {/*        <div*/}
+      {/*          className="fixed"*/}
+      {/*          style={{*/}
+      {/*            width: dimensions,*/}
+      {/*            top: scrollTop,*/}
+      {/*          }}*/}
+      {/*        >*/}
+      {/*          <AmenitiesComponent*/}
+      {/*            data={newAmenitiesTag}*/}
+      {/*            loading={listingTagOptionDataLoading}*/}
+      {/*            onClickSelectAmenities={onClickSelectAmenities}*/}
+      {/*          />*/}
+      {/*        </div>*/}
+      {/*      </div>*/}
 
-        <div className="pb-4">
-          <div className="w-full flex gap-5">
-            <div className="w-1/5" ref={amenitiesTarget}>
-              <div
-                className="fixed"
-                style={{
-                  width: dimensions,
-                  top: scrollTop,
-                }}
-              >
-                <AmenitiesComponent
-                  data={newAmenitiesTag}
-                  loading={listingTagOptionDataLoading}
-                  onClickSelectAmenities={onClickSelectAmenities}
-                />
-              </div>
-            </div>
+      {/*      <div className="w-4/5 pr-4">*/}
+      {/*        <div className="flex pb-5 justify-end">*/}
+      {/*          <CustomSelect*/}
+      {/*            hideDefaultOption*/}
+      {/*            selectClassName="select-sm min-h-10"*/}
+      {/*            styles={{ width: "75%" }}*/}
+      {/*            optionList={[*/}
+      {/*              {*/}
+      {/*                name:*/}
+      {/*                  t("search.sortBy") + ": " + t("search.priceLowToHigh"),*/}
+      {/*                value: "asc",*/}
+      {/*              },*/}
+      {/*              {*/}
+      {/*                name:*/}
+      {/*                  t("search.sortBy") + ": " + t("search.priceHighToLow"),*/}
+      {/*                value: "desc",*/}
+      {/*              },*/}
+      {/*            ]}*/}
+      {/*            onChange={onChangeSortValue}*/}
+      {/*            value={sortValue}*/}
+      {/*            // placeholder={*/}
+      {/*            //   t("search.sortBy") + ": " + t("search.priceLowToHigh")*/}
+      {/*            // }*/}
+      {/*          />*/}
+      {/*        </div>*/}
 
-            <div className="w-4/5 pr-4">
-              <div className="flex pb-5 justify-end">
-                <CustomSelect
-                  hideDefaultOption
-                  selectClassName="select-sm min-h-10"
-                  styles={{ width: "75%" }}
-                  optionList={[
-                    {
-                      name:
-                        t("search.sortBy") + ": " + t("search.priceLowToHigh"),
-                      value: "asc",
-                    },
-                    {
-                      name:
-                        t("search.sortBy") + ": " + t("search.priceHighToLow"),
-                      value: "desc",
-                    },
-                  ]}
-                  onChange={onChangeSortValue}
-                  value={sortValue}
-                  // placeholder={
-                  //   t("search.sortBy") + ": " + t("search.priceLowToHigh")
-                  // }
-                />
-              </div>
+      {/*        {listingPropertyDataLoading ? (*/}
+      {/*          <div className="grid grid-cols-2 gap-3">*/}
+      {/*            {map(Array(6), (item, index) => (*/}
+      {/*              <Skeleton width="100%" height={140} key={index} />*/}
+      {/*            ))}*/}
+      {/*          </div>*/}
+      {/*        ) : isEmpty(listingPropertyData) ? (*/}
+      {/*          <div*/}
+      {/*            className="flex items-center justify-center"*/}
+      {/*            style={{ height: "200%" }}*/}
+      {/*          >*/}
+      {/*            <CustomEmptyBox />*/}
+      {/*          </div>*/}
+      {/*        ) : (*/}
+      {/*          <div className="grid grid-cols-2 gap-3">*/}
+      {/*            {map(listingPropertyData, (item, index) => (*/}
+      {/*              <ListingCardComponent key={index} item={item} t={t} />*/}
+      {/*            ))}*/}
+      {/*          </div>*/}
+      {/*        )}*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
 
-              {listingPropertyDataLoading ? (
-                <div className="grid grid-cols-2 gap-3">
-                  {map(Array(6), (item, index) => (
-                    <Skeleton width="100%" height={140} key={index} />
-                  ))}
-                </div>
-              ) : isEmpty(listingPropertyData) ? (
-                <div
-                  className="flex items-center justify-center"
-                  style={{ height: "200%" }}
-                >
-                  <CustomEmptyBox />
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-3">
-                  {map(listingPropertyData, (item, index) => (
-                    <ListingCardComponent key={index} item={item} t={t} />
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {lastPage > 1 ? (
-            <CustomPagination
-              totalPages={lastPage}
-              currentPage={currentPage}
-              onPageChange={onPageChange}
-              disableNext={currentPage === lastPage}
-              disablePrevious={currentPage === 1}
-            />
-          ) : (
-            false
-          )}
-        </div>
-      </CustomHeader>
+      {/*    {lastPage > 1 ? (*/}
+      {/*      <CustomPagination*/}
+      {/*        totalPages={lastPage}*/}
+      {/*        currentPage={currentPage}*/}
+      {/*        onPageChange={onPageChange}*/}
+      {/*        disableNext={currentPage === lastPage}*/}
+      {/*        disablePrevious={currentPage === 1}*/}
+      {/*      />*/}
+      {/*    ) : (*/}
+      {/*      false*/}
+      {/*    )}*/}
+      {/*  </div>*/}
+      {/*</CustomHeader>*/}
     </div>
   );
 };
