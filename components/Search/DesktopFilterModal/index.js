@@ -35,6 +35,7 @@ const DesktopFilterModal = ({
   tenureTag,
   setTenureValue,
   tenureValue,
+  onClickApply,
 }) => {
   return (
     <DesktopModal id="desktop_filter_modal" styles={{ maxWidth: 600 }}>
@@ -235,7 +236,7 @@ const DesktopFilterModal = ({
           <CustomButton
             buttonText="Apply"
             buttonClassName="primary-btn"
-            // onClick={() => onClickSubmitSignature("desktop")}
+            onClick={onClickApply}
           />
         </div>
       </div>

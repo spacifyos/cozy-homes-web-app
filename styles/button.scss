@@ -40,7 +40,7 @@
   @include custom-button;
 
   p {
-    font-weight: bold !important;
+    font-weight: normal !important;
     @extend .white-text;
   }
 }
@@ -51,7 +51,7 @@
   @include custom-button;
 
   p {
-    font-weight: bold !important;
+    font-weight: normal !important;
     @extend .white-text;
   }
 }
@@ -62,7 +62,7 @@
   @include custom-button;
 
   p {
-    font-weight: bold !important;
+    font-weight: normal !important;
     @extend .white-text;
   }
 }

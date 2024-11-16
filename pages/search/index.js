@@ -199,18 +199,18 @@ const Search = () => {
   };
 
   const onClickGeneralTag = (name, code) => {
-    setSelectedFilterParams((prevState) => {
-      const preTags = get(prevState, ["tags"], []);
-
-      const updatedTags = includes(preTags, code)
-        ? filter(preTags, (tag) => !isEqual(tag, code))
-        : [...preTags, code];
-
-      return {
-        ...prevState,
-        tags: updatedTags,
-      };
-    });
+    // setSelectedFilterParams((prevState) => {
+    //   const preTags = get(prevState, ["tags"], []);
+    //
+    //   const updatedTags = includes(preTags, code)
+    //     ? filter(preTags, (tag) => !isEqual(tag, code))
+    //     : [...preTags, code];
+    //
+    //   return {
+    //     ...prevState,
+    //     tags: updatedTags,
+    //   };
+    // });
 
     setNewGeneralTag((prevState) => {
       return map(prevState, (item) => {
@@ -231,19 +231,6 @@ const Search = () => {
   };
 
   const onClickSelectAmenities = (name, code) => {
-    setSelectedFilterParams((prevState) => {
-      const preTags = get(prevState, ["tags"], []);
-
-      const updatedTags = includes(preTags, code)
-        ? filter(preTags, (tag) => !isEqual(tag, code))
-        : [...preTags, code];
-
-      return {
-        ...prevState,
-        tags: updatedTags,
-      };
-    });
-
     setNewAmenitiesTag((prevState) => {
       return map(prevState, (item) => {
         if (get(item, ["name"], "") === name) {
@@ -380,10 +367,23 @@ const Search = () => {
             ...{ isActive: !get(item, ["isActive"], false) },
           };
         } else {
-          return item;
+          return {
+            ...item,
+            ...{ isActive: false },
+          };
         }
       });
     });
+  };
+
+  const onClickApply = () => {
+    console.log(
+      stateValue,
+      cityValue,
+      sortValue,
+      newGeneralTag,
+      newAmenitiesTag,
+    );
   };
 
   return (
@@ -482,6 +482,7 @@ const Search = () => {
           tenureValue={tenureValue}
           genderValue={genderValue}
           setGenderValue={setGenderValue}
+          onClickApply={onClickApply}
         />
       </DesktopLayout>
 
