@@ -12,7 +12,6 @@ import RangeSlider from "react-range-slider-input";
 const DesktopFilterModal = ({
   sortValue,
   setSortValue,
-  onClickSortTag,
   newSortTag,
   genderValue,
   setGenderValue,
@@ -36,7 +35,11 @@ const DesktopFilterModal = ({
   setTenureValue,
   tenureValue,
   onClickApply,
+  onClickClearAll,
+  onClickCloseFilterModal,
 }) => {
+
+
   return (
     <DesktopModal id="desktop_filter_modal" styles={{ maxWidth: 600 }}>
       <div className="p-6">
@@ -45,7 +48,10 @@ const DesktopFilterModal = ({
             Filters
           </CustomText>
           <form method="dialog" className={`flex justify-end`}>
-            <button className="btn btn-sm btn-circle btn-ghost right-2">
+            <button
+              className="btn btn-sm btn-circle btn-ghost right-2"
+              onClick={onClickCloseFilterModal}
+            >
               <CustomImage
                 src={Images.cancelIcon}
                 imageStyle={{ width: 18, height: 18 }}
@@ -122,8 +128,6 @@ const DesktopFilterModal = ({
               max={10000}
               value={priceRange}
               onInput={setPriceRange}
-              onThumbDragEnd={(pointerdown) => console.log(pointerdown)}
-              onRangeDragEnd={(e) => console.log(e)}
             />
 
             <div className="flex justify-between items-center">
@@ -144,14 +148,15 @@ const DesktopFilterModal = ({
             {map(newSortTag, (item) => {
               const name = listingSelector.getName(item);
               const code = listingSelector.getCode(item);
-              const isActive = get(item, ["isActive"], "");
 
               return (
                 <CustomButton
                   buttonText={name}
-                  buttonClassName={`btn-sm ${isActive ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(sortValue, code) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="font-size-xsmall"
-                  onClick={() => onClickSortTag(name, code)}
+                  onClick={() =>
+                    setSortValue(isEqual(sortValue, code) ? "" : code)
+                  }
                 />
               );
             })}
@@ -218,7 +223,9 @@ const DesktopFilterModal = ({
                   buttonText={title}
                   buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="font-size-xsmall"
-                  onClick={() => setGenderValue(value)}
+                  onClick={() =>
+                    setGenderValue(isEqual(genderValue, value) ? "" : value)
+                  }
                 />
               );
             })}
@@ -231,7 +238,7 @@ const DesktopFilterModal = ({
           <CustomButton
             buttonText="Clear All"
             buttonClassName="default-btn"
-            // onClick={() => onClickCloseSignatureModal("desktop")}
+            onClick={onClickClearAll}
           />
           <CustomButton
             buttonText="Apply"

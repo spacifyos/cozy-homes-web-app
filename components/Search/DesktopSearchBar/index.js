@@ -2,26 +2,22 @@ import CustomInput from "@/components/CustomInput";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import RangeSlider from "react-range-slider-input";
-import BookingInput from "@/components/Booking/BookingInput";
 import CustomSelect from "@/components/CustomSelect";
-import TagComponent from "@/components/Search/TagComponent";
 import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
-import CustomButton from "@/components/CustomButton";
 
 const DesktopSearchBar = ({
   onClickOpenModal,
   tenureTag,
-  setTenureValue,
   tenureValue,
   keywordValue,
   onChangeKeywordValue,
   setPriceRange,
   priceRange,
   onClickSubmitKeyword,
-  setOnRangeDrag,
   onChangeTenurePeriod,
   onThumbDragEnd,
+  isFilter,
 }) => {
   return (
     <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-5 pb-6">
@@ -53,7 +49,6 @@ const DesktopSearchBar = ({
           onInput={setPriceRange}
           rangeSlideDisabled
           onThumbDragEnd={onThumbDragEnd}
-          onThumbDragStart={() => setOnRangeDrag(true)}
         />
 
         <div className="flex justify-between items-center">
@@ -82,13 +77,18 @@ const DesktopSearchBar = ({
         />
       </div>
 
-      <CustomButton
-        icon={Images.filterProIcon}
-        imageWidth={25}
-        imageHeight={25}
-        buttonClassName="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full"
+      <div
+        className="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative"
         onClick={onClickOpenModal}
-      />
+      >
+        {isFilter ? (
+          <div className="absolute top-3 right-3 primary-bg-color w-2 h-2 rounded-2xl"></div>
+        ) : (
+          false
+        )}
+
+        <CustomImage src={Images.filterProIcon} className="w-6" />
+      </div>
 
       <div className="col-span-1"></div>
     </div>

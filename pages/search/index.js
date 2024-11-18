@@ -17,6 +17,9 @@ import {
   remove,
   toArray,
   split,
+  concat,
+  first,
+  set,
 } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
@@ -93,10 +96,9 @@ const Search = () => {
   const [cityValue, setCityValue] = useState("");
   const [stateValue, setStateValue] = useState("");
   const [tenureValue, setTenureValue] = useState("");
-  const [sortValue, setSortValue] = useState("asc");
+  const [sortValue, setSortValue] = useState("");
   const [priceRange, setPriceRange] = useState([0, 10000]);
   const [spaceTypeValue, setSpaceTypeValue] = useState("");
-  const [onRangeDrag, setOnRangeDrag] = useState(false);
   const [genderValue, setGenderValue] = useState("");
 
   const [selectedFilterParams, setSelectedFilterParams] = useState({
@@ -115,6 +117,8 @@ const Search = () => {
   const totalPage = listingSelector.getTotalPage(listingPropertyPagination);
   const currentPage = listingSelector.getCurrentPage(listingPropertyPagination);
   const lastPage = listingSelector.getLastPage(listingPropertyPagination);
+
+  const isFilter = !isEmpty(selectedFilterParams)
 
   useEffect(() => {
     if (!isEmpty(queryKey) && !isEmpty(queryId)) {
@@ -199,19 +203,6 @@ const Search = () => {
   };
 
   const onClickGeneralTag = (name, code) => {
-    // setSelectedFilterParams((prevState) => {
-    //   const preTags = get(prevState, ["tags"], []);
-    //
-    //   const updatedTags = includes(preTags, code)
-    //     ? filter(preTags, (tag) => !isEqual(tag, code))
-    //     : [...preTags, code];
-    //
-    //   return {
-    //     ...prevState,
-    //     tags: updatedTags,
-    //   };
-    // });
-
     setNewGeneralTag((prevState) => {
       return map(prevState, (item) => {
         if (get(item, ["name"], "") === name) {
@@ -318,17 +309,6 @@ const Search = () => {
     });
   };
 
-  const onChangeSortValue = (e) => {
-    setSortValue(e.target.value);
-
-    setSelectedFilterParams((prevState) => {
-      return {
-        ...prevState,
-        direction: e.target.value,
-      };
-    });
-  };
-
   const onPageChange = (pageNumber) => {
     fetchListingProperty(selectedFilterParams, pageNumber, 12);
   };
@@ -358,32 +338,121 @@ const Search = () => {
     });
   };
 
-  const onClickSortTag = (name) => {
-    setNewSortTag((prevState) => {
+  const onClickApply = () => {
+    const generalTagValue = map(
+      filter(newGeneralTag, (item) => get(item, ["isActive"], false)),
+      (generalTag) => {
+        return get(generalTag, ["code"], "");
+      },
+    );
+
+    const amenitiesTagValue = map(
+      filter(newAmenitiesTag, (item) => get(item, ["isActive"], false)),
+      (amenitiesTag) => {
+        return get(amenitiesTag, ["code"], "");
+      },
+    );
+
+    setSelectedFilterParams((prevState) => {
+      return {
+        ...prevState,
+        state: isEmpty(stateValue) ? "" : stateValue,
+        city: isEmpty(cityValue) ? "" : cityValue,
+        direction: isEmpty(sortValue) ? "" : sortValue,
+        space_type: isEmpty(spaceTypeValue) ? "" : spaceTypeValue,
+        tenure_period: isEmpty(tenureValue) ? "" : tenureValue,
+        minPrice: priceRange[0],
+        maxPrice: priceRange[1],
+        tags:
+          isEmpty(generalTagValue) && isEmpty(amenitiesTagValue)
+            ? ""
+            : concat(generalTagValue, amenitiesTagValue),
+        gender: isEmpty(genderValue) ? "" : genderValue,
+      };
+    });
+  };
+
+  const onClickClearAll = () => {
+    setStateValue("");
+    setCityValue("");
+    setSpaceTypeValue("");
+    setTenureValue("");
+    setPriceRange([0, 10000]);
+    setGenderValue("");
+    setSortValue("");
+
+    setNewGeneralTag((prevState) => {
       return map(prevState, (item) => {
-        if (get(item, ["name"], "") === name) {
-          return {
-            ...item,
-            ...{ isActive: !get(item, ["isActive"], false) },
-          };
-        } else {
-          return {
-            ...item,
-            ...{ isActive: false },
-          };
-        }
+        return {
+          ...item,
+          ...{ isActive: false },
+        };
+      });
+    });
+
+    setNewAmenitiesTag((prevState) => {
+      return map(prevState, (item) => {
+        return {
+          ...item,
+          ...{ isActive: false },
+        };
       });
     });
   };
 
-  const onClickApply = () => {
-    console.log(
-      stateValue,
-      cityValue,
-      sortValue,
-      newGeneralTag,
-      newAmenitiesTag,
-    );
+  const onClickCloseFilterModal = () => {
+    const {
+      state,
+      city,
+      direction,
+      space_type,
+      tenure_period,
+      minPrice = 0,
+      maxPrice = 10000,
+      tags,
+      gender,
+    } = selectedFilterParams;
+
+    setStateValue(state);
+    setCityValue(city);
+    setTenureValue(tenure_period);
+    setSpaceTypeValue(space_type);
+    setPriceRange([minPrice, maxPrice]);
+    setGenderValue(gender);
+    setSortValue(direction);
+
+    map(tags, (tag) => {
+      setNewGeneralTag((prevState) => {
+        return map(prevState, (item) => {
+          const code = get(item, ["code"], "");
+
+          if (isEqual(code, tag)) {
+            console.log(tag, code);
+            return {
+              ...item,
+              ...{ isActive: true },
+            };
+          } else {
+            return item;
+          }
+        });
+      });
+
+      setNewAmenitiesTag((prevState) => {
+        return map(prevState, (item) => {
+          const code = get(item, ["code"], "");
+
+          if (isEqual(code, tag)) {
+            return {
+              ...item,
+              ...{ isActive: true },
+            };
+          } else {
+            return item;
+          }
+        });
+      });
+    });
   };
 
   return (
@@ -422,9 +491,9 @@ const Search = () => {
             setPriceRange={setPriceRange}
             priceRange={priceRange}
             onClickSubmitKeyword={onClickSubmitKeyword}
-            setOnRangeDrag={setOnRangeDrag}
             onChangeTenurePeriod={onChangeTenurePeriod}
             onThumbDragEnd={onThumbDragEnd}
+            isFilter={isFilter}
           />
 
           <div className="grid grid-cols-5 gap-10">
@@ -443,7 +512,7 @@ const Search = () => {
             {/*</div>*/}
           </div>
 
-          {lastPage > 1 ? (
+          {lastPage > 1 && hasMorePages ? (
             <CustomPagination
               totalPages={lastPage}
               currentPage={currentPage}
@@ -458,9 +527,8 @@ const Search = () => {
 
         <DesktopFilterModal
           sortValue={sortValue}
-          setSortValue={setStateValue}
+          setSortValue={setSortValue}
           newSortTag={newSortTag}
-          onClickSortTag={onClickSortTag}
           amenities={newAmenitiesTag}
           onClickSelectAmenities={onClickSelectAmenities}
           onClickGeneralTag={onClickGeneralTag}
@@ -483,6 +551,8 @@ const Search = () => {
           genderValue={genderValue}
           setGenderValue={setGenderValue}
           onClickApply={onClickApply}
+          onClickClearAll={onClickClearAll}
+          onClickCloseFilterModal={onClickCloseFilterModal}
         />
       </DesktopLayout>
 

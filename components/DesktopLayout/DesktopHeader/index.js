@@ -20,15 +20,14 @@ const DesktopHeader = ({
 
   return (
     <div
-      className="py-4 primaryWhite-bg-color"
-      style={{ minHeight: 100, borderBottom: "3px #f5f8fd solid" }}
+      className="xl:py-4 lg:py-4 md:py-4 sm:py-2 py-2 primaryWhite-bg-color"
+      style={{ borderBottom: "3px #f5f8fd solid" }}
     >
       <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
         <CustomImage
           src={Image.logoHorizontalColor}
-          imageStyle={{ width: 130 }}
           onClick={onClickExplore}
-          className="cursor-pointer"
+          className="cursor-pointer xl:w-32 lg:w-28 md:w-28 sm:w-28 w-24"
         />
 
         {isEmpty(data) ? (
