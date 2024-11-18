@@ -31,7 +31,7 @@ const FeatureComponent = ({
         <CustomText textClassName="font-size-small">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} imageStyle={{ width: 10 }} />
+      <CustomImage src={Images.rightIcon} className="w-2" />
     </div>
   ) : (
     <a
@@ -52,7 +52,7 @@ const FeatureComponent = ({
         <CustomText textClassName="font-size-small">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} imageStyle={{ width: 10 }} />
+      <CustomImage src={Images.rightIcon} className="w-2" />
     </a>
   );
 };

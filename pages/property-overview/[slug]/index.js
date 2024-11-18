@@ -202,7 +202,7 @@ const PropertyOverview = ({ id }) => {
           </div>
         }
       >
-        <div className="pb-32">
+        <div className="container mx-auto pb-32">
           <div className="grid grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
             <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
               <CustomImage src={Images.logoImage} />

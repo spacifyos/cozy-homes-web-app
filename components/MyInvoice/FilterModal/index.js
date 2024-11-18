@@ -1,6 +1,5 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
-import CustomModal from "@/components/CustomModal";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";

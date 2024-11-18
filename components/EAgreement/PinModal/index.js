@@ -1,10 +1,7 @@
 import CustomText from "@/components/CustomText";
-import CustomInput from "@/components/CustomInput";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
-import Helper from "@/src/utils/Helper";
 import BookingInput from "@/components/Booking/BookingInput";
-import _ from "lodash";
 
 const PinModal = ({
   t,

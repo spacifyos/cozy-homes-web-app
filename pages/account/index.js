@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { isEmpty, get, size, isEqual } from "lodash";
 import { NextSeo } from "next-seo";
 import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
@@ -271,8 +270,8 @@ const Account = () => {
             Share and Earn, Don’t Miss the Opportunity
           </CustomText>
           <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
-            <div>
-              <CustomText textClassName="">
+            <div className="flex items-center">
+              <CustomText textClassName="pr-2">
                 {isEmpty(referralCode) ? "" : referralCode}
               </CustomText>
               <CustomButton

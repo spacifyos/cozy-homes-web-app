@@ -1,7 +1,10 @@
 import BookingInput from "@/components/Booking/BookingInput";
 import _ from "lodash";
 import CustomButton from "@/components/CustomButton";
-import CustomModal from "@/components/CustomModal";
+import DesktopModal from "@/components/DesktopModal";
+import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 const SetPinNumberModal = ({
   pinNumberValue,
@@ -21,7 +24,21 @@ const SetPinNumberModal = ({
   id,
 }) => {
   return (
-    <CustomModal id={id} disableClose>
+    <DesktopModal id={id} disableClose>
+        <div className="p-6">
+            <div className="flex justify-between items-center pb-4">
+                <CustomText textClassName="font-bold font-size-large">
+                    Set Pin Number
+                </CustomText>
+                <form method="dialog" className={`flex justify-end`}>
+                    <button className="btn btn-sm btn-circle btn-ghost right-2">
+                        <CustomImage
+                            src={Images.cancelIcon}
+                            imageStyle={{ width: 18, height: 18 }}
+                        />
+                    </button>
+                </form>
+            </div>
       <BookingInput
         title="Pin Number"
         placeholder="Pin Number"
@@ -87,7 +104,8 @@ const SetPinNumberModal = ({
           disable={setPinNumberLoading}
         />
       </div>
-    </CustomModal>
+        </div>
+    </DesktopModal>
   );
 };
 

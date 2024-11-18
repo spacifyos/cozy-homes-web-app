@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import CustomButton from "@/components/CustomButton";
 import { isEmpty, map, get, isEqual } from "lodash";
 import { useEffect, useState } from "react";
@@ -9,7 +8,6 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import * as agreementSelector from "@/src/selectors/agreement";
 import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";

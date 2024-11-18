@@ -175,7 +175,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         route={`/e-agreement`}
       />
 
-      {isTenant ? (
+      {!isEmpty(userData) && isTenant ? (
         <FeatureComponent
           title={"My Meter"}
           icon={Images.primaryMeterIcon}
@@ -187,7 +187,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         false
       )}
 
-      {isTenant ? (
+      {!isEmpty(userData) && isTenant ? (
         false
       ) : (
         <FeatureComponent
@@ -199,7 +199,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         />
       )}
 
-      {isTenant ? (
+      {!isEmpty(userData) && isTenant ? (
         false
       ) : (
         <FeatureComponent

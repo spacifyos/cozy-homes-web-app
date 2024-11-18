@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
@@ -8,17 +7,13 @@ import CustomButton from "@/components/CustomButton";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useEffect, useMemo, useRef, useState } from "react";
 import CustomImage from "@/components/CustomImage";
-import PinModal from "@/components/EAgreement/PinModal";
-import CanvasModal from "@/components/EAgreement/CanvasModal";
 import Helper from "@/src/utils/Helper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { get, isEmpty, isEqual, map, size } from "lodash";
 import Toast from "@/src/utils/Toast";
 import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
 import AuthManager from "@/src/utils/AuthManager";
-import PinNumberInfoModal from "@/components/EAgreement/PinNumberInfoModal";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -486,31 +481,6 @@ const ViewAgreement = ({ id }) => {
           signatureEmptyMessage={signatureEmptyMessage}
         />
       </DesktopLayout>
-
-      <CanvasModal
-        onClickReadSign={onClickReadSign}
-        readSign={readSign}
-        t={t}
-        onClickCloseSignatureModal={onClickCloseSignatureModal}
-        onClickSubmitSignature={onClickSubmitSignature}
-        handleSignatureRef={handleSignatureRef}
-        onClickResetCanvas={onClickResetCanvas}
-        signatureEmptyMessage={signatureEmptyMessage}
-      />
-
-      <PinModal
-        t={t}
-        onClickSubmitSignature={handleSignAgreement}
-        onClickClosePinModal={onClickClosePinModal}
-        pinNumberValue={pinNumberValue}
-        onChangePinNumberValue={onChangePinNumberValue}
-        errorMessage={errorMessage}
-      />
-
-      <PinNumberInfoModal
-        onClickToSetPinNumber={onClickToSetPinNumber}
-        onClickCloseModal={onClickClosePinNumberInfoModal}
-      />
     </div>
   );
 };

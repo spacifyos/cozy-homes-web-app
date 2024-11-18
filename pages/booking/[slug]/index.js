@@ -680,7 +680,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           </div>
         }
       >
-        <div className="flex-1">
+        <div className="container mx-auto flex-1">
           <form
             ref={formRef}
             className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5"

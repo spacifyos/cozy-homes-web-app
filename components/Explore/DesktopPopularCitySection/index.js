@@ -30,28 +30,32 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
       </div>
 
       <div className="hidden xl:block lg:block md:block sm:block ">
-        <div
-          className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5"
-          style={{ minHeight: 410 }}
-        >
+        <div style={{ minHeight: 410 }}>
           {loading ? (
-            map(Array(12), (item, index) => (
-              <Skeleton width="100%" height={160} key={index} />
-            ))
+            <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
+              {map(Array(12), (item, index) => (
+                <Skeleton width="100%" height={160} key={index} />
+              ))}
+            </div>
           ) : isEmpty(data) ? (
-            <div className="flex justify-center">
+            <div
+              className="flex justify-center items-center"
+              style={{ minHeight: 410 }}
+            >
               <CustomEmptyBox emptyTitle="Property not available now." />
             </div>
           ) : (
-            map(data, (item, index) => {
-              return (
-                <ListingCardComponent
-                  item={item}
-                  imageHeight={160}
-                  imageWidth="100%"
-                />
-              );
-            })
+            <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
+              {map(data, (item, index) => {
+                return (
+                  <ListingCardComponent
+                    item={item}
+                    imageHeight={160}
+                    imageWidth="100%"
+                  />
+                );
+              })}
+            </div>
           )}
         </div>
       </div>

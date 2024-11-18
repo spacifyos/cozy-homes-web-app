@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import { isEmpty, isEqual } from "lodash";
@@ -7,12 +6,10 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
-import MyInvoiceComponent from "@/components/MyInvoice/MyInvoiceComponent";
 import FilterModal from "@/components/MyInvoice/FilterModal";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
@@ -205,7 +202,7 @@ const MyInvoice = () => {
           </div>
         }
       >
-        <div className="flex flex-col flex-1">
+        <div className="flex flex-col flex-1 h-full">
           {invoiceSummaryDataLoading ? (
             <div
               className="w-full flex justify-center"
@@ -213,6 +210,8 @@ const MyInvoice = () => {
             >
               <span className="loading loading-spinner loading-lg primary-text"></span>
             </div>
+          ) : isEmpty(invoiceSummaryData) ? (
+            false
           ) : (
             <DesktopInvoiceSummaryComponent data={invoiceSummaryData} />
           )}
@@ -239,7 +238,7 @@ const MyInvoice = () => {
           </div>
 
           {isEmpty(invoiceListingData) ? (
-            <div className="flex flex-1 items-center justify-center py-10">
+            <div className="flex flex-1 items-center justify-center py-10 h-full">
               <CustomEmptyBox emptyTitle="No invoice found" />
             </div>
           ) : (
@@ -263,35 +262,21 @@ const MyInvoice = () => {
           ) : (
             false
           )}
-
-          <DesktopFilterModal
-            t={t}
-            dateFromValue={dateFromValue}
-            onChangeDateFrom={onChangeDateFrom}
-            dateToValue={dateToValue}
-            onChangeDateTo={onChangeDateTo}
-            invoiceNumberValue={invoiceNumberValue}
-            onChangeInvoiceNumber={onChangeInvoiceNumber}
-            onClickCancel={onClickCancel}
-            onClickSubmit={onClickSubmit}
-            onClickReset={onClickReset}
-          />
-
-          <FilterModal
-            t={t}
-            dateFromValue={dateFromValue}
-            onChangeDateFrom={onChangeDateFrom}
-            dateToValue={dateToValue}
-            onChangeDateTo={onChangeDateTo}
-            invoiceNumberValue={invoiceNumberValue}
-            onChangeInvoiceNumber={onChangeInvoiceNumber}
-            onClickCancel={onClickCancel}
-            onClickSubmit={onClickSubmit}
-            onClickReset={onClickReset}
-            isOpenFilterModal={isOpenFilterModal}
-          />
         </div>
       </DesktopLayout>
+
+      <DesktopFilterModal
+        t={t}
+        dateFromValue={dateFromValue}
+        onChangeDateFrom={onChangeDateFrom}
+        dateToValue={dateToValue}
+        onChangeDateTo={onChangeDateTo}
+        invoiceNumberValue={invoiceNumberValue}
+        onChangeInvoiceNumber={onChangeInvoiceNumber}
+        onClickCancel={onClickCancel}
+        onClickSubmit={onClickSubmit}
+        onClickReset={onClickReset}
+      />
     </div>
   );
 };
