@@ -65,6 +65,9 @@ const OwnerAccount = () => {
   const [isRequestOtp, setIsRequestOtp] = useState(false);
   const [isCopy, setIsCopy] = useState(false);
 
+  const referralText = `🏠 Looking for a premium room? Here’s an exclusive offer! 🏠\n\nUse my referral code "${referralCode}" and enjoy 1 FREE month of rent on your next room with BeLive Co-Living! 🎉 Experience premium co-living in a welcoming community, and start saving right from the beginning.\n\nOr, simply click the link below to explore available rooms and claim your free month:\n\n👉 ${process.env.DOMAIN}/explore?referral_code=${referralCode}\n\nDon’t miss out on this chance for a free month of rent! Join us, live in style, and start earning when you refer friends, too!`;
+  const whatsAppReferralText = `%F0%9F%8F%A0+Looking+for+a+premium+room%3F+Here%E2%80%99s+an+exclusive+offer%21+%F0%9F%8F%A0%0D%0A%0D%0AUse+my+referral+code+%22${referralCode}%22+and+enjoy+1+FREE+month+of+rent+on+your+next+room+with+BeLive+Co-Living%21+%F0%9F%8E%89+Experience+premium+co-living+in+a+welcoming+community%2C+and+start+saving+right+from+the+beginning.%0D%0A%0D%0AOr%2C+simply+click+the+link+below+to+explore+available+rooms+and+claim+your+free+month%3A%0D%0A%0D%0A%F0%9F%91%89+${process.env.DOMAIN}%2Fexplore%3Freferral_code%3D${referralCode}%0D%0A%0D%0ADon%E2%80%99t+miss+out+on+this+chance+for+a+free+month+of+rent%21+Join+us%2C+live+in+style%2C+and+start+earning+when+you+refer+friends%2C+too%21`;
+
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
       const timerId = setInterval(() => {
@@ -213,9 +216,7 @@ const OwnerAccount = () => {
   };
 
   const onClickCopy = () => {
-    navigator.clipboard.writeText(
-      `Earn your free rental by sharing this referral code "${referralCode}". \n\nor Click below link to find your next premium room\n\n${process.env.DOMAIN}/explore?referral_code=${referralCode}`,
-    );
+    navigator.clipboard.writeText(referralText);
 
     Toast.success("Copied link to clipboard.");
 
@@ -253,16 +254,28 @@ const OwnerAccount = () => {
 
           <div className="">
             <CustomText textClassName="pb-1">Referral Code</CustomText>
+            <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+              Share and Earn, Don’t Miss the Opportunity
+            </CustomText>
             <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
-              <CustomText textClassName="">
-                {isEmpty(referralCode) ? "" : referralCode}
-              </CustomText>
-              <CustomButton
-                textClassName="font-size-xsmall"
-                buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-                buttonText={isCopy ? "Copies" : "Copy"}
-                onClick={onClickCopy}
-              />
+              <div className="flex items-center">
+                <CustomText textClassName="pr-2">
+                  {isEmpty(referralCode) ? "" : referralCode}
+                </CustomText>
+                <CustomButton
+                  textClassName="font-size-xsmall"
+                  buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+                  buttonText={isCopy ? "Copies" : "Copy"}
+                  onClick={onClickCopy}
+                />
+              </div>
+
+              <a
+                href={`https://api.whatsapp.com/send/?text=${whatsAppReferralText}`}
+                target="_blank"
+              >
+                <CustomImage src={Images.whatsappIcon} className="w-8" />
+              </a>
             </div>
           </div>
 
