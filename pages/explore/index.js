@@ -158,14 +158,16 @@ function Home() {
           <div className="grid grid-cols-2 gap-10 pb-10 container mx-auto">
             <div className="col-span-1 relative global-box-shadow overflow-hidden rounded-3xl">
               <CustomImage
-                src={isEmpty(banner1) ? Images.imageNotFound : banner1}
+                src={isEmpty(banner1) ? Images.imageNotFound : banner1} className="cover xl:h-80 lg:h-76"
               />
             </div>
 
             <div className="col-span-1 relative global-box-shadow overflow-hidden">
               {/*<Image*/}
-              {/*  loader={() => banner2}*/}
-              {/*  loading="lazy"*/}
+              {/*  // loader={() => banner2}*/}
+              {/*  // loading="lazy"*/}
+              {/*    width={500}*/}
+              {/*    height={500}*/}
               {/*  src={isEmpty(banner2) ? Images.imageNotFound : banner2}*/}
               {/*  style={{ objectFit: "contain", width: "100%", height: "100%" }}*/}
               {/*/>*/}

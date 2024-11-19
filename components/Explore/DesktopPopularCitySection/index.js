@@ -22,15 +22,20 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
             Popular City
           </CustomText>
         </div>
-        <CustomButton
-          buttonText="View More"
-          buttonClassName="primary-btn btn-sm"
-          onClick={onClickViewMore}
-        />
+        <div className="flex items-center">
+          <CustomText
+            textClassName="cursor-pointer pr-1.5"
+            onClick={onClickViewMore}
+          >
+            View More
+          </CustomText>
+
+          <CustomImage src={Images.rightIcon} className="w-1.5" />
+        </div>
       </div>
 
       <div className="hidden xl:block lg:block md:block sm:block ">
-        <div style={{ minHeight: 410 }}>
+        <div style={{ minHeight: 523 }}>
           {loading ? (
             <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
               {map(Array(12), (item, index) => (
@@ -50,8 +55,6 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
                 return (
                   <ListingCardComponent
                     item={item}
-                    imageHeight={160}
-                    imageWidth="100%"
                   />
                 );
               })}

@@ -6,8 +6,6 @@ import Images from "@/src/utils/Image";
 
 const ListingCardComponent = ({
   item,
-  imageHeight = 100,
-  imageWidth = 100,
   hideLabel = false,
   imageClassName,
 }) => {

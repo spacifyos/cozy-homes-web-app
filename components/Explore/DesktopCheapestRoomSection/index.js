@@ -28,11 +28,16 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         </div>
 
-        <CustomButton
-          buttonText="View More"
-          buttonClassName="primary-btn btn-sm"
-          onClick={onClickViewMore}
-        />
+        <div className="flex items-center">
+          <CustomText
+            textClassName="cursor-pointer pr-1.5"
+            onClick={onClickViewMore}
+          >
+            View More
+          </CustomText>
+
+          <CustomImage src={Images.rightIcon} className="w-1.5" />
+        </div>
       </div>
 
       <div className="gap-1 flex items-center justify-center">
@@ -54,27 +59,27 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
             breakpoints={{
               1280: {
                 slidesPerView: 7,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
               1024: {
                 slidesPerView: 5,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
               768: {
                 slidesPerView: 5,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
               640: {
                 slidesPerView: 4,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
               420: {
                 slidesPerView: 4,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
               375: {
                 slidesPerView: 3,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
             }}
             // navigation={true}
