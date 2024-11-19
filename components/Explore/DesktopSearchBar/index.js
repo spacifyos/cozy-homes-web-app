@@ -36,9 +36,9 @@ const DesktopSearchBar = ({
   ];
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center xl:py-0 lg:py-0 md:py-8 sm:py-8 py-8">
       <div
-        className="absolute z-10 container "
+        className="xl:absolute lg:absolute md:block sm:block block z-10 container"
         style={{ bottom: -180, width: "100%" }}
       >
         <div className="flex">

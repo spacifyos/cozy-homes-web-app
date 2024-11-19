@@ -20,23 +20,23 @@ const DesktopHeader = ({
 
   return (
     <div
-      className="xl:py-4 lg:py-4 md:py-4 sm:py-2 py-2 primaryWhite-bg-color"
+      className="primaryWhite-bg-color"
       style={{ borderBottom: "3px #f5f8fd solid" }}
     >
       <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
         <CustomImage
           src={Image.logoHorizontalColor}
           onClick={onClickExplore}
-          className="cursor-pointer xl:w-32 lg:w-28 md:w-28 sm:w-28 w-24"
+          className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-28"
         />
 
         {isEmpty(data) ? (
           <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
             <CustomButton
-              icon={loading ? "" : Image.registerIcon}
+              icon={loading ? "" : Image.registerIconActive}
               imageStyle={{ width: 13 }}
               buttonText={`Register`}
-              buttonClassName={`${loading ? "primary-btn" : "primary-btn"} min-w-44`}
+              buttonClassName={`default-btn min-w-44 min-h-10 h-10`}
               textClassName="font-size-small"
               reverse
               loading={loading}
@@ -46,7 +46,7 @@ const DesktopHeader = ({
             <CustomButton
               icon={Image.primaryLogoutIcon}
               buttonText={`Sign In`}
-              buttonClassName="default-btn w-36"
+              buttonClassName="default-btn w-36 min-h-10 h-10"
               textClassName="font-size-small"
               reverse
               onClick={onClickSignIn}

@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      spacing: {
+        125: "500px",
+      },
       colors: {
         "regal-blue": "#243c5a",
       },

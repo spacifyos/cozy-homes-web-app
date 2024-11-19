@@ -130,7 +130,7 @@ function Home() {
       <NextSeo title="Explore - Spacify Asia" />
 
       <DesktopLayout hideNav>
-        <div className="relative" style={{ height: 400 }}>
+        <div className="relative xl:h-96 lg:h-96">
           <DesktopBanner />
 
           <DesktopSearchBar
@@ -141,7 +141,7 @@ function Home() {
           />
         </div>
 
-        <div className="pt-52 xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
+        <div className="xl:pt-52 lg:pt-52 xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
           <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 pb-10 container mx-auto">
             <CustomText
               textClassName="primary-text font-bold"
@@ -210,7 +210,7 @@ function Home() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-10 pt-10 pb-4 container mx-auto">
+          <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
             <div
               className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
               style={{ height: 350 }}

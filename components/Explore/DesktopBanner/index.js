@@ -7,31 +7,32 @@ import Image from "next/image";
 const DesktopBanner = ({ onSlideChange }) => {
   return (
     <div>
-      <Swiper
-        onSlideChange={onSlideChange}
-        effect={"cards"}
-        grabCursor={true}
-        modules={[EffectCards]}
-        className="mySwiper"
-      >
-        {map([1], (item, index) => {
-          const image = get(item, ["image_url"], "/images/desktop_banner.png");
+      {/*<Swiper*/}
+      {/*  onSlideChange={onSlideChange}*/}
+      {/*  effect={"cards"}*/}
+      {/*  grabCursor={true}*/}
+      {/*  modules={[EffectCards]}*/}
+      {/*  className="mySwiper"*/}
+      {/*>*/}
+      {/*  {map([1], (item, index) => {*/}
+      {/*    const image = get(item, ["image_url"], "/images/desktop_banner.png");*/}
 
-          return (
-            <SwiperSlide key={index} style={{}}>
-              <Image
-                loader={() => image}
-                loading="lazy"
-                alt={"image"}
-                src={image}
-                width={0}
-                height={0}
-                style={{ width: "100%", height: 500, objectFit: "cover" }}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      {/*    return (*/}
+      {/*      <SwiperSlide key={index} style={{}}>*/}
+      <Image
+        loader={() => "/images/desktop_banner.png"}
+        loading="lazy"
+        alt={"image"}
+        src={"/images/desktop_banner.png"}
+        width={0}
+        height={0}
+        className="xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"
+        style={{ width: "100%" }}
+      />
+      {/*      </SwiperSlide>*/}
+      {/*    );*/}
+      {/*  })}*/}
+      {/*</Swiper>*/}
     </div>
   );
 };

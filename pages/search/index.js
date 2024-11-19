@@ -480,7 +480,7 @@ const Search = () => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1">
+        <div className="container mx-auto flex-1 py-4 xl:py-6 lg:py-6 md:py-6 sm:py-6">
           <DesktopSearchBar
             onClickOpenModal={onClickOpenModal}
             keywordValue={keywordValue}

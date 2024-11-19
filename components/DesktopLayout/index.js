@@ -125,7 +125,7 @@ const DesktopLayout = ({
       />
 
       {hideNav ? (
-        <div className="flex-1 h-full py-4 xl:py-6 lg:py-6 md:py-6 sm:py-6">
+        <div className="flex-1 h-full">
           {isEmpty(pageBreadcrumbs) ? (
             false
           ) : (
