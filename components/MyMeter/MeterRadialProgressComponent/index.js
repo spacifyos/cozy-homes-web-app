@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 import moment from "moment";
 
-const MeterRadialProgressComponent = ({ t, balanceUnit }) => {
+const MeterRadialProgressComponent = ({
+  t,
+  balanceUnit,
+  balanceCredit,
+  isShowBalanceInPrice,
+}) => {
   const [meterUnit, setMeterUnit] = useState(0);
   const [percentage, setPercentage] = useState(0);
 
@@ -36,11 +41,17 @@ const MeterRadialProgressComponent = ({ t, balanceUnit }) => {
       <div className="flex-col flex justify-column items-center">
         <div className="flex items-end gap-1">
           <CustomText textClassName="font-size-xlarge primary-text font-bold">
-            {isEmpty(balanceUnit) ? "0" : balanceUnit}
+            {isShowBalanceInPrice
+              ? isEmpty(balanceCredit)
+                ? "0"
+                : balanceCredit
+              : isEmpty(balanceUnit)
+                ? "0"
+                : balanceUnit}
           </CustomText>
 
           <CustomText textClassName="font-size-xxsmall disable-text line-clamp-1">
-            {t("myMeterOverview.unit")}
+            {isShowBalanceInPrice ? "credit" : "unit"}
           </CustomText>
         </div>
 

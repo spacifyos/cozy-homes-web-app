@@ -161,7 +161,12 @@ const MyMeterOverview = ({ id }) => {
         </div>
 
         <div className="radial-container pb-7">
-          <MeterRadialProgressComponent t={t} balanceUnit={balanceUnit} />
+          <MeterRadialProgressComponent
+            t={t}
+            isShowBalanceInPrice={isShowBalanceInPrice}
+            balanceUnit={balanceUnit}
+            balanceCredit={balanceCredit}
+          />
         </div>
 
         <MeterDetail t={t} data={meterOverviewData} />
