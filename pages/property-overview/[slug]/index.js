@@ -171,7 +171,26 @@ const PropertyOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
-      <NextSeo title="Property Overview - Spacify Asia" />
+      <NextSeo
+        title={`${propertyName} For Rent ${rental} by Spacify Asia | ${process.env.DOMAIN}`}
+        description="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
+        canonical={process.env.DOMAIN}
+        openGraph={{
+          url: process.env.DOMAIN,
+          title: "Spacify Asia",
+          description:
+            "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
+          images: [
+            {
+              url: isEmpty(imageUrl) ? Images.logoImage : imageUrl[0],
+              width: 1080,
+              height: 810,
+              alt: `${propertyName}`,
+            },
+          ],
+          siteName: "Spacify Asia",
+        }}
+      />
 
       <DesktopLayout
         hideNav
