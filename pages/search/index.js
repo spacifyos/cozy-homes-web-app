@@ -473,7 +473,7 @@ const Search = () => {
               </li>
               <li>
                 <CustomText textClassName="font-size-xlarge font-bold">
-                  Search Listing
+                  Property Listing
                 </CustomText>
               </li>
             </ul>

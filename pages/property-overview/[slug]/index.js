@@ -187,7 +187,7 @@ const PropertyOverview = ({ id }) => {
                 </a>
               </li>
               <li>
-                <a href={"/my-invoice"}>
+                <a href={"/search"}>
                   <CustomText textClassName="font-size-normal disable-text">
                     Property Listing
                   </CustomText>
