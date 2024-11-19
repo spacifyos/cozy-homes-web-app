@@ -28,31 +28,46 @@ import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearb
 import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import CustomText from "@/components/CustomText";
+import axios from "axios";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
 
+  let listingPropertyDetailData = null;
+
+  try {
+    const response = await axios.get(
+        `${process.env.API_DOMAIN}/listing/property-details/${id}`,
+        { headers: { "Content-Type": "application/json" } },
+    );
+
+    listingPropertyDetailData = get(response, ["data", "data"], null);
+  } catch (error) {
+    console.error("Error fetching listing details:", error);
+  }
+
   return {
     props: {
       id: id,
+      listingPropertyDetailData: listingPropertyDetailData,
       ...(await serverSideTranslations(context.locale, ["common"])),
     },
   };
 }
 
-const PropertyOverview = ({ id }) => {
+const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const getListingPropertyDetailRequest = (id) =>
-    dispatch(listingAction.getListingPropertyDetailRequest(id));
-  const listingPropertyDetailData = useSelector((state) =>
-    listingSelector.getListingPropertyDetailData(state, id),
-  );
-  const listingPropertyDetailDataLoading = useSelector((state) =>
-    listingSelector.getListingPropertyDetailDataLoading(state),
-  );
+  // const getListingPropertyDetailRequest = (id) =>
+  //   dispatch(listingAction.getListingPropertyDetailRequest(id));
+  // const listingPropertyDetailData = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailData(state, id),
+  // );
+  // const listingPropertyDetailDataLoading = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailDataLoading(state),
+  // );
 
   const getListingCancellationRequest = () =>
     dispatch(listingAction.getListingCancellationRequest());
@@ -113,13 +128,13 @@ const PropertyOverview = ({ id }) => {
 
   const [selectedImage, setSelectedImage] = useState(2);
 
-  useEffect(() => {
-    fetchListingPropertyDetail(id);
-  }, [id]);
+  // useEffect(() => {
+  //   fetchListingPropertyDetail(id);
+  // }, [id]);
 
-  const fetchListingPropertyDetail = (id) => {
-    getListingPropertyDetailRequest(id);
-  };
+  // const fetchListingPropertyDetail = (id) => {
+  //   getListingPropertyDetailRequest(id);
+  // };
 
   const onClickToBookAppointment = () => {
     router.push("/property-overview/1/book-appointment");
@@ -172,12 +187,12 @@ const PropertyOverview = ({ id }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`${propertyName} For Rent ${rental} by Spacify Asia | ${process.env.DOMAIN}`}
+        title={`${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`}
         description="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
         canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
-          title: "Spacify Asia",
+          title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
           description:
             "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
           images: [
@@ -194,7 +209,7 @@ const PropertyOverview = ({ id }) => {
 
       <DesktopLayout
         hideNav
-        loading={listingPropertyDetailDataLoading}
+        // loading={listingPropertyDetailDataLoading}
         pageBreadcrumbs={
           <div className="breadcrumbs text-sm">
             <ul>
@@ -323,16 +338,16 @@ const PropertyOverview = ({ id }) => {
           <DesktopRecommendSection
             t={t}
             data={recommendedList}
-            loading={listingPropertyDetailDataLoading}
+            // loading={listingPropertyDetailDataLoading}
             onClickViewMore={onClickViewMore}
           />
 
-          <DesktopNearbyRoomSection
-            t={t}
-            data={[]}
-            loading={listingPropertyDetailDataLoading}
-            onClickViewMore={onClickViewMore}
-          />
+          {/*<DesktopNearbyRoomSection*/}
+          {/*  t={t}*/}
+          {/*  data={[]}*/}
+          {/*  loading={listingPropertyDetailDataLoading}*/}
+          {/*  onClickViewMore={onClickViewMore}*/}
+          {/*/>*/}
         </div>
       </DesktopLayout>
 
