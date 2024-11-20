@@ -179,6 +179,7 @@ const Image = {
   nearbyIcon: "/images/icon/nearby_icon.png",
   renoExpertIcon: "/images/icon/RenoExpert_icon.png",
   renoExpertIconActive: "/images/icon/RenoExpert_icon_active.png",
+  locationOutlineActive: "/images/icon/location_outline.png",
 };
 
 export default { ...Image };
