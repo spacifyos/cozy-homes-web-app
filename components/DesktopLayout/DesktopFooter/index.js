@@ -65,7 +65,7 @@ const DesktopFooter = () => {
               <div className="flex items-center grid grid-cols-8 gap-2">
                 <CustomImage
                   src={Image.phoneIconActive}
-                  className="col-span-1"
+                  className="col-span-1 w-5"
                 />
                 <CustomText textClassName="col-span-7">
                   +603 5878 9831
@@ -75,7 +75,7 @@ const DesktopFooter = () => {
               <div className="flex items-start grid grid-cols-8 gap-2">
                 <CustomImage
                   src={Image.emailIconActive}
-                  className="col-span-1"
+                  className="col-span-1 w-5"
                 />
                 <CustomText textClassName="col-span-7">
                   info@belive.asia
@@ -85,7 +85,7 @@ const DesktopFooter = () => {
               <div className="flex items-start grid grid-cols-8 gap-2">
                 <CustomImage
                   src={Image.locationOutlineActive}
-                  className="col-span-1 "
+                  className="col-span-1 w-5"
                 />
                 <CustomText textClassName="col-span-7 text-justify">
                   No. 42-46, Ground Floor, Jalan SS 19/1d, SS 19, 47500 Subang
