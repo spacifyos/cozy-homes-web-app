@@ -37,8 +37,8 @@ export async function getServerSideProps(context) {
 
   try {
     const response = await axios.get(
-        `${process.env.API_DOMAIN}/listing/property-details/${id}`,
-        { headers: { "Content-Type": "application/json" } },
+      `${process.env.API_DOMAIN}/listing/property-details/${id}`,
+      { headers: { "Content-Type": "application/json" } },
     );
 
     listingPropertyDetailData = get(response, ["data", "data"], null);
@@ -188,13 +188,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
         title={`${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`}
-        description="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
-        canonical={process.env.DOMAIN}
+        description={`${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`}
+        canonical={`${process.env.DOMAIN}/property-overview/${id}`}
         openGraph={{
-          url: process.env.DOMAIN,
+          url: `${process.env.DOMAIN}/property-overview/${id}`,
           title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
-          description:
-            "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
+          description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
           images: [
             {
               url: isEmpty(imageUrl) ? Images.logoImage : imageUrl[0],
@@ -203,7 +202,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               alt: `${propertyName}`,
             },
           ],
-          siteName: "Spacify Asia",
+          siteName: `${process.env.DOMAIN}/property-overview/${id}`,
         }}
       />
 

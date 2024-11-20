@@ -613,29 +613,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title="Booking Form - Spacify Asia"
+        title={`${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`}
+        description={`${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`}
         canonical={`${process.env.DOMAIN}/booking/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/booking/${id}`,
-          title: isEmpty(title) ? "Spacify Booking" : title,
-          description: isEmpty(propertyName) ? "" : propertyName,
-          images: isEmpty(imageUrl)
-            ? [
-                {
-                  url: Images.logoImage,
-                  width: 800,
-                  height: 600,
-                  alt: `Logo Image`,
-                },
-              ]
-            : map(imageUrl, (item, index) => {
-                return {
-                  url: item,
-                  width: 800,
-                  height: 600,
-                  alt: `image ${index + 1}`,
-                };
-              }),
+          title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
+          description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
+          images: [
+            {
+              url: isEmpty(imageUrl) ? Images.logoImage : imageUrl[0],
+              width: 1080,
+              height: 810,
+              alt: `${propertyName}`,
+            },
+          ],
           siteName: `${process.env.DOMAIN}/booking/${id}`,
         }}
       />
