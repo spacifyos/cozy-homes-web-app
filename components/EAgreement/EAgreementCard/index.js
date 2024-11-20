@@ -16,7 +16,7 @@ const EAgreementCard = ({ item, t }) => {
 
   return (
     <a
-      href={`/owner/e-agreement/${id}`}
+      href={`/e-agreement/${id}`}
       className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center cursor-pointer"
     >
       <div className="flex-1 pr-3">
