@@ -27,8 +27,13 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
       <div className="gap-1">
         {loading ? (
           <div className="flex">
-            {map(Array(4), (item, index) => (
-              <Skeleton width={"100%"} height={250} key={index} />
+            {map(Array(3), (item, index) => (
+              <Skeleton
+                hideText
+                width={"100%"}
+                className="h-40 xl:h-52 lg:h-52 md:h-44 sm:h-40"
+                key={index}
+              />
             ))}
           </div>
         ) : isEmpty(data) ? (
@@ -65,7 +70,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
                 slidesPerView: 2,
                 spaceBetween: 10,
               },
-              375: {
+              343: {
                 slidesPerView: 2,
                 spaceBetween: 10,
               },
@@ -81,12 +86,6 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
                     imageClassName="h-40 xl:h-52 lg:h-52 md:h-44 sm:h-40 w-full"
                     hideLabel
                   />
-                  {/*<div className="primaryWhite-bg-color flex justify-center global-border-radius">*/}
-                  {/*  <CustomImage*/}
-                  {/*    src={Images.logoImage}*/}
-                  {/*    imageStyle={{ width: 300, height: 250 }}*/}
-                  {/*  />*/}
-                  {/*</div>*/}
                 </SwiperSlide>
               );
             })}

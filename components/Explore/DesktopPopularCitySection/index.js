@@ -39,7 +39,11 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           {loading ? (
             <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
               {map(Array(12), (item, index) => (
-                <Skeleton width="100%" height={160} key={index} />
+                <Skeleton
+                  width="100%"
+                  className="h-24 xl:h-44 lg:h-44 md:h-32 sm:h-32"
+                  key={index}
+                />
               ))}
             </div>
           ) : isEmpty(data) ? (
@@ -69,9 +73,8 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           <div className="flex" style={{ height: 144 }}>
             {map(Array(4), (item, index) => (
               <Skeleton
+                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"
                 width={"100%"}
-                minWidth={100}
-                height={100}
                 key={index}
               />
             ))}
@@ -82,37 +85,37 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : (
           <Swiper
-              className="mySwiper"
-              style={{ width: "100%" }}
-              loop={true}
-              breakpoints={{
-                  1280: {
-                      slidesPerView: 7,
-                      spaceBetween: 15,
-                  },
-                  1024: {
-                      slidesPerView: 5,
-                      spaceBetween: 15,
-                  },
-                  768: {
-                      slidesPerView: 5,
-                      spaceBetween: 15,
-                  },
-                  640: {
-                      slidesPerView: 4,
-                      spaceBetween: 15,
-                  },
-                  420: {
-                      slidesPerView: 4,
-                      spaceBetween: 15,
-                  },
-                  375: {
-                      slidesPerView: 3,
-                      spaceBetween: 15,
-                  },
-              }}
-              // navigation={true}
-              modules={[Pagination, Navigation]}
+            className="mySwiper"
+            style={{ width: "100%" }}
+            loop={true}
+            breakpoints={{
+              1280: {
+                slidesPerView: 7,
+                spaceBetween: 15,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 15,
+              },
+              768: {
+                slidesPerView: 5,
+                spaceBetween: 15,
+              },
+              640: {
+                slidesPerView: 4,
+                spaceBetween: 15,
+              },
+              420: {
+                slidesPerView: 4,
+                spaceBetween: 15,
+              },
+              343: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+              },
+            }}
+            // navigation={true}
+            modules={[Pagination, Navigation]}
           >
             {map(data, (item, index) => {
               return (

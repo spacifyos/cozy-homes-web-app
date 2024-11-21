@@ -44,7 +44,11 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
         {loading ? (
           <div className="flex-1 flex">
             {map(Array(5), (item, index) => (
-              <Skeleton width="100%" height={200} key={index} />
+              <Skeleton
+                width="100%"
+                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 "
+                key={index}
+              />
             ))}
           </div>
         ) : isEmpty(data) ? (
@@ -77,7 +81,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              375: {
+              343: {
                 slidesPerView: 3,
                 spaceBetween: 15,
               },
