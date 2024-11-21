@@ -28,20 +28,26 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
           </div>
         </div>
 
-        <CustomButton
-          buttonText="View More"
-          buttonClassName="primary-btn btn-sm"
-          onClick={onClickViewMore}
-        />
+        <div className="flex items-center">
+          <CustomText
+            textClassName="cursor-pointer pr-1.5"
+            onClick={onClickViewMore}
+          >
+            View More
+          </CustomText>
+
+          <CustomImage src={Images.rightIcon} className="w-1.5" />
+        </div>
       </div>
-      <div
-        className="gap-1 flex justify-center items-center"
-        style={{ height: 255 }}
-      >
+      <div className="gap-1 flex justify-center items-center">
         {loading ? (
           <div className="flex flex-1">
-            {map(Array(5), (item, index) => (
-              <Skeleton width="100%" height={200} key={index} />
+            {map(Array(3), (item, index) => (
+              <Skeleton
+                width="100%"
+                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"
+                key={index}
+              />
             ))}
           </div>
         ) : isEmpty(data) ? (
@@ -53,40 +59,45 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
           </div>
         ) : (
           <Swiper
+            className="mySwiper"
             style={{ width: "100%" }}
-            slidesPerView={5}
-            spaceBetween={10}
             loop={true}
-            pagination={{
-              clickable: true,
-              enabled: false,
-            }}
             breakpoints={{
               1280: {
-                slidesPerView: 5,
-                spaceBetween: 10,
+                slidesPerView: 7,
+                spaceBetween: 15,
               },
               1024: {
-                slidesPerView: 4,
-                spaceBetween: 10,
+                slidesPerView: 5,
+                spaceBetween: 15,
               },
               768: {
-                slidesPerView: 3,
-                spaceBetween: 10,
+                slidesPerView: 5,
+                spaceBetween: 15,
               },
               640: {
+                slidesPerView: 4,
+                spaceBetween: 15,
+              },
+              420: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+              },
+              343: {
                 slidesPerView: 2,
-                spaceBetween: 10,
+                spaceBetween: 15,
               },
             }}
             // navigation={true}
             modules={[Pagination, Navigation]}
-            className="mySwiper explore-swiper"
           >
             {map(data, (item, index) => {
               return (
-                <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} imageHeight={200} />
+                <SwiperSlide key={index}>
+                  <ListingCardComponent
+                    item={item}
+                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
+                  />
                 </SwiperSlide>
               );
             })}

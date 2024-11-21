@@ -19,11 +19,8 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
-            <CustomText textClassName="font-size-xxlarge font-bold primary-text">
-              Cheapest Rooms
-            </CustomText>
             <CustomText textClassName="font-size-xxlarge font-bold">
-              Just For You
+              <span className="primary-text">Cheapest Rooms</span> Just For You
             </CustomText>
           </div>
         </div>
@@ -43,7 +40,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
       <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex flex-1">
-            {map(Array(5), (item, index) => (
+            {map(Array(3), (item, index) => (
               <Skeleton
                 width={"100%"}
                 className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"

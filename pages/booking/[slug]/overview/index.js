@@ -85,9 +85,10 @@ const BookingOverview = ({ id }) => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1">
+        <div className="container mx-auto flex-1 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
           <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5">
             <DesktopPriceSection
+              targetRental={0}
               isBookingOverview
               title={title}
               propertyName={propertyName}

@@ -34,12 +34,12 @@ const DesktopPropertyPriceSection = ({
 
   return (
     <div className="global-box-shadow global-border-radius mt-3 overflow-hidden sticky top-5">
-      <div className="primary-bg-color p-3">
+      <div className="secondary-bg-color p-3">
         <div className="flex items-end">
-          <CustomText textClassName="white-text font-size-large font-bold pr-2">
+          <CustomText textClassName="black-text font-size-large font-bold pr-2">
             RM{rental}
           </CustomText>
-          <CustomText textClassName="white-text font-size-small">
+          <CustomText textClassName="black-text font-size-small">
             / month
           </CustomText>
         </div>

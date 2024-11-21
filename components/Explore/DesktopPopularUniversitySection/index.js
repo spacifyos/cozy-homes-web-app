@@ -42,7 +42,7 @@ const DesktopPopularUniversitySection = ({
       <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex flex-1">
-            {map(Array(5), (item, index) => (
+            {map(Array(3), (item, index) => (
               <Skeleton
                 width="100%"
                 className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"

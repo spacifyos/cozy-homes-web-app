@@ -20,11 +20,8 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
-            <CustomText textClassName="font-size-xxlarge font-bold primary-text">
-              Featured Rooms
-            </CustomText>
-            <CustomText textClassName="font-size-xxlarge font-bold">
-              Just For You
+            <CustomText textClassName="font-size-xxlarge font-bold ">
+              <span className="primary-text">Featured Rooms</span> Just For You
             </CustomText>
           </div>
         </div>
@@ -43,10 +40,10 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
       <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex-1 flex">
-            {map(Array(5), (item, index) => (
+            {map(Array(3), (item, index) => (
               <Skeleton
                 width="100%"
-                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 "
+                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
                 key={index}
               />
             ))}

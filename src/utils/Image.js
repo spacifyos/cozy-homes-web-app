@@ -47,7 +47,7 @@ const Image = {
   clearIcon: `/images/icon/clear_icon.png`,
   usageIcon: `/images/icon/usage_icon.png`,
   disconnect: `/images/icon/disconnect_icon.png`,
-  tenancyIconActive: `/images/icon/tenancy_icon.png`,
+  tenancyIconActive: `/images/icon/tenancy_icon_active.png`,
   tenancyIcon: `/images/icon/tenancy_disable_icon.png`,
   policyIconActive: `/images/icon/policy_icon_active.png`,
   overviewIcon: `/images/icon/overview_icon.png`,

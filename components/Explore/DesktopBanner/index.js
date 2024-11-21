@@ -46,12 +46,13 @@ const DesktopBanner = ({ imageData }) => {
         {map(imageData, (image, index) => {
           const banner = listingSelector.getMobileImageUrl(image);
 
+          console.log(banner)
           return (
-            <SwiperSlide style={{ minWidth: 100 }} key={index}>
+            <SwiperSlide style={{ minWidth: 100 }} className="xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64" key={index}>
               <div className="overflow-hidden rounded-3xl">
                 <CustomImage
                   src={isEmpty(banner) ? Images.imageNotFound : banner}
-                  className="cover xl:h-80 lg:h-76"
+                  className="cover xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64"
                 />
               </div>
             </SwiperSlide>

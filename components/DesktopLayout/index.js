@@ -13,6 +13,7 @@ import * as authSelector from "@/src/selectors/auth";
 import CustomImage from "@/components/CustomImage";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import AuthManager from "@/src/utils/AuthManager";
 
 const DesktopLayout = ({
   children,
@@ -37,26 +38,23 @@ const DesktopLayout = ({
 
   const userType = authSelector.getType(userProfileData);
 
-  // useEffect(() => {
-  //   const checkAuthentication = async () => {
-  //     const token = await AuthManager.retrieveToken();
-  //     const type = await AuthManager.retrieveType();
-  //
-  //     if (!isEmpty(token) && !isEmpty(type)) {
-  //     }
-  //   };
-  //
-  //   checkAuthentication();
-  // }, [router]);
+  useEffect(() => {
+    const checkAuthentication = async () => {
+      const token = await AuthManager.retrieveToken();
+      const type = await AuthManager.retrieveType();
+
+      if (!isEmpty(token) && !isEmpty(type)) {
+        if (isEmpty(userProfileData)) {
+          await fetchUserprofileData();
+        }
+      }
+    };
+
+    checkAuthentication();
+  }, []);
 
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
-
-  useEffect(() => {
-    if (isEmpty(userProfileData)) {
-      fetchUserprofileData();
-    }
-  }, []);
 
   const fetchUserprofileData = async () => {
     await apiRequest.getUChatUserRequest(
@@ -129,7 +127,9 @@ const DesktopLayout = ({
           {isEmpty(pageBreadcrumbs) ? (
             false
           ) : (
-            <div className="pb-5 container mx-auto">{pageBreadcrumbs}</div>
+            <div className="pb-5 container mx-auto xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6 pt-4">
+              {pageBreadcrumbs}
+            </div>
           )}
           {children}
         </div>

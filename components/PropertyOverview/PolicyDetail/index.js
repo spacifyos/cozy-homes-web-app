@@ -13,12 +13,9 @@ const PolicyDetail = ({ t, loading, data }) => {
     : DOMPurify.sanitize(htmlContent);
 
   return (
-    <div className="mb-5">
+    <div className="">
       {loading ? (
-        <div
-          className="flex justify-center items-center"
-          style={{ height: 100 }}
-        >
+        <div className="flex justify-center items-center pt-40">
           <span className="loading loading-spinner loading-lg primary-text"></span>
         </div>
       ) : (

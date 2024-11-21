@@ -118,6 +118,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const [isZeroDeposit, setIsZeroDeposit] = useState("true");
   const [referralCodeValue, setReferralCodeValue] = useState("");
 
+  const bedType = listingSelector.getBedType(listingPropertyDetailData);
+  const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
+  const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
   const title = listingSelector.getTitle(listingPropertyDetailData);
   const rental = listingSelector.getRental(listingPropertyDetailData);
   const propertyName = listingSelector.getPropertyName(
@@ -620,14 +623,23 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           url: `${process.env.DOMAIN}/booking/${id}`,
           title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
           description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
-          images: [
-            {
-              url: isEmpty(imageUrl) ? Images.logoImage : imageUrl[0],
-              width: 1080,
-              height: 810,
-              alt: `${propertyName}`,
-            },
-          ],
+          images: isEmpty(imageUrl)
+            ? [
+                {
+                  url: Images.logoImage,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} Image`,
+                },
+              ]
+            : map(imageUrl, (item, index) => {
+                return {
+                  url: item,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} image ${index + 1}`,
+                };
+              }),
           siteName: `${process.env.DOMAIN}/booking/${id}`,
         }}
       />
@@ -672,7 +684,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1">
+        <div className="container mx-auto flex-1 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
           <form
             ref={formRef}
             className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5"

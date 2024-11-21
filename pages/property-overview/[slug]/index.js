@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import { isEmpty, isEqual, get } from "lodash";
+import { isEmpty, isEqual, get, map } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
@@ -194,14 +194,23 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           url: `${process.env.DOMAIN}/property-overview/${id}`,
           title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
           description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
-          images: [
-            {
-              url: isEmpty(imageUrl) ? Images.logoImage : imageUrl[0],
-              width: 1080,
-              height: 810,
-              alt: `${propertyName}`,
-            },
-          ],
+          images: isEmpty(imageUrl)
+            ? [
+                {
+                  url: Images.logoImage,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} Image`,
+                },
+              ]
+            : map(imageUrl, (item, index) => {
+                return {
+                  url: item,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} image ${index + 1}`,
+                };
+              }),
           siteName: `${process.env.DOMAIN}/property-overview/${id}`,
         }}
       />
@@ -211,7 +220,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         // loading={listingPropertyDetailDataLoading}
         pageBreadcrumbs={
           <div className="breadcrumbs text-sm">
-            <ul>
+            <ul className="flex-wrap gap-1">
               <li>
                 <a href={"/explore"}>
                   <CustomText textClassName="font-size-normal disable-text">
@@ -235,8 +244,8 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           </div>
         }
       >
-        <div className="container mx-auto pb-32">
-          <div className="grid grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
+        <div className="container mx-auto xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
+          <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
             <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
               <CustomImage src={Images.logoImage} />
             </div>
@@ -254,6 +263,11 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
             </div>
           </div>
 
+          <RoomPicCarousel
+            imageUrl={imageUrl}
+            onClickPopupImage={onClickPopupImage}
+          />
+
           <div class="grid grid-cols-5 gap-10">
             <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-5 col-span-5">
               <DetailComponent
@@ -262,32 +276,75 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 address={address}
               />
 
-              <div className="grid grid-cols-6 gap-3 items-center pb-5">
-                <CustomButton
-                  icon={
-                    isEqual(selectDetail, Constant.TENANCY)
-                      ? Images.tenancyIconActive
-                      : Images.tenancyIcon
-                  }
-                  buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-                  textClassName="font-size-normal"
-                  buttonText={t("propertyDetail.tenancy")}
-                  imageStyle={{ width: 18 }}
-                  onClick={() => onClickSelectDetail(Constant.TENANCY)}
-                />
+              {/*<div className="grid grid-cols-6 gap-3 items-center pb-5">*/}
+              {/*  <CustomButton*/}
+              {/*    icon={*/}
+              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
+              {/*        ? Images.tenancyIconActive*/}
+              {/*        : Images.tenancyIcon*/}
+              {/*    }*/}
+              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
+              {/*    textClassName="font-size-normal"*/}
+              {/*    buttonText={t("propertyDetail.tenancy")}*/}
+              {/*    imageStyle={{ width: 18 }}*/}
+              {/*    onClick={() => onClickSelectDetail(Constant.TENANCY)}*/}
+              {/*  />*/}
 
-                <CustomButton
-                  icon={
-                    isEqual(selectDetail, Constant.TENANCY)
-                      ? Images.policyIcon
-                      : Images.policyIconActive
-                  }
-                  imageStyle={{ width: 18 }}
-                  buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-                  textClassName="font-size-normal disable-text"
-                  buttonText={t("propertyDetail.policy")}
-                  onClick={() => onClickSelectDetail(Constant.POLICY)}
-                />
+              {/*  <CustomButton*/}
+              {/*    icon={*/}
+              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
+              {/*        ? Images.policyIcon*/}
+              {/*        : Images.policyIconActive*/}
+              {/*    }*/}
+              {/*    imageStyle={{ width: 18 }}*/}
+              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
+              {/*    textClassName="font-size-normal disable-text"*/}
+              {/*    buttonText={t("propertyDetail.policy")}*/}
+              {/*    onClick={() => onClickSelectDetail(Constant.POLICY)}*/}
+              {/*  />*/}
+              {/*</div>*/}
+
+              <div className="pb-4">
+                <div role="tablist" className="tabs tabs-lifted">
+                  <a
+                    onClick={() => onClickSelectDetail(Constant.TENANCY)}
+                    role="tab"
+                    className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "tab-active" : ""} h-10 gap-2`}
+                  >
+                    {/*<CustomImage*/}
+                    {/*  src={*/}
+                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
+                    {/*      ? Images.tenancyIconActive*/}
+                    {/*      : Images.tenancyIcon*/}
+                    {/*  }*/}
+                    {/*  className="w-4"*/}
+                    {/*/>*/}
+                    <CustomText
+                      textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "black-text font-bold" : "disable-text"}`}
+                    >
+                      {t("propertyDetail.tenancy")}
+                    </CustomText>
+                  </a>
+                  <a
+                    onClick={() => onClickSelectDetail(Constant.POLICY)}
+                    role="tab"
+                    className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "" : "tab-active"} h-10 gap-2`}
+                  >
+                    {/*<CustomImage*/}
+                    {/*  src={*/}
+                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
+                    {/*      ? Images.policyIcon*/}
+                    {/*      : Images.policyIconActive*/}
+                    {/*  }*/}
+                    {/*  className="w-4"*/}
+                    {/*/>*/}
+                    <CustomText
+                      textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "disable-text" : "black-text font-bold"}`}
+                    >
+                      {t("propertyDetail.policy")}
+                    </CustomText>
+                  </a>
+                </div>
               </div>
 
               {isEqual(selectDetail, Constant.TENANCY) ? (
@@ -314,6 +371,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 />
               )}
             </div>
+
             <div className="xl:col-span-2 lg:col-span-2 md:col-span-2 xl:block lg:block md:block sm:hidden hidden">
               <DesktopPropertyPriceSection
                 t={t}
@@ -350,11 +408,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         </div>
       </DesktopLayout>
 
-      {/*<RoomPicCarousel*/}
-      {/*  imageUrl={imageUrl}*/}
-      {/*  onClickPopupImage={onClickPopupImage}*/}
-      {/*/>*/}
-
       <AgentSection
         t={t}
         onClickToBookAppointment={onClickToBookAppointment}
@@ -372,12 +425,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         lists={targetItems}
       />
 
-      {/*<ImageModal*/}
-      {/*  data={imageUrl}*/}
-      {/*  selectedImage={selectedImage}*/}
-      {/*  onClickCloseImageModal={onClickCloseImageModal}*/}
-      {/*  openImageModal={openImageModal}*/}
-      {/*/>*/}
+      <ImageModal
+        data={imageUrl}
+        selectedImage={selectedImage}
+        onClickCloseImageModal={onClickCloseImageModal}
+        openImageModal={openImageModal}
+      />
 
       <RentChargeModal />
     </div>
