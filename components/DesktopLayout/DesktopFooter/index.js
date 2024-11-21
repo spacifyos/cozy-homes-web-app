@@ -25,7 +25,7 @@ const DesktopFooter = () => {
 
   return (
     <div className="primaryWhite-bg-color xl:pb-0 lg:pb-0 md:pb-0 sm:pb-20 pb-20 xl:block lg:block md:block sm:hidden hidden">
-      <div className="bg-color py-10">
+      <div className=" py-10" style={{backgroundColor:"#d6d6d6"}}>
         <div className="container mx-auto grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 xl:gap-10 lg:gap-10 md:gap-8 sm:gap-6 gap-6">
           <div className="flex flex-col col-span-1 md gap-2">
             <CustomText textClassName="text-justify font-size-small">

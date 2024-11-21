@@ -127,7 +127,25 @@ function Home() {
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
-      <NextSeo title="Explore - Spacify Asia" />
+      <NextSeo
+        title={`Explore Available Rooms for Rent Anytime, Anywhere in Malaysia | ${process.env.DOMAIN}`}
+        description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
+        canonical={process.env.DOMAIN}
+        openGraph={{
+          url: process.env.DOMAIN,
+          title: `Explore Available Rooms for Rent Anytime, Anywhere in Malaysia | ${process.env.DOMAIN}`,
+          description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
+          images: [
+            {
+              url: Images.logoImage,
+              width: 1080,
+              height: 810,
+              alt: `Spacify Image`,
+            },
+          ],
+          siteName: `${process.env.DOMAIN}`,
+        }}
+      />
 
       <DesktopLayout hideNav>
         <div className="relative xl:h-96">
@@ -138,7 +156,7 @@ function Home() {
             src={"/images/desktop_banner.png"}
             width={0}
             height={0}
-            className="xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"
+            className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"
             style={{ width: "100%" }}
           />
 
@@ -202,7 +220,7 @@ function Home() {
             />
           </div>
 
-          <DesktopBanner imageData={listingBannerData} />
+          {/*<DesktopBanner imageData={listingBannerData} />*/}
         </div>
       </DesktopLayout>
 

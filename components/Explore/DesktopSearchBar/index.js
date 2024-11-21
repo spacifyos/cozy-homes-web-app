@@ -63,13 +63,13 @@ const DesktopSearchBar = ({
         {/*</div>*/}
 
         <div
-          className="p-8 global-box-shadow primaryWhite-bg-color"
+          className="xl:p-8 lg:p-8 md:p-6 sm:p-4 p-4 global-box-shadow primaryWhite-bg-color"
           style={{ borderRadius: "10px 10px 10px 10px" }}
         >
-          <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-4">
             <CustomInput
               rightIcon={Images.searchOutlineActiveIcon}
-              className="col-span-1"
+              className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
               placeholder="Keyword"
               value={keywordValue}
               onChange={(e) => setKeywordValue(e.target.value)}
@@ -91,7 +91,7 @@ const DesktopSearchBar = ({
               onChange={(e) => setCityValue(e.target.value)}
             />
 
-            <div className="col-span-1">
+            <div className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2">
               <CustomButton
                 buttonClassName="primary-btn w-full"
                 buttonText="Search"
