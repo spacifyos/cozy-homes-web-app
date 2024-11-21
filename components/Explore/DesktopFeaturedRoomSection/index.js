@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
@@ -90,7 +90,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
                 <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageClassName="h-24 xl:h-44 lg:h-44 md:h-36 sm:h-32 w-full"
+                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
                   />
                 </SwiperSlide>
               );

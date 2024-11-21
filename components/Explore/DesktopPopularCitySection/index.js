@@ -35,7 +35,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
       </div>
 
       <div className="hidden xl:block lg:block md:block sm:block ">
-        <div style={{ minHeight: 523 }}>
+        <div style={{ minHeight: 410 }}>
           {loading ? (
             <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
               {map(Array(12), (item, index) => (
@@ -55,6 +55,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
                 return (
                   <ListingCardComponent
                     item={item}
+                    imageClassName="h-24 xl:h-44 lg:h-44 md:h-32 sm:h-32"
                   />
                 );
               })}
@@ -81,22 +82,45 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : (
           <Swiper
-            style={{ width: "100%" }}
-            slidesPerView={4}
-            spaceBetween={10}
-            loop={true}
-            pagination={{
-              clickable: true,
-              enabled: false,
-            }}
-            // navigation={true}
-            modules={[Pagination, Navigation]}
-            className="mySwiper explore-swiper"
+              className="mySwiper"
+              style={{ width: "100%" }}
+              loop={true}
+              breakpoints={{
+                  1280: {
+                      slidesPerView: 7,
+                      spaceBetween: 15,
+                  },
+                  1024: {
+                      slidesPerView: 5,
+                      spaceBetween: 15,
+                  },
+                  768: {
+                      slidesPerView: 5,
+                      spaceBetween: 15,
+                  },
+                  640: {
+                      slidesPerView: 4,
+                      spaceBetween: 15,
+                  },
+                  420: {
+                      slidesPerView: 4,
+                      spaceBetween: 15,
+                  },
+                  375: {
+                      slidesPerView: 3,
+                      spaceBetween: 15,
+                  },
+              }}
+              // navigation={true}
+              modules={[Pagination, Navigation]}
           >
             {map(data, (item, index) => {
               return (
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
-                  <ListingCardComponent item={item} />
+                  <ListingCardComponent
+                    item={item}
+                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
+                  />
                 </SwiperSlide>
               );
             })}

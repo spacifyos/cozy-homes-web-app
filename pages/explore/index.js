@@ -130,8 +130,17 @@ function Home() {
       <NextSeo title="Explore - Spacify Asia" />
 
       <DesktopLayout hideNav>
-        <div className="relative xl:h-96 lg:h-96">
-          <DesktopBanner />
+        <div className="relative xl:h-96">
+          <Image
+            loader={() => "/images/desktop_banner.png"}
+            loading="lazy"
+            alt={"image"}
+            src={"/images/desktop_banner.png"}
+            width={0}
+            height={0}
+            className="xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"
+            style={{ width: "100%" }}
+          />
 
           <DesktopSearchBar
             optionList={selectOptionData}
@@ -141,8 +150,8 @@ function Home() {
           />
         </div>
 
-        <div className="xl:pt-52 lg:pt-52 xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
-          <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 pb-10 container mx-auto">
+        <div className="xl:pt-52">
+          <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 container mx-auto">
             <CustomText
               textClassName="primary-text font-bold"
               styles={{ fontSize: 24 }}
@@ -155,26 +164,9 @@ function Home() {
             </CustomText>
           </div>
 
-          <div className="grid grid-cols-2 gap-10 pb-10 container mx-auto">
-            <div className="col-span-1 relative global-box-shadow overflow-hidden rounded-3xl">
-              <CustomImage
-                src={isEmpty(banner1) ? Images.imageNotFound : banner1} className="cover xl:h-80 lg:h-76"
-              />
-            </div>
+          <DesktopBanner imageData={listingBannerData} />
 
-            <div className="col-span-1 relative global-box-shadow overflow-hidden">
-              {/*<Image*/}
-              {/*  // loader={() => banner2}*/}
-              {/*  // loading="lazy"*/}
-              {/*    width={500}*/}
-              {/*    height={500}*/}
-              {/*  src={isEmpty(banner2) ? Images.imageNotFound : banner2}*/}
-              {/*  style={{ objectFit: "contain", width: "100%", height: "100%" }}*/}
-              {/*/>*/}
-            </div>
-          </div>
-
-          <div className="bg-color py-10">
+          <div className="bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPopularCitySection
               onClickViewMore={onClickToSearch}
               data={popularCity}
@@ -188,7 +180,7 @@ function Home() {
             onClickViewMore={onClickToSearch}
           />
 
-          <div className="bg-color py-10">
+          <div className="bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPopularUniversitySection
               data={popularUniversity}
               loading={listingDataLoading}
@@ -202,7 +194,7 @@ function Home() {
             onClickViewMore={onClickToSearch}
           />
 
-          <div className="primary-bg-color py-10">
+          <div className="primary-bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPromotionSection
               data={specialPromotion}
               loading={listingDataLoading}
@@ -210,35 +202,7 @@ function Home() {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-10 py-10 container mx-auto">
-            <div
-              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
-              style={{ height: 350 }}
-            >
-              <Image
-                loader={() => banner1}
-                loading="lazy"
-                src={isEmpty(banner1) ? Images.imageNotFound : banner1}
-                sizes="100vw"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-
-            <div
-              className="col-span-1 relative global-box-shadow global-border-radius overflow-hidden"
-              style={{ height: 350 }}
-            >
-              <Image
-                loader={() => banner2}
-                loading="lazy"
-                src={isEmpty(banner2) ? Images.imageNotFound : banner2}
-                sizes="100vw"
-                fill
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </div>
+          <DesktopBanner imageData={listingBannerData} />
         </div>
       </DesktopLayout>
 

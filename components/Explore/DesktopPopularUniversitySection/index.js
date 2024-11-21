@@ -89,7 +89,7 @@ const DesktopPopularUniversitySection = ({
                 <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageClassName="h-24 xl:h-44 lg:h-44 md:h-36 sm:h-32 w-full"
+                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
                   />
                 </SwiperSlide>
               );

@@ -36,35 +36,35 @@ const DesktopSearchBar = ({
   ];
 
   return (
-    <div className="flex justify-center xl:py-0 lg:py-0 md:py-8 sm:py-8 py-8">
+    <div className="flex justify-center xl:py-0 lg:py-8 md:py-6 sm:py-6 py-4">
       <div
-        className="xl:absolute lg:absolute md:block sm:block block z-10 container"
+        className="xl:absolute lg:block md:block sm:block block z-10 container"
         style={{ bottom: -180, width: "100%" }}
       >
-        <div className="flex">
-          {map(searchType, (type) => {
-            const name = get(type, ["name"], "");
-            const value = get(type, ["value"], "");
+        {/*<div className="flex">*/}
+        {/*  {map(searchType, (type) => {*/}
+        {/*    const name = get(type, ["name"], "");*/}
+        {/*    const value = get(type, ["value"], "");*/}
 
-            return (
-              <div
-                onClick={() => setSearchTypeValue(value)}
-                className={`cursor-pointer px-6 py-4 w-40 ${isEqual(searchTypeValue, value) ? "primaryWhite-bg-color" : "bg-color"}`}
-                style={{ borderRadius: "10px 10px 0 0" }}
-              >
-                <CustomText
-                  textClassName={`text-center ${isEqual(searchTypeValue, value) ? "primary-text font-bold" : "disable-text"} font-size-large`}
-                >
-                  {name}
-                </CustomText>
-              </div>
-            );
-          })}
-        </div>
+        {/*    return (*/}
+        {/*      <div*/}
+        {/*        onClick={() => setSearchTypeValue(value)}*/}
+        {/*        className={`cursor-pointer px-6 py-4 w-40 ${isEqual(searchTypeValue, value) ? "primaryWhite-bg-color" : "bg-color"}`}*/}
+        {/*        style={{ borderRadius: "10px 10px 0 0" }}*/}
+        {/*      >*/}
+        {/*        <CustomText*/}
+        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "primary-text font-bold" : "disable-text"} font-size-large`}*/}
+        {/*        >*/}
+        {/*          {name}*/}
+        {/*        </CustomText>*/}
+        {/*      </div>*/}
+        {/*    );*/}
+        {/*  })}*/}
+        {/*</div>*/}
 
         <div
-          className="p-8 global-box-shadow primaryWhite-bg-color mb-3"
-          style={{ borderRadius: "0 10px 10px 10px" }}
+          className="p-8 global-box-shadow primaryWhite-bg-color"
+          style={{ borderRadius: "10px 10px 10px 10px" }}
         >
           <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4">
             <CustomInput
