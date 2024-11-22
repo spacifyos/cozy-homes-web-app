@@ -54,9 +54,9 @@ const getListingBanner = () => apiInstance.get("/listing/banner");
 
 const getListingTagOption = () => apiInstance.post("/listing/tag-options");
 
-const getListingProperty = (postData, page) =>
+const getListingProperty = (postData, page, perPage) =>
   apiInstance.post(
-    `/listing/property-listings?per_page=12&page=${page}`,
+    `/listing/property-listings?per_page=${perPage}&page=${page}`,
     postData,
   );
 

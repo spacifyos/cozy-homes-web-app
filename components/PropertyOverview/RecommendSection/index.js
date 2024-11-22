@@ -7,6 +7,7 @@ const RecommendSection = ({
   t,
   recommendedList,
   onClickToPropertyOverview,
+  slidesPerView,
 }) => {
   return (
     <div className="mb-5 content-container">

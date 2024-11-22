@@ -17,18 +17,20 @@ const nextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    // remotePatterns: [
-    //   {
-    //     protocol: "https",
-    //     hostname: "**",
-    //     port: "",
-    //     pathname: "**",
-    //   },
-    // ],
+    domains: ["staging-tms.spacify.asia"],
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: "/sign-in", // this path will be redirected to 404
+        destination: "/404",
+        permanent: true,
+      },
+    ];
   },
 };
 

@@ -17,6 +17,7 @@ import CustomButton from "@/components/CustomButton";
 import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -134,84 +135,98 @@ const PropertyDetail = ({ id }) => {
   };
 
   return (
-    <CustomOwnerHeader
-      title="My Property"
-      onClickGoBack={onClickGoBack}
-      className="pb-6"
-      headerContent={
-        <div>
-          <div className="pb-4">
-            <CustomText textClassName="white-text font-bold font-size-xlarge">
-              {isEmpty(propertyName) ? "-" : propertyName}
-            </CustomText>
-            <CustomText textClassName="white-text font-size-xsmall font-light">
-              {isEmpty(propertyAddress) ? "-" : propertyAddress}
-            </CustomText>
-          </div>
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Property Overview | Owner - Spacify Asia" />
 
-          <PropertyInfoComponent paddingTop={"0"} lists={lists} />
-        </div>
-      }
-    >
-      <NextSeo title="My Property | Owner - Spacify Asia" />
-
-      <div className="bg-color flex-1">
-        <UnitCarouselComponent
-          data={units}
-          onSlideChange={onSlideChange}
-          selectedSlide={selectedSlide}
-          targetRooms={selectedRoom}
-        />
-        <div className="pt-6">
-          <div className="pb-4 body-container">
-            <CustomButton
-              buttonText="Space Details"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => setSelectedCategory("Space Details")}
-            />
-            <CustomButton
-              buttonText="Rent Tracker"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
-              onClick={() => setSelectedCategory("Rent Tracker")}
-            />
-          </div>
-
-          {isEqual(selectedCategory, "Rent Tracker") ? (
-            <div className="flex gap-4 px-6 pb-2">
-              {map(colorList, (item, index) => {
-                const label = get(item, ["label"], "");
-                const bgColor = get(item, ["bgColor"], "");
-                const textColor = get(item, ["textColor"], "");
-
-                return (
-                  <div key={index} className="flex items-center">
-                    <div
-                      className={`${bgColor} rounded-3xl mr-1`}
-                      style={{ width: 10, height: 10 }}
-                    ></div>
-                    <CustomText textClassName={textColor}>{label}</CustomText>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            false
-          )}
-
-          {isEqual(selectedCategory, "Space Details") ? (
-            <SpaceDetailComponent data={selectedRoom} />
-          ) : (
-            <RentTrackerComponent data={rentTrackerData} />
-          )}
-        </div>
-      </div>
-
-      <LoadingOverlay
+      <DesktopLayout
         loading={propertyDetailLoading || rentTrackerDataLoading}
-      />
-    </CustomOwnerHeader>
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/owner"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {propertyName}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="">
+          <div>
+            <div className="pb-4">
+              <CustomText textClassName="font-bold font-size-xlarge">
+                {isEmpty(propertyName) ? "-" : propertyName}
+              </CustomText>
+              <CustomText textClassName="font-size-xsmall font-light">
+                {isEmpty(propertyAddress) ? "-" : propertyAddress}
+              </CustomText>
+            </div>
+
+            <PropertyInfoComponent paddingTop={"0"} lists={lists} />
+          </div>
+
+          <UnitCarouselComponent
+            data={units}
+            onSlideChange={onSlideChange}
+            selectedSlide={selectedSlide}
+            targetRooms={selectedRoom}
+          />
+
+          <div className="pt-6">
+            <div className="pb-4 flex">
+              <CustomButton
+                buttonText="Space Details"
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => setSelectedCategory("Space Details")}
+              />
+              <CustomButton
+                buttonText="Rent Tracker"
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
+                textClassName="font-size-xsmall"
+                onClick={() => setSelectedCategory("Rent Tracker")}
+              />
+            </div>
+
+            {isEqual(selectedCategory, "Rent Tracker") ? (
+              <div className="flex gap-4 px-6 pb-2">
+                {map(colorList, (item, index) => {
+                  const label = get(item, ["label"], "");
+                  const bgColor = get(item, ["bgColor"], "");
+                  const textColor = get(item, ["textColor"], "");
+
+                  return (
+                    <div key={index} className="flex items-center">
+                      <div
+                        className={`${bgColor} rounded-3xl mr-1`}
+                        style={{ width: 10, height: 10 }}
+                      ></div>
+                      <CustomText textClassName={textColor}>{label}</CustomText>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              false
+            )}
+
+            {isEqual(selectedCategory, "Space Details") ? (
+              <SpaceDetailComponent data={selectedRoom} />
+            ) : (
+              <RentTrackerComponent data={rentTrackerData} />
+            )}
+          </div>
+        </div>
+      </DesktopLayout>
+    </div>
   );
 };
 

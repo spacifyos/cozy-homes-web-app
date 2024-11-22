@@ -50,14 +50,19 @@ export const getPopularCondo = (state) => get(state, ["popular_condo"], []);
 export const getTags = (state) => get(state, ["tags"], []);
 export const getName = (state) => get(state, ["name"], "");
 export const getImageUrl = (state) => get(state, ["image_url"], "");
+export const getMobileImageUrl = (state) => get(state, ["mobile_image_url"], "");
 export const getImageUrlActive = (state) =>
   get(state, ["image_url_active"], "");
 export const getImagesUrl = (state) => get(state, ["images_url"], []);
+export const getRoomImagesUrl = (state) => get(state, ["room_images_url"], []);
 export const getId = (state) => get(state, ["id"], 0);
 export const getPropertyId = (state) => get(state, ["property_id"], 0);
 export const getProfileId = (state) => get(state, ["profile_id"], "");
 export const getFacilityTag = (state) => get(state, ["facility_tags"], []);
 export const getGeneralTag = (state) => get(state, ["general_tags"], []);
+export const getGenderTag = (state) => get(state, ["gender"], []);
+export const getTenureTag = (state) => get(state, ["tenure_period"], []);
+export const getSpaceType = (state) => get(state, ["space_type"], []);
 export const getCode = (state) => get(state, ["code"], "");
 export const getDescription = (state) => get(state, ["description"], "");
 export const getRental = (state) => get(state, ["rental"], "");
@@ -119,6 +124,8 @@ export const getAuthorizedAt = (state) => get(state, ["authorized_at"], "");
 export const getTotalFees = (state) => get(state, ["total_fees"], "");
 export const getTotalFeesAmount = (state) =>
   get(state, ["total_fees", "total"], "");
+export const getFeesTotalCostAmount = (state) =>
+    get(state, ["fees", "total_cost", "total"], "");
 export const getTotalFeesFirstMonthAmount = (state) =>
   get(state, ["total_fees", "total_first_month_rent_charges"], "");
 export const getTotalFeesLastMonthAmount = (state) =>

@@ -6,6 +6,7 @@ import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -18,39 +19,79 @@ const PaymentFailure = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center pt-32 relative">
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Invoice Payment Failed - Spacify Asia" />
 
-      <div className="absolute top-5 right-5 cursor-pointer">
-        <CustomImage
-          src={Images.cancelIcon}
-          imageStyle={{ width: 20 }}
-          onClick={onClickBackToInvoiceOverview}
-        />
-      </div>
+      <DesktopLayout
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/my-invoice"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Invoice
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={`/my-invoice/${id}`}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    {id}
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Invoice Payment
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="flex flex-col justify-center items-center">
+          <div className="absolute top-5 right-5 cursor-pointer">
+            <CustomImage
+              src={Images.cancelIcon}
+              imageStyle={{ width: 20 }}
+              onClick={onClickBackToInvoiceOverview}
+            />
+          </div>
 
-      <CustomImage
-        src={Images.failIcon}
-        imageStyle={{ width: "150px", height: "150px" }}
-      />
+          <CustomImage
+            src={Images.failIcon}
+            className="xl:w-40 lg:w-36 md:w-32 sm:w-28 w-28"
+          />
 
-      <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
-        {t("payment.paymentFailed")}
-      </CustomText>
+          <CustomText
+            textClassName="font-bold pt-4"
+            styles={{ fontSize: "25px" }}
+          >
+            {t("payment.paymentFailed")}
+          </CustomText>
 
-      <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
-          Sorry. We encounter an error while processing your payment. Please try
-          again later.
-        </CustomText>
-      </div>
+          <div className="pb-4 px-10 pt-4">
+            <CustomText textClassName="font-size-xsmall text-center">
+              Sorry. We encounter an error while processing your payment. Please
+              try again later.
+            </CustomText>
+          </div>
 
-      <CustomButton
-        buttonClassName="primary-btn"
-        buttonStyles={{ padding: "5px 30px" }}
-        buttonText={"Back to Home"}
-        onClick={onClickBackToInvoiceOverview}
-      />
+          <CustomButton
+            buttonClassName="primary-btn"
+            buttonStyles={{ padding: "5px 30px" }}
+            buttonText={"Back to Home"}
+            onClick={onClickBackToInvoiceOverview}
+          />
+        </div>
+      </DesktopLayout>
     </div>
   );
 };

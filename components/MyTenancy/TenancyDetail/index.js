@@ -48,7 +48,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
   }, [targetRef]);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color mb-7 pt-4 pb-2 px-4">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color pt-4 pb-2 px-4">
       <div className="flex justify-between items-center">
         <CustomLabelValue
           label={t("myStay.tenancyCode")}

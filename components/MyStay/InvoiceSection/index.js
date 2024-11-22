@@ -36,7 +36,7 @@ const InvoiceSection = ({
         </CustomText>
       )}
 
-      <div className="flex justify-between items-end pb-3">
+      <div className="flex justify-between items-end pb-4">
         <div className="flex items-center">
           {map(invoiceBtn, (item, index) => {
             const value = get(item, ["value"], "");

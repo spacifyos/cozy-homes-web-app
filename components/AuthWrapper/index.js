@@ -16,7 +16,7 @@ function AuthWrapper(WrappedComponent) {
         const token = await AuthManager.retrieveToken();
         const type = await AuthManager.retrieveType();
 
-        if (!isEmpty(token) && !isEmpty(type) && isEqual(type, "tenant")) {
+        if (!isEmpty(token) && !isEmpty(type)) {
           setIsAuthenticated(true);
         }
         setIsLoading(false);
@@ -37,7 +37,7 @@ function AuthWrapper(WrappedComponent) {
       // Toast.error("You need to sign in to your account.");
 
       router.push({
-        pathname: "/sign-in",
+        pathname: "/explore",
         query: { tab: replace(pathname, "/", "") },
       });
       return null;

@@ -13,10 +13,10 @@ export default function Custom404() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center flex-1 px-10">
+    <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-color">
       <NextSeo title="Page Not Found - Spacify Asia" />
       <div className="flex gap-1">
-        <CustomImage src={Images.pageNotFound} imageStyle={{ width: "100%" }} />
+        <CustomImage src={Images.pageNotFound} className="w-64" />
       </div>
 
       <CustomText

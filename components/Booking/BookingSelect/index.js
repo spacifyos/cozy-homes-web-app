@@ -17,14 +17,19 @@ const BookingSelect = ({
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
-      <div className="flex items-center" style={{ height: 19 }}>
-        {required ? (
-          <CustomText textClassName="error-message pr-1">*</CustomText>
-        ) : (
-          false
-        )}
-        <CustomText textClassName="input-title">{title}</CustomText>
-      </div>
+      {isEmpty(title) ? (
+        false
+      ) : (
+        <div className="flex items-center" style={{ height: 19 }}>
+          {required ? (
+            <CustomText textClassName="error-message pr-1">*</CustomText>
+          ) : (
+            false
+          )}
+          <CustomText textClassName="input-title">{title}</CustomText>
+        </div>
+      )}
+
       <div
         className={`${bgColor} booking-select-container flex justify-between`}
       >

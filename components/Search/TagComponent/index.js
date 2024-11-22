@@ -2,9 +2,12 @@ import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 
-const TagComponent = ({ lists, onClickGeneralTag }) => {
+const TagComponent = ({ lists, onClickGeneralTag, className, style }) => {
   return (
-    <div className="flex tag-container pb-5 bg-transparent pl-4">
+    <div
+      className={`flex tag-container pb-5 bg-transparent pl-4 ${className}`}
+      style={style}
+    >
       {_.map(lists, (list, index) => {
         const name = listingSelector.getName(list);
         const code = listingSelector.getCode(list);
@@ -16,7 +19,7 @@ const TagComponent = ({ lists, onClickGeneralTag }) => {
             buttonText={name}
             buttonClassName={`${isActive ? "tag-button-active" : "tag-button"} btn-sm cursor-pointer mr-2`}
             textClassName="primary-text"
-            onClick={() => onClickGeneralTag(name,code)}
+            onClick={() => onClickGeneralTag(name, code)}
           />
         );
       })}

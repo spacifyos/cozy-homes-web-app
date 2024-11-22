@@ -20,7 +20,8 @@ import * as invoiceAction from "@/src/actions/invoice";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
-import { getCarParkOccupancy } from "@/src/selectors/owner";
+import DesktopLayout from "@/components/DesktopLayout";
+import {NextSeo} from "next-seo";
 
 export { getServerSideProps };
 
@@ -148,48 +149,61 @@ const OwnerHome = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 owner-bg-color">
-      <div className="body-container pt-10 pb-12">
-        <div className="flex items-center">
-          <CustomText textClassName="white-text font-bold font-size-large">
-            Welcome to{" "}
-          </CustomText>
-          <CustomImage
-            src={Images.blackLogo}
-            imageStyle={{ width: 80 }}
-            className="mx-1.5"
-          />
-        </div>
-      </div>
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Property | Owner - Spacify Asia" />
 
-      <UserDetailComponent data={userProfileData} />
-
-      <div className="body-container bg-color flex-1 pb-24">
-        <PropertyInfoComponent lists={lists} paddingTop={"4rem"} />
-
-        <PropertyCarouselComponent data={properties} />
-
-        <TransactionComponent
-          t={t}
-          transactionListing={transactionListing}
-          onClickSelectCategory={onClickSelectCategory}
-          selectedCategory={selectedCategory}
-          onClickSelectInvoiceCategory={onClickSelectInvoiceCategory}
-          selectedInvoiceCategory={selectedInvoiceCategory}
-          onClickToInvoiceList={onClickToInvoiceList}
-          invoiceListingData={invoiceListingData}
-          onClickToOverviewPage={onClickToOverviewPage}
-        />
-      </div>
-
-      <LoadingOverlay
+      <DesktopLayout
         loading={
           propertyListingLoading ||
           transactionListingLoading ||
           invoiceListingLoading ||
           userProfileLoading
         }
-      />
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My Property
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        {/*<div className="body-container pt-10 pb-12">*/}
+        {/*  <div className="flex items-center">*/}
+        {/*    <CustomText textClassName="white-text font-bold font-size-large">*/}
+        {/*      Welcome to{" "}*/}
+        {/*    </CustomText>*/}
+        {/*    <CustomImage*/}
+        {/*      src={Images.blackLogo}*/}
+        {/*      imageStyle={{ width: 80 }}*/}
+        {/*      className="mx-1.5"*/}
+        {/*    />*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+
+        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
+          <UserDetailComponent data={userProfileData} />
+
+          <PropertyInfoComponent lists={lists} />
+
+          <PropertyCarouselComponent data={properties} />
+
+          <TransactionComponent
+            t={t}
+            transactionListing={transactionListing}
+            onClickSelectCategory={onClickSelectCategory}
+            selectedCategory={selectedCategory}
+            onClickSelectInvoiceCategory={onClickSelectInvoiceCategory}
+            selectedInvoiceCategory={selectedInvoiceCategory}
+            onClickToInvoiceList={onClickToInvoiceList}
+            invoiceListingData={invoiceListingData}
+            onClickToOverviewPage={onClickToOverviewPage}
+          />
+        </div>
+      </DesktopLayout>
 
       <BottomNavigate
         t={t}

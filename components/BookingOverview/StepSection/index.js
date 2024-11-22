@@ -8,7 +8,7 @@ import moment from "moment";
 import StatusLabel from "@/components/StatusLabel";
 import Constant from "@/src/utils/Constant";
 
-const StepSection = ({ t, data, paymentSuccess }) => {
+const StepSection = ({ t, data }) => {
   const createAt = listingSelector.getCreatedAt(data);
   const paymentStatus = listingSelector.getPaymentStatus(data);
   const authorizedAt = listingSelector.getAuthorizedAt(data);

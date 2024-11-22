@@ -10,7 +10,7 @@ const TenancyUserSection = ({ t, data }) => {
   const phoneNumber = authSelector.getPhoneNumber(data);
 
   return (
-    <div className="flex justify-between pb-4">
+    <div className="flex justify-between">
       <div className="user-info-container">
         <CustomImage src={Images.userIcon} imageStyle={{ width: 60 }} />
 

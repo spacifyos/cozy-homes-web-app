@@ -16,7 +16,7 @@ const TransactionComponent = ({
 }) => {
   return (
     <div className="pt-6">
-      <div className="pb-4">
+      <div className="pb-4 flex">
         <CustomButton
           buttonText="Rental Income"
           buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rental") ? "primary-btn" : "default-btn"} mr-2`}

@@ -22,10 +22,10 @@ const RentChargesComponent = ({
         style={{ padding: 0, minHeight: 20 }}
       >
         <div
-          className="flex items-center"
+          className="flex items-center justify-start flex-1 pr-2"
           onClick={isEmpty(rentChargesLists) ? () => {} : onClickOpenCharges}
         >
-          <CustomText textClassName="font-bold pr-2">{title}</CustomText>
+          <CustomText textClassName="font-bold pr-2 flex">{title}</CustomText>
           {isEmpty(rentChargesLists) ? (
             false
           ) : (

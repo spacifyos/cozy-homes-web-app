@@ -4,8 +4,9 @@ import { get, isEmpty, map } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Images from "@/src/utils/Image";
 
-const ListingCardComponent = ({ item, hideLabel = false }) => {
+const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
   const label = listingSelector.getLabel(item);
+  const name = listingSelector.getName(item);
   const imageUrl = listingSelector.getImageUrl(item);
   const propertyId = listingSelector.getPropertyId(item);
   const profileId = listingSelector.getProfileId(item);
@@ -21,14 +22,14 @@ const ListingCardComponent = ({ item, hideLabel = false }) => {
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage
-        className="rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color overflow-hidden"
+        className={`rounded-2xl ${hideLabel ? false : "mb-2"} global-box-shadow primaryWhite-bg-color overflow-hidden ${imageClassName}`}
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
-        imageStyle={{ height: 100, width: "100%" }}
       />
       {hideLabel ? (
         false
       ) : (
         <CustomText
+          styles={{ height: 36 }}
           textClassName="font-size-xsmall font-bold text-center"
           lineClamp={2}
         >

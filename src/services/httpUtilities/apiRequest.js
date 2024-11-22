@@ -35,7 +35,7 @@ const apiRequest = async (
   } catch (err) {
     setLoading(false);
     errorCallback();
-    apiRequestErrorResponse(err, false);
+    apiRequestErrorResponse(err, ignoreSuccessMessage);
   }
 };
 

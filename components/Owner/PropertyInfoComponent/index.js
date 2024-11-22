@@ -2,9 +2,9 @@ import { get, map } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 
-const PropertyInfoComponent = ({ paddingTop = "4.5rem", lists }) => {
+const PropertyInfoComponent = ({ lists }) => {
   return (
-    <div className="grid grid-cols-4 gap-3" style={{ paddingTop: paddingTop }}>
+    <div className="grid grid-cols-4 gap-3">
       {map(lists, (list, index) => {
         const name = get(list, ["name"], "");
         const value = get(list, ["value"], "");

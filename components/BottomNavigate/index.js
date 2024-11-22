@@ -31,12 +31,12 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
           icon: Images.navigateChatIcon,
           activeIcon: Images.navigateChatIconActive,
         },
-        {
-          name: "RenoXpert",
-          value: isEqual(userType, "owner") ? "/testing" : "/testing",
-          icon: Images.renoExpertIcon,
-          activeIcon: Images.renoExpertIconActive,
-        },
+        // {
+        //   name: "RenoXpert",
+        //   value: isEqual(userType, "owner") ? "/testing" : "/testing",
+        //   icon: Images.renoExpertIcon,
+        //   activeIcon: Images.renoExpertIconActive,
+        // },
         {
           name: t("root.account"),
           value: isEqual(userType, "owner") ? "/owner/account" : "/account",
@@ -54,49 +54,48 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
   return (
     <div
       id="bottom_navbar"
-      className="fixed bottom-0 w-full z-10"
-      style={{ maxWidth: 500, zIndex: 9999 }}
+      className="bottom-0 w-full fixed xl:hidden lg:hidden md:hidden sm:fixed"
+      style={{ zIndex: 9999 }}
     >
-      <div
-        className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-3 px-7 global-border-radius"
-        style={{ margin: 10 }}
-      >
-        {map(lists, (item, index) => {
-          const name = get(item, ["name"], "");
-          const value = get(item, ["value"], "");
-          const icon = get(item, ["icon"], "");
-          const activeIcon = get(item, ["activeIcon"], "");
+      <div className="container mx-auto pb-2">
+        <div className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius">
+          {map(lists, (item, index) => {
+            const name = get(item, ["name"], "");
+            const value = get(item, ["value"], "");
+            const icon = get(item, ["icon"], "");
+            const activeIcon = get(item, ["activeIcon"], "");
 
-          return (
-            <a
-              href={`${value}`}
-              key={index}
-              className="flex flex-col justify-center items-center cursor-pointer"
-            >
-              <CustomImage
-                src={
-                  isEqual(value, routeName) ||
-                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                      activeIcon
-                    : icon
-                }
-                imageStyle={{ width: 20, height: 20 }}
-              />
-              <CustomText
-                textClassName={`${
-                  isEqual(value, routeName) ||
-                  (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                    ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                      "primary-text"
-                    : "disable-text"
-                } font-size-xxsmall pt-1`}
+            return (
+              <a
+                href={`${value}`}
+                key={index}
+                className="flex flex-col justify-center items-center cursor-pointer"
               >
-                {name}
-              </CustomText>
-            </a>
-          );
-        })}
+                <CustomImage
+                  src={
+                    isEqual(value, routeName) ||
+                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                        activeIcon
+                      : icon
+                  }
+                  imageStyle={{ width: 20, height: 20 }}
+                />
+                <CustomText
+                  textClassName={`${
+                    isEqual(value, routeName) ||
+                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                        "primary-text"
+                      : "disable-text"
+                  } font-size-xxsmall pt-1`}
+                >
+                  {name}
+                </CustomText>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

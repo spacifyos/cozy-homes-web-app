@@ -1,5 +1,5 @@
 import BookingInput from "@/components/Booking/BookingInput";
-import _ from "lodash";
+import { get } from "lodash";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
 
@@ -26,7 +26,7 @@ const ChangePasswordModal = ({
         value={currentPasswordValue}
         onChange={onChangeCurrentPassword}
         type="password"
-        errorMessage={_.get(errorMessage, ["current_password"], "")}
+        errorMessage={get(errorMessage, ["current_password"], "")}
       />
 
       <BookingInput
@@ -37,7 +37,7 @@ const ChangePasswordModal = ({
         value={passwordValue}
         onChange={onChangePassword}
         type="password"
-        errorMessage={_.get(errorMessage, ["password"], "")}
+        errorMessage={get(errorMessage, ["password"], "")}
       />
 
       <BookingInput
@@ -48,7 +48,7 @@ const ChangePasswordModal = ({
         value={confirmPasswordValue}
         onChange={onChangeConfirmPassword}
         type="password"
-        errorMessage={_.get(errorMessage, ["confirm_password"], "")}
+        errorMessage={get(errorMessage, ["confirm_password"], "")}
       />
 
       <div className="grid grid-cols-2 gap-4 pt-2">
@@ -56,7 +56,9 @@ const ChangePasswordModal = ({
           buttonClassName={`${changePasswordLoading ? "disable-btn" : "default-btn-outline"}`}
           buttonText={t("myTenancy.cancel")}
           disable={changePasswordLoading}
-          onClick={onClickCloseChangePasswordModal}
+          onClick={() =>
+            onClickCloseChangePasswordModal("change_password_modal")
+          }
         />
 
         <CustomButton

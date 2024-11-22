@@ -1,6 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
-import ProfileCard from "@/components/Account/ProfileCard";
-import SpacifyCoins from "@/components/Account/SpacifyCoins";
 import FeatureComponent from "@/components/Account/FeatureComponent";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
@@ -13,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { isEmpty, get, size, isEqual } from "lodash";
 import { NextSeo } from "next-seo";
 import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
@@ -21,8 +17,10 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
 import BottomNavigate from "@/components/BottomNavigate";
-import { getReferralCode } from "@/src/selectors/auth";
 import CustomButton from "@/components/CustomButton";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
+import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
 
 export { getServerSideProps };
 
@@ -81,7 +79,9 @@ const Account = () => {
   }, [timeLeft, isResendEnabled]);
 
   useEffect(() => {
-    fetchUserprofileData();
+    if (isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
   }, []);
 
   const fetchUserprofileData = () => {
@@ -97,16 +97,8 @@ const Account = () => {
     }, 2000);
   };
 
-  const onClickToMyAppointment = () => {
-    router.push("/my-appointment");
-  };
-
   const onClickToCoinsTransaction = () => {
     router.push("/coins-transaction");
-  };
-
-  const onClickToLatestUpdate = () => {
-    router.push("/latest-update");
   };
 
   const onClickToInvoice = () => {
@@ -193,11 +185,11 @@ const Account = () => {
   const onClickCloseSetPinNumberModal = () => {
     setErrorMessage([]);
 
-    Helper.documentGetElementById("set_pin_number_modal").close();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").close();
   };
 
   const onClickOpenSetPinNumberModal = () => {
-    Helper.documentGetElementById("set_pin_number_modal").showModal();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").showModal();
   };
 
   const onClickGenerateOtp = async () => {
@@ -240,23 +232,40 @@ const Account = () => {
   };
 
   return (
-    <CustomHeader pageTitle={t("pageTitle.account")} hideGoBackButton>
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account - Spacify Asia" />
 
-      <div className="body-container pb-24">
-        <div className="grid grid-cols-5 gap-3 flex-1 mb-4">
-          <ProfileCard data={userProfileData} />
+      <DesktopLayout
+        loading={userProfileLoading || signOutLoading || setPinNumberLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Account
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="grid grid-cols-7 gap-8 flex-1">
+          <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-4 col-span-4">
+            <DesktopProfileCard data={userProfileData} />
+          </div>
 
-          <SpacifyCoins
-            t={t}
-            onClickToCoinsTransaction={onClickToCoinsTransaction}
-          />
+          <div className="xl:col-span-3 lg:col-span-3 md:col-span-7 sm:col-span-3 col-span-3">
+            <DesktopSpacifyCoins
+              t={t}
+              onClickToCoinsTransaction={onClickToCoinsTransaction}
+            />
+          </div>
         </div>
 
         <div className="divider-line"></div>
 
         <div className="">
-          <CustomText textClassName="pb-1">Referral Code</CustomText>
+          <CustomText textClassName="">Referral Code</CustomText>
           <CustomText textClassName="font-size-xxsmall disable-text pb-1">
             Share and Earn, Don’t Miss the Opportunity
           </CustomText>
@@ -282,103 +291,74 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="divider-line"></div>
+        <div className="pb-16 xl:hidden lg:hidden md:hidden">
+          <div className="divider-line"></div>
 
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.smartMeterPairing")}*/}
-        {/*  icon={Images.primaryMeterIcon}*/}
-        {/*/>*/}
+          <FeatureComponent
+            title={t("account.myInvoice")}
+            icon={Images.primaryInvoiceIcon}
+            pb={3}
+            route={"/my-invoice"}
+          />
 
-        {/*<FeatureComponent*/}
-        {/*  title="Transfer Lock"*/}
-        {/*  icon={Images.lockIcon}*/}
-        {/*/>*/}
+          <FeatureComponent
+            title={t("account.setPinNumber")}
+            icon={Images.primaryLockIcon}
+            pb={3}
+            onClick={onClickOpenSetPinNumberModal}
+          />
 
-        {/*<div className="divider-line"></div>*/}
+          <div className="divider-line"></div>
 
-        <FeatureComponent
-          title={t("account.myInvoice")}
-          icon={Images.primaryInvoiceIcon}
-          pb={3}
-          route={"/my-invoice"}
-        />
+          <FeatureComponent
+            title={t("account.termAndCondition")}
+            icon={Images.primaryTermAndConditionIcon}
+            pb={3}
+            route={"https://tms.spacify.asia/privacy-policy"}
+            target="_blank"
+          />
 
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.myAppointment")}*/}
-        {/*  icon={Images.appointmentIconActive}*/}
-        {/*  imageHeight={23}*/}
-        {/*  imageWidth={23}*/}
-        {/*  pb={3}*/}
-        {/*  onClick={onClickToMyAppointment}*/}
-        {/*/>*/}
+          <div className="divider-line"></div>
 
-        {/*<FeatureComponent*/}
-        {/*  title={t("account.latestUpdate")}*/}
-        {/*  icon={Images.primaryRingIcon}*/}
-        {/*  pb={3}*/}
-        {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
-        {/*/>*/}
+          <div className="flex justify-between items-center pb-3">
+            <div
+              className="logout-container cursor-pointer"
+              onClick={onClickLogout}
+            >
+              <CustomImage
+                src={Images.primaryLogoutIcon}
+                imageStyle={{ width: 25 }}
+                className="mr-2"
+              />
+              <CustomText textClassName="font-size-small">
+                {t("account.logout")}
+              </CustomText>
+            </div>
 
-        <FeatureComponent
-          title={t("account.setPinNumber")}
-          icon={Images.primaryLockIcon}
-          pb={3}
-          onClick={onClickOpenSetPinNumberModal}
-        />
-
-        <div className="divider-line"></div>
-
-        <FeatureComponent
-          title={t("account.termAndCondition")}
-          icon={Images.primaryTermAndConditionIcon}
-          pb={3}
-          route={"https://tms.spacify.asia/privacy-policy"}
-          target="_blank"
-        />
-
-        <div className="divider-line"></div>
-
-        <div className="flex justify-between items-center pb-3">
-          <div
-            className="logout-container cursor-pointer"
-            onClick={onClickLogout}
-          >
-            <CustomImage
-              src={Images.primaryLogoutIcon}
-              imageStyle={{ width: 25 }}
-              className="mr-2"
-            />
-            <CustomText textClassName="font-size-small">
-              {t("account.logout")}
+            <CustomText textClassName="disable-text font-size-small">
+              {t("account.version")} 1.6.0
             </CustomText>
           </div>
-
-          <CustomText textClassName="disable-text font-size-small">
-            {t("account.version")} 1.6.0
-          </CustomText>
         </div>
+      </DesktopLayout>
 
-        <LoadingOverlay
-          loading={userProfileLoading || signOutLoading || setPinNumberLoading}
-        />
-
-        <SetPinNumberModal
-          pinNumberValue={pinNumberValue}
-          confirmPinNumberValue={confirmPinNumberValue}
-          onChangePinNumber={onChangePinNumber}
-          onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-          errorMessage={errorMessage}
-          setPinNumberLoading={setPinNumberLoading}
-          onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-          onClickSetPinNumber={onClickSetPinNumber}
-          onChangeOtpValue={onChangeOtpValue}
-          otpValue={otpValue}
-          onClickGenerateOtp={onClickGenerateOtp}
-          timeLeft={timeLeft}
-          isResendEnabled={isResendEnabled}
-          otpRequestLoading={otpRequestLoading}
-        />
-      </div>
+      <SetPinNumberModal
+        id="set_pin_number_mobile_modal"
+        pinNumberValue={pinNumberValue}
+        confirmPinNumberValue={confirmPinNumberValue}
+        onChangePinNumber={onChangePinNumber}
+        onChangeConfirmPinNumber={onChangeConfirmPinNumber}
+        errorMessage={errorMessage}
+        setPinNumberLoading={setPinNumberLoading}
+        onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
+        onClickSetPinNumber={onClickSetPinNumber}
+        onChangeOtpValue={onChangeOtpValue}
+        otpValue={otpValue}
+        onClickGenerateOtp={onClickGenerateOtp}
+        timeLeft={timeLeft}
+        isResendEnabled={isResendEnabled}
+        otpRequestLoading={otpRequestLoading}
+      />
 
       <BottomNavigate
         t={t}
@@ -386,7 +366,7 @@ const Account = () => {
         routeQuery={routeQuery}
         onClickChangeTab={onClickChangeTab}
       />
-    </CustomHeader>
+    </div>
   );
 };
 

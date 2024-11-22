@@ -19,7 +19,7 @@ const AgentSection = ({
   const picContactNumber = listingSelector.getContactNumber(data);
 
   return (
-    <div className="agent-section-container z-10">
+    <div className="agent-section-container z-10 xl:hidden lg:hidden md:hidden sm:block block">
       <div
         className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
         style={{ overflow: "hidden" }}

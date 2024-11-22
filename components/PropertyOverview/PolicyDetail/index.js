@@ -2,18 +2,20 @@ import * as listingSelector from "@/src/selectors/listing";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import DOMPurify from "dompurify";
 
 const PolicyDetail = ({ t, loading, data }) => {
   const htmlContent = listingSelector.getHtmlContent(data);
   const title = listingSelector.getTitle(data);
 
+  const sanitizedDescription = isEmpty(htmlContent)
+    ? ""
+    : DOMPurify.sanitize(htmlContent);
+
   return (
-    <div className="mb-5">
+    <div className="">
       {loading ? (
-        <div
-          className="flex justify-center items-center"
-          style={{ height: 100 }}
-        >
+        <div className="flex justify-center items-center pt-40">
           <span className="loading loading-spinner loading-lg primary-text"></span>
         </div>
       ) : (
@@ -30,9 +32,9 @@ const PolicyDetail = ({ t, loading, data }) => {
               <CustomText textClassName="font-size-xxlarge font-bold pb-2">
                 {title}
               </CustomText>
-              <CustomText textClassName="font-size-small disable-text text-justify">
-                {htmlContent}
-              </CustomText>
+              <div
+                dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+              ></div>
             </div>
           )}
         </div>

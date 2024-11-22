@@ -51,7 +51,7 @@ const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
         <Swiper
           className="mySwiper global-box-shadow global-border-radius cursor-grab primaryWhite-bg-color"
           onSlideChange={onSlideChange}
-          style={{ width: "100%" }}
+          style={{ width: "100%", maxHeight: 270 }}
         >
           {map(data, (item, index) => {
             return (

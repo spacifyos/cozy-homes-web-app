@@ -16,6 +16,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthWrapper from "@/components/AuthWrapper";
 import { get, isEmpty } from "lodash";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -64,146 +65,176 @@ const EAgreementOverview = ({ id }) => {
   };
 
   return (
-    <CustomHeader
-      onClickGoBack={onClickGoBack}
-      hideBgImage
-      pageTitle={t("pageTitle.eAgreementOverview")}
-      // rightButtonIcon={Images.downloadIcon}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My E-Agreement Overview - Spacify Asia" />
 
-      <div className="body-container relative pt-6 pb-4 flex justify-center">
-        <div
-          className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
-          style={{ height: 54 }}
-        >
-          <CustomImage
-            src={Images.agreementIcon}
-            imageStyle={{ width: 30, height: 30 }}
-          />
-        </div>
+      <DesktopLayout
+        loading={agreementOverviewDataLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/e-agreement"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My E-Agreement
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {referenceNumber}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="relative pt-6 flex justify-center">
+          <div
+            className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
+            style={{ height: 54 }}
+          >
+            <CustomImage
+              src={Images.agreementIcon}
+              imageStyle={{ width: 30, height: 30 }}
+            />
+          </div>
 
-        <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
-          <div className="flex justify-between">
+          <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
+            <div className="flex justify-between">
+              <CustomLabelValue
+                highlight
+                value={isEmpty(referenceNumber) ? "-" : referenceNumber}
+                label={t("eAgreementOverview.referenceNumber")}
+              />
+
+              <div className="pb-2">
+                <CustomText textClassName="font-size-xxsmall disable-text">
+                  {t("eAgreementOverview.status")}
+                </CustomText>
+                <StatusLabel status={status} />
+              </div>
+            </div>
+
+            <div
+              className="divider-line"
+              style={{ marginTop: 10, marginBottom: 10 }}
+            ></div>
+
+            {/*<CustomLabelValue*/}
+            {/*  value="E-Sign & E-Stamp"*/}
+            {/*  label={t("eAgreementOverview.service")}*/}
+            {/*/>*/}
+
             <CustomLabelValue
-              highlight
-              value={isEmpty(referenceNumber) ? "-" : referenceNumber}
-              label={t("eAgreementOverview.referenceNumber")}
+              value={isEmpty(property) ? "-" : property}
+              label={t("eAgreementOverview.property")}
+            />
+
+            <CustomLabelValue
+              value={isEmpty(agreementDate) ? "-" : agreementDate}
+              label={t("eAgreementOverview.agreementDate")}
+            />
+
+            <CustomLabelValue
+              value={isEmpty(tenurePeriod) ? "-" : tenurePeriod}
+              label={t("eAgreementOverview.tenure")}
+            />
+
+            <div
+              className="divider-line"
+              style={{ marginTop: 10, marginBottom: 10 }}
+            ></div>
+
+            <CustomLabelValue
+              value={isEmpty(tenantName) ? "-" : tenantName}
+              label={t("eAgreementOverview.tenant")}
             />
 
             <div className="pb-2">
               <CustomText textClassName="font-size-xxsmall disable-text">
-                {t("eAgreementOverview.status")}
+                {t("eAgreementOverview.activity")}
               </CustomText>
-              <StatusLabel status={status} />
-            </div>
-          </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          {/*<CustomLabelValue*/}
-          {/*  value="E-Sign & E-Stamp"*/}
-          {/*  label={t("eAgreementOverview.service")}*/}
-          {/*/>*/}
-
-          <CustomLabelValue
-            value={isEmpty(property) ? "-" : property}
-            label={t("eAgreementOverview.property")}
-          />
-
-          <CustomLabelValue
-            value={isEmpty(agreementDate) ? "-" : agreementDate}
-            label={t("eAgreementOverview.agreementDate")}
-          />
-
-          <CustomLabelValue
-            value={isEmpty(tenurePeriod) ? "-" : tenurePeriod}
-            label={t("eAgreementOverview.tenure")}
-          />
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          <CustomLabelValue
-            value={isEmpty(tenantName) ? "-" : tenantName}
-            label={t("eAgreementOverview.tenant")}
-          />
-
-          <div className="pb-2">
-            <CustomText textClassName="font-size-xxsmall disable-text">
-              {t("eAgreementOverview.activity")}
-            </CustomText>
-            <div className="pt-1 grid grid-cols-2 gap-2">
-              <div className="flex mr-3 items-start">
-                <CustomImage
-                  src={getAgree ? Images.checkGreenIcon : Images.checkGreyIcon}
-                  className="mr-1"
-                  imageStyle={{ width: 18, height: 18 }}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.agreed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    {isEmpty(agreedDate) ? "-" : agreedDate}
-                  </CustomText>
+              <div className="pt-1 grid grid-cols-2 gap-2">
+                <div className="flex mr-3 items-start">
+                  <CustomImage
+                    src={
+                      getAgree ? Images.checkGreenIcon : Images.checkGreyIcon
+                    }
+                    className="mr-1"
+                    imageStyle={{ width: 18, height: 18 }}
+                  />
+                  <div className="flex flex-col">
+                    <CustomText textClassName="font-size-small disable-text">
+                      {t("eAgreementOverview.agreed")}
+                    </CustomText>
+                    <CustomText textClassName="font-size-xxsmall disable-text">
+                      {isEmpty(agreedDate) ? "-" : agreedDate}
+                    </CustomText>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start">
-                <CustomImage
-                  src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
-                  className="mr-1"
-                  imageStyle={{ width: 18, height: 18 }}
-                />
-                <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
-                    {t("eAgreementOverview.signed")}
-                  </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
-                    {isEmpty(signedDate) ? "-" : signedDate}
-                  </CustomText>
+                <div className="flex items-start">
+                  <CustomImage
+                    src={
+                      getSigned ? Images.checkGreenIcon : Images.checkGreyIcon
+                    }
+                    className="mr-1"
+                    imageStyle={{ width: 18, height: 18 }}
+                  />
+                  <div className="flex flex-col">
+                    <CustomText textClassName="font-size-small disable-text">
+                      {t("eAgreementOverview.signed")}
+                    </CustomText>
+                    <CustomText textClassName="font-size-xxsmall disable-text">
+                      {isEmpty(signedDate) ? "-" : signedDate}
+                    </CustomText>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <div
+              className="divider-line"
+              style={{ marginTop: 10, marginBottom: 10 }}
+            ></div>
+
+            {/*<div className="grid grid-cols-2 gap-2">*/}
+            {/*  <CustomLabelValue*/}
+            {/*    value="Pending"*/}
+            {/*    label={t("eAgreementOverview.stampingStatus")}*/}
+            {/*  />*/}
+            {/*  <CustomLabelValue*/}
+            {/*    value="No"*/}
+            {/*    label={t("eAgreementOverview.insurance")}*/}
+            {/*  />*/}
+            {/*</div>*/}
+
+            <a
+              className="flex justify-center pt-5 w-full"
+              href={`/e-agreement/${agreementId}/view-agreement`}
+            >
+              <CustomButton
+                buttonText={
+                  isCanAgree
+                    ? "View & Agree"
+                    : isCanSign
+                      ? "View & Sign"
+                      : "View"
+                }
+                buttonClassName="primary-btn w-3/5"
+              />
+            </a>
           </div>
-
-          <div
-            className="divider-line"
-            style={{ marginTop: 10, marginBottom: 10 }}
-          ></div>
-
-          {/*<div className="grid grid-cols-2 gap-2">*/}
-          {/*  <CustomLabelValue*/}
-          {/*    value="Pending"*/}
-          {/*    label={t("eAgreementOverview.stampingStatus")}*/}
-          {/*  />*/}
-          {/*  <CustomLabelValue*/}
-          {/*    value="No"*/}
-          {/*    label={t("eAgreementOverview.insurance")}*/}
-          {/*  />*/}
-          {/*</div>*/}
-
-          <a
-            className="flex justify-center pt-5 w-full"
-            href={`/e-agreement/${agreementId}/view-agreement`}
-          >
-            <CustomButton
-              buttonText={
-                isCanAgree ? "View & Agree" : isCanSign ? "View & Sign" : "View"
-              }
-              buttonClassName="primary-btn w-3/5"
-            />
-          </a>
         </div>
-
-        <LoadingOverlay loading={agreementOverviewDataLoading} />
-      </div>
-    </CustomHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

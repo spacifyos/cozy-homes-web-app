@@ -31,7 +31,7 @@ const FeatureComponent = ({
         <CustomText textClassName="font-size-small">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} imageStyle={{ width: 10 }} />
+      <CustomImage src={Images.rightIcon} className="w-2" />
     </div>
   ) : (
     <a
@@ -39,7 +39,7 @@ const FeatureComponent = ({
       href={route}
       className={`flex justify-between items-center cursor-pointer pb-${pb}`}
     >
-      <div className="flex items-center">
+      <div className="flex items-center pr-2">
         <div
           className="primaryWhite-bg-color global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
           style={{ width: 46, height: 46 }}
@@ -52,7 +52,7 @@ const FeatureComponent = ({
         <CustomText textClassName="font-size-small">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} imageStyle={{ width: 10 }} />
+      <CustomImage src={Images.rightIcon} className="w-2" />
     </a>
   );
 };

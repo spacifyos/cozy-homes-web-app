@@ -21,7 +21,10 @@ import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopFeatureSection from "@/components/MyStay/DesktopFeatureSection";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -83,9 +86,12 @@ const MyStay = () => {
   };
 
   useEffect(() => {
-    fetchUserprofileData();
     fetchTenancyListing();
     fetchMeterListingData();
+
+    if (isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
   }, []);
 
   const fetchMeterListingData = (per_page = 1, page = 1) => {
@@ -109,42 +115,53 @@ const MyStay = () => {
   };
 
   return (
-    <CustomHeader pageTitle="My Property" hideGoBackButton hideRightButton>
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Stay - Spacify Asia" />
 
-      <div className="body-container pb-24">
-        <UserSection t={t} data={userProfileData} />
+      <DesktopLayout
+        loading={
+          userProfileLoading ||
+          tenancyListingLoading ||
+          invoiceListingLoading ||
+          meterListingLoading
+        }
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My Property
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
+          <UserSection t={t} data={userProfileData} />
 
-        <TenancySection
-          t={t}
-          onChangeAutoPay={onChangeAutoPay}
-          isChecked={isChecked}
-          data={tenancyListingData}
-        />
+          <TenancySection
+            t={t}
+            onChangeAutoPay={onChangeAutoPay}
+            isChecked={isChecked}
+            data={tenancyListingData}
+          />
 
-        <FeatureSection t={t} />
+          <DesktopFeatureSection t={t} />
 
-        <MeterSection t={t} data={meterListingData} />
+          <MeterSection t={t} data={meterListingData} />
 
-        <InvoiceSection
-          t={t}
-          onClickSelectCategory={onClickSelectCategory}
-          selectedCategory={selectedCategory}
-          data={invoiceListingData}
-        />
-
-        <LoadingOverlay
-          loading={
-            userProfileLoading ||
-            tenancyListingLoading ||
-            invoiceListingLoading ||
-            meterListingLoading
-          }
-        />
-      </div>
+          <InvoiceSection
+            t={t}
+            onClickSelectCategory={onClickSelectCategory}
+            selectedCategory={selectedCategory}
+            data={invoiceListingData}
+          />
+        </div>
+      </DesktopLayout>
 
       <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
-    </CustomHeader>
+    </div>
   );
 };
 

@@ -17,6 +17,7 @@ const CustomInput = ({
   onChange,
   onClickRightIcon,
   inputClassName,
+  hideShadow = false,
   ...props
 }) => {
   const inputRef = useRef(null);
@@ -30,7 +31,9 @@ const CustomInput = ({
   };
 
   return (
-    <label className={`flex flex-col ${className}`}>
+    <label
+      className={`flex flex-col global-border-radius ${hideShadow ? "" : "global-box-shadow"} ${className}`}
+    >
       <div className="flex">
         {required ? (
           <CustomText textClassName="error-text pr-1">*</CustomText>

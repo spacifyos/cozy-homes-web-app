@@ -29,8 +29,8 @@ export const apiRequestErrorResponse = (err, ignoreToast = false) => {
   if (!_.isEmpty(response)) {
     const messages = _.get(response, ["data", "message"], "");
 
-    if (!_.isEmpty(messages) && !ignoreToast) {
-      Toast.error(messages);
+    if (!_.isEmpty(messages)) {
+      !ignoreToast ? Toast.error(messages) : false;
     } else {
       unknowErrorMsgFunction(statusCode);
     }

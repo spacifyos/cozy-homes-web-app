@@ -22,6 +22,9 @@ import Helper from "@/src/utils/Helper";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import BottomNavigate from "@/components/BottomNavigate";
 import CustomButton from "@/components/CustomButton";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
+import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
 
 export { getServerSideProps };
 
@@ -173,11 +176,11 @@ const OwnerAccount = () => {
   const onClickCloseSetPinNumberModal = () => {
     setErrorMessage([]);
 
-    Helper.documentGetElementById("set_pin_number_modal").close();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").close();
   };
 
   const onClickOpenSetPinNumberModal = () => {
-    Helper.documentGetElementById("set_pin_number_modal").showModal();
+    Helper.documentGetElementById("set_pin_number_mobile_modal").showModal();
   };
 
   const onClickGenerateOtp = async () => {
@@ -224,72 +227,64 @@ const OwnerAccount = () => {
   };
 
   return (
-    <CustomOwnerHeader title="Account" hideGoBackButton className="pb-16">
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Account | Owner - Spacify Asia" />
 
-      <div className="grid grid-cols-5 gap-3 flex-1 mb-10 absolute top-16 w-full px-4 z-10">
-        <ProfileCard data={userProfileData} />
-
-        <SpacifyCoins
-          route={"/owner/my-wallet"}
-          t={t}
-          walletBalance={walletBalance}
-        />
-      </div>
-
-      {/*<FeatureComponent*/}
-      {/*  title={t("account.smartMeterPairing")}*/}
-      {/*  icon={Images.primaryMeterIcon}*/}
-      {/*/>*/}
-
-      {/*<FeatureComponent*/}
-      {/*  title="Transfer Lock"*/}
-      {/*  icon={Images.lockIcon}*/}
-      {/*/>*/}
-
-      {/*<div className="divider-line"></div>*/}
-      <div className="body-container bg-color flex-1 pb-24">
-        <div className="pt-20">
-          <div className="divider-line"></div>
-
-          <div className="">
-            <CustomText textClassName="pb-1">Referral Code</CustomText>
-            <CustomText textClassName="font-size-xxsmall disable-text pb-1">
-              Share and Earn, Don’t Miss the Opportunity
-            </CustomText>
-            <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
-              <div className="flex items-center">
-                <CustomText textClassName="pr-2">
-                  {isEmpty(referralCode) ? "" : referralCode}
+      <DesktopLayout
+        loading={userProfileLoading || signOutLoading || setPinNumberLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  Account
                 </CustomText>
-                <CustomButton
-                  textClassName="font-size-xsmall"
-                  buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-                  buttonText={isCopy ? "Copies" : "Copy"}
-                  onClick={onClickCopy}
-                />
-              </div>
-
-              <a
-                href={`https://api.whatsapp.com/send/?text=${whatsAppReferralText}`}
-                target="_blank"
-              >
-                <CustomImage src={Images.whatsappIcon} className="w-8" />
-              </a>
-            </div>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="grid grid-cols-7 gap-8 flex-1">
+          <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-4 col-span-4">
+            <DesktopProfileCard data={userProfileData} />
           </div>
 
+          <div className="xl:col-span-3 lg:col-span-3 md:col-span-7 sm:col-span-3 col-span-3">
+            <DesktopSpacifyCoins t={t} />
+          </div>
+        </div>
+
+        <div className="divider-line"></div>
+
+        <div className="">
+          <CustomText textClassName="">Referral Code</CustomText>
+          <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+            Share and Earn, Don’t Miss the Opportunity
+          </CustomText>
+          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+            <div>
+              <CustomText textClassName="">
+                {isEmpty(referralCode) ? "" : referralCode}
+              </CustomText>
+              <CustomButton
+                textClassName="font-size-xsmall"
+                buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+                buttonText={isCopy ? "Copies" : "Copy"}
+                onClick={onClickCopy}
+              />
+            </div>
+
+            <a
+              href={`https://api.whatsapp.com/send/?text=${whatsAppReferralText}`}
+              target="_blank"
+            >
+              <CustomImage src={Images.whatsappIcon} className="w-8" />
+            </a>
+          </div>
+        </div>
+
+        <div className="pb-16 xl:hidden lg:hidden md:hidden">
           <div className="divider-line"></div>
-
-          {/*<FeatureComponent*/}
-          {/*  title="My Bank"*/}
-          {/*  icon={Images.bankIcon}*/}
-          {/*  imageWidth={20}*/}
-          {/*  imageHeight={20}*/}
-          {/*  pb={3}*/}
-          {/*  route={"/owner/my-bank"}*/}
-          {/*/>*/}
-
           <FeatureComponent
             title={t("account.myInvoice")}
             icon={Images.primaryInvoiceIcon}
@@ -313,14 +308,6 @@ const OwnerAccount = () => {
             pb={3}
             route={"/owner/e-agreement"}
           />
-
-          {/*<FeatureComponent*/}
-          {/*  title={t("account.latestUpdate")}*/}
-          {/*  icon={Images.primaryRingIcon}*/}
-          {/*  pb={3}*/}
-          {/*  onClickToLatestUpdate={onClickToLatestUpdate}*/}
-          {/*/>*/}
-
           <FeatureComponent
             title={t("account.setPinNumber")}
             icon={Images.primaryLockIcon}
@@ -360,28 +347,25 @@ const OwnerAccount = () => {
             </CustomText>
           </div>
         </div>
-      </div>
 
-      <LoadingOverlay
-        loading={userProfileLoading || signOutLoading || setPinNumberLoading}
-      />
-
-      <SetPinNumberModal
-        pinNumberValue={pinNumberValue}
-        confirmPinNumberValue={confirmPinNumberValue}
-        onChangePinNumber={onChangePinNumber}
-        onChangeConfirmPinNumber={onChangeConfirmPinNumber}
-        errorMessage={errorMessage}
-        setPinNumberLoading={setPinNumberLoading}
-        onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
-        onClickSetPinNumber={onClickSetPinNumber}
-        onChangeOtpValue={onChangeOtpValue}
-        otpValue={otpValue}
-        onClickGenerateOtp={onClickGenerateOtp}
-        timeLeft={timeLeft}
-        isResendEnabled={isResendEnabled}
-        otpRequestLoading={otpRequestLoading}
-      />
+        <SetPinNumberModal
+          id="set_pin_number_mobile_modal"
+          pinNumberValue={pinNumberValue}
+          confirmPinNumberValue={confirmPinNumberValue}
+          onChangePinNumber={onChangePinNumber}
+          onChangeConfirmPinNumber={onChangeConfirmPinNumber}
+          errorMessage={errorMessage}
+          setPinNumberLoading={setPinNumberLoading}
+          onClickCloseSetPinNumberModal={onClickCloseSetPinNumberModal}
+          onClickSetPinNumber={onClickSetPinNumber}
+          onChangeOtpValue={onChangeOtpValue}
+          otpValue={otpValue}
+          onClickGenerateOtp={onClickGenerateOtp}
+          timeLeft={timeLeft}
+          isResendEnabled={isResendEnabled}
+          otpRequestLoading={otpRequestLoading}
+        />
+      </DesktopLayout>
 
       <BottomNavigate
         t={t}
@@ -389,7 +373,7 @@ const OwnerAccount = () => {
         routeQuery={routeQuery}
         onClickChangeTab={onClickChangeTab}
       />
-    </CustomOwnerHeader>
+    </div>
   );
 };
 

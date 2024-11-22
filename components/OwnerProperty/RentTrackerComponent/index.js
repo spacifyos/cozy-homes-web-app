@@ -43,7 +43,7 @@ const RentTrackerComponent = ({ data }) => {
 
   return (
     <div className="">
-      <div className="overflow-x-auto hide-scroll-bar pb-4 px-4">
+      <div className="overflow-x-auto hide-scroll-bar pb-4 px-1">
         <div
           className="p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col mb-3"
           style={{ width: 1293 }}

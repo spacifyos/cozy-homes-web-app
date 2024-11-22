@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import CustomButton from "@/components/CustomButton";
 import { isEmpty, map, get, isEqual } from "lodash";
 import { useEffect, useState } from "react";
@@ -9,11 +8,12 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import * as agreementSelector from "@/src/selectors/agreement";
 import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomText from "@/components/CustomText";
 
 export { getServerSideProps };
 
@@ -78,63 +78,78 @@ const EAgreement = () => {
   };
 
   return (
-    <CustomHeader
-      hideRightButton
-      hideBgImage
-      pageTitle={t("pageTitle.eAgreement")}
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My E-Agreement - Spacify Asia" />
 
-      <div className="body-container pb-4 flex flex-col flex-1">
-        <div className="flex items-center pb-3">
-          {map(btnLists, (item, index) => {
-            const name = get(item, ["name"], "");
-            const value = get(item, ["value"], "");
+      <DesktopLayout
+        loading={agreementListingDataLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  My E-Agreement
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="flex flex-col h-full">
+          <div className="flex items-center pb-3">
+            {map(btnLists, (item, index) => {
+              const name = get(item, ["name"], "");
+              const value = get(item, ["value"], "");
 
-            return (
+              return (
+                <CustomButton
+                  key={index}
+                  buttonText={name}
+                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
+                  textClassName="font-size-xsmall"
+                  onClick={() => onClickSelectStatus(value)}
+                />
+              );
+            })}
+          </div>
+
+          {isEmpty(agreementListingData) ? (
+            <div className="flex flex-col flex-1 justify-center items-center">
+              <CustomEmptyBox />
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {map(agreementListingData, (item, index) => (
+                <EAgreementCard item={item} key={index} t={t} />
+              ))}
+            </div>
+          )}
+
+          {hasMorePage && lastPage > 1 && !isEmpty(agreementListingData) ? (
+            <div className="flex justify-center pt-3">
               <CustomButton
-                key={index}
-                buttonText={name}
-                buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonText="Load More"
                 textClassName="font-size-xsmall"
-                onClick={() => onClickSelectStatus(value)}
+                loading={
+                  agreementListingDataLoading && !isEmpty(agreementListingData)
+                }
+                onClick={onClickLoadMore}
               />
-            );
-          })}
+            </div>
+          ) : (
+            false
+          )}
         </div>
-
-        {isEmpty(agreementListingData) ? (
-          <div className="flex flex-col flex-1 justify-center">
-            <CustomEmptyBox />
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {map(agreementListingData, (item, index) => (
-              <EAgreementCard item={item} key={index} t={t} />
-            ))}
-          </div>
-        )}
-
-        {hasMorePage && lastPage > 1 && !isEmpty(agreementListingData) ? (
-          <div className="flex justify-center pt-3">
-            <CustomButton
-              buttonClassName="primary-btn min-h-9 h-9 w-32"
-              buttonText="Load More"
-              textClassName="font-size-xsmall"
-              loading={
-                agreementListingDataLoading && !isEmpty(agreementListingData)
-              }
-              onClick={onClickLoadMore}
-            />
-          </div>
-        ) : (
-          false
-        )}
-
-        <LoadingOverlay loading={agreementListingDataLoading} />
-      </div>
-    </CustomHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

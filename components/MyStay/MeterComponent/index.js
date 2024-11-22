@@ -70,8 +70,8 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-6 gap-2">
-        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14">
+      <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
+        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-color">
           <CustomText textClassName="disable-text font-size-xxsmall">
             {t("myStay.balanceUnit")}
           </CustomText>

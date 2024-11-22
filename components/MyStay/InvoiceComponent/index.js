@@ -7,7 +7,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 
 const InvoiceComponent = ({ t, data, type }) => {
   return (
-    <div className="flex flex-col gap-3 pb-3">
+    <div className="flex flex-col gap-3">
       {map(data, (item, index) => {
         const code = invoiceSelector.getInvoiceNumber(item);
         const paymentStatus = invoiceSelector.getPaymentStatus(item);

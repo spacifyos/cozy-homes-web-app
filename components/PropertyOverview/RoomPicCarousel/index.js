@@ -14,7 +14,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
   };
 
   return (
-    <div>
+    <div className="xl:hidden lg:hidden md:hidden sm:block block">
       <Swiper
         onSlideChange={onSlideChange}
         className="mySwiper"

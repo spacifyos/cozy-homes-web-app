@@ -13,11 +13,11 @@ export default function Document() {
           name="keywords"
           content="Spacify Asia, Property, Rental Management, Smart Meter"
         />
-        <title>Spacify Asia</title>
-        <meta
-          name="description"
-          content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
-        />
+        {/*<title>Spacify Asia</title>*/}
+        {/*<meta*/}
+        {/*  name="description"*/}
+        {/*  content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"*/}
+        {/*/>*/}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="viewport"

@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import RoomPicCarousel from "@/components/PropertyOverview/RoomPicCarousel";
 import DetailComponent from "@/components/PropertyOverview/DetailComponent";
@@ -6,50 +5,72 @@ import DetailFeatureSection from "@/components/PropertyOverview/DetailFeatureSec
 import Facilities from "@/components/PropertyOverview/Facilities";
 import AgentSection from "@/components/PropertyOverview/AgentSection";
 import SpacifyMap from "@/components/PropertyOverview/SpacifyMap";
-import RecommendSection from "@/components/PropertyOverview/RecommendSection";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import { isEmpty, isEqual, get } from "lodash";
+import { isEmpty, isEqual, get, map } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CustomButton from "@/components/CustomButton";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
 import Helper from "@/src/utils/Helper";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import RentChargeModal from "@/components/Booking/RentChargeModal";
-
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomImage from "@/components/CustomImage";
+import DesktopRecommendSection from "@/components/PropertyOverview/DesktopRecommendSection";
+import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearbyRoomSection";
+import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import CustomText from "@/components/CustomText";
+import axios from "axios";
+import { getRoomImagesUrl } from "@/src/selectors/listing";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
 
+  let listingPropertyDetailData = null;
+
+  try {
+    const response = await axios.get(
+      `${process.env.API_DOMAIN}/listing/property-details/${id}`,
+      { headers: { "Content-Type": "application/json" } },
+    );
+
+    listingPropertyDetailData = get(response, ["data", "data"], null);
+  } catch (error) {
+    console.error("Error fetching listing details:", error);
+  }
+
   return {
     props: {
       id: id,
+      listingPropertyDetailData: listingPropertyDetailData,
       ...(await serverSideTranslations(context.locale, ["common"])),
     },
   };
 }
-const PropertyOverview = ({ id }) => {
+
+const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const getListingPropertyDetailRequest = (id) =>
-    dispatch(listingAction.getListingPropertyDetailRequest(id));
-  const listingPropertyDetailData = useSelector((state) =>
-    listingSelector.getListingPropertyDetailData(state, id),
-  );
-  const listingPropertyDetailDataLoading = useSelector((state) =>
-    listingSelector.getListingPropertyDetailDataLoading(state),
-  );
+  console.log(listingPropertyDetailData);
+
+  // const getListingPropertyDetailRequest = (id) =>
+  //   dispatch(listingAction.getListingPropertyDetailRequest(id));
+  // const listingPropertyDetailData = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailData(state, id),
+  // );
+  // const listingPropertyDetailDataLoading = useSelector((state) =>
+  //   listingSelector.getListingPropertyDetailDataLoading(state),
+  // );
 
   const getListingCancellationRequest = () =>
     dispatch(listingAction.getListingCancellationRequest());
@@ -86,8 +107,11 @@ const PropertyOverview = ({ id }) => {
   const bedType = listingSelector.getBedType(listingPropertyDetailData);
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
-  const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
+  const roomImageUrl = listingSelector.getRoomImagesUrl(
+    listingPropertyDetailData,
+  );
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
+  const picName = listingSelector.getPicName(listingPropertyDetailData);
 
   const isAllowedZeroDeposit = listingSelector.isAllowedZeroDeposit(
     listingPropertyDetailData,
@@ -110,13 +134,13 @@ const PropertyOverview = ({ id }) => {
 
   const [selectedImage, setSelectedImage] = useState(2);
 
-  useEffect(() => {
-    fetchListingPropertyDetail(id);
-  }, [id]);
+  // useEffect(() => {
+  //   fetchListingPropertyDetail(id);
+  // }, [id]);
 
-  const fetchListingPropertyDetail = (id) => {
-    getListingPropertyDetailRequest(id);
-  };
+  // const fetchListingPropertyDetail = (id) => {
+  //   getListingPropertyDetailRequest(id);
+  // };
 
   const onClickToBookAppointment = () => {
     router.push("/property-overview/1/book-appointment");
@@ -162,113 +186,260 @@ const PropertyOverview = ({ id }) => {
     setOpenModalLastMonthCharges(!openModalLastMonthCharges);
   };
 
+  const onClickViewMore = () => {
+    router.push("search");
+  };
+
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.propertyDetail")}
-      hideBgImage
-      onClickGoBack={onClickGoBack}
-      // onClickRightButton={onClickRightButton}
-      HeaderImageStyle={{ width: "30px", height: "30px" }}
-      // rightButtonIcon={
-      //   isBookMarks ? Images.bookMarksIcon : Images.bookMarksIconActive
-      // }
-    >
-      <NextSeo title="Property Overview - Spacify Asia" />
-      <div className="body-container pb-32">
-        <RoomPicCarousel
-          imageUrl={imageUrl}
-          onClickPopupImage={onClickPopupImage}
-        />
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo
+        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`}
+        description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
+        canonical={`${process.env.DOMAIN}/property-overview/${id}`}
+        openGraph={{
+          url: `${process.env.DOMAIN}/property-overview/${id}`,
+          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`,
+          description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
+          images: isEmpty(roomImageUrl)
+            ? [
+                {
+                  url: Images.logoImage,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} Image`,
+                },
+              ]
+            : map(roomImageUrl, (item, index) => {
+                return {
+                  url: item,
+                  width: 800,
+                  height: 600,
+                  alt: `${propertyName} image ${index + 1}`,
+                };
+              }),
+          siteName: `${process.env.DOMAIN}/property-overview/${id}`,
+        }}
+      />
 
-        <DetailComponent
-          propertyName={propertyName}
-          unitRoomName={unitRoomName}
-          address={address}
-        />
-
-        <div className="grid grid-cols-6 gap-3 items-center pb-5">
-          <CustomButton
-            icon={
-              isEqual(selectDetail, Constant.TENANCY)
-                ? Images.tenancyIconActive
-                : Images.tenancyIcon
-            }
-            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.TENANCY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-            textClassName="font-size-normal"
-            buttonText={t("propertyDetail.tenancy")}
-            imageStyle={{ width: 18 }}
-            onClick={() => onClickSelectDetail(Constant.TENANCY)}
-          />
-
-          <CustomButton
-            icon={
-              isEqual(selectDetail, Constant.TENANCY)
-                ? Images.policyIcon
-                : Images.policyIconActive
-            }
-            imageStyle={{ width: 18 }}
-            buttonClassName={`col-span-3 ${isEqual(selectDetail, Constant.POLICY) ? "primary-btn" : "default-btn"} flex-row-reverse`}
-            textClassName="font-size-normal disable-text"
-            buttonText={t("propertyDetail.policy")}
-            onClick={() => onClickSelectDetail(Constant.POLICY)}
-          />
-        </div>
-
-        {isEqual(selectDetail, Constant.TENANCY) ? (
-          <div>
-            <DetailFeatureSection
-              t={t}
-              rental={rental}
-              bedType={bedType}
-              bathroom={bathroom}
-              squareFeet={squareFeet}
-            />
-
-            <Description t={t} description={description} />
-
-            <Facilities t={t} facilitiesList={facilitiesList} />
-
-            {/*<SpacifyMap t={t} />*/}
-
-            <RecommendSection t={t} recommendedList={recommendedList} />
+      <DesktopLayout
+        hideNav
+        // loading={listingPropertyDetailDataLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul className="flex-wrap gap-1">
+              <li>
+                <a href={"/explore"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Explore
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/search"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    Property Listing
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {propertyName}
+                </CustomText>
+              </li>
+            </ul>
           </div>
-        ) : (
-          <PolicyDetail
-            t={t}
-            loading={listingCancellationDataLoading}
-            data={listingCancellationData}
+        }
+      >
+        <div className="container mx-auto xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
+          <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
+            <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+            <div className="col-span-1 global-border-radius global-box-shadow">
+              <CustomImage src={Images.logoImage} />
+            </div>
+          </div>
+
+          <RoomPicCarousel
+            imageUrl={roomImageUrl}
+            onClickPopupImage={onClickPopupImage}
           />
-        )}
 
-        <AgentSection
-          t={t}
-          onClickToBookAppointment={onClickToBookAppointment}
-          data={listingPropertyDetailData}
-          onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
-          totalMoveInCost={totalMoveInCost}
-          propertyId={id}
-        />
+          <div class="grid grid-cols-5 gap-10">
+            <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-5 col-span-5">
+              <DetailComponent
+                propertyName={propertyName}
+                unitRoomName={unitRoomName}
+                address={address}
+              />
 
-        <MoveInCostModal
-          openModalFirstMonthCharges={openModalFirstMonthCharges}
-          openModalLastMonthCharges={openModalLastMonthCharges}
-          onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
-          onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
-          lists={targetItems}
-        />
+              {/*<div className="grid grid-cols-6 gap-3 items-center pb-5">*/}
+              {/*  <CustomButton*/}
+              {/*    icon={*/}
+              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
+              {/*        ? Images.tenancyIconActive*/}
+              {/*        : Images.tenancyIcon*/}
+              {/*    }*/}
+              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
+              {/*    textClassName="font-size-normal"*/}
+              {/*    buttonText={t("propertyDetail.tenancy")}*/}
+              {/*    imageStyle={{ width: 18 }}*/}
+              {/*    onClick={() => onClickSelectDetail(Constant.TENANCY)}*/}
+              {/*  />*/}
 
-        <ImageModal
-          data={imageUrl}
-          selectedImage={selectedImage}
-          onClickCloseImageModal={onClickCloseImageModal}
-          openImageModal={openImageModal}
-        />
+              {/*  <CustomButton*/}
+              {/*    icon={*/}
+              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
+              {/*        ? Images.policyIcon*/}
+              {/*        : Images.policyIconActive*/}
+              {/*    }*/}
+              {/*    imageStyle={{ width: 18 }}*/}
+              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
+              {/*    textClassName="font-size-normal disable-text"*/}
+              {/*    buttonText={t("propertyDetail.policy")}*/}
+              {/*    onClick={() => onClickSelectDetail(Constant.POLICY)}*/}
+              {/*  />*/}
+              {/*</div>*/}
 
-        <RentChargeModal />
+              <div className="pb-4">
+                <div role="tablist" className="tabs tabs-lifted">
+                  <a
+                    onClick={() => onClickSelectDetail(Constant.TENANCY)}
+                    role="tab"
+                    className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "tab-active" : ""} h-10 gap-2`}
+                  >
+                    {/*<CustomImage*/}
+                    {/*  src={*/}
+                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
+                    {/*      ? Images.tenancyIconActive*/}
+                    {/*      : Images.tenancyIcon*/}
+                    {/*  }*/}
+                    {/*  className="w-4"*/}
+                    {/*/>*/}
+                    <CustomText
+                      textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "black-text font-bold" : "disable-text"}`}
+                    >
+                      {t("propertyDetail.tenancy")}
+                    </CustomText>
+                  </a>
+                  <a
+                    onClick={() => onClickSelectDetail(Constant.POLICY)}
+                    role="tab"
+                    className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "" : "tab-active"} h-10 gap-2`}
+                  >
+                    {/*<CustomImage*/}
+                    {/*  src={*/}
+                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
+                    {/*      ? Images.policyIcon*/}
+                    {/*      : Images.policyIconActive*/}
+                    {/*  }*/}
+                    {/*  className="w-4"*/}
+                    {/*/>*/}
+                    <CustomText
+                      textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "disable-text" : "black-text font-bold"}`}
+                    >
+                      {t("propertyDetail.policy")}
+                    </CustomText>
+                  </a>
+                </div>
+              </div>
 
-        <LoadingOverlay loading={listingPropertyDetailDataLoading} />
-      </div>
-    </CustomHeader>
+              {isEqual(selectDetail, Constant.TENANCY) ? (
+                <div>
+                  <DetailFeatureSection
+                    t={t}
+                    rental={rental}
+                    bedType={bedType}
+                    bathroom={bathroom}
+                    squareFeet={squareFeet}
+                  />
+
+                  <Description t={t} description={description} />
+
+                  <Facilities t={t} facilitiesList={facilitiesList} />
+
+                  {/*<SpacifyMap t={t} />*/}
+                </div>
+              ) : (
+                <PolicyDetail
+                  t={t}
+                  loading={listingCancellationDataLoading}
+                  data={listingCancellationData}
+                />
+              )}
+            </div>
+
+            <div className="xl:col-span-2 lg:col-span-2 md:col-span-2 xl:block lg:block md:block sm:hidden hidden">
+              <DesktopPropertyPriceSection
+                t={t}
+                data={listingPropertyDetailData}
+                lists={targetItems}
+                totalMoveInCost={totalMoveInCost}
+                rental={rental}
+                openModalFirstMonthCharges={openModalFirstMonthCharges}
+                openModalLastMonthCharges={openModalLastMonthCharges}
+                onClickOpenModalFirstMonthCharges={
+                  onClickOpenModalFirstMonthCharges
+                }
+                onClickOpenModalLastMonthCharges={
+                  onClickOpenModalLastMonthCharges
+                }
+                propertyId={id}
+              />
+            </div>
+          </div>
+
+          <DesktopRecommendSection
+            t={t}
+            data={recommendedList}
+            // loading={listingPropertyDetailDataLoading}
+            onClickViewMore={onClickViewMore}
+          />
+
+          {/*<DesktopNearbyRoomSection*/}
+          {/*  t={t}*/}
+          {/*  data={[]}*/}
+          {/*  loading={listingPropertyDetailDataLoading}*/}
+          {/*  onClickViewMore={onClickViewMore}*/}
+          {/*/>*/}
+        </div>
+      </DesktopLayout>
+
+      <AgentSection
+        t={t}
+        onClickToBookAppointment={onClickToBookAppointment}
+        data={listingPropertyDetailData}
+        onClickOpenMoveInCostModal={onClickOpenMoveInCostModal}
+        totalMoveInCost={totalMoveInCost}
+        propertyId={id}
+      />
+
+      <MoveInCostModal
+        openModalFirstMonthCharges={openModalFirstMonthCharges}
+        openModalLastMonthCharges={openModalLastMonthCharges}
+        onClickOpenModalFirstMonthCharges={onClickOpenModalFirstMonthCharges}
+        onClickOpenModalLastMonthCharges={onClickOpenModalLastMonthCharges}
+        lists={targetItems}
+      />
+
+      <ImageModal
+        data={roomImageUrl}
+        selectedImage={selectedImage}
+        onClickCloseImageModal={onClickCloseImageModal}
+        openImageModal={openImageModal}
+      />
+
+      <RentChargeModal />
+    </div>
   );
 };
 

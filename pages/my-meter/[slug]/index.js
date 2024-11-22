@@ -21,10 +21,7 @@ import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
-import {
-  getBalanceCredit,
-  getIsShowBalanceInPrice,
-} from "@/src/selectors/meter";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -49,6 +46,7 @@ const MyMeterOverview = ({ id }) => {
   const tenancy = meterSelector.getTenancy(meterOverviewData);
   const isShowBalanceInPrice =
     meterSelector.getIsShowBalanceInPrice(meterOverviewData);
+  const meterName = meterSelector.getName(meterOverviewData);
 
   const [syncMeterLoading, setSyncMeterLoading] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(0);
@@ -141,72 +139,85 @@ const MyMeterOverview = ({ id }) => {
   // };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.myMeterOverview")}
-      hideBgImage
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Meter Overview - Spacify Asia" />
-      <div className="pb-4 global-horizontal-padding">
-        <div className="flex flex-row justify-between">
-          <CustomText textClassName="section-title">
-            {t("myMeterOverview.todayUsage")}
-          </CustomText>
-          <CustomImage
-            className="mr-4 cursor-pointer"
-            onClick={onClickSyncMeter}
-            src={Images.refreshIcon}
-            imageStyle={{ width: 30 }}
-          />
-        </div>
 
-        <div className="radial-container pb-7">
-          <MeterRadialProgressComponent
+      <DesktopLayout
+        loading={meterOverviewLoading || syncMeterLoading || meterTopUpLoading}
+        pageBreadcrumbs={
+          <div className="breadcrumbs text-sm">
+            <ul>
+              <li>
+                <a href={"/my-property"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Property
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <a href={"/my-meter"}>
+                  <CustomText textClassName="font-size-normal disable-text">
+                    My Meter
+                  </CustomText>
+                </a>
+              </li>
+              <li>
+                <CustomText textClassName="font-size-xlarge font-bold">
+                  {meterName}
+                </CustomText>
+              </li>
+            </ul>
+          </div>
+        }
+      >
+        <div className="">
+          <div className="flex flex-row justify-between">
+            <CustomText textClassName="section-title">
+              {t("myMeterOverview.todayUsage")}
+            </CustomText>
+            <CustomImage
+              className="mr-4 cursor-pointer"
+              onClick={onClickSyncMeter}
+              src={Images.refreshIcon}
+              imageStyle={{ width: 30 }}
+            />
+          </div>
+
+          <div className="radial-container pb-7">
+            <MeterRadialProgressComponent t={t} balanceUnit={balanceUnit} />
+          </div>
+
+          <MeterDetail t={t} data={meterOverviewData} />
+
+          <BalanceUnit
             t={t}
-            isShowBalanceInPrice={isShowBalanceInPrice}
             balanceUnit={balanceUnit}
-            balanceCredit={balanceCredit}
+            lastConnectedAt={lastConnectedAt}
           />
+
+          <MeterTopUpSection
+            t={t}
+            onClickSelectPrice={onClickSelectPrice}
+            selectedPrice={selectedPrice}
+            unitPrice={unitPrice}
+            onClickPayNow={onClickPayNow}
+            onChangeSelectedPriceValue={onChangeSelectedPriceValue}
+            onClickClearSelectedPrice={onClickClearSelectedPrice}
+            tenancy={tenancy}
+            tenancyValue={tenancyValue}
+            onChangeTenancyValue={onChangeTenancyValue}
+          />
+
+          {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
+
+          {/*<MeterUsageSection*/}
+          {/*  t={t}*/}
+          {/*  onClickChange={onClickChange}*/}
+          {/*  selectChange={selectChange}*/}
+          {/*/>*/}
         </div>
-
-        <MeterDetail t={t} data={meterOverviewData} />
-
-        <BalanceUnit
-          t={t}
-          isShowBalanceInPrice={isShowBalanceInPrice}
-          balanceUnit={balanceUnit}
-          balanceCredit={balanceCredit}
-          lastConnectedAt={lastConnectedAt}
-        />
-
-        <MeterTopUpSection
-          t={t}
-          onClickSelectPrice={onClickSelectPrice}
-          selectedPrice={selectedPrice}
-          unitPrice={unitPrice}
-          onClickPayNow={onClickPayNow}
-          onChangeSelectedPriceValue={onChangeSelectedPriceValue}
-          onClickClearSelectedPrice={onClickClearSelectedPrice}
-          tenancy={tenancy}
-          tenancyValue={tenancyValue}
-          onChangeTenancyValue={onChangeTenancyValue}
-        />
-
-        {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
-
-        {/*<MeterUsageSection*/}
-        {/*  t={t}*/}
-        {/*  onClickChange={onClickChange}*/}
-        {/*  selectChange={selectChange}*/}
-        {/*/>*/}
-
-        <LoadingOverlay
-          loading={
-            meterOverviewLoading || syncMeterLoading || meterTopUpLoading
-          }
-        />
-      </div>
-    </CustomHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 
