@@ -7,8 +7,10 @@ import * as authSelector from "@/src/selectors/auth";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Helper from "@/src/utils/Helper";
+import { useRouter } from "next/router";
 
 const DesktopNavigationBar = ({ userData, onClickLogout }) => {
+  const router = useRouter();
   const initialTime = 60;
 
   const [setPinNumberLoading, setSetPinNumberLoading] = useState(false);
@@ -155,7 +157,9 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         title="My Property"
         icon={Images.homeActiveOutline}
         pb={3}
-        route={`${isTenant ? "/my-property" : "/owner"}`}
+        onClick={() => {
+          return router.push(isTenant ? "/my-property" : "/owner");
+        }}
         imageWidth={18}
       />
 
@@ -164,7 +168,10 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         icon={Images.primaryInvoiceIcon}
         imageWidth={23}
         pb={3}
-        route={`/my-invoice`}
+        onClick={() => {
+          return router.push("/my-invoice");
+        }}
+        // route={`/my-invoice`}
       />
 
       <FeatureComponent
@@ -172,16 +179,22 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         icon={Images.agreementIconActive}
         imageWidth={23}
         pb={3}
-        route={`/e-agreement`}
+        onClick={() => {
+          return router.push("/e-agreement");
+        }}
+        // route={`/e-agreement`}
       />
 
       {!isEmpty(userData) && isTenant ? (
         <FeatureComponent
           title={"My Meter"}
           icon={Images.primaryMeterIcon}
-          imageWidth={25}
+          imageWidth={13}
           pb={3}
-          route={`/my-meter`}
+          onClick={() => {
+            return router.push("/my-meter");
+          }}
+          // route={`/my-meter`}
         />
       ) : (
         false
@@ -195,7 +208,10 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
           icon={Images.paperIcon}
           imageWidth={16}
           pb={3}
-          route={"/owner/my-report"}
+          onClick={() => {
+            return router.push("/owner/my-report");
+          }}
+          // route={"/owner/my-report"}
         />
       )}
 
@@ -207,7 +223,10 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
           icon={Images.renoExpertIconActive}
           imageWidth={16}
           pb={3}
-          route={"/testing"}
+          onClick={() => {
+            return router.push("/testing");
+          }}
+          // route={"/testing"}
         />
       )}
 

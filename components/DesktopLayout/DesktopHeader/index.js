@@ -54,13 +54,13 @@ const DesktopHeader = ({
           </div>
         ) : (
           <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-            <CustomButton
-              icon={Image.homeIconActive}
-              buttonText={`My Property`}
-              buttonClassName="default-btn w-36"
-              reverse
-              onClick={onClickMyProperty}
-            />
+            {/*<CustomButton*/}
+            {/*  icon={Image.homeIconActive}*/}
+            {/*  buttonText={`My Property`}*/}
+            {/*  buttonClassName="default-btn w-36"*/}
+            {/*  reverse*/}
+            {/*  onClick={onClickMyProperty}*/}
+            {/*/>*/}
 
             <CustomButton
               icon={Image.registerIconActive}
@@ -72,13 +72,13 @@ const DesktopHeader = ({
               onClick={onClickMyAccount}
             />
 
-            <CustomButton
-              icon={Image.primaryLogoutIcon}
-              buttonText={`Log Out`}
-              buttonClassName="default-btn w-36"
-              reverse
-              onClick={onClickLogout}
-            />
+            {/*<CustomButton*/}
+            {/*  icon={Image.primaryLogoutIcon}*/}
+            {/*  buttonText={`Log Out`}*/}
+            {/*  buttonClassName="default-btn w-36"*/}
+            {/*  reverse*/}
+            {/*  onClick={onClickLogout}*/}
+            {/*/>*/}
           </div>
         )}
       </div>

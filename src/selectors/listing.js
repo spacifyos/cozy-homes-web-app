@@ -54,6 +54,7 @@ export const getMobileImageUrl = (state) => get(state, ["mobile_image_url"], "")
 export const getImageUrlActive = (state) =>
   get(state, ["image_url_active"], "");
 export const getImagesUrl = (state) => get(state, ["images_url"], []);
+export const getRoomImagesUrl = (state) => get(state, ["room_images_url"], []);
 export const getId = (state) => get(state, ["id"], 0);
 export const getPropertyId = (state) => get(state, ["property_id"], 0);
 export const getProfileId = (state) => get(state, ["profile_id"], "");

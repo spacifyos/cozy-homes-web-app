@@ -30,10 +30,19 @@ const DesktopLayout = ({
   const router = useRouter();
   const dispatch = useDispatch();
 
+  const getUserProfileRequest = () =>
+    dispatch(authAction.getUserProfileRequest());
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+  const userProfileLoading = useSelector((state) =>
+    authSelector.getUserProfileLoading(state),
+  );
+
   const [selectedUserType, setSelectedUserType] = useState("");
 
-  const [userProfileData, setUserProfileData] = useState(false);
-  const [userProfileLoading, setUserProfileLoading] = useState(false);
+  // const [userProfileData, setUserProfileData] = useState(false);
+  // const [userProfileLoading, setUserProfileLoading] = useState(false);
   const [signOutLoading, setSignOutLoading] = useState(false);
 
   const userType = authSelector.getType(userProfileData);
@@ -43,29 +52,29 @@ const DesktopLayout = ({
       const token = await AuthManager.retrieveToken();
       const type = await AuthManager.retrieveType();
 
-      if (!isEmpty(token) && !isEmpty(type)) {
-        if (isEmpty(userProfileData)) {
-          await fetchUserprofileData();
-        }
+      if (isEmpty(token) && isEmpty(type)) {
       }
     };
 
     checkAuthentication();
   }, []);
 
+  useEffect(() => {
+    if (isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
+  }, []);
+
   const signOutAccountRequest = () =>
     dispatch(authAction.signOutAccountRequest());
 
-  const fetchUserprofileData = async () => {
-    await apiRequest.getUChatUserRequest(
-      setUserProfileLoading,
-      getUserSuccessCallback,
-    );
+  const fetchUserprofileData = () => {
+    getUserProfileRequest();
   };
-
-  const getUserSuccessCallback = (res) => {
-    setUserProfileData(res);
-  };
+  //
+  // const getUserSuccessCallback = (res) => {
+  //   setUserProfileData(res);
+  // };
 
   const onClickSignIn = () => {
     Helper.documentGetElementById("sign_in_modal").showModal();
@@ -84,7 +93,7 @@ const DesktopLayout = ({
   };
 
   const onClickMyAccount = () => {
-    return router.replace("/account");
+    return router.push("/account");
   };
 
   const onClickChat = () => {

@@ -29,6 +29,7 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import CustomText from "@/components/CustomText";
 import axios from "axios";
+import { getRoomImagesUrl } from "@/src/selectors/listing";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -59,6 +60,8 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+
+  console.log(listingPropertyDetailData);
 
   // const getListingPropertyDetailRequest = (id) =>
   //   dispatch(listingAction.getListingPropertyDetailRequest(id));
@@ -104,8 +107,11 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const bedType = listingSelector.getBedType(listingPropertyDetailData);
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
-  const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
+  const roomImageUrl = listingSelector.getRoomImagesUrl(
+    listingPropertyDetailData,
+  );
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
+  const picName = listingSelector.getPicName(listingPropertyDetailData);
 
   const isAllowedZeroDeposit = listingSelector.isAllowedZeroDeposit(
     listingPropertyDetailData,
@@ -187,14 +193,14 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`}
-        description={`${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`}
+        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`}
+        description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
         canonical={`${process.env.DOMAIN}/property-overview/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/property-overview/${id}`,
-          title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
-          description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
-          images: isEmpty(imageUrl)
+          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`,
+          description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
+          images: isEmpty(roomImageUrl)
             ? [
                 {
                   url: Images.logoImage,
@@ -203,7 +209,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                   alt: `${propertyName} Image`,
                 },
               ]
-            : map(imageUrl, (item, index) => {
+            : map(roomImageUrl, (item, index) => {
                 return {
                   url: item,
                   width: 800,
@@ -264,7 +270,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           </div>
 
           <RoomPicCarousel
-            imageUrl={imageUrl}
+            imageUrl={roomImageUrl}
             onClickPopupImage={onClickPopupImage}
           />
 
@@ -426,7 +432,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       />
 
       <ImageModal
-        data={imageUrl}
+        data={roomImageUrl}
         selectedImage={selectedImage}
         onClickCloseImageModal={onClickCloseImageModal}
         openImageModal={openImageModal}

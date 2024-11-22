@@ -16,8 +16,12 @@ const DesktopListingSection = ({
     <div className="h-full">
       {listingPropertyDataLoading ? (
         <div className="grid grid-cols-4 gap-3">
-          {map(Array(12), (item, index) => (
-            <Skeleton width="100%" height={200} key={index} />
+          {map(Array(8), (item, index) => (
+            <Skeleton
+              width="100%"
+              className="h-52 xl:h-60 lg:h-60 md:h-52 sm:h-52"
+              key={index}
+            />
           ))}
         </div>
       ) : isEmpty(listingPropertyData) ? (
@@ -31,7 +35,7 @@ const DesktopListingSection = ({
               key={index}
               item={item}
               t={t}
-              imageHeight={200}
+              imageClassName="h-52 xl:h-60 lg:h-60 md:h-52 sm:h-52 w-full"
             />
           ))}
         </div>

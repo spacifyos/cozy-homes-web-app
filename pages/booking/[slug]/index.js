@@ -154,6 +154,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const raceOption = commonSelector.getRace(selectOptionData);
   const stateOption = commonSelector.getState(selectOptionData);
   const occupationOption = commonSelector.getOccupation(selectOptionData);
+  const picName = listingSelector.getPicName(listingPropertyDetailData);
 
   const imageUrl = listingSelector.getImagesUrl(listingPropertyDetailData);
 
@@ -616,13 +617,13 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`}
-        description={`${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`}
+        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`}
+        description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
         canonical={`${process.env.DOMAIN}/booking/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/booking/${id}`,
-          title: `${propertyName} For Rent RM ${rental}/month by Spacify Asia | ${process.env.DOMAIN}`,
-          description: `${propertyName} For Rent RM ${rental}/month by Spacify Asia. Booking now at ${process.env.DOMAIN}, ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft.`,
+          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`,
+          description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
           images: isEmpty(imageUrl)
             ? [
                 {

@@ -21,7 +21,7 @@ import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { NextSeo } from "next-seo";
 import BottomNavigate from "@/components/BottomNavigate";
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopFeatureSection from "@/components/MyStay/DesktopFeatureSection";
 import CustomText from "@/components/CustomText";
@@ -86,9 +86,12 @@ const MyStay = () => {
   };
 
   useEffect(() => {
-    fetchUserprofileData();
     fetchTenancyListing();
     fetchMeterListingData();
+
+    if (isEmpty(userProfileData)) {
+      fetchUserprofileData();
+    }
   }, []);
 
   const fetchMeterListingData = (per_page = 1, page = 1) => {
