@@ -118,7 +118,7 @@ const Search = () => {
   const currentPage = listingSelector.getCurrentPage(listingPropertyPagination);
   const lastPage = listingSelector.getLastPage(listingPropertyPagination);
 
-  const isFilter = !isEmpty(selectedFilterParams)
+  const isFilter = !isEmpty(selectedFilterParams);
 
   useEffect(() => {
     if (!isEmpty(queryKey) && !isEmpty(queryId)) {
@@ -457,7 +457,25 @@ const Search = () => {
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
-      <NextSeo title="Spacify Listing - Spacify Asia" />
+      <NextSeo
+        title={`Discover spaces for your needs in room listing | ${process.env.DOMAIN}`}
+        description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
+        canonical={process.env.DOMAIN}
+        openGraph={{
+          url: process.env.DOMAIN,
+          title: `Discover spaces for your needs in room listing | ${process.env.DOMAIN}`,
+          description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
+          images: [
+            {
+              url: Images.logoImage,
+              width: 800,
+              height: 600,
+              alt: `Spacify Image`,
+            },
+          ],
+          siteName: `${process.env.DOMAIN}`,
+        }}
+      />
 
       <DesktopLayout
         hideNav
@@ -472,8 +490,8 @@ const Search = () => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  Property Listing
+                <CustomText textClassName="font-bold">
+                  Room Listing
                 </CustomText>
               </li>
             </ul>

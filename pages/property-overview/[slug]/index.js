@@ -29,7 +29,6 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import CustomText from "@/components/CustomText";
 import axios from "axios";
-import { getRoomImagesUrl } from "@/src/selectors/listing";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -107,9 +106,16 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const bedType = listingSelector.getBedType(listingPropertyDetailData);
   const bathroom = listingSelector.getBathroom(listingPropertyDetailData);
   const squareFeet = listingSelector.getSquareFeet(listingPropertyDetailData);
+  const propertyImageUrl = listingSelector.getPropertyImagesUrl(
+    listingPropertyDetailData,
+  );
+  const unitImageUrl = listingSelector.getUnitImagesUrl(
+    listingPropertyDetailData,
+  );
   const roomImageUrl = listingSelector.getRoomImagesUrl(
     listingPropertyDetailData,
   );
+  const videoUrl = listingSelector.getVideoUrl(listingPropertyDetailData);
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
   const picName = listingSelector.getPicName(listingPropertyDetailData);
 
@@ -237,7 +243,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               <li>
                 <a href={"/search"}>
                   <CustomText textClassName="font-size-normal disable-text">
-                    Property Listing
+                    Room Listing
                   </CustomText>
                 </a>
               </li>
@@ -252,14 +258,33 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       >
         <div className="container mx-auto xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
           <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
-            <div className="row-span-2 col-span-2 global-border-radius global-box-shadow">
-              <CustomImage src={Images.logoImage} />
+            <div className="row-span-2 col-span-2 global-border-radius global-box-shadow overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                src={videoUrl}
+                title={propertyName}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
             </div>
             <div className="col-span-1 global-border-radius global-box-shadow">
-              <CustomImage src={Images.logoImage} />
+              <CustomImage
+                className="w-full h-full"
+                src={
+                  isEmpty(propertyImageUrl)
+                    ? Images.logoImage
+                    : propertyImageUrl
+                }
+              />
             </div>
             <div className="col-span-1 global-border-radius global-box-shadow">
-              <CustomImage src={Images.logoImage} />
+              <CustomImage
+                className="w-full h-full"
+                src={isEmpty(unitImageUrl) ? Images.logoImage : unitImageUrl}
+              />
             </div>
             <div className="col-span-1 global-border-radius global-box-shadow">
               <CustomImage src={Images.logoImage} />
@@ -310,8 +335,8 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               {/*  />*/}
               {/*</div>*/}
 
-              <div className="pb-4">
-                <div role="tablist" className="tabs tabs-lifted">
+              <div className="pb-6">
+                <div role="tablist" className="tabs tabs-bordered">
                   <a
                     onClick={() => onClickSelectDetail(Constant.TENANCY)}
                     role="tab"

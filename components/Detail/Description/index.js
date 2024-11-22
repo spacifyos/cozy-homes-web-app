@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
-import DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 const Description = ({ t, description }) => {
   const sanitizedDescription = isEmpty(description)

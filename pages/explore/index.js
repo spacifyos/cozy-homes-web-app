@@ -145,8 +145,8 @@ function Home() {
           images: [
             {
               url: Images.logoImage,
-              width: 1080,
-              height: 810,
+              width: 800,
+              height: 600,
               alt: `Spacify Image`,
             },
           ],

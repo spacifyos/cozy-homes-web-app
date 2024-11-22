@@ -20,7 +20,7 @@ const DesktopSearchBar = ({
   isFilter,
 }) => {
   return (
-    <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-5 pb-6">
+    <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-5 pb-8">
       <div className="xl:col-span-1 xl:block hidden"></div>
 
       <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
