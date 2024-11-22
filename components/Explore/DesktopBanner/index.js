@@ -9,9 +9,9 @@ import { Navigation, Pagination } from "swiper/modules";
 
 const DesktopBanner = ({ imageData }) => {
   return (
-    <div className="xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4 container mx-auto">
+    <div className="xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4 container mx-auto ">
       <Swiper
-        className="mySwiper"
+        className="mySwiper xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64"
         style={{ width: "100%" }}
         loop={true}
         breakpoints={{
@@ -31,6 +31,10 @@ const DesktopBanner = ({ imageData }) => {
             slidesPerView: 2,
             spaceBetween: 15,
           },
+          520: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
           420: {
             slidesPerView: 1,
             spaceBetween: 15,
@@ -46,9 +50,8 @@ const DesktopBanner = ({ imageData }) => {
         {map(imageData, (image, index) => {
           const banner = listingSelector.getMobileImageUrl(image);
 
-          console.log(banner)
           return (
-            <SwiperSlide style={{ minWidth: 100 }} className="xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64" key={index}>
+            <SwiperSlide style={{ minWidth: 100 }} className="" key={index}>
               <div className="overflow-hidden rounded-3xl">
                 <CustomImage
                   src={isEmpty(banner) ? Images.imageNotFound : banner}

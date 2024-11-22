@@ -32,23 +32,28 @@ const DesktopHeader = ({
 
         {isEmpty(data) ? (
           <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-            <CustomButton
-              icon={loading ? "" : Image.registerIconActive}
-              imageStyle={{ width: 13 }}
-              buttonText={`Register`}
-              buttonClassName={`default-btn min-w-44 min-h-10 h-10`}
-              textClassName="font-size-small"
-              reverse
-              loading={loading}
-              onClick={loading ? "" : onClickSignUp}
-            />
+            {loading ? (
+              false
+            ) : (
+              <CustomButton
+                icon={Image.registerIconActive}
+                imageStyle={{ width: 13 }}
+                buttonText={`Register`}
+                buttonClassName={`default-btn min-w-44 min-h-10 h-10`}
+                textClassName="font-size-small"
+                reverse
+                onClick={onClickSignUp}
+              />
+            )}
 
             <CustomButton
-              icon={Image.primaryLogoutIcon}
+              icon={loading ? "" : Image.primaryLogoutIcon}
               buttonText={`Sign In`}
               buttonClassName="default-btn w-36 min-h-10 h-10"
               textClassName="font-size-small"
               reverse
+              loadingColor="primary-text"
+              loading={loading}
               onClick={onClickSignIn}
             />
           </div>

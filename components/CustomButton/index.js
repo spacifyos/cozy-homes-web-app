@@ -15,6 +15,7 @@ const CustomButton = ({
   imageWidth = 20,
   imageHeight = 20,
   reverse = false,
+  loadingColor = "white-text",
 }) => {
   return (
     <button
@@ -23,7 +24,7 @@ const CustomButton = ({
       onClick={disable ? () => {} : onClick}
     >
       {loading ? (
-        <span className="loading loading-spinner white-text"></span>
+        <span className={`loading loading-spinner ${loadingColor}`}></span>
       ) : !isEmpty(buttonText) ? (
         <p className={textClassName}>{buttonText}</p>
       ) : (

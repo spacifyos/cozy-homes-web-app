@@ -42,13 +42,51 @@ const DesktopPopularUniversitySection = ({
       <div className="gap-1 flex items-center justify-center">
         {loading ? (
           <div className="flex flex-1">
-            {map(Array(3), (item, index) => (
-              <Skeleton
-                width="100%"
-                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"
-                key={index}
-              />
-            ))}
+            <div className="xl:flex flex-1 hidden">
+              {map(Array(7), (item, index) => (
+                <Skeleton
+                  width="100%"
+                  className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
+                  key={index}
+                />
+              ))}
+            </div>
+            <div className="xl:hidden lg:flex flex-1 hidden">
+              {map(Array(5), (item, index) => (
+                <Skeleton
+                  width="100%"
+                  className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
+                  key={index}
+                />
+              ))}
+            </div>
+            <div className="xl:hidden lg:hidden md:flex flex-1 hidden">
+              {map(Array(5), (item, index) => (
+                <Skeleton
+                  width="100%"
+                  className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
+                  key={index}
+                />
+              ))}
+            </div>
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex-1 hidden">
+              {map(Array(4), (item, index) => (
+                <Skeleton
+                  width="100%"
+                  className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
+                  key={index}
+                />
+              ))}
+            </div>
+            <div className="xl:hidden lg:hidden md:hidden sm:hidden flex-1 flex">
+              {map(Array(3), (item, index) => (
+                <Skeleton
+                  width="100%"
+                  className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
+                  key={index}
+                />
+              ))}
+            </div>
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
@@ -76,12 +114,16 @@ const DesktopPopularUniversitySection = ({
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              420: {
+              530: {
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              343: {
+              420: {
                 slidesPerView: 3,
+                spaceBetween: 15,
+              },
+              343: {
+                slidesPerView: 2,
                 spaceBetween: 15,
               },
             }}
@@ -93,7 +135,7 @@ const DesktopPopularUniversitySection = ({
                 <SwiperSlide key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
+                    imageClassName="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28 w-full"
                   />
                 </SwiperSlide>
               );

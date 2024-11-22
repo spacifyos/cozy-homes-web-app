@@ -18,7 +18,7 @@ const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
 
   return (
     <a
-      href={`/search?key=${key}&id=${value}&tags=${tagsCode}`}
+      href={`/search?key=${key}&id=${value}${isEmpty(tagsCode) ? "" : `&tags=${tagsCode}`}`}
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage

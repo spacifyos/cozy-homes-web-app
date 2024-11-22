@@ -114,7 +114,14 @@ function Home() {
   };
 
   const onClickToSearch = (keyword, state, city) => {
-    router.push(`/search?keyword=${keyword}&state=${state}&city=${city}`);
+    const params = [];
+    if (keyword) params.push(`keyword=${encodeURIComponent(keyword)}`);
+    if (state) params.push(`state=${encodeURIComponent(state)}`);
+    if (city) params.push(`city=${encodeURIComponent(city)}`);
+
+    const queryString = params.length > 0 ? `?${params.join("&")}` : "";
+
+    router.push(`/search${queryString}`);
   };
 
   const onClickOpenSwitcher = () => {

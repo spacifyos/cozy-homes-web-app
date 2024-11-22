@@ -71,9 +71,9 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
       <div className="xl:hidden lg:hidden md:hidden sm:hidden">
         {loading ? (
           <div className="flex" style={{ height: 144 }}>
-            {map(Array(4), (item, index) => (
+            {map(Array(3), (item, index) => (
               <Skeleton
-                className="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32"
+                className="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28"
                 width={"100%"}
                 key={index}
               />
@@ -105,12 +105,16 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              420: {
+              530: {
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              343: {
+              420: {
                 slidesPerView: 3,
+                spaceBetween: 15,
+              },
+              343: {
+                slidesPerView: 2,
                 spaceBetween: 15,
               },
             }}
@@ -122,7 +126,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
                 <SwiperSlide style={{ minWidth: 100 }} key={index}>
                   <ListingCardComponent
                     item={item}
-                    imageClassName="h-24 xl:h-40 lg:h-32 md:h-32 sm:h-32 w-full"
+                    imageClassName="h-28 2xl:h-40 xl:h-36 lg:h-36 md:h-28 sm:h-28 w-full"
                   />
                 </SwiperSlide>
               );
