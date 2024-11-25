@@ -13,7 +13,7 @@ const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
 
       <div className="flex flex-col justify-center items-center p-6">
         <CustomImage src={Images.dangerIcon} width={60} />
-        <CustomText textClassName="font-bold font-size-normal pt-4 text-center">
+        <CustomText textClassName="font-bold text-base pt-4 text-center">
           You may set pin number before you sign agreement.
         </CustomText>
       </div>

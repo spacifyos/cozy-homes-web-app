@@ -7,7 +7,7 @@ const RentChargeModal = () => {
       <CustomText textClassName="font-size-large font-bold pb-2">
         Rent Charges Details
       </CustomText>
-      <CustomText textClassName="disable-text font-size-xsmall text-justify">
+      <CustomText textClassName="disable-text text-xs text-justify">
         Rent Charges provide a premium, all-inclusive living experience for a
         modest monthly fee. Covering maintenance, utilities, insurance,
         appliance upkeep, and accidental event protection, these charges ensure

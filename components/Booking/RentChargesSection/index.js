@@ -41,7 +41,7 @@ const RentChargesSection = ({
           <CustomText textClassName="font-bold primary-text font-size-large">
             {isEmpty(title) ? "-" : title}
           </CustomText>
-          <CustomText textClassName="font-light font-size-small disable-text">
+          <CustomText textClassName="font-light text-sm disable-text">
             Hosted by Spacify
           </CustomText>
         </div>
@@ -53,7 +53,7 @@ const RentChargesSection = ({
       ></div>
 
       <CustomText textClassName="font-bold pb-1">Move In Cost</CustomText>
-      <CustomText textClassName="font-size-xsmall font-light leading-4 disable-text">
+      <CustomText textClassName="text-xs font-light leading-4 disable-text">
         Please check the payment breakdown below. Should you have any inquiries,
         please contact the owner or agent before proceeding with your payment.
       </CustomText>

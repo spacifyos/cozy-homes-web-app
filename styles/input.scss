@@ -23,7 +23,7 @@ input {
 }
 
 ::placeholder {
-  @extend .font-size-small;
+  @apply text-sm;
   //font-style: italic;
   opacity: 1;
 }
@@ -40,7 +40,7 @@ input:focus {
 }
 
 .meter-input::placeholder {
-  @extend .font-size-small;
+  @apply text-sm;
 }
 
 .meter-input {

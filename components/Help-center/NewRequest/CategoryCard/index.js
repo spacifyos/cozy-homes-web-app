@@ -26,7 +26,7 @@ const CategoryCard = ({
           />
         </div>
 
-        <CustomText textClassName="font-bold font-size-xsmall">
+        <CustomText textClassName="font-bold text-xs">
           {btnText}
         </CustomText>
         <CustomText textClassName="disable-text font-size-xxsmall text-center ">

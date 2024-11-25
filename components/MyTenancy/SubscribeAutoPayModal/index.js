@@ -18,10 +18,10 @@ const SubscribeAutoPayModal = ({ t }) => {
             <CustomImage src={Images.buildingIcon} width={30} height={30} />
           </div>
           <div className="pl-2">
-            <CustomText textClassName="font-bold font-size-small primary-text">
+            <CustomText textClassName="font-bold text-sm primary-text">
               M Vertica
             </CustomText>
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               A-01-01, Room 1
             </CustomText>
           </div>

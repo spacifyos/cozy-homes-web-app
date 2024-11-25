@@ -44,7 +44,7 @@ const RadialProgressComponent = ({
         <CustomText textClassName="font-size-xlarge primary-text font-bold">
           {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
-        <CustomText textClassName="font-size-xsmall">
+        <CustomText textClassName="text-xs">
           {t("myStay.days")}
         </CustomText>
       </div>

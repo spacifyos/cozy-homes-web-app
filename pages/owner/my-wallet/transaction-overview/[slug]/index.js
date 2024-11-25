@@ -20,9 +20,9 @@ export { getServerSideProps };
 const DetailLabel = ({ title, value, highlight = false }) => {
   return (
     <div className="grid grid-cols-3 gap-3">
-      <CustomText textClassName="font-size-small">{title}</CustomText>
+      <CustomText textClassName="text-sm">{title}</CustomText>
       <CustomText
-        textClassName={`text-end font-size-small col-span-2 ${highlight ? "primary-text" : ""}`}
+        textClassName={`text-end text-sm col-span-2 ${highlight ? "primary-text" : ""}`}
       >
         {value}
       </CustomText>

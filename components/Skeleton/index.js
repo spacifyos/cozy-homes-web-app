@@ -11,7 +11,14 @@ const Skeleton = ({
     <div className="flex flex-col gap-2 w-full mr-2">
       <div
         className={`skeleton ${className}`}
-        style={{ height: height, width: width, minWidth: minWidth }}
+        style={{
+          height: height,
+          width: width,
+          minWidth: minWidth,
+          backgroundColor: "#e4e5e9",
+          backgroundImage:
+            "linear-gradient(105deg,transparent 0%,transparent 40%, #FFF 50%,transparent 60%,transparent 100%)",
+        }}
       ></div>
       {hideText ? (
         false
@@ -19,7 +26,13 @@ const Skeleton = ({
         <div className="flex items-center" style={{ height: 36 }}>
           <div
             className="skeleton"
-            style={{ height: 20, width: random(50, 80) }}
+            style={{
+              height: 20,
+              width: random(50, 80),
+              backgroundColor: "#e4e5e9",
+              backgroundImage:
+                "linear-gradient(105deg,transparent 0%,transparent 40%, #FFF 50%,transparent 60%,transparent 100%)",
+            }}
           ></div>
         </div>
       )}

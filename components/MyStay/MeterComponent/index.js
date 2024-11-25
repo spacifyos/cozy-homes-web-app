@@ -33,11 +33,11 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="primary-text font-size-small font-bold pb-1 line-clamp-1 pr-5">
+          <CustomText textClassName="primary-text text-sm font-bold pb-1 line-clamp-1 pr-5">
             {isEmpty(name) ? "-" : name}
           </CustomText>
           <div className="flex items-center">
-            <CustomText textClassName="pr-3 font-size-xsmall disable-text">
+            <CustomText textClassName="pr-3 text-xs disable-text">
               {t("myStay.meterStatus")}
             </CustomText>
 
@@ -48,7 +48,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${wifi ? "power-on-text" : "disable-text"} font-size-small`}
+                textClassName={`${wifi ? "power-on-text" : "disable-text"} text-sm`}
               >
                 {t("myStay.wifi")}
               </CustomText>
@@ -61,7 +61,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${power ? "power-on-text" : "disable-text"} font-size-small`}
+                textClassName={`${power ? "power-on-text" : "disable-text"} text-sm`}
               >
                 {t("myStay.power")}
               </CustomText>

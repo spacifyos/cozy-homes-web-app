@@ -75,14 +75,14 @@ const EAgreementOverview = ({ id }) => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/e-agreement"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My E-Agreement
                   </CustomText>
                 </a>
@@ -172,7 +172,7 @@ const EAgreementOverview = ({ id }) => {
                     imageStyle={{ width: 18, height: 18 }}
                   />
                   <div className="flex flex-col">
-                    <CustomText textClassName="font-size-small disable-text">
+                    <CustomText textClassName="text-sm disable-text">
                       {t("eAgreementOverview.agreed")}
                     </CustomText>
                     <CustomText textClassName="font-size-xxsmall disable-text">
@@ -189,7 +189,7 @@ const EAgreementOverview = ({ id }) => {
                     imageStyle={{ width: 18, height: 18 }}
                   />
                   <div className="flex flex-col">
-                    <CustomText textClassName="font-size-small disable-text">
+                    <CustomText textClassName="text-sm disable-text">
                       {t("eAgreementOverview.signed")}
                     </CustomText>
                     <CustomText textClassName="font-size-xxsmall disable-text">

@@ -24,7 +24,7 @@ const SecondStep = ({
         Enter the 6 digit code that we sent you on your mobile number.
       </CustomText>
 
-      <CustomText textClassName="pb-5 font-size-small disable-text text-center">
+      <CustomText textClassName="pb-5 text-sm disable-text text-center">
         Sent to {phonePrefix + phoneNumber}
       </CustomText>
 
@@ -49,12 +49,12 @@ const SecondStep = ({
         />
       </div>
 
-      <CustomText textClassName="pb-5 font-size-small disable-text text-center">
+      <CustomText textClassName="pb-5 text-sm disable-text text-center">
         Not received code yet.
       </CustomText>
 
       <CustomText
-        textClassName="pb-5 font-size-small primary-text text-center cursor-pointer"
+        textClassName="pb-5 text-sm primary-text text-center cursor-pointer"
         onClick={isResendEnabled ? handleResend : () => {}}
       >
         {isResendEnabled ? `Resend OTP` : `Resend OTP in ${timeLeft} seconds`}

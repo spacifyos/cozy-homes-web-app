@@ -12,7 +12,7 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="tenancy-auto-pay-button">
       <CustomText
-        textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold font-size-xsmall pr-3`}
+        textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold text-xs pr-3`}
       >
         AutoPay
       </CustomText>
@@ -84,10 +84,10 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
           </div>
 
           <div className={"pl-2"}>
-            <CustomText textClassName="font-bold font-size-small primary-text">
+            <CustomText textClassName="font-bold text-sm primary-text">
               {_.isEmpty(propertyName) ? "-" : propertyName}
             </CustomText>
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               {_.isEmpty(unitName) ? "" : unitName}
               {_.isEmpty(roomName) ? "" : ", " + roomName}
             </CustomText>

@@ -17,12 +17,12 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
       </div>
 
       <div className="flex flex-col xl:pl-4 lg:pl-4 md:pl-4 sm:pt-4 pt-4">
-        <CustomText textClassName="disable-text font-size-small xl:text-left lg:text-left md:text-left sm:text-center text-center">
+        <CustomText textClassName="disable-text text-sm xl:text-left lg:text-left md:text-left sm:text-center text-center">
           My Wallet
         </CustomText>
 
         <div className="flex items-center justify-center">
-          {/*<CustomText textClassName="primary-text font-size-small">*/}
+          {/*<CustomText textClassName="primary-text text-sm">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
           <CustomText textClassName="primary-text font-size-xxlarge font-bold xl:text-left lg:text-left md:text-left sm:text-center text-center">

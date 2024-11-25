@@ -88,7 +88,7 @@ const EAgreement = () => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
@@ -113,7 +113,7 @@ const EAgreement = () => {
                   key={index}
                   buttonText={name}
                   buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
+                  textClassName="text-xs"
                   onClick={() => onClickSelectStatus(value)}
                 />
               );
@@ -137,7 +137,7 @@ const EAgreement = () => {
               <CustomButton
                 buttonClassName="primary-btn min-h-9 h-9 w-32"
                 buttonText="Load More"
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 loading={
                   agreementListingDataLoading && !isEmpty(agreementListingData)
                 }

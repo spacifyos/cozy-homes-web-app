@@ -27,7 +27,7 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
 
       <div className="flex justify-between items-center">
         <div className="pr-2">
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             {date}
           </CustomText>
 
@@ -61,7 +61,7 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
             className="mr-2"
             imageStyle={{ width: 18, height: 18 }}
           />
-          <CustomText textClassName="font-size-small">{address}</CustomText>
+          <CustomText textClassName="text-sm">{address}</CustomText>
         </div>
 
         <div className="flex items-center col-span-1">
@@ -70,7 +70,7 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
             className="mr-2"
             imageStyle={{ width: 18, height: 18 }}
           />
-          <CustomText textClassName="font-size-small">{state}</CustomText>
+          <CustomText textClassName="text-sm">{state}</CustomText>
         </div>
       </div>
 

@@ -58,7 +58,7 @@ const CoinsTransaction = () => {
             <CustomImage src={Images.logoImage} imageStyle={{ width:30 }} />
           </div>
 
-          <CustomText textClassName="disable-text font-size-small">
+          <CustomText textClassName="disable-text text-sm">
             {t("account.spacifyCoins")}
           </CustomText>
 

@@ -18,7 +18,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
             src={Images.promotionIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
-          <CustomText textClassName="font-size-xxlarge font-bold white-text pl-2">
+          <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold white-text pl-2">
             Special Promotion
           </CustomText>
         </div>

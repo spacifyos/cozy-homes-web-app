@@ -31,7 +31,7 @@ const InvoiceComponent = ({ t, data, type }) => {
 
               <div className="flex flex-col">
                 <div className="flex items-end pb-0.5">
-                  <CustomText textClassName="black-text font-size-small font-bold line-clamp-1 pr-2">
+                  <CustomText textClassName="black-text text-sm font-bold line-clamp-1 pr-2">
                     {t("myStay.invoice")} #: {isEmpty(code) ? "-" : code}
                   </CustomText>
                 </div>
@@ -44,7 +44,7 @@ const InvoiceComponent = ({ t, data, type }) => {
                       Amount
                     </CustomText>
                     <CustomText
-                      textClassName={`font-size-small black-text font-bold`}
+                      textClassName={`text-sm black-text font-bold`}
                     >
                       {`RM${isEmpty(totalAmount) ? "0" : totalAmount}`}
                     </CustomText>
@@ -60,7 +60,7 @@ const InvoiceComponent = ({ t, data, type }) => {
                         imageStyle={{ width: 15 }}
                         className="mr-1"
                       />
-                      <CustomText textClassName="disable-text font-size-xsmall leading-4">
+                      <CustomText textClassName="disable-text text-xs leading-4">
                         {isEmpty(status) ? "-" : status}
                       </CustomText>
                     </div>

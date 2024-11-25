@@ -21,7 +21,7 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
           <CustomText textClassName="font-size-xxsmall disable-text">
             {date}
           </CustomText>
-          <CustomText textClassName="font-size-small font-bold">
+          <CustomText textClassName="text-sm font-bold">
             Title
           </CustomText>
           <CustomText textClassName="font-size-xxsmall disable-text leading-3">

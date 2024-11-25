@@ -65,7 +65,7 @@ const   DesktopPriceSection = ({
             {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
 
-          <CustomText textClassName="primary-text font-size-small">
+          <CustomText textClassName="primary-text text-sm">
             {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
 

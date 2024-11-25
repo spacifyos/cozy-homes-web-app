@@ -91,7 +91,7 @@ const MyReport = () => {
             <ul className="flex-wrap">
               <li>
                 <a href={"/owner"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
@@ -123,7 +123,7 @@ const MyReport = () => {
 
             <div className="relative">
               <input
-                className="p-4 global-box-shadow global-border-radius primaryWhite-bg-color resize-input-icon font-size-xsmall"
+                className="p-4 global-box-shadow global-border-radius primaryWhite-bg-color resize-input-icon text-xs"
                 type="month"
                 style={{ height: 48 }}
                 onChange={onChangeMonthValue}

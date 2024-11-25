@@ -30,7 +30,7 @@ const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
       ) : (
         <CustomText
           styles={{ height: 36 }}
-          textClassName="font-size-xsmall font-bold text-center"
+          textClassName="text-xs font-bold text-center"
           lineClamp={2}
         >
           {label}

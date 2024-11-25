@@ -25,7 +25,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickOpenCamera}
           />
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             {t("newRequest.camera")}
           </CustomText>
         </div>
@@ -37,7 +37,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             {t("newRequest.album")}
           </CustomText>
         </div>
@@ -49,7 +49,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             {t("newRequest.document")}
           </CustomText>
         </div>

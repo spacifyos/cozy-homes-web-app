@@ -71,7 +71,7 @@ const BookingOverview = ({ id }) => {
             <ul>
               <li>
                 <a href={"/explore"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>
                 </a>

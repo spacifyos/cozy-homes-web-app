@@ -44,7 +44,7 @@ const CustomSelectWithIcon = ({
                 src={selectedIcon}
                 imageStyle={{ width: 30, marginRight: 10 }}
               />
-              <CustomText textClassName="font-size-small">
+              <CustomText textClassName="text-sm">
                 {selectedLabel}
               </CustomText>
             </div>
@@ -80,7 +80,7 @@ const CustomSelectWithIcon = ({
                           src={icon}
                           imageStyle={{ width: 30, marginRight: 10 }}
                         />
-                        <CustomText textClassName="font-size-small">
+                        <CustomText textClassName="text-sm">
                           {label}
                         </CustomText>
                       </div>

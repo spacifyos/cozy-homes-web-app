@@ -31,11 +31,11 @@ const DesktopProfileCard = ({ data }) => {
           {isEmpty(name) ? "-" : name}
         </CustomText>
 
-        <CustomText textClassName="font-size-small leading-3 line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
+        <CustomText textClassName="text-sm leading-3 line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(phoneNumber) ? "-" : phoneNumber}
         </CustomText>
 
-        <CustomText textClassName="font-size-small line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
+        <CustomText textClassName="text-sm line-clamp-1 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(email) ? "-" : email}
         </CustomText>
       </div>

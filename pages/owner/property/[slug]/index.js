@@ -145,7 +145,7 @@ const PropertyDetail = ({ id }) => {
             <ul>
               <li>
                 <a href={"/owner"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
@@ -165,7 +165,7 @@ const PropertyDetail = ({ id }) => {
               <CustomText textClassName="font-bold font-size-xlarge">
                 {isEmpty(propertyName) ? "-" : propertyName}
               </CustomText>
-              <CustomText textClassName="font-size-xsmall font-light">
+              <CustomText textClassName="text-xs font-light">
                 {isEmpty(propertyAddress) ? "-" : propertyAddress}
               </CustomText>
             </div>
@@ -185,13 +185,13 @@ const PropertyDetail = ({ id }) => {
               <CustomButton
                 buttonText="Space Details"
                 buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => setSelectedCategory("Space Details")}
               />
               <CustomButton
                 buttonText="Rent Tracker"
                 buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => setSelectedCategory("Rent Tracker")}
               />
             </div>

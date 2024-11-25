@@ -39,17 +39,17 @@ const ListingCardComponent = ({
       {/*/>*/}
       {/*</div>*/}
 
-      <CustomText textClassName="font-size-small font-bold leading-5 line-clamp-1 pt-2">
+      <CustomText textClassName="text-sm font-bold leading-5 line-clamp-1 pt-2">
         {isEmpty(propertyName) ? "-" : propertyName}
       </CustomText>
       {/*<CustomText textClassName="font-size-xxsmall primary-text leading-4 line-clamp-1">*/}
       {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
       {/*</CustomText>*/}
       <div className="flex items-center flex-wrap">
-        <CustomText textClassName="font-size-small font-bold mr-2">
+        <CustomText textClassName="text-sm font-bold mr-2">
           RM {isEmpty(rental) ? "0" : rental}
         </CustomText>
-        <CustomText textClassName="font-size-xsmall disable-text">
+        <CustomText textClassName="text-xs disable-text">
           / month
         </CustomText>
       </div>

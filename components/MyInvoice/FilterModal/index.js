@@ -42,7 +42,7 @@ const FilterModal = ({
           </CustomText>
 
           <CustomText
-            textClassName="underline error-text font-size-xsmall cursor-pointer"
+            textClassName="underline error-text text-xs cursor-pointer"
             onClick={onClickReset}
           >
             Reset
@@ -51,7 +51,7 @@ const FilterModal = ({
 
         <div className="grid grid-cols-2 gap-2">
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="font-size-small pb-1">
+            <CustomText textClassName="text-sm pb-1">
               Invoice Number
             </CustomText>
 
@@ -65,7 +65,7 @@ const FilterModal = ({
           </div>
 
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="font-size-small pb-1">
+            <CustomText textClassName="text-sm pb-1">
               Date From
             </CustomText>
 
@@ -85,7 +85,7 @@ const FilterModal = ({
           </div>
 
           <div className="col-span-2 pb-6">
-            <CustomText textClassName="font-size-small pb-1">
+            <CustomText textClassName="text-sm pb-1">
               Date To
             </CustomText>
 

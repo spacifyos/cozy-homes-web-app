@@ -83,10 +83,10 @@ const Booking = () => {
             M Vertica, Kuala Lumpur
           </CustomText>
 
-          <CustomText textClassName="font-size-normal font-bold primary-text pb-1">
+          <CustomText textClassName="text-base font-bold primary-text pb-1">
             A-01-01, Room 2
           </CustomText>
-          <CustomText textClassName="disable-text font-size-small">
+          <CustomText textClassName="disable-text text-sm">
             Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala
             Lumpur, Federal Territory of Kuala Lumpur.
           </CustomText>
@@ -104,10 +104,10 @@ const Booking = () => {
               {isDropdownOpen ? (
                 <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 primaryWhite-bg-color absolute right-2 top-7">
                   <li>
-                    <a className="font-size-small primary-text">Reschedule</a>
+                    <a className="text-sm primary-text">Reschedule</a>
                   </li>
                   <li>
-                    <a className="font-size-small">Cancel</a>
+                    <a className="text-sm">Cancel</a>
                   </li>
                 </ul>
               ) : (

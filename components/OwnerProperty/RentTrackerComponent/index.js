@@ -53,7 +53,7 @@ const RentTrackerComponent = ({ data }) => {
               return (
                 <div className="flex justify-center items-center" key={index}>
                   <CustomText
-                    textClassName="font-size-small text-center"
+                    textClassName="text-sm text-center"
                     styles={{ width: index === 0 || index === 1 ? 100 : 70 }}
                   >
                     {item}
@@ -71,7 +71,7 @@ const RentTrackerComponent = ({ data }) => {
               return (
                 <div className="flex justify-center" key={index}>
                   <CustomText
-                    textClassName="font-size-small text-center primary-text"
+                    textClassName="text-sm text-center primary-text"
                     styles={{ width: index === 0 || index === 1 ? 100 : 70 }}
                   >
                     {item}
@@ -102,7 +102,7 @@ const RentTrackerComponent = ({ data }) => {
               <div className="flex">
                 <div className="flex justify-center items-center">
                   <div style={{ width: 100 }}>
-                    <CustomText textClassName="font-size-small primary-text font-bold">
+                    <CustomText textClassName="text-sm primary-text font-bold">
                       {room}
                     </CustomText>
                     <CustomText textClassName="font-size-xxsmall">
@@ -154,7 +154,7 @@ const RentTrackerComponent = ({ data }) => {
                                   key={rentalIndex}
                                 >
                                   <CustomText
-                                    textClassName={`font-size-small text-center ${renderTextColor()}`}
+                                    textClassName={`text-sm text-center ${renderTextColor()}`}
                                     styles={{ width: 70 }}
                                   >
                                     {isEmpty(amount) ? "0" : amount}

@@ -38,7 +38,7 @@ export default function Custom500() {
                 Oops! Internet Server Error.
             </CustomText>
 
-            <CustomText textClassName="text-center font-size-small pb-6">
+            <CustomText textClassName="text-center text-sm pb-6">
                 User can try again later.
             </CustomText>
 

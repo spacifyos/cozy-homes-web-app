@@ -275,7 +275,7 @@ const Account = () => {
                 {isEmpty(referralCode) ? "" : referralCode}
               </CustomText>
               <CustomButton
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
                 buttonText={isCopy ? "Copies" : "Copy"}
                 onClick={onClickCopy}
@@ -330,12 +330,12 @@ const Account = () => {
                 imageStyle={{ width: 25 }}
                 className="mr-2"
               />
-              <CustomText textClassName="font-size-small">
+              <CustomText textClassName="text-sm">
                 {t("account.logout")}
               </CustomText>
             </div>
 
-            <CustomText textClassName="disable-text font-size-small">
+            <CustomText textClassName="disable-text text-sm">
               {t("account.version")} 1.6.0
             </CustomText>
           </div>

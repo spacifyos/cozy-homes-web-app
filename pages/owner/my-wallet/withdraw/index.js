@@ -164,7 +164,7 @@ const Withdraw = () => {
               imageStyle={{ width: 30 }}
               src={isEmpty(bankLogo) ? Images.logoImage : bankLogo}
             />
-            <CustomText textClassName="font-size-small pl-2">
+            <CustomText textClassName="text-sm pl-2">
               {isEmpty(bankName) ? "-" : bankName}
             </CustomText>
           </div>

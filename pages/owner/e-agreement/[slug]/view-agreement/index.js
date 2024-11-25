@@ -383,7 +383,7 @@ const OwnerViewAgreement = ({ id }) => {
                 imageStyle={{ width: 23 }}
               />
             </div>
-            <CustomText textClassName="font-size-small text-justify leading-4">
+            <CustomText textClassName="text-sm text-justify leading-4">
               I,{" "}
               <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
               , hereby acknowledge and confirm that I have read, understood and

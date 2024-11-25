@@ -39,7 +39,7 @@ const DesktopPropertyPriceSection = ({
           <CustomText textClassName="black-text font-size-large font-bold pr-2">
             RM{rental}
           </CustomText>
-          <CustomText textClassName="black-text font-size-small">
+          <CustomText textClassName="black-text text-sm">
             / month
           </CustomText>
         </div>

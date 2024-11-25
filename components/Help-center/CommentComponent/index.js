@@ -5,7 +5,7 @@ import CustomButton from "@/components/CustomButton";
 const CommentComponent = ({ t, chatList }) => {
   return (
     <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
-      <CustomText textClassName="disable-text font-size-small">
+      <CustomText textClassName="disable-text text-sm">
         {t("requestOverview.comment")}
       </CustomText>
       <div

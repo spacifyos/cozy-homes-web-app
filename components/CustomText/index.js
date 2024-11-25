@@ -10,7 +10,7 @@ const CustomText = ({
   return (
     <p
       onClick={onClick}
-      className={`black-text font-size-normal ${textClassName} ${Scaling.getLineClamp(lineClamp)}`}
+      className={`black-text ${textClassName} ${Scaling.getLineClamp(lineClamp)}`}
       style={{ ...styles }}
     >
       {children}

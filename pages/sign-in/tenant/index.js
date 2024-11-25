@@ -214,7 +214,7 @@ const SignInTenant = () => {
               </div>
             </div>
 
-            <CustomText textClassName="font-size-small my-5">
+            <CustomText textClassName="text-sm my-5">
               By using our services, you are deemed unconditionally agree,
               consent and be bound by our terms and conditions and privacy
               policy.

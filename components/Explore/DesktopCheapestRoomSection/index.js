@@ -19,7 +19,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
-            <CustomText textClassName="font-size-xxlarge font-bold">
+            <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold">
               <span className="primary-text">Cheapest Rooms</span> Just For You
             </CustomText>
           </div>
@@ -27,7 +27,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
 
         <div className="flex items-center">
           <CustomText
-            textClassName="cursor-pointer pr-1.5"
+            textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs"
             onClick={onClickViewMore}
           >
             View More

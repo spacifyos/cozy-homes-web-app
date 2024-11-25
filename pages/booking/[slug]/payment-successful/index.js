@@ -50,7 +50,7 @@ const PaymentSuccessful = ({ id }) => {
         {t("payment.paymentSuccessful")}
       </CustomText>
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
+        <CustomText textClassName="text-xs text-center">
           Your booking was successful. We will process the tenancy agreement. An
           email confirmation will be sent to email{" "}
           <span className="underline">{isEmpty(email) ? "" : email}</span>.

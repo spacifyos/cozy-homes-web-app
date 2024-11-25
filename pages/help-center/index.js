@@ -114,7 +114,7 @@ const HelpCenter = () => {
                 key={index}
                 buttonText={_.get(item, ["btnText"], "")}
                 buttonClassName={`btn-sm ${_.isEqual(selectedStatus, _.get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() =>
                   onClickSelectStatusCategory(_.get(item, ["status"], ""))
                 }

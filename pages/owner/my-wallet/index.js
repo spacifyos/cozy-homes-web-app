@@ -132,7 +132,7 @@ const MyWallet = () => {
             className="global-box-shadow global-border-radius p-3 primaryWhite-bg-color flex justify-center items-center cursor-pointer"
           >
             <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 25 }} />
-            <CustomText textClassName="primary-text pl-2 font-size-small">
+            <CustomText textClassName="primary-text pl-2 text-sm">
               Withdraw
             </CustomText>
           </a>
@@ -155,7 +155,7 @@ const MyWallet = () => {
             <CustomButton
               buttonClassName="primary-btn min-h-9 h-9 w-32"
               buttonText="Load More"
-              textClassName="font-size-xsmall"
+              textClassName="text-xs"
               loading={
                 walletTransactionListingLoading &&
                 !isEmpty(walletTransactionListing)

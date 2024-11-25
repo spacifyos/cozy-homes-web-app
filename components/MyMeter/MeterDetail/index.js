@@ -47,7 +47,7 @@ const MeterDetail = ({ t, data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${wifi ? "power-on-text" : "disable-text"} font-size-small`}
+              textClassName={`${wifi ? "power-on-text" : "disable-text"} text-sm`}
             >
               Wifi
             </CustomText>
@@ -58,7 +58,7 @@ const MeterDetail = ({ t, data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${power ? "power-on-text" : "disable-text"} font-size-small`}
+              textClassName={`${power ? "power-on-text" : "disable-text"} text-sm`}
             >
               Power
             </CustomText>

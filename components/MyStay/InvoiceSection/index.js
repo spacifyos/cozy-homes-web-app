@@ -47,7 +47,7 @@ const InvoiceSection = ({
                 key={index}
                 buttonText={name}
                 buttonClassName={`btn-sm ${isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => onClickSelectCategory(value)}
               />
             );
@@ -55,7 +55,7 @@ const InvoiceSection = ({
         </div>
 
         <a href={`${isEmpty(type) ? "" : "/owner"}/my-invoice`}>
-          <CustomText textClassName="font-size-small cursor-pointer">
+          <CustomText textClassName="text-sm cursor-pointer">
             {t("myStay.viewMore")}
           </CustomText>
         </a>

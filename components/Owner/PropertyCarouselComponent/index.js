@@ -73,7 +73,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                   >
                     {showLabel ? (
                       <div className="flex pb-1">
-                        <CustomText textClassName="font-size-xsmall white-text available-bg-color px-4 py-0.5 rounded">
+                        <CustomText textClassName="text-xs white-text available-bg-color px-4 py-0.5 rounded">
                           Available
                         </CustomText>
                       </div>
@@ -84,7 +84,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                     <CustomText textClassName="white-text font-bold font-size-xlarge">
                       {isEmpty(propertyName) ? "-" : propertyName}
                     </CustomText>
-                    <CustomText textClassName="white-text font-size-xsmall font-light">
+                    <CustomText textClassName="white-text text-xs font-light">
                       {isEmpty(propertyAddress) ? "-" : propertyAddress}
                     </CustomText>
 

@@ -32,7 +32,7 @@ const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
           <CustomText textClassName="disable-text font-size-xxsmall">
             Appointment with
           </CustomText>
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             Razak bin Osman
           </CustomText>
         </div>

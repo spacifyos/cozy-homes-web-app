@@ -59,10 +59,10 @@ const Booking = () => {
             M Vertica, Kuala Lumpur
           </CustomText>
 
-          <CustomText textClassName="font-size-normal font-bold primary-text pb-1">
+          <CustomText textClassName="text-base font-bold primary-text pb-1">
             A-01-01, Room 2
           </CustomText>
-          <CustomText textClassName="disable-text font-size-small">
+          <CustomText textClassName="disable-text text-sm">
             Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala
             Lumpur, Federal Territory of Kuala Lumpur.
           </CustomText>

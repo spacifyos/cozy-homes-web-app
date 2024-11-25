@@ -12,7 +12,7 @@
   }
 
   select:required:invalid {
-    @extend .font-size-small;
+    @apply text-sm;
     color: $disable-color;
     //font-style: italic !important;
   }

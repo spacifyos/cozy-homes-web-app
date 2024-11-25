@@ -12,7 +12,7 @@ const MeterSection = ({ t, data }) => {
         </CustomText>
 
         <a href={"/my-meter"}>
-          <CustomText textClassName="font-size-small pb-2 cursor-pointer">
+          <CustomText textClassName="text-sm pb-2 cursor-pointer">
             {t("myStay.viewMore")}
           </CustomText>
         </a>

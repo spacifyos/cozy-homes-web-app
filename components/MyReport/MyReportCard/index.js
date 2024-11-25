@@ -26,13 +26,13 @@ const MyReportCard = ({ data, targetMonth }) => {
               {/*<CustomText textClassName="font-size-xxsmall disable-text italic">*/}
               {/*  08 Aug 2024, 3.35pm*/}
               {/*</CustomText>*/}
-              <CustomText textClassName="font-size-small primary-text font-bold">
+              <CustomText textClassName="text-sm primary-text font-bold">
                 {isEmpty(propertyName) ? "-" : propertyName}
               </CustomText>
-              <CustomText textClassName="font-size-small font-bold">
+              <CustomText textClassName="text-sm font-bold">
                 {isEmpty(description) ? "-" : description}
               </CustomText>
-              <CustomText textClassName="disable-text font-size-small">
+              <CustomText textClassName="disable-text text-sm">
                 {isEmpty(period) ? "-" : period}
               </CustomText>
             </div>

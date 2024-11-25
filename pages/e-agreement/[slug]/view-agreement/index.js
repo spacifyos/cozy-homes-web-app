@@ -335,21 +335,21 @@ const ViewAgreement = ({ id }) => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/e-agreement"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My E-Agreement
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={`/e-agreement/${id}`}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     {referenceNumber}
                   </CustomText>
                 </a>
@@ -395,7 +395,7 @@ const ViewAgreement = ({ id }) => {
             </Document>
 
             <div className="flex flex-col items-center pt-5">
-              <CustomText textClassName="white-text font-size-normal py-2">
+              <CustomText textClassName="white-text text-base py-2">
                 {t("viewAgreement.page")} {pageNumber} of {totalPages}
               </CustomText>
 
@@ -425,7 +425,7 @@ const ViewAgreement = ({ id }) => {
                   imageStyle={{ width: 23 }}
                 />
               </div>
-              <CustomText textClassName="font-size-small text-justify leading-4">
+              <CustomText textClassName="text-sm text-justify leading-4">
                 I,{" "}
                 <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
                 , hereby acknowledge and confirm that I have read, understood

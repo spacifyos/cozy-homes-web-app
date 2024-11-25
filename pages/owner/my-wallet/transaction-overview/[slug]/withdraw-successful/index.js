@@ -117,7 +117,7 @@ const WithdrawSuccessful = ({ id }) => {
           <CustomText textClassName="primary-text font-bold font-size-xlarge">
             RM {isEmpty(amount) ? "0" : amount}
           </CustomText>
-          <CustomText textClassName="disable-text font-size-xsmall">
+          <CustomText textClassName="disable-text text-xs">
             {isEmpty(updatedAt)
               ? moment().format("DD MMM YYYY HH:mmm")
               : updatedAt}

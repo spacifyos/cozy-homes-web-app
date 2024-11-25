@@ -11,10 +11,10 @@ const DetailComponent = ({ propertyName, unitRoomName, address }) => {
           {isEmpty(propertyName) ? "-" : propertyName}
         </CustomText>
 
-        {/*<CustomText textClassName="font-size-normal font-bold primary-text pb-1">*/}
+        {/*<CustomText textClassName="text-base font-bold primary-text pb-1">*/}
         {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
         {/*</CustomText>*/}
-        <CustomText textClassName="disable-text font-size-small pb-1">
+        <CustomText textClassName="disable-text text-sm pb-1">
           {isEmpty(address) ? "-" : address}
         </CustomText>
       </div>

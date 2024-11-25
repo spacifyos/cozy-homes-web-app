@@ -86,7 +86,7 @@ const TransactionCard = ({ data }) => {
           )}
 
           <CustomText
-            textClassName="font-bold font-size-small pt-1"
+            textClassName="font-bold text-sm pt-1"
             lineClamp={2}
           >
             {isEmpty(remarks) ? "-" : remarks}
@@ -101,7 +101,7 @@ const TransactionCard = ({ data }) => {
       </div>
 
       <CustomText
-        textClassName={`font-bold ${renderTextColor(typeValue)} font-size-small col-span-1 text-right`}
+        textClassName={`font-bold ${renderTextColor(typeValue)} text-sm col-span-1 text-right`}
       >
         {isEmpty(amount) ? "RM0" : amount}
       </CustomText>

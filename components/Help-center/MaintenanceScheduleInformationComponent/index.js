@@ -27,7 +27,7 @@ const MaintenanceScheduleInformation = ({ t }) => {
   return (
     <div className=" global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
       <div className="flex justify-between items-center">
-        <CustomText textClassName="disable-text font-size-small">
+        <CustomText textClassName="disable-text text-sm">
           {t("requestOverview.maintenanceScheduleInformation")}
         </CustomText>
         <CustomImage

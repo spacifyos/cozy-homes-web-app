@@ -63,7 +63,7 @@ const MyMeter = () => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
@@ -93,7 +93,7 @@ const MyMeter = () => {
               <CustomButton
                 buttonClassName="primary-btn min-h-9 h-9 w-32"
                 buttonText="Load More"
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
               />
             </div>
           ) : (

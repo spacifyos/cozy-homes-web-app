@@ -46,10 +46,10 @@ const TenancyComponent = ({ item, t }) => {
         </div>
 
         <div className={"pb-2"}>
-          <CustomText textClassName="font-bold font-size-small primary-text">
+          <CustomText textClassName="font-bold text-sm primary-text">
             {_.isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
-          <CustomText textClassName="font-size-xsmall" lineClamp={1}>
+          <CustomText textClassName="text-xs" lineClamp={1}>
             {_.isEmpty(unitName) ? "" : unitName}
             {_.isEmpty(roomName) ? "" : ", " + roomName}
           </CustomText>

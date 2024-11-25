@@ -265,7 +265,7 @@ const SignUpModal = ({ userType, setUserType }) => {
                   />
                 </div>
 
-                <CustomText textClassName="font-size-small mb-5">
+                <CustomText textClassName="text-sm mb-5">
                   By using our services, you are deemed unconditionally agree,
                   consent and be bound by our terms and conditions and privacy
                   policy.

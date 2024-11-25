@@ -28,7 +28,7 @@ const ListingSection = ({
             className="cursor-pointer"
             href={`/search`}
           >
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               {"View More >"}
             </CustomText>
           </a>
@@ -38,25 +38,25 @@ const ListingSection = ({
       {/*<CustomButton*/}
       {/*  buttonText="City"*/}
       {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "City") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*  textClassName="font-size-xsmall"*/}
+      {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("City")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="College"*/}
       {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "College") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*  textClassName="font-size-xsmall"*/}
+      {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("College")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="Condominium"*/}
       {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "Condominium") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*  textClassName="font-size-xsmall"*/}
+      {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("Condominium")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="All"*/}
       {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*  textClassName="font-size-xsmall"*/}
+      {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}
 

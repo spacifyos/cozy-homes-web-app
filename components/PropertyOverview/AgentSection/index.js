@@ -41,7 +41,7 @@ const AgentSection = ({
           </div>
 
           <div className="flex flex-col items-start pl-2 flex-1">
-            <CustomText textClassName="font-size-xsmall font-bold line-clamp-1">
+            <CustomText textClassName="text-xs font-bold line-clamp-1">
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
             <CustomText textClassName="disable-text font-size-xxsmall">
@@ -84,10 +84,10 @@ const AgentSection = ({
         <div className="grid grid-cols-2 justify-center items-center ">
           <div className="flex secondary-bg-color h-full py-2 px-4 justify-between items-center">
             <div className="flex flex-col leading-4">
-              <CustomText textClassName="font-size-xsmall">
+              <CustomText textClassName="text-xs">
                 {t("propertyDetail.totalMoveInCost")}
               </CustomText>
-              <CustomText textClassName="font-size-small primary-text font-bold">
+              <CustomText textClassName="text-sm primary-text font-bold">
                 RM{isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
               </CustomText>
             </div>

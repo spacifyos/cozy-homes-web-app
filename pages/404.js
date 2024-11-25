@@ -26,7 +26,7 @@ export default function Custom404() {
         Page Not Found!
       </CustomText>
 
-      <CustomText textClassName="text-center font-size-small pb-6">
+      <CustomText textClassName="text-center text-sm pb-6">
         Sorry, we could not find the page you are looking for.
       </CustomText>
 

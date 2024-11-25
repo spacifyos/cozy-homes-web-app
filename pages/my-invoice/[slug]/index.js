@@ -186,14 +186,14 @@ const InvoiceOverview = ({ id }) => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/my-invoice"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Invoice
                   </CustomText>
                 </a>
@@ -288,7 +288,7 @@ const InvoiceOverview = ({ id }) => {
                       >
                         <div className="">
                           <CustomText
-                            textClassName={`black-text font-size-small font-bold`}
+                            textClassName={`black-text text-sm font-bold`}
                           >
                             {itemName}
                           </CustomText>
@@ -313,16 +313,16 @@ const InvoiceOverview = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
                 {t("invoiceOverview.subtotal")}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
+              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(grandTotal) ? "0" : grandTotal}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
                 {t("invoiceOverview.tax")}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text font-size-small font-bold text-end">
+              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(tax) ? "0" : tax}
               </CustomText>
             </div>
@@ -333,10 +333,10 @@ const InvoiceOverview = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text font-size-small font-bold">
+              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
                 {t("invoiceOverview.totalAmount")}
               </CustomText>
-              <CustomText textClassName="col-span-1 primary-text font-size-small font-bold text-end">
+              <CustomText textClassName="col-span-1 primary-text text-sm font-bold text-end">
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}
               </CustomText>
             </div>

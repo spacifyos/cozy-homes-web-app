@@ -5,7 +5,7 @@
 }
 
 .step-section-infor-font {
-  @apply disable-text font-size-xsmall;
+  @apply disable-text text-xs;
 }
 
 .step-section-complete-font {
@@ -46,7 +46,7 @@
 }
 
 .modal-sub-font{
-  @apply disable-text font-size-xsmall
+  @apply disable-text text-xs
 }
 
 .divider-bookingOverview {

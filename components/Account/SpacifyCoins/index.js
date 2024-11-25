@@ -18,12 +18,12 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <CustomText textClassName="disable-text font-size-small">
+        <CustomText textClassName="disable-text text-sm">
           My Wallet
         </CustomText>
 
         <div className="flex items-center justify-center">
-          {/*<CustomText textClassName="primary-text font-size-small">*/}
+          {/*<CustomText textClassName="primary-text text-sm">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
           <CustomText textClassName="primary-text font-size-xxlarge font-bold text-center ">

@@ -154,7 +154,7 @@ function Home() {
         }}
       />
 
-      <DesktopLayout hideNav>
+      <DesktopLayout hideNav footerPaddingBottom="pb-20">
         <div className="relative xl:h-96">
           <Image
             loader={() => "/images/desktop_banner.png"}

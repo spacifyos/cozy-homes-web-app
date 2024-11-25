@@ -39,7 +39,7 @@ const UserSection = ({ t, data }) => {
       {/*    <CustomImage src={Images.logoImage} height={30} width={30} />*/}
       {/*  </div>*/}
       {/*  <div className="pl-2">*/}
-      {/*    <CustomText textClassName="disable-text font-size-small line-clamp-1">*/}
+      {/*    <CustomText textClassName="disable-text text-sm line-clamp-1">*/}
       {/*      {t("myStay.spacifyCoins")}*/}
       {/*    </CustomText>*/}
       {/*    <div className="flex items-center justify-start">*/}

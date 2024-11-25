@@ -190,7 +190,7 @@ const EditProfile = () => {
             <ul>
               <li>
                 <a href={"/account"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Account
                   </CustomText>
                 </a>

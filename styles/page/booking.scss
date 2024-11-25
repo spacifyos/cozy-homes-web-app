@@ -10,7 +10,7 @@
   color: $primary-black-color;
   height: 100px;
   resize: none;
-  @apply font-size-xsmall;
+  @apply text-xs;
 }
 
 .booking-textarea::placeholder {
@@ -27,7 +27,7 @@
   color: $primary-black-color;
   height: 40px;
 
-  @apply font-size-xsmall;
+  @apply text-xs;
 }
 
 .booking-input::placeholder {
@@ -51,7 +51,7 @@
   color: $primary-black-color;
   -webkit-appearance: none;
   height: 40px;
-  @apply font-size-xsmall;
+  @apply text-xs;
 
   option[value=""][disabled] {
     display: none;
@@ -64,7 +64,7 @@
 }
 
 .booking-select:required:invalid {
-  @extend .font-size-xsmall;
+  @apply text-xs;
   color: $disable-color;
 }
 

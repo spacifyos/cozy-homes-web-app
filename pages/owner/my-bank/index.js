@@ -139,7 +139,7 @@ const MyBank = () => {
                 key={index}
                 buttonText={item}
                 buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => onClickSelectCategory(item)}
               />
             ))}
@@ -171,7 +171,7 @@ const MyBank = () => {
                     <CustomButton
                       buttonClassName="primary-btn min-h-9 h-9 w-32"
                       buttonText="Load More"
-                      textClassName="font-size-xsmall"
+                      textClassName="text-xs"
                       loading={
                         walletTransactionListingLoading &&
                         !isEmpty(walletTransactionListing)

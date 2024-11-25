@@ -26,7 +26,7 @@ const MeterFeatureComponent = ({ name, icon, onClick }) => {
         <CustomImage src={icon} imageStyle={{ width: 45, height: 45 }} />
       </div>
 
-      <CustomText textClassName="font-size-xsmall font-bold h-full">
+      <CustomText textClassName="text-xs font-bold h-full">
         {name}
       </CustomText>
     </div>

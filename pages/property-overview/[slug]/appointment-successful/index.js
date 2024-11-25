@@ -36,7 +36,7 @@ const AppointmentSuccessful = ({}) => {
       </CustomText>
 
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
+        <CustomText textClassName="text-xs text-center">
           Appointment received. We will update you soon. An email will be sent to
           email <span className="underline">te**@gmail.com.</span>
         </CustomText>

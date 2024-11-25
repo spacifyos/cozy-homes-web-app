@@ -31,10 +31,10 @@ const TitlePage = () => {
           />
         </div>
         <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
-          <CustomText textClassName="disable-text font-size-small mb-5">
+          <CustomText textClassName="disable-text text-sm mb-5">
             15 Dec 2024
           </CustomText>
-          <CustomText textClassName="disable-text font-size-xsmall">
+          <CustomText textClassName="disable-text text-xs">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et
             lorem ut ligula posuere viverra. Nam sem lorem, egestas quis
             ultricies ut, pellentesque et nibh. Duis sit amet pulvinar

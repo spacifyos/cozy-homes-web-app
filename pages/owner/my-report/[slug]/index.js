@@ -136,7 +136,7 @@ const MyReport = ({ id }) => {
 
         <div className="divider-line" style={{ margin: "10px 0 18px 0" }}></div>
 
-        <CustomText textClassName="disable-text font-size-xsmall pb-1">
+        <CustomText textClassName="disable-text text-xs pb-1">
           Income
         </CustomText>
 
@@ -166,16 +166,16 @@ const MyReport = ({ id }) => {
                               style={{ width: 3, height: 3 }}
                             ></div>
                             <div className="">
-                              <CustomText textClassName="disable-text font-size-xsmall">
+                              <CustomText textClassName="disable-text text-xs">
                                 {isEmpty(title) ? "-" : title}
                               </CustomText>
-                              <CustomText textClassName="disable-text font-size-xsmall leading-1">
+                              <CustomText textClassName="disable-text text-xs leading-1">
                                 {isEmpty(period) ? "-" : period}
                               </CustomText>
                             </div>
                           </div>
 
-                          <CustomText textClassName="disable-text font-size-xsmall">
+                          <CustomText textClassName="disable-text text-xs">
                             {isEmpty(amount) ? "-" : amount}
                           </CustomText>
                         </div>
@@ -199,7 +199,7 @@ const MyReport = ({ id }) => {
           </div>
         </div>
 
-        <CustomText textClassName="disable-text font-size-xsmall pb-1">
+        <CustomText textClassName="disable-text text-xs pb-1">
           Expenses
         </CustomText>
 
@@ -217,12 +217,12 @@ const MyReport = ({ id }) => {
                       <CustomText textClassName="font-bold">
                         {isEmpty(label) ? "-" : label}
                       </CustomText>
-                      <CustomText textClassName="disable-text font-size-xsmall">
+                      <CustomText textClassName="disable-text text-xs">
                         {isEmpty(description) ? "-" : description}
                       </CustomText>
                     </div>
 
-                    <CustomText textClassName="disable-text font-size-xsmall">
+                    <CustomText textClassName="disable-text text-xs">
                       {isEmpty(amount) ? "0" : amount}
                     </CustomText>
                   </div>
@@ -246,7 +246,7 @@ const MyReport = ({ id }) => {
         {isEmpty(outstandingList) ? (
           false
         ) : (
-          <CustomText textClassName="disable-text font-size-xsmall pb-1">
+          <CustomText textClassName="disable-text text-xs pb-1">
             Outstanding
           </CustomText>
         )}
@@ -273,17 +273,17 @@ const MyReport = ({ id }) => {
                         style={{ width: 3, height: 3 }}
                       ></div>
                       <div className="">
-                        <CustomText textClassName="disable-text font-size-xsmall">
+                        <CustomText textClassName="disable-text text-xs">
                           {isEmpty(title) ? "-" : title}
                         </CustomText>
-                        <CustomText textClassName="disable-text font-size-xsmall leading-1">
+                        <CustomText textClassName="disable-text text-xs leading-1">
                           {isEmpty(description) ? "-" : description}
                         </CustomText>
                       </div>
                     </div>
                   </div>
 
-                  <CustomText textClassName="disable-text font-size-xsmall">
+                  <CustomText textClassName="disable-text text-xs">
                     {isEmpty(amount) ? "0" : amount}
                   </CustomText>
                 </div>

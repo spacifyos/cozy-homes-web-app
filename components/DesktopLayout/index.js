@@ -26,6 +26,7 @@ const DesktopLayout = ({
   isFiltered,
   loading,
   pageBreadcrumbs,
+  footerPaddingBottom,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -201,7 +202,7 @@ const DesktopLayout = ({
         </div>
       )}
 
-      <DesktopFooter />
+      <DesktopFooter paddingBottom={footerPaddingBottom} />
 
       <SignInModal
         userType={selectedUserType}

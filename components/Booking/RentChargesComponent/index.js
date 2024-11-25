@@ -51,7 +51,7 @@ const RentChargesComponent = ({
           />
           <CustomText
             styles={{ color: "#1E1E1E" }}
-            textClassName="pl-2 font-light font-size-small"
+            textClassName="pl-2 font-light text-sm"
           >
             Inclusion of:
           </CustomText>
@@ -66,14 +66,14 @@ const RentChargesComponent = ({
               <li className="flex justify-between">
                 <CustomText
                   styles={{ color: "#1E1E1E" }}
-                  textClassName="font-light font-size-small"
+                  textClassName="font-light text-sm"
                 >
                   - {label}
                 </CustomText>
                 {isEqual(process.env.PRODUCTION, "DEVELOPMENT") ? (
                   <CustomText
                     styles={{ color: "#1E1E1E" }}
-                    textClassName="font-light font-size-small"
+                    textClassName="font-light text-sm"
                   >
                     {`RM${value}`}
                   </CustomText>

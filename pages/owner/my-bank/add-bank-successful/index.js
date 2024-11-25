@@ -37,7 +37,7 @@ const AddBankSuccessful = ({}) => {
         Success!
       </CustomText>
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
+        <CustomText textClassName="text-xs text-center">
           You have successfully updated your bank account.
         </CustomText>
       </div>

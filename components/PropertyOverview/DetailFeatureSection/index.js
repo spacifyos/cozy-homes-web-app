@@ -49,7 +49,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
 
             <div className="flex items-center pt-1" style={{ height: 36 }}>
               <CustomText
-                textClassName={`primary-text font-size-xsmall font-bold`}
+                textClassName={`primary-text text-xs font-bold`}
                 lineClamp={2}
               >
                 {_.get(list, ["value"], "")}

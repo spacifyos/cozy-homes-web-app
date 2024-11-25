@@ -62,7 +62,7 @@ const EnquiriesForm = ({
                       imageStyle={{ width: 20, height: 20 }}
                       onClick={() => onClickCheckFeedbackMatters(value)}
                     />
-                    <CustomText textClassName="font-size-xsmall">
+                    <CustomText textClassName="text-xs">
                       {name}
                     </CustomText>
                   </div>

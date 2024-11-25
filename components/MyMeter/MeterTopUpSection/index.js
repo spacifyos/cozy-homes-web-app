@@ -34,7 +34,7 @@ const MeterTopUpSection = ({
 
       <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
         <div className="grid grid-cols-2 gap-1">
-            <CustomText textClassName="font-size-small font-bold col-span-2">
+            <CustomText textClassName="text-sm font-bold col-span-2">
               Tenancy
             </CustomText>
 
@@ -48,7 +48,7 @@ const MeterTopUpSection = ({
               value={tenancyValue}
             />
 
-          <CustomText textClassName="font-size-small font-bold col-span-2">
+          <CustomText textClassName="text-sm font-bold col-span-2">
             Top Up Price
           </CustomText>
 
@@ -68,11 +68,11 @@ const MeterTopUpSection = ({
             })}
           </div>
 
-          <CustomText textClassName="font-size-small font-bold">
+          <CustomText textClassName="text-sm font-bold">
             Other Price
           </CustomText>
 
-          <CustomText textClassName="font-size-small primary-text font-bold">
+          <CustomText textClassName="text-sm primary-text font-bold">
             Total Unit
           </CustomText>
 

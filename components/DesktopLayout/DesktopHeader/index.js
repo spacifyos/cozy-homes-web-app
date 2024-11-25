@@ -40,7 +40,7 @@ const DesktopHeader = ({
                 imageStyle={{ width: 13 }}
                 buttonText={`Register`}
                 buttonClassName={`default-btn min-w-44 min-h-10 h-10`}
-                textClassName="font-size-small"
+                textClassName="text-sm"
                 reverse
                 onClick={onClickSignUp}
               />
@@ -50,7 +50,7 @@ const DesktopHeader = ({
               icon={loading ? "" : Image.primaryLogoutIcon}
               buttonText={`Sign In`}
               buttonClassName="default-btn w-36 min-h-10 h-10"
-              textClassName="font-size-small"
+              textClassName="text-sm"
               reverse
               loadingColor="primary-text"
               loading={loading}

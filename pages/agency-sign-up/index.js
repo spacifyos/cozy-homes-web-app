@@ -89,7 +89,7 @@ const AgencySignUp = () => {
               className="input input-bordered w-full primaryWhite-bg-color mb-1 user-input"
             />
 
-            <CustomText textClassName="disable-text font-size-xsmall mb-4">
+            <CustomText textClassName="disable-text text-xs mb-4">
               {t("signUp.domainInfo")}
             </CustomText>
 
@@ -112,7 +112,7 @@ const AgencySignUp = () => {
               />
             </div>
 
-            <CustomText textClassName="font-size-small mb-5">
+            <CustomText textClassName="text-sm mb-5">
               By using our services, you are deemed unconditionally agree,
               consent and be bound by our terms and conditions and privacy
               policy.

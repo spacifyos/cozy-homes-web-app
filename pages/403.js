@@ -38,7 +38,7 @@ export default function Custom403() {
         Oops! It looks like you are forbidden.
       </CustomText>
 
-      <CustomText textClassName="text-center font-size-small pb-6">
+      <CustomText textClassName="text-center text-sm pb-6">
         User does not have the right permissions.
       </CustomText>
 

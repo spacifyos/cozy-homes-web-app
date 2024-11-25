@@ -13,7 +13,7 @@ const CustomLabelValue = ({
         {label}
       </CustomText>
       <CustomText
-        textClassName={`font-size-small ${highlight ? "primary-text" : "black-text"} font-bold`}
+        textClassName={`text-sm ${highlight ? "primary-text" : "black-text"} font-bold`}
       >
         {value}
       </CustomText>

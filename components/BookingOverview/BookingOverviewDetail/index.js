@@ -35,7 +35,7 @@ const BookingOverviewDetail = ({ t, data, id }) => {
           {/*</CustomText>*/}
           <div className="grid-cols-2 grid">
             <CustomButton
-              buttonClassName="booking-overview-btn font-size-normal"
+              buttonClassName="booking-overview-btn text-base"
               buttonText={t("bookingOverview.viewMore")}
               onClick={() =>
                 Helper.documentGetElementById("booking_overview_modal").showModal()

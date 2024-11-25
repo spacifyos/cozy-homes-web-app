@@ -146,7 +146,7 @@ const OwnerEAgreementOverview = ({ id }) => {
                   imageStyle={{ width: 18, height: 18 }}
                 />
                 <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
+                  <CustomText textClassName="text-sm disable-text">
                     {t("eAgreementOverview.agreed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">
@@ -161,7 +161,7 @@ const OwnerEAgreementOverview = ({ id }) => {
                   imageStyle={{ width: 18, height: 18 }}
                 />
                 <div className="flex flex-col">
-                  <CustomText textClassName="font-size-small disable-text">
+                  <CustomText textClassName="text-sm disable-text">
                     {t("eAgreementOverview.signed")}
                   </CustomText>
                   <CustomText textClassName="font-size-xxsmall disable-text">

@@ -36,7 +36,7 @@ const PaymentSuccessful = ({}) => {
         {t("payment.paymentSuccessful")}
       </CustomText>
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
+        <CustomText textClassName="text-xs text-center">
           {isEmpty(message) ? "" : message}
         </CustomText>
       </div>

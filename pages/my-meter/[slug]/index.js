@@ -149,14 +149,14 @@ const MyMeterOverview = ({ id }) => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/my-meter"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Meter
                   </CustomText>
                 </a>

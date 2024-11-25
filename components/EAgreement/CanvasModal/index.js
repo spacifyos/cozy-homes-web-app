@@ -35,7 +35,7 @@ const CanvasModal = ({
         className="flex justify-end cursor-pointer"
         onClick={onClickResetCanvas}
       >
-        <CustomText textClassName="primary-text font-size-small pb-2">
+        <CustomText textClassName="primary-text text-sm pb-2">
           {t("viewAgreement.reset")}
         </CustomText>
       </div>
@@ -71,7 +71,7 @@ const CanvasModal = ({
           />
         </div>
 
-        <CustomText textClassName="font-size-small text-justify leading-4">
+        <CustomText textClassName="text-sm text-justify leading-4">
           The parties agreed that this agreement may be electronically signed.
           The parties agree that the electronic signatures appearing on this
           agreement are the same as handwritten signature for the purpose of

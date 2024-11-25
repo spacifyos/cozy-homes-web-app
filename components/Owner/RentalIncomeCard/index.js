@@ -21,7 +21,7 @@ const RentalIncomeCard = ({ item }) => {
               ? "-"
               : moment(paidAt).format("DD MMM YYYY, HH:mm")}
           </CustomText>
-          <CustomText textClassName="font-bold font-size-small">
+          <CustomText textClassName="font-bold text-sm">
             {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
           <CustomText textClassName="disable-text font-size-xxsmall">

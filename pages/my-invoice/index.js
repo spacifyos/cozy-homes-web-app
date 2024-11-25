@@ -188,7 +188,7 @@ const MyInvoice = () => {
             <ul className="flex-wrap">
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
@@ -220,19 +220,19 @@ const MyInvoice = () => {
             <CustomButton
               buttonText="All"
               buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
+              textClassName="text-xs"
               onClick={() => onClickSelectCategory("All")}
             />
             <CustomButton
               buttonText="Unpaid"
               buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
+              textClassName="text-xs"
               onClick={() => onClickSelectCategory("Unpaid")}
             />
             <CustomButton
               buttonText="Paid"
               buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
-              textClassName="font-size-xsmall"
+              textClassName="text-xs"
               onClick={() => onClickSelectCategory("Paid")}
             />
           </div>
@@ -254,7 +254,7 @@ const MyInvoice = () => {
               <CustomButton
                 buttonClassName="primary-btn min-h-9 h-9 w-32"
                 buttonText="Load More"
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 loading={invoiceListingLoading && !isEmpty(invoiceListingData)}
                 onClick={onClickLoadMore}
               />

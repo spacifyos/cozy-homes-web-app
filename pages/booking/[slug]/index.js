@@ -657,21 +657,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
             <ul>
               <li>
                 <a href={"/explore"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/my-invoice"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Room Listing
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/my-invoice"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     {propertyName}
                   </CustomText>
                 </a>

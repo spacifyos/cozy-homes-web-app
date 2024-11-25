@@ -22,7 +22,7 @@ const EAgreementCard = ({ item, t }) => {
       <div className="flex-1 pr-3">
         <StatusLabel status={status} />
 
-        <CustomText textClassName="font-size-small primary-text font-bold pt-1">
+        <CustomText textClassName="text-sm primary-text font-bold pt-1">
           {isEmpty(referenceNumber) ? "-" : referenceNumber}
         </CustomText>
 
@@ -30,7 +30,7 @@ const EAgreementCard = ({ item, t }) => {
           {isEmpty(property) ? "-" : property}
         </CustomText>
 
-        <CustomText textClassName="disable-text font-size-xsmall pt-1">
+        <CustomText textClassName="disable-text text-xs pt-1">
           {isEmpty(tenurePeriod) ? "-" : tenurePeriod}
         </CustomText>
 

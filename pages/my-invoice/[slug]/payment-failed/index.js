@@ -28,21 +28,21 @@ const PaymentFailure = ({ id }) => {
             <ul>
               <li>
                 <a href={"/my-property"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/my-invoice"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Invoice
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={`/my-invoice/${id}`}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     {id}
                   </CustomText>
                 </a>
@@ -78,7 +78,7 @@ const PaymentFailure = ({ id }) => {
           </CustomText>
 
           <div className="pb-4 px-10 pt-4">
-            <CustomText textClassName="font-size-xsmall text-center">
+            <CustomText textClassName="text-xs text-center">
               Sorry. We encounter an error while processing your payment. Please
               try again later.
             </CustomText>

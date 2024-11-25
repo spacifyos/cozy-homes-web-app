@@ -10,13 +10,13 @@
 
 .custom-date-picker {
   border-radius: 10px !important;
-  @apply font-size-normal;
+  @apply text-base;
 
   .react-calendar__navigation {
     margin-bottom: 0;
     .react-calendar__navigation__label {
       span {
-        @apply font-size-normal font-bold;
+        @apply text-base font-bold;
       }
     }
 

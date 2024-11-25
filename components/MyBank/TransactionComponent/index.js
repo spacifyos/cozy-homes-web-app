@@ -15,7 +15,7 @@ const TransactionComponent = ({
       <div className="flex justify-between items-end pb-3 pt-2">
         <CustomText textClassName="font-bold">Transactions</CustomText>
 
-        {/*<CustomText textClassName="font-size-small cursor-pointer" onClick={onClickViewMoreTransaction}>*/}
+        {/*<CustomText textClassName="text-sm cursor-pointer" onClick={onClickViewMoreTransaction}>*/}
         {/*  View More*/}
         {/*</CustomText>*/}
       </div>
@@ -24,13 +24,13 @@ const TransactionComponent = ({
       {/*  <CustomButton*/}
       {/*    buttonText="All"*/}
       {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*    textClassName="font-size-xsmall"*/}
+      {/*    textClassName="text-xs"*/}
       {/*    onClick={() => onClickSelectCategory("All")}*/}
       {/*  />*/}
       {/*  <CustomButton*/}
       {/*    buttonText="Cash Out"*/}
       {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "Cash Out") ? "primary-btn" : "default-btn"} mr-2`}*/}
-      {/*    textClassName="font-size-xsmall"*/}
+      {/*    textClassName="text-xs"*/}
       {/*    onClick={() => onClickSelectCategory("Cash Out")}*/}
       {/*  />*/}
       {/*</div>*/}

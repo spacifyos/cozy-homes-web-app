@@ -47,7 +47,7 @@ const LatestUpdate = () => {
                 key={index}
                 buttonText={btn}
                 buttonClassName={`btn-sm ${_.isEqual(selectBtn, btn) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => onClickSelectBtn(btn)}
               />
             );

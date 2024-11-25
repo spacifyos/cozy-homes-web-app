@@ -360,7 +360,7 @@ const DesktopFormSection = ({
           </CustomText>
         </div>
 
-        <CustomText textClassName="col-span-6 font-light disable-text font-size-small">
+        <CustomText textClassName="col-span-6 font-light disable-text text-sm">
           Example:
         </CustomText>
 
@@ -421,7 +421,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <CustomText textClassName="pl-3 font-bold disable-text font-size-small">
+        <CustomText textClassName="pl-3 font-bold disable-text text-sm">
           I understand and agree to give Spacify and CTOS the consent to process
           my personal data as per PDPA Act.
         </CustomText>

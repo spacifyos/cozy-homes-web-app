@@ -29,6 +29,7 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import CustomText from "@/components/CustomText";
 import axios from "axios";
+import Image from "next/image";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -228,6 +229,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       />
 
       <DesktopLayout
+        footerPaddingBottom="pb-32"
         hideNav
         // loading={listingPropertyDetailDataLoading}
         pageBreadcrumbs={
@@ -235,14 +237,14 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
             <ul className="flex-wrap gap-1">
               <li>
                 <a href={"/explore"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/search"}>
-                  <CustomText textClassName="font-size-normal disable-text">
+                  <CustomText textClassName="text-base disable-text">
                     Room Listing
                   </CustomText>
                 </a>
@@ -256,23 +258,31 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           </div>
         }
       >
-        <div className="container mx-auto xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
+        <div className="container mx-auto pb-6">
           <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
-            <div className="row-span-2 col-span-2 global-border-radius global-box-shadow overflow-hidden">
-              <iframe
-                width="100%"
-                height="100%"
-                src={videoUrl}
-                title={propertyName}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
+            <div className="row-span-2 col-span-2 global-border-radius bordered overflow-hidden">
+              {isEmpty(videoUrl) ? (
+                <CustomImage className="w-full h-full" src={Images.logoImage} />
+              ) : (
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src={videoUrl}
+                  title={propertyName}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              )}
             </div>
-            <div className="col-span-1 global-border-radius global-box-shadow">
-              <CustomImage
-                className="w-full h-full"
+
+            <div className="col-span-1 global-border-radius border relative">
+              <Image
+                className="global-border-radius"
+                loader={() => propertyImageUrl}
+                loading="lazy"
+                fill
                 src={
                   isEmpty(propertyImageUrl)
                     ? Images.logoImage
@@ -280,16 +290,30 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 }
               />
             </div>
-            <div className="col-span-1 global-border-radius global-box-shadow">
-              <CustomImage
-                className="w-full h-full"
+
+            <div className="col-span-1 global-border-radius bordered relative overflow-hidden">
+              <Image
+                  className="global-border-radius"
+                loader={() => roomImageUrl[0]}
+                loading="lazy"
+                fill
+                src={
+                  isEmpty(roomImageUrl[0]) ? Images.logoImage : roomImageUrl[0]
+                }
+              />
+            </div>
+
+            <div className="col-span-1 border relative global-border-radius overflow-hidden">
+              <Image
+                className="global-border-radius"
+                loader={() => unitImageUrl}
+                loading="lazy"
+                fill
                 src={isEmpty(unitImageUrl) ? Images.logoImage : unitImageUrl}
               />
             </div>
-            <div className="col-span-1 global-border-radius global-box-shadow">
-              <CustomImage src={Images.logoImage} />
-            </div>
-            <div className="col-span-1 global-border-radius global-box-shadow">
+
+            <div className="col-span-1 global-border-radius global-box-shadow relative">
               <CustomImage src={Images.logoImage} />
             </div>
           </div>
@@ -315,7 +339,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               {/*        : Images.tenancyIcon*/}
               {/*    }*/}
               {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
-              {/*    textClassName="font-size-normal"*/}
+              {/*    textClassName="text-base"*/}
               {/*    buttonText={t("propertyDetail.tenancy")}*/}
               {/*    imageStyle={{ width: 18 }}*/}
               {/*    onClick={() => onClickSelectDetail(Constant.TENANCY)}*/}
@@ -329,7 +353,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               {/*    }*/}
               {/*    imageStyle={{ width: 18 }}*/}
               {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
-              {/*    textClassName="font-size-normal disable-text"*/}
+              {/*    textClassName="text-base disable-text"*/}
               {/*    buttonText={t("propertyDetail.policy")}*/}
               {/*    onClick={() => onClickSelectDetail(Constant.POLICY)}*/}
               {/*  />*/}

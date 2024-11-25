@@ -51,7 +51,7 @@ const PaymentFailed = ({ id }) => {
       </CustomText>
 
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="font-size-xsmall text-center">
+        <CustomText textClassName="text-xs text-center">
           Sorry. We encounter an error while processing your payment. Please try
           again later.
         </CustomText>

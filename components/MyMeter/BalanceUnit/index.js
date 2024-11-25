@@ -13,7 +13,7 @@ const BalanceUnit = ({
   return (
     <div className="balance-container">
       <div className="flex justify-center items-center">
-        <CustomText textClassName="font-size-normal">
+        <CustomText textClassName="text-base">
           {isShowBalanceInPrice ? "Balance Credit" : "Balance Unit"}
         </CustomText>
         <CustomText textClassName="font-size-xxlarge primary-text font-bold pl-2">

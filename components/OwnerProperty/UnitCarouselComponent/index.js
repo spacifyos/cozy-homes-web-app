@@ -56,7 +56,7 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                 >
                   <div className="flex pb-1">
                     <CustomText
-                      textClassName={`font-size-xsmall white-text ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
+                      textClassName={`text-xs white-text ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
                     >
                       {unitStatus}
                     </CustomText>

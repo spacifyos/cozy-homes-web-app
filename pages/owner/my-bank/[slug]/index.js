@@ -205,7 +205,7 @@ const BankOverview = () => {
               />
             </div>
 
-            <CustomText textClassName="pl-2 font-size-small disable-text text-justify">
+            <CustomText textClassName="pl-2 text-sm disable-text text-justify">
               By or adding or updating your bank account details, you
               acknowledge and agree that all information provided is accurate
               and complete. Any errors or discrepancies in the information

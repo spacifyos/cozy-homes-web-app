@@ -5,7 +5,7 @@ import Images from "@/src/utils/Image";
 const InsuranceSection = ({ t }) => {
   return (
     <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
-      <CustomText textClassName="disable-text font-size-small">
+      <CustomText textClassName="disable-text text-sm">
         {t("myTenancy.insurance")}
       </CustomText>
       <div
@@ -14,7 +14,7 @@ const InsuranceSection = ({ t }) => {
       ></div>
       <div className="flex flex-col justify-center items-center py-2">
         <CustomImage className="m-2" src={Images.noDataIcon} width={40} />
-        <CustomText textClassName="disable-text font-size-small">
+        <CustomText textClassName="disable-text text-sm">
           {t("myTenancy.noInsuranceAvailable")}
         </CustomText>
       </div>

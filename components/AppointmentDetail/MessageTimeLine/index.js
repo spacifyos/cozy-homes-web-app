@@ -37,7 +37,7 @@ const MessageTimeLine = ({ t, item }) => {
           />
           <CustomText textClassName="w-full">{name}</CustomText>
         </div>
-        <CustomText textClassName="bg-color p-1 px-3 global-border-radius disable-text font-size-small">
+        <CustomText textClassName="bg-color p-1 px-3 global-border-radius disable-text text-sm">
           {chat}
         </CustomText>
       </div>
