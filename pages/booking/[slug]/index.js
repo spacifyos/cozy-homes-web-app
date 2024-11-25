@@ -663,21 +663,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 </a>
               </li>
               <li>
-                <a href={"/my-invoice"}>
+                <a href={"/search"}>
                   <CustomText textClassName="text-base disable-text">
                     Room Listing
                   </CustomText>
                 </a>
               </li>
               <li>
-                <a href={"/my-invoice"}>
+                <a href={`/property-overview/${id}`}>
                   <CustomText textClassName="text-base disable-text">
                     {propertyName}
                   </CustomText>
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   Booking
                 </CustomText>
               </li>
@@ -685,7 +685,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-40 pb-40">
           <form
             ref={formRef}
             className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5"

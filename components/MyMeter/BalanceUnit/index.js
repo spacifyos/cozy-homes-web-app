@@ -16,7 +16,7 @@ const BalanceUnit = ({
         <CustomText textClassName="text-base">
           {isShowBalanceInPrice ? "Balance Credit" : "Balance Unit"}
         </CustomText>
-        <CustomText textClassName="font-size-xxlarge primary-text font-bold pl-2">
+        <CustomText textClassName="text-lg primary-text font-bold pl-2">
           {isShowBalanceInPrice
             ? isEmpty(balanceCredit)
               ? "0"
@@ -27,7 +27,7 @@ const BalanceUnit = ({
         </CustomText>
       </div>
 
-      <CustomText textClassName="disable-text font-size-xxsmall italic">
+      <CustomText textClassName="disable-text text-xs italic">
         {t("myMeterOverview.lastConnectedAt")}:{" "}
         {moment(lastConnectedAt).format("DD MMM YYYY, HH:mm")}
       </CustomText>

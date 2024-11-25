@@ -182,28 +182,37 @@ const InvoiceOverview = ({ id }) => {
           />
         }
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/my-invoice"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Invoice
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  {id}
-                </CustomText>
-              </li>
-            </ul>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                {/*<li>*/}
+                {/*  <a href={"/my-property"}>*/}
+                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*      My Property*/}
+                {/*    </CustomText>*/}
+                {/*  </a>*/}
+                {/*</li>*/}
+                <li>
+                  <a href={"/my-invoice"}>
+                    <CustomText textClassName="text-base disable-text">
+                      My Invoice
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">{id}</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">{id}</CustomText>
+            </div>
           </div>
         }
       >
@@ -222,7 +231,7 @@ const InvoiceOverview = ({ id }) => {
                 highlight
               />
               <div className="pb-2">
-                <CustomText textClassName="font-size-xxsmall disable-text">
+                <CustomText textClassName="text-xs disable-text">
                   {t("invoiceOverview.status")}
                 </CustomText>
                 <StatusLabel status={paymentStatus} />
@@ -269,7 +278,7 @@ const InvoiceOverview = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="font-size-xxsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("invoiceOverview.items")}
             </CustomText>
 
@@ -292,9 +301,7 @@ const InvoiceOverview = ({ id }) => {
                           >
                             {itemName}
                           </CustomText>
-                          <CustomText
-                            textClassName={`font-size-xxsmall disable-text`}
-                          >
+                          <CustomText textClassName={`text-xs disable-text`}>
                             RM{unitPrice} per unit
                           </CustomText>
                         </div>
@@ -383,7 +390,6 @@ const InvoiceOverview = ({ id }) => {
           ) : (
             false
           )}
-
         </div>
       </DesktopLayout>
     </div>

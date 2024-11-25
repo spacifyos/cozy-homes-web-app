@@ -180,6 +180,7 @@ const Image = {
   renoExpertIcon: "/images/icon/RenoExpert_icon.png",
   renoExpertIconActive: "/images/icon/RenoExpert_icon_active.png",
   locationOutlineActive: "/images/icon/location_outline.png",
+  registerIconActiveOutline: "/images/icon/registerIconActiveOutline.png",
 };
 
 export default { ...Image };

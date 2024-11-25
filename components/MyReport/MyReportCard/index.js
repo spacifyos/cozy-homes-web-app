@@ -23,7 +23,7 @@ const MyReportCard = ({ data, targetMonth }) => {
             <CustomImage src={Images.paperIcon} imageStyle={{ width: 25 }} />
 
             <div className="pl-3">
-              {/*<CustomText textClassName="font-size-xxsmall disable-text italic">*/}
+              {/*<CustomText textClassName="text-xs disable-text italic">*/}
               {/*  08 Aug 2024, 3.35pm*/}
               {/*</CustomText>*/}
               <CustomText textClassName="text-sm primary-text font-bold">

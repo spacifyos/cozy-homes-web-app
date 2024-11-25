@@ -35,6 +35,7 @@ const BookingOverview = ({ id }) => {
   const totalMoveInCost =
     listingSelector.getFeesTotalCostAmount(bookingOverviewData);
   const moveInFees = listingSelector.getFees(bookingOverviewData);
+  const monthlyRental = listingSelector.getRental(bookingOverviewData);
 
   const [openFirstMonthCharges, setOpenFirstMonthCharges] = useState(false);
   const [openLastMonthCharges, setOpenLastMonthCharges] = useState(false);
@@ -77,7 +78,7 @@ const BookingOverview = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   {id}
                 </CustomText>
               </li>
@@ -85,10 +86,10 @@ const BookingOverview = ({ id }) => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-40 pb-40">
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-40 pb-40">
           <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5">
             <DesktopPriceSection
-              targetRental={0}
+              targetRental={monthlyRental}
               isBookingOverview
               title={title}
               propertyName={propertyName}

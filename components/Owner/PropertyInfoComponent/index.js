@@ -20,12 +20,12 @@ const PropertyInfoComponent = ({ lists }) => {
             </div>
 
             <div className="pt-1">
-              <CustomText textClassName="font-size-xlarge font-bold text-center">
+              <CustomText textClassName="text-base font-bold text-center">
                 {value}
               </CustomText>
               <CustomText
                 styles={{ height: 30 }}
-                textClassName="disable-text font-size-xxsmall text-center flex items-center"
+                textClassName="disable-text text-xs text-center flex items-center"
               >
                 {name}
               </CustomText>

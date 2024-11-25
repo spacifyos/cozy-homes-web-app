@@ -7,7 +7,7 @@ import Images from "@/src/utils/Image";
 const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
   return (
     <CustomModal id="mobile_pin_number_info_modal">
-      <CustomText textClassName="font-bold font-size-large pb-5">
+      <CustomText textClassName="font-bold text-base pb-5">
         Pin Number Unset
       </CustomText>
 

@@ -186,21 +186,30 @@ const EditProfile = () => {
           userProfileLoading || changePasswordLoading || editProfileLoading
         }
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/account"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Account
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  Edit Profit
-                </CustomText>
-              </li>
-            </ul>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <a href={"/account"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Account
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">Edit Profit</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+                <CustomText textClassName="text-base">Edit Profile</CustomText>
+            </div>
           </div>
         }
       >
@@ -234,11 +243,11 @@ const EditProfile = () => {
               className="pb-0"
             />
 
-            <CustomText textClassName="primary-text font-size-xxsmall pb-4">
+            <CustomText textClassName="primary-text text-xs pb-4">
               Use this phone number to login system
             </CustomText>
 
-            <CustomText textClassName="font-size-xxsmall mb-1">
+            <CustomText textClassName="text-xs mb-1">
               Change Password
             </CustomText>
 
@@ -281,105 +290,6 @@ const EditProfile = () => {
           onClickChangePassword={onClickChangePassword}
         />
       </DesktopLayout>
-
-      <CustomHeader
-        hideRightButton
-        hideBgImage
-        pageTitle={t("pageTitle.editProfile")}
-        onClickGoBack={onClickGoBack}
-      >
-        <div
-          className="body-container pb-3 flex flex-col grow"
-          style={{ height: "calc(100vh - 67px)" }}
-        >
-          <div className="grow">
-            <div className="flex justify-center items-center">
-              <CustomImage
-                src={Images.userIcon}
-                imageStyle={{ width: 100 }}
-                className="my-2"
-              />
-            </div>
-
-            <BookingInput
-              bgColor="primaryWhite-bg-color"
-              title={t("editProfile.name")}
-              placeholder={t("editProfile.name")}
-              className="pb-3"
-              value={nameValue}
-              onChange={onChangeNameValue}
-            />
-
-            <CustomLabelValue
-              label={t("editProfile.email")}
-              value={isEmpty(email) ? "-" : email}
-              className="pb-4"
-            />
-
-            <CustomLabelValue
-              label={t("editProfile.phoneNumber")}
-              value={isEmpty(phoneNumber) ? "-" : phoneNumber}
-              className="pb-0"
-            />
-
-            <CustomText textClassName="primary-text font-size-xxsmall pb-4">
-              Use this phone number to login system
-            </CustomText>
-
-            <CustomText textClassName="font-size-xxsmall mb-1">
-              Change Password
-            </CustomText>
-
-            <CustomButton
-              buttonClassName="default-btn-outline btn-sm mb-4"
-              buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}
-              buttonText="Change Password"
-              onClick={() =>
-                onClickOpenChangePasswordModal("change_password_modal")
-              }
-            />
-
-            {/*<CustomText textClassName="font-size-xxsmall mb-1">*/}
-            {/*  {t("editProfile.pinNumber")}*/}
-            {/*</CustomText>*/}
-
-            {/*<CustomButton*/}
-            {/*  buttonClassName="default-btn-outline btn-sm"*/}
-            {/*  buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}*/}
-            {/*  buttonText={t("editProfile.setPinNumber")}*/}
-            {/*  onClick={onClickOpenSetPinNumberModal}*/}
-            {/*/>*/}
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <CustomButton
-              buttonClassName="default-btn-outline"
-              buttonText={t("myTenancy.cancel")}
-              onClick={onClickGoBack}
-            />
-
-            <CustomButton
-              buttonClassName=" primary-btn"
-              buttonText={t("myTenancy.submit")}
-              onClick={onClickSubmit}
-            />
-          </div>
-
-          <ChangePasswordModal
-            t={t}
-            currentPasswordValue={currentPasswordValue}
-            onChangeCurrentPassword={onChangeCurrentPassword}
-            errorMessage={errorMessage}
-            passwordValue={passwordValue}
-            onChangePassword={onChangePassword}
-            confirmPasswordValue={confirmPasswordValue}
-            onChangeConfirmPassword={onChangeConfirmPassword}
-            changePasswordLoading={changePasswordLoading}
-            onClickCloseChangePasswordModal={onClickCloseChangePasswordModal}
-            onClickChangePassword={onClickChangePassword}
-          />
-        </div>
-      </CustomHeader>
     </div>
   );
 };

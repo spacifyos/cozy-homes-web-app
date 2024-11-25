@@ -34,7 +34,7 @@ export default function Custom500() {
                 </CustomText>
             </div>
 
-            <CustomText textClassName="font-size-xxlarge text-center font-bold pb-2">
+            <CustomText textClassName="text-lg text-center font-bold pb-2">
                 Oops! Internet Server Error.
             </CustomText>
 

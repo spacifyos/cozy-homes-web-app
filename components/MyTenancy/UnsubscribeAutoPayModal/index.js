@@ -8,7 +8,7 @@ import Helper from "@/src/utils/Helper";
 const SubscribeAutoPayModal = ({ t }) => {
   return (
     <CustomModal id="myTenancy_Unsubscribe_modal">
-      <CustomText textClassName="font-bold font-size-large pb-5">
+      <CustomText textClassName="font-bold text-base pb-5">
         {t("myTenancy.unsubscribeAutoPay")}
       </CustomText>
 

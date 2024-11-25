@@ -88,7 +88,7 @@ const MyInvoiceComponent = ({ data }) => {
               >
                 RM{_.isEmpty(totalAmountText) ? "0" : totalAmountText}
               </CustomText>
-              <CustomText textClassName="disable-text font-size-xxsmall">
+              <CustomText textClassName="disable-text text-xs">
                 {`Last updated: ${moment().format("DD MMM YYYY")}`}
               </CustomText>
             </div>

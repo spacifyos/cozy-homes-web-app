@@ -72,11 +72,11 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
 
       <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
         <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-color">
-          <CustomText textClassName="disable-text font-size-xxsmall">
+          <CustomText textClassName="disable-text text-xs">
             {t("myStay.balanceUnit")}
           </CustomText>
           <div className="flex items-center">
-            <CustomText textClassName="primary-text font-size-xlarge font-bold pe-1">
+            <CustomText textClassName="primary-text text-base font-bold pe-1">
               {isEmpty(balanceUnit) ? "-" : balanceUnit}
             </CustomText>
             {/*<CustomImage src={Images.refreshIcon} width={15} height={15} />*/}
@@ -86,7 +86,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
         <a className="col-span-4" href={`/my-meter/${id}`}>
           <CustomButton
             buttonClassName="w-full primary-btn h-14"
-            textClassName="font-size-xxlarge"
+            textClassName="text-lg"
             buttonText={t("myStay.topUp")}
           />
         </a>

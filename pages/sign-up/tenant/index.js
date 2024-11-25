@@ -169,7 +169,7 @@ const SignUpTenant = () => {
           {/*<div className="grid grid-cols-2">*/}
           {/*  <div onClick={onClickToSignIn} className="cursor-pointer">*/}
           {/*    <CustomText*/}
-          {/*      textClassName="text-center p-4 primary-text font-bold font-size-large"*/}
+          {/*      textClassName="text-center p-4 primary-text font-bold text-base"*/}
           {/*      styles={{*/}
           {/*        borderRadius: "10px 10px 0 0",*/}
           {/*        backgroundColor: "#E8E8E8",*/}
@@ -181,19 +181,19 @@ const SignUpTenant = () => {
           {/*  </div>*/}
 
           {/*  <CustomText*/}
-          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"*/}
+          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold text-base"*/}
           {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
           {/*  >*/}
           {/*    {t("signUp.signUp")}*/}
           {/*  </CustomText>*/}
           {/*</div>*/}
           <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-1 pt-3 font-bold font-size-xxlarge">
+            <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
               You’re signing up as
             </CustomText>
 
             <CustomText
-              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
+              textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
               styles={{
                 color: "#F05A22",
                 fontSize: 32,

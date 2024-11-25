@@ -44,11 +44,11 @@ const DesktopFormSection = ({
   return (
     <div className="px-5 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
       <div className="grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold font-size-xxlarge primary-text">
+        <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base primary-text">
           Please Fill in The Form
         </CustomText>
 
-        <CustomText textClassName="col-span-6 font-bold">
+        <CustomText textClassName="col-span-6 font-bold text-sm">
           Basic Information
         </CustomText>
         <BookingInput
@@ -170,7 +170,7 @@ const DesktopFormSection = ({
       </div>
 
       <div className="py-3 grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold">
+        <CustomText textClassName="col-span-6 font-bold text-sm">
           Address Information
         </CustomText>
 
@@ -223,7 +223,7 @@ const DesktopFormSection = ({
       </div>
 
       <div className="py-3 grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold">
+        <CustomText textClassName="col-span-6 font-bold text-sm">
           Emergency Contact Information
         </CustomText>
 
@@ -307,7 +307,7 @@ const DesktopFormSection = ({
       </div>
 
       <div className="py-3 grid grid-cols-6 gap-2 flex items-end">
-        <CustomText textClassName="col-span-6 font-bold">
+        <CustomText textClassName="col-span-6 font-bold text-sm">
           Verification
         </CustomText>
 
@@ -337,7 +337,7 @@ const DesktopFormSection = ({
 
       <div className="grid grid-cols-1 pb-3">
         <BookingInput
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-color"
           className="col-span-1"
           placeholder="Referral Code"
           title="Referral Code (Optional)"
@@ -347,15 +347,15 @@ const DesktopFormSection = ({
       </div>
 
       <div className="grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold">
+        <CustomText textClassName="col-span-6 font-bold text-sm">
           Supporting Documents
         </CustomText>
 
         <div className="col-span-6 pl-1">
-          <CustomText textClassName="font-light font-size-xsmall ">
+          <CustomText textClassName="font-light text-xs">
             1. Please make sure your IC or passport is clear and readable.
           </CustomText>
-          <CustomText textClassName="font-light font-size-xsmall ">
+          <CustomText textClassName="font-light text-xs">
             2. Please avoid flash or glare.
           </CustomText>
         </div>
@@ -364,8 +364,8 @@ const DesktopFormSection = ({
           Example:
         </CustomText>
 
-        <div className="col-span-3 flex flex-col items-center">
-          <div className="relative" style={{}}>
+        <div className="xl:col-span-3 lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-6 flex flex-col items-center">
+          <div className="relative" style={{ width: "100%" }}>
             <ImageUploading loading={frontIcUploading} />
 
             <CustomImage
@@ -387,8 +387,8 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <div className="col-span-3 flex flex-col items-center">
-          <div className="relative" style={{}}>
+        <div className="xl:col-span-3 lg:col-span-3 md:col-span-6 sm:col-span-6 col-span-6 flex flex-col items-center">
+          <div className="relative" style={{ width: "100%" }}>
             <ImageUploading loading={backIcUploading} />
 
             <CustomImage
@@ -421,7 +421,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <CustomText textClassName="pl-3 font-bold disable-text text-sm">
+        <CustomText textClassName="pl-3 font-bold disable-text text-xs text-justify">
           I understand and agree to give Spacify and CTOS the consent to process
           my personal data as per PDPA Act.
         </CustomText>
@@ -432,13 +432,13 @@ const DesktopFormSection = ({
         className="primary-bg-color p-2 px-4 my-4 flex justify-center items-center cursor-pointer global-border-radius"
         onClick={onClickBooking}
       >
-        <CustomText textClassName="font-size-large font-bold white-text">
+        <CustomText textClassName="text-base font-bold white-text">
           Book Now
         </CustomText>
       </div>
 
       <div className="grid grid-cols-6">
-        <CustomText textClassName="col-span-6 font-light font-size-xsmall text-center">
+        <CustomText textClassName="col-span-6 font-light text-xs text-center">
           This site is protected by reCAPTCHA and the Google{" "}
           <span style={{ textDecoration: "underline" }}>Privacy Policy</span>{" "}
           and{" "}

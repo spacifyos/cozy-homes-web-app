@@ -9,15 +9,15 @@
 }
 
 .step-section-complete-font {
-  @apply font-size-xxsmall tertiary-bg-color global-border-radius white-text px-4 leading-5;
+  @apply text-xs tertiary-bg-color global-border-radius white-text px-4 leading-5;
 }
 
 .step-section-step-font {
-  @apply font-size-xlarge font-bold py-2;
+  @apply text-base font-bold py-2;
 }
 
 .step-section-pending-font {
-  @apply font-size-xxsmall disable-bg-color global-border-radius white-text px-4 leading-5;
+  @apply text-xs disable-bg-color global-border-radius white-text px-4 leading-5;
 }
 
 .modal-box {
@@ -30,7 +30,7 @@
 }
 
 .modal-title-font {
-  @apply font-bold font-size-large;
+  @apply font-bold text-base;
 }
 
 .modal-font-primary {

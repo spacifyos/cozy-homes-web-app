@@ -28,7 +28,7 @@ const FeatureComponent = ({
             imageStyle={{ width: imageWidth, height: imageHeight }}
           />
         </div>
-        <CustomText textClassName="text-sm">{title}</CustomText>
+        <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
       <CustomImage src={Images.rightIcon} className="w-2" />
@@ -49,7 +49,7 @@ const FeatureComponent = ({
             imageStyle={{ width: imageWidth, height: imageHeight }}
           />
         </div>
-        <CustomText textClassName="text-sm">{title}</CustomText>
+        <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
       <CustomImage src={Images.rightIcon} className="w-2" />

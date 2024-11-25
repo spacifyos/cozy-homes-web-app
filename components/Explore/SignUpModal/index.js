@@ -160,12 +160,12 @@ const SignUpModal = ({ userType, setUserType }) => {
 
             <div className="w-full">
               <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
-                <CustomText textClassName="text-center pb-1 font-bold font-size-xxlarge">
+                <CustomText textClassName="text-center pb-1 font-bold text-lg">
                   You’re signing up as
                 </CustomText>
 
                 <CustomText
-                  textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
+                  textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
                   styles={{
                     color: isEqual(userType, Constant.TENANT)
                       ? "#F05A22"

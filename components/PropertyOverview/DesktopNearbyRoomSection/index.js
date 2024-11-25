@@ -18,7 +18,7 @@ const DesktopNearbyRoomSection = ({ data, loading, onClickViewMore }) => {
             src={Images.nearbyIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
-          <CustomText textClassName="font-size-xxlarge font-bold primary-text pl-2">
+          <CustomText textClassName="text-lg font-bold primary-text pl-2">
             Nearby Rooms
           </CustomText>
         </div>

@@ -30,7 +30,7 @@ const DesktopPopularUniversitySection = ({
         <div className="flex items-center">
           <CustomText
             textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs"
-            onClick={onClickViewMore}
+            onClick={() => onClickViewMore()}
           >
             View More
           </CustomText>

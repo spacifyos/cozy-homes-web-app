@@ -12,7 +12,7 @@ const MessageTimeLine = ({ t, item }) => {
   return (
     <div className="grid grid-cols-12 gap-1 h-full pb-3">
       <div className="col-span-2">
-        <CustomText textClassName="font-size-xxsmall disable-text text-end">
+        <CustomText textClassName="text-xs disable-text text-end">
           {date}
         </CustomText>
       </div>

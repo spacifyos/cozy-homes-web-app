@@ -163,7 +163,7 @@ const OwnerHome = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   My Property
                 </CustomText>
               </li>
@@ -173,7 +173,7 @@ const OwnerHome = () => {
       >
         {/*<div className="body-container pt-10 pb-12">*/}
         {/*  <div className="flex items-center">*/}
-        {/*    <CustomText textClassName="white-text font-bold font-size-large">*/}
+        {/*    <CustomText textClassName="white-text font-bold text-base">*/}
         {/*      Welcome to{" "}*/}
         {/*    </CustomText>*/}
         {/*    <CustomImage*/}

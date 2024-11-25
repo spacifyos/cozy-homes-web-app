@@ -42,7 +42,7 @@ const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
                 imageStyle={{ width: 25 }}
               />
             </div>
-            {/*<CustomText textClassName="disable-text font-size-xxsmall max-h-9 leading-3 my-1">*/}
+            {/*<CustomText textClassName="disable-text text-xs max-h-9 leading-3 my-1">*/}
             {/*  {_.get(list, ["title"], "")}*/}
             {/*</CustomText>*/}
             {/*</div>*/}

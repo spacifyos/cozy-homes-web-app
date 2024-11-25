@@ -75,7 +75,7 @@ const InvoiceSummary = ({ data }) => {
               >
                 RM{_.isEmpty(totalAmountText) ? "0" : totalAmountText}
               </CustomText>
-              <CustomText textClassName="white-text font-size-xxsmall">
+              <CustomText textClassName="white-text text-xs">
                 {`Last updated: ${moment().format("DD MMM YYYY")}`}
               </CustomText>
             </div>

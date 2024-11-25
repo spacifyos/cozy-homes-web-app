@@ -105,7 +105,7 @@ const RentTrackerComponent = ({ data }) => {
                     <CustomText textClassName="text-sm primary-text font-bold">
                       {room}
                     </CustomText>
-                    <CustomText textClassName="font-size-xxsmall">
+                    <CustomText textClassName="text-xs">
                       {roomType}
                     </CustomText>
                   </div>

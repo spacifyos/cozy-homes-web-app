@@ -81,7 +81,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                       false
                     )}
 
-                    <CustomText textClassName="white-text font-bold font-size-xlarge">
+                    <CustomText textClassName="white-text font-bold text-base">
                       {isEmpty(propertyName) ? "-" : propertyName}
                     </CustomText>
                     <CustomText textClassName="white-text text-xs font-light">
@@ -105,11 +105,11 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                               imageStyle={{ width: 22, height: 22 }}
                             />
 
-                            <CustomText textClassName="white-text font-size-xlarge font-bold">
+                            <CustomText textClassName="white-text text-base font-bold">
                               {value}
                             </CustomText>
                             <CustomText
-                              textClassName="white-text font-size-xxsmall text-center"
+                              textClassName="white-text text-xs text-center"
                               styles={{ height: 30 }}
                             >
                               {name}

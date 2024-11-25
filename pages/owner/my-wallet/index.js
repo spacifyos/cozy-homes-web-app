@@ -119,7 +119,7 @@ const MyWallet = () => {
             >
               {isEmpty(balance) ? "RM 0" : balance}
             </CustomText>
-            <CustomText textClassName="white-text font-size-xxsmall font-light">
+            <CustomText textClassName="white-text text-xs font-light">
               Updated on{" "}
               {isEmpty(updatedAt)
                 ? moment().format("DD MMM YYYY, H:mmm")

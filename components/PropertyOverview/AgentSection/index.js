@@ -44,11 +44,11 @@ const AgentSection = ({
             <CustomText textClassName="text-xs font-bold line-clamp-1">
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
-            <CustomText textClassName="disable-text font-size-xxsmall">
+            <CustomText textClassName="disable-text text-xs">
               {t("propertyDetail.memberSince")}{" "}
               {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
-            {/*<CustomText textClassName="font-size-xxsmall power-on-text">*/}
+            {/*<CustomText textClassName="text-xs power-on-text">*/}
             {/*  15 Active Listing*/}
             {/*</CustomText>*/}
           </div>
@@ -104,7 +104,7 @@ const AgentSection = ({
               className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
               onClick={onClickBooking}
             >
-              <CustomText textClassName="font-size-large font-bold white-text">
+              <CustomText textClassName="text-base font-bold white-text">
                 {t("propertyDetail.bookNow")}
               </CustomText>
               <CustomImage
@@ -117,7 +117,7 @@ const AgentSection = ({
               href={`/booking/${propertyId}`}
               className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
             >
-              <CustomText textClassName="font-size-large font-bold white-text">
+              <CustomText textClassName="text-base font-bold white-text">
                 {t("propertyDetail.bookNow")}
               </CustomText>
               <CustomImage

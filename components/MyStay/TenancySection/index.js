@@ -41,7 +41,7 @@ const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
 
   return (
     <div className="pb-7 relative">
-      <CustomText textClassName="section-title">
+      <CustomText textClassName="section-title pb-2">
         {t("myStay.myTenancy")}
       </CustomText>
 
@@ -51,7 +51,7 @@ const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
         <Swiper
           className="mySwiper global-box-shadow global-border-radius cursor-grab primaryWhite-bg-color"
           onSlideChange={onSlideChange}
-          style={{ width: "100%", maxHeight: 270 }}
+          style={{ width: "100%", maxHeight: 300 }}
         >
           {map(data, (item, index) => {
             return (

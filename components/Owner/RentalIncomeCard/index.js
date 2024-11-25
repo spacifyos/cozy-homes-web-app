@@ -16,7 +16,7 @@ const RentalIncomeCard = ({ item }) => {
         <CustomImage src={Images.rentalInIcon} imageStyle={{ width: 35 }} />
 
         <div className="px-3">
-          <CustomText textClassName="disable-text italic font-size-xxsmall">
+          <CustomText textClassName="disable-text italic text-xs">
             {isEmpty(paidAt)
               ? "-"
               : moment(paidAt).format("DD MMM YYYY, HH:mm")}
@@ -24,13 +24,13 @@ const RentalIncomeCard = ({ item }) => {
           <CustomText textClassName="font-bold text-sm">
             {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
-          <CustomText textClassName="disable-text font-size-xxsmall">
+          <CustomText textClassName="disable-text text-xs">
             {/*Transferred to Wallet*/}
           </CustomText>
         </div>
       </div>
 
-      <CustomText textClassName="font-bold primary-text font-size-large">
+      <CustomText textClassName="font-bold primary-text text-base">
         {`+RM${isEmpty(amount) ? "0" : amount}`}
       </CustomText>
     </div>

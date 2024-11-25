@@ -39,11 +39,11 @@ const WalletSummary = ({ data }) => {
             <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color">
               <CustomImage src={icon} imageStyle={{ width: 35 }} />
 
-              <CustomText textClassName="font-size-xxlarge font-bold leading-4 py-1 text-center">
+              <CustomText textClassName="text-lg font-bold leading-4 py-1 text-center">
                 {isEmpty(value) ? "RM0" : value}
               </CustomText>
 
-              <CustomText textClassName="disable-text font-size-xxsmall">
+              <CustomText textClassName="disable-text text-xs">
                 {name}
               </CustomText>
             </div>

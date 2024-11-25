@@ -14,7 +14,7 @@ const TransactionComponent = ({
   return (
     <div>
       <div className="flex justify-between items-center pb-2">
-        <CustomText textClassName="font-size-xlarge font-bold">
+        <CustomText textClassName="text-base font-bold">
           Transactions
         </CustomText>
         <a href={"/owner/my-report"}>

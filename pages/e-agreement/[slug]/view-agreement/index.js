@@ -331,35 +331,46 @@ const ViewAgreement = ({ id }) => {
       <DesktopLayout
         loading={loading || agreeLoading || signLoading || downloading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                {/*<li>*/}
+                {/*  <a href={"/my-property"}>*/}
+                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*      My Property*/}
+                {/*    </CustomText>*/}
+                {/*  </a>*/}
+                {/*</li>*/}
+                <li>
+                  <a href={"/e-agreement"}>
+                    <CustomText textClassName="text-base disable-text">
+                      My E-Agreement
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={`/e-agreement/${id}`}>
+                    <CustomText textClassName="text-base disable-text">
+                      {referenceNumber}
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">
+                    View Agreement
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/e-agreement"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My E-Agreement
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={`/e-agreement/${id}`}>
-                  <CustomText textClassName="text-base disable-text">
-                    {referenceNumber}
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  View Agreement
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">View Agreement</CustomText>
+            </div>
           </div>
         }
       >
@@ -395,7 +406,7 @@ const ViewAgreement = ({ id }) => {
             </Document>
 
             <div className="flex flex-col items-center pt-5">
-              <CustomText textClassName="white-text text-base py-2">
+              <CustomText textClassName="white-text text-sm py-2">
                 {t("viewAgreement.page")} {pageNumber} of {totalPages}
               </CustomText>
 

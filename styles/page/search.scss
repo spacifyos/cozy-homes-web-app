@@ -21,7 +21,7 @@
   border-color: $primary-white-color;
 
   p {
-    @apply disable-text font-size-xxsmall;
+    @apply disable-text text-xs;
   }
 }
 
@@ -30,7 +30,7 @@
   border-color: $primary-color;
 
   p {
-    @apply white-text font-size-xxsmall;
+    @apply white-text text-xs;
   }
 }
 
@@ -43,7 +43,7 @@
   border-color: $primary-color;
 
   p {
-    @apply white-text font-size-xxsmall;
+    @apply white-text text-xs;
   }
 }
 

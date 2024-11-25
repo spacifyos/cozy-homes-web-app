@@ -37,7 +37,7 @@ const FilterModal = ({
       >
         <div className="divider divider-custom justify-center"></div>
         <div className="flex justify-between items-end pb-4">
-          <CustomText textClassName="font-bold font-size-large">
+          <CustomText textClassName="font-bold text-base">
             Search Filter
           </CustomText>
 

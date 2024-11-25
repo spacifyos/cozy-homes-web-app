@@ -71,12 +71,12 @@
 .error-message {
   color: $error-color;
   padding-bottom: 4px;
-  @apply font-size-xxsmall;
+  @apply text-xs;
 }
 
 .input-title {
   color: $primary-black-color;
-  @apply font-size-xxsmall;
+  @apply text-xs;
 }
 
 .booking-select:focus-within,

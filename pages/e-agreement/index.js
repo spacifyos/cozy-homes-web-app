@@ -14,6 +14,8 @@ import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -84,21 +86,32 @@ const EAgreement = () => {
       <DesktopLayout
         loading={agreementListingDataLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                {/*<li>*/}
+                {/*  <a href={"/my-property"}>*/}
+                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*      My Property*/}
+                {/*    </CustomText>*/}
+                {/*  </a>*/}
+                {/*</li>*/}
+                <li>
+                  <CustomText textClassName="text-base">
+                    My E-Agreement
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  My E-Agreement
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">My E-Agreement</CustomText>
+            </div>
           </div>
         }
       >

@@ -92,7 +92,7 @@ const OwnerEAgreementOverview = ({ id }) => {
             />
 
             <div className="pb-2">
-              <CustomText textClassName="font-size-xxsmall disable-text">
+              <CustomText textClassName="text-xs disable-text">
                 {t("eAgreementOverview.status")}
               </CustomText>
               <StatusLabel status={status} />
@@ -135,7 +135,7 @@ const OwnerEAgreementOverview = ({ id }) => {
           />
 
           <div className="pb-2">
-            <CustomText textClassName="font-size-xxsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("eAgreementOverview.activity")}
             </CustomText>
             <div className="pt-1 grid grid-cols-2 gap-2">
@@ -149,7 +149,7 @@ const OwnerEAgreementOverview = ({ id }) => {
                   <CustomText textClassName="text-sm disable-text">
                     {t("eAgreementOverview.agreed")}
                   </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
+                  <CustomText textClassName="text-xs disable-text">
                     {isEmpty(agreedDate) ? "-" : agreedDate}
                   </CustomText>
                 </div>
@@ -164,7 +164,7 @@ const OwnerEAgreementOverview = ({ id }) => {
                   <CustomText textClassName="text-sm disable-text">
                     {t("eAgreementOverview.signed")}
                   </CustomText>
-                  <CustomText textClassName="font-size-xxsmall disable-text">
+                  <CustomText textClassName="text-xs disable-text">
                     {isEmpty(signedDate) ? "-" : signedDate}
                   </CustomText>
                 </div>

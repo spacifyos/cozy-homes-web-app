@@ -27,26 +27,39 @@ const RadialProgressComponent = ({
     return () => clearInterval(interval);
   }, [remainingDay]);
 
+  const calculateChartSize = (dimensions) => {
+    if (dimensions > 290) {
+      return dimensions * 0.4;
+    } else if (
+      dimensions > 260 ||
+      dimensions > 240 ||
+      dimensions > 230 ||
+      dimensions > 200
+    ) {
+      return dimensions * 0.6;
+    } else {
+      return dimensions * 0.55;
+    }
+  };
+
   return (
     <div
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"
       style={{
         "--value": percentage,
-        "--size": `${dimensions > 250 ? dimensions * 0.25 :dimensions > 290 ? dimensions * 0.4 : dimensions > 200 ? dimensions * 0.6 : dimensions * 0.8}px`,
+        "--size": `${calculateChartSize(dimensions)}px`,
         "--thickness": "0.5rem",
       }}
       role="progressbar"
     >
       <div className="flex-col flex justify-end items-center pt-1 px-2">
-        <CustomText textClassName="font-size-xxsmall disable-text line-clamp-2 text-center">
+        <CustomText textClassName="text-xs disable-text line-clamp-2 text-center">
           {t("myStay.tenancyRemaining")}
         </CustomText>
-        <CustomText textClassName="font-size-xlarge primary-text font-bold">
+        <CustomText textClassName="text-sm primary-text font-bold">
           {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
-        <CustomText textClassName="text-xs">
-          {t("myStay.days")}
-        </CustomText>
+        <CustomText textClassName="text-xs">{t("myStay.days")}</CustomText>
       </div>
     </div>
   );

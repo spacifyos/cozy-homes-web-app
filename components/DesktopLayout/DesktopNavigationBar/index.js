@@ -164,6 +164,16 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       />
 
       <FeatureComponent
+        title="My Account"
+        icon={Images.registerIconActiveOutline}
+        pb={3}
+        onClick={() => {
+          return router.push("/account");
+        }}
+        imageWidth={18}
+      />
+
+      <FeatureComponent
         title="My Invoice"
         icon={Images.primaryInvoiceIcon}
         imageWidth={23}
@@ -175,7 +185,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       />
 
       <FeatureComponent
-        title={"My Agreement"}
+        title={"My E-Agreement"}
         icon={Images.agreementIconActive}
         imageWidth={23}
         pb={3}

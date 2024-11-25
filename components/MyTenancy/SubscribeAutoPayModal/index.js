@@ -9,7 +9,7 @@ import Helper from "@/src/utils/Helper";
 const SubscribeAutoPayModal = ({ t }) => {
   return (
     <CustomModal id="myTenancy_Subscribe_modal">
-      <CustomText textClassName="font-bold font-size-large pb-3">
+      <CustomText textClassName="font-bold text-base pb-3">
         {t("myTenancy.subscribeAutoPay")}
       </CustomText>
       <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">

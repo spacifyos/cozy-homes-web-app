@@ -47,7 +47,7 @@ const StatusLabel = ({ status }) => {
   return (
     <div className="flex">
       <CustomText
-        textClassName={`white-text text-center font-size-xxsmall ${statusColor(status)} px-3 py-0.5 rounded-2xl`}
+        textClassName={`white-text text-center text-xs ${statusColor(status)} px-3 py-0.5 rounded-2xl`}
       >
         {status}
       </CustomText>

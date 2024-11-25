@@ -19,7 +19,7 @@ const DesktopFilterModal = ({
     <DesktopModal id="desktop_invoice_filter_modal">
       <div className="p-6">
         <div className="flex justify-between items-center pb-4">
-          <CustomText textClassName="font-bold font-size-large">
+          <CustomText textClassName="font-bold text-base">
             Search Filter
           </CustomText>
           <form method="dialog" className={`flex justify-end`}>

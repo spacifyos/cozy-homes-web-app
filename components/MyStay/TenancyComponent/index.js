@@ -1,7 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
 import * as tenancySelector from "@/src/selectors/tenancy";
@@ -47,29 +47,29 @@ const TenancyComponent = ({ item, t }) => {
 
         <div className={"pb-2"}>
           <CustomText textClassName="font-bold text-sm primary-text">
-            {_.isEmpty(propertyName) ? "-" : propertyName}
+            {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
           <CustomText textClassName="text-xs" lineClamp={1}>
-            {_.isEmpty(unitName) ? "" : unitName}
-            {_.isEmpty(roomName) ? "" : ", " + roomName}
+            {isEmpty(unitName) ? "" : unitName}
+            {isEmpty(roomName) ? "" : ", " + roomName}
           </CustomText>
         </div>
 
         <CustomLabelValue
           label={t("myStay.tenancyCode")}
-          value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
+          value={isEmpty(tenancyCode) ? "-" : tenancyCode}
           highlight
         />
 
         <CustomLabelValue
           label={t("myStay.tenancyPeriod")}
-          value={_.isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
+          value={isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
           highlight
         />
 
         <CustomLabelValue
           label={t("myStay.rentalFee")}
-          value={`RM${_.isEmpty(rental) ? "0" : rental}`}
+          value={`RM${isEmpty(rental) ? "0" : rental}`}
           highlight
         />
 

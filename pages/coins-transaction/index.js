@@ -63,7 +63,7 @@ const CoinsTransaction = () => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomText textClassName="primary-text font-size-xxlarge font-bold pr-2">
+            <CustomText textClassName="primary-text text-lg font-bold pr-2">
               5,123
             </CustomText>
             <CustomImage src={Images.refreshIcon} imageStyle={{ width:20 }} />

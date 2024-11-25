@@ -62,7 +62,7 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                     </CustomText>
                   </div>
 
-                  <CustomText textClassName="white-text font-bold font-size-xlarge">
+                  <CustomText textClassName="white-text font-bold text-base">
                     {isEmpty(unitName) ? "-" : unitName}
                   </CustomText>
 
@@ -83,11 +83,11 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                             imageStyle={{ width: 22, height: 22 }}
                           />
 
-                          <CustomText textClassName="white-text font-size-xlarge font-bold">
+                          <CustomText textClassName="white-text text-base font-bold">
                             {value}
                           </CustomText>
                           <CustomText
-                            textClassName="white-text font-size-xxsmall text-center"
+                            textClassName="white-text text-xs text-center"
                             styles={{ height: 30 }}
                           >
                             {name}

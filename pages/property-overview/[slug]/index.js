@@ -250,7 +250,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   {propertyName}
                 </CustomText>
               </li>

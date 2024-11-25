@@ -24,12 +24,12 @@ const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
         </div>
         <div className="pl-2">
           <div className="flex items-center">
-            <CustomText textClassName="font-size-xsmall font-bold pr-2">
+            <CustomText textClassName="text-xs font-bold pr-2">
               19 Sep 2021, 3pm
             </CustomText>
             <StatusLabel status={item} />
           </div>
-          <CustomText textClassName="disable-text font-size-xxsmall">
+          <CustomText textClassName="disable-text text-xs">
             Appointment with
           </CustomText>
           <CustomText textClassName="font-bold text-sm">

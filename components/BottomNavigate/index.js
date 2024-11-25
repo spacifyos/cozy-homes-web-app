@@ -88,7 +88,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
                       ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                         "primary-text"
                       : "disable-text"
-                  } font-size-xxsmall pt-1`}
+                  } text-xs pt-1`}
                 >
                   {name}
                 </CustomText>

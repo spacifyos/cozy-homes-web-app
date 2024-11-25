@@ -145,15 +145,16 @@ const MyMeterOverview = ({ id }) => {
       <DesktopLayout
         loading={meterOverviewLoading || syncMeterLoading || meterTopUpLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
+        <div>
+          <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
             <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
-                  </CustomText>
-                </a>
-              </li>
+              {/*<li>*/}
+              {/*  <a href={"/my-property"}>*/}
+              {/*    <CustomText textClassName="text-base disable-text">*/}
+              {/*      My Property*/}
+              {/*    </CustomText>*/}
+              {/*  </a>*/}
+              {/*</li>*/}
               <li>
                 <a href={"/my-meter"}>
                   <CustomText textClassName="text-base disable-text">
@@ -162,12 +163,22 @@ const MyMeterOverview = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   {meterName}
                 </CustomText>
               </li>
             </ul>
           </div>
+
+          <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+            <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+            />
+            <CustomText textClassName="text-base">My Meter</CustomText>
+          </div>
+        </div>
         }
       >
         <div className="">

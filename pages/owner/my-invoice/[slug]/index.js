@@ -206,7 +206,7 @@ const OwnerInvoiceOverview = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   {id}
                 </CustomText>
               </li>
@@ -229,7 +229,7 @@ const OwnerInvoiceOverview = ({ id }) => {
                 highlight
               />
               <div className="pb-2">
-                <CustomText textClassName="font-size-xxsmall disable-text">
+                <CustomText textClassName="text-xs disable-text">
                   {t("invoiceOverview.status")}
                 </CustomText>
                 <StatusLabel status={paymentStatus} />
@@ -276,7 +276,7 @@ const OwnerInvoiceOverview = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="font-size-xxsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("invoiceOverview.items")}
             </CustomText>
 
@@ -300,7 +300,7 @@ const OwnerInvoiceOverview = ({ id }) => {
                             {itemName}
                           </CustomText>
                           <CustomText
-                            textClassName={`font-size-xxsmall disable-text`}
+                            textClassName={`text-xs disable-text`}
                           >
                             RM{unitPrice} per unit
                           </CustomText>

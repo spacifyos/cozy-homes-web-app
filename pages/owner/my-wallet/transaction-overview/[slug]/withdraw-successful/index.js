@@ -91,10 +91,10 @@ const WithdrawSuccessful = ({ id }) => {
       {/*  {t("invoiceSuccessful.spacifyCoinsEarned")}*/}
       {/*</CustomText>*/}
 
-      {/*<CustomText textClassName="primary-text font-bold font-size-xxlarge">*/}
+      {/*<CustomText textClassName="primary-text font-bold text-lg">*/}
       {/*  3,800*/}
       {/*</CustomText>*/}
-      <CustomText textClassName="font-bold font-size-xxlarge">
+      <CustomText textClassName="font-bold text-lg">
         Congratulations!
       </CustomText>
 
@@ -106,7 +106,7 @@ const WithdrawSuccessful = ({ id }) => {
             width={30}
             height={30}
           />
-          <CustomText textClassName="black-text font-bold font-size-xlarge">
+          <CustomText textClassName="black-text font-bold text-base">
             Request
           </CustomText>
         </div>
@@ -114,7 +114,7 @@ const WithdrawSuccessful = ({ id }) => {
         <div className="divider-line" style={{ margin: 0 }}></div>
 
         <div className="flex flex-col items-center py-4">
-          <CustomText textClassName="primary-text font-bold font-size-xlarge">
+          <CustomText textClassName="primary-text font-bold text-base">
             RM {isEmpty(amount) ? "0" : amount}
           </CustomText>
           <CustomText textClassName="disable-text text-xs">

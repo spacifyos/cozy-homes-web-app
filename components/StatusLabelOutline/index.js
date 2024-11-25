@@ -19,7 +19,7 @@ const StatusBorder = ({ status }) => {
   return (
     <div className="flex">
       <CustomText
-        textClassName={`font-bold font-size-xxsmall ${statusBorderColor(status)} px-3 py-0.5 rounded-2xl`}
+        textClassName={`font-bold text-xs ${statusBorderColor(status)} px-3 py-0.5 rounded-2xl`}
       >
         {status}
       </CustomText>

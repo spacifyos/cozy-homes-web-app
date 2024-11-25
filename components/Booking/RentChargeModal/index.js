@@ -4,7 +4,7 @@ import CustomModal from "@/components/CustomModal";
 const RentChargeModal = () => {
   return (
     <CustomModal id="rent_charges_details">
-      <CustomText textClassName="font-size-large font-bold pb-2">
+      <CustomText textClassName="text-base font-bold pb-2">
         Rent Charges Details
       </CustomText>
       <CustomText textClassName="disable-text text-xs text-justify">

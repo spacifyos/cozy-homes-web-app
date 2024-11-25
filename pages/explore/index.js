@@ -178,12 +178,11 @@ function Home() {
         <div className="xl:pt-52">
           <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 container mx-auto">
             <CustomText
-              textClassName="primary-text font-bold"
-              styles={{ fontSize: 24 }}
+              textClassName="primary-text font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md"
             >
               Space For All
             </CustomText>
-            <CustomText textClassName="italic text-center">
+            <CustomText textClassName="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs ">
               Provides the safe and innovative platform for you need to ﬁnd your
               dream space.
             </CustomText>

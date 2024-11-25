@@ -11,7 +11,7 @@ import ListingCardComponent from "@/components/Search/ListingCardComponent";
 
 const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
   return (
-    <div className="pt-10">
+    <div className="pt-10 pb-4">
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
@@ -19,18 +19,15 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
-            <CustomText textClassName="font-size-xxlarge font-bold primary-text">
-              Recommend
-            </CustomText>
-            <CustomText textClassName="font-size-xxlarge font-bold">
-              For You
+            <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold">
+              <span className="primary-text">Recommend</span> For You
             </CustomText>
           </div>
         </div>
 
         <div className="flex items-center">
           <CustomText
-            textClassName="cursor-pointer pr-1.5"
+            textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs"
             onClick={onClickViewMore}
           >
             View More

@@ -38,13 +38,11 @@ const DesktopFilterModal = ({
   onClickClearAll,
   onClickCloseFilterModal,
 }) => {
-
-
   return (
     <DesktopModal id="desktop_filter_modal" styles={{ maxWidth: 600 }}>
       <div className="p-6">
         <div className="flex items-center">
-          <CustomText textClassName="flex-1 text-center font-bold">
+          <CustomText textClassName="flex-1 text-center text-base font-bold">
             Filters
           </CustomText>
           <form method="dialog" className={`flex justify-end`}>
@@ -53,8 +51,8 @@ const DesktopFilterModal = ({
               onClick={onClickCloseFilterModal}
             >
               <CustomImage
+                className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
                 src={Images.cancelIcon}
-                imageStyle={{ width: 18, height: 18 }}
               />
             </button>
           </form>
@@ -63,7 +61,7 @@ const DesktopFilterModal = ({
         <div className="divider-line"></div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Location</CustomText>
+          <CustomText textClassName="text-sm font-bold">Location</CustomText>
 
           <div className="grid grid-cols-2 gap-2 pt-2">
             <CustomSelect
@@ -87,7 +85,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Space Type</CustomText>
+          <CustomText textClassName="text-sm font-bold">Space Type</CustomText>
 
           <div className="grid grid-cols-1 gap-2 pt-2">
             <CustomSelect
@@ -102,7 +100,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5 xl:hidden lg:hidden md:hidden sm:block block">
-          <CustomText textClassName="font-bold">Tenure Period</CustomText>
+          <CustomText textClassName="text-sm font-bold">Tenure Period</CustomText>
 
           <div className="grid grid-cols-1 gap-2 pt-2">
             <CustomSelect
@@ -119,7 +117,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5 xl:hidden lg:hidden md:hidden sm:block block">
-          <CustomText textClassName="font-bold">Your Budget</CustomText>
+          <CustomText textClassName="text-sm font-bold">Your Budget</CustomText>
 
           <div className="grid grid-cols-1 gap-2 pt-2">
             <RangeSlider
@@ -131,10 +129,10 @@ const DesktopFilterModal = ({
             />
 
             <div className="flex justify-between items-center">
-              <CustomText textClassName="font-size-xxsmall">
+              <CustomText textClassName="text-xs">
                 RM{priceRange[0]}
               </CustomText>
-              <CustomText textClassName="font-size-xxsmall">
+              <CustomText textClassName="text-xs">
                 RM{priceRange[1]}
               </CustomText>
             </div>
@@ -142,7 +140,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Shorting By</CustomText>
+          <CustomText textClassName="text-sm font-bold">Shorting By</CustomText>
 
           <div className="flex gap-2 pt-2">
             {map(newSortTag, (item) => {
@@ -153,7 +151,7 @@ const DesktopFilterModal = ({
                 <CustomButton
                   buttonText={name}
                   buttonClassName={`btn-sm ${isEqual(sortValue, code) ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
+                  textClassName="text-xs"
                   onClick={() =>
                     setSortValue(isEqual(sortValue, code) ? "" : code)
                   }
@@ -164,7 +162,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Specify Tag</CustomText>
+          <CustomText textClassName="text-sm font-bold">Specify Tag</CustomText>
 
           <div className="pt-2 flex flex-wrap gap-2">
             {map(newGeneralTag, (list, index) => {
@@ -177,7 +175,7 @@ const DesktopFilterModal = ({
                   key={index}
                   buttonText={name}
                   buttonClassName={`${isActive ? "primary-btn" : "default-btn"} btn-sm mr-2`}
-                  textClassName="font-size-xsmall"
+                  textClassName="text-xs"
                   onClick={() => onClickGeneralTag(name, code)}
                 />
               );
@@ -186,7 +184,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5">
-          <CustomText textClassName="font-bold">Amenities</CustomText>
+          <CustomText textClassName="text-sm font-bold">Amenities</CustomText>
 
           <div className="flex flex-wrap gap-2 pt-2">
             {map(amenities, (amenity) => {
@@ -202,7 +200,7 @@ const DesktopFilterModal = ({
                   icon={isActive ? iconActive : icon}
                   buttonText={name}
                   buttonClassName={`btn-sm ${isActive ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
+                  textClassName="text-xs"
                   onClick={() => onClickSelectAmenities(name, code)}
                 />
               );
@@ -211,7 +209,7 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="">
-          <CustomText textClassName="font-bold">Gender</CustomText>
+          <CustomText textClassName="text-sm font-bold">Gender</CustomText>
 
           <div className="flex gap-2 pt-2">
             {map(genderTag, (item) => {
@@ -222,7 +220,7 @@ const DesktopFilterModal = ({
                 <CustomButton
                   buttonText={title}
                   buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "primary-btn" : "default-btn"} mr-2`}
-                  textClassName="font-size-xsmall"
+                  textClassName="text-xs"
                   onClick={() =>
                     setGenderValue(isEqual(genderValue, value) ? "" : value)
                   }

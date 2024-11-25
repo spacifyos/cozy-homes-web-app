@@ -236,7 +236,7 @@ const OwnerAccount = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   Account
                 </CustomText>
               </li>
@@ -258,7 +258,7 @@ const OwnerAccount = () => {
 
         <div className="">
           <CustomText textClassName="">Referral Code</CustomText>
-          <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+          <CustomText textClassName="text-xs disable-text pb-1">
             Share and Earn, Don’t Miss the Opportunity
           </CustomText>
           <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
@@ -269,7 +269,7 @@ const OwnerAccount = () => {
               <CustomButton
                 textClassName="text-xs"
                 buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-                buttonText={isCopy ? "Copies" : "Copy"}
+                buttonText={isCopy ? "Copiedtext-lg" : "Copy"}
                 onClick={onClickCopy}
               />
             </div>

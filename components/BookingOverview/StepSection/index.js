@@ -31,11 +31,11 @@ const StepSection = ({ t, data }) => {
             {t("bookingOverview.step1")}
           </CustomText>
           <div className="leading-5">
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               {t("bookingOverview.booking")}
             </CustomText>
             <div className="flex gap-3 items-center pb-2 pt-1">
-              <CustomText textClassName="font-size-xsmall">
+              <CustomText textClassName="text-xs">
                 {t("bookingOverview.status")}
               </CustomText>
               <StatusLabel status={isEmpty(data) ? "" : "Completed"} />
@@ -65,11 +65,11 @@ const StepSection = ({ t, data }) => {
           >
             {t("bookingOverview.step2")}
           </CustomText>
-          <CustomText textClassName="font-size-xsmall">
+          <CustomText textClassName="text-xs">
             {t("bookingOverview.payment")}
           </CustomText>
           <div className="flex gap-3 items-center pb-2 pt-1">
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               {t("bookingOverview.status")}
             </CustomText>
             <StatusLabel status={paymentStatus} />
@@ -102,14 +102,14 @@ const StepSection = ({ t, data }) => {
           imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col">
-          <CustomText textClassName="font-size-xlarge font-bold disable-text py-2">
+          <CustomText textClassName="text-base font-bold disable-text py-2">
             {t("bookingOverview.step3")}
           </CustomText>
-          <CustomText textClassName="font-size-xsmall">
+          <CustomText textClassName="text-xs">
             {t("bookingOverview.agencyReview")}
           </CustomText>
           <div className="flex gap-3 items-center pt-1">
-            <CustomText textClassName="font-size-xsmall">
+            <CustomText textClassName="text-xs">
               {t("bookingOverview.status")}
             </CustomText>
             <StatusLabel status={agencyReviewStatus} />

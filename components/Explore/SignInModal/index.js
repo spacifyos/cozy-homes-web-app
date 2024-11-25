@@ -148,7 +148,7 @@ const SignInModal = ({ userType, setUserType }) => {
 
             <div className="w-full">
               <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
-                <CustomText textClassName="text-center pb-6 font-bold font-size-xxlarge">
+                <CustomText textClassName="text-center pb-6 font-bold text-lg">
                   Sign In
                 </CustomText>
 

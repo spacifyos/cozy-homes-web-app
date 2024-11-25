@@ -31,17 +31,17 @@ const SpaceDetailCard = ({ item }) => {
             <div className="flex justify-between items-center pb-0.5">
               <div className="flex">
                 <CustomText
-                  textClassName={`font-size-xxsmall white-text ${isEqual(status, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
+                  textClassName={`text-xs white-text ${isEqual(status, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
                 >
                   {isEmpty(status) ? "-" : status}
                 </CustomText>
               </div>
 
               <div className="flex items-end">
-                <CustomText textClassName="font-bold font-size-large pr-1">
+                <CustomText textClassName="font-bold text-base pr-1">
                   {isEmpty(remainingDays) ? "0" : remainingDays}
                 </CustomText>
-                <CustomText textClassName="disable-text font-size-xxsmall pb-0.5">
+                <CustomText textClassName="disable-text text-xs pb-0.5">
                   remaining days
                 </CustomText>
               </div>
@@ -57,7 +57,7 @@ const SpaceDetailCard = ({ item }) => {
                 imageStyle={{ width: 18 }}
                 className="mr-2"
               />
-              <CustomText textClassName="font-size-xxsmall">
+              <CustomText textClassName="text-xs">
                 {isEmpty(spaceType) ? "-" : spaceType}
               </CustomText>
             </div>

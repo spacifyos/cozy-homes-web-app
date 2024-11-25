@@ -7,7 +7,7 @@ const DetailComponent = ({ propertyName, unitRoomName, address }) => {
   return (
     <div className="pb-4 pt-3">
       <div className=" flex flex-col items-start">
-        <CustomText textClassName="font-size-large font-bold pb-1">
+        <CustomText textClassName="text-base font-bold pb-1">
           {isEmpty(propertyName) ? "-" : propertyName}
         </CustomText>
 

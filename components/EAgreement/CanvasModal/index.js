@@ -28,7 +28,7 @@ const CanvasModal = ({
 
   return (
     <CustomModal id="mobile_signature_modal" disableClose>
-      <CustomText textClassName="font-bold font-size-large pb-5">
+      <CustomText textClassName="font-bold text-base pb-5">
         {t("viewAgreement.pleaseSignBelow")}
       </CustomText>
       <div

@@ -131,7 +131,7 @@ const Withdraw = () => {
           >
             RM {isEmpty(walletBalance) ? "0" : walletBalance}
           </CustomText>
-          <CustomText textClassName="white-text font-size-xxsmall">
+          <CustomText textClassName="white-text text-xs">
             {`Last updated: ${isEmpty(walletUpdatedAt) ? moment().format("DD MMM YYYY, HH:mmm") : walletUpdatedAt}`}
           </CustomText>
         </div>
@@ -207,7 +207,7 @@ const Withdraw = () => {
             src={Images.infoIcon}
             imageStyle={{ width: 100, height: 100 }}
           />
-          <CustomText textClassName="font-size-large font-bold text-center pt-2">
+          <CustomText textClassName="text-base font-bold text-center pt-2">
             You are have not set PIN Number, please Complete it.
           </CustomText>
 

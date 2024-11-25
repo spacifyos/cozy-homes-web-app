@@ -241,7 +241,7 @@ const Account = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   Account
                 </CustomText>
               </li>
@@ -265,19 +265,19 @@ const Account = () => {
         <div className="divider-line"></div>
 
         <div className="">
-          <CustomText textClassName="">Referral Code</CustomText>
-          <CustomText textClassName="font-size-xxsmall disable-text pb-1">
+          <CustomText textClassName="text-base">Referral Code</CustomText>
+          <CustomText textClassName="text-xs disable-text pb-1">
             Share and Earn, Don’t Miss the Opportunity
           </CustomText>
-          <div className="primaryWhite-bg-color p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+          <div className="primaryWhite-bg-color mt-2 p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
             <div className="flex items-center">
-              <CustomText textClassName="pr-2">
+              <CustomText textClassName="pr-2 text-sm">
                 {isEmpty(referralCode) ? "" : referralCode}
               </CustomText>
               <CustomButton
                 textClassName="text-xs"
                 buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-                buttonText={isCopy ? "Copies" : "Copy"}
+                buttonText={isCopy ? "Copiedtext-lg" : "Copy"}
                 onClick={onClickCopy}
               />
             </div>

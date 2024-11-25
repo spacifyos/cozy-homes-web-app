@@ -36,7 +36,7 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
           </CustomText>
 
           <CustomText
-            textClassName="disable-text font-size-xxsmall"
+            textClassName="disable-text text-xs"
             lineClamp={2}
           >
             {request}

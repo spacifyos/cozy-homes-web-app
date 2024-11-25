@@ -81,7 +81,7 @@ const RoomPicCarousel = ({ recommendedList }) => {
                 {/*  {unitRoomName}*/}
                 {/*</CustomText>*/}
                 <div className="flex items-end">
-                  <CustomText textClassName="font-size-large font-bold mr-2">
+                  <CustomText textClassName="text-base font-bold mr-2">
                     RM{rental}
                   </CustomText>
                   <CustomText textClassName="disable-text text-xs">

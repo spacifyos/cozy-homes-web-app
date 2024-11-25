@@ -151,7 +151,7 @@ const SignInOwner = () => {
 
         <div className="w-full">
           <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-6 pt-3 font-bold font-size-xxlarge">
+            <CustomText textClassName="text-center pb-6 pt-3 font-bold text-lg">
               Sign In
             </CustomText>
 
@@ -220,7 +220,7 @@ const SignInOwner = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="font-size-xxsmall text-center disable-text">
+            <CustomText textClassName="text-xs text-center disable-text">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

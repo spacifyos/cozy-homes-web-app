@@ -71,35 +71,46 @@ const PaymentSuccessful = ({ id }) => {
       <DesktopLayout
         loading={invoiceOverviewLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                {/*<li>*/}
+                {/*  <a href={"/my-property"}>*/}
+                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*      My Property*/}
+                {/*    </CustomText>*/}
+                {/*  </a>*/}
+                {/*</li>*/}
+                <li>
+                  <a href={"/my-invoice"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Invoice
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={`/my-invoice/${id}`}>
+                    <CustomText textClassName="text-base disable-text">
+                      {id}
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">
+                    Invoice Payment
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/my-invoice"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Invoice
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={`/my-invoice/${id}`}>
-                  <CustomText textClassName="text-base disable-text">
-                    {id}
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  Invoice Payment
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickClose}
+              />
+              <CustomText textClassName="text-base">Back to Home</CustomText>
+            </div>
           </div>
         }
       >
@@ -113,21 +124,18 @@ const PaymentSuccessful = ({ id }) => {
           {/*  {t("invoiceSuccessful.spacifyCoinsEarned")}*/}
           {/*</CustomText>*/}
 
-          {/*<CustomText textClassName="primary-text font-bold font-size-xxlarge">*/}
+          {/*<CustomText textClassName="primary-text font-bold text-lg">*/}
           {/*  3,800*/}
           {/*</CustomText>*/}
-          <CustomText textClassName="font-bold font-size-xxlarge">
+          <CustomText textClassName="font-bold text-lg">
             {t("invoiceSuccessful.congratulations")}
           </CustomText>
         </div>
 
         <div className="flex flex-col global-border-radius primaryWhite-bg-color py-2 px-4 global-box-shadow w-full my-7">
           <div className="flex items-center justify-center py-4">
-            <CustomImage
-              src={Images.checkGreenIcon}
-              className="mr-2 w-6"
-            />
-            <CustomText textClassName="black-text font-bold font-size-xlarge">
+            <CustomImage src={Images.checkGreenIcon} className="mr-2 w-6" />
+            <CustomText textClassName="black-text font-bold text-base">
               {t("invoiceSuccessful.paymentCompleted")}
             </CustomText>
           </div>
@@ -135,7 +143,7 @@ const PaymentSuccessful = ({ id }) => {
           <div className="divider-line" style={{ margin: 0 }}></div>
 
           <div className="flex flex-col items-center py-4">
-            <CustomText textClassName="primary-text font-bold font-size-xlarge">
+            <CustomText textClassName="primary-text font-bold text-base">
               RM{isEmpty(totalAmount) ? "0" : totalAmount}
             </CustomText>
             <CustomText textClassName="disable-text text-xs">
@@ -180,7 +188,7 @@ const PaymentSuccessful = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="font-size-xxsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("invoiceOverview.items")}
             </CustomText>
 
@@ -203,9 +211,7 @@ const PaymentSuccessful = ({ id }) => {
                           >
                             {itemName}
                           </CustomText>
-                          <CustomText
-                            textClassName={`font-size-xxsmall disable-text`}
-                          >
+                          <CustomText textClassName={`text-xs disable-text`}>
                             RM{unitPrice} per unit
                           </CustomText>
                         </div>

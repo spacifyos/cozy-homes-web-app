@@ -27,7 +27,7 @@ const SetPinNumberModal = ({
     <DesktopModal id={id} disableClose>
         <div className="p-6">
             <div className="flex justify-between items-center pb-4">
-                <CustomText textClassName="font-bold font-size-large">
+                <CustomText textClassName="font-bold text-base">
                     Set Pin Number
                 </CustomText>
                 <form method="dialog" className={`flex justify-end`}>

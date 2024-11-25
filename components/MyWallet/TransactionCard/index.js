@@ -80,7 +80,7 @@ const TransactionCard = ({ data }) => {
           {typeValue === Constant.WALLET_WITHDRAWAL ? (
             <StatusLabel status={withdrawStatus} />
           ) : (
-            <CustomText textClassName="disable-text font-size-xxsmall pr-2">
+            <CustomText textClassName="disable-text text-xs pr-2">
               {isEmpty(typeLabel) ? "-" : typeLabel}
             </CustomText>
           )}
@@ -92,7 +92,7 @@ const TransactionCard = ({ data }) => {
             {isEmpty(remarks) ? "-" : remarks}
           </CustomText>
 
-          <CustomText textClassName="disable-text italic font-size-xxsmall">
+          <CustomText textClassName="disable-text italic text-xs">
             {isEmpty(updatedAt)
               ? moment().format("DD MMM YYYY, HH:mmm")
               : updatedAt}

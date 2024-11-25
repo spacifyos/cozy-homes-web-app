@@ -34,7 +34,7 @@ export default function Custom403() {
         </CustomText>
       </div>
 
-      <CustomText textClassName="font-size-xxlarge text-center font-bold pb-2">
+      <CustomText textClassName="text-lg text-center font-bold pb-2">
         Oops! It looks like you are forbidden.
       </CustomText>
 

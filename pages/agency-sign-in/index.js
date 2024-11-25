@@ -34,7 +34,7 @@ const AgencySignIn = () => {
         <div className="w-full">
           <div className="grid grid-cols-2">
             <CustomText
-              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
+              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold text-base"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
               {t("signIn.signIn")}
@@ -42,7 +42,7 @@ const AgencySignIn = () => {
 
             <div onClick={onClickToSignUp} className="cursor-pointer">
               <CustomText
-                textClassName="text-center p-4 primary-text font-bold font-size-large"
+                textClassName="text-center p-4 primary-text font-bold text-base"
                 styles={{
                   borderRadius: "10px 10px 0 0",
                   backgroundColor: "#E8E8E8",
@@ -57,7 +57,7 @@ const AgencySignIn = () => {
             className="p-3 global-box-shadow primaryWhite-bg-color py-10"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
-            <CustomText textClassName="pb-2 font-bold font-size-large">
+            <CustomText textClassName="pb-2 font-bold text-base">
               {t("signIn.iAm")} ...
             </CustomText>
 
@@ -107,7 +107,7 @@ const AgencySignIn = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="font-size-xxsmall text-center disable-text">
+            <CustomText textClassName="text-xs text-center disable-text">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

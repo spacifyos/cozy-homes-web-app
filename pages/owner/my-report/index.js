@@ -97,7 +97,7 @@ const MyReport = () => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   My Report
                 </CustomText>
               </li>

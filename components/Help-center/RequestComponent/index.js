@@ -114,7 +114,7 @@ const SpecificRequestComponent = ({
         placeholder={t("newRequest.describeTheIssue")}
       />
 
-      <CustomText textClassName="pb-2 font-size-xsmall">
+      <CustomText textClassName="pb-2 text-xs">
         {t("newRequest.uploadPhoto")}
       </CustomText>
 
@@ -141,7 +141,7 @@ const SpecificRequestComponent = ({
         </div>
       </div>
 
-      <CustomText textClassName="pb-2 font-size-xsmall">
+      <CustomText textClassName="pb-2 text-xs">
         {t("newRequest.uploadVideo")}
       </CustomText>
 

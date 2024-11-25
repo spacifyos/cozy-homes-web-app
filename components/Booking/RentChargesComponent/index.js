@@ -25,7 +25,7 @@ const RentChargesComponent = ({
           className="flex items-center justify-start flex-1 pr-2"
           onClick={isEmpty(rentChargesLists) ? () => {} : onClickOpenCharges}
         >
-          <CustomText textClassName="font-bold pr-2 flex">{title}</CustomText>
+          <CustomText textClassName="font-bold pr-2 flex text-sm">{title}</CustomText>
           {isEmpty(rentChargesLists) ? (
             false
           ) : (
@@ -36,7 +36,7 @@ const RentChargesComponent = ({
           )}
         </div>
 
-        <CustomText>RM{rentChargesAmount}</CustomText>
+        <CustomText textClassName="text-sm">RM{rentChargesAmount}</CustomText>
       </div>
 
       <div className="collapse-content p-0">

@@ -39,7 +39,7 @@ const InvoiceComponent = ({ t, data, type }) => {
                 <div className="flex items-center pb-0.5">
                   <div className="pr-6">
                     <CustomText
-                      textClassName={`disable-text font-size-xxsmall font-normal`}
+                      textClassName={`disable-text text-xs font-normal`}
                     >
                       Amount
                     </CustomText>
@@ -50,7 +50,7 @@ const InvoiceComponent = ({ t, data, type }) => {
                     </CustomText>
                   </div>
                   <div className="pr-3">
-                    <CustomText textClassName="font-size-xxsmall disable-text">
+                    <CustomText textClassName="text-xs disable-text">
                       {t("myStay.status")}
                     </CustomText>
 
@@ -69,7 +69,7 @@ const InvoiceComponent = ({ t, data, type }) => {
                 </div>
 
                 <div className="flex items-center">
-                  <CustomText textClassName="pr-3 font-size-xxsmall disable-text italic">
+                  <CustomText textClassName="pr-3 text-xs disable-text italic">
                     {t("myStay.dueDate")} {isEmpty(dueDate) ? "-" : dueDate}
                   </CustomText>
                 </div>

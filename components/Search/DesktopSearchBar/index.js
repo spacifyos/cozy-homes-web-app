@@ -24,14 +24,14 @@ const DesktopSearchBar = ({
       <div className="xl:col-span-1 xl:block hidden"></div>
 
       <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
-        <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
-          Keyword
+        <CustomText textClassName="text-xs pt-2 pl-4">
+          Search
         </CustomText>
         <CustomInput
           hideShadow
           rightIcon={Images.searchOutlineActiveIcon}
           className=""
-          placeholder="Keyword"
+          placeholder="Search Rooms ..."
           value={keywordValue}
           onChange={onChangeKeywordValue}
           onClickRightIcon={onClickSubmitKeyword}
@@ -39,7 +39,7 @@ const DesktopSearchBar = ({
       </div>
 
       <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color px-4 py-2 flex flex-col justify-center">
-        <CustomText textClassName="font-size-xxsmall">Your Budget</CustomText>
+        <CustomText textClassName="text-xs">Your Budget</CustomText>
 
         <RangeSlider
           className="price-range-slider"
@@ -52,17 +52,17 @@ const DesktopSearchBar = ({
         />
 
         <div className="flex justify-between items-center">
-          <CustomText textClassName="font-size-xxsmall">
+          <CustomText textClassName="text-xs">
             RM{priceRange[0]}
           </CustomText>
-          <CustomText textClassName="font-size-xxsmall">
+          <CustomText textClassName="text-xs">
             RM{priceRange[1]}
           </CustomText>
         </div>
       </div>
 
       <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
-        <CustomText textClassName="font-size-xxsmall pt-2 pl-4">
+        <CustomText textClassName="text-xs pt-2 pl-4">
           Tenure Period
         </CustomText>
         <CustomSelect

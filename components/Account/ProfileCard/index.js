@@ -24,7 +24,7 @@ const ProfileCard = ({ data }) => {
         className="rounded-2xl"
       />
 
-      <CustomText textClassName="font-sizs-xxlarge font-bold primary-text pb-2 text-center">
+      <CustomText textClassName="text-lgfont-bold primary-text pb-2 text-center">
         {isEmpty(name) ? "-" : name}
       </CustomText>
 

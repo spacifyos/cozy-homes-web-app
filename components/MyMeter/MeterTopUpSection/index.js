@@ -28,7 +28,7 @@ const MeterTopUpSection = ({
 }) => {
   return (
     <div>
-      <CustomText textClassName="section-title">
+      <CustomText textClassName="section-title pb-2">
         Top Up Price (Malaysia Ringgit - RM)
       </CustomText>
 
@@ -84,7 +84,7 @@ const MeterTopUpSection = ({
             onChange={onChangeSelectedPriceValue}
           />
 
-          <CustomText textClassName="font-bold flex items-center font-size-xlarge">
+          <CustomText textClassName="font-bold flex items-center text-base">
             {`${round(toNumber(selectedPrice) / toNumber(unitPrice), 1)} unit`}
           </CustomText>
         </div>

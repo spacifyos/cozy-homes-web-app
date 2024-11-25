@@ -38,7 +38,7 @@ const RentChargesSection = ({
         <CustomImage src={Images.logoImage} imageStyle={{ width: 40 }} />
 
         <div className="flex flex-col pl-2">
-          <CustomText textClassName="font-bold primary-text font-size-large">
+          <CustomText textClassName="font-bold primary-text text-base">
             {isEmpty(title) ? "-" : title}
           </CustomText>
           <CustomText textClassName="font-light text-sm disable-text">

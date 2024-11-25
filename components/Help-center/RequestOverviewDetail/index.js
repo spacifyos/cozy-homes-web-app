@@ -26,7 +26,7 @@ const RequestOverviewDetail = ({ t }) => {
       ></div>
 
       <div className="flex justify-between items-center">
-        <CustomText textClassName="disable-text font-size-xxsmall">
+        <CustomText textClassName="disable-text text-xs">
           {t("requestOverview.basicInformation")}
         </CustomText>
         <StatusLabelOutline status={t("requestOverview.critical")} />
@@ -68,7 +68,7 @@ const RequestOverviewDetail = ({ t }) => {
         value={t("requestOverview.notWorkingFor2Weeks")}
       />
 
-      <CustomText textClassName="disable-text font-size-xxsmall pb-1">
+      <CustomText textClassName="disable-text text-xs pb-1">
         {t("requestOverview.photosOrVideos")}
       </CustomText>
 

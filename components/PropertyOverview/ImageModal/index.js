@@ -63,7 +63,7 @@ const ImageModal = ({
         style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
         onClick={onClickCloseImageModal}
       >
-        <CustomText textClassName="font-size-xxlarge white-text">X</CustomText>
+        <CustomText textClassName="text-lg white-text">X</CustomText>
       </div>
     </div>
   ) : (

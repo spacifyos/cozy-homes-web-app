@@ -3,6 +3,8 @@ import CustomButton from "@/components/CustomButton";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
 import { isEmpty, map, get, isEqual } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 const InvoiceSection = ({
   t,
@@ -31,7 +33,7 @@ const InvoiceSection = ({
       {hideTitle ? (
         false
       ) : (
-        <CustomText textClassName="section-title">
+        <CustomText textClassName="section-title pb-2">
           {t("myStay.myInvoice")}
         </CustomText>
       )}
@@ -54,10 +56,15 @@ const InvoiceSection = ({
           })}
         </div>
 
-        <a href={`${isEmpty(type) ? "" : "/owner"}/my-invoice`}>
-          <CustomText textClassName="text-sm cursor-pointer">
-            {t("myStay.viewMore")}
+        <a
+          href={`${isEmpty(type) ? "" : "/owner"}/my-invoice`}
+          className="flex"
+        >
+          <CustomText textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
+            View More
           </CustomText>
+
+          <CustomImage src={Images.rightIcon} className="w-1.5" />
         </a>
       </div>
 

@@ -29,7 +29,7 @@ const PolicyDetail = ({ t, loading, data }) => {
             </div>
           ) : (
             <div>
-              <CustomText textClassName="font-size-xxlarge font-bold pb-2">
+              <CustomText textClassName="text-lg font-bold pb-2">
                 {title}
               </CustomText>
               <div

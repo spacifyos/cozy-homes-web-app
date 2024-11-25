@@ -20,11 +20,11 @@ const MeterDetail = ({ t, data }) => {
         <div className="primary-bg-color p-3 global-border-radius">
           <CustomImage src={Images.meterIcon} imageStyle={{ width: 40 }} />
         </div>
-        <CustomText textClassName="primary-text font-bold">
+        <CustomText textClassName="primary-text font-bold ">
           {isEmpty(name) ? "-" : name}
         </CustomText>
 
-        <CustomText textClassName="line-clamp-2 text-center">
+        <CustomText textClassName="line-clamp-2 text-center text-sm">
           {isEmpty(propertyName) ? "" : propertyName}
         </CustomText>
       </div>
@@ -36,7 +36,7 @@ const MeterDetail = ({ t, data }) => {
           label={t("myMeterOverview.serialNumber")}
           value={serialNumber === 0 ? "" : serialNumber}
         />
-        <CustomText textClassName="font-size-xxsmall disable-text">
+        <CustomText textClassName="text-xs disable-text">
           {t("myMeterOverview.meterStatus")}
         </CustomText>
 
@@ -47,7 +47,7 @@ const MeterDetail = ({ t, data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${wifi ? "power-on-text" : "disable-text"} text-sm`}
+              textClassName={`${wifi ? "power-on-text" : "disable-text"} text-xs`}
             >
               Wifi
             </CustomText>
@@ -58,7 +58,7 @@ const MeterDetail = ({ t, data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${power ? "power-on-text" : "disable-text"} text-sm`}
+              textClassName={`${power ? "power-on-text" : "disable-text"} text-xs`}
             >
               Power
             </CustomText>

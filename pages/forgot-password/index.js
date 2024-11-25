@@ -262,12 +262,12 @@ const ForgotPassword = () => {
 
         <div className="w-full">
           <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-1 pt-3 font-bold font-size-xxlarge">
+            <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
               Reset password as
             </CustomText>
 
             <CustomText
-              textClassName={`text-center pb-6 font-bold font-size-xxlarge italic leading-10`}
+              textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
               styles={{
                 color: isEqual(typeQuery, Constant.TENANT)
                   ? "#F05A22"

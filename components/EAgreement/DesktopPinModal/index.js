@@ -24,7 +24,7 @@ const DesktopPinModal = ({
             />
           </button>
         </form>
-        <CustomText textClassName="font-size-large font-bold pb-5">
+        <CustomText textClassName="text-base font-bold pb-5">
           {t("viewAgreement.insertPinNumber")}
         </CustomText>
 

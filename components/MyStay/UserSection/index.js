@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
-import _ from "lodash";
+import { isEmpty } from "lodash";
 
 const UserSection = ({ t, data }) => {
   const name = authSelector.getName(data);
@@ -16,19 +16,19 @@ const UserSection = ({ t, data }) => {
 
         <div className="user-info-content">
           <CustomText textClassName="user-name">
-            {_.isEmpty(name) ? "-" : name}
+            {isEmpty(name) ? "-" : name}
           </CustomText>
 
           <div className="flex items-center">
             <CustomImage src={Images.phoneIcon} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
-              {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
+              {isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
           </div>
           <div className="flex items-center">
             <CustomImage src={Images.emailIcon} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
-              {_.isEmpty(email) ? "-" : email}
+              {isEmpty(email) ? "-" : email}
             </CustomText>
           </div>
         </div>
@@ -43,7 +43,7 @@ const UserSection = ({ t, data }) => {
       {/*      {t("myStay.spacifyCoins")}*/}
       {/*    </CustomText>*/}
       {/*    <div className="flex items-center justify-start">*/}
-      {/*      <CustomText textClassName="primary-text font-bold font-size-xxlarge pr-2">*/}
+      {/*      <CustomText textClassName="primary-text font-bold text-lg pr-2">*/}
       {/*        99,999*/}
       {/*      </CustomText>*/}
       {/*      <CustomImage src={Images.refreshIcon} height={18} width={18} />*/}

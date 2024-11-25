@@ -26,7 +26,7 @@ const EAgreementCard = ({ item, t }) => {
           {isEmpty(referenceNumber) ? "-" : referenceNumber}
         </CustomText>
 
-        <CustomText textClassName="font-bold">
+        <CustomText textClassName="font-bold text-sm">
           {isEmpty(property) ? "-" : property}
         </CustomText>
 
@@ -46,7 +46,7 @@ const EAgreementCard = ({ item, t }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="font-size-xsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("eAgreement.agreed")}
             </CustomText>
           </div>
@@ -57,7 +57,7 @@ const EAgreementCard = ({ item, t }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="font-size-xsmall disable-text">
+            <CustomText textClassName="text-xs disable-text">
               {t("eAgreement.signed")}
             </CustomText>
           </div>

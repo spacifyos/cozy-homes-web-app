@@ -151,7 +151,7 @@ const PropertyDetail = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   {propertyName}
                 </CustomText>
               </li>
@@ -162,7 +162,7 @@ const PropertyDetail = ({ id }) => {
         <div className="">
           <div>
             <div className="pb-4">
-              <CustomText textClassName="font-bold font-size-xlarge">
+              <CustomText textClassName="font-bold text-base">
                 {isEmpty(propertyName) ? "-" : propertyName}
               </CustomText>
               <CustomText textClassName="text-xs font-light">

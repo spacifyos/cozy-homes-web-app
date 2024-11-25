@@ -353,7 +353,7 @@ const OwnerViewAgreement = ({ id }) => {
           </Document>
 
           <div className="flex flex-col items-center">
-            <CustomText textClassName="white-text font-size-xsmall pt-2">
+            <CustomText textClassName="white-text text-xs pt-2">
               {t("viewAgreement.page")} {pageNumber} of {totalPages}
             </CustomText>
 

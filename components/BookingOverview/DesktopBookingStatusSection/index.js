@@ -23,7 +23,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
   return (
     <div className="xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 relative">
       <div className="global-border-radius global-box-shadow p-5 sticky top-10">
-        <CustomText textClassName="primary-text font-size-xxlarge font-bold pb-5">
+        <CustomText textClassName="primary-text text-lg font-bold pb-5">
           Booking Status
         </CustomText>
 
@@ -34,14 +34,12 @@ const DesktopBookingStatusSection = ({ t, data }) => {
               imageStyle={{ width: 30, height: 30 }}
             />
 
-            <CustomText textClassName="font-size-large font-bold pt-2">
+            <CustomText textClassName="text-base font-bold pt-2">
               Step 1
             </CustomText>
 
             <div className="flex gap-3 items-center pb-2 pt-1">
-              <CustomText textClassName="font-size-xsmall">
-                Booking Status:
-              </CustomText>
+              <CustomText textClassName="text-xs">Booking Status:</CustomText>
               <StatusLabel status={isEmpty(data) ? "" : "Completed"} />
             </div>
           </div>
@@ -61,15 +59,13 @@ const DesktopBookingStatusSection = ({ t, data }) => {
             />
 
             <CustomText
-              textClassName={`font-size-large font-bold pt-2 ${!isEqual(paymentStatus, "Paid") ? "disable-text" : ""}`}
+              textClassName={`text-base font-bold pt-2 ${!isEqual(paymentStatus, "Paid") ? "disable-text" : ""}`}
             >
               Step 2
             </CustomText>
 
             <div className="flex gap-3 items-center pb-2 pt-1">
-              <CustomText textClassName="font-size-xsmall">
-                Payment Status:
-              </CustomText>
+              <CustomText textClassName="text-xs">Payment Status:</CustomText>
               <StatusLabel status={paymentStatus} />
             </div>
 
@@ -102,15 +98,15 @@ const DesktopBookingStatusSection = ({ t, data }) => {
               imageStyle={{ width: 30, height: 30 }}
             />
 
-            <CustomText textClassName="font-size-large font-bold pt-2">
+            <CustomText textClassName="text-base font-bold pt-2">
               Step 3
             </CustomText>
 
             <div className="flex gap-3 items-center pb-2 pt-1">
-              <CustomText textClassName="font-size-xsmall">
+              <CustomText textClassName="text-xs">
                 Agency Review Status:
               </CustomText>
-              <StatusLabel status={isEmpty(data) ? "" : "Completed"} />
+              <StatusLabel status={agencyReviewStatus} />
             </div>
           </div>
         </div>

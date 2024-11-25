@@ -22,6 +22,7 @@ import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
@@ -94,21 +95,32 @@ const MyPropertyOverview = ({ id }) => {
       <DesktopLayout
         loading={userProfileLoading || tenancyOverviewLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <a href={"/my-property"}>
+                    <CustomText textClassName="text-base disable-text">
+                      My Property
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">
+                    {tenancyCode}
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  {tenancyCode}
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base"> {tenancyCode}</CustomText>
+            </div>
           </div>
         }
       >

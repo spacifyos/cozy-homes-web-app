@@ -24,7 +24,7 @@ const UserDetailComponent = ({ data }) => {
           <div className="flex items-center">
             <CustomImage src={Images.phoneIcon} imageStyle={{ width: 12 }} />
             <CustomText
-              textClassName="font-size-xxsmall pl-2 disable-text"
+              textClassName="text-xs pl-2 disable-text"
               lineClamp={1}
             >
               {isEmpty(phoneNumber) ? "-" : phoneNumber}
@@ -33,7 +33,7 @@ const UserDetailComponent = ({ data }) => {
           <div className="flex items-center">
             <CustomImage src={Images.emailIcon} imageStyle={{ width: 12 }} />
             <CustomText
-              textClassName="font-size-xxsmall pl-2 disable-text"
+              textClassName="text-xs pl-2 disable-text"
               lineClamp={1}
             >
               {isEmpty(email) ? "-" : email}
@@ -53,10 +53,10 @@ const UserDetailComponent = ({ data }) => {
       {/*  />*/}
 
       {/*  <div className="flex flex-col pl-2">*/}
-      {/*    <CustomText textClassName="disable-text font-size-xxsmall">*/}
+      {/*    <CustomText textClassName="disable-text text-xs">*/}
       {/*      My Wallet*/}
       {/*    </CustomText>*/}
-      {/*    <CustomText textClassName="primary-text font-size-xlarge font-bold">*/}
+      {/*    <CustomText textClassName="primary-text text-base font-bold">*/}
       {/*      {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
       {/*    </CustomText>*/}
       {/*  </div>*/}

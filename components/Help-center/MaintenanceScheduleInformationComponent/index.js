@@ -84,7 +84,7 @@ const MaintenanceScheduleInformation = ({ t }) => {
           buttonClassName="disable-btn my-2"
           buttonText={t("requestOverview.assign")}
         />
-        <CustomText textClassName="disable-text font-size-xxsmall">
+        <CustomText textClassName="disable-text text-xs">
           {t("requestOverview.maintenanceScheduleInformationWillBeUpdatedSoon")}
         </CustomText>
       </div>

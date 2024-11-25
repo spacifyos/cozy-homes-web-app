@@ -101,7 +101,7 @@ const OwnerEAgreement = () => {
                 key={index}
                 buttonText={name}
                 buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="font-size-xsmall"
+                textClassName="text-xs"
                 onClick={() => onClickSelectStatus(value)}
               />
             );
@@ -125,7 +125,7 @@ const OwnerEAgreement = () => {
             <CustomButton
               buttonClassName="primary-btn min-h-9 h-9 w-32"
               buttonText="Load More"
-              textClassName="font-size-xsmall"
+              textClassName="text-xs"
               loading={
                 agreementListingDataLoading && !isEmpty(agreementListingData)
               }

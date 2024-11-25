@@ -31,7 +31,7 @@ const AgencySignUp = () => {
           <div className="grid grid-cols-2">
             <div onClick={onClickToSignIn} className="cursor-pointer">
               <CustomText
-                textClassName="text-center p-4 primary-text font-bold font-size-large"
+                textClassName="text-center p-4 primary-text font-bold text-base"
                 styles={{
                   borderRadius: "10px 10px 0 0",
                   backgroundColor: "#E8E8E8",
@@ -43,7 +43,7 @@ const AgencySignUp = () => {
             </div>
 
             <CustomText
-              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold font-size-large"
+              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold text-base"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
               {t("signUp.signUp")}
@@ -118,7 +118,7 @@ const AgencySignUp = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="font-size-xxsmall text-center disable-text">
+            <CustomText textClassName="text-xs text-center disable-text">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

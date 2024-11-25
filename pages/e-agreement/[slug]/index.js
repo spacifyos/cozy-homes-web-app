@@ -71,29 +71,40 @@ const EAgreementOverview = ({ id }) => {
       <DesktopLayout
         loading={agreementOverviewDataLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/e-agreement"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My E-Agreement
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  {referenceNumber}
-                </CustomText>
-              </li>
-            </ul>
-          </div>
+         <div>
+           <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+             <ul>
+               {/*<li>*/}
+               {/*  <a href={"/my-property"}>*/}
+               {/*    <CustomText textClassName="text-base disable-text">*/}
+               {/*      My Property*/}
+               {/*    </CustomText>*/}
+               {/*  </a>*/}
+               {/*</li>*/}
+               <li>
+                 <a href={"/e-agreement"}>
+                   <CustomText textClassName="text-base disable-text">
+                     My E-Agreement
+                   </CustomText>
+                 </a>
+               </li>
+               <li>
+                 <CustomText textClassName="text-base ">
+                   {referenceNumber}
+                 </CustomText>
+               </li>
+             </ul>
+           </div>
+
+           <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+             <CustomImage
+                 src={Images.leftIcon}
+                 className="w-2"
+                 onClick={onClickGoBack}
+             />
+             <CustomText textClassName="text-base"> {referenceNumber}</CustomText>
+           </div>
+         </div>
         }
       >
         <div className="relative pt-6 flex justify-center">
@@ -116,7 +127,7 @@ const EAgreementOverview = ({ id }) => {
               />
 
               <div className="pb-2">
-                <CustomText textClassName="font-size-xxsmall disable-text">
+                <CustomText textClassName="text-xs disable-text">
                   {t("eAgreementOverview.status")}
                 </CustomText>
                 <StatusLabel status={status} />
@@ -159,7 +170,7 @@ const EAgreementOverview = ({ id }) => {
             />
 
             <div className="pb-2">
-              <CustomText textClassName="font-size-xxsmall disable-text">
+              <CustomText textClassName="text-xs disable-text">
                 {t("eAgreementOverview.activity")}
               </CustomText>
               <div className="pt-1 grid grid-cols-2 gap-2">
@@ -175,7 +186,7 @@ const EAgreementOverview = ({ id }) => {
                     <CustomText textClassName="text-sm disable-text">
                       {t("eAgreementOverview.agreed")}
                     </CustomText>
-                    <CustomText textClassName="font-size-xxsmall disable-text">
+                    <CustomText textClassName="text-xs disable-text">
                       {isEmpty(agreedDate) ? "-" : agreedDate}
                     </CustomText>
                   </div>
@@ -192,7 +203,7 @@ const EAgreementOverview = ({ id }) => {
                     <CustomText textClassName="text-sm disable-text">
                       {t("eAgreementOverview.signed")}
                     </CustomText>
-                    <CustomText textClassName="font-size-xxsmall disable-text">
+                    <CustomText textClassName="text-xs disable-text">
                       {isEmpty(signedDate) ? "-" : signedDate}
                     </CustomText>
                   </div>

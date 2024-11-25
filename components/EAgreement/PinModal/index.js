@@ -13,7 +13,7 @@ const PinModal = ({
 }) => {
   return (
     <CustomModal id="mobile_pin_modal">
-      <CustomText textClassName="font-size-large font-bold pb-5">
+      <CustomText textClassName="text-base font-bold pb-5">
         {t("viewAgreement.insertPinNumber")}
       </CustomText>
 

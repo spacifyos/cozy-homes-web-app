@@ -118,7 +118,7 @@ const MyStay = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Stay - Spacify Asia" />
 
-      <DesktopLayout
+      <DesktopLayout footerPaddingBottom="pb-20"
         loading={
           userProfileLoading ||
           tenancyListingLoading ||
@@ -129,7 +129,7 @@ const MyStay = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base">
                   My Property
                 </CustomText>
               </li>
@@ -137,7 +137,7 @@ const MyStay = () => {
           </div>
         }
       >
-        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
+        <div className="">
           <UserSection t={t} data={userProfileData} />
 
           <TenancySection

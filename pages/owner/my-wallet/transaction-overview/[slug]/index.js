@@ -108,10 +108,10 @@ const TransactionOverview = ({ id }) => {
       {/*    <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 30 }} />*/}
 
       {/*    <div>*/}
-      {/*      <CustomText textClassName="font-size-xxlarge font-bold px-3 leading-4">*/}
+      {/*      <CustomText textClassName="text-lg font-bold px-3 leading-4">*/}
       {/*        {isEmpty(amount) ? "RM0" : amount}*/}
       {/*      </CustomText>*/}
-      {/*      /!*<CustomText textClassName="font-size-xxsmall disable-text px-3">*!/*/}
+      {/*      /!*<CustomText textClassName="text-xs disable-text px-3">*!/*/}
       {/*      /!*  {`withdraw amount`}*!/*/}
       {/*      /!*</CustomText>*!/*/}
       {/*    </div>*/}

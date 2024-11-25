@@ -48,7 +48,7 @@ const PaymentFailure = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
+                <CustomText textClassName="text-base font-bold">
                   Invoice Payment
                 </CustomText>
               </li>

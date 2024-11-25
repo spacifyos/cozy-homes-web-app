@@ -53,7 +53,7 @@ const DesktopSearchBar = ({
         {/*        style={{ borderRadius: "10px 10px 0 0" }}*/}
         {/*      >*/}
         {/*        <CustomText*/}
-        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "primary-text font-bold" : "disable-text"} font-size-large`}*/}
+        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "primary-text font-bold" : "disable-text"} text-base`}*/}
         {/*        >*/}
         {/*          {name}*/}
         {/*        </CustomText>*/}
@@ -70,7 +70,7 @@ const DesktopSearchBar = ({
             <CustomInput
               rightIcon={Images.searchOutlineActiveIcon}
               className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
-              placeholder="Keyword"
+              placeholder="Search Rooms ..."
               value={keywordValue}
               onChange={(e) => setKeywordValue(e.target.value)}
             />

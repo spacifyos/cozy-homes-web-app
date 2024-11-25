@@ -18,6 +18,7 @@ import DesktopInvoiceSummaryComponent from "@/components/MyInvoice/DesktopInvoic
 import DesktopFilterModal from "@/components/MyInvoice/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
@@ -184,21 +185,30 @@ const MyInvoice = () => {
         isFiltered={isFilter()}
         onClickRightButton={() => onClickOpenFilter("desktop")}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul className="flex-wrap">
-              <li>
-                <a href={"/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
-                    My Property
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="font-size-xlarge font-bold">
-                  Invoice
-                </CustomText>
-              </li>
-            </ul>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap">
+                {/*<li>*/}
+                {/*  <a href={"/my-property"}>*/}
+                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*      My Property*/}
+                {/*    </CustomText>*/}
+                {/*  </a>*/}
+                {/*</li>*/}
+                <li>
+                  <CustomText textClassName="text-base">My Invoice</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">My Invoice</CustomText>
+            </div>
           </div>
         }
       >

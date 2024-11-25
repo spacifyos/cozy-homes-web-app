@@ -490,7 +490,7 @@ const Search = () => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="font-bold">
+                <CustomText textClassName="text-base">
                   Room Listing
                 </CustomText>
               </li>
@@ -498,7 +498,7 @@ const Search = () => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-6 pb-4">
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8">
           <DesktopSearchBar
             onClickOpenModal={onClickOpenModal}
             keywordValue={keywordValue}
@@ -514,7 +514,7 @@ const Search = () => {
             isFilter={isFilter}
           />
 
-          <div className="grid grid-cols-5 gap-10">
+          <div className="grid grid-cols-5 gap-10 pb-2">
             <div className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5">
               <DesktopListingSection
                 t={t}
@@ -530,7 +530,7 @@ const Search = () => {
             {/*</div>*/}
           </div>
 
-          {lastPage > 1 && hasMorePages ? (
+          {lastPage > 1 ? (
             <CustomPagination
               totalPages={lastPage}
               currentPage={currentPage}
@@ -542,8 +542,9 @@ const Search = () => {
             false
           )}
         </div>
+      </DesktopLayout>
 
-        <DesktopFilterModal
+      <DesktopFilterModal
           sortValue={sortValue}
           setSortValue={setSortValue}
           newSortTag={newSortTag}
@@ -571,8 +572,7 @@ const Search = () => {
           onClickApply={onClickApply}
           onClickClearAll={onClickClearAll}
           onClickCloseFilterModal={onClickCloseFilterModal}
-        />
-      </DesktopLayout>
+      />
 
       {/*<CustomHeader*/}
       {/*  pageTitle={t("pageTitle.search")}*/}

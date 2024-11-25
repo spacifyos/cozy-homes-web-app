@@ -12,10 +12,10 @@ const CustomEmptyBox = ({
       <div className={"pb-2"}>
         <CustomImage src={emptyImage} imageStyle={{ width: 60 }} />
       </div>
-      <CustomText textClassName="font-size-large font-bold disable-text">
+      <CustomText textClassName="text-base font-bold disable-text">
         {emptyTitle}
       </CustomText>
-      <CustomText textClassName="font-size-xsmall disable-text">
+      <CustomText textClassName="text-xs disable-text">
         {emptyDesc}
       </CustomText>
     </div>

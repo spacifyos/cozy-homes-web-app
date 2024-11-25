@@ -53,23 +53,23 @@ const   DesktopPriceSection = ({
           imageStyle={{ width: "100%", height: 450 }}
         />
         <div className="p-5">
-          <CustomText textClassName="primary-text font-bold">
+          <CustomText textClassName="text-sm primary-text font-bold">
             {isEmpty(title) ? "-" : title}
           </CustomText>
 
-          <CustomText textClassName="font-bold pb-3">
+          <CustomText textClassName="text-sm font-bold pb-3">
             {`RM${isEmpty(targetRental) ? "0" : targetRental} / Monthly`}
           </CustomText>
 
-          <CustomText textClassName="font-bold">
+          <CustomText textClassName="text-sm font-bold">
             {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
 
-          <CustomText textClassName="primary-text text-sm">
-            {isEmpty(unitRoomName) ? "-" : unitRoomName}
-          </CustomText>
+          {/*<CustomText textClassName="text-sm primary-text text-sm">*/}
+          {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
+          {/*</CustomText>*/}
 
-          <CustomText textClassName="disable-text font-size-xxsmall">
+          <CustomText textClassName="text-sm disable-text text-xs">
             {isEmpty(address) ? "-" : address}
           </CustomText>
 
@@ -78,7 +78,7 @@ const   DesktopPriceSection = ({
           ) : (
             <>
               <div className="py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-                <CustomText textClassName="col-span-4 font-bold">
+                <CustomText textClassName="text-sm col-span-4 font-bold">
                   Tenancy Period
                 </CustomText>
                 <BookingDateInput
@@ -121,10 +121,10 @@ const   DesktopPriceSection = ({
               {isAllowedZeroDeposit ? (
                 <div className="pt-3 pb-4 grid grid-cols-6 gap-2">
                   <div className="flex items-end col-span-6">
-                    <CustomText textClassName="font-bold pr-1">
+                    <CustomText textClassName="text-sm font-bold pr-1">
                       ZERO Deposit Solution
                     </CustomText>
-                    <CustomText textClassName="font-size-xxsmall pb-0.5">
+                    <CustomText textClassName="text-xs pb-0.5">
                       (*Select either one)
                     </CustomText>
                   </div>
@@ -138,7 +138,7 @@ const   DesktopPriceSection = ({
                       onClick={onClickSelectIsZeroDeposit}
                       className="radio booking-radio mr-2"
                     />
-                    <CustomText>ZERO Deposit</CustomText>
+                    <CustomText textClassName="text-xs">ZERO Deposit</CustomText>
                   </div>
 
                   <div className="flex items-center col-span-3">
@@ -150,7 +150,7 @@ const   DesktopPriceSection = ({
                       onClick={onClickSelectIsZeroDeposit}
                       className="radio booking-radio mr-2"
                     />
-                    <CustomText>Pay 2 Months Security Deposit</CustomText>
+                    <CustomText textClassName="text-xs">Pay 2 Months Security Deposit</CustomText>
                   </div>
                 </div>
               ) : (
@@ -161,15 +161,15 @@ const   DesktopPriceSection = ({
         </div>
 
         <div className="p-5 bg-color flex items-center justify-between">
-          <CustomText textClassName="font-bold">Total Move-In Cost</CustomText>
-          <CustomText textClassName="primary-text font-bold">
+          <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">Total Move-In Cost</CustomText>
+          <CustomText textClassName="primary-text font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             RM {totalMoveInCost}
           </CustomText>
         </div>
 
         <div className="p-5">
-          <CustomText textClassName="font-bold pb-1">Move In Cost</CustomText>
-          <CustomText textClassName="font-size-xsmall font-light leading-4 disable-text">
+          <CustomText textClassName="font-bold pb-1 xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">Move In Cost</CustomText>
+          <CustomText textClassName="text-xs font-light leading-4 disable-text">
             Please check the payment breakdown below. Should you have any
             inquiries, please contact the owner or agent before proceeding with
             your payment.
@@ -214,10 +214,10 @@ const   DesktopPriceSection = ({
                     className="flex justify-between items-center pb-1"
                     key={index}
                   >
-                    <CustomText textClassName="font-bold pr-2">
+                    <CustomText textClassName="font-bold pr-2 text-sm">
                       {label}
                     </CustomText>
-                    <CustomText>RM{value}</CustomText>
+                    <CustomText textClassName="text-sm">RM{value}</CustomText>
                   </div>
                 );
               })}
@@ -232,10 +232,10 @@ const   DesktopPriceSection = ({
               ></div>
 
               <div className="flex justify-between items-center">
-                <CustomText textClassName="font-bold pr-2">
+                <CustomText textClassName="font-bold pr-2 text-sm">
                   Total Move-in Cost
                 </CustomText>
-                <CustomText textClassName="primary-text font-bold">
+                <CustomText textClassName="primary-text font-bold text-sm">
                   RM{totalMoveInCostFull}
                 </CustomText>
               </div>
@@ -249,10 +249,10 @@ const   DesktopPriceSection = ({
                     onClick={onClickSelectPaymentAmount}
                     className="radio booking-radio mr-2"
                   />
-                  <CustomText>Pay in Full</CustomText>
+                  <CustomText textClassName="text-sm">Pay in Full</CustomText>
                 </div>
 
-                <CustomText>RM{totalMoveInCostFull}</CustomText>
+                <CustomText textClassName="text-sm">RM{totalMoveInCostFull}</CustomText>
               </div>
 
               <div className="flex justify-between items-center pt-2">
@@ -264,10 +264,10 @@ const   DesktopPriceSection = ({
                     onClick={onClickSelectPaymentAmount}
                     className="radio booking-radio mr-2"
                   />
-                  <CustomText>Pay in Partial</CustomText>
+                  <CustomText textClassName="text-sm">Pay in Partial</CustomText>
                 </div>
 
-                <CustomText>RM{totalMoveInCostPartial}</CustomText>
+                <CustomText textClassName="text-sm">RM{totalMoveInCostPartial}</CustomText>
               </div>
             </>
           )}

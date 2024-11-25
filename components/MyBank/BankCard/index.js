@@ -39,7 +39,7 @@ const BankCard = ({ bankDetails }) => {
             </a>
 
             <div className="flex justify-between items-center">
-              <CustomText textClassName="font-size-large">
+              <CustomText textClassName="text-base">
                 {bankName}
               </CustomText>
 
@@ -49,7 +49,7 @@ const BankCard = ({ bankDetails }) => {
               />
             </div>
 
-            <CustomText textClassName="font-bold font-size-large pb-4">
+            <CustomText textClassName="font-bold text-base pb-4">
               {accountNumber}
             </CustomText>
 

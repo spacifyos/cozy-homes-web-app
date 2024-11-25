@@ -55,7 +55,7 @@ const Booking = () => {
           />
         </div>
         <div className=" flex flex-col items-start pb-7">
-          <CustomText textClassName="font-size-large font-bold pb-1">
+          <CustomText textClassName="text-base font-bold pb-1">
             M Vertica, Kuala Lumpur
           </CustomText>
 
@@ -73,7 +73,7 @@ const Booking = () => {
               <CustomImage src={Images.bookingIcon} width={25} height={25} />
             </div>
 
-            <CustomText textClassName="font-bold font-size-xlarge primary-text">
+            <CustomText textClassName="font-bold text-base primary-text">
               {t("bookAppointment.myAppointment")}
             </CustomText>
           </div>
@@ -88,7 +88,7 @@ const Booking = () => {
               className="global-border-radius"
             />
 
-            <CustomText textClassName="font-bold font-size-large">
+            <CustomText textClassName="font-bold text-base">
               Razak bin Osman
             </CustomText>
           </div>

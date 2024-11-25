@@ -25,7 +25,7 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
           {/*<CustomText textClassName="primary-text text-sm">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
-          <CustomText textClassName="primary-text font-size-xxlarge font-bold xl:text-left lg:text-left md:text-left sm:text-center text-center">
+          <CustomText textClassName="primary-text text-lg font-bold xl:text-left lg:text-left md:text-left sm:text-center text-center">
             {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
             Coming Soon
           </CustomText>
