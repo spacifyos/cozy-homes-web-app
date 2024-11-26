@@ -1,12 +1,17 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { get, isEmpty, isEqual, map } from "lodash";
+import { get, includes, isEmpty, isEqual, map } from "lodash";
 import AuthManager from "@/src/utils/AuthManager";
 import { useEffect, useState } from "react";
+import Helper from "@/src/utils/Helper";
+import { useRouter } from "next/router";
 
 const BottomNavigate = ({ routeName, t, routeQuery }) => {
+  const router = useRouter();
   const [lists, setLists] = useState([]);
+
+  const tab = get(routeQuery, ["tab"], "");
 
   useEffect(() => {
     const checkUserType = async () => {
@@ -39,7 +44,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
         // },
         {
           name: t("root.account"),
-          value: isEqual(userType, "owner") ? "/owner/account" : "/account",
+          value: "/account",
           icon: Images.accountIcon,
           activeIcon: Images.accountIconActive,
         },
@@ -49,7 +54,15 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
     checkUserType();
   }, []);
 
-  const tab = get(routeQuery, ["tab"], "");
+  const onClickToPage = async (route) => {
+    const token = await AuthManager.retrieveToken();
+
+    if (isEmpty(token) && !includes(route, "explore")) {
+      Helper.documentGetElementById("sign_in_modal").showModal();
+    } else {
+      return router.push(route);
+    }
+  };
 
   return (
     <div
@@ -66,16 +79,16 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
             const activeIcon = get(item, ["activeIcon"], "");
 
             return (
-              <a
-                href={`${value}`}
+              <div
+                onClick={() => onClickToPage(value)}
                 key={index}
                 className="flex flex-col justify-center items-center cursor-pointer"
               >
                 <CustomImage
                   src={
-                    isEqual(value, routeName) ||
-                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                    isEqual(value, routeName)
+                      ? // || (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                        // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                         activeIcon
                       : icon
                   }
@@ -83,16 +96,16 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
                 />
                 <CustomText
                   textClassName={`${
-                    isEqual(value, routeName) ||
-                    (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                      ? // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
+                    isEqual(value, routeName)
+                      ? // || (!isEmpty(tab) && isEqual(value, `/${tab}`))
+                        // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
                         "primary-text"
                       : "disable-text"
                   } text-xs pt-1`}
                 >
                   {name}
                 </CustomText>
-              </a>
+              </div>
             );
           })}
         </div>

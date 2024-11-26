@@ -251,6 +251,16 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       <div className="divider-line"></div>
 
       <FeatureComponent
+          title="Chat"
+          icon={Images.chatOutlineIcon}
+          imageWidth={18}
+          pb={3}
+          onClick={() => {
+            return router.push(isTenant ? "/chat" : "/owner/chat");
+          }}
+      />
+
+      <FeatureComponent
         title="Terms & Conditions"
         icon={Images.primaryTermAndConditionIcon}
         imageWidth={23}

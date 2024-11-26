@@ -13,6 +13,11 @@ import AuthWrapper from "@/components/AuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import BottomNavigate from "@/components/BottomNavigate";
+import { NextSeo } from "next-seo";
+import CustomText from "@/components/CustomText";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 export { getServerSideProps };
 
@@ -48,7 +53,7 @@ const Chat = () => {
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "463bd5543e3fe9c1dcb0ed08af83ba58";
-  const src = `https://app.proptechai.bot/js/widget/pzh0cmyd7blgdoiw/full.js?ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
+  const src = `https://app.proptechai.bot/js/widget/pzh0cmyd7blgdoiw/embed.js?id=embed_chatbot_container_id&ref=main_menu--${phoneNumber}--${tenancyCode}--${tenancyStatus}--${propertyName}--${unitName}--${roomName}--${tenancyPeriod}--${totalDays}--${tenancyRemaining}--${rental}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
@@ -124,27 +129,56 @@ const Chat = () => {
     router.push(route);
   };
 
+  const onClickGoBack = () => {
+    router.back();
+  };
+
   return (
-    <div id="chat-container">
-      {/*<div*/}
-      {/*  id="embed_chatbot_container_id"*/}
-      {/*  style={{*/}
-      {/*    height:*/}
-      {/*      visualViewport.height * visualViewport.scale - bottomNavigateHeight,*/}
-      {/*    width: "100%",*/}
-      {/*    maxWidth: 500,*/}
-      {/*    position: "fixed",*/}
-      {/*  }}*/}
-      {/*></div>*/}
+    <div className="min-h-screen primaryWhite-bg-color">
+      <DesktopLayout
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <CustomText textClassName="text-base">Chat</CustomText>
+                </li>
+              </ul>
+            </div>
 
-      <LoadingOverlay loading={userProfileLoading} />
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">Chat</CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div
+          id="chat-container"
+          className="border global-border-radius h-full w-full overflow-hidden flex justify-center items-center"
+        >
+          <div id="embed_chatbot_container_id"></div>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+          {userProfileLoading ? (
+            <span className="loading loading-dots loading-lg primary-text"></span>
+          ) : (
+            false
+          )}
+
+          {/*<LoadingOverlay loading={userProfileLoading} />*/}
+
+          {/*<BottomNavigate*/}
+          {/*  t={t}*/}
+          {/*  routeName={routeName}*/}
+          {/*  routeQuery={routeQuery}*/}
+          {/*  onClickChangeTab={onClickChangeTab}*/}
+          {/*/>*/}
+        </div>
+      </DesktopLayout>
     </div>
   );
 };

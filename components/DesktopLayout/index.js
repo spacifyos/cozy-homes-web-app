@@ -14,6 +14,10 @@ import CustomImage from "@/components/CustomImage";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthManager from "@/src/utils/AuthManager";
+import DesktopModal from "@/components/DesktopModal";
+import CustomText from "@/components/CustomText";
+import Images from "@/src/utils/Image";
+import CustomButton from "@/components/CustomButton";
 
 const DesktopLayout = ({
   children,
@@ -109,13 +113,22 @@ const DesktopLayout = ({
     router.push("/explore");
   };
 
+  const onClickLogoutModal = () => {
+    Helper.documentGetElementById("logout_modal").showModal();
+  };
+
   const onClickLogout = () => {
+    onClickCancelLogout();
     setSignOutLoading(true);
 
     setTimeout(() => {
       setSignOutLoading(false);
       signOutAccountRequest();
     }, 2000);
+  };
+
+  const onClickCancelLogout = () => {
+    Helper.documentGetElementById("logout_modal").close();
   };
 
   return (
@@ -128,7 +141,7 @@ const DesktopLayout = ({
         onClickMyProperty={onClickMyProperty}
         onClickMyAccount={onClickMyAccount}
         onClickExplore={onClickExplore}
-        onClickLogout={onClickLogout}
+        onClickLogout={onClickLogoutModal}
         onClickChat={onClickChat}
       />
 
@@ -191,11 +204,14 @@ const DesktopLayout = ({
             <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
               <DesktopNavigationBar
                 userData={userProfileData}
-                onClickLogout={onClickLogout}
+                onClickLogout={onClickLogoutModal}
               />
             </div>
 
-            <div className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4">
+            <div
+              className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4"
+              style={{ minHeight: "80vh" }}
+            >
               {children}
             </div>
           </div>
@@ -212,6 +228,33 @@ const DesktopLayout = ({
         userType={selectedUserType}
         setUserType={setSelectedUserType}
       />
+
+      <DesktopModal id="logout_modal">
+        <div className="p-6">
+          <div className="flex flex-col">
+            <CustomText textClassName="text-xl font-bold pb-2">
+              Confirm Logout
+            </CustomText>
+            <CustomText textClassName="text-sm pb-2">
+              Are you sure want to logout?
+            </CustomText>
+
+            <div className=" pt-2 flex justify-end gap-4">
+              <CustomButton
+                buttonClassName={`primary-btn min-h-10 h-10 min-w-24 w-24`}
+                buttonText="Cancel"
+                onClick={onClickCancelLogout}
+              />
+
+              <CustomButton
+                buttonClassName={`default-btn-outline min-h-10 h-10 min-w-24 w-24`}
+                buttonText="Logout"
+                onClick={onClickLogout}
+              />
+            </div>
+          </div>
+        </div>
+      </DesktopModal>
 
       <LoadingOverlay loading={loading || signOutLoading} />
     </div>

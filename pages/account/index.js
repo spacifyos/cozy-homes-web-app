@@ -21,6 +21,7 @@ import CustomButton from "@/components/CustomButton";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
 import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
+import DesktopModal from "@/components/DesktopModal";
 
 export { getServerSideProps };
 
@@ -88,13 +89,8 @@ const Account = () => {
     getUserProfileRequest();
   };
 
-  const onClickLogout = () => {
-    setSignOutLoading(true);
-
-    setTimeout(() => {
-      setSignOutLoading(false);
-      signOutAccountRequest();
-    }, 2000);
+  const onClickLogoutModal = () => {
+    Helper.documentGetElementById("logout_modal").showModal();
   };
 
   const onClickToCoinsTransaction = () => {
@@ -236,20 +232,19 @@ const Account = () => {
       <NextSeo title="Account - Spacify Asia" />
 
       <DesktopLayout
+        footerPaddingBottom="pb-20"
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}
         pageBreadcrumbs={
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="text-base">
-                  Account
-                </CustomText>
+                <CustomText textClassName="text-base">Account</CustomText>
               </li>
             </ul>
           </div>
         }
       >
-        <div className="grid grid-cols-7 gap-8 flex-1">
+        <div className="grid grid-cols-7 xl:gap-8 lg:gap-8 md:gap-6 sm:gap-4 gap-4 flex-1">
           <div className="xl:col-span-4 lg:col-span-4 md:col-span-7 sm:col-span-4 col-span-4">
             <DesktopProfileCard data={userProfileData} />
           </div>
@@ -277,7 +272,7 @@ const Account = () => {
               <CustomButton
                 textClassName="text-xs"
                 buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
-                buttonText={isCopy ? "Copiedtext-lg" : "Copy"}
+                buttonText={isCopy ? "Copied" : "Copy"}
                 onClick={onClickCopy}
               />
             </div>
@@ -291,7 +286,7 @@ const Account = () => {
           </div>
         </div>
 
-        <div className="pb-16 xl:hidden lg:hidden md:hidden">
+        <div className="xl:hidden lg:hidden md:hidden">
           <div className="divider-line"></div>
 
           <FeatureComponent
@@ -323,7 +318,7 @@ const Account = () => {
           <div className="flex justify-between items-center pb-3">
             <div
               className="logout-container cursor-pointer"
-              onClick={onClickLogout}
+              onClick={onClickLogoutModal}
             >
               <CustomImage
                 src={Images.primaryLogoutIcon}

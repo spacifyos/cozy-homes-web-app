@@ -21,7 +21,7 @@ import * as invoiceSelector from "@/src/selectors/invoice";
 import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
 import DesktopLayout from "@/components/DesktopLayout";
-import {NextSeo} from "next-seo";
+import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
@@ -153,6 +153,7 @@ const OwnerHome = () => {
       <NextSeo title="My Property | Owner - Spacify Asia" />
 
       <DesktopLayout
+        footerPaddingBottom="pb-20"
         loading={
           propertyListingLoading ||
           transactionListingLoading ||
@@ -163,9 +164,7 @@ const OwnerHome = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="text-base font-bold">
-                  My Property
-                </CustomText>
+                <CustomText textClassName="text-base">My Property</CustomText>
               </li>
             </ul>
           </div>
