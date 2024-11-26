@@ -118,7 +118,7 @@ const DesktopPopularUniversitySection = ({
                 slidesPerView: 4,
                 spaceBetween: 15,
               },
-              420: {
+              380: {
                 slidesPerView: 3,
                 spaceBetween: 15,
               },
