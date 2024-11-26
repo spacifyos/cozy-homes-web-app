@@ -331,7 +331,7 @@ const Account = () => {
             </div>
 
             <CustomText textClassName="disable-text text-sm">
-              {t("account.version")} 1.6.0
+              {t("account.version")} 2.0.0
             </CustomText>
           </div>
         </div>
