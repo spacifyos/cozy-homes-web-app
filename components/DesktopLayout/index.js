@@ -146,7 +146,7 @@ const DesktopLayout = ({
       />
 
       {hideNav ? (
-        <div className="flex-1 h-full">
+        <div className="flex-1 h-full" style={{ minHeight: "100vh" }}>
           {isEmpty(pageBreadcrumbs) ? (
             false
           ) : (
@@ -209,10 +209,26 @@ const DesktopLayout = ({
             </div>
 
             <div
-              className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4"
+              className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4 relative"
               style={{ minHeight: "80vh" }}
             >
               {children}
+
+              {loading ? (
+                <div
+                  className={
+                    "absolute top-0 left-0 flex justify-center items-center h-full w-full"
+                  }
+                  style={{
+                    backgroundColor: "rgba(256,256,256,0.5)",
+                    zIndex: 9999,
+                  }}
+                >
+                  <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+                </div>
+              ) : (
+                false
+              )}
             </div>
           </div>
         </div>
@@ -256,7 +272,7 @@ const DesktopLayout = ({
         </div>
       </DesktopModal>
 
-      <LoadingOverlay loading={loading || signOutLoading} />
+      <LoadingOverlay loading={signOutLoading} />
     </div>
   );
 };

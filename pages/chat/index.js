@@ -164,7 +164,7 @@ const Chat = () => {
           <div id="embed_chatbot_container_id"></div>
 
           {userProfileLoading ? (
-            <span className="loading loading-dots loading-lg primary-text"></span>
+            <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
           ) : (
             false
           )}

@@ -283,12 +283,12 @@ const DesktopFooter = ({ paddingBottom }) => {
 
         <div className="pb-4 flex flex-row-reverse xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center flex-wrap gap-4">
           <div className="flex gap-3">
-            {map(socialMediaIconList, (item) => {
+            {map(socialMediaIconList, (item, index) => {
               const icon = get(item, ["icon"], "");
               const value = get(item, ["value"], "");
 
               return (
-                <a href={value} target="_blank">
+                <a href={value} target="_blank" key={index}>
                   <CustomImage
                     src={icon}
                     imageStyle={{ width: 25, height: 25 }}

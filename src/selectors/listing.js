@@ -147,3 +147,4 @@ export const getFirstMonthRentCharges = (state) =>
 export const getLastMonthRentCharges = (state) =>
   get(state, ["last_month_rent_charges"], []);
 export const getOthers = (state) => get(state, ["others"], []);
+export const getListing = (state) => get(state, ["listings"], []);

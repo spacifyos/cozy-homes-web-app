@@ -35,13 +35,13 @@ const CustomSelect = ({
           </option>
         )}
 
-        {map(optionList, (item) => {
+        {map(optionList, (item, index) => {
           const name = get(item, ["name"], "");
           const label = get(item, ["label"], "");
           const value = get(item, ["value"], "");
 
           return (
-            <option key={name} value={value}>
+            <option key={index} value={value}>
               {isEmpty(name) ? label : name}
             </option>
           );

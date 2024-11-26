@@ -123,7 +123,11 @@ const SignInModal = ({ userType, setUserType }) => {
             <form method="dialog" className={`flex justify-end`}>
               <button
                 className="btn btn-sm btn-circle btn-ghost right-2"
-                onClick={() => setUserType("")}
+                onClick={() => {
+                  setUserType("");
+                  setPassword("");
+                  setPhoneNumber("");
+                }}
               >
                 <CustomImage
                   src={Images.closeIconWhite}

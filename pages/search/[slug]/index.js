@@ -41,20 +41,15 @@ import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
-import {getListing} from "@/src/selectors/listing";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
-const Search = () => {
+const SearchWithSlug = ({ id }) => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
-  const queryId = get(router, ["query", "id"], "");
-  const queryKey = get(router, ["query", "key"], "");
-  const queryTags = get(router, ["query", "tags"], "");
-
-  const formatQueryTags = split(queryTags, ",");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -81,7 +76,8 @@ const Search = () => {
     commonSelector.getSelectOptionData(state),
   );
   const stateOption = commonSelector.getState(selectOptionData);
-  const listingData = listingSelector.getListing(listingPropertyData)
+  const listingData = listingSelector.getListing(listingPropertyData);
+  const tagsData = listingSelector.getTags(listingPropertyData);
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
   const [isCityTyping, setIsCityTyping] = useState(false);
@@ -123,17 +119,11 @@ const Search = () => {
   const isFilter = !isEmpty(selectedFilterParams);
 
   useEffect(() => {
-    if (!isEmpty(queryKey) && !isEmpty(queryId)) {
+    if (!isEmpty(id)) {
       setSelectedFilterParams((prevState) => {
         return {
           ...prevState,
-          tags: isEmpty(queryTags) ? "" : formatQueryTags,
-          [queryKey]:
-            isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
-              ? queryId
-              : size(queryId) > 1
-                ? split(queryId, ",")
-                : queryId,
+          slug: id,
         };
       });
     }
@@ -146,20 +136,22 @@ const Search = () => {
 
         return {
           ...item,
-          ...{ isActive: includes(formatQueryTags, code) ? true : false },
+          ...{ isActive: includes(tagsData, code) ? true : false },
         };
       });
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag, router]);
+  }, [amenitiesTag]);
 
   useEffect(() => {
     if (!isEmpty(generalTag)) {
       const formatGeneralTag = map(generalTag, (item) => {
+        const code = get(item, ["code"], "");
+
         return {
           ...item,
-          ...{ isActive: false },
+          ...{ isActive: includes(tagsData, code) ? true : false },
         };
       });
 
@@ -372,6 +364,8 @@ const Search = () => {
         gender: isEmpty(genderValue) ? "" : genderValue,
       };
     });
+
+    Helper.documentGetElementById("desktop_filter_modal").close();
   };
 
   const onClickClearAll = () => {
@@ -429,7 +423,6 @@ const Search = () => {
           const code = get(item, ["code"], "");
 
           if (isEqual(code, tag)) {
-            console.log(tag, code);
             return {
               ...item,
               ...{ isActive: true },
@@ -482,19 +475,37 @@ const Search = () => {
       <DesktopLayout
         hideNav
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/explore"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Explore
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="text-base">Room Listing</CustomText>
-              </li>
-            </ul>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <a href={"/explore"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Explore
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={"/search"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Room Listing
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">{id}</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">{id}</CustomText>
+            </div>
           </div>
         }
       >
@@ -577,4 +588,4 @@ const Search = () => {
   );
 };
 
-export default withTranslation("common")(Search);
+export default withTranslation("common")(SearchWithSlug);

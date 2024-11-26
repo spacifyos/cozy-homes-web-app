@@ -24,9 +24,7 @@ const DesktopSearchBar = ({
       <div className="xl:col-span-1 xl:block hidden"></div>
 
       <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
-        <CustomText textClassName="text-xs pt-2 pl-4">
-          Search
-        </CustomText>
+        <CustomText textClassName="text-xs pt-2 pl-4">Search</CustomText>
         <CustomInput
           hideShadow
           rightIcon={Images.searchOutlineActiveIcon}
@@ -52,19 +50,13 @@ const DesktopSearchBar = ({
         />
 
         <div className="flex justify-between items-center">
-          <CustomText textClassName="text-xs">
-            RM{priceRange[0]}
-          </CustomText>
-          <CustomText textClassName="text-xs">
-            RM{priceRange[1]}
-          </CustomText>
+          <CustomText textClassName="text-xs">RM{priceRange[0]}</CustomText>
+          <CustomText textClassName="text-xs">RM{priceRange[1]}</CustomText>
         </div>
       </div>
 
       <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
-        <CustomText textClassName="text-xs pt-2 pl-4">
-          Tenure Period
-        </CustomText>
+        <CustomText textClassName="text-xs pt-2 pl-4">Tenure Period</CustomText>
         <CustomSelect
           hideShadow
           placeholder={"Select Period"}
@@ -78,7 +70,7 @@ const DesktopSearchBar = ({
       </div>
 
       <div
-        className="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative"
+        className="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative cursor-pointer"
         onClick={onClickOpenModal}
       >
         {isFilter ? (

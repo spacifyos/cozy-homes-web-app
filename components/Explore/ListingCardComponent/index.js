@@ -12,13 +12,14 @@ const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
   const profileId = listingSelector.getProfileId(item);
   const tags = listingSelector.getTags(item);
   const tagsCode = map(tags, (tag) => listingSelector.getCode(tag));
+  const slug = get(item, ["slug"], "");
 
   const key = get(item, ["key", "name"], "");
   const value = get(item, ["key", "value"], "");
 
   return (
     <a
-      href={`/search?key=${key}&id=${value}${isEmpty(tagsCode) ? "" : `&tags=${tagsCode}`}`}
+      href={`/search${isEmpty(slug) ? "" : `/${slug}`}`}
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage

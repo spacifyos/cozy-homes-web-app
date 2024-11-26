@@ -100,7 +100,9 @@ const DesktopFilterModal = ({
         </div>
 
         <div className="pb-5 xl:hidden lg:hidden md:hidden sm:block block">
-          <CustomText textClassName="text-sm font-bold">Tenure Period</CustomText>
+          <CustomText textClassName="text-sm font-bold">
+            Tenure Period
+          </CustomText>
 
           <div className="grid grid-cols-1 gap-2 pt-2">
             <CustomSelect
@@ -129,12 +131,8 @@ const DesktopFilterModal = ({
             />
 
             <div className="flex justify-between items-center">
-              <CustomText textClassName="text-xs">
-                RM{priceRange[0]}
-              </CustomText>
-              <CustomText textClassName="text-xs">
-                RM{priceRange[1]}
-              </CustomText>
+              <CustomText textClassName="text-xs">RM{priceRange[0]}</CustomText>
+              <CustomText textClassName="text-xs">RM{priceRange[1]}</CustomText>
             </div>
           </div>
         </div>
@@ -143,12 +141,13 @@ const DesktopFilterModal = ({
           <CustomText textClassName="text-sm font-bold">Shorting By</CustomText>
 
           <div className="flex gap-2 pt-2">
-            {map(newSortTag, (item) => {
+            {map(newSortTag, (item, index) => {
               const name = listingSelector.getName(item);
               const code = listingSelector.getCode(item);
 
               return (
                 <CustomButton
+                  key={name}
                   buttonText={name}
                   buttonClassName={`btn-sm ${isEqual(sortValue, code) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="text-xs"
@@ -172,7 +171,7 @@ const DesktopFilterModal = ({
 
               return (
                 <CustomButton
-                  key={index}
+                  key={name}
                   buttonText={name}
                   buttonClassName={`${isActive ? "primary-btn" : "default-btn"} btn-sm mr-2`}
                   textClassName="text-xs"
@@ -196,6 +195,7 @@ const DesktopFilterModal = ({
 
               return (
                 <CustomButton
+                  key={name}
                   reverse
                   icon={isActive ? iconActive : icon}
                   buttonText={name}
@@ -218,6 +218,7 @@ const DesktopFilterModal = ({
 
               return (
                 <CustomButton
+                  key={title}
                   buttonText={title}
                   buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "primary-btn" : "default-btn"} mr-2`}
                   textClassName="text-xs"
