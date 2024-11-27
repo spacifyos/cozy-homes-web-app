@@ -16,6 +16,7 @@ const CustomSelect = ({
 }) => {
   return (
     <label
+      for={isEmpty(label) ? placeholder : label}
       style={styles}
       className={`form-control w-full default-select ${hideShadow ? "" : "global-box-shadow"} ${className}`}
     >
