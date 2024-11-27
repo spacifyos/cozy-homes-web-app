@@ -479,7 +479,7 @@ const SearchWithSlug = ({ id }) => {
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
                 <li>
-                  <a href={"/explore"}>
+                  <a href={"/"}>
                     <CustomText textClassName="text-base disable-text">
                       Explore
                     </CustomText>

@@ -49,7 +49,7 @@ const BookingOverview = ({ id }) => {
   };
 
   const onClickGoBack = () => {
-    router.replace("/explore");
+    router.replace("/");
   };
 
   const onClickOpenFirstMonthCharges = () => {
@@ -71,7 +71,7 @@ const BookingOverview = ({ id }) => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <a href={"/explore"}>
+                <a href={"/"}>
                   <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>

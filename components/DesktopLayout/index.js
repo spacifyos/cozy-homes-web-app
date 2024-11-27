@@ -110,7 +110,7 @@ const DesktopLayout = ({
   };
 
   const onClickExplore = () => {
-    router.push("/explore");
+    router.push("/");
   };
 
   const onClickLogoutModal = () => {

@@ -20,7 +20,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
       setLists([
         {
           name: t("root.explore"),
-          value: "/explore",
+          value: "/",
           icon: Images.searchIcon,
           activeIcon: Images.searchIconActive,
         },

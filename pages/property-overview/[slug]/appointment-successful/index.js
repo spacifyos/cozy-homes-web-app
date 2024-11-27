@@ -12,7 +12,7 @@ const AppointmentSuccessful = ({}) => {
   const { t } = useTranslation("common");
 
   const onClickGoMainPage = () => {
-    router.push("/explore");
+    router.push("/");
   };
 
   const onClickToMyAppointment = () => {

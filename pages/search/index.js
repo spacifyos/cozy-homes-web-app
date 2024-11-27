@@ -488,7 +488,7 @@ const Search = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <a href={"/explore"}>
+                <a href={"/"}>
                   <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>

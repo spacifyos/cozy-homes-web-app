@@ -7,7 +7,7 @@ export default function Custom403() {
   const router = useRouter();
 
   const onClickGoToBack = () => {
-    router.replace("/explore");
+    router.replace("/");
   };
 
   return (

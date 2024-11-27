@@ -236,7 +236,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           <div className="breadcrumbs text-sm">
             <ul className="flex-wrap gap-1">
               <li>
-                <a href={"/explore"}>
+                <a href={"/"}>
                   <CustomText textClassName="text-base disable-text">
                     Explore
                   </CustomText>

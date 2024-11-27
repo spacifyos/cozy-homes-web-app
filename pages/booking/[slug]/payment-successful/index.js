@@ -17,7 +17,7 @@ const PaymentSuccessful = ({ id }) => {
   const email = get(router, ["query", "email"], "");
 
   const onClickGoMainPage = () => {
-    router.replace("/explore");
+    router.replace("/");
   };
 
   const onClickGoToBookingOverview = () => {

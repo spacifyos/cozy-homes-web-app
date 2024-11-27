@@ -16,7 +16,7 @@ const PaymentFailed = ({ id }) => {
   const { t } = useTranslation("common");
 
   const onClickGoMainPage = () => {
-    router.replace("/explore");
+    router.replace("/");
   };
 
   const onClickPaymentFail = () => {

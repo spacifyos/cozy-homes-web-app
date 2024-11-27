@@ -9,7 +9,7 @@ export default function Custom404() {
   const router = useRouter();
 
   const onClickGoToBack = () => {
-    router.replace("/explore");
+    router.replace("/");
   };
 
   return (

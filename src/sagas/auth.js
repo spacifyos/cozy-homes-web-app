@@ -36,7 +36,7 @@ function* clearAccessToken() {
   AuthManager.removeLoginType();
   AuthManager.removeToken().then(() => {
     // Router.reload();
-    Router.replace("/explore").then(() => Router.reload());
+    Router.replace("/").then(() => Router.reload());
   });
 }
 
