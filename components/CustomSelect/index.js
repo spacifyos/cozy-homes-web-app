@@ -15,14 +15,12 @@ const CustomSelect = ({
   hideShadow = false,
 }) => {
   return (
-    <label
-      for={isEmpty(label) ? placeholder : label}
+    <div
       style={styles}
       className={`form-control w-full default-select ${hideShadow ? "" : "global-box-shadow"} ${className}`}
     >
       {!isEmpty(label) ? <CustomText>{label}</CustomText> : false}
       <select
-        id={isEmpty(label) ? placeholder : label}
         className={`select select-bordered text-sm ${selectClassName}`}
         style={selectStyles}
         onChange={onChange}
@@ -49,7 +47,7 @@ const CustomSelect = ({
           );
         })}
       </select>
-    </label>
+    </div>
   );
 };
 
