@@ -130,7 +130,7 @@ const SearchWithSlug = ({ id }) => {
   }, []);
 
   useEffect(() => {
-    if (!isEmpty(amenitiesTag)) {
+    if (!isEmpty(amenitiesTag) && !isEmpty(tagsData)) {
       const formatFacilityTag = map(amenitiesTag, (item) => {
         const code = get(item, ["code"], "");
 
@@ -142,10 +142,10 @@ const SearchWithSlug = ({ id }) => {
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag]);
+  }, [amenitiesTag, tagsData]);
 
   useEffect(() => {
-    if (!isEmpty(generalTag)) {
+    if (!isEmpty(generalTag) && !isEmpty(tagsData)) {
       const formatGeneralTag = map(generalTag, (item) => {
         const code = get(item, ["code"], "");
 
@@ -157,7 +157,7 @@ const SearchWithSlug = ({ id }) => {
 
       setNewGeneralTag(formatGeneralTag);
     }
-  }, [generalTag]);
+  }, [generalTag, tagsData]);
 
   useEffect(() => {
     if (amenitiesTarget.current) {
@@ -453,12 +453,12 @@ const SearchWithSlug = ({ id }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`Discover spaces for your needs in room listing | ${process.env.DOMAIN}`}
+        title={`Discover spaces for your needs in ${isEmpty(id) ? "rooms listing" : id} | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
         canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
-          title: `Discover spaces for your needs in room listing | ${process.env.DOMAIN}`,
+          title: `Discover spaces for your needs in ${isEmpty(id) ? "rooms listing" : id} | Spacify.asia`,
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {

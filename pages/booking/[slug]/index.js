@@ -617,12 +617,12 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`}
+        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`}
         description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
         canonical={`${process.env.DOMAIN}/booking/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/booking/${id}`,
-          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`,
+          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`,
           description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
           images: isEmpty(imageUrl)
             ? [
@@ -677,9 +677,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="text-base">
-                  Booking
-                </CustomText>
+                <CustomText textClassName="text-base">Booking</CustomText>
               </li>
             </ul>
           </div>

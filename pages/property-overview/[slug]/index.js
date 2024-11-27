@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Images from "@/src/utils/Image";
 import PolicyDetail from "@/components/PropertyOverview/PolicyDetail";
-import { isEmpty, isEqual, get, map } from "lodash";
+import { isEmpty, isEqual, get, map, random, size, concat } from "lodash";
 import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
@@ -60,8 +60,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
-
-  console.log(listingPropertyDetailData);
 
   // const getListingPropertyDetailRequest = (id) =>
   //   dispatch(listingAction.getListingPropertyDetailRequest(id));
@@ -116,6 +114,8 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const roomImageUrl = listingSelector.getRoomImagesUrl(
     listingPropertyDetailData,
   );
+  const mobileImageList = concat(propertyImageUrl, unitImageUrl, roomImageUrl);
+
   const videoUrl = listingSelector.getVideoUrl(listingPropertyDetailData);
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
   const picName = listingSelector.getPicName(listingPropertyDetailData);
@@ -200,12 +200,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`}
+        title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`}
         description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
         canonical={`${process.env.DOMAIN}/property-overview/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/property-overview/${id}`,
-          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | ${process.env.DOMAIN}`,
+          title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`,
           description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
           images: isEmpty(roomImageUrl)
             ? [
@@ -260,7 +260,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       >
         <div className="container mx-auto pb-6">
           <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
-            <div className="row-span-2 col-span-2 global-border-radius bordered overflow-hidden">
+            <div className="row-span-2 col-span-2 global-border-radius border overflow-hidden xl:h-125 lg:h-96 md:h-80">
               {isEmpty(videoUrl) ? (
                 <CustomImage className="w-full h-full" src={Images.logoImage} />
               ) : (
@@ -277,10 +277,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               )}
             </div>
 
-            <div className="col-span-1 global-border-radius border relative">
+            <div
+              className="col-span-1 global-border-radius border relative h-full hover:opacity-80 cursor-pointer"
+              onClick={() => onClickPopupImage(0)}
+            >
               <Image
                 className="global-border-radius"
-                loader={() => propertyImageUrl}
                 loading="lazy"
                 fill
                 src={
@@ -291,10 +293,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               />
             </div>
 
-            <div className="col-span-1 global-border-radius bordered relative overflow-hidden">
+            <div
+              className="col-span-1 global-border-radius border relative overflow-hidden hover:opacity-80 cursor-pointer"
+              onClick={() => onClickPopupImage(2)}
+            >
               <Image
-                  className="global-border-radius"
-                loader={() => roomImageUrl[0]}
+                className="global-border-radius"
                 loading="lazy"
                 fill
                 src={
@@ -303,23 +307,47 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               />
             </div>
 
-            <div className="col-span-1 border relative global-border-radius overflow-hidden">
+            <div
+              className="col-span-1 border relative global-border-radius overflow-hidden hover:opacity-80 cursor-pointer"
+              onClick={() => onClickPopupImage(1)}
+            >
               <Image
                 className="global-border-radius"
-                loader={() => unitImageUrl}
                 loading="lazy"
                 fill
                 src={isEmpty(unitImageUrl) ? Images.logoImage : unitImageUrl}
               />
             </div>
 
-            <div className="col-span-1 global-border-radius global-box-shadow relative">
-              <CustomImage src={Images.logoImage} />
+            <div className="col-span-1 global-border-radius border relative">
+              <Image
+                className="global-border-radius"
+                loading="lazy"
+                fill
+                src={
+                  isEmpty(roomImageUrl)
+                    ? Images.logoImage
+                    : roomImageUrl[random(0, size(roomImageUrl) - 1)]
+                }
+              />
+
+              {size(roomImageUrl) > 1 ? (
+                <div
+                  className="absolute bottom-6 right-4"
+                  onClick={() => onClickPopupImage(0)}
+                >
+                  <CustomText textClassName="text-xs hover:text-white px-4 py-2 border rounded hover:border-primary bg-gray-100 hover:bg-primary cursor-pointer">
+                    View All Images
+                  </CustomText>
+                </div>
+              ) : (
+                false
+              )}
             </div>
           </div>
 
           <RoomPicCarousel
-            imageUrl={roomImageUrl}
+            imageUrl={mobileImageList}
             onClickPopupImage={onClickPopupImage}
           />
 
@@ -481,7 +509,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       />
 
       <ImageModal
-        data={roomImageUrl}
+        data={mobileImageList}
         selectedImage={selectedImage}
         onClickCloseImageModal={onClickCloseImageModal}
         openImageModal={openImageModal}

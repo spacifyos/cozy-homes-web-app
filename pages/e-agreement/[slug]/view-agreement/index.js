@@ -188,7 +188,8 @@ const ViewAgreement = ({ id }) => {
   };
 
   const onClickSubmitSignature = (responsive) => {
-    if (canvasRef.isEmpty() && DesktopCanvasRef.isEmpty()) {
+    console.log("hi");
+    if (DesktopCanvasRef.isEmpty()) {
       setSignatureEmptyMessage("Signature is required");
       return;
     }
@@ -248,7 +249,6 @@ const ViewAgreement = ({ id }) => {
 
   const onClickResetCanvas = () => {
     DesktopCanvasRef.clear();
-    canvasRef.clear();
   };
 
   const handleSignatureRef = (ref) => {

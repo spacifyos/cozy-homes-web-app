@@ -1,6 +1,6 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _, { isEmpty } from "lodash";
+import { isEmpty, get, map } from "lodash";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useState } from "react";
 import Image from "next/image";
@@ -9,7 +9,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
   const onSlideChange = (value) => {
-    const activeIndex = _.get(value, ["activeIndex"], 0);
+    const activeIndex = get(value, ["activeIndex"], 0);
     setSelectedSlide(activeIndex);
   };
 
@@ -20,7 +20,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
         className="mySwiper"
         style={{ margin: 0, width: "100%", cursor: "pointer" }}
       >
-        {_.isEmpty(imageUrl) ? (
+        {isEmpty(imageUrl) ? (
           <SwiperSlide
             style={{
               borderRadius: 15,
@@ -35,7 +35,7 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
             />
           </SwiperSlide>
         ) : (
-          _.map(imageUrl, (item, index) => {
+          map(imageUrl, (item, index) => {
             return (
               <SwiperSlide
                 style={{ borderRadius: 15, overflow: "hidden" }}
@@ -61,9 +61,9 @@ const RoomPicCarousel = ({ imageUrl, onClickPopupImage }) => {
         )}
       </Swiper>
 
-      {!_.isEmpty(imageUrl) ? (
+      {!isEmpty(imageUrl) ? (
         <div className="my-4 flex justify-center items-center">
-          {_.map(imageUrl, (item, index) => {
+          {map(imageUrl, (item, index) => {
             return (
               <div
                 key={index}

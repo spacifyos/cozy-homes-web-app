@@ -41,7 +41,7 @@ import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
-import {getListing} from "@/src/selectors/listing";
+import { getListing } from "@/src/selectors/listing";
 
 export { getServerSideProps };
 
@@ -50,11 +50,12 @@ const Search = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
-  const queryId = get(router, ["query", "id"], "");
-  const queryKey = get(router, ["query", "key"], "");
-  const queryTags = get(router, ["query", "tags"], "");
 
-  const formatQueryTags = split(queryTags, ",");
+  const queryKeyword = get(router, ["query", "keyword"], "");
+  const queryState = get(router, ["query", "state"], "");
+  const queryCity = get(router, ["query", "city"], "");
+
+  // const formatQueryTags = split(queryTags, ",");
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -81,7 +82,7 @@ const Search = () => {
     commonSelector.getSelectOptionData(state),
   );
   const stateOption = commonSelector.getState(selectOptionData);
-  const listingData = listingSelector.getListing(listingPropertyData)
+  const listingData = listingSelector.getListing(listingPropertyData);
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
   const [isCityTyping, setIsCityTyping] = useState(false);
@@ -94,9 +95,9 @@ const Search = () => {
     { name: "Highest Price", code: "desc", isActive: false },
   ]);
 
-  const [keywordValue, setKeywordValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [stateValue, setStateValue] = useState("");
+  const [keywordValue, setKeywordValue] = useState(queryKeyword);
+  const [cityValue, setCityValue] = useState(queryCity);
+  const [stateValue, setStateValue] = useState(queryState);
   const [tenureValue, setTenureValue] = useState("");
   const [sortValue, setSortValue] = useState("");
   const [priceRange, setPriceRange] = useState([0, 10000]);
@@ -122,22 +123,22 @@ const Search = () => {
 
   const isFilter = !isEmpty(selectedFilterParams);
 
-  useEffect(() => {
-    if (!isEmpty(queryKey) && !isEmpty(queryId)) {
-      setSelectedFilterParams((prevState) => {
-        return {
-          ...prevState,
-          tags: isEmpty(queryTags) ? "" : formatQueryTags,
-          [queryKey]:
-            isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
-              ? queryId
-              : size(queryId) > 1
-                ? split(queryId, ",")
-                : queryId,
-        };
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!isEmpty(queryKey) && !isEmpty(queryId)) {
+  //     setSelectedFilterParams((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         tags: isEmpty(queryTags) ? "" : formatQueryTags,
+  //         [queryKey]:
+  //           isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
+  //             ? queryId
+  //             : size(queryId) > 1
+  //               ? split(queryId, ",")
+  //               : queryId,
+  //       };
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!isEmpty(amenitiesTag)) {
@@ -146,13 +147,13 @@ const Search = () => {
 
         return {
           ...item,
-          ...{ isActive: includes(formatQueryTags, code) ? true : false },
+          ...{ isActive: false },
         };
       });
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag, router]);
+  }, [amenitiesTag]);
 
   useEffect(() => {
     if (!isEmpty(generalTag)) {
@@ -372,6 +373,8 @@ const Search = () => {
         gender: isEmpty(genderValue) ? "" : genderValue,
       };
     });
+
+    Helper.documentGetElementById("desktop_filter_modal").close();
   };
 
   const onClickClearAll = () => {
@@ -460,12 +463,12 @@ const Search = () => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`Discover spaces for your needs in room listing | ${process.env.DOMAIN}`}
+        title={`Discover spaces for your needs in room listing | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
         canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
-          title: `Discover spaces for your needs in room listing | ${process.env.DOMAIN}`,
+          title: `Discover spaces for your needs in room listing | Spacify.asia}`,
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {
