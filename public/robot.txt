@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /search
+Allow: /search/slug
+Allow: /property-overview/slug
+Allow: /booking/slug
+Allow: /booking/slug
+Allow: /booking/slug/overview
+
+Sitemap: https://www.spacify.asia/sitemap/sitemap.xml
+Sitemap: https://www.spacify.asia/sitemap/listing-head.xml
+Sitemap: https://www.spacify.asia/sitemap/booking.xml
