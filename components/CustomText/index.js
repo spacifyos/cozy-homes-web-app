@@ -1,16 +1,17 @@
 import Scaling from "@/src/utils/Scaling";
+import { isEmpty } from "lodash";
 
 const CustomText = ({
   children,
   styles,
   textClassName = "",
-  lineClamp = 1,
+  lineClamp,
   onClick,
 }) => {
   return (
     <p
       onClick={onClick}
-      className={`black-text ${textClassName} ${Scaling.getLineClamp(lineClamp)}`}
+      className={`black-text ${textClassName} ${isEmpty(lineClamp) || lineClamp == 0 ? "" : Scaling.getLineClamp(lineClamp)}`}
       style={{ ...styles }}
     >
       {children}
