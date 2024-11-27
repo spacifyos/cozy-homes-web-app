@@ -4,7 +4,7 @@ const CustomText = ({
   children,
   styles,
   textClassName = "",
-  lineClamp,
+  lineClamp = 1,
   onClick,
 }) => {
   return (

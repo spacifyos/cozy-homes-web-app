@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="canonical" href="http://www.spacify.asia" />
+        <link rel="canonical" href={`${process.env.DOMAIN}`} />
         <meta
           name="keywords"
           content="Spacify Asia, Property, Rental Management, Smart Meter"
@@ -21,7 +21,7 @@ export default function Document() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=1.0, maximum-scale=2, user-scalable=no"
         />
         <meta name="theme-color" content="#d71440" />
         <meta name="msapplication-navbutton-color" content="#d71440" />
