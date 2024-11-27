@@ -22,6 +22,7 @@ const CustomSelect = ({
     >
       {!isEmpty(label) ? <CustomText>{label}</CustomText> : false}
       <select
+        id={isEmpty(label) ? placeholder : label}
         className={`select select-bordered text-sm ${selectClassName}`}
         style={selectStyles}
         onChange={onChange}
