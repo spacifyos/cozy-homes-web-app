@@ -28,7 +28,7 @@ const DesktopFooter = ({ paddingBottom }) => {
     <div
       className={`primaryWhite-bg-color xl:pb-0 lg:pb-0 md:pb-0 sm:${paddingBottom} ${paddingBottom} `}
     >
-      <div className="py-6" style={{ backgroundColor: "#dddfe4" }}>
+      <div className="py-6" style={{ backgroundColor: "#F0F0F0" }}>
         <div className="container mx-auto grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 xl:gap-10 lg:gap-10 md:gap-8 sm:gap-6 gap-6">
           <div className="col-span-1">
             <CustomText textClassName="primary-text text-xs pb-2 text-justify">
