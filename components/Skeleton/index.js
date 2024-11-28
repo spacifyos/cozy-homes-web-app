@@ -23,7 +23,7 @@ const Skeleton = ({
       {hideText ? (
         false
       ) : (
-        <div className="flex items-center" style={{ height: 36 }}>
+        <div className="flex items-center xl:h-10 lg:h-10 md:h-10 sm:h-10 h-8">
           <div
             className="skeleton"
             style={{
