@@ -133,7 +133,7 @@ function Home() {
       <DesktopLayout hideNav footerPaddingBottom="pb-20">
         <div className="relative xl:h-96">
           <Image
-            loader={() => "/images/desktop_banner.png"}
+            loader={() => "/images/desktop_banner.webp"}
             loading="lazy"
             alt={"image"}
             src={"/images/desktop_banner.png"}
