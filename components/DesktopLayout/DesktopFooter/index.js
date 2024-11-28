@@ -83,7 +83,7 @@ const DesktopFooter = ({ paddingBottom }) => {
                   className="col-span-1 w-5"
                 />
                 <CustomText textClassName="col-span-7 text-xs">
-                  info@belive.asia
+                  spacify.asia@gmail.com
                 </CustomText>
               </div>
 
@@ -96,7 +96,7 @@ const DesktopFooter = ({ paddingBottom }) => {
                 </div>
 
                 <CustomText textClassName="col-span-7 text-justify text-xs">
-                  A-5-9 , Level 5, Block A, Empire Tower, Jalan SS16/1, Ss 16,
+                  A-5-9, Level 5, Block A, Empire Tower, Jalan SS16/1, SS 16,
                   47500 Subang Jaya, Selangor.
                 </CustomText>
               </div>
