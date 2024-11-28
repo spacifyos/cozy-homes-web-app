@@ -299,7 +299,7 @@ const DesktopFooter = ({ paddingBottom }) => {
           </div>
 
           <CustomText textClassName="text-xs text-center">
-            Copyright © {moment().year()} BeLive Ventures Sdn Bhd. All rights
+            Copyright © {moment().year()} Spacify Technologies All rights
             reserved.
           </CustomText>
         </div>
