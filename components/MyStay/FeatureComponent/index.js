@@ -22,7 +22,7 @@ const FeatureComponent = ({ name, icon, disable = false, route = "#" }) => {
         <CustomImage src={icon} imageStyle={{ width: 45, height: 45 }} />
       </div>
 
-      <CustomText textClassName="text-xs font-bold h-full text-center">
+      <CustomText textClassName={`text-xs font-bold h-full text-center ${disable ? "disable-text" : ""}`}>
         {disable ? "Coming Soon" : name}
       </CustomText>
     </a>

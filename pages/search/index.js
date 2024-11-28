@@ -460,6 +460,25 @@ const Search = () => {
     });
   };
 
+  const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
+
+  useEffect(() => {
+    const checkScript = Helper.documentGetElementById(src);
+    const chatContainer = document.body;
+    const script = document.createElement("script");
+
+    if (checkScript) {
+      return router.reload();
+    }
+
+    script.id = src;
+    script.async = true;
+    script.defer = true;
+    script.src = src;
+
+    chatContainer.appendChild(script);
+  }, []);
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo

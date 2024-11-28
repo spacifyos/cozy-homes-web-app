@@ -114,7 +114,11 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const roomImageUrl = listingSelector.getRoomImagesUrl(
     listingPropertyDetailData,
   );
-  const mobileImageList = concat(propertyImageUrl, unitImageUrl, roomImageUrl);
+  const mobileImageList = concat(
+    isEmpty(propertyImageUrl ? [] : propertyImageUrl),
+    isEmpty(unitImageUrl) ? [] : unitImageUrl,
+    roomImageUrl,
+  );
 
   const videoUrl = listingSelector.getVideoUrl(listingPropertyDetailData);
   const moveInFees = listingSelector.getMoveInFees(listingPropertyDetailData);
