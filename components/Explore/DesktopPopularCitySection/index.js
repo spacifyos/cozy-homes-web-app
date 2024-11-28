@@ -22,16 +22,16 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
             Popular City
           </CustomText>
         </div>
-        <div className="flex items-center">
-          <CustomText
-            textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs"
-            onClick={() => onClickViewMore()}
-          >
-            View More
-          </CustomText>
+        {/*<div className="flex items-center">*/}
+        {/*  <CustomText*/}
+        {/*    textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs"*/}
+        {/*    onClick={() => onClickViewMore()}*/}
+        {/*  >*/}
+        {/*    View More*/}
+        {/*  </CustomText>*/}
 
-          <CustomImage src={Images.rightIcon} className="w-1.5" />
-        </div>
+        {/*  <CustomImage src={Images.rightIcon} className="w-1.5" />*/}
+        {/*</div>*/}
       </div>
 
       <div className="hidden xl:block lg:block md:block sm:block ">

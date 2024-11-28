@@ -67,7 +67,7 @@ const DesktopListingSection = ({
           </div>
         </div>
       ) : isEmpty(listingPropertyData) ? (
-        <div className="flex flex-1 items-center justify-center h-full">
+        <div className="flex flex-1 items-center justify-center py-40">
           <CustomEmptyBox />
         </div>
       ) : (

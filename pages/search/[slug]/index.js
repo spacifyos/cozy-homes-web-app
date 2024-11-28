@@ -78,6 +78,7 @@ const SearchWithSlug = ({ id }) => {
   const stateOption = commonSelector.getState(selectOptionData);
   const listingData = listingSelector.getListing(listingPropertyData);
   const tagsData = listingSelector.getTags(listingPropertyData);
+  const label = listingSelector.getLabel(listingPropertyData);
 
   const [isKeywordTyping, setIsKeywordTyping] = useState(false);
   const [isCityTyping, setIsCityTyping] = useState(false);
@@ -493,7 +494,7 @@ const SearchWithSlug = ({ id }) => {
                   </a>
                 </li>
                 <li>
-                  <CustomText textClassName="text-base">{id}</CustomText>
+                  <CustomText textClassName="text-base">{label}</CustomText>
                 </li>
               </ul>
             </div>
