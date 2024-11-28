@@ -57,17 +57,12 @@ const DesktopLayout = ({
       const token = await AuthManager.retrieveToken();
       const type = await AuthManager.retrieveType();
 
-      if (isEmpty(token) && isEmpty(type)) {
+      if (!isEmpty(token) && !isEmpty(type) && !isEmpty(userProfileData)) {
+        fetchUserprofileData();
       }
     };
 
     checkAuthentication();
-  }, []);
-
-  useEffect(() => {
-    if (isEmpty(userProfileData)) {
-      fetchUserprofileData();
-    }
   }, []);
 
   const signOutAccountRequest = () =>
