@@ -73,7 +73,7 @@ const DesktopFooter = ({ paddingBottom }) => {
                   className="col-span-1 w-5"
                 />
                 <CustomText textClassName="col-span-7 text-xs">
-                  +603 5878 9831
+                  +6011 5899 7378
                 </CustomText>
               </div>
 
@@ -96,8 +96,8 @@ const DesktopFooter = ({ paddingBottom }) => {
                 </div>
 
                 <CustomText textClassName="col-span-7 text-justify text-xs">
-                  No. 42-46, Ground Floor, Jalan SS 19/1d, SS 19, 47500 Subang
-                  Jaya, Selangor.
+                  A-5-9 , Level 5, Block A, Empire Tower, Jalan SS16/1, Ss 16,
+                  47500 Subang Jaya, Selangor.
                 </CustomText>
               </div>
             </div>
@@ -299,8 +299,8 @@ const DesktopFooter = ({ paddingBottom }) => {
           </div>
 
           <CustomText textClassName="text-xs text-center">
-            Copyright © {moment().year()} Spacify Technologies All rights
-            reserved.
+            Copyright © {moment().year()} Spacify Technologies Sdn Bhd (Co.No.:
+            201901004017) All rights reserved.
           </CustomText>
         </div>
       </div>

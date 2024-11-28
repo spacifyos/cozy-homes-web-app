@@ -27,7 +27,7 @@ const DesktopHeader = ({
         <CustomImage
           src={Image.logoHorizontalColor}
           onClick={onClickExplore}
-          className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-28"
+          className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"
         />
 
         {isEmpty(data) ? (
