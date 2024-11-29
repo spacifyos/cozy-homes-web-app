@@ -5,6 +5,22 @@ const withPWA = require("next-pwa")({
   disable: process.env.PRODUCTION === "DEVELOPMENT",
 });
 
+const routeList = [
+  "/agency-sign-in",
+  "/agency-sign-up",
+  "/agency-sign-up",
+  "/coins-transaction",
+  "/help-center",
+  "/latest-update",
+  "/my-appointment",
+  "/owner/account",
+  "/owner/e-agreement",
+  "/owner/my-bank",
+  "/owner/my-invoice",
+  "/owner/my-wallet",
+  "/splash-screen",
+];
+
 const nextConfig = {
   reactStrictMode: false,
   i18n,
@@ -24,19 +40,20 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [
-      {
-        source: "/sign-in", // this path will be redirected to 404
+    return map(routeList, (list) => {
+      return {
+        source: list,
         destination: "/404",
         permanent: true,
-      },
-    ];
+      };
+    });
   },
 };
 
 // Injected content via Sentry wizard below
 
 const { withSentryConfig } = require("@sentry/nextjs");
+const { map } = require("lodash");
 
 module.exports = withSentryConfig(
   // withPWA(

@@ -38,7 +38,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
         },
         // {
         //   name: "RenoXpert",
-        //   value: isEqual(userType, "owner") ? "/testing" : "/testing",
+        //   value: isEqual(userType, "owner") ? "/reno-expert" : "/reno-expert",
         //   icon: Images.renoExpertIcon,
         //   activeIcon: Images.renoExpertIconActive,
         // },

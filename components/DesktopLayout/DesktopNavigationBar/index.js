@@ -234,9 +234,8 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
           imageWidth={16}
           pb={3}
           onClick={() => {
-            return router.push("/testing");
+            return router.push("/reno-expert");
           }}
-          // route={"/testing"}
         />
       )}
 
@@ -251,13 +250,13 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       <div className="divider-line"></div>
 
       <FeatureComponent
-          title="Chat"
-          icon={Images.chatOutlineIcon}
-          imageWidth={18}
-          pb={3}
-          onClick={() => {
-            return router.push(isTenant ? "/chat" : "/owner/chat");
-          }}
+        title="Chat"
+        icon={Images.chatOutlineIcon}
+        imageWidth={18}
+        pb={3}
+        onClick={() => {
+          return router.push(isTenant ? "/chat" : "/owner/chat");
+        }}
       />
 
       <FeatureComponent

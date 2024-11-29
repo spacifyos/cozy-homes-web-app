@@ -40,7 +40,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
           <div className="flex justify-center">
             <CustomEmptyBox
               emptyTitle="Promotion not available now."
-              textColor="text-white"
+              textColor="#FFFFFF"
             />
           </div>
         ) : (

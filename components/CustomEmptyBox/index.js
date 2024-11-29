@@ -6,7 +6,7 @@ const CustomEmptyBox = ({
   emptyImage = Images.questionMarkIcon,
   emptyTitle = "No data found",
   emptyDesc = "No data available now try again later.",
-  textColor = "disable-text",
+  textColor = "#545454",
 }) => {
   return (
     <div className={"flex justify-center items-center flex-col px-4"}>
@@ -14,11 +14,12 @@ const CustomEmptyBox = ({
         <CustomImage src={emptyImage} imageStyle={{ width: 60 }} />
       </div>
       <CustomText
-        textClassName={`text-base font-semibold pb-1 ${textColor}`}
+        textClassName={`text-base font-semibold pb-1`}
+        styles={{ color: textColor }}
       >
         {emptyTitle}
       </CustomText>
-      <CustomText textClassName={`text-sm ${textColor}`}>
+      <CustomText textClassName={`text-sm`} styles={{ color: textColor }}>
         {emptyDesc}
       </CustomText>
     </div>
