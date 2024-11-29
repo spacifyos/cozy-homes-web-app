@@ -155,9 +155,9 @@ function Home() {
         <div className="relative xl:h-96">
           <Image
             loader={() => "/images/desktop_banner.webp"}
-            loading="lazy"
+            // loading="lazy"
             alt={"image"}
-            src={"/images/desktop_banner.png"}
+            src={"/images/desktop_banner.webp"}
             width={0}
             height={0}
             className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"

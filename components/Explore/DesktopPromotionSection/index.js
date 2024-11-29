@@ -38,7 +38,10 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
-            <CustomEmptyBox emptyTitle="Property not available now." />
+            <CustomEmptyBox
+              emptyTitle="Promotion not available now."
+              textColor="text-white"
+            />
           </div>
         ) : (
           <Swiper

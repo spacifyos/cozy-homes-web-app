@@ -90,7 +90,7 @@ const DesktopPopularUniversitySection = ({
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
-            <CustomEmptyBox emptyTitle="Property not available now." />
+            <CustomEmptyBox emptyTitle=" Popular University/College not available now." />
           </div>
         ) : (
           <Swiper

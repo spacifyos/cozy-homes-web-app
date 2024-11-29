@@ -88,7 +88,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
-            <CustomEmptyBox emptyTitle="Property not available now." />
+            <CustomEmptyBox emptyTitle="Featured Rooms not available now." />
           </div>
         ) : (
           <Swiper

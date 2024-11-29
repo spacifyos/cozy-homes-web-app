@@ -81,7 +81,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center" style={{ height: 144 }}>
-            <CustomEmptyBox emptyTitle="Property not available now." />
+            <CustomEmptyBox emptyTitle="Popular city not available now." />
           </div>
         ) : (
           <Swiper
