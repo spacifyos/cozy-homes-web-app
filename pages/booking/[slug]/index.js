@@ -34,6 +34,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
 import DesktopFormSection from "@/components/Booking/DesktopFormSection";
 import AuthManager from "@/src/utils/AuthManager";
+import CustomImage from "@/components/CustomImage";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -653,37 +654,48 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           createBookingLoading
         }
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Explore
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/search"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Room Listing
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={`/property-overview/${id}`}>
-                  <CustomText textClassName="text-base disable-text">
-                    {propertyName}
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="text-base">Booking</CustomText>
-              </li>
-            </ul>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <a href={"/"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Explore
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={"/search"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Room Listing
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={`/property-overview/${id}`}>
+                    <CustomText textClassName="text-base disable-text">
+                      {propertyName}
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">Booking</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">Booking</CustomText>
+            </div>
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-40 pb-40">
+        <div className="container mx-auto flex-1 pb-6">
           <form
             ref={formRef}
             className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5"

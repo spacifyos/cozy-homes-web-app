@@ -115,7 +115,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
     listingPropertyDetailData,
   );
   const mobileImageList = concat(
-    isEmpty(propertyImageUrl ? [] : propertyImageUrl),
+    isEmpty(propertyImageUrl) ? [] : propertyImageUrl,
     isEmpty(unitImageUrl) ? [] : unitImageUrl,
     roomImageUrl,
   );
@@ -237,28 +237,39 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         hideNav
         // loading={listingPropertyDetailDataLoading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul className="flex-wrap gap-1">
-              <li>
-                <a href={"/"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Explore
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap gap-1">
+                <li>
+                  <a href={"/"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Explore
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={"/search"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Room Listing
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">
+                    {propertyName}
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <a href={"/search"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Room Listing
-                  </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="text-base">
-                  {propertyName}
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                  src={Images.leftIcon}
+                  className="w-2"
+                  onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">{propertyName}</CustomText>
+            </div>
           </div>
         }
       >
