@@ -17,7 +17,7 @@ const nextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    domains: ["staging-tms.spacify.asia"],
+    domains: ["staging-tms.spacify.asia", "tms.spacify.asia"],
   },
   webpack: (config) => {
     config.resolve.alias.canvas = false;
