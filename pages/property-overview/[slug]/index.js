@@ -303,7 +303,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 src={
                   isEmpty(propertyImageUrl)
                     ? Images.logoImage
-                    : "https://tms.spacify.asia/api/gallery/content/eyJpdiI6IkQ3SEVPUXA5WUV4MnhReGFjZ1ZwOHc9PSIsInZhbHVlIjoiSTV0dDZTRktBdzk0N0dGQWdzWm80QT09IiwibWFjIjoiNjEwMzgzYTJiOWUwYjcwMDMwMjQ2ZDY1NjYwOTY3NjY1MTQ5YmI3M2M2YzlkMGUxOGU2ZDYzY2U5NGM1ZjdlYSIsInRhZyI6IiJ9"
+                    : propertyImageUrl
                 }
               />
             </div>
