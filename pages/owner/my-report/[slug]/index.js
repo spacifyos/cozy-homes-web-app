@@ -16,6 +16,7 @@ import { NextSeo } from "next-seo";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import Helper from "@/src/utils/Helper";
 import CustomModal from "@/components/CustomModal";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
