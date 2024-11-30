@@ -194,7 +194,7 @@ function Home() {
 
           <DesktopBanner imageData={listingBannerData} />
 
-          <div className="bg-color xl:pb-10 lg:pb-8 md:pb-6 sm:pb-6 pb-4">
+          <div className="bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPopularCitySection
               onClickViewMore={onClickToSearch}
               data={popularCity}
