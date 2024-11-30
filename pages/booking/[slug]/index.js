@@ -353,7 +353,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
     const postData = {
       listing_id: id,
-      date_from: currentForm.booking_date_from.value,
+      date_from: dateForm.booking_date_from.value,
       date_to: calculateCheckOutDate("YYYY-MM-DD"),
       applicant_id_type: currentForm.applicant_id_type.value,
       applicant_id_value: currentForm.applicant_id_value.value,

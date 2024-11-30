@@ -8,7 +8,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 import * as listingSelector from "@/src/selectors/listing";
 
-const   DesktopPriceSection = ({
+const DesktopPriceSection = ({
   openFirstMonthCharges,
   onClickOpenFirstMonthCharges,
   openLastMonthCharges,
@@ -31,7 +31,7 @@ const   DesktopPriceSection = ({
   onClickSelectIsZeroDeposit,
   totalMoveInCost,
   isBookingOverview = false,
-                                 dateFormRef
+  dateFormRef,
 }) => {
   const firstMonthRentCharges =
     listingSelector.getFirstMonthRentCharges(moveInFees);
@@ -79,46 +79,46 @@ const   DesktopPriceSection = ({
           ) : (
             <>
               <form ref={dateFormRef}>
-              <div className="py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
-                <CustomText textClassName="text-sm col-span-4 font-bold">
-                  Tenancy Period
-                </CustomText>
-                <BookingDateInput
-                  bgColor="bg-color"
-                  className="col-span-3"
-                  placeholder="12/02/2023"
-                  title="Check in date"
-                  name="booking_date_from"
-                  errorMessage={errorMessage.booking_date_from}
-                  onChange={onChangeCheckInDate}
-                  required
-                />
+                <div className="py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+                  <CustomText textClassName="text-sm col-span-4 font-bold">
+                    Tenancy Period
+                  </CustomText>
+                  <BookingDateInput
+                    bgColor="bg-color"
+                    className="col-span-3"
+                    placeholder="12/02/2023"
+                    title="Check in date"
+                    name="booking_date_from"
+                    errorMessage={errorMessage.booking_date_from}
+                    onChange={onChangeCheckInDate}
+                    required
+                  />
 
-                <BookingInput
-                  required
-                  disabled
-                  bgColor="bg-color"
-                  className="col-span-3"
-                  title="Check out date"
-                  value={
-                    isEmpty(calculateCheckOutDate("DD/MM/YYYY"))
-                      ? "Please select check in date"
-                      : calculateCheckOutDate("DD/MM/YYYY")
-                  }
-                />
+                  <BookingInput
+                    required
+                    disabled
+                    bgColor="bg-color"
+                    className="col-span-3"
+                    title="Check out date"
+                    value={
+                      isEmpty(calculateCheckOutDate("DD/MM/YYYY"))
+                        ? "Please select check in date"
+                        : calculateCheckOutDate("DD/MM/YYYY")
+                    }
+                  />
 
-                <BookingSelect
-                  className="col-span-6"
-                  bgColor="bg-color"
-                  placeholder="Tenure Period"
-                  title="Tenure Period"
-                  lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
-                  name="tenure_period"
-                  errorMessage={errorMessage.tenure_period}
-                  required
-                  onChange={onChangeTenurePeriod}
-                />
-              </div>
+                  <BookingSelect
+                    className="col-span-6"
+                    bgColor="bg-color"
+                    placeholder="Tenure Period"
+                    title="Tenure Period"
+                    lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
+                    name="tenure_period"
+                    errorMessage={errorMessage.tenure_period}
+                    required
+                    onChange={onChangeTenurePeriod}
+                  />
+                </div>
               </form>
 
               {isAllowedZeroDeposit ? (
@@ -141,7 +141,9 @@ const   DesktopPriceSection = ({
                       onClick={onClickSelectIsZeroDeposit}
                       className="radio booking-radio mr-2"
                     />
-                    <CustomText textClassName="text-xs">ZERO Deposit</CustomText>
+                    <CustomText textClassName="text-xs">
+                      ZERO Deposit
+                    </CustomText>
                   </div>
 
                   <div className="flex items-center col-span-3">
@@ -153,7 +155,9 @@ const   DesktopPriceSection = ({
                       onClick={onClickSelectIsZeroDeposit}
                       className="radio booking-radio mr-2"
                     />
-                    <CustomText textClassName="text-xs">Pay 2 Months Security Deposit</CustomText>
+                    <CustomText textClassName="text-xs">
+                      Pay 2 Months Security Deposit
+                    </CustomText>
                   </div>
                 </div>
               ) : (
@@ -164,14 +168,18 @@ const   DesktopPriceSection = ({
         </div>
 
         <div className="p-5 bg-color flex items-center justify-between">
-          <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">Total Move-In Cost</CustomText>
+          <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
+            Total Move-In Cost
+          </CustomText>
           <CustomText textClassName="primary-text font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             RM {totalMoveInCost}
           </CustomText>
         </div>
 
         <div className="p-5">
-          <CustomText textClassName="font-bold pb-1 xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">Move In Cost</CustomText>
+          <CustomText textClassName="font-bold pb-1 xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
+            Move In Cost
+          </CustomText>
           <CustomText textClassName="text-xs font-light leading-4 disable-text">
             Please check the payment breakdown below. Should you have any
             inquiries, please contact the owner or agent before proceeding with
@@ -255,7 +263,9 @@ const   DesktopPriceSection = ({
                   <CustomText textClassName="text-sm">Pay in Full</CustomText>
                 </div>
 
-                <CustomText textClassName="text-sm">RM{totalMoveInCostFull}</CustomText>
+                <CustomText textClassName="text-sm">
+                  RM{totalMoveInCostFull}
+                </CustomText>
               </div>
 
               <div className="flex justify-between items-center pt-2">
@@ -267,10 +277,14 @@ const   DesktopPriceSection = ({
                     onClick={onClickSelectPaymentAmount}
                     className="radio booking-radio mr-2"
                   />
-                  <CustomText textClassName="text-sm">Pay in Partial</CustomText>
+                  <CustomText textClassName="text-sm">
+                    Pay in Partial
+                  </CustomText>
                 </div>
 
-                <CustomText textClassName="text-sm">RM{totalMoveInCostPartial}</CustomText>
+                <CustomText textClassName="text-sm">
+                  RM{totalMoveInCostPartial}
+                </CustomText>
               </div>
             </>
           )}
