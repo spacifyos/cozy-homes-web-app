@@ -9,6 +9,9 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import AuthManager from "@/src/utils/AuthManager";
 import * as authSelector from "@/src/selectors/auth";
 import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 const OtpVerification = () => {
   const router = useRouter();
@@ -91,7 +94,7 @@ const OtpVerification = () => {
 
       router.push("/my-property");
     } else {
-      router.push("/sign-in");
+      router.push("/");
     }
   };
 
@@ -100,65 +103,99 @@ const OtpVerification = () => {
   };
 
   return (
-    <CustomHeader onClickGoBack={onClickGoBack}>
-      <NextSeo title="Otp Verify - Spacify Asia" />
-      <div className="body-container py-4 flex flex-col items-center overflow-hidden">
-        <CustomText
-          textClassName="primary-text font-bold leading-10 pb-5 text-center"
-          styles={{ fontSize: 34 }}
-        >
-          Otp Verification
-        </CustomText>
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="Otp Verification - Spacify Asia" />
 
-        <CustomText textClassName="pb-5 text-center">
-          Enter the 6 digit code that we sent you on your mobile number.
-        </CustomText>
+      <DesktopLayout
+        hideNav
+        loading={otpRequestLoading || otpVerifyLoading}
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <CustomText textClassName="text-base">
+                    Otp Verification
+                  </CustomText>
+                </li>
+              </ul>
+            </div>
 
-        <CustomText textClassName="pb-5 text-sm disable-text text-center">
-          Sent to {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
-        </CustomText>
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">
+                Otp Verification
+              </CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col items-center justify-center h-screen">
+          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center px-10">
+            <CustomText
+              textClassName="primary-text font-bold leading-10 pb-5 text-center"
+              styles={{ fontSize: 34 }}
+            >
+              Otp Verification
+            </CustomText>
 
-        <div className="flex justify-center pb-7">
-          <OtpInput
-            containerStyle={{ flexWrap: "wrap" }}
-            placeholder="-"
-            value={otp}
-            onChange={setOtp}
-            numInputs={6}
-            inputType="number"
-            renderSeparator={<span className="w-2"></span>}
-            renderInput={(props) => <input {...props} />}
-            inputStyle={{
-              backgroundColor: "#FFFFFF",
-              width: 45,
-              height: 50,
-              borderRadius: 10,
-              boxShadow:
-                "rgba(0, 0, 0, 0.1) 2px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
-            }}
-          />
+            <CustomText textClassName="pb-5 text-center">
+              Enter the 6 digit code that we sent you on your mobile number.
+            </CustomText>
+
+            <CustomText textClassName="pb-5 text-sm disable-text text-center">
+              Sent to {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
+            </CustomText>
+
+            <div className="flex justify-center pb-7">
+              <OtpInput
+                containerStyle={{ flexWrap: "wrap" }}
+                placeholder="-"
+                value={otp}
+                onChange={setOtp}
+                numInputs={6}
+                inputType="number"
+                renderSeparator={<span className="w-2"></span>}
+                renderInput={(props) => <input {...props} />}
+                inputStyle={{
+                  backgroundColor: "#FFFFFF",
+                  width: 45,
+                  height: 50,
+                  borderRadius: 10,
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.1) 2px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px",
+                }}
+              />
+            </div>
+
+            <CustomText textClassName="pb-5 text-sm disable-text text-center">
+              Not received code yet.
+            </CustomText>
+
+            <CustomText
+              textClassName="pb-5 text-sm primary-text text-center cursor-pointer"
+              onClick={isResendEnabled ? handleResend : () => {}}
+            >
+              {isResendEnabled
+                ? `Resend OTP`
+                : `Resend OTP in ${timeLeft} seconds`}
+            </CustomText>
+
+            <CustomButton
+              buttonClassName={`${isOtpValid ? "primary-btn" : "disable-btn"} w-36 flex`}
+              buttonText="Verify Code"
+              disable={!isOtpValid || otpRequestLoading || otpVerifyLoading}
+              loading={otpRequestLoading || otpVerifyLoading}
+              onClick={onClickSubmit}
+            />
+          </div>
         </div>
-
-        <CustomText textClassName="pb-5 text-sm disable-text text-center">
-          Not received code yet.
-        </CustomText>
-
-        <CustomText
-          textClassName="pb-5 text-sm primary-text text-center cursor-pointer"
-          onClick={isResendEnabled ? handleResend : () => {}}
-        >
-          {isResendEnabled ? `Resend OTP` : `Resend OTP in ${timeLeft} seconds`}
-        </CustomText>
-
-        <CustomButton
-          buttonClassName={`${isOtpValid ? "primary-btn" : "disable-btn"} w-36 flex`}
-          buttonText="Verify Code"
-          disable={!isOtpValid || otpRequestLoading || otpVerifyLoading}
-          loading={otpRequestLoading || otpVerifyLoading}
-          onClick={onClickSubmit}
-        />
-      </div>
-    </CustomHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

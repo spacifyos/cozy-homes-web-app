@@ -151,7 +151,7 @@ const ForgotPasswordOwner = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/sign-in/${Constant.OWNER}`);
+    router.replace(`/}`);
   };
 
   const renderContent = (step) => {
@@ -219,7 +219,7 @@ const ForgotPasswordOwner = () => {
   };
 
   const onClickGoBack = () => {
-    router.replace(`/sign-in/${Constant.OWNER}`);
+    router.replace(`/`);
   };
 
   return (

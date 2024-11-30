@@ -19,6 +19,8 @@ const routeList = [
   "/owner/my-invoice",
   "/owner/my-wallet",
   "/splash-screen",
+  "/forgot-password/owner",
+  "/forgot-password/tenant",
 ];
 
 const nextConfig = {

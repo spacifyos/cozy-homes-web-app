@@ -17,6 +17,7 @@ import * as commonSelector from "@/src/selectors/common";
 import Constant from "@/src/utils/Constant";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -154,7 +155,7 @@ const ForgotPassword = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/sign-in?type=${typeQuery}`);
+    router.replace(`/`);
   };
 
   const renderContent = (step) => {
@@ -222,68 +223,62 @@ const ForgotPassword = () => {
   };
 
   const onClickGoBack = () => {
-    router.replace(`/sign-in?type=${typeQuery}`);
+    router.replace(`/`);
   };
 
   return (
-    <div
-      style={{
-        background: isEqual(typeQuery, Constant.OWNER)
-          ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
-          : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
-      }}
-      className={`min-h-screen pb-4`}
-    >
+    <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Forgot Password - Spacify Asia" />
 
-      <div className="body-container">
-        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
-          <CustomImage
-            className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
-            imageStyle={{ width: 10, height: 10 }}
-          />
-        </div>
+      <DesktopLayout
+        hideNav
+        loading={otpRequestLoading || forgotPasswordLoading}
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <CustomText textClassName="text-base">
+                    Forgot Password
+                  </CustomText>
+                </li>
+              </ul>
+            </div>
 
-        <div className="py-6 flex flex-col items-center">
-          <CustomImage
-            src={Images.blackLogo}
-            imageStyle={{ width: 120 }}
-            className="mb-2"
-          />
-
-          <CustomText
-            textClassName="white-text font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            Reset Password
-          </CustomText>
-        </div>
-
-        <div className="w-full">
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
-              Reset password as
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">Forgot Password</CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 min-h-screen flex flex-col justify-center items-center">
+          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center px-10">
+            <CustomText textClassName="font-bold leading-10 text-center pb-4 text-3xl">
+              Reset Password
             </CustomText>
 
-            <CustomText
-              textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
-              styles={{
-                color: isEqual(typeQuery, Constant.TENANT)
-                  ? "#F05A22"
-                  : "#D71440",
-                fontSize: 32,
-              }}
-            >
-              {typeQuery}
-            </CustomText>
+            <div className="w-full">
+              <CustomText
+                textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-3xl`}
+                styles={{
+                  color: isEqual(typeQuery, Constant.TENANT)
+                    ? "#F05A22"
+                    : "#D71440",
+                }}
+              >
+                {typeQuery}
+              </CustomText>
 
-            {renderContent(step)}
+              {renderContent(step)}
+            </div>
           </div>
         </div>
-
-        <LoadingOverlay loading={otpRequestLoading || forgotPasswordLoading} />
-      </div>
+      </DesktopLayout>
     </div>
   );
 };

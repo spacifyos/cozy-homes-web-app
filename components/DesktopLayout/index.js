@@ -234,7 +234,9 @@ const DesktopLayout = ({
       <SignInModal
         userType={selectedUserType}
         setUserType={setSelectedUserType}
+        onClickSignUp={onClickSignUp}
       />
+
       <SignUpModal
         userType={selectedUserType}
         setUserType={setSelectedUserType}

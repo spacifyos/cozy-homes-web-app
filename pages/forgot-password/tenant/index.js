@@ -151,7 +151,7 @@ const ForgotPasswordTenant = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/sign-in/${Constant.TENANT}`);
+    router.replace(`/`);
   };
 
   const renderContent = (step) => {
@@ -219,7 +219,7 @@ const ForgotPasswordTenant = () => {
   };
 
   const onClickGoBack = () => {
-    router.replace(`/sign-in/${Constant.TENANT}`);
+    router.replace(`/`);
   };
 
   return (

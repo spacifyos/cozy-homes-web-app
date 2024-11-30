@@ -18,7 +18,7 @@ import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 
-const SignInModal = ({ userType, setUserType }) => {
+const SignInModal = ({ userType, setUserType,onClickSignUp }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
@@ -35,16 +35,6 @@ const SignInModal = ({ userType, setUserType }) => {
   const [password, setPassword] = useState("");
 
   const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
-
-  const onClickToSignUp = () => {
-    router
-      .push({
-        pathname: `/sign-up`,
-        query: { type: userType },
-      })
-      .then(() => router.reload());
-    u1;
-  };
 
   const onClickToLogin = async () => {
     if (isEmpty(phoneNumber)) {
@@ -208,7 +198,7 @@ const SignInModal = ({ userType, setUserType }) => {
 
                 <div className="flex justify-center items-center mb-5">
                   <CustomText>Don’t have account? Click </CustomText>
-                  <div onClick={onClickToSignUp} className="cursor-pointer">
+                  <div onClick={onClickSignUp} className="cursor-pointer">
                     <CustomText textClassName="primary-text font-bold pl-1 underline">
                       here
                     </CustomText>
