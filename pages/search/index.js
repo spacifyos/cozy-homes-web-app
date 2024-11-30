@@ -42,6 +42,7 @@ import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
 import { getListing } from "@/src/selectors/listing";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
@@ -460,24 +461,24 @@ const Search = () => {
     });
   };
 
-  const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
-
-  useEffect(() => {
-    const checkScript = Helper.documentGetElementById(src);
-    const chatContainer = document.body;
-    const script = document.createElement("script");
-
-    if (checkScript) {
-      return router.reload();
-    }
-
-    script.id = src;
-    script.async = true;
-    script.defer = true;
-    script.src = src;
-
-    chatContainer.appendChild(script);
-  }, []);
+  // const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
+  //
+  // useEffect(() => {
+  //   const checkScript = Helper.documentGetElementById(src);
+  //   const chatContainer = document.body;
+  //   const script = document.createElement("script");
+  //
+  //   if (checkScript) {
+  //     return router.reload();
+  //   }
+  //
+  //   script.id = src;
+  //   script.async = true;
+  //   script.defer = true;
+  //   script.src = src;
+  //
+  //   chatContainer.appendChild(script);
+  // }, []);
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
@@ -500,6 +501,14 @@ const Search = () => {
           siteName: `${process.env.DOMAIN}`,
         }}
       />
+
+      <a
+        target="_blank"
+        href={`https://wa.me/+601137354267`}
+        className="fixed bottom-10 right-6 z-10"
+      >
+        <CustomImage src={Images.whatsappIcon} className="w-10 h-10" />
+      </a>
 
       <DesktopLayout
         hideNav
