@@ -40,271 +40,283 @@ const DesktopFormSection = ({
   onClickBooking,
   setReferralCodeValue,
   referralCodeValue,
+  formRef,
 }) => {
   return (
     <div className="px-5 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
-      <div className="grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base primary-text">
-          Please Fill in The Form
-        </CustomText>
+      <form ref={formRef}>
+        <div className="grid grid-cols-6 gap-2">
+          <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base primary-text">
+            Please Fill in The Form
+          </CustomText>
 
-        <CustomText textClassName="col-span-6 font-bold text-sm">
-          Basic Information
-        </CustomText>
-        <BookingInput
-          className="col-span-6"
-          placeholder="Name"
-          name="applicant_name"
-          title="Name"
-          errorMessage={errorMessage.applicant_name}
-          required
-        />
+          <CustomText textClassName="col-span-6 font-bold text-sm">
+            Basic Information
+          </CustomText>
+          <BookingInput
+            className="col-span-6"
+            placeholder="Name"
+            name="applicant_name"
+            title="Name"
+            errorMessage={errorMessage.applicant_name}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-2"
-          placeholder="Select ID type"
-          title="ID Type"
-          lists={isEmpty(idTypeOption) ? defaultOption : idTypeOption}
-          name="applicant_id_type"
-          errorMessage={errorMessage.applicant_id_type}
-          onChange={onChangeIdType}
-          required
-        />
+          <BookingSelect
+            className="col-span-2"
+            placeholder="Select ID type"
+            title="ID Type"
+            lists={isEmpty(idTypeOption) ? defaultOption : idTypeOption}
+            name="applicant_id_type"
+            errorMessage={errorMessage.applicant_id_type}
+            onChange={onChangeIdType}
+            required
+          />
 
-        <BookingInput
-          className="col-span-4"
-          type={"text"}
-          placeholder={
-            isEqual(idType, "nric")
-              ? "XXXXXXXXXXXX"
-              : isEqual(idType, "passport")
-                ? "AXXXXXXXX"
-                : "ID Number"
-          }
-          title={"ID Number"}
-          name="applicant_id_value"
-          errorMessage={errorMessage.applicant_id_value}
-          maxLength={
-            isEqual(idType, "nric") ? 12 : isEqual(idType, "passport") ? 14 : 20
-          }
-          required
-        />
+          <BookingInput
+            className="col-span-4"
+            type={"text"}
+            placeholder={
+              isEqual(idType, "nric")
+                ? "XXXXXXXXXXXX"
+                : isEqual(idType, "passport")
+                  ? "AXXXXXXXX"
+                  : "ID Number"
+            }
+            title={"ID Number"}
+            name="applicant_id_value"
+            errorMessage={errorMessage.applicant_id_value}
+            maxLength={
+              isEqual(idType, "nric")
+                ? 12
+                : isEqual(idType, "passport")
+                  ? 14
+                  : 20
+            }
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select Race"
-          title="Race"
-          name="applicant_race"
-          lists={isEmpty(raceOption) ? defaultOption : raceOption}
-          errorMessage={errorMessage.applicant_race}
-          required
-        />
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select Race"
+            title="Race"
+            name="applicant_race"
+            lists={isEmpty(raceOption) ? defaultOption : raceOption}
+            errorMessage={errorMessage.applicant_race}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select Gender"
-          title="Gender"
-          lists={isEmpty(genderOption) ? defaultOption : genderOption}
-          name="applicant_gender"
-          errorMessage={errorMessage.applicant_gender}
-          required
-        />
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select Gender"
+            title="Gender"
+            lists={isEmpty(genderOption) ? defaultOption : genderOption}
+            name="applicant_gender"
+            errorMessage={errorMessage.applicant_gender}
+            required
+          />
 
-        <BookingInput
-          className="col-span-6"
-          placeholder="Email"
-          title="Email"
-          name="applicant_email"
-          errorMessage={errorMessage.applicant_email}
-          required
-        />
+          <BookingInput
+            className="col-span-6"
+            placeholder="Email"
+            title="Email"
+            name="applicant_email"
+            errorMessage={errorMessage.applicant_email}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-2"
-          placeholder="Select Area Code"
-          title="Area Code"
-          lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
-          name="applicant_area_code"
-          errorMessage={errorMessage.applicant_area_code}
-          required
-        />
+          <BookingSelect
+            className="col-span-2"
+            placeholder="Select Area Code"
+            title="Area Code"
+            lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+            name="applicant_area_code"
+            errorMessage={errorMessage.applicant_area_code}
+            required
+          />
 
-        <BookingInput
-          className="col-span-4"
-          type="number"
-          placeholder="Phone Number"
-          title="Phone Number"
-          name="applicant_phone_number"
-          errorMessage={errorMessage.applicant_phone_number}
-          required
-        />
+          <BookingInput
+            className="col-span-4"
+            type="number"
+            placeholder="Phone Number"
+            title="Phone Number"
+            name="applicant_phone_number"
+            errorMessage={errorMessage.applicant_phone_number}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select Nationality"
-          title="Nationality"
-          lists={isEmpty(nationalityOption) ? defaultOption : nationalityOption}
-          name="applicant_nationality"
-          errorMessage={errorMessage.applicant_nationality}
-          required
-        />
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select Nationality"
+            title="Nationality"
+            lists={
+              isEmpty(nationalityOption) ? defaultOption : nationalityOption
+            }
+            name="applicant_nationality"
+            errorMessage={errorMessage.applicant_nationality}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select Occupation"
-          title="Occupation"
-          lists={isEmpty(occupationOption) ? defaultOption : occupationOption}
-          name="occupation_type"
-          errorMessage={errorMessage.occupation_type}
-          required
-        />
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select Occupation"
+            title="Occupation"
+            lists={isEmpty(occupationOption) ? defaultOption : occupationOption}
+            name="occupation_type"
+            errorMessage={errorMessage.occupation_type}
+            required
+          />
 
-        <BookingInput
-          className="col-span-6"
-          placeholder="Company Name / College Name"
-          title="Company Name / College Name"
-          name="institution_name"
-          errorMessage={errorMessage.institution_name}
-          required
-        />
-      </div>
+          <BookingInput
+            className="col-span-6"
+            placeholder="Company Name / College Name"
+            title="Company Name / College Name"
+            name="institution_name"
+            errorMessage={errorMessage.institution_name}
+            required
+          />
+        </div>
 
-      <div className="py-3 grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold text-sm">
-          Address Information
-        </CustomText>
+        <div className="py-3 grid grid-cols-6 gap-2">
+          <CustomText textClassName="col-span-6 font-bold text-sm">
+            Address Information
+          </CustomText>
 
-        <BookingInput
-          className="col-span-6"
-          placeholder="Your Address"
-          title="Your Address"
-          name="line"
-          errorMessage={errorMessage.line}
-          required
-        />
+          <BookingInput
+            className="col-span-6"
+            placeholder="Your Address"
+            title="Your Address"
+            name="line"
+            errorMessage={errorMessage.line}
+            required
+          />
 
-        <BookingInput
-          className="col-span-3"
-          placeholder="City"
-          title="City"
-          name="city"
-          errorMessage={errorMessage.city}
-          required
-        />
+          <BookingInput
+            className="col-span-3"
+            placeholder="City"
+            title="City"
+            name="city"
+            errorMessage={errorMessage.city}
+            required
+          />
 
-        <BookingInput
-          className="col-span-3"
-          placeholder="Postcode"
-          title="PostCode"
-          name="postcode"
-          errorMessage={errorMessage.postcode}
-          required
-        />
+          <BookingInput
+            className="col-span-3"
+            placeholder="Postcode"
+            title="PostCode"
+            name="postcode"
+            errorMessage={errorMessage.postcode}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select Country"
-          title="Country"
-          lists={isEmpty(countryOption) ? defaultOption : countryOption}
-          name="country_code"
-          errorMessage={errorMessage.country_code}
-          required
-        />
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select Country"
+            title="Country"
+            lists={isEmpty(countryOption) ? defaultOption : countryOption}
+            name="country_code"
+            errorMessage={errorMessage.country_code}
+            required
+          />
 
-        <BookingSelect
-          className="col-span-3"
-          placeholder="Select State"
-          title="State"
-          lists={isEmpty(stateOption) ? defaultOption : stateOption}
-          name="state_code"
-          errorMessage={errorMessage.state_code}
-          required
-        />
-      </div>
+          <BookingSelect
+            className="col-span-3"
+            placeholder="Select State"
+            title="State"
+            lists={isEmpty(stateOption) ? defaultOption : stateOption}
+            name="state_code"
+            errorMessage={errorMessage.state_code}
+            required
+          />
+        </div>
 
-      <div className="py-3 grid grid-cols-6 gap-2">
-        <CustomText textClassName="col-span-6 font-bold text-sm">
-          Emergency Contact Information
-        </CustomText>
+        <div className="py-3 grid grid-cols-6 gap-2">
+          <CustomText textClassName="col-span-6 font-bold text-sm">
+            Emergency Contact Information
+          </CustomText>
 
-        {map(emergencyContactNumber, (item, index) => {
-          return (
-            <div className="col-span-6 grid grid-cols-6 gap-2 pt-2" key={index}>
-              {/*<CustomText textClassName="font-bold col-span-3">*/}
-              {/*  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}*/}
-              {/*</CustomText>*/}
+          {map(emergencyContactNumber, (item, index) => {
+            return (
+              <div
+                className="col-span-6 grid grid-cols-6 gap-2 pt-2"
+                key={index}
+              >
+                {/*<CustomText textClassName="font-bold col-span-3">*/}
+                {/*  {`Contact ${index + 1} ${index + 1 == 2 ? "(Optional)" : ""}`}*/}
+                {/*</CustomText>*/}
 
-              {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
-              {/*  <div*/}
-              {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
-              {/*    onClick={() => onClickRemoveContact(index)}*/}
-              {/*  >*/}
-              {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
-              {/*  </div>*/}
-              {/*) : (*/}
-              {/*  false*/}
-              {/*)}*/}
+                {/*{index === 0 && size(emergencyContactNumber) !== 1 ? (*/}
+                {/*  <div*/}
+                {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
+                {/*    onClick={() => onClickRemoveContact(index)}*/}
+                {/*  >*/}
+                {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
+                {/*  </div>*/}
+                {/*) : (*/}
+                {/*  false*/}
+                {/*)}*/}
 
-              <BookingInput
-                className="col-span-6"
-                placeholder="your Name"
-                title="Your Name"
-                name={`emergency_contacts_name_${index + 1}`}
-                errorMessage={
-                  errorMessage[`emergency_contacts_name_${index + 1}`]
-                }
-                required={index === 0}
-              />
+                <BookingInput
+                  className="col-span-6"
+                  placeholder="your Name"
+                  title="Your Name"
+                  name={`emergency_contacts_name_${index + 1}`}
+                  errorMessage={
+                    errorMessage[`emergency_contacts_name_${index + 1}`]
+                  }
+                  required={index === 0}
+                />
 
-              <BookingInput
-                className="col-span-6"
-                placeholder="Enter Relationship"
-                title="Enter Relationship"
-                name={`emergency_contacts_relationship_${index + 1}`}
-                errorMessage={
-                  errorMessage[`emergency_contacts_relationship_${index + 1}`]
-                }
-                required={index === 0}
-              />
+                <BookingInput
+                  className="col-span-6"
+                  placeholder="Enter Relationship"
+                  title="Enter Relationship"
+                  name={`emergency_contacts_relationship_${index + 1}`}
+                  errorMessage={
+                    errorMessage[`emergency_contacts_relationship_${index + 1}`]
+                  }
+                  required={index === 0}
+                />
 
-              <BookingSelect
-                className="col-span-2"
-                placeholder="Select Area Code"
-                title="Area Code"
-                lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
-                name={`emergency_contacts_phone_prefix_${index + 1}`}
-                errorMessage={
-                  errorMessage[`emergency_contacts_phone_prefix_${index + 1}`]
-                }
-                required={index === 0}
-              />
+                <BookingSelect
+                  className="col-span-2"
+                  placeholder="Select Area Code"
+                  title="Area Code"
+                  lists={isEmpty(phonePrefix) ? defaultOption : phonePrefix}
+                  name={`emergency_contacts_phone_prefix_${index + 1}`}
+                  errorMessage={
+                    errorMessage[`emergency_contacts_phone_prefix_${index + 1}`]
+                  }
+                  required={index === 0}
+                />
 
-              <BookingInput
-                className="col-span-4"
-                type="number"
-                placeholder="Phone Number"
-                title="Phone Number"
-                name={`emergency_contacts_phone_suffix_${index + 1}`}
-                errorMessage={
-                  errorMessage[`emergency_contacts_phone_suffix_${index + 1}`]
-                }
-                required={index === 0}
-              />
+                <BookingInput
+                  className="col-span-4"
+                  type="number"
+                  placeholder="Phone Number"
+                  title="Phone Number"
+                  name={`emergency_contacts_phone_suffix_${index + 1}`}
+                  errorMessage={
+                    errorMessage[`emergency_contacts_phone_suffix_${index + 1}`]
+                  }
+                  required={index === 0}
+                />
 
-              <BookingInput
-                className="col-span-6"
-                placeholder="Your Email"
-                title="Your Email"
-                name={`emergency_contacts_email_${index + 1}`}
-                errorMessage={
-                  errorMessage[`emergency_contacts_email_${index + 1}`]
-                }
-                required={index === 0}
-              />
-            </div>
-          );
-        })}
-      </div>
+                <BookingInput
+                  className="col-span-6"
+                  placeholder="Your Email"
+                  title="Your Email"
+                  name={`emergency_contacts_email_${index + 1}`}
+                  errorMessage={
+                    errorMessage[`emergency_contacts_email_${index + 1}`]
+                  }
+                  required={index === 0}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </form>
 
       <div className="py-3 grid grid-cols-6 gap-2 flex items-end">
         <CustomText textClassName="col-span-6 font-bold text-sm">

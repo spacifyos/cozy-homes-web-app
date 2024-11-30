@@ -121,7 +121,7 @@ const Image = {
   buildingIconActive: `/images/icon/building_icon_active.png`,
   spaceIcon: `/images/icon/space_icon_active.png`,
   questionMarkIcon: `/images/icon/question_mark_icon.png`,
-  imageNotFound: `/images/logo.png`,
+  imageNotFound: `/images/logo.webp`,
   electricalIcon: `/images/icon/electrical_icon.png`,
   electricalIconActive: `/images/icon/electrical_icon_active.png`,
   plumbingIcon: `/images/icon/plumbing_icon.png`,

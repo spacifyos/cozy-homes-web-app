@@ -31,6 +31,7 @@ const   DesktopPriceSection = ({
   onClickSelectIsZeroDeposit,
   totalMoveInCost,
   isBookingOverview = false,
+                                 dateFormRef
 }) => {
   const firstMonthRentCharges =
     listingSelector.getFirstMonthRentCharges(moveInFees);
@@ -77,6 +78,7 @@ const   DesktopPriceSection = ({
             false
           ) : (
             <>
+              <form ref={dateFormRef}>
               <div className="py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
                 <CustomText textClassName="text-sm col-span-4 font-bold">
                   Tenancy Period
@@ -117,6 +119,7 @@ const   DesktopPriceSection = ({
                   onChange={onChangeTenurePeriod}
                 />
               </div>
+              </form>
 
               {isAllowedZeroDeposit ? (
                 <div className="pt-3 pb-4 grid grid-cols-6 gap-2">

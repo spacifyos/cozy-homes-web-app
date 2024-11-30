@@ -67,6 +67,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const formRef = useRef();
+  const dateFormRef = useRef();
   const dispatch = useDispatch();
   const initialTime = 60;
 
@@ -251,11 +252,10 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
   const onClickBooking = async () => {
     const currentForm = formRef && formRef.current;
+    const dateForm = dateFormRef && dateFormRef.current;
     const newErrors = {};
 
     const requiredFields = [
-      "booking_date_from",
-      "tenure_period",
       "applicant_name",
       "applicant_id_type",
       "applicant_id_value",
@@ -278,6 +278,12 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       "emergency_contacts_phone_suffix_1",
       "emergency_contacts_email_1",
     ];
+
+    forEach(["booking_date_from", "tenure_period"], (field) => {
+      if (isEmpty(dateForm[field].value)) {
+        newErrors[field] = `${dateForm[field].title} is required`;
+      }
+    });
 
     forEach(requiredFields, (field) => {
       if (isEmpty(currentForm[field].value)) {
@@ -696,11 +702,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
         }
       >
         <div className="container mx-auto flex-1 pb-6">
-          <form
-            ref={formRef}
-            className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5"
-          >
+          <div className="grid xl:grid-cols-5 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-4 grid-cols-4 gap-5">
             <DesktopPriceSection
+              dateFormRef={dateFormRef}
               targetRental={targetRental}
               propertyName={propertyName}
               unitRoomName={unitRoomName}
@@ -755,8 +759,9 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               onClickBooking={onClickBooking}
               setReferralCodeValue={setReferralCodeValue}
               referralCodeValue={referralCodeValue}
+              formRef={formRef}
             />
-          </form>
+          </div>
         </div>
       </DesktopLayout>
 
