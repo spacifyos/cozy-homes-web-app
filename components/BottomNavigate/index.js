@@ -57,7 +57,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
   const onClickToPage = async (route) => {
     const token = await AuthManager.retrieveToken();
 
-    if (isEmpty(token) && !includes(route, "explore")) {
+    if (isEmpty(token) && !isEqual(route, "/")) {
       Helper.documentGetElementById("sign_in_modal").showModal();
     } else {
       return router.push(route);
