@@ -1,14 +1,14 @@
 User-agent: *
 
-Disallow: /agency-sign-in,
-Disallow: /agency-sign-up,
+Disallow: /agency/sign-in
+Disallow: /agency/sign-up
 Disallow: /booking/*/payment-failed
 Disallow: /booking/*/payment-successful
-Disallow: /loading,
+Disallow: /loading
 Disallow: /payment-failed
 Disallow: /payment-successful
-Disallow: /sign-in,
-Disallow: /sign-up,
+Disallow: /sign-in
+Disallow: /sign-up
 Disallow: /user/*
 
 Sitemap: https://www.spacify.asia/sitemap/index.xml

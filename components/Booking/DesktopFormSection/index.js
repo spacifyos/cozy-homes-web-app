@@ -43,7 +43,7 @@ const DesktopFormSection = ({
   formRef,
 }) => {
   return (
-    <div className="px-5 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
+    <div className="xl:px-5 lg:px-5 md:px-5 sm:px-0 px-0 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
       <form ref={formRef}>
         <div className="grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base primary-text">

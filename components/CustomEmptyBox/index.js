@@ -11,7 +11,10 @@ const CustomEmptyBox = ({
   return (
     <div className={"flex justify-center items-center flex-col px-4"}>
       <div className={"pb-2"}>
-        <CustomImage src={emptyImage} className="w-14" />
+        <CustomImage
+          src={emptyImage}
+          className="xl:w-18 lg:w-18 md:w-18 sm:w-14 w-14"
+        />
       </div>
       <CustomText
         textClassName={`xl:text-base lg:text-base md:text-base sm:text-sm text-sm font-semibold pb-1`}

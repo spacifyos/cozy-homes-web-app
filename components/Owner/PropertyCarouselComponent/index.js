@@ -21,7 +21,9 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
     setSelectedSlide(activeIndex);
   };
 
-  return (
+  return isEmpty(data) ? (
+    false
+  ) : (
     <div>
       <Swiper
         className="mySwiper cursor-grab mt-6"

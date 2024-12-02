@@ -1,8 +1,8 @@
 import CustomImage from "@/components/CustomImage";
 import Image from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
-import { isEmpty } from "lodash";
-import CustomText from "@/components/CustomText";
+import { get, isEmpty, isEqual } from "lodash";
+import { useRouter } from "next/router";
 import * as authSelector from "@/src/selectors/auth";
 
 const DesktopHeader = ({
@@ -10,19 +10,69 @@ const DesktopHeader = ({
   onClickSignUp,
   data,
   loading,
-  onClickMyProperty,
   onClickMyAccount,
   onClickExplore,
-  onClickLogout,
-  onClickChat,
 }) => {
   const name = authSelector.getName(data);
+  const router = useRouter();
+
+  const pathname = get(router, ["pathname"], "");
 
   return (
     <div
       className="primaryWhite-bg-color"
       style={{ borderBottom: "3px #f5f8fd solid" }}
     >
+      {/*{isEqual(pathname, "/") ? (*/}
+      {/*  <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">*/}
+      {/*    <CustomImage*/}
+      {/*      src={Image.logoHorizontalColor}*/}
+      {/*      onClick={onClickExplore}*/}
+      {/*      className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"*/}
+      {/*    />*/}
+
+      {/*    {isEmpty(data) ? (*/}
+      {/*      <div className="flex gap-3 flex">*/}
+      {/*        {loading ? (*/}
+      {/*          false*/}
+      {/*        ) : (*/}
+      {/*          <CustomButton*/}
+      {/*            icon={Image.registerIconActive}*/}
+      {/*            imageStyle={{ width: 13 }}*/}
+      {/*            buttonText={`Register`}*/}
+      {/*            buttonClassName={`default-btn min-w-44 min-h-10 h-10`}*/}
+      {/*            textClassName="text-sm"*/}
+      {/*            reverse*/}
+      {/*            onClick={onClickSignUp}*/}
+      {/*          />*/}
+      {/*        )}*/}
+
+      {/*        <CustomButton*/}
+      {/*          icon={loading ? "" : Image.primaryLogoutIcon}*/}
+      {/*          buttonText={`Sign In`}*/}
+      {/*          buttonClassName="default-btn w-36 min-h-10 h-10"*/}
+      {/*          textClassName="text-sm"*/}
+      {/*          reverse*/}
+      {/*          loadingColor="primary-text"*/}
+      {/*          loading={loading}*/}
+      {/*          onClick={onClickSignIn}*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*    ) : (*/}
+      {/*      <div className="flex gap-3 flex">*/}
+      {/*        <CustomButton*/}
+      {/*          icon={Image.registerIconActive}*/}
+      {/*          imageStyle={{ width: 13 }} textClassName="text-xs"*/}
+      {/*          buttonText={`Hi, ${name}`}*/}
+      {/*          buttonClassName={`default-btn min-w-40`}*/}
+      {/*          reverse*/}
+      {/*          loading={loading}*/}
+      {/*          onClick={onClickMyAccount}*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*    )}*/}
+      {/*  </div>*/}
+      {/*) : (*/}
       <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
         <CustomImage
           src={Image.logoHorizontalColor}
@@ -59,14 +109,6 @@ const DesktopHeader = ({
           </div>
         ) : (
           <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-            {/*<CustomButton*/}
-            {/*  icon={Image.homeIconActive}*/}
-            {/*  buttonText={`My Property`}*/}
-            {/*  buttonClassName="default-btn w-36"*/}
-            {/*  reverse*/}
-            {/*  onClick={onClickMyProperty}*/}
-            {/*/>*/}
-
             <CustomButton
               icon={Image.registerIconActive}
               imageStyle={{ width: 13 }}
@@ -76,17 +118,10 @@ const DesktopHeader = ({
               loading={loading}
               onClick={onClickMyAccount}
             />
-
-            {/*<CustomButton*/}
-            {/*  icon={Image.primaryLogoutIcon}*/}
-            {/*  buttonText={`Log Out`}*/}
-            {/*  buttonClassName="default-btn w-36"*/}
-            {/*  reverse*/}
-            {/*  onClick={onClickLogout}*/}
-            {/*/>*/}
           </div>
         )}
       </div>
+      {/*)}*/}
     </div>
   );
 };

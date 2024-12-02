@@ -15,7 +15,7 @@ const TransactionComponent = ({
   onClickToOverviewPage,
 }) => {
   return (
-    <div className="pt-6">
+    <div className="pt-6 min-h-full flex-1 flex flex-col">
       <div className="pb-4 flex">
         <CustomButton
           buttonText="Rental Income"

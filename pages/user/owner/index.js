@@ -1,5 +1,4 @@
 import Images from "@/src/utils/Image";
-import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import UserDetailComponent from "@/components/Owner/UserDetailComponent";
 import PropertyInfoComponent from "@/components/Owner/PropertyInfoComponent";
@@ -9,7 +8,6 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import { useEffect, useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as ownerSelector from "@/src/selectors/owner";
 import * as authAction from "@/src/actions/auth";
@@ -170,20 +168,7 @@ const OwnerHome = () => {
           </div>
         }
       >
-        {/*<div className="body-container pt-10 pb-12">*/}
-        {/*  <div className="flex items-center">*/}
-        {/*    <CustomText textClassName="white-text font-bold text-base">*/}
-        {/*      Welcome to{" "}*/}
-        {/*    </CustomText>*/}
-        {/*    <CustomImage*/}
-        {/*      src={Images.blackLogo}*/}
-        {/*      imageStyle={{ width: 80 }}*/}
-        {/*      className="mx-1.5"*/}
-        {/*    />*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-
-        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16">
+        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16 flex flex-col min-h-full">
           <UserDetailComponent data={userProfileData} />
 
           <PropertyInfoComponent lists={lists} />
