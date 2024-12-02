@@ -36,7 +36,7 @@ function* handleApiResponseError(response, action, ignoreToast, errorData) {
 
   if (statusCode === 401) {
     AuthManager.removeLoginType();
-    // AuthManager.removeToken().then(() => Router.replace("/sign-in"));
+    AuthManager.removeToken().then(() => Router.replace("/"));
   }
 
   if (statusCode === 403) {

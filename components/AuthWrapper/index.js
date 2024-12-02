@@ -38,7 +38,7 @@ function AuthWrapper(WrappedComponent) {
 
       router.push({
         pathname: "/",
-        query: { tab: replace(pathname, "/", "") },
+        // query: { tab: replace(pathname, "/", "") },
       });
       return null;
     }

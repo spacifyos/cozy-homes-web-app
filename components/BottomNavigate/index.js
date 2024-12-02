@@ -6,10 +6,12 @@ import AuthManager from "@/src/utils/AuthManager";
 import { useEffect, useState } from "react";
 import Helper from "@/src/utils/Helper";
 import { useRouter } from "next/router";
+import Toast from "../../src/utils/Toast";
 
 const BottomNavigate = ({ routeName, t, routeQuery }) => {
   const router = useRouter();
   const [lists, setLists] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
 
   const tab = get(routeQuery, ["tab"], "");
 
@@ -54,11 +56,13 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
     checkUserType();
   }, []);
 
-  const onClickToPage = async (route) => {
-    const token = await AuthManager.retrieveToken();
+  const onClickToPage = async (e, route) => {
+    e.preventDefault();
+    const userToken = await AuthManager.retrieveToken();
+    const userType = await AuthManager.retrieveType();
 
-    if (isEmpty(token) && !isEqual(route, "/")) {
-      Helper.documentGetElementById("sign_in_modal").showModal();
+    if (isEmpty(userToken) || (isEmpty(userType) && !isEqual(route, "/"))) {
+      return Helper.documentGetElementById("sign_in_modal").showModal();
     } else {
       return router.push(route);
     }
@@ -80,7 +84,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
 
             return (
               <div
-                onClick={() => onClickToPage(value)}
+                onClick={(e) => onClickToPage(e, value)}
                 key={index}
                 className="flex flex-col justify-center items-center cursor-pointer"
               >
