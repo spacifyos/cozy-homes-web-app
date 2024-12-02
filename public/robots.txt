@@ -1,0 +1,18 @@
+User-agent: *
+
+Disallow: /agency-sign-in,
+Disallow: /agency-sign-up,
+Disallow: /booking/*/payment-failed
+Disallow: /booking/*/payment-successful
+Disallow: /loading,
+Disallow: /payment-failed
+Disallow: /payment-successful
+Disallow: /sign-in,
+Disallow: /sign-up,
+Disallow: /user/*
+
+Sitemap: https://www.spacify.asia/sitemap/index.xml
+Sitemap: https://www.spacify.asia/sitemap/general.xml
+Sitemap: https://www.spacify.asia/sitemap/listing-head.xml
+Sitemap: https://www.spacify.asia/sitemap/booking-head.xml
+Sitemap: https://www.spacify.asia/sitemap/search-head.xml

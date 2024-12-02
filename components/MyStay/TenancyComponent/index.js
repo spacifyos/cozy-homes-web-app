@@ -29,7 +29,7 @@ const TenancyComponent = ({ item, t }) => {
 
   return (
     <a
-      href={`/my-property/${tenancyId}`}
+      href={`/user/my-property/${tenancyId}`}
       className="tenancy-container cursor-pointer grid grid-cols-2 gap-2"
     >
       {/*<CustomImage*/}

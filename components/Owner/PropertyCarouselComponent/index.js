@@ -59,7 +59,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
 
           return (
             <SwiperSlide key={index}>
-              <a href={`/owner/property/${propertyId}`}>
+              <a href={`/user/owner/property/${propertyId}`}>
                 <div
                   style={{
                     background: `url(${isEmpty(propertyImage) ? Images.logoImage : propertyImage}) no-repeat center center`,

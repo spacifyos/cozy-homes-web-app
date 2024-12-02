@@ -13,7 +13,7 @@ const MeterSection = ({ t, data }) => {
           {t("myStay.myMeter")}
         </CustomText>
 
-        <a href={"/my-meter"} className="flex">
+        <a href={"/user/my-meter"} className="flex">
           <CustomText textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
             View More
           </CustomText>

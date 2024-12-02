@@ -2,7 +2,7 @@ import DesktopModal from "@/components/DesktopModal";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { get, isEqual, map } from "lodash";
+import { get, isEmpty, isEqual, map } from "lodash";
 import CustomButton from "@/components/CustomButton";
 import * as listingSelector from "@/src/selectors/listing";
 import CustomSelect from "@/components/CustomSelect";
@@ -160,27 +160,33 @@ const DesktopFilterModal = ({
           </div>
         </div>
 
-        <div className="pb-5">
-          <CustomText textClassName="text-sm font-bold">Specify Tag</CustomText>
+        {isEmpty(newGeneralTag) ? (
+          false
+        ) : (
+          <div className="pb-5">
+            <CustomText textClassName="text-sm font-bold">
+              Specify Tag
+            </CustomText>
 
-          <div className="pt-2 flex flex-wrap gap-2">
-            {map(newGeneralTag, (list, index) => {
-              const name = listingSelector.getName(list);
-              const code = listingSelector.getCode(list);
-              const isActive = get(list, ["isActive"], "");
+            <div className="pt-2 flex flex-wrap gap-2">
+              {map(newGeneralTag, (list, index) => {
+                const name = listingSelector.getName(list);
+                const code = listingSelector.getCode(list);
+                const isActive = get(list, ["isActive"], "");
 
-              return (
-                <CustomButton
-                  key={name}
-                  buttonText={name}
-                  buttonClassName={`${isActive ? "primary-btn" : "default-btn"} btn-sm mr-2`}
-                  textClassName="text-xs"
-                  onClick={() => onClickGeneralTag(name, code)}
-                />
-              );
-            })}
+                return (
+                  <CustomButton
+                    key={name}
+                    buttonText={name}
+                    buttonClassName={`${isActive ? "primary-btn" : "default-btn"} btn-sm mr-2`}
+                    textClassName="text-xs"
+                    onClick={() => onClickGeneralTag(name, code)}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="pb-5">
           <CustomText textClassName="text-sm font-bold">Amenities</CustomText>

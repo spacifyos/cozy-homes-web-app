@@ -16,7 +16,7 @@ const MyReportCard = ({ data, targetMonth }) => {
 
         return (
           <a
-            href={`/owner/my-report/${id}?month=${isEmpty(targetMonth) ? moment().format("DD-MM-YYYY") : moment(targetMonth).format("DD-MM-YYYY")}`}
+            href={`/user/owner/my-report/${id}?month=${isEmpty(targetMonth) ? moment().format("DD-MM-YYYY") : moment(targetMonth).format("DD-MM-YYYY")}`}
             key={index}
             className="flex items-center primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
           >

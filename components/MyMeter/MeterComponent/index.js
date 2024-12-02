@@ -13,7 +13,7 @@ const MeterComponent = ({ t, item }) => {
 
   return (
     <a
-      href={`/my-meter/${id}`}
+      href={`/user/my-meter/${id}`}
       className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
     >
       <div className="primary-bg-color px-2 py-3 global-border-radius flex items-center">

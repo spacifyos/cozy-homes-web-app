@@ -12,7 +12,7 @@ const ProfileCard = ({ data }) => {
   return (
     <div className="profile-user-info-container col-span-3">
       <a
-        href={"/edit-profile"}
+        href={"/user/edit-profile"}
         className="absolute right-3 top-3 cursor-pointer"
       >
         <CustomImage src={Images.editIcon} imageStyle={{ width: 23 }} />

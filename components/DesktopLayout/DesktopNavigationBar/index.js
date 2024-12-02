@@ -158,7 +158,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         icon={Images.homeActiveOutline}
         pb={3}
         onClick={() => {
-          return router.push(isTenant ? "/my-property" : "/owner");
+          return router.push(isTenant ? "/user/my-property" : "/user/owner");
         }}
         imageWidth={18}
       />
@@ -168,7 +168,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         icon={Images.registerIconActiveOutline}
         pb={3}
         onClick={() => {
-          return router.push("/account");
+          return router.push("/user/account");
         }}
         imageWidth={18}
       />
@@ -179,9 +179,8 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         imageWidth={23}
         pb={3}
         onClick={() => {
-          return router.push("/my-invoice");
+          return router.push("/user/my-invoice");
         }}
-        // route={`/my-invoice`}
       />
 
       <FeatureComponent
@@ -190,9 +189,8 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         imageWidth={23}
         pb={3}
         onClick={() => {
-          return router.push("/e-agreement");
+          return router.push("/user/e-agreement");
         }}
-        // route={`/e-agreement`}
       />
 
       {!isEmpty(userData) && isTenant ? (
@@ -202,41 +200,39 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
           imageWidth={13}
           pb={3}
           onClick={() => {
-            return router.push("/my-meter");
+            return router.push("/user/my-meter");
           }}
-          // route={`/my-meter`}
         />
       ) : (
         false
       )}
 
-      {!isEmpty(userData) && isTenant ? (
-        false
-      ) : (
+      {!isEmpty(userData) && !isTenant ? (
         <FeatureComponent
           title={"My Report"}
           icon={Images.paperIcon}
           imageWidth={16}
           pb={3}
           onClick={() => {
-            return router.push("/owner/my-report");
+            return router.push("/user/owner/my-report");
           }}
-          // route={"/owner/my-report"}
         />
+      ) : (
+        false
       )}
 
-      {!isEmpty(userData) && isTenant ? (
-        false
-      ) : (
+      {!isEmpty(userData) && !isTenant ? (
         <FeatureComponent
           title={"RenoXpert"}
           icon={Images.renoExpertIconActive}
           imageWidth={16}
           pb={3}
           onClick={() => {
-            return router.push("/reno-expert");
+            return router.push("/user/reno-expert");
           }}
         />
+      ) : (
+        false
       )}
 
       <FeatureComponent
@@ -255,7 +251,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         imageWidth={18}
         pb={3}
         onClick={() => {
-          return router.push(isTenant ? "/chat" : "/owner/chat");
+          return router.push(isTenant ? "/user/chat" : "/user/owner/chat");
         }}
       />
 

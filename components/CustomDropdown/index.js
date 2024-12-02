@@ -17,7 +17,7 @@ const CustomDropdown = ({ items, top, onClickDownloadDocument }) => {
           ) : (
             <CustomText
               key={index}
-              textClassName="p-2 cursor-pointer w-full text-center font-normal"
+              textClassName="p-2 cursor-pointer w-full text-center xl:text-sm lg:text-sm md:text-sn sm:text-xs text-xs"
               onClick={() => onClickDownloadDocument(value)}
               styles={{
                 borderBottom:

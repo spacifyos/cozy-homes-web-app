@@ -15,7 +15,7 @@ const DesktopProfileCard = ({ data }) => {
       style={{ minHeight: 140 }}
     >
       <a
-        href={"/edit-profile"}
+        href={"/user/edit-profile"}
         className="absolute right-5 top-5 cursor-pointer"
       >
         <CustomImage src={Images.editIcon} imageStyle={{ width: 23 }} />

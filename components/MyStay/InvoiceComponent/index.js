@@ -17,7 +17,7 @@ const InvoiceComponent = ({ t, data, type }) => {
 
         return (
           <a
-            href={`${isEmpty(type) ? "" : "/owner"}/my-invoice/${code}`}
+            href={`/user/my-invoice/${code}`}
             className="invoice-container cursor-pointer"
             key={index}
           >

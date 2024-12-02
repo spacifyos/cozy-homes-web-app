@@ -57,7 +57,7 @@ const DesktopLayout = ({
       const token = await AuthManager.retrieveToken();
       const type = await AuthManager.retrieveType();
 
-      if (!isEmpty(token) && !isEmpty(type) && !isEmpty(userProfileData)) {
+      if (!isEmpty(token) && !isEmpty(type) && isEmpty(userProfileData)) {
         fetchUserprofileData();
       }
     };
@@ -86,21 +86,21 @@ const DesktopLayout = ({
 
   const onClickMyProperty = () => {
     if (isEqual(userType, "tenant")) {
-      return router.replace("/my-property");
+      return router.replace("/user/my-property");
     } else {
-      return router.replace("/owner");
+      return router.replace("/user/owner");
     }
   };
 
   const onClickMyAccount = () => {
-    return router.push("/account");
+    return router.push("/user/account");
   };
 
   const onClickChat = () => {
     if (isEqual(userType, "tenant")) {
-      return router.replace("/chat");
+      return router.replace("/user/chat");
     } else {
-      return router.replace("/owner/chat");
+      return router.replace("/user/owner/chat");
     }
   };
 

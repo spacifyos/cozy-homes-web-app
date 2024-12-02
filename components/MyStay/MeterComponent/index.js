@@ -83,7 +83,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
           </div>
         </div>
 
-        <a className="col-span-4" href={`/my-meter/${id}`}>
+        <a className="col-span-4" href={`/user/my-meter/${id}`}>
           <CustomButton
             buttonClassName="w-full primary-btn h-14"
             textClassName="text-lg"

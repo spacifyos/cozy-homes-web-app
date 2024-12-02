@@ -43,7 +43,7 @@ const UserDetailComponent = ({ data }) => {
       </div>
 
       {/*<a*/}
-      {/*  href={"/owner/my-wallet"}*/}
+      {/*  href={"/user/owner/my-wallet"}*/}
       {/*  className="flex justify-end items-center cursor-pointer"*/}
       {/*>*/}
       {/*  <CustomImage*/}

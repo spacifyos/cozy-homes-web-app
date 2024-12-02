@@ -17,7 +17,7 @@ const TransactionComponent = ({
         <CustomText textClassName="text-base font-bold">
           Transactions
         </CustomText>
-        <a href={"/owner/my-report"}>
+        <a href={"/user/owner/my-report"}>
           <CustomText textClassName="primary-text cursor-pointer text-sm">
             View Report
           </CustomText>

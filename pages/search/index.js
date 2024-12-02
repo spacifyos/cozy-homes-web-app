@@ -100,13 +100,14 @@ const Search = () => {
   const [cityValue, setCityValue] = useState(queryCity);
   const [stateValue, setStateValue] = useState(queryState);
   const [tenureValue, setTenureValue] = useState("");
-  const [sortValue, setSortValue] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 10000]);
+  const [sortValue, setSortValue] = useState("asc");
+  const [priceRange, setPriceRange] = useState([0, 2500]);
   const [spaceTypeValue, setSpaceTypeValue] = useState("");
   const [genderValue, setGenderValue] = useState("");
 
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
+    direction: sortValue,
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
@@ -383,7 +384,7 @@ const Search = () => {
     setCityValue("");
     setSpaceTypeValue("");
     setTenureValue("");
-    setPriceRange([0, 10000]);
+    setPriceRange([0, 2500]);
     setGenderValue("");
     setSortValue("");
 
@@ -414,7 +415,7 @@ const Search = () => {
       space_type,
       tenure_period,
       minPrice = 0,
-      maxPrice = 10000,
+      maxPrice = 2500,
       tags,
       gender,
     } = selectedFilterParams;
@@ -433,7 +434,6 @@ const Search = () => {
           const code = get(item, ["code"], "");
 
           if (isEqual(code, tag)) {
-            console.log(tag, code);
             return {
               ...item,
               ...{ isActive: true },

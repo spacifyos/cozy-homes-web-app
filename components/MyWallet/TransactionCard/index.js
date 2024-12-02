@@ -68,7 +68,7 @@ const TransactionCard = ({ data }) => {
 
   return (
     <a
-      href={`/owner/my-wallet/transaction-overview/${transactionNumber}`}
+      href={`/user/owner/my-wallet/transaction-overview/${transactionNumber}`}
       className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer grid grid-cols-4 primaryWhite-bg-color"
     >
       <div className="flex col-span-3">

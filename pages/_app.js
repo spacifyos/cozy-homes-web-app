@@ -60,7 +60,7 @@ function AppContent({ Component, pageProps }) {
 
   useEffect(() => {
     for (let i = 0; i < botWidget.length; i++) {
-      if (isEqual(pathname, "/chat")) {
+      if (isEqual(pathname, "/user/chat")) {
         botWidget[i].style.display = "block";
       } else {
         botWidget[i].style.display = "none";

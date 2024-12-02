@@ -19,7 +19,7 @@ const BankCard = ({ bankDetails }) => {
       >
         {isEmpty(accountNumber) ? (
           <a
-            href={"/owner/my-bank/add-bank"}
+            href={"/user/owner/my-bank/add-bank"}
             className="flex flex-col justify-center items-center flex-1 cursor-pointer"
           >
             <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
@@ -28,7 +28,7 @@ const BankCard = ({ bankDetails }) => {
         ) : (
           <div className="flex-1">
             <a
-              href={`/owner/my-bank/${replace(lowerCase(bankName), " ", "_")}`}
+              href={`/user/owner/my-bank/${replace(lowerCase(bankName), " ", "_")}`}
               className="primary-bg-color absolute p-2 rounded-2xl flex justify-center items-center cursor-pointer"
               style={{ width: 30, height: 30, right: -3, bottom: -3 }}
             >

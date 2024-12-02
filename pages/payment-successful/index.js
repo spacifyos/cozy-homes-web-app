@@ -20,23 +20,23 @@ const PaymentSuccessful = ({}) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center pt-32 relative">
+    <div className="flex flex-col justify-center items-center relative bg-color h-screen">
       <NextSeo title="Payment Successful - Spacify Asia" />
-      <CustomImage
-        src={Images.cancelIcon}
-        imageStyle={{ width: 20 }}
-        className=" absolute top-5 right-5 cursor-pointer"
-        onClick={onClickGoMainPage}
-      />
+      {/*<CustomImage*/}
+      {/*  src={Images.cancelIcon}*/}
+      {/*  imageStyle={{ width: 20 }}*/}
+      {/*  className=" absolute top-5 right-5 cursor-pointer"*/}
+      {/*  onClick={onClickGoMainPage}*/}
+      {/*/>*/}
       <CustomImage
         src={Images.successIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
-      <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
+      <CustomText textClassName="font-bold pt-4 text-2xl">
         {t("payment.paymentSuccessful")}
       </CustomText>
       <div className="pb-4 px-10 pt-4">
-        <CustomText textClassName="text-xs text-center">
+        <CustomText textClassName="text-sm text-center">
           {isEmpty(message) ? "" : message}
         </CustomText>
       </div>

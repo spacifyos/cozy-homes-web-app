@@ -14,7 +14,7 @@ const DesktopFeatureSection = ({ t }) => {
       <FeatureComponent
         name={t("myStay.eAgreement")}
         icon={Images.agreementIconActive}
-        route="/e-agreement"
+        route="/user/e-agreement"
       />
       <FeatureComponent
         disable

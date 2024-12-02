@@ -21,30 +21,30 @@ const Loading = () => {
         switch (tab) {
           case "my-property":
             if (isEqual(type, "tenant")) {
-              return router.replace("/my-property");
+              return router.replace("/user/my-property");
             } else {
-              return router.replace("/owner");
+              return router.replace("/user/owner");
             }
 
           case "account":
             if (isEqual(type, "tenant")) {
-              return router.replace("/account");
+              return router.replace("/user/account");
             } else {
-              return router.replace("/owner/account");
+              return router.replace("/user/owner/account");
             }
 
           case "chat":
             if (isEqual(type, "tenant")) {
-              return router.replace("/chat");
+              return router.replace("/user/chat");
             } else {
-              return router.replace("/owner/chat");
+              return router.replace("/user/owner/chat");
             }
 
           default:
             if (isEqual(type, "tenant")) {
-              return router.replace("/my-property");
+              return router.replace("/user/my-property");
             } else {
-              return router.replace("/owner");
+              return router.replace("/user/owner");
             }
         }
       }

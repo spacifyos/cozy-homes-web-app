@@ -42,7 +42,7 @@ const DesktopSearchBar = ({
         <RangeSlider
           className="price-range-slider"
           min={0}
-          max={10000}
+          max={2500}
           value={priceRange}
           onInput={setPriceRange}
           rangeSlideDisabled

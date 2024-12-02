@@ -57,7 +57,7 @@ const InvoiceSection = ({
         </div>
 
         <a
-          href={`${isEmpty(type) ? "" : "/owner"}/my-invoice`}
+          href={`/user/my-invoice`}
           className="flex"
         >
           <CustomText textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
