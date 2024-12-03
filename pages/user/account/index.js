@@ -48,6 +48,7 @@ const Account = () => {
   const phoneNumber = authSelector.getPhoneNumber(userProfileData);
   const type = authSelector.getType(userProfileData);
   const referralCode = authSelector.getReferralCode(userProfileData);
+  const isTenant = isEqual(type, "tenant");
 
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
@@ -292,14 +293,68 @@ const Account = () => {
           <FeatureComponent
             title={t("account.myInvoice")}
             icon={Images.primaryInvoiceIcon}
+            imageWidth={23}
             pb={3}
             route={"/user/my-invoice"}
           />
 
           <FeatureComponent
+            title={"My E-Agreement"}
+            icon={Images.agreementIconActive}
+            imageWidth={23}
+            pb={3}
+            onClick={() => {
+              return router.push("/user/e-agreement");
+            }}
+          />
+
+          {!isEmpty(userProfileData) && isTenant ? (
+            <FeatureComponent
+              title={"My Meter"}
+              icon={Images.primaryMeterIcon}
+              imageWidth={13}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/my-meter");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && !isTenant ? (
+            <FeatureComponent
+              title={"My Report"}
+              icon={Images.paperIcon}
+              imageWidth={16}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/owner/my-report");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && !isTenant ? (
+            <FeatureComponent
+              title={"RenoXpert"}
+              icon={Images.renoExpertIconActive}
+              imageWidth={16}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/reno-expert");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          <FeatureComponent
             title={t("account.setPinNumber")}
             icon={Images.primaryLockIcon}
             pb={3}
+            imageWidth={23}
             onClick={onClickOpenSetPinNumberModal}
           />
 
@@ -308,6 +363,7 @@ const Account = () => {
           <FeatureComponent
             title={t("account.termAndCondition")}
             icon={Images.primaryTermAndConditionIcon}
+            imageWidth={23}
             pb={3}
             route={"https://tms.spacify.asia/privacy-policy"}
             target="_blank"
@@ -322,15 +378,14 @@ const Account = () => {
             >
               <CustomImage
                 src={Images.primaryLogoutIcon}
-                imageStyle={{ width: 25 }}
-                className="mr-2"
+                className="mr-2 w-5"
               />
-              <CustomText textClassName="text-sm">
+              <CustomText textClassName="text-xs">
                 {t("account.logout")}
               </CustomText>
             </div>
 
-            <CustomText textClassName="disable-text text-sm">
+            <CustomText textClassName="disable-text text-xs">
               {t("account.version")} 2.0.0
             </CustomText>
           </div>
