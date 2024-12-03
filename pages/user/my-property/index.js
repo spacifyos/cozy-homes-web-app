@@ -1,7 +1,5 @@
-import CustomHeader from "@/components/CustomHeader";
 import UserSection from "@/components/MyStay/UserSection";
 import TenancySection from "@/components/MyStay/TenancySection";
-import FeatureSection from "@/components/MyStay/FeatureSection";
 import MeterSection from "@/components/MyStay/MeterSection";
 import InvoiceSection from "@/components/MyStay/InvoiceSection";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -12,7 +10,6 @@ import AuthWrapper from "@/components/AuthWrapper";
 import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import * as tenancyAction from "@/src/actions/tenancy";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import * as invoiceAction from "@/src/actions/invoice";

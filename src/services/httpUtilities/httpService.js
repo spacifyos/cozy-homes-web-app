@@ -211,6 +211,11 @@ const postWalletWithdraw = (postData) =>
 
 const getRentTracker = (id) => apiInstance.get(`/owner/rent-tracker/${id}`);
 
+const postPropertyListingCardView = () =>
+  apiInstance.post(`/property/card-view`);
+
+const postUnitCardView = (id) => apiInstance.post(`/unit/card-view/${id}`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -261,4 +266,6 @@ export default {
   getOwnerReportOverview,
   postWalletWithdraw,
   getRentTracker,
+  postPropertyListingCardView,
+  postUnitCardView,
 };

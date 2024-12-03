@@ -363,6 +363,31 @@ const getRentTrackerRequest = async (id, setLoading, successCallback) => {
   );
 };
 
+const postPropertyListingCardViewRequest = async (
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postPropertyListingCardView(),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const postUnitCardViewRequest = async (id, setLoading, successCallback) => {
+  await apiRequest(
+    api.postUnitCardView(id),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -395,4 +420,6 @@ export default {
   getOwnerReportOverviewRequest,
   postWalletWithdrawRequest,
   getRentTrackerRequest,
+  postPropertyListingCardViewRequest,
+  postUnitCardViewRequest,
 };
