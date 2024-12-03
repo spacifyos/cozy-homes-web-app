@@ -72,7 +72,7 @@ const SignInModal = ({ userType, setUserType,onClickSignUp }) => {
       return router.replace(`/loading?tab=${tab}`);
     } else {
       return router.push({
-        pathname: "/otp-verification",
+        pathname: "/user/otp-verification",
         query: { phoneNumber: userPhoneNumber, type: selectedRole },
       });
     }
@@ -190,7 +190,7 @@ const SignInModal = ({ userType, setUserType,onClickSignUp }) => {
                   />
                 </div>
 
-                <Link href={`/forgot-password?type=${userType}`}>
+                <Link href={`/user/forgot-password?type=${userType}`}>
                   <CustomText textClassName="text-center pb-2 underline cursor-pointer">
                     {t("signIn.forgotPassword")}
                   </CustomText>

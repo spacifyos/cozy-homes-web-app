@@ -80,7 +80,7 @@ const SignInOwner = () => {
       return router.replace(`/loading?tab=${routeQueryTab}`);
     } else {
       return router.push({
-        pathname: "/otp-verification",
+        pathname: "/user/otp-verification",
         query: { phoneNumber: userPhoneNumber, type: Constant.OWNER },
       });
     }
@@ -199,7 +199,7 @@ const SignInOwner = () => {
               />
             </div>
 
-            <Link href={`/forgot-password/${Constant.OWNER}`}>
+            <Link href={`/user/forgot-password/${Constant.OWNER}`}>
               <CustomText textClassName="text-center pb-2 underline cursor-pointer">
                 {t("signIn.forgotPassword")}
               </CustomText>

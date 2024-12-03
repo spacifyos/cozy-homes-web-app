@@ -119,7 +119,7 @@ const SignUpTenant = () => {
 
   const signUpSuccessCallback = () => {
     router.push({
-      pathname: "/otp-verification",
+      pathname: "/user/otp-verification",
       query: {
         phoneNumber: countryCode + phoneValue,
         type: Constant.TENANT,
