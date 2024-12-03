@@ -12,7 +12,7 @@ const TenancyComponent = ({ item, t }) => {
   const [dimensions, setDimensions] = useState(0);
 
   useEffect(() => {
-    if (targetRef.current) {
+    if (targetRef && targetRef.current) {
       setDimensions(targetRef.current.offsetWidth);
     }
   }, [targetRef]);

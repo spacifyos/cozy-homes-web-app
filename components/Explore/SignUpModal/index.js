@@ -265,13 +265,13 @@ const SignUpModal = ({ userType, setUserType }) => {
                   />
                 </div>
 
-                <CustomText textClassName="text-sm mb-5">
+                <CustomText textClassName="text-xs my-5 text-center">
                   By using our services, you are deemed unconditionally agree,
                   consent and be bound by our terms and conditions and privacy
                   policy.
                 </CustomText>
 
-                <CustomText textClassName="font-size-xxsmall text-center disable-text">
+                <CustomText textClassName="text-xs text-center disable-text">
                   This site is protected by reCAPTCHA and the Google{" "}
                   <span className="underline">Privacy Policy</span> and{" "}
                   <span className="underline">Terms of Service</span> apply.

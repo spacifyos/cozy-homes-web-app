@@ -18,7 +18,7 @@ import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 
-const SignInModal = ({ userType, setUserType,onClickSignUp }) => {
+const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
@@ -191,27 +191,29 @@ const SignInModal = ({ userType, setUserType,onClickSignUp }) => {
                 </div>
 
                 <Link href={`/user/forgot-password?type=${userType}`}>
-                  <CustomText textClassName="text-center pb-2 underline cursor-pointer">
+                  <CustomText textClassName="text-center pb-2 underline cursor-pointer text-sm">
                     {t("signIn.forgotPassword")}
                   </CustomText>
                 </Link>
 
                 <div className="flex justify-center items-center mb-5">
-                  <CustomText>Don’t have account? Click </CustomText>
+                  <CustomText textClassName="text-sm">
+                    Don’t have account? Click{" "}
+                  </CustomText>
                   <div onClick={onClickSignUp} className="cursor-pointer">
-                    <CustomText textClassName="primary-text font-bold pl-1 underline">
+                    <CustomText textClassName="primary-text font-bold pl-1 underline text-sm">
                       here
                     </CustomText>
                   </div>
                 </div>
 
-                <CustomText textClassName="text-sm my-5">
+                <CustomText textClassName="text-xs my-5 text-center">
                   By using our services, you are deemed unconditionally agree,
                   consent and be bound by our terms and conditions and privacy
                   policy.
                 </CustomText>
 
-                <CustomText textClassName="font-size-xxsmall text-center disable-text">
+                <CustomText textClassName="text-xs text-center disable-text">
                   This site is protected by reCAPTCHA and the Google{" "}
                   <span className="underline">Privacy Policy</span> and{" "}
                   <span className="underline">Terms of Service</span> apply.

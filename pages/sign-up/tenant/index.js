@@ -310,7 +310,7 @@ const SignUpTenant = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="font-size-xxsmall text-center disable-text">
+            <CustomText textClassName="text-xs text-center disable-text">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.
