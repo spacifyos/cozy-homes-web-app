@@ -15,6 +15,8 @@ export const getAgreementOverviewLoading = (state) =>
 export const getId = (state) => get(state, ["id"], "");
 export const getReferenceNumber = (state) =>
   get(state, ["reference_number"], "");
+export const getIsOwnerAgreement = (state) =>
+  get(state, ["attribute", "is_owner_agreement"], false);
 export const getStatus = (state) => get(state, ["status"], "");
 export const getProperty = (state) => get(state, ["property"], "");
 export const getTenurePeriod = (state) => get(state, ["tenure_period"], "");
@@ -25,9 +27,12 @@ export const getAgreementDate = (state) => get(state, ["agreement_date"], "");
 export const getSignedDate = (state) => get(state, ["signed_at"], "");
 export const getTenantName = (state) => get(state, ["signee", "name"], "");
 export const getTenantIc = (state) => get(state, ["signee", "identity"], "");
-export const isCanAgree = (state) => get(state, ["attribute", "is_can_agree"], false);
-export const isCanSign = (state) => get(state, ["attribute", "is_can_sign"], false);
-export const hasPinNumber = (state) => get(state, ["attribute", "signee_has_pin_number"], false);
+export const isCanAgree = (state) =>
+  get(state, ["attribute", "is_can_agree"], false);
+export const isCanSign = (state) =>
+  get(state, ["attribute", "is_can_sign"], false);
+export const hasPinNumber = (state) =>
+  get(state, ["attribute", "signee_has_pin_number"], false);
 export const getUrl = (state) => get(state, ["url"], "");
 export const getHasMorePages = (state) => get(state, ["has_more_pages"], false);
 export const getTotalPage = (state) => get(state, ["total"], 1);

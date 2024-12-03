@@ -34,7 +34,6 @@ const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   let pdfPageRef;
-  let canvasRef;
   let DesktopCanvasRef;
 
   const [readAgree, setReadAgree] = useState(false);
@@ -63,6 +62,7 @@ const ViewAgreement = ({ id }) => {
   const tenantIc = agreementSelector.getTenantIc(data);
   const hasPinNumber = agreementSelector.hasPinNumber(data);
   const referenceNumber = agreementSelector.getReferenceNumber(data);
+  const isOwnerAgreement = agreementSelector.getIsOwnerAgreement(data);
 
   useEffect(() => {
     fetchAgreementPdf();
@@ -187,8 +187,7 @@ const ViewAgreement = ({ id }) => {
     Helper.documentGetElementById(`${responsive}_signature_modal`).close();
   };
 
-  const onClickSubmitSignature = (responsive) => {
-    console.log("hi");
+  const onClickSubmitSignature = async (responsive) => {
     if (DesktopCanvasRef.isEmpty()) {
       setSignatureEmptyMessage("Signature is required");
       return;
@@ -198,7 +197,13 @@ const ViewAgreement = ({ id }) => {
       return Toast.error("Please check the understood and agree term.");
     }
 
-    openPinModal(responsive);
+    if (isOwnerAgreement) {
+      await signAgreementAction(responsive);
+
+      onClickCloseSignatureModal(responsive);
+    } else {
+      openPinModal(responsive);
+    }
   };
 
   const handleOpenPinModal = (responsive) => {
@@ -227,11 +232,13 @@ const ViewAgreement = ({ id }) => {
 
     handleClosePinModal(responsive);
 
+    await signAgreementAction(responsive);
+  };
+
+  const signAgreementAction = async (responsive) => {
     const postData = {
       pin_number: pinNumberValue,
-      signature: isEqual(responsive, "desktop")
-        ? DesktopCanvasRef.toDataURL("image/png")
-        : canvasRef.toDataURL("image/png"),
+      signature: DesktopCanvasRef.toDataURL("image/png"),
     };
 
     await apiRequest.postSignAgreement(
@@ -249,10 +256,6 @@ const ViewAgreement = ({ id }) => {
 
   const onClickResetCanvas = () => {
     DesktopCanvasRef.clear();
-  };
-
-  const handleSignatureRef = (ref) => {
-    canvasRef = ref;
   };
 
   const handleDesktopSignatureRef = (ref) => {
