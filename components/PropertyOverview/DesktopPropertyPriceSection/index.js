@@ -171,7 +171,7 @@ const DesktopPropertyPriceSection = ({
             href={`/booking/${propertyId}`}
             className="primary-bg-color p-2 px-4 flex justify-center items-center cursor-pointer global-border-radius"
           >
-            <CustomText textClassName="text-base font-bold white-text">
+            <CustomText textClassName="text-base font-bold text-white">
               Book Now
             </CustomText>
           </a>

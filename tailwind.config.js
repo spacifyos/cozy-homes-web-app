@@ -19,7 +19,16 @@ module.exports = {
       spacing: {
         125: "500px",
       },
-      colors: { primary: "#d71440", "regal-blue": "#243c5a" },
+      colors: {
+        primary: "#d71440",
+        "regal-blue": "#243c5a",
+        "available-light": "#DFFFEA",
+        "occupied-light": "#FFEEF3",
+        available: "#03b78c",
+        occupied: "#ff2e2e",
+        black: "#2c2c2c",
+        white:"#FFFFFF"
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

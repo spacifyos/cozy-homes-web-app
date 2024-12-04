@@ -114,12 +114,12 @@ const MyWallet = () => {
         <div className="flex justify-between items-center">
           <div className="">
             <CustomText
-              textClassName="white-text font-bold"
+              textClassName="text-white font-bold"
               styles={{ fontSize: 30 }}
             >
               {isEmpty(balance) ? "RM 0" : balance}
             </CustomText>
-            <CustomText textClassName="white-text text-xs font-light">
+            <CustomText textClassName="text-white text-xs font-light">
               Updated on{" "}
               {isEmpty(updatedAt)
                 ? moment().format("DD MMM YYYY, H:mmm")

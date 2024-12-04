@@ -49,7 +49,9 @@ export const getPopularUniCollege = (state) =>
 export const getPopularCondo = (state) => get(state, ["popular_condo"], []);
 export const getTags = (state) => get(state, ["tags"], []);
 export const getName = (state) => get(state, ["name"], "");
+export const getRooms = (state) => get(state, ["rooms"], []);
 export const getImageUrl = (state) => get(state, ["image_url"], "");
+export const getStatus = (state) => get(state, ["status"], "");
 export const getMobileImageUrl = (state) =>
   get(state, ["mobile_image_url"], "");
 export const getImageUrlActive = (state) =>
@@ -80,6 +82,7 @@ export const getFacilities = (state) => get(state, ["facilities"], []);
 export const getBathroom = (state) => get(state, ["bathroom_type"], "");
 export const getSquareFeet = (state) => get(state, ["square_feet"], "");
 export const getBedType = (state) => get(state, ["bed_type"], "");
+export const getBookingLink = (state) => get(state, ["booking_link"], "");
 export const getPropertyName = (state) => get(state, ["property_name"], "");
 export const getUnitRoomName = (state) => get(state, ["unit_room_name"], "");
 export const getUnitName = (state) => get(state, ["unit_name"], "");
@@ -142,6 +145,8 @@ export const getItemsWithSecurityDeposit = (state) =>
 export const getItems = (state) => get(state, ["items"], null);
 export const isAllowedZeroDeposit = (state) =>
   get(state, ["is_allowed_zero_deposit"], false);
+export const isAvailableBook = (state) =>
+    get(state, ["is_available_to_book"], false);
 export const getFirstMonthRentCharges = (state) =>
   get(state, ["first_month_rent_charges"], []);
 export const getLastMonthRentCharges = (state) =>

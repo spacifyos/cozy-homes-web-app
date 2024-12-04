@@ -75,7 +75,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                   >
                     {showLabel ? (
                       <div className="flex pb-1">
-                        <CustomText textClassName="text-xs white-text available-bg-color px-4 py-0.5 rounded">
+                        <CustomText textClassName="text-xs text-white available-bg-color px-4 py-0.5 rounded">
                           Available
                         </CustomText>
                       </div>
@@ -83,10 +83,10 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                       false
                     )}
 
-                    <CustomText textClassName="white-text font-bold text-base">
+                    <CustomText textClassName="text-white font-bold text-base">
                       {isEmpty(propertyName) ? "-" : propertyName}
                     </CustomText>
-                    <CustomText textClassName="white-text text-xs font-light">
+                    <CustomText textClassName="text-white text-xs font-light">
                       {isEmpty(propertyAddress) ? "-" : propertyAddress}
                     </CustomText>
 
@@ -107,11 +107,11 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                               imageStyle={{ width: 22, height: 22 }}
                             />
 
-                            <CustomText textClassName="white-text text-base font-bold">
+                            <CustomText textClassName="text-white text-base font-bold">
                               {value}
                             </CustomText>
                             <CustomText
-                              textClassName="white-text text-xs text-center"
+                              textClassName="text-white text-xs text-center"
                               styles={{ height: 30 }}
                             >
                               {name}

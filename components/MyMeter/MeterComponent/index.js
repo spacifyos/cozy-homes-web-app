@@ -22,15 +22,15 @@ const MeterComponent = ({ t, item }) => {
           imageStyle={{ width: 35, height: 35 }}
         />
         <div className="flex flex-col items-start justify-center px-2 global-border-radius">
-          <CustomText textClassName="white-text text-xs">
+          <CustomText textClassName="text-white text-xs">
             Available Unit
           </CustomText>
 
           <div className="flex items-end">
-            <CustomText textClassName="white-text text-base font-bold pe-1">
+            <CustomText textClassName="text-white text-base font-bold pe-1">
               {isEmpty(balanceUnit) ? "0" : balanceUnit}
             </CustomText>
-            <CustomText textClassName="white-text text-xs pe-1">
+            <CustomText textClassName="text-white text-xs pe-1">
               Unit
             </CustomText>
           </div>

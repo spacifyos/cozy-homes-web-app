@@ -28,9 +28,10 @@
 .join-item:hover {
   @apply primary-bg-color;
   border-color: $primary-color;
-
-  p {
-    @apply white-text text-xs;
+  @layer utilities {
+    p {
+      @apply text-white text-xs;
+    }
   }
 }
 
@@ -39,11 +40,11 @@
 }
 
 .join-item-active {
-  @apply primary-bg-color white-text;
+  @apply primary-bg-color text-white;
   border-color: $primary-color;
 
   p {
-    @apply white-text text-xs;
+    @apply text-white text-xs;
   }
 }
 

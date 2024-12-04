@@ -409,7 +409,7 @@ const ViewAgreement = ({ id }) => {
             </Document>
 
             <div className="flex flex-col items-center pt-5">
-              <CustomText textClassName="white-text text-sm py-2">
+              <CustomText textClassName="text-white text-sm py-2">
                 {t("viewAgreement.page")} {pageNumber} of {totalPages}
               </CustomText>
 

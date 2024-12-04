@@ -104,7 +104,7 @@ const AgentSection = ({
               className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
               onClick={onClickBooking}
             >
-              <CustomText textClassName="text-base font-bold white-text">
+              <CustomText textClassName="text-base font-bold text-white">
                 {t("propertyDetail.bookNow")}
               </CustomText>
               <CustomImage
@@ -117,7 +117,7 @@ const AgentSection = ({
               href={`/booking/${propertyId}`}
               className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
             >
-              <CustomText textClassName="text-base font-bold white-text">
+              <CustomText textClassName="text-base font-bold text-white">
                 {t("propertyDetail.bookNow")}
               </CustomText>
               <CustomImage

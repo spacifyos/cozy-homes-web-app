@@ -49,6 +49,7 @@ const Account = () => {
   const type = authSelector.getType(userProfileData);
   const referralCode = authSelector.getReferralCode(userProfileData);
   const isTenant = isEqual(type, "tenant");
+  const isBackOffice = isEqual(type, "back-office");
 
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
@@ -290,25 +291,61 @@ const Account = () => {
         <div className="xl:hidden lg:hidden md:hidden">
           <div className="divider-line"></div>
 
-          <FeatureComponent
-            title={t("account.myInvoice")}
-            icon={Images.primaryInvoiceIcon}
-            imageWidth={23}
-            pb={3}
-            route={"/user/my-invoice"}
-          />
+          {!isEmpty(userProfileData) && !isBackOffice ? (
+            <FeatureComponent
+              title="My Property"
+              icon={Images.homeActiveOutline}
+              pb={3}
+              onClick={() => {
+                return router.push(
+                  isTenant ? "/user/my-property" : "/user/owner",
+                );
+              }}
+              imageWidth={18}
+            />
+          ) : (
+            false
+          )}
 
           <FeatureComponent
-            title={"My E-Agreement"}
-            icon={Images.agreementIconActive}
-            imageWidth={23}
+            title="My Account"
+            icon={Images.registerIconActiveOutline}
             pb={3}
             onClick={() => {
-              return router.push("/user/e-agreement");
+              return router.push("/user/account");
             }}
+            imageWidth={18}
           />
 
-          {!isEmpty(userProfileData) && isTenant ? (
+          {!isEmpty(userProfileData) && !isBackOffice ? (
+            <FeatureComponent
+              title="My Invoice"
+              icon={Images.primaryInvoiceIcon}
+              imageWidth={23}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/my-invoice");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && !isBackOffice ? (
+            <FeatureComponent
+              title={"My E-Agreement"}
+              icon={Images.agreementIconActive}
+              imageWidth={23}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/e-agreement");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && isTenant && !isBackOffice ? (
             <FeatureComponent
               title={"My Meter"}
               icon={Images.primaryMeterIcon}
@@ -322,7 +359,7 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && !isTenant ? (
+          {!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (
             <FeatureComponent
               title={"My Report"}
               icon={Images.paperIcon}
@@ -336,7 +373,7 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && !isTenant ? (
+          {!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (
             <FeatureComponent
               title={"RenoXpert"}
               icon={Images.renoExpertIconActive}
@@ -350,13 +387,47 @@ const Account = () => {
             false
           )}
 
-          <FeatureComponent
-            title={t("account.setPinNumber")}
-            icon={Images.primaryLockIcon}
-            pb={3}
-            imageWidth={23}
-            onClick={onClickOpenSetPinNumberModal}
-          />
+          {!isEmpty(userProfileData) && !isBackOffice ? (
+            <FeatureComponent
+              title="Set Pin Number"
+              icon={Images.primaryLockIcon}
+              imageWidth={23}
+              pb={3}
+              onClick={onClickOpenSetPinNumberModal}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && isBackOffice ? (
+            <FeatureComponent
+              title="Property Listing"
+              icon={Images.listIconActive}
+              imageWidth={23}
+              pb={3}
+              onClick={() => {
+                return router.push("/agency/card-listing");
+              }}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && !isBackOffice ? (
+            <FeatureComponent
+              title="Chat"
+              icon={Images.chatOutlineIcon}
+              imageWidth={18}
+              pb={3}
+              onClick={() => {
+                return router.push(
+                  isTenant ? "/user/chat" : "/user/owner/chat",
+                );
+              }}
+            />
+          ) : (
+            false
+          )}
 
           <div className="divider-line"></div>
 

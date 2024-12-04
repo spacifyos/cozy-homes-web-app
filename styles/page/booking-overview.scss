@@ -9,7 +9,7 @@
 }
 
 .step-section-complete-font {
-  @apply text-xs tertiary-bg-color global-border-radius white-text px-4 leading-5;
+  @apply text-xs tertiary-bg-color global-border-radius text-white px-4 leading-5;
 }
 
 .step-section-step-font {
@@ -17,7 +17,7 @@
 }
 
 .step-section-pending-font {
-  @apply text-xs disable-bg-color global-border-radius white-text px-4 leading-5;
+  @apply text-xs disable-bg-color global-border-radius text-white px-4 leading-5;
 }
 
 .modal-box {

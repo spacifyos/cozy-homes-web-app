@@ -41,7 +41,7 @@
 
   p {
     font-weight: normal !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -52,7 +52,7 @@
 
   p {
     font-weight: normal !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -63,7 +63,7 @@
 
   p {
     font-weight: normal !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -74,7 +74,7 @@
 
   p {
     font-weight: bold !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -85,7 +85,7 @@
 
   p {
     font-weight: bold !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -96,7 +96,7 @@
 
   p {
     font-weight: bold !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -132,7 +132,7 @@
   border-radius: 15px;
 
   p {
-    @extend .white-text;
+    color: white;
     @apply text-xs;
   }
 }
@@ -146,7 +146,7 @@
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
   p {
-    @extend .white-text;
+    color: white;
     @apply text-xs;
     font-weight: lighter;
   }
@@ -160,7 +160,7 @@
 
   p {
     font-weight: bold !important;
-    @apply white-text text-sm;
+    @apply text-white text-sm;
   }
 }
 
@@ -172,7 +172,7 @@
 
   p {
     font-weight: bold !important;
-    @apply white-text text-sm;
+    @apply text-white text-sm;
   }
 }
 
@@ -291,7 +291,7 @@
 
   p {
     font-weight: bold !important;
-    @extend .white-text;
+    color: white;
   }
 }
 
@@ -302,7 +302,7 @@
 
   p {
     font-weight: bold !important;
-    @extend .white-text;
+    color: white;
   }
 }
 

@@ -122,16 +122,16 @@ const Withdraw = () => {
       title="Withdraw Request"
       headerContent={
         <div className="flex flex-col items-center">
-          <CustomText textClassName="white-text">
+          <CustomText textClassName="text-white">
             Available Wallet Balance
           </CustomText>
           <CustomText
-            textClassName={`white-text font-bold`}
+            textClassName={`text-white font-bold`}
             styles={{ fontSize: 24 }}
           >
             RM {isEmpty(walletBalance) ? "0" : walletBalance}
           </CustomText>
-          <CustomText textClassName="white-text text-xs">
+          <CustomText textClassName="text-white text-xs">
             {`Last updated: ${isEmpty(walletUpdatedAt) ? moment().format("DD MMM YYYY, HH:mmm") : walletUpdatedAt}`}
           </CustomText>
         </div>

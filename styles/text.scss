@@ -10,9 +10,9 @@
   @include custom-text($primary-black-color);
 }
 
-.white-text {
-  @include custom-text($primary-white-color);
-}
+//.white-text {
+//  @include custom-text($primary-white-color);
+//}
 
 .disable-text {
   @include custom-text($disable-color);

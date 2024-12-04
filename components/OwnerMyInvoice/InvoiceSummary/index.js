@@ -66,16 +66,16 @@ const InvoiceSummary = ({ data }) => {
 
           return (
             <div className="flex flex-col items-center" key={index}>
-              <CustomText textClassName="white-text">
+              <CustomText textClassName="text-white">
                 {_.isEmpty(name) ? "-" : name}
               </CustomText>
               <CustomText
-                textClassName={`white-text font-bold`}
+                textClassName={`text-white font-bold`}
                 styles={{ fontSize: 24 }}
               >
                 RM{_.isEmpty(totalAmountText) ? "0" : totalAmountText}
               </CustomText>
-              <CustomText textClassName="white-text text-xs">
+              <CustomText textClassName="text-white text-xs">
                 {`Last updated: ${moment().format("DD MMM YYYY")}`}
               </CustomText>
             </div>

@@ -50,7 +50,7 @@ const ImageModal = ({
                   fill
                 />
               </div>
-              <CustomText textClassName="white-text pt-2">{`${index + 1}/${size(data)}`}</CustomText>
+              <CustomText textClassName="text-white pt-2">{`${index + 1}/${size(data)}`}</CustomText>
             </SwiperSlide>
           );
         })}
@@ -63,7 +63,7 @@ const ImageModal = ({
         style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
         onClick={onClickCloseImageModal}
       >
-        <CustomText textClassName="text-lg white-text">X</CustomText>
+        <CustomText textClassName="text-lg text-white">X</CustomText>
       </div>
     </div>
   ) : (

@@ -444,7 +444,7 @@ const DesktopFormSection = ({
         className="primary-bg-color p-2 px-4 my-4 flex justify-center items-center cursor-pointer global-border-radius"
         onClick={onClickBooking}
       >
-        <CustomText textClassName="text-base font-bold white-text">
+        <CustomText textClassName="text-base font-bold text-white">
           Book Now
         </CustomText>
       </div>

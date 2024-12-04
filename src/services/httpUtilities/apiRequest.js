@@ -364,11 +364,12 @@ const getRentTrackerRequest = async (id, setLoading, successCallback) => {
 };
 
 const postPropertyListingCardViewRequest = async (
+  postData,
   setLoading,
   successCallback,
 ) => {
   await apiRequest(
-    api.postPropertyListingCardView(),
+    api.postPropertyListingCardView(postData),
     setLoading,
     successCallback,
     () => {},
@@ -377,9 +378,24 @@ const postPropertyListingCardViewRequest = async (
   );
 };
 
-const postUnitCardViewRequest = async (id, setLoading, successCallback) => {
+const postUnitCardViewRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
   await apiRequest(
-    api.postUnitCardView(id),
+    api.postUnitCardView(postData),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const getPropertyOptionRequest = async (setLoading, successCallback) => {
+  await apiRequest(
+    api.getPropertyOption(),
     setLoading,
     successCallback,
     () => {},
@@ -422,4 +438,5 @@ export default {
   getRentTrackerRequest,
   postPropertyListingCardViewRequest,
   postUnitCardViewRequest,
+  getPropertyOptionRequest,
 };

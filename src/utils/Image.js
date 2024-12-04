@@ -181,6 +181,13 @@ const Image = {
   renoExpertIconActive: "/images/icon/RenoExpert_icon_active.png",
   locationOutlineActive: "/images/icon/location_outline.png",
   registerIconActiveOutline: "/images/icon/registerIconActiveOutline.png",
+  bathroomIconActive: "/images/icon/bathroom_icon_active.png",
+  bedTypeIconActive: "/images/icon/bed_type_icon_active.png",
+  genderIconActive: "/images/icon/gender_icon_active.png",
+  spaceTypeIconActive: "/images/icon/space_type_icon_active.png",
+  shareIconActive: "/images/icon/share_icon_active.png",
+  shareIconDisable: "/images/icon/share_icon_disable.png",
+  listIconActive: "/images/icon/list_icon_active.png",
 };
 
 export default { ...Image };

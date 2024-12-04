@@ -211,10 +211,13 @@ const postWalletWithdraw = (postData) =>
 
 const getRentTracker = (id) => apiInstance.get(`/owner/rent-tracker/${id}`);
 
-const postPropertyListingCardView = () =>
-  apiInstance.post(`/property/card-view`);
+const postPropertyListingCardView = (postData) =>
+  apiInstance.post(`/property/card-view`, postData);
 
-const postUnitCardView = (id) => apiInstance.post(`/unit/card-view/${id}`);
+const postUnitCardView = (postData) =>
+  apiInstance.post(`/unit/card-view`, postData);
+
+const getPropertyOption = () => apiInstance.get(`property/options`);
 
 export default {
   signUpAccount,
@@ -268,4 +271,5 @@ export default {
   getRentTracker,
   postPropertyListingCardView,
   postUnitCardView,
+  getPropertyOption,
 };

@@ -33,7 +33,7 @@ const CustomOwnerHeader = ({
             )}
 
             <CustomText
-              textClassName={"font-bold white-text"}
+              textClassName={"font-bold text-white"}
               styles={{ fontSize: 18 }}
             >
               {title}

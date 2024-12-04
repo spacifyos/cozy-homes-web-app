@@ -151,7 +151,7 @@ const SignUpModal = ({ userType, setUserType }) => {
               />
 
               <CustomText
-                textClassName="white-text font-bold leading-10"
+                textClassName="text-white font-bold leading-10"
                 styles={{ fontSize: 32 }}
               >
                 Let’s Get Started

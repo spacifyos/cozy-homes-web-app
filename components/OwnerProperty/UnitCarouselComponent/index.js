@@ -56,13 +56,13 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                 >
                   <div className="flex pb-1">
                     <CustomText
-                      textClassName={`text-xs white-text ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
+                      textClassName={`text-xs text-white ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
                     >
                       {unitStatus}
                     </CustomText>
                   </div>
 
-                  <CustomText textClassName="white-text font-bold text-base">
+                  <CustomText textClassName="text-white font-bold text-base">
                     {isEmpty(unitName) ? "-" : unitName}
                   </CustomText>
 
@@ -83,11 +83,11 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                             imageStyle={{ width: 22, height: 22 }}
                           />
 
-                          <CustomText textClassName="white-text text-base font-bold">
+                          <CustomText textClassName="text-white text-base font-bold">
                             {value}
                           </CustomText>
                           <CustomText
-                            textClassName="white-text text-xs text-center"
+                            textClassName="text-white text-xs text-center"
                             styles={{ height: 30 }}
                           >
                             {name}

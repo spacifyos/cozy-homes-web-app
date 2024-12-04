@@ -151,21 +151,21 @@ const DesktopLayout = ({
           )}
           {children}
 
-          {/*{loading ? (*/}
-          {/*    <div*/}
-          {/*        className={*/}
-          {/*          "absolute left-0 flex justify-center items-center h-full w-full"*/}
-          {/*        }*/}
-          {/*        style={{*/}
-          {/*          backgroundColor: "rgba(256,256,256,0.5)",*/}
-          {/*          zIndex: 9999,*/}
-          {/*        }}*/}
-          {/*    >*/}
-          {/*      <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>*/}
-          {/*    </div>*/}
-          {/*) : (*/}
-          {/*    false*/}
-          {/*)}*/}
+          {loading ? (
+            <div
+              className={
+                "absolute top-0 flex justify-center items-center h-full w-full"
+              }
+              style={{
+                backgroundColor: "rgba(256,256,256,0.5)",
+                zIndex: 9999,
+              }}
+            >
+              <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+            </div>
+          ) : (
+            false
+          )}
         </div>
       ) : (
         <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-4 xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6">

@@ -15,7 +15,7 @@ const CustomButton = ({
   imageWidth = 20,
   imageHeight = 20,
   reverse = false,
-  loadingColor = "white-text",
+  loadingColor = "text-white",
 }) => {
   return (
     <button
