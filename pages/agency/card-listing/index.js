@@ -381,7 +381,7 @@ const CardListing = () => {
                                 listingSelector.getAbbrBedType(room);
                               const bookingLink =
                                 listingSelector.getBookingLink(room);
-                              const gender = listingSelector.getGender(room);
+                              const name = listingSelector.getName(room);
                               const isAvailableBook =
                                 listingSelector.isAvailableBook(room);
                               const rental = listingSelector.getRental(room);
@@ -418,7 +418,12 @@ const CardListing = () => {
                                     />
                                   </div>
 
+                                  <CustomText textClassName="text-xs">
+                                    {isEmpty(name) ? "-" : name}
+                                  </CustomText>
+
                                   <div className="flex items-center justify-center gap-1">
+
                                     <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
                                       {isEmpty(bedType) ? "-" : bedType}
                                     </CustomText>
