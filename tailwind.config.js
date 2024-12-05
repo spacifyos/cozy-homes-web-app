@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontSize: {
+        xxs: "10px",
+      },
       spacing: {
         125: "500px",
       },
@@ -27,7 +30,7 @@ module.exports = {
         available: "#03b78c",
         occupied: "#ff2e2e",
         black: "#2c2c2c",
-        white:"#FFFFFF"
+        white: "#FFFFFF",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

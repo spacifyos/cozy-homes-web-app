@@ -146,10 +146,29 @@ export const getItems = (state) => get(state, ["items"], null);
 export const isAllowedZeroDeposit = (state) =>
   get(state, ["is_allowed_zero_deposit"], false);
 export const isAvailableBook = (state) =>
-    get(state, ["is_available_to_book"], false);
+  get(state, ["is_available_to_book"], false);
 export const getFirstMonthRentCharges = (state) =>
   get(state, ["first_month_rent_charges"], []);
 export const getLastMonthRentCharges = (state) =>
   get(state, ["last_month_rent_charges"], []);
 export const getOthers = (state) => get(state, ["others"], []);
 export const getListing = (state) => get(state, ["listings"], []);
+export const getAbbrBathroom = (state) => get(state, ["abbr_bathroom"], "");
+export const getAbbrBedType = (state) => get(state, ["abbr_bed_type"], "");
+export const getAbbrSpaceType = (state) => get(state, ["abbr_space_type"], "");
+export const getCarParkOccupancyRate = (state) =>
+  get(state, ["car_park_occupancy_rate"], "");
+export const getTotalCarPark = (state) => get(state, ["total_car_park"], "");
+export const getTotalOccupiedCarPark = (state) =>
+  get(state, ["total_occupied_car_park"], "");
+export const getTotalVacantCarPark = (state) =>
+  get(state, ["total_vacant_car_park"], "");
+export const getRoomOccupancyRate = (state) =>
+  get(state, ["room_occupancy_rate"], "");
+export const getTotalRoom = (state) => get(state, ["total_room"], "");
+export const getTotalOccupiedRoom = (state) =>
+  get(state, ["total_occupied_room"], "");
+export const getTotalVacantRoom = (state) =>
+  get(state, ["total_vacant_room"], "");
+export const getIsOccupied = (state) =>
+    get(state, ["is_occupied"], false);

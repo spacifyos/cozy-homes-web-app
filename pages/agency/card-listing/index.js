@@ -15,6 +15,16 @@ import CustomSelect from "@/components/CustomSelect";
 import * as reportSelector from "@/src/selectors/report";
 import CustomButton from "@/components/CustomButton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import {
+  getCarParkOccupancyRate,
+  getRoomOccupancyRate,
+  getTotalCarPark,
+  getTotalOccupiedCarPark,
+  getTotalOccupiedRoom,
+  getTotalRoom,
+  getTotalVacantCarPark,
+  getTotalVacantRoom,
+} from "@/src/selectors/listing";
 
 export { getServerSideProps };
 
@@ -169,16 +179,30 @@ const CardListing = () => {
           </div>
 
           <div className="grid grid-cols-12 xl:gap-8 lg:gap-8 md:gap-8 sm:gap-4 gap-4 relative">
-            <div className="xl:col-span-2 lg:col-span-2 md:col-span-3 sm:col-span-3 col-span-4 relative">
-              <div className="gap-4 flex flex-col h-screen overflow-y-scroll sticky top-4">
+            <div className="xl:col-span-2 lg:col-span-2 md:col-span-12 sm:col-span-12 col-span-12 relative">
+              <div className="gap-4 flex xl:flex-col lg:flex-col md:flex-row sm:flex-row flex-row xl:h-screen lg:h-screen overflow-y-scroll sticky top-4">
                 {map(propertyListing, (list) => {
                   const imageUrl = listingSelector.getImageUrl(list);
                   const name = listingSelector.getName(list);
                   const propertyId = listingSelector.getId(list);
+                  const carParkOccupancyRate =
+                    listingSelector.getCarParkOccupancyRate(list);
+                  const totalCarPark = listingSelector.getTotalCarPark(list);
+                  const totalOccupiedCarPark =
+                    listingSelector.getTotalOccupiedCarPark(list);
+                  const totalVacantCarPark =
+                    listingSelector.getTotalVacantCarPark(list);
+                  const roomOccupancyRate =
+                    listingSelector.getRoomOccupancyRate(list);
+                  const totalRoom = listingSelector.getTotalRoom(list);
+                  const totalOccupiedRoom =
+                    listingSelector.getTotalOccupiedRoom(list);
+                  const totalVacantRoom =
+                    listingSelector.getTotalVacantRoom(list);
 
                   return (
                     <div
-                      className={`flex flex-col justify-center items-center p-2 global-border-radius border cursor-pointer bg-white ${isEqual(propertyId, selectedPropertyId) ? "border-primary" : "border"}`}
+                      className={`flex flex-col justify-center items-center p-2 global-border-radius border cursor-pointer bg-white min-w-28 ${isEqual(propertyId, selectedPropertyId) ? "border-primary" : "border"}`}
                       onClick={() => onClickSelectProperty(propertyId)}
                     >
                       <CustomImage
@@ -189,10 +213,13 @@ const CardListing = () => {
                       />
 
                       <CustomText
-                        textClassName={`text-xs text-center pt-1 ${isEqual(propertyId, selectedPropertyId) ? "text-primary" : "text-black"}`}
+                        textClassName={`text-xxs text-center pt-1 ${isEqual(propertyId, selectedPropertyId) ? "text-primary" : "text-black"}`}
                       >
                         {isEmpty(name) ? "-" : name}
                       </CustomText>
+
+                      <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>
+                      <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>
                     </div>
                   );
                 })}
@@ -209,145 +236,31 @@ const CardListing = () => {
                   {map(unitListing, (list) => {
                     const name = listingSelector.getName(list);
                     const rooms = listingSelector.getRooms(list);
+                    const isOccupied = listingSelector.getIsOccupied(list);
 
                     return (
                       <div className="border global-border-radius overflow-hidden relative">
                         <div className="px-4 pt-4 sticky">
-                          <CustomText textClassName="text-base">
-                            {isEmpty(name) ? "-" : name}
-                          </CustomText>
-                        </div>
-                        <div className="flex gap-4 overflow-x-scroll p-4">
-                          {map(rooms, (room) => {
-                            const bathroom = listingSelector.getBathroom(room);
-                            const bedType = listingSelector.getBedType(room);
-                            const bookingLink =
-                              listingSelector.getBookingLink(room);
-                            const gender = listingSelector.getGender(room);
-                            const isAvailableBook =
-                              listingSelector.isAvailableBook(room);
-                            const rental = listingSelector.getRental(room);
-                            const spaceType =
-                              listingSelector.getSpaceType(room);
-                            const status = listingSelector.getStatus(room);
+                          <div className="flex items-center gap-2">
+                            <CustomText textClassName="text-base">
+                              {isEmpty(name) ? "-" : name}
+                            </CustomText>
 
-                            return (
-                              <div
-                                className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-4 global-border-radius flex flex-col gap-2 min-w-64`}
-                              >
-                                <div
-                                  className={`flex justify-between items-center pb-2`}
-                                >
-                                  <CustomText
-                                    textClassName={`text-white text-xs ${isAvailableBook ? "bg-available" : "bg-occupied"} py-1 px-2 global-border-radius`}
-                                  >
-                                    {isAvailableBook
-                                      ? "Available"
-                                      : "Not Available"}
-                                  </CustomText>
+                            <CustomText
+                              textClassName={`${isOccupied ? "bg-available" : "bg-occupied"} text-xs global-border-radius px-2 py-1 text-white`}
+                            >
+                              {isOccupied ? "Not Available" : "Available"}
+                            </CustomText>
+                          </div>
 
-                                  <CustomImage
-                                    src={
-                                      isAvailableBook
-                                        ? Images.shareIconActive
-                                        : Images.shareIconDisable
-                                    }
-                                    className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}
-                                    onClick={
-                                      isAvailableBook
-                                        ? () => onClickShareBooking(bookingLink)
-                                        : () => {}
-                                    }
-                                  />
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                  <CustomImage
-                                    src={Images.bathroomIconActive}
-                                    className="w-4"
-                                  />
-                                  <CustomText textClassName="text-xs">
-                                    {isEmpty(bathroom) ? "-" : bathroom}
-                                  </CustomText>
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                  <CustomImage
-                                    src={Images.bedTypeIconActive}
-                                    className="w-4"
-                                  />
-                                  <CustomText textClassName="text-xs">
-                                    {isEmpty(bedType) ? "-" : bedType}
-                                  </CustomText>
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                  <CustomImage
-                                    src={Images.genderIconActive}
-                                    className="w-4"
-                                  />
-                                  <CustomText textClassName="text-xs">
-                                    {isEmpty(gender) ? "-" : gender}
-                                  </CustomText>
-                                </div>
-
-                                <div className="flex items-center gap-2">
-                                  <CustomImage
-                                    src={Images.spaceTypeIconActive}
-                                    className="w-4"
-                                  />
-                                  <CustomText textClassName="text-xs">
-                                    {isEmpty(spaceType) ? "-" : spaceType}
-                                  </CustomText>
-                                </div>
-
-                                <div
-                                  className="divider-line bg-black"
-                                  style={{ margin: "8px 0" }}
-                                ></div>
-
-                                <CustomText textClassName="text-sm">
-                                  RM{isEmpty(rental) ? "0" : rental}/month
-                                </CustomText>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-
-            <div className="md:col-span-9 sm:col-span-9 col-span-8 xl:hidden lg:hidden md:block sm:block relative">
-              {isEmpty(unitListing) ? (
-                <div className="flex justify-center items-center h-screen">
-                  <CustomEmptyBox />
-                </div>
-              ) : (
-                <div className="flex flex-col gap-4 sticky top-4 ">
-                  {map(unitListing, (list) => {
-                    const name = listingSelector.getName(list);
-                    const rooms = listingSelector.getRooms(list);
-
-                    return (
-                      <div className="collapse border global-border-radius">
-                        <input type="checkbox" />
-                        <div className="collapse-title">
-                          <CustomText textClassName="text-base">
-                            {isEmpty(name) ? "-" : name}
-                          </CustomText>
-                        </div>
-                        <div className="collapse-content">
-                          <div className="grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4">
+                          <div className="flex gap-4 overflow-x-scroll p-4">
                             {map(rooms, (room) => {
                               const bathroom =
                                 listingSelector.getBathroom(room);
                               const bedType = listingSelector.getBedType(room);
                               const bookingLink =
                                 listingSelector.getBookingLink(room);
-                              const gender = listingSelector.getGender(room);
+                              const name = listingSelector.getName(room);
                               const isAvailableBook =
                                 listingSelector.isAvailableBook(room);
                               const rental = listingSelector.getRental(room);
@@ -357,13 +270,13 @@ const CardListing = () => {
 
                               return (
                                 <div
-                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-4 global-border-radius flex flex-col gap-2`}
+                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-4 global-border-radius flex flex-col gap-2 min-w-64`}
                                 >
                                   <div
                                     className={`flex justify-between items-center`}
                                   >
                                     <CustomText
-                                      textClassName={`text-white text-xs ${isAvailableBook ? "bg-available" : "bg-occupied"} py-1 px-2 global-border-radius`}
+                                      textClassName={`text-white text-xxs ${isAvailableBook ? "bg-available" : "bg-occupied"} py-1 px-2 global-border-radius`}
                                     >
                                       {isAvailableBook
                                         ? "Available"
@@ -372,19 +285,23 @@ const CardListing = () => {
 
                                     <CustomImage
                                       src={
-                                        isEmpty(isAvailableBook)
+                                        isAvailableBook
                                           ? Images.shareIconActive
                                           : Images.shareIconDisable
                                       }
-                                      className="w-4 cursor-pointer"
+                                      className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}
                                       onClick={
-                                        isEmpty(isAvailableBook)
+                                        isAvailableBook
                                           ? () =>
                                               onClickShareBooking(bookingLink)
                                           : () => {}
                                       }
                                     />
                                   </div>
+
+                                  <CustomText textClassName="text-xs">
+                                    {isEmpty(name) ? "-" : name}
+                                  </CustomText>
 
                                   <div className="flex items-center gap-2">
                                     <CustomImage
@@ -408,16 +325,6 @@ const CardListing = () => {
 
                                   <div className="flex items-center gap-2">
                                     <CustomImage
-                                      src={Images.genderIconActive}
-                                      className="w-4"
-                                    />
-                                    <CustomText textClassName="text-xs">
-                                      {isEmpty(gender) ? "-" : gender}
-                                    </CustomText>
-                                  </div>
-
-                                  <div className="flex items-center gap-2">
-                                    <CustomImage
                                       src={Images.spaceTypeIconActive}
                                       className="w-4"
                                     />
@@ -433,6 +340,108 @@ const CardListing = () => {
 
                                   <CustomText textClassName="text-sm">
                                     RM{isEmpty(rental) ? "0" : rental}/month
+                                  </CustomText>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className="md:col-span-12 sm:col-span-12 col-span-12 xl:hidden lg:hidden md:block sm:block block relative">
+              {isEmpty(unitListing) ? (
+                <div className="flex justify-center items-center h-screen">
+                  <CustomEmptyBox />
+                </div>
+              ) : (
+                <div className="flex flex-col gap-4 sticky top-4 ">
+                  {map(unitListing, (list) => {
+                    const name = listingSelector.getName(list);
+                    const rooms = listingSelector.getRooms(list);
+
+                    return (
+                      <div className="collapse border global-border-radius">
+                        <input type="checkbox" />
+                        <div className="collapse-title">
+                          <CustomText textClassName="text-base">
+                            {isEmpty(name) ? "-" : name}
+                          </CustomText>
+                        </div>
+                        <div className="collapse-content">
+                          <div className="grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-2">
+                            {map(rooms, (room) => {
+                              const bathroom =
+                                listingSelector.getAbbrBathroom(room);
+                              const bedType =
+                                listingSelector.getAbbrBedType(room);
+                              const bookingLink =
+                                listingSelector.getBookingLink(room);
+                              const gender = listingSelector.getGender(room);
+                              const isAvailableBook =
+                                listingSelector.isAvailableBook(room);
+                              const rental = listingSelector.getRental(room);
+                              const spaceType =
+                                listingSelector.getAbbrSpaceType(room);
+                              const status = listingSelector.getStatus(room);
+
+                              return (
+                                <div
+                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-2 global-border-radius flex flex-col gap-1`}
+                                >
+                                  <div
+                                    className={`flex justify-between items-center`}
+                                  >
+                                    <CustomText
+                                      textClassName={`text-white text-xxs ${isAvailableBook ? "bg-available" : "bg-occupied"} px-1 rounded`}
+                                    >
+                                      {isAvailableBook ? "A" : "N"}
+                                    </CustomText>
+
+                                    <CustomImage
+                                      src={
+                                        isEmpty(isAvailableBook)
+                                          ? Images.shareIconActive
+                                          : Images.shareIconDisable
+                                      }
+                                      className="w-3 cursor-pointer"
+                                      onClick={
+                                        isEmpty(isAvailableBook)
+                                          ? () =>
+                                              onClickShareBooking(bookingLink)
+                                          : () => {}
+                                      }
+                                    />
+                                  </div>
+
+                                  <div className="flex items-center justify-center gap-1">
+                                    <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
+                                      {isEmpty(bedType) ? "-" : bedType}
+                                    </CustomText>
+
+                                    <CustomText>|</CustomText>
+
+                                    <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
+                                      {isEmpty(bathroom) ? "-" : bathroom}
+                                    </CustomText>
+                                  </div>
+
+                                  <div className="flex items-center gap-2">
+                                    <CustomImage
+                                      src={Images.spaceTypeIconActive}
+                                      className="w-4"
+                                    />
+                                    <CustomText textClassName="text-xxs">
+                                      {isEmpty(spaceType) ? "-" : spaceType}
+                                    </CustomText>
+                                  </div>
+
+                                  <CustomText textClassName="text-xxs">
+                                    RM{isEmpty(rental) ? "0" : rental}
                                   </CustomText>
                                 </div>
                               );
