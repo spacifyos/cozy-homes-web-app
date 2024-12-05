@@ -108,6 +108,9 @@ const Search = () => {
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
     direction: sortValue,
+    search: queryKeyword,
+    city: queryCity,
+    state: queryState,
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
