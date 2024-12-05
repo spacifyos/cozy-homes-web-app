@@ -151,7 +151,9 @@ const ViewAgreement = ({ id }) => {
       if (hasPinNumber) {
         handleOpenSignatureModal(responsive);
       } else {
-        handleOpenPinNumberInfoModal(responsive);
+        if (!isOwnerAgreement) {
+          handleOpenPinNumberInfoModal(responsive);
+        }
       }
     }
   };
