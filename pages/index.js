@@ -22,8 +22,6 @@ import DesktopCheapestRoomSection from "@/components/Explore/DesktopCheapestRoom
 import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSection";
 import * as commonSelector from "@/src/selectors/common";
 import AuthManager from "@/src/utils/AuthManager";
-import CryptoJS from "crypto-js";
-import Helper from "@/src/utils/Helper";
 import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
@@ -155,7 +153,7 @@ function Home() {
       <a
         target="_blank"
         href={`https://wa.me/+601137354267`}
-        className="fixed xl:bottom-10 lg:bottom-10 md:bottom-10 sm:bottom-24 bottom-24 right-6 z-10"
+        className="fixed bottom-10 right-6 z-10"
       >
         <CustomImage src={Images.whatsappIcon} className="w-10 h-10" />
       </a>
@@ -232,12 +230,12 @@ function Home() {
         </div>
       </DesktopLayout>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      {/*<BottomNavigate*/}
+      {/*  t={t}*/}
+      {/*  routeName={routeName}*/}
+      {/*  routeQuery={routeQuery}*/}
+      {/*  onClickChangeTab={onClickChangeTab}*/}
+      {/*/>*/}
     </div>
   );
 }
