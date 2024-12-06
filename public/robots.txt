@@ -1,7 +1,6 @@
 User-agent: *
 
-Disallow: /agency/sign-in
-Disallow: /agency/sign-up
+Disallow: /agency/*
 Disallow: /booking/*/payment-failed
 Disallow: /booking/*/payment-successful
 Disallow: /loading
