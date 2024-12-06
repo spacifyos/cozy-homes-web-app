@@ -82,33 +82,18 @@ const Chat = () => {
 
   useEffect(() => {
     if (uChatIsReady) {
-      const handleChatbotReady = () => {
+      window.addEventListener(
+        "chatbot:ready",
         window.$chatbot.setUser(uuid, {
           name: name,
           email: email,
           phone_number: phoneNumber,
           identifier_hash: encryptUserId,
-        });
-      };
-
-      window.addEventListener("chatbot:ready", handleChatbotReady);
+        }),
+      );
       setUChatIsReady(false);
     }
   }, [uChatIsReady]);
-
-  // useEffect(() => {
-  //   if (!isEmpty(propertyDetails)) {
-  //     const handleSetAttribute = () => {
-  //       window.$chatbot.setCustomAttributes({
-  //         user_fields: {
-  //           tenant_property_info: JSON.stringify(propertyDetails[0]),
-  //         },
-  //       });
-  //     };
-  //
-  //     window.addEventListener("chatbot:ready", handleSetAttribute);
-  //   }
-  // }, [propertyDetails]);
 
   useEffect(() => {
     fetchUserprofileData();
