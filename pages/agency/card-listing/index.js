@@ -17,6 +17,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import {
   getCarParkOccupancyRate,
+  getPropertyOverviewLink,
   getRoomOccupancyRate,
   getTotalCarPark,
   getTotalOccupiedCarPark,
@@ -269,6 +270,8 @@ const CardListing = () => {
                               const bedType = listingSelector.getBedType(room);
                               const bookingLink =
                                 listingSelector.getBookingLink(room);
+                              const propertyOverview =
+                                listingSelector.getPropertyOverviewLink(room);
                               const name = listingSelector.getName(room);
                               const isAvailableBook =
                                 listingSelector.isAvailableBook(room);
@@ -278,7 +281,17 @@ const CardListing = () => {
                               const status = listingSelector.getStatus(room);
 
                               return (
-                                <div
+                                <a
+                                  target={
+                                    isAvailableBook && isEqual(status, "vacant")
+                                      ? "_blank"
+                                      : "_self"
+                                  }
+                                  href={
+                                    isAvailableBook && isEqual(status, "vacant")
+                                      ? propertyOverview
+                                      : "#"
+                                  }
                                   className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-4 global-border-radius flex flex-col gap-2 min-w-64`}
                                 >
                                   <div
@@ -360,7 +373,7 @@ const CardListing = () => {
                                   <CustomText textClassName="text-sm">
                                     RM{isEmpty(rental) ? "0" : rental}/month
                                   </CustomText>
-                                </div>
+                                </a>
                               );
                             })}
                           </div>
@@ -409,6 +422,8 @@ const CardListing = () => {
                                 listingSelector.getAbbrBedType(room);
                               const bookingLink =
                                 listingSelector.getBookingLink(room);
+                              const propertyOverview =
+                                listingSelector.getPropertyOverviewLink(room);
                               const name = listingSelector.getName(room);
                               const isAvailableBook =
                                 listingSelector.isAvailableBook(room);
@@ -418,7 +433,17 @@ const CardListing = () => {
                               const status = listingSelector.getStatus(room);
 
                               return (
-                                <div
+                                <a
+                                  target={
+                                    isAvailableBook && isEqual(status, "vacant")
+                                      ? "_blank"
+                                      : "_self"
+                                  }
+                                  href={
+                                    isAvailableBook && isEqual(status, "vacant")
+                                      ? propertyOverview
+                                      : "#"
+                                  }
                                   className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-2 global-border-radius flex flex-col gap-1`}
                                 >
                                   <div
@@ -483,7 +508,7 @@ const CardListing = () => {
                                   <CustomText textClassName="text-xs">
                                     RM{isEmpty(rental) ? "0" : rental}
                                   </CustomText>
-                                </div>
+                                </a>
                               );
                             })}
                           </div>

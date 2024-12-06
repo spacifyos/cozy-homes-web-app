@@ -83,6 +83,7 @@ export const getBathroom = (state) => get(state, ["bathroom_type"], "");
 export const getSquareFeet = (state) => get(state, ["square_feet"], "");
 export const getBedType = (state) => get(state, ["bed_type"], "");
 export const getBookingLink = (state) => get(state, ["booking_link"], "");
+export const getPropertyOverviewLink = (state) => get(state, ["property_overview_link"], "");
 export const getPropertyName = (state) => get(state, ["property_name"], "");
 export const getUnitRoomName = (state) => get(state, ["unit_room_name"], "");
 export const getUnitName = (state) => get(state, ["unit_name"], "");
