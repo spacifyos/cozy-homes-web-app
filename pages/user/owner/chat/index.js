@@ -168,6 +168,7 @@ const OwnerChat = () => {
         <div
           id="chat-container"
           className="border global-border-radius h-full w-full overflow-hidden flex justify-center items-center"
+          style={{ height: "80vh" }}
         >
           <div id="embed_owner_chatbot_container_id"></div>
 

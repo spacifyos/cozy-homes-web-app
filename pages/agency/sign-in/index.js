@@ -76,16 +76,13 @@ const AgencySignIn = () => {
       >
         <div className="container mx-auto py-4">
           <div className="py-6 mb-4">
-            <CustomText
-              textClassName="primary-text font-bold leading-10"
-              styles={{ fontSize: 34 }}
-            >
-              {t("signIn.welcomeBack")}
+            <CustomText textClassName="primary-text font-bold text-center xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl">
+              Agency Sign In
             </CustomText>
           </div>
 
           <div className="w-full">
-            <div className="p-3 global-box-shadow primaryWhite-bg-color py-10 global-border-radius">
+            <div className="xl:p-8 lg:p-8 md:p-6 sm:p-6 p-4 global-box-shadow primaryWhite-bg-color global-border-radius">
               <input
                 type="email"
                 value={email}
@@ -99,10 +96,10 @@ const AgencySignIn = () => {
                 value={password}
                 onChange={onChangePassword}
                 placeholder={t("signIn.password")}
-                className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+                className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
               />
 
-              <div className="flex justify-center pb-6">
+              <div className="flex justify-center">
                 <CustomButton
                   buttonClassName="primary-btn w-2/4 mb-2"
                   buttonText={t("signIn.signIn")}
