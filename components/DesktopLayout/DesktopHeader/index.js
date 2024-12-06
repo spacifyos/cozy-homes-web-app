@@ -37,25 +37,25 @@ const DesktopHeader = ({
                 false
               ) : (
                 <div>
-                  <CustomButton
-                      icon={Image.registerIconActive}
-                      imageStyle={{ width: 13 }}
-                      buttonText={`Register`}
-                      buttonClassName={`default-btn min-w-44 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden`}
-                      textClassName="text-sm"
-                      reverse
-                      onClick={onClickSignUp}
-                  />
+                  {/*<CustomButton*/}
+                  {/*    icon={Image.registerIconActive}*/}
+                  {/*    imageStyle={{ width: 13 }}*/}
+                  {/*    buttonText={`Register`}*/}
+                  {/*    buttonClassName={`default-btn min-w-44 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden`}*/}
+                  {/*    textClassName="text-sm"*/}
+                  {/*    reverse*/}
+                  {/*    onClick={onClickSignUp}*/}
+                  {/*/>*/}
 
-                  <CustomButton
-                      icon={Image.registerIconActive}
-                      imageStyle={{ width: 13 }}
-                      // buttonText={`Register`}
-                      buttonClassName={`default-btn min-h-10 h-10 xl:hidden lg:hidden`}
-                      textClassName="text-sm"
-                      reverse
-                      onClick={onClickSignUp}
-                  />
+                  {/*<CustomButton*/}
+                  {/*    icon={Image.registerIconActive}*/}
+                  {/*    imageStyle={{ width: 13 }}*/}
+                  {/*    // buttonText={`Register`}*/}
+                  {/*    buttonClassName={`default-btn min-h-10 h-10 xl:hidden lg:hidden w-16`}*/}
+                  {/*    textClassName="text-sm"*/}
+                  {/*    reverse*/}
+                  {/*    onClick={onClickSignUp}*/}
+                  {/*/>*/}
                 </div>
               )}
 
@@ -72,7 +72,7 @@ const DesktopHeader = ({
 
               <CustomButton
                   icon={loading ? "" : Image.primaryLogoutIcon}
-                  // buttonText={`Sign In`}
+                  buttonText={`Sign In`}
                   buttonClassName="default-btn min-h-10 h-10 xl:hidden lg:hidden"
                   textClassName="text-sm"
                   reverse
@@ -99,7 +99,7 @@ const DesktopHeader = ({
                 imageStyle={{ width: 13 }}
                 textClassName="text-xs"
                 // buttonText={`Hi, ${name}`}
-                buttonClassName={`default-btn xl:hidden lg:hidden`}
+                buttonClassName={`default-btn xl:hidden lg:hidden w-16`}
                 reverse
                 loading={loading}
                 onClick={onClickMyAccount}

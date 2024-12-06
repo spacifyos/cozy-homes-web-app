@@ -29,6 +29,7 @@ module.exports = {
         "occupied-light": "#FFEEF3",
         available: "#03b78c",
         occupied: "#ff2e2e",
+        disable: "#94a1a6",
         black: "#2c2c2c",
         white: "#FFFFFF",
       },

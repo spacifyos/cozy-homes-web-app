@@ -213,13 +213,22 @@ const CardListing = () => {
                       />
 
                       <CustomText
-                        textClassName={`text-xxs text-center pt-1 ${isEqual(propertyId, selectedPropertyId) ? "text-primary" : "text-black"}`}
+                        textClassName={`text-xxs text-center pt-1 ${isEqual(propertyId, selectedPropertyId) ? "text-primary" : "text-black"} line-clamp-2`}
                       >
                         {isEmpty(name) ? "-" : name}
                       </CustomText>
 
-                      <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>
-                      <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>
+                      <div className="xl:block lg:block hidden">
+                        <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>
+                        <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>
+                      </div>
+
+                      <div className="xl:hidden lg:hidden block">
+                        <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom})`}</CustomText>
+                        <CustomText textClassName="text-xxs text-center">{`OR: ${roomOccupancyRate}%`}</CustomText>
+                        <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark})`}</CustomText>
+                        <CustomText textClassName="text-xxs text-center">{`OR: ${carParkOccupancyRate}%`}</CustomText>
+                      </div>
                     </div>
                   );
                 })}
@@ -247,9 +256,9 @@ const CardListing = () => {
                             </CustomText>
 
                             <CustomText
-                              textClassName={`${isOccupied ? "bg-available" : "bg-occupied"} text-xs global-border-radius px-2 py-1 text-white`}
+                              textClassName={`${isOccupied ? "bg-occupied" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
                             >
-                              {isOccupied ? "Not Available" : "Available"}
+                              {isOccupied ? "Fully" : "Partial"}
                             </CustomText>
                           </div>
 
@@ -276,11 +285,21 @@ const CardListing = () => {
                                     className={`flex justify-between items-center`}
                                   >
                                     <CustomText
-                                      textClassName={`text-white text-xxs ${isAvailableBook ? "bg-available" : "bg-occupied"} py-1 px-2 global-border-radius`}
+                                      textClassName={`text-white text-xxs ${
+                                        !isAvailableBook &&
+                                        isEqual(status, "vacant")
+                                          ? "bg-disable"
+                                          : isEqual(status, "vacant")
+                                            ? "bg-available"
+                                            : "bg-occupied"
+                                      } py-1 px-2 global-border-radius`}
                                     >
-                                      {isAvailableBook
-                                        ? "Available"
-                                        : "Not Available"}
+                                      {!isAvailableBook &&
+                                      isEqual(status, "vacant")
+                                        ? "N / A"
+                                        : isEqual(status, "vacant")
+                                          ? "Vacant"
+                                          : "Occupied"}
                                     </CustomText>
 
                                     <CustomImage
@@ -363,14 +382,23 @@ const CardListing = () => {
                   {map(unitListing, (list) => {
                     const name = listingSelector.getName(list);
                     const rooms = listingSelector.getRooms(list);
+                    const isOccupied = listingSelector.getIsOccupied(list);
 
                     return (
                       <div className="collapse border global-border-radius">
                         <input type="checkbox" />
                         <div className="collapse-title">
-                          <CustomText textClassName="text-base">
-                            {isEmpty(name) ? "-" : name}
-                          </CustomText>
+                          <div className="flex items-center gap-2">
+                            <CustomText textClassName="text-base">
+                              {isEmpty(name) ? "-" : name}
+                            </CustomText>
+
+                            <CustomText
+                              textClassName={`${isOccupied ? "bg-occupied" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
+                            >
+                              {isOccupied ? "Fully" : "Partial"}
+                            </CustomText>
+                          </div>
                         </div>
                         <div className="collapse-content">
                           <div className="grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-2">
@@ -396,11 +424,29 @@ const CardListing = () => {
                                   <div
                                     className={`flex justify-between items-center`}
                                   >
-                                    <CustomText
-                                      textClassName={`text-white text-xxs ${isAvailableBook ? "bg-available" : "bg-occupied"} px-1 rounded`}
-                                    >
-                                      {isAvailableBook ? "A" : "N"}
-                                    </CustomText>
+                                    <div className="flex items-center gap-1">
+                                      <CustomText
+                                        textClassName={`text-white text-xxs ${
+                                          !isAvailableBook &&
+                                          isEqual(status, "vacant")
+                                            ? "bg-disable"
+                                            : isEqual(status, "vacant")
+                                              ? "bg-available"
+                                              : "bg-occupied"
+                                        } px-1 rounded`}
+                                      >
+                                        {!isAvailableBook &&
+                                        isEqual(status, "vacant")
+                                          ? "N / A"
+                                          : isEqual(status, "vacant")
+                                            ? "V"
+                                            : "O"}
+                                      </CustomText>
+
+                                      <CustomText textClassName="text-xxs bg-primary text-white px-1 rounded">
+                                        {isEmpty(spaceType) ? "-" : spaceType}
+                                      </CustomText>
+                                    </div>
 
                                     <CustomImage
                                       src={
@@ -418,12 +464,11 @@ const CardListing = () => {
                                     />
                                   </div>
 
-                                  <CustomText textClassName="text-xs">
+                                  <CustomText textClassName="text-xxs line-clamp-1">
                                     {isEmpty(name) ? "-" : name}
                                   </CustomText>
 
-                                  <div className="flex items-center justify-center gap-1">
-
+                                  <div className="flex items-center justify-start gap-1">
                                     <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
                                       {isEmpty(bedType) ? "-" : bedType}
                                     </CustomText>
@@ -435,17 +480,7 @@ const CardListing = () => {
                                     </CustomText>
                                   </div>
 
-                                  <div className="flex items-center gap-2">
-                                    <CustomImage
-                                      src={Images.spaceTypeIconActive}
-                                      className="w-4"
-                                    />
-                                    <CustomText textClassName="text-xxs">
-                                      {isEmpty(spaceType) ? "-" : spaceType}
-                                    </CustomText>
-                                  </div>
-
-                                  <CustomText textClassName="text-xxs">
+                                  <CustomText textClassName="text-xs">
                                     RM{isEmpty(rental) ? "0" : rental}
                                   </CustomText>
                                 </div>
