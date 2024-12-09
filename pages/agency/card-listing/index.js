@@ -8,24 +8,23 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import { filter, isEmpty, isEqual, map, toString } from "lodash";
+import {
+  filter,
+  isEmpty,
+  isEqual,
+  map,
+  toString,
+  get,
+  includes,
+  concat,
+  remove,
+} from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Toast from "@/src/utils/Toast";
 import CustomSelect from "@/components/CustomSelect";
 import * as reportSelector from "@/src/selectors/report";
 import CustomButton from "@/components/CustomButton";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
-import {
-  getCarParkOccupancyRate,
-  getPropertyOverviewLink,
-  getRoomOccupancyRate,
-  getTotalCarPark,
-  getTotalOccupiedCarPark,
-  getTotalOccupiedRoom,
-  getTotalRoom,
-  getTotalVacantCarPark,
-  getTotalVacantRoom,
-} from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -63,6 +62,9 @@ const CardListing = () => {
 
   const [bedroomValue, setBedroomValue] = useState("");
   const [bathroomValue, setBathroomValue] = useState("");
+
+  const bathroomOption = get(listingTagOptionData, ["bathroom"], []);
+  const bedroomOption = get(listingTagOptionData, ["bedroom"], []);
 
   useEffect(() => {
     if (isEmpty(listingTagOptionData)) {
@@ -143,10 +145,11 @@ const CardListing = () => {
     setPropertyFilterParams({
       id: e.target.value,
     });
+
+    setPropertyValue(e.target.value);
     setUnitOption(targetUnit);
     setUnitListing([]);
     setUnitFilterParams(null);
-    setPropertyValue(e.target.value);
   };
 
   const onChangeUnitValue = (e) => {
@@ -158,17 +161,41 @@ const CardListing = () => {
   };
 
   const onChangeBedroomValue = (e) => {
-    setUnitFilterParams({
-      ...unitFilterParams,
-      ...{ bedroom: e.target.value },
+    setUnitFilterParams((preState) => {
+      const preTags = get(preState, ["tags"], []);
+      const checkPreTags = remove(
+        preTags,
+        (preTag) => !includes(preTag, "bed"),
+      );
+
+      return {
+        ...unitFilterParams,
+        ...{
+          tags: isEmpty(e.target.value)
+            ? checkPreTags
+            : concat(checkPreTags, e.target.value),
+        },
+      };
     });
     setBedroomValue(e.target.value);
   };
 
   const onChangeBathroomValue = (e) => {
-    setUnitFilterParams({
-      ...unitFilterParams,
-      ...{ bathroom: e.target.value },
+    setUnitFilterParams((preState) => {
+      const preTags = get(preState, ["tags"], []);
+      const checkPreTags = remove(
+        preTags,
+        (preTag) => !includes(preTag, "bathroom"),
+      );
+
+      return {
+        ...unitFilterParams,
+        ...{
+          tags: isEmpty(e.target.value)
+            ? checkPreTags
+            : concat(checkPreTags, e.target.value),
+        },
+      };
     });
     setBathroomValue(e.target.value);
   };
@@ -179,6 +206,8 @@ const CardListing = () => {
     setUnitListing([]);
     setPropertyValue("");
     setUnitValue("");
+    setBathroomValue("");
+    setBedroomValue("");
   };
 
   return (
@@ -224,7 +253,7 @@ const CardListing = () => {
             <CustomSelect
               className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
               placeholder={"Bedroom"}
-              optionList={[]}
+              optionList={bedroomOption}
               onChange={onChangeBedroomValue}
               value={bedroomValue}
             />
@@ -232,7 +261,7 @@ const CardListing = () => {
             <CustomSelect
               className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
               placeholder={"Bathroom"}
-              optionList={[]}
+              optionList={bathroomOption}
               onChange={onChangeBathroomValue}
               value={bathroomValue}
             />
@@ -330,8 +359,7 @@ const CardListing = () => {
 
                           <div className="flex gap-4 overflow-x-scroll p-4">
                             {map(rooms, (room) => {
-                              const bathroom =
-                                listingSelector.getBathroom(room);
+                              const bathroom = get(room, ["bathroom"], "");
                               const bedType = listingSelector.getBedType(room);
                               const bookingLink =
                                 listingSelector.getBookingLink(room);
@@ -481,8 +509,7 @@ const CardListing = () => {
                         <div className="collapse-content">
                           <div className="grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-2">
                             {map(rooms, (room) => {
-                              const bathroom =
-                                listingSelector.getAbbrBathroom(room);
+                              const bathroom = get(room, ["bathroom"], "");
                               const bedType =
                                 listingSelector.getAbbrBedType(room);
                               const bookingLink =
