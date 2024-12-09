@@ -82,26 +82,36 @@ const OwnerChat = () => {
     if (!isEmpty(userProfileData)) {
       chatContainer.appendChild(script);
 
-      setTimeout(() => {
-        setUChatIsReady(true);
-      }, 1000);
+      script.onload = () => {
+        window.addEventListener("chatbot:ready", () => {
+          if (
+            window.$chatbot &&
+            typeof window.$chatbot.setUser === "function"
+          ) {
+            window.$chatbot.setUser(uuid, {
+              name: name,
+              email: email,
+              phone_number: phoneNumber,
+              identifier_hash: encryptUserId,
+            });
+          } else {
+            console.error("setUser is not a function or $chatbot is undefined");
+          }
+        });
+      };
+
+      // setTimeout(() => {
+      //   setUChatIsReady(true);
+      // }, 1000);
     }
   }, [userProfileData, window]);
 
-  useEffect(() => {
-    if (uChatIsReady) {
-      window.addEventListener(
-        "chatbot:ready",
-        window.$chatbot.setUser(uuid, {
-          name: name,
-          email: email,
-          phone_number: phoneNumber,
-          identifier_hash: encryptUserId,
-        }),
-      );
-      setUChatIsReady(false);
-    }
-  }, [uChatIsReady]);
+  // useEffect(() => {
+  //   if (uChatIsReady) {
+  //
+  //     setUChatIsReady(false);
+  //   }
+  // }, [uChatIsReady]);
 
   useEffect(() => {
     fetchUserprofileData();
