@@ -457,7 +457,7 @@ const Account = () => {
             </div>
 
             <CustomText textClassName="disable-text text-xs">
-              {t("account.version")} 2.0.0
+              {t("account.version")} 2.1.0
             </CustomText>
           </div>
         </div>
