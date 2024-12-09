@@ -26,11 +26,23 @@ import {
   getTotalVacantCarPark,
   getTotalVacantRoom,
 } from "@/src/selectors/listing";
+import * as listingAction from "@/src/actions/listing";
+import { useDispatch, useSelector } from "react-redux";
 
 export { getServerSideProps };
 
 const CardListing = () => {
   const { t } = useTranslation("common");
+  const dispatch = useDispatch();
+
+  const getListingTagOptionRequest = () =>
+    dispatch(listingAction.getListingTagOptionRequest());
+  const listingTagOptionData = useSelector((state) =>
+    listingSelector.getListingTagOptionData(state),
+  );
+  const listingTagOptionDataLoading = useSelector((state) =>
+    listingSelector.getListingTagOptionDataLoading(state),
+  );
 
   const [propertyListing, setPropertyListing] = useState([]);
   const [propertyListingLoading, setPropertyListingLoading] = useState(false);
@@ -45,6 +57,22 @@ const CardListing = () => {
   const [unitFilterParams, setUnitFilterParams] = useState(null);
   const [propertyFilterParams, setPropertyFilterParams] = useState(null);
   const [unitOption, setUnitOption] = useState([]);
+
+  const [propertyValue, setPropertyValue] = useState("");
+  const [unitValue, setUnitValue] = useState("");
+
+  const [bedroomValue, setBedroomValue] = useState("");
+  const [bathroomValue, setBathroomValue] = useState("");
+
+  useEffect(() => {
+    if (isEmpty(listingTagOptionData)) {
+      fetchListingTagOption();
+    }
+  }, []);
+
+  const fetchListingTagOption = () => {
+    getListingTagOptionRequest();
+  };
 
   useEffect(() => {
     if (!isEmpty(unitFilterParams)) {
@@ -118,6 +146,7 @@ const CardListing = () => {
     setUnitOption(targetUnit);
     setUnitListing([]);
     setUnitFilterParams(null);
+    setPropertyValue(e.target.value);
   };
 
   const onChangeUnitValue = (e) => {
@@ -125,11 +154,31 @@ const CardListing = () => {
       ...unitFilterParams,
       ...{ unit_id: e.target.value },
     });
+    setUnitValue(e.target.value);
+  };
+
+  const onChangeBedroomValue = (e) => {
+    setUnitFilterParams({
+      ...unitFilterParams,
+      ...{ bedroom: e.target.value },
+    });
+    setBedroomValue(e.target.value);
+  };
+
+  const onChangeBathroomValue = (e) => {
+    setUnitFilterParams({
+      ...unitFilterParams,
+      ...{ bathroom: e.target.value },
+    });
+    setBathroomValue(e.target.value);
   };
 
   const onClickReset = () => {
     setPropertyFilterParams(null);
     setUnitFilterParams(null);
+    setUnitListing([]);
+    setPropertyValue("");
+    setUnitValue("");
   };
 
   return (
@@ -155,25 +204,41 @@ const CardListing = () => {
         }
       >
         <div className="container mx-auto xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8">
-          <div className="grid grid-cols-5 gap-2 pb-7">
+          <div className="grid xl:grid-cols-9 lg:grid-cols-9 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-2 pb-7">
             <CustomSelect
-              className="col-span-2"
+              className="xl:col-span-2 lg:col-span-2 md:col-span-5 sm:col-span-5 col-span-5"
               placeholder={"Property"}
               optionList={propertyOption}
               onChange={onChangePropertyValue}
-              // value={stateValue}
+              value={propertyValue}
             />
 
             <CustomSelect
-              className="col-span-2"
+              className="xl:col-span-2 lg:col-span-2 md:col-span-5 sm:col-span-5 col-span-5"
               placeholder={"Unit"}
               optionList={unitOption}
               onChange={onChangeUnitValue}
-              // value={stateValue}
+              value={unitValue}
+            />
+
+            <CustomSelect
+              className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
+              placeholder={"Bedroom"}
+              optionList={[]}
+              onChange={onChangeBedroomValue}
+              value={bedroomValue}
+            />
+
+            <CustomSelect
+              className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
+              placeholder={"Bathroom"}
+              optionList={[]}
+              onChange={onChangeBathroomValue}
+              value={bathroomValue}
             />
 
             <CustomButton
-              buttonClassName="primary-btn"
+              buttonClassName="primary-btn xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2"
               buttonText="Reset"
               onClick={onClickReset}
             />
