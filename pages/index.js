@@ -109,25 +109,6 @@ function Home() {
     router.push(route);
   };
 
-  // const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
-  //
-  // useEffect(() => {
-  //   const checkScript = Helper.documentGetElementById(src);
-  //   const chatContainer = document.body;
-  //   const script = document.createElement("script");
-  //
-  //   if (checkScript) {
-  //     return router.reload();
-  //   }
-  //
-  //   script.id = src;
-  //   script.async = true;
-  //   script.defer = true;
-  //   script.src = src;
-  //
-  //   chatContainer.appendChild(script);
-  // }, []);
-
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
@@ -158,7 +139,7 @@ function Home() {
         <CustomImage src={Images.whatsappIcon} className="w-10 h-10" />
       </a>
 
-      <DesktopLayout hideNav footerPaddingBottom="pb-20">
+      <DesktopLayout hideNav>
         <div className="relative xl:h-96">
           <Image
             loader={() => "/images/desktop_banner.webp"}
@@ -167,8 +148,19 @@ function Home() {
             src={"/images/desktop_banner.webp"}
             width={0}
             height={0}
-            className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full sm:full h-full"
+            className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full"
             style={{ width: "100%" }}
+          />
+
+          <Image
+            loader={() => "/images/desktop_banner.webp"}
+            // loading="lazy"
+            alt={"image"}
+            src={"/images/desktop_banner.webp"}
+            width={0}
+            height={0}
+            className="xl:hidden lg:hidden md:hidden sm:block block md:object-cover sm:object-cover object-cover"
+            style={{ width: "100%", height: 200 }}
           />
 
           <DesktopSearchBar
