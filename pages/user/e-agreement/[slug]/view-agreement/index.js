@@ -335,6 +335,8 @@ const ViewAgreement = ({ id }) => {
 
       <DesktopLayout
         loading={loading || agreeLoading || signLoading || downloading}
+        onClickRightButton={downloadPdf}
+        rightButtonIcon={Images.downloadIcon}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
