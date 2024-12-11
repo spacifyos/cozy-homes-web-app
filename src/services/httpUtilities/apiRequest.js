@@ -404,6 +404,33 @@ const getPropertyOptionRequest = async (setLoading, successCallback) => {
   );
 };
 
+const postResetPasswordVerifyRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postResetPasswordVerify(postData),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
+const postResetPasswordRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postResetPassword(postData),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -439,4 +466,6 @@ export default {
   postPropertyListingCardViewRequest,
   postUnitCardViewRequest,
   getPropertyOptionRequest,
+  postResetPasswordVerifyRequest,
+  postResetPasswordRequest,
 };

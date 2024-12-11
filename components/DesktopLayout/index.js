@@ -31,6 +31,7 @@ const DesktopLayout = ({
   loading,
   pageBreadcrumbs,
   footerPaddingBottom,
+  isMinHeight = true,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -141,7 +142,9 @@ const DesktopLayout = ({
       />
 
       {hideNav ? (
-        <div className="flex-1 h-full relative" style={{ minHeight: "100vh" }}>
+        <div
+          className={`flex-1 h-full relative ${isMinHeight ? "min-h-screen" : ""}`}
+        >
           {isEmpty(pageBreadcrumbs) ? (
             false
           ) : (

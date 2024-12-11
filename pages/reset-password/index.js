@@ -1,0 +1,165 @@
+import { NextSeo } from "next-seo";
+import DesktopLayout from "@/components/DesktopLayout";
+import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
+import { get, isEmpty, isEqual, toLower } from "lodash";
+import Constant from "@/src/utils/Constant";
+import CustomButton from "@/components/CustomButton";
+import { useTranslation, withTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Toast from "@/src/utils/Toast";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+
+export { getServerSideProps };
+
+const ResetPassword = () => {
+  const { t } = useTranslation("common");
+  const router = useRouter();
+  const routeQuery = get(router, ["query"], "");
+  const typeQuery = get(routeQuery, ["type"], "");
+  const tokenQuery = get(routeQuery, ["token"], "");
+  const emailQuery = get(routeQuery, ["email"], "");
+
+  const [passwordValue, setPasswordValue] = useState("");
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState("");
+
+  const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
+
+  const [verifyTokenLoading, setVerifyTokenLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(typeQuery) && !isEmpty(tokenQuery) && !isEmpty(emailQuery)) {
+      postResetPasswordVerify({
+        type: typeQuery,
+        email: emailQuery,
+        token: tokenQuery,
+      });
+    }
+  }, []);
+
+  const postResetPasswordVerify = async (postData) => {
+    await apiRequest.postResetPasswordVerifyRequest(
+      postData,
+      setVerifyTokenLoading,
+      verifyTokenSuccess,
+    );
+  };
+
+  const verifyTokenSuccess = () => {
+    Toast.success("Token Verify Success!");
+  };
+
+  const onClickSubmitChangePassword = async () => {
+    if (isEmpty(passwordValue) || isEmpty(confirmPasswordValue)) {
+      return Toast.error("All fields are required.");
+    }
+
+    if (!isEqual(passwordValue, confirmPasswordValue)) {
+      return Toast.error("Password and Confirm Password not same.");
+    }
+
+    const postData = {
+      type: typeQuery,
+      email: emailQuery,
+      password: passwordValue,
+      password_confirmation: confirmPasswordValue,
+      token: tokenQuery,
+    };
+
+    await apiRequest.postResetPasswordRequest(
+      postData,
+      setResetPasswordLoading,
+      resetPasswordSuccess,
+    );
+  };
+
+  const resetPasswordSuccess = () => {
+    router.replace(`/`);
+  };
+
+  return (
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="Forgot Password - Spacify Asia" />
+
+      <DesktopLayout
+        hideNav
+        isMinHeight={false}
+        // loading={otpRequestLoading || forgotPasswordLoading}
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <CustomText textClassName="text-base">
+                    Reset Password
+                  </CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                // onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">Reset Password</CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col justify-center items-center">
+          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
+            <CustomText textClassName="font-bold leading-10 text-center pb-4 text-3xl">
+              Reset Password
+            </CustomText>
+
+            <div className="w-full">
+              {/*<CustomText*/}
+              {/*  textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-3xl`}*/}
+              {/*  styles={{*/}
+              {/*    color: isEqual(typeQuery, Constant.TENANT)*/}
+              {/*      ? "#F05A22"*/}
+              {/*      : "#D71440",*/}
+              {/*  }}*/}
+              {/*>*/}
+              {/*  {typeQuery}*/}
+              {/*</CustomText>*/}
+
+              <div>
+                <input
+                  type="password"
+                  placeholder={t("signUp.yourPassword")}
+                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  value={passwordValue}
+                  onChange={(e) => setPasswordValue(e.target.value)}
+                />
+
+                <input
+                  type="password"
+                  placeholder={t("signUp.confirmYourPassword")}
+                  className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+                  value={confirmPasswordValue}
+                  onChange={(e) => setConfirmPasswordValue(e.target.value)}
+                />
+
+                <div className="grid grid-cols-4">
+                  <CustomButton
+                    buttonText="Submit"
+                    buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
+                    onClick={onClickSubmitChangePassword}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </DesktopLayout>
+    </div>
+  );
+};
+
+export default withTranslation("common")(ResetPassword);
