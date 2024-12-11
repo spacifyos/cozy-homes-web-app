@@ -115,9 +115,9 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
     listingPropertyDetailData,
   );
   const mobileImageList = concat(
+    roomImageUrl,
     isEmpty(propertyImageUrl) ? [] : propertyImageUrl,
     isEmpty(unitImageUrl) ? [] : unitImageUrl,
-    roomImageUrl,
   );
 
   const videoUrl = listingSelector.getVideoUrl(listingPropertyDetailData);
@@ -144,14 +144,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   }, [listingPropertyDetailData]);
 
   const [selectedImage, setSelectedImage] = useState(2);
-
-  // useEffect(() => {
-  //   fetchListingPropertyDetail(id);
-  // }, [id]);
-
-  // const fetchListingPropertyDetail = (id) => {
-  //   getListingPropertyDetailRequest(id);
-  // };
 
   const onClickToBookAppointment = () => {
     router.push("/property-overview/1/book-appointment");
@@ -181,6 +173,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   };
 
   const onClickPopupImage = (selectedImage) => {
+    console.log(selectedImage);
     setSelectedImage(selectedImage);
     setOpenImageModal(true);
   };
@@ -264,9 +257,9 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                  src={Images.leftIcon}
-                  className="w-2"
-                  onClick={onClickGoBack}
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
               />
               <CustomText textClassName="text-base">{propertyName}</CustomText>
             </div>
@@ -274,8 +267,11 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         }
       >
         <div className="container mx-auto pb-6">
-          <div className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4">
-            <div className="row-span-2 col-span-2 global-border-radius border overflow-hidden xl:h-125 lg:h-96 md:h-80">
+          <div
+            className="xl:grid lg:grid md:grid sm:hidden hidden grid-rows-2 grid-cols-4 grid-flow-col gap-5 pb-4"
+            style={{ height: 500 }}
+          >
+            <div className="row-span-2 col-span-2 global-border-radius border overflow-hidden">
               {isEmpty(videoUrl) ? (
                 <CustomImage className="w-full h-full" src={Images.logoImage} />
               ) : (
@@ -292,73 +288,45 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
               )}
             </div>
 
-            <div
-              className="col-span-1 global-border-radius border relative h-full hover:opacity-80 cursor-pointer"
-              onClick={() => onClickPopupImage(0)}
-            >
-              <Image
-                className="global-border-radius"
-                loading="lazy"
-                fill
-                src={
-                  isEmpty(propertyImageUrl)
-                    ? Images.logoImage
-                    : propertyImageUrl
-                }
-              />
-            </div>
-
-            <div
-              className="col-span-1 global-border-radius border relative overflow-hidden hover:opacity-80 cursor-pointer"
-              onClick={() => onClickPopupImage(2)}
-            >
-              <Image
-                className="global-border-radius"
-                loading="lazy"
-                fill
-                src={
-                  isEmpty(roomImageUrl[0]) ? Images.logoImage : roomImageUrl[0]
-                }
-              />
-            </div>
-
-            <div
-              className="col-span-1 border relative global-border-radius overflow-hidden hover:opacity-80 cursor-pointer"
-              onClick={() => onClickPopupImage(1)}
-            >
-              <Image
-                className="global-border-radius"
-                loading="lazy"
-                fill
-                src={isEmpty(unitImageUrl) ? Images.logoImage : unitImageUrl}
-              />
-            </div>
-
-            <div className="col-span-1 global-border-radius border relative">
-              <Image
-                className="global-border-radius"
-                loading="lazy"
-                fill
-                src={
-                  isEmpty(roomImageUrl)
-                    ? Images.logoImage
-                    : roomImageUrl[random(0, size(roomImageUrl) - 1)]
-                }
-              />
-
-              {size(roomImageUrl) > 1 ? (
+            {map(Array(4), (item, index) => {
+              return (
                 <div
-                  className="absolute bottom-6 right-4"
-                  onClick={() => onClickPopupImage(0)}
+                  key={index}
+                  className={`col-span-1 global-border-radius border relative h-full ${isEmpty(mobileImageList[index]) || index === 3 ? "" : "cursor-pointer"} flex justify-center items-center overflow-hidden`}
+                  onClick={
+                    isEmpty(mobileImageList[index]) || index === 3
+                      ? () => {}
+                      : () => onClickPopupImage(index)
+                  }
                 >
-                  <CustomText textClassName="text-xs hover:text-white px-4 py-2 border rounded hover:border-primary bg-gray-100 hover:bg-primary cursor-pointer">
-                    View All Images
-                  </CustomText>
+                  <Image
+                    layout="responsive"
+                    className={`object-contain ${isEmpty(mobileImageList[index]) || index === 3 ? "" : "image-zoom-in"} `}
+                    loading="lazy"
+                    width={0}
+                    height={0}
+                    src={
+                      isEmpty(mobileImageList[index])
+                        ? Images.imageNotFound
+                        : mobileImageList[index]
+                    }
+                  />
+
+                  {size(roomImageUrl) > 1 && index === 3 ? (
+                    <div
+                      className="absolute bottom-6 right-4"
+                      onClick={() => onClickPopupImage(0)}
+                    >
+                      <CustomText textClassName="text-xs hover:text-white px-4 py-2 border rounded hover:border-primary bg-gray-100 hover:bg-primary cursor-pointer">
+                        View All Images
+                      </CustomText>
+                    </div>
+                  ) : (
+                    false
+                  )}
                 </div>
-              ) : (
-                false
-              )}
-            </div>
+              );
+            })}
           </div>
 
           <RoomPicCarousel
@@ -373,34 +341,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                 unitRoomName={unitRoomName}
                 address={address}
               />
-
-              {/*<div className="grid grid-cols-6 gap-3 items-center pb-5">*/}
-              {/*  <CustomButton*/}
-              {/*    icon={*/}
-              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
-              {/*        ? Images.tenancyIconActive*/}
-              {/*        : Images.tenancyIcon*/}
-              {/*    }*/}
-              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.TENANCY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
-              {/*    textClassName="text-base"*/}
-              {/*    buttonText={t("propertyDetail.tenancy")}*/}
-              {/*    imageStyle={{ width: 18 }}*/}
-              {/*    onClick={() => onClickSelectDetail(Constant.TENANCY)}*/}
-              {/*  />*/}
-
-              {/*  <CustomButton*/}
-              {/*    icon={*/}
-              {/*      isEqual(selectDetail, Constant.TENANCY)*/}
-              {/*        ? Images.policyIcon*/}
-              {/*        : Images.policyIconActive*/}
-              {/*    }*/}
-              {/*    imageStyle={{ width: 18 }}*/}
-              {/*    buttonClassName={`col-span-2 ${isEqual(selectDetail, Constant.POLICY) ? "default-btn-outline" : "default-btn"} flex-row-reverse`}*/}
-              {/*    textClassName="text-base disable-text"*/}
-              {/*    buttonText={t("propertyDetail.policy")}*/}
-              {/*    onClick={() => onClickSelectDetail(Constant.POLICY)}*/}
-              {/*  />*/}
-              {/*</div>*/}
 
               <div className="pb-6">
                 <div role="tablist" className="tabs tabs-bordered">
