@@ -408,12 +408,13 @@ const postResetPasswordVerifyRequest = async (
   postData,
   setLoading,
   successCallback,
+  errorCallback,
 ) => {
   await apiRequest(
     api.postResetPasswordVerify(postData),
     setLoading,
     successCallback,
-    () => {},
+    errorCallback,
     "",
     true,
   );

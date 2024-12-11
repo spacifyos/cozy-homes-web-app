@@ -45,11 +45,16 @@ const ResetPassword = () => {
       postData,
       setVerifyTokenLoading,
       verifyTokenSuccess,
+      verifyTokenError,
     );
   };
 
   const verifyTokenSuccess = () => {
     Toast.success("Token Verify Success!");
+  };
+
+  const verifyTokenError = () => {
+    router.replace("/401");
   };
 
   const onClickSubmitChangePassword = async () => {
