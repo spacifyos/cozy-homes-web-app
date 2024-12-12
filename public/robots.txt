@@ -10,7 +10,7 @@ Disallow: /sign-in
 Disallow: /sign-up
 Disallow: /user/*
 
-Sitemap: https://spacify.asia/sitemap/sitemap.xml
+Sitemap: https://spacify.asia/sitemap.xml
 Sitemap: https://spacify.asia/sitemap/general.xml
 Sitemap: https://spacify.asia/sitemap/listing-head.xml
 Sitemap: https://spacify.asia/sitemap/booking-head.xml
