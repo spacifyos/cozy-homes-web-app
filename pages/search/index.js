@@ -1,36 +1,12 @@
-import CustomHeader from "@/components/CustomHeader";
-import CustomInput from "@/components/CustomInput";
 import Images from "@/src/utils/Image";
-import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
-import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
-import ListingCardComponent from "@/components/Search/ListingCardComponent";
-import {
-  get,
-  isEmpty,
-  map,
-  debounce,
-  includes,
-  filter,
-  isEqual,
-  size,
-  remove,
-  toArray,
-  split,
-  concat,
-  first,
-  set,
-} from "lodash";
+import { get, isEmpty, map, debounce, filter, isEqual, concat } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import TagComponent from "@/components/Search/TagComponent";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
-import CustomEmptyBox from "@/components/CustomEmptyBox";
-import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -41,7 +17,6 @@ import DesktopFilterModal from "@/components/Search/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
-import { getListing } from "@/src/selectors/listing";
 import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
@@ -52,9 +27,13 @@ const Search = () => {
   const router = useRouter();
   const amenitiesTarget = useRef();
 
-  const queryKeyword = get(router, ["query", "keyword"], "");
   const queryState = get(router, ["query", "state"], "");
-  const queryCity = get(router, ["query", "city"], "");
+  const queryCity = get(router, ["query", "c"], "");
+  const queryPage = get(router, ["query", "p"], "");
+  const querySearch = get(router, ["query", "s"], "");
+  const queryTenurePeriod = get(router, ["query", "t"], "");
+  const queryMinPrice = get(router, ["query", "min_p"], 0);
+  const queryMaxPrice = get(router, ["query", "max_p"], 2500);
 
   // const formatQueryTags = split(queryTags, ",");
 
@@ -96,19 +75,19 @@ const Search = () => {
     { name: "Highest Price", code: "desc", isActive: false },
   ]);
 
-  const [keywordValue, setKeywordValue] = useState(queryKeyword);
+  const [keywordValue, setKeywordValue] = useState(querySearch);
   const [cityValue, setCityValue] = useState(queryCity);
   const [stateValue, setStateValue] = useState(queryState);
-  const [tenureValue, setTenureValue] = useState("");
+  const [tenureValue, setTenureValue] = useState(queryTenurePeriod);
   const [sortValue, setSortValue] = useState("asc");
-  const [priceRange, setPriceRange] = useState([0, 2500]);
+  const [priceRange, setPriceRange] = useState([queryMinPrice, queryMaxPrice]);
   const [spaceTypeValue, setSpaceTypeValue] = useState("");
   const [genderValue, setGenderValue] = useState("");
 
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
     direction: sortValue,
-    search: queryKeyword,
+    search: querySearch,
     city: queryCity,
     state: queryState,
   });
@@ -199,8 +178,8 @@ const Search = () => {
   }, []);
 
   useEffect(() => {
-    fetchListingProperty(selectedFilterParams);
-  }, [selectedFilterParams]);
+    fetchListingProperty(selectedFilterParams, queryPage);
+  }, [selectedFilterParams, queryPage]);
 
   const fetchListingTagOption = () => {
     getListingTagOptionRequest();
@@ -273,6 +252,11 @@ const Search = () => {
         search: keywordValue,
       };
     });
+
+    router.push({
+      pathname: "/search",
+      query: { ...router.query, ...{ p: 1 }, s: keywordValue },
+    });
   };
 
   // const onChangeStateValue = (e) => {
@@ -318,7 +302,11 @@ const Search = () => {
   };
 
   const onPageChange = (pageNumber) => {
-    fetchListingProperty(selectedFilterParams, pageNumber, 12);
+    router.push({
+      pathname: "/search",
+      query: { ...router.query, p: pageNumber },
+    });
+    // fetchListingProperty(selectedFilterParams, pageNumber, 12);
   };
 
   const onClickOpenModal = () => {
@@ -334,6 +322,11 @@ const Search = () => {
         ["tenure_period"]: e.target.value,
       };
     });
+
+    router.push({
+      pathname: "/search",
+      query: { ...router.query, ...{ p: 1 }, t: e.target.value },
+    });
   };
 
   const onThumbDragEnd = () => {
@@ -343,6 +336,16 @@ const Search = () => {
         ["min_price"]: priceRange[0],
         ["max_price"]: priceRange[1],
       };
+    });
+
+    router.push({
+      pathname: "/search",
+      query: {
+        ...router.query,
+        ...{ p: 1 },
+        min_p: priceRange[0],
+        max_p: priceRange[1],
+      },
     });
   };
 
@@ -380,6 +383,21 @@ const Search = () => {
     });
 
     Helper.documentGetElementById("desktop_filter_modal").close();
+
+    // router.push({
+    //   pathname: "/search",
+    //   query: {
+    //     ...router.query,
+    //     ...{ p: 1 },
+    //     state: stateValue,
+    //     c: cityValue,
+    //     t: tenureValue,
+    //     st: spaceTypeValue,
+    //     g: genderValue,
+    //     sort: sortValue,
+    //     tags: tags,
+    //   },
+    // });
   };
 
   const onClickClearAll = () => {
@@ -463,25 +481,6 @@ const Search = () => {
       });
     });
   };
-
-  // const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
-  //
-  // useEffect(() => {
-  //   const checkScript = Helper.documentGetElementById(src);
-  //   const chatContainer = document.body;
-  //   const script = document.createElement("script");
-  //
-  //   if (checkScript) {
-  //     return router.reload();
-  //   }
-  //
-  //   script.id = src;
-  //   script.async = true;
-  //   script.defer = true;
-  //   script.src = src;
-  //
-  //   chatContainer.appendChild(script);
-  // }, []);
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">

@@ -92,9 +92,9 @@ function Home() {
 
   const onClickToSearch = (keyword, state, city) => {
     const params = [];
-    if (keyword) params.push(`keyword=${encodeURIComponent(keyword)}`);
+    if (keyword) params.push(`s=${encodeURIComponent(keyword)}`);
     if (state) params.push(`state=${encodeURIComponent(state)}`);
-    if (city) params.push(`city=${encodeURIComponent(city)}`);
+    if (city) params.push(`c=${encodeURIComponent(city)}`);
 
     const queryString = params.length > 0 ? `?${params.join("&")}` : "";
 
@@ -112,12 +112,12 @@ function Home() {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
-        title={`Explore Available Rooms for Rent Anywhere in Malaysia | Spacify.asia`}
+        title={`Explore available rooms for rent anywhere in malaysia | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
         canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
-          title: `Explore Available Rooms for Rent Anywhere in Malaysia | Spacify.asia`,
+          title: `Explore available rooms for rent anywhere in malaysia | Spacify.asia`,
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {
