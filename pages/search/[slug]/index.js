@@ -20,6 +20,7 @@ import {
   concat,
   first,
   set,
+  omitBy,
 } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Skeleton from "@/components/Skeleton";
@@ -132,34 +133,34 @@ const SearchWithSlug = ({ id }) => {
   }, []);
 
   useEffect(() => {
-    if (!isEmpty(amenitiesTag) && !isEmpty(tagsData)) {
+    if (!isEmpty(amenitiesTag)) {
       const formatFacilityTag = map(amenitiesTag, (item) => {
         const code = get(item, ["code"], "");
 
         return {
           ...item,
-          ...{ isActive: includes(tagsData, code) ? true : false },
+          ...{ isActive: false },
         };
       });
 
       setNewAmenitiesTag(formatFacilityTag);
     }
-  }, [amenitiesTag, tagsData]);
+  }, [amenitiesTag]);
 
   useEffect(() => {
-    if (!isEmpty(generalTag) && !isEmpty(tagsData)) {
+    if (!isEmpty(generalTag)) {
       const formatGeneralTag = map(generalTag, (item) => {
         const code = get(item, ["code"], "");
 
         return {
           ...item,
-          ...{ isActive: includes(tagsData, code) ? true : false },
+          ...{ isActive: false },
         };
       });
 
       setNewGeneralTag(formatGeneralTag);
     }
-  }, [generalTag, tagsData]);
+  }, [generalTag]);
 
   useEffect(() => {
     if (amenitiesTarget.current) {
@@ -261,23 +262,12 @@ const SearchWithSlug = ({ id }) => {
         search: keywordValue,
       };
     });
+
+    router.push({
+      pathname: `/search/${id}`,
+      query: { ...router.query, ...{ p: 1 }, s: keywordValue },
+    });
   };
-
-  // const onChangeStateValue = (e) => {
-  //   setStateValue(e.target.value);
-  //
-  //   setSelectedFilterParams((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       state: e.target.value,
-  //     };
-  //   });
-  // };
-
-  // const onChangeCityValue = (e) => {
-  //   setCityValue(e.target.value);
-  //   setIsCityTyping(true);
-  // };
 
   const handleCityTypingStopped = useCallback(() => {
     setIsCityTyping(false);
@@ -306,7 +296,12 @@ const SearchWithSlug = ({ id }) => {
   };
 
   const onPageChange = (pageNumber) => {
-    fetchListingProperty(selectedFilterParams, pageNumber, 12);
+    router.push({
+      pathname: `/search/${id}`,
+      query: { ...router.query, p: pageNumber },
+    });
+
+    // fetchListingProperty(selectedFilterParams, pageNumber, 12);
   };
 
   const onClickOpenModal = () => {
@@ -322,6 +317,11 @@ const SearchWithSlug = ({ id }) => {
         ["tenure_period"]: e.target.value,
       };
     });
+
+    router.push({
+      pathname: `/search/${id}`,
+      query: { ...router.query, ...{ p: 1 }, t: e.target.value },
+    });
   };
 
   const onThumbDragEnd = () => {
@@ -331,6 +331,16 @@ const SearchWithSlug = ({ id }) => {
         ["min_price"]: priceRange[0],
         ["max_price"]: priceRange[1],
       };
+    });
+
+    router.push({
+      pathname: `/search/${id}`,
+      query: {
+        ...router.query,
+        ...{ p: 1 },
+        min_p: priceRange[0],
+        max_p: priceRange[1],
+      },
     });
   };
 
@@ -368,6 +378,29 @@ const SearchWithSlug = ({ id }) => {
     });
 
     Helper.documentGetElementById("desktop_filter_modal").close();
+
+    router.push({
+      pathname: `/search/${id}`,
+      query: {
+        ...{ p: 1 },
+        ...omitBy(
+          {
+            ...router.query,
+            state: stateValue,
+            c: cityValue,
+            t: tenureValue,
+            st: spaceTypeValue,
+            g: genderValue,
+            sort: sortValue,
+            tags:
+              isEmpty(generalTagValue) && isEmpty(amenitiesTagValue)
+                ? ""
+                : concat(generalTagValue, amenitiesTagValue),
+          },
+          (value) => isEmpty(value), // Remove keys with empty values
+        ),
+      },
+    });
   };
 
   const onClickClearAll = () => {
@@ -377,7 +410,7 @@ const SearchWithSlug = ({ id }) => {
     setTenureValue("");
     setPriceRange([0, 2500]);
     setGenderValue("");
-    setSortValue("");
+    // setSortValue("");
 
     setNewGeneralTag((prevState) => {
       return map(prevState, (item) => {
@@ -414,62 +447,63 @@ const SearchWithSlug = ({ id }) => {
     setStateValue(state);
     setCityValue(city);
     setTenureValue(tenure_period);
-    setSpaceTypeValue(space_type);
+    setSpaceTypeValue(isEmpty(space_type) ? "" : space_type);
     setPriceRange([minPrice, maxPrice]);
     setGenderValue(gender);
     setSortValue(direction);
 
-    map(tags, (tag) => {
-      setNewGeneralTag((prevState) => {
-        return map(prevState, (item) => {
-          const code = get(item, ["code"], "");
-
-          if (isEqual(code, tag)) {
+    isEmpty(tags)
+      ? setNewGeneralTag((prevState) => {
+          return map(prevState, (item) => {
             return {
               ...item,
-              ...{ isActive: true },
+              ...{ isActive: false },
             };
-          } else {
-            return item;
-          }
+          });
+        })
+      : map(tags, (tag) => {
+          setNewGeneralTag((prevState) => {
+            return map(prevState, (item) => {
+              const code = get(item, ["code"], "");
+
+              if (isEqual(code, tag)) {
+                return {
+                  ...item,
+                  ...{ isActive: true },
+                };
+              } else {
+                return item;
+              }
+            });
+          });
         });
-      });
 
-      setNewAmenitiesTag((prevState) => {
-        return map(prevState, (item) => {
-          const code = get(item, ["code"], "");
-
-          if (isEqual(code, tag)) {
+    isEmpty(tags)
+      ? setNewAmenitiesTag((prevState) => {
+          return map(prevState, (item) => {
             return {
               ...item,
-              ...{ isActive: true },
+              ...{ isActive: false },
             };
-          } else {
-            return item;
-          }
+          });
+        })
+      : map(tags, (tag) => {
+          setNewAmenitiesTag((prevState) => {
+            return map(prevState, (item) => {
+              const code = get(item, ["code"], "");
+
+              if (isEqual(code, tag)) {
+                return {
+                  ...item,
+                  ...{ isActive: true },
+                };
+              } else {
+                return item;
+              }
+            });
+          });
         });
-      });
-    });
   };
-
-  // const src = `https://app.proptechai.bot/js/widget/8fbmuzfis3duu3i4/float.js`;
-  //
-  // useEffect(() => {
-  //   const checkScript = Helper.documentGetElementById(src);
-  //   const chatContainer = document.body;
-  //   const script = document.createElement("script");
-  //
-  //   if (checkScript) {
-  //     return router.reload();
-  //   }
-  //
-  //   script.id = src;
-  //   script.async = true;
-  //   script.defer = true;
-  //   script.src = src;
-  //
-  //   chatContainer.appendChild(script);
-  // }, []);
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">

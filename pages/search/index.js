@@ -1,6 +1,15 @@
 import Images from "@/src/utils/Image";
 import { useRouter } from "next/router";
-import { get, isEmpty, map, debounce, filter, isEqual, concat } from "lodash";
+import {
+  get,
+  isEmpty,
+  map,
+  debounce,
+  filter,
+  isEqual,
+  concat,
+  omitBy,
+} from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
@@ -106,23 +115,6 @@ const Search = () => {
   const lastPage = listingSelector.getLastPage(listingPropertyPagination);
 
   const isFilter = !isEmpty(selectedFilterParams);
-
-  // useEffect(() => {
-  //   if (!isEmpty(queryKey) && !isEmpty(queryId)) {
-  //     setSelectedFilterParams((prevState) => {
-  //       return {
-  //         ...prevState,
-  //         tags: isEmpty(queryTags) ? "" : formatQueryTags,
-  //         [queryKey]:
-  //           isEqual(queryId, "car_park") || isEqual(queryId, "sublet")
-  //             ? queryId
-  //             : size(queryId) > 1
-  //               ? split(queryId, ",")
-  //               : queryId,
-  //       };
-  //     });
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (!isEmpty(amenitiesTag)) {
@@ -259,21 +251,6 @@ const Search = () => {
     });
   };
 
-  // const onChangeStateValue = (e) => {
-  //   setStateValue(e.target.value);
-  //
-  //   setSelectedFilterParams((prevState) => {
-  //     return {
-  //       ...prevState,
-  //       state: e.target.value,
-  //     };
-  //   });
-  // };
-
-  // const onChangeCityValue = (e) => {
-  //   setCityValue(e.target.value);
-  //   setIsCityTyping(true);
-  // };
 
   const handleCityTypingStopped = useCallback(() => {
     setIsCityTyping(false);
@@ -384,20 +361,28 @@ const Search = () => {
 
     Helper.documentGetElementById("desktop_filter_modal").close();
 
-    // router.push({
-    //   pathname: "/search",
-    //   query: {
-    //     ...router.query,
-    //     ...{ p: 1 },
-    //     state: stateValue,
-    //     c: cityValue,
-    //     t: tenureValue,
-    //     st: spaceTypeValue,
-    //     g: genderValue,
-    //     sort: sortValue,
-    //     tags: tags,
-    //   },
-    // });
+    router.push({
+      pathname: "/search",
+      query: {
+        ...{ p: 1 },
+        ...omitBy(
+          {
+            ...router.query,
+            state: stateValue,
+            c: cityValue,
+            t: tenureValue,
+            st: spaceTypeValue,
+            g: genderValue,
+            sort: sortValue,
+            tags:
+              isEmpty(generalTagValue) && isEmpty(amenitiesTagValue)
+                ? ""
+                : concat(generalTagValue, amenitiesTagValue),
+          },
+          (value) => isEmpty(value), // Remove keys with empty values
+        ),
+      },
+    });
   };
 
   const onClickClearAll = () => {
@@ -407,7 +392,7 @@ const Search = () => {
     setTenureValue("");
     setPriceRange([0, 2500]);
     setGenderValue("");
-    setSortValue("");
+    // setSortValue("");
 
     setNewGeneralTag((prevState) => {
       return map(prevState, (item) => {
@@ -444,42 +429,62 @@ const Search = () => {
     setStateValue(state);
     setCityValue(city);
     setTenureValue(tenure_period);
-    setSpaceTypeValue(space_type);
+    setSpaceTypeValue(isEmpty(space_type) ? "" : space_type);
     setPriceRange([minPrice, maxPrice]);
     setGenderValue(gender);
     setSortValue(direction);
 
-    map(tags, (tag) => {
-      setNewGeneralTag((prevState) => {
-        return map(prevState, (item) => {
-          const code = get(item, ["code"], "");
-
-          if (isEqual(code, tag)) {
+    isEmpty(tags)
+      ? setNewGeneralTag((prevState) => {
+          return map(prevState, (item) => {
             return {
               ...item,
-              ...{ isActive: true },
+              ...{ isActive: false },
             };
-          } else {
-            return item;
-          }
+          });
+        })
+      : map(tags, (tag) => {
+          setNewGeneralTag((prevState) => {
+            return map(prevState, (item) => {
+              const code = get(item, ["code"], "");
+
+              if (isEqual(code, tag)) {
+                return {
+                  ...item,
+                  ...{ isActive: true },
+                };
+              } else {
+                return item;
+              }
+            });
+          });
         });
-      });
 
-      setNewAmenitiesTag((prevState) => {
-        return map(prevState, (item) => {
-          const code = get(item, ["code"], "");
-
-          if (isEqual(code, tag)) {
+    isEmpty(tags)
+      ? setNewAmenitiesTag((prevState) => {
+          return map(prevState, (item) => {
             return {
               ...item,
-              ...{ isActive: true },
+              ...{ isActive: false },
             };
-          } else {
-            return item;
-          }
+          });
+        })
+      : map(tags, (tag) => {
+          setNewAmenitiesTag((prevState) => {
+            return map(prevState, (item) => {
+              const code = get(item, ["code"], "");
+
+              if (isEqual(code, tag)) {
+                return {
+                  ...item,
+                  ...{ isActive: true },
+                };
+              } else {
+                return item;
+              }
+            });
+          });
         });
-      });
-    });
   };
 
   return (

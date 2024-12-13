@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link rel="canonical" href={`${process.env.DOMAIN}`} />
+        {/*<link rel="canonical" href={`${process.env.DOMAIN}`} />*/}
         <meta
           name="keywords"
           content="Spacify Asia, Property, Rental Management, Smart Meter"
