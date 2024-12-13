@@ -16,22 +16,9 @@ const FirstStep = ({
 }) => {
   return (
     <div>
-      {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-      {/*  <CustomButton*/}
-      {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
-      {/*    buttonText={t("signIn.tenant")}*/}
-      {/*    onClick={() => setSelectedRole("tenant")}*/}
-      {/*  />*/}
-      {/*  <CustomButton*/}
-      {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
-      {/*    buttonText={t("signIn.owner")}*/}
-      {/*    onClick={() => setSelectedRole("owner")}*/}
-      {/*  />*/}
-      {/*</div>*/}
-
       <div className="grid grid-cols-3 gap-2 mb-8">
         <select
-          className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+          className="select select-bordered w-full primaryWhite-bg-color user-input"
           value={phonePrefix}
           onChange={onChangePhonePrefix}
         >

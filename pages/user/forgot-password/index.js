@@ -231,6 +231,7 @@ const ForgotPassword = () => {
       <NextSeo title="Forgot Password - Spacify Asia" />
 
       <DesktopLayout
+        isMinHeight={false}
         hideNav
         loading={otpRequestLoading || forgotPasswordLoading}
         pageBreadcrumbs={
@@ -256,8 +257,8 @@ const ForgotPassword = () => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 min-h-screen flex flex-col justify-center items-center">
-          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center px-10">
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col justify-center items-center">
+          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
             <CustomText textClassName="font-bold leading-10 text-center pb-4 text-3xl">
               Reset Password
             </CustomText>

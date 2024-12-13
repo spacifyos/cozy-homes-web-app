@@ -53,6 +53,8 @@ const DesktopLayout = ({
 
   const userType = authSelector.getType(userProfileData);
 
+  console.log(selectedUserType);
+
   useEffect(() => {
     const checkAuthentication = async () => {
       const token = await AuthManager.retrieveToken();
@@ -251,14 +253,14 @@ const DesktopLayout = ({
       <DesktopFooter paddingBottom={footerPaddingBottom} />
 
       <SignInModal
-        userType={selectedUserType}
-        setUserType={setSelectedUserType}
+        selectedUserType={selectedUserType}
+        setSelectedUserType={setSelectedUserType}
         onClickSignUp={onClickSignUp}
       />
 
       <SignUpModal
-        userType={selectedUserType}
-        setUserType={setSelectedUserType}
+        selectedUserType={selectedUserType}
+        setSelectedUserType={setSelectedUserType}
       />
 
       <DesktopModal id="logout_modal">

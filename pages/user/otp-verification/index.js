@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
@@ -12,6 +11,10 @@ import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import { withTranslation, useTranslation } from "next-i18next";
+import { getServerSideProps } from "@/src/utils/getStatic";
+
+export { getServerSideProps };
 
 const OtpVerification = () => {
   const router = useRouter();
@@ -107,6 +110,7 @@ const OtpVerification = () => {
       <NextSeo title="Otp Verification - Spacify Asia" />
 
       <DesktopLayout
+        isMinHeight={false}
         hideNav
         loading={otpRequestLoading || otpVerifyLoading}
         pageBreadcrumbs={
@@ -134,8 +138,8 @@ const OtpVerification = () => {
           </div>
         }
       >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col items-center justify-center h-screen">
-          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center px-10">
+        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col items-center justify-center">
+          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
             <CustomText
               textClassName="primary-text font-bold leading-10 pb-5 text-center"
               styles={{ fontSize: 34 }}
@@ -199,4 +203,4 @@ const OtpVerification = () => {
   );
 };
 
-export default OtpVerification;
+export default withTranslation("common")(OtpVerification);

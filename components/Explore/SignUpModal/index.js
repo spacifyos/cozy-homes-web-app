@@ -22,7 +22,7 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 
-const SignUpModal = ({ userType, setUserType }) => {
+const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const ref = useRef();
@@ -64,7 +64,7 @@ const SignUpModal = ({ userType, setUserType }) => {
     }
 
     const postData = {
-      type: toLower(userType),
+      type: toLower(selectedUserType),
       name: nameValue,
       phone_prefix: countryCode,
       phone_suffix: phoneValue,
@@ -114,19 +114,19 @@ const SignUpModal = ({ userType, setUserType }) => {
       pathname: "/user/otp-verification",
       query: {
         phoneNumber: countryCode + phoneValue,
-        type: toLower(userType),
+        type: toLower(selectedUserType),
       },
     });
   };
 
   return (
     <DesktopModal id="sign_up_modal" closeButtonPosition>
-      {isEmpty(userType) ? (
-        <UserTypeSelectSection setUserType={setUserType} />
+      {isEmpty(selectedUserType) ? (
+        <UserTypeSelectSection setSelectedUserType={setSelectedUserType} />
       ) : (
         <div
           style={{
-            background: isEqual(userType, Constant.OWNER)
+            background: isEqual(selectedUserType, Constant.OWNER)
               ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
               : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
           }}
@@ -135,7 +135,7 @@ const SignUpModal = ({ userType, setUserType }) => {
             <form method="dialog" className={`flex justify-end `}>
               <button
                 className="btn btn-sm btn-circle btn-ghost right-2"
-                onClick={() => setUserType("")}
+                onClick={() => setSelectedUserType("")}
               >
                 <CustomImage
                   src={Images.closeIconWhite}
@@ -167,13 +167,13 @@ const SignUpModal = ({ userType, setUserType }) => {
                 <CustomText
                   textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
                   styles={{
-                    color: isEqual(userType, Constant.TENANT)
+                    color: isEqual(selectedUserType, Constant.TENANT)
                       ? "#F05A22"
                       : "#D71440",
                     fontSize: 32,
                   }}
                 >
-                  {userType}
+                  {selectedUserType}
                 </CustomText>
 
                 <input
@@ -259,7 +259,7 @@ const SignUpModal = ({ userType, setUserType }) => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(userType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(selectedUserType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
                     buttonText="Sign Up for FREE"
                     onClick={handleSubmit}
                   />

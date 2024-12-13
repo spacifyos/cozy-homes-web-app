@@ -2,7 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
-const UserTypeSelectSection = ({ setUserType }) => {
+const UserTypeSelectSection = ({ setSelectedUserType }) => {
   return (
     <div className="p-6">
       <form method="dialog" className={`flex justify-end`}>
@@ -30,7 +30,7 @@ const UserTypeSelectSection = ({ setUserType }) => {
 
         <div
           className="global-box-shadow global-border-radius mb-6 w-full cursor-pointer"
-          onClick={() => setUserType("Tenant")}
+          onClick={() => setSelectedUserType("Tenant")}
         >
           <CustomImage
             src={Images.tenantCard}
@@ -40,7 +40,7 @@ const UserTypeSelectSection = ({ setUserType }) => {
 
         <div
           className="global-box-shadow global-border-radius w-full cursor-pointer"
-          onClick={() => setUserType("Owner")}
+          onClick={() => setSelectedUserType("Owner")}
         >
           <CustomImage src={Images.ownerCard} imageStyle={{ width: "100%" }} />
         </div>

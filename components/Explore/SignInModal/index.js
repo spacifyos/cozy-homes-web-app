@@ -18,7 +18,7 @@ import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 
-const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
+const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
@@ -48,7 +48,7 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
     }
 
     const postData = {
-      type: toLower(userType),
+      type: toLower(selectedUserType),
       phone_prefix: phonePrefix,
       phone_suffix: phoneNumber,
       password: password,
@@ -73,7 +73,7 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
     } else {
       return router.push({
         pathname: "/user/otp-verification",
-        query: { phoneNumber: userPhoneNumber, type: selectedRole },
+        query: { phoneNumber: userPhoneNumber, type: userType },
       });
     }
   };
@@ -99,12 +99,12 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
 
   return (
     <DesktopModal id="sign_in_modal" closeButtonPosition>
-      {isEmpty(userType) ? (
-        <UserTypeSelectSection setUserType={setUserType} />
+      {isEmpty(selectedUserType) ? (
+        <UserTypeSelectSection setSelectedUserType={setSelectedUserType} />
       ) : (
         <div
           style={{
-            background: isEqual(userType, Constant.OWNER)
+            background: isEqual(selectedUserType, Constant.OWNER)
               ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
               : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
           }}
@@ -114,7 +114,7 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
               <button
                 className="btn btn-sm btn-circle btn-ghost right-2"
                 onClick={() => {
-                  setUserType("");
+                  setSelectedUserType("");
                   setPassword("");
                   setPhoneNumber("");
                 }}
@@ -136,7 +136,7 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
                 textClassName="text-white font-bold leading-10"
                 styles={{ fontSize: 32 }}
               >
-                Welcome Back, {userType}
+                Welcome Back, {selectedUserType}
               </CustomText>
             </div>
 
@@ -184,13 +184,13 @@ const SignInModal = ({ userType, setUserType, onClickSignUp }) => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(userType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(selectedUserType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
                     buttonText={t("signIn.signIn")}
                     onClick={onClickToLogin}
                   />
                 </div>
 
-                <Link href={`/user/forgot-password?type=${userType}`}>
+                <Link href={`/user/forgot-password?type=${selectedUserType}`}>
                   <CustomText textClassName="text-center pb-2 underline cursor-pointer text-sm">
                     {t("signIn.forgotPassword")}
                   </CustomText>
