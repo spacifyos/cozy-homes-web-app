@@ -197,12 +197,12 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo
         title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`}
-        description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
+        description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${isEmpty(bathroom) ? "-" : bathroom} bathroom, ${isEmpty(bedType) ? "-" : bedType} bedroom, ${isEmpty(squareFeet) ? "-" : squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
         canonical={`${process.env.DOMAIN}/property-overview/${id}`}
         openGraph={{
           url: `${process.env.DOMAIN}/property-overview/${id}`,
           title: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`,
-          description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${bathroom} bathroom, ${bedType} bedroom, ${squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
+          description: `${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${isEmpty(bathroom) ? "-" : bathroom} bathroom, ${isEmpty(bedType) ? "-" : bedType} bedroom, ${isEmpty(squareFeet) ? "-" : squareFeet} Sqft Room at ${process.env.DOMAIN}.`,
           images: isEmpty(roomImageUrl)
             ? [
                 {
