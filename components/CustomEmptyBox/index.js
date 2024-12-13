@@ -1,18 +1,23 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import { includes } from "lodash";
 
 const CustomEmptyBox = ({
+  textColor = "#545454",
   emptyImage = Images.questionMarkIcon,
   emptyTitle = "No data found",
   emptyDesc = "No data available now try again later.",
-  textColor = "#545454",
 }) => {
   return (
     <div className={"flex justify-center items-center flex-col px-4"}>
       <div className={"pb-2"}>
         <CustomImage
-          src={emptyImage}
+          src={
+            includes(textColor, "FFFFFF")
+              ? Images.questionMarkIconWhite
+              : emptyImage
+          }
           className="xl:w-18 lg:w-18 md:w-18 sm:w-14 w-14"
         />
       </div>

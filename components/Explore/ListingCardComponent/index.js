@@ -30,7 +30,7 @@ const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
         false
       ) : (
         <CustomText
-          textClassName="xl:text-sm lg:text-sm md:text-sm sm:text-sm text-xs font-bold xl:h-10 lg:h-10 md:h-10 sm:h-10 h-8 text-center"
+          textClassName="xl:text-sm lg:text-sm md:text-sm sm:text-sm text-xs xl:h-10 lg:h-10 md:h-10 sm:h-10 h-8 text-center"
           lineClamp={2}
         >
           {label}
