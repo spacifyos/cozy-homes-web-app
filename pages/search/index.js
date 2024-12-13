@@ -513,7 +513,7 @@ const Search = () => {
         href={`https://wa.me/+601137354267`}
         className="fixed bottom-10 right-6 z-10"
       >
-        <CustomImage src={Images.beliveWhatsAppIcon} className="w-10 h-10" />
+        <CustomImage src={Images.beliveWhatsAppIcon} className="w-16 h-16" />
       </a>
 
       <DesktopLayout
