@@ -215,7 +215,7 @@ const SearchWithSlug = ({ id }) => {
   };
 
   const onClickGoBack = () => {
-    router.back();
+    router.push("/search");
   };
 
   const onClickSelectAmenities = (name, code) => {

@@ -197,7 +197,7 @@ const Search = () => {
   };
 
   const onClickGoBack = () => {
-    router.back();
+    router.push("/");
   };
 
   const onClickSelectAmenities = (name, code) => {
@@ -519,19 +519,32 @@ const Search = () => {
       <DesktopLayout
         hideNav
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
-                <a href={"/"}>
-                  <CustomText textClassName="text-base disable-text">
-                    Explore
+          <div>
+            <div className="breadcrumbs text-sm">
+              <ul>
+                <li>
+                  <a href={"/"}>
+                    <CustomText textClassName="text-base disable-text">
+                      Explore
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base">
+                    Room Listing
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="text-base">Room Listing</CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">Room Listing</CustomText>
+            </div>
           </div>
         }
       >
