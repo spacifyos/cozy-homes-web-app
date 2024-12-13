@@ -173,7 +173,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   };
 
   const onClickPopupImage = (selectedImage) => {
-    console.log(selectedImage);
     setSelectedImage(selectedImage);
     setOpenImageModal(true);
   };

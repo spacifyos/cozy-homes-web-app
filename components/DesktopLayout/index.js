@@ -53,8 +53,6 @@ const DesktopLayout = ({
 
   const userType = authSelector.getType(userProfileData);
 
-  console.log(selectedUserType);
-
   useEffect(() => {
     const checkAuthentication = async () => {
       const token = await AuthManager.retrieveToken();
