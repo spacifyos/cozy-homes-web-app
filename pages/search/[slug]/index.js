@@ -567,7 +567,7 @@ const SearchWithSlug = ({ id }) => {
                 className="w-2"
                 onClick={onClickGoBack}
               />
-              <CustomText textClassName="text-base">{id}</CustomText>
+              <CustomText textClassName="text-base">{label}</CustomText>
             </div>
           </div>
         }
