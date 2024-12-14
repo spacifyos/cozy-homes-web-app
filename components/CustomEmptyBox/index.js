@@ -18,17 +18,17 @@ const CustomEmptyBox = ({
               ? Images.questionMarkIconWhite
               : emptyImage
           }
-          className="xl:w-18 lg:w-18 md:w-18 sm:w-14 w-14"
+          className="xl:w-18 lg:w-18 md:w-18 sm:w-14 w-12"
         />
       </div>
       <CustomText
-        textClassName={`xl:text-base lg:text-base md:text-base sm:text-sm text-sm font-semibold pb-1`}
+        textClassName={`xl:text-base lg:text-base md:text-base sm:text-sm text-xs font-semibold pb-1`}
         styles={{ color: textColor }}
       >
         {emptyTitle}
       </CustomText>
       <CustomText
-        textClassName={`xl:text-sm lg:text-sm md:text-sm sm:text-sm text-xs`}
+        textClassName={`xl:text-sm lg:text-sm md:text-sm sm:text-sm text-xxs`}
         styles={{ color: textColor }}
       >
         {emptyDesc}

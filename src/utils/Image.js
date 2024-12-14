@@ -40,7 +40,7 @@ const Image = {
   paidIcon: `/images/icon/paid_icon.png`,
   downIcon: `/images/icon/down_icon.png`,
   filterIcon: `/images/icon/filter_icon.png`,
-  searchOutlineActiveIcon: `/images/icon/search_outline_active_icon.png`,
+  searchOutlineActiveIcon: `/images/icon/search_outline_active_icon.webp`,
   emptyImage: `/images/emptyBox.png`,
   logoImage: `/images/logo.png`,
   topUpIcon: `/images/icon/topup_icon.png`,
@@ -189,7 +189,7 @@ const Image = {
   shareIconActive: "/images/icon/share_icon_active.png",
   shareIconDisable: "/images/icon/share_icon_disable.png",
   listIconActive: "/images/icon/list_icon_active.png",
-  beliveWhatsAppIcon: "/images/icon/belive_whatsapp_icon.png",
+  beliveWhatsAppIcon: "/images/icon/belive_whatsapp_icon.webp",
 };
 
 export default { ...Image };

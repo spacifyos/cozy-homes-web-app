@@ -80,7 +80,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
             ))}
           </div>
         ) : isEmpty(data) ? (
-          <div className="flex justify-center" style={{ height: 144 }}>
+          <div className="flex justify-center h-32 2xl:h-40 xl:h-36 lg:h-36 md:h-32 sm:h-32">
             <CustomEmptyBox emptyTitle="Popular city not available now." />
           </div>
         ) : (
