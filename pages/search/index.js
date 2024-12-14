@@ -520,7 +520,7 @@ const Search = () => {
         hideNav
         pageBreadcrumbs={
           <div>
-            <div className="breadcrumbs text-sm">
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
                 <li>
                   <a href={"/"}>
