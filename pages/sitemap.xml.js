@@ -8,19 +8,17 @@ const Sitemap = () => {
 export async function getServerSideProps({ res }) {
   // Generate the XML content for the sitemap
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
       <url>
         <loc>https://www.spacify.asia/</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-        <lastmod>2024-12-19T09:26:27+08:00</lastmod>
+        <lastmod>2024-12-19</lastmod>
       </url>
     </urlset>
   `;
 
   // Set response headers
   res.setHeader("Content-Type", "application/xml");
-  res.write(sitemap);
+  res.write(sitemap.trim());
   res.end();
 
   // No need to render any content
