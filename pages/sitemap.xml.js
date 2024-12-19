@@ -25,7 +25,7 @@ export const getServerSideProps = async ({ res, query }) => {
     const data = await response.json(); // Assuming the response is plain text (XML)
 
     res.setHeader("Content-Type", "application/xml");
-    res.write(`<?xml version="1.0" ?>\n${data}`);
+    res.write(`${data}`);
     res.end();
   } catch (error) {
     res.statusCode = 500;
