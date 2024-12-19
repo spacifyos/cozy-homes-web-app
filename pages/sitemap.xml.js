@@ -5,34 +5,60 @@ const Sitemap = () => {
   return null;
 };
 
-export const getServerSideProps = async ({ res, query }) => {
-  const { slug } = query;
+export async function getServerSideProps({ res }) {
+  // Generate the XML content for the sitemap
+  const sitemap = `
+    <urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+    >
+      <url>
+        <loc>https://www.spacify.asia/</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <lastmod>2024-12-19T09:26:27+08:00</lastmod>
+      </url>
+    </urlset>
+  `;
 
-  try {
-    const response = await fetch(`${process.env.API_DOMAIN}/sitemap/index`, {
-      method: "GET",
-    });
+  // Set response headers
+  res.setHeader("Content-Type", "application/xml");
+  res.write(sitemap);
+  res.end();
 
-    if (response.status !== 200) {
-      const data = ``; // Assuming the response is JSON
-      const { messages } = data;
+  // No need to render any content
+  return { props: {} };
+}
 
-      res.statusCode = response.status;
-      res.end(get(messages, ["0", "text"], "Not Found"));
-      return { props: {} }; // Returning empty props as the response ends here
-    }
-
-    const data = await response.json(); // Assuming the response is plain text (XML)
-
-    res.setHeader("Content-Type", "text/xml");
-    res.write(data);
-    res.end();
-  } catch (error) {
-    res.statusCode = 500;
-    res.end("Internal Server Error");
-  }
-
-  return { props: {} }; // Returning empty props as the response ends here
-};
+// export const getServerSideProps = async ({ res, query }) => {
+//   const { slug } = query;
+//
+//   try {
+//     const response = await fetch(`${process.env.API_DOMAIN}/sitemap/index`, {
+//       method: "GET",
+//     });
+//
+//     if (response.status !== 200) {
+//       const data = ``; // Assuming the response is JSON
+//       const { messages } = data;
+//
+//       res.statusCode = response.status;
+//       res.end(get(messages, ["0", "text"], "Not Found"));
+//       return { props: {} }; // Returning empty props as the response ends here
+//     }
+//
+//     const data = await response.json(); // Assuming the response is plain text (XML)
+//
+//     res.setHeader("Content-Type", "text/xml");
+//     res.write(data);
+//     res.end();
+//   } catch (error) {
+//     res.statusCode = 500;
+//     res.end("Internal Server Error");
+//   }
+//
+//   return { props: {} }; // Returning empty props as the response ends here
+// };
 
 export default Sitemap;
