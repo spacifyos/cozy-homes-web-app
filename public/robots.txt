@@ -1,7 +1,17 @@
 User-agent: *
 
-Sitemap: https://www.spacify.asia/sitemap.xml
+Disallow: /agency/*
+Disallow: /booking/*/payment-failed
+Disallow: /booking/*/payment-successful
+Disallow: /loading
+Disallow: /payment-failed
+Disallow: /payment-successful
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /user/*
+
 Sitemap: https://www.spacify.asia/sitemap/general.xml
 Sitemap: https://www.spacify.asia/sitemap/listing-head.xml
 Sitemap: https://www.spacify.asia/sitemap/booking-head.xml
 Sitemap: https://www.spacify.asia/sitemap/search-head.xml
+Host: https://www.spacify.asia
