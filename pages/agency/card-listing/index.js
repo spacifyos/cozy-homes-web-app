@@ -59,12 +59,15 @@ const CardListing = () => {
 
   const [propertyValue, setPropertyValue] = useState("");
   const [unitValue, setUnitValue] = useState("");
+  const [statusValue, setStatusValue] = useState(false);
 
   const [bedroomValue, setBedroomValue] = useState("");
   const [bathroomValue, setBathroomValue] = useState("");
 
   const bathroomOption = get(listingTagOptionData, ["bathroom"], []);
   const bedroomOption = get(listingTagOptionData, ["bedroom"], []);
+
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
 
   useEffect(() => {
     if (isEmpty(listingTagOptionData)) {
@@ -160,6 +163,14 @@ const CardListing = () => {
     setUnitValue(e.target.value);
   };
 
+  const onChangeStatusValue = (e) => {
+    setUnitFilterParams({
+      ...unitFilterParams,
+      ...{ is_available_listing: e.target.value },
+    });
+    setStatusValue(e.target.value);
+  };
+
   const onChangeBedroomValue = (e) => {
     setUnitFilterParams((preState) => {
       const preTags = get(preState, ["tags"], []);
@@ -233,9 +244,11 @@ const CardListing = () => {
         }
       >
         <div className="container mx-auto xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8">
-          <div className="grid xl:grid-cols-9 lg:grid-cols-9 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-2 pb-7">
+          <div
+            className={`grid xl:grid-cols-11 lg:grid-cols-11 md:grid-cols-11 sm:grid-cols-11 grid-cols-11 gap-2 ${isOpenFilter ? "pb-2" : "pb-7"}`}
+          >
             <CustomSelect
-              className="xl:col-span-2 lg:col-span-2 md:col-span-5 sm:col-span-5 col-span-5"
+              className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-9 col-span-9"
               placeholder={"Property"}
               optionList={propertyOption}
               onChange={onChangePropertyValue}
@@ -243,35 +256,67 @@ const CardListing = () => {
             />
 
             <CustomSelect
-              className="xl:col-span-2 lg:col-span-2 md:col-span-5 sm:col-span-5 col-span-5"
+              className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5 xl:block lg:block md:block hidden"
               placeholder={"Unit"}
               optionList={unitOption}
               onChange={onChangeUnitValue}
               value={unitValue}
             />
 
-            <CustomSelect
-              className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
-              placeholder={"Bedroom"}
-              optionList={bedroomOption}
-              onChange={onChangeBedroomValue}
-              value={bedroomValue}
-            />
-
-            <CustomSelect
-              className="xl:col-span-2 lg:col-span-2 md:col-span-4 sm:col-span-4 col-span-4"
-              placeholder={"Bathroom"}
-              optionList={bathroomOption}
-              onChange={onChangeBathroomValue}
-              value={bathroomValue}
-            />
-
-            <CustomButton
-              buttonClassName="primary-btn xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2"
-              buttonText="Reset"
-              onClick={onClickReset}
-            />
+            <div
+              className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 flex justify-center items-center global-box-shadow global-border-radius cursor-pointer"
+              onClick={() => setIsOpenFilter(!isOpenFilter)}
+            >
+              <CustomImage src={Images.filterProIcon} className="h-6 w-6" />
+            </div>
           </div>
+
+          {isOpenFilter ? (
+            <div className="grid xl:grid-cols-10 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-2 pb-7">
+              <CustomSelect
+                className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5 xl:hidden lg:hidden md:hidden"
+                placeholder={"Unit"}
+                optionList={unitOption}
+                onChange={onChangeUnitValue}
+                value={unitValue}
+              />
+
+              <CustomSelect
+                className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-5 col-span-5"
+                placeholder={"Bedroom"}
+                optionList={bedroomOption}
+                onChange={onChangeBedroomValue}
+                value={bedroomValue}
+              />
+
+              <CustomSelect
+                className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-4 col-span-4"
+                placeholder={"Bathroom"}
+                optionList={bathroomOption}
+                onChange={onChangeBathroomValue}
+                value={bathroomValue}
+              />
+
+              <CustomSelect
+                className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-4 col-span-4"
+                placeholder={"Status"}
+                optionList={[
+                  { label: "Available", value: true },
+                  { label: "Not Available", value: false },
+                ]}
+                onChange={onChangeStatusValue}
+                value={statusValue}
+              />
+
+              <CustomButton
+                buttonClassName="primary-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
+                buttonText="Reset"
+                onClick={onClickReset}
+              />
+            </div>
+          ) : (
+            false
+          )}
 
           <div className="grid grid-cols-12 xl:gap-8 lg:gap-8 md:gap-8 sm:gap-4 gap-4 relative">
             <div className="xl:col-span-2 lg:col-span-2 md:col-span-12 sm:col-span-12 col-span-12 relative">
@@ -313,17 +358,17 @@ const CardListing = () => {
                         {isEmpty(name) ? "-" : name}
                       </CustomText>
 
-                      <div className="xl:block lg:block hidden">
-                        <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>
-                        <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>
-                      </div>
+                      {/*<div className="xl:block lg:block hidden">*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>*/}
+                      {/*</div>*/}
 
-                      <div className="xl:hidden lg:hidden block">
-                        <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom})`}</CustomText>
-                        <CustomText textClassName="text-xxs text-center">{`OR: ${roomOccupancyRate}%`}</CustomText>
-                        <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark})`}</CustomText>
-                        <CustomText textClassName="text-xxs text-center">{`OR: ${carParkOccupancyRate}%`}</CustomText>
-                      </div>
+                      {/*<div className="xl:hidden lg:hidden block">*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom})`}</CustomText>*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`OR: ${roomOccupancyRate}%`}</CustomText>*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark})`}</CustomText>*/}
+                      {/*  <CustomText textClassName="text-xxs text-center">{`OR: ${carParkOccupancyRate}%`}</CustomText>*/}
+                      {/*</div>*/}
                     </div>
                   );
                 })}
