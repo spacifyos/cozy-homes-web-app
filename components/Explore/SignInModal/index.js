@@ -17,8 +17,13 @@ import * as authSelector from "@/src/selectors/auth";
 import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
+import Alert from "@/components/Alert";
 
-const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) => {
+const SignInModal = ({
+  selectedUserType,
+  setSelectedUserType,
+  onClickSignUp,
+}) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
@@ -28,8 +33,8 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
   );
 
   const [signInLoading, setSignInLoading] = useState(false);
+  const [signInErrorMessage, setSignInErrorMessage] = useState("");
 
-  const [selectedRole, setSelectedRole] = useState("tenant");
   const [phonePrefix, setPhonePrefix] = useState("+60");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -37,13 +42,15 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
   const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
 
   const onClickToLogin = async () => {
+    setSignInErrorMessage("");
+
     if (isEmpty(phoneNumber)) {
-      Toast.error("Phone number is required.");
+      setSignInErrorMessage("Phone number is required.");
       return;
     }
 
     if (isEmpty(password)) {
-      Toast.error("Password is required.");
+      setSignInErrorMessage("Password is required.");
       return;
     }
 
@@ -54,7 +61,18 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
       password: password,
     };
 
-    await apiRequest.signInRequest(postData, setSignInLoading, signInSuccess);
+    await apiRequest.signInRequest(
+      postData,
+      setSignInLoading,
+      signInSuccess,
+      signInError,
+    );
+  };
+
+  const signInError = (err) => {
+    const message = get(err, ["response", "data", "message"], "Action error.");
+
+    setSignInErrorMessage(message);
   };
 
   const signInSuccess = (res) => {
@@ -104,7 +122,7 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
       ) : (
         <div
           style={{
-            background: isEqual(selectedUserType, Constant.OWNER)
+            background: isEqual(toLower(selectedUserType), Constant.OWNER)
               ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
               : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
           }}
@@ -117,6 +135,7 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
                   setSelectedUserType("");
                   setPassword("");
                   setPhoneNumber("");
+                  setSignInErrorMessage("");
                 }}
               >
                 <CustomImage
@@ -146,6 +165,14 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
                   Sign In
                 </CustomText>
 
+                {isEmpty(signInErrorMessage) ? (
+                  false
+                ) : (
+                  <div className="pb-4">
+                    <Alert message={signInErrorMessage} />
+                  </div>
+                )}
+
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   <select
                     className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
@@ -169,7 +196,7 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
                     onChange={onChangePhoneNumber}
                     type="number"
                     placeholder={t("signIn.phoneNumber")}
-                    className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                    className="input input-bordered w-full input-error primaryWhite-bg-color col-span-2 user-input"
                   />
                 </div>
 
@@ -184,9 +211,11 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(selectedUserType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
                     buttonText={t("signIn.signIn")}
                     onClick={onClickToLogin}
+                    disable={signInLoading}
+                    loading={signInLoading}
                   />
                 </div>
 
@@ -220,8 +249,6 @@ const SignInModal = ({ selectedUserType, setSelectedUserType, onClickSignUp }) =
                 </CustomText>
               </div>
             </div>
-
-            <LoadingOverlay loading={signInLoading} />
           </div>
         </div>
       )}
