@@ -52,6 +52,14 @@ const SearchWithSlug = ({ id }) => {
   const router = useRouter();
   const amenitiesTarget = useRef();
 
+  const queryState = get(router, ["query", "state"], "");
+  const queryCity = get(router, ["query", "c"], "");
+  const queryPage = get(router, ["query", "p"], "");
+  const querySearch = get(router, ["query", "s"], "");
+  const queryTenurePeriod = get(router, ["query", "t"], "");
+  const queryMinPrice = get(router, ["query", "min_p"], 0);
+  const queryMaxPrice = get(router, ["query", "max_p"], 2500);
+
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
   const listingTagOptionData = useSelector((state) =>
@@ -92,18 +100,21 @@ const SearchWithSlug = ({ id }) => {
     { name: "Highest Price", code: "desc", isActive: false },
   ]);
 
-  const [keywordValue, setKeywordValue] = useState("");
-  const [cityValue, setCityValue] = useState("");
-  const [stateValue, setStateValue] = useState("");
-  const [tenureValue, setTenureValue] = useState("");
+  const [keywordValue, setKeywordValue] = useState(querySearch);
+  const [cityValue, setCityValue] = useState(queryCity);
+  const [stateValue, setStateValue] = useState(queryState);
+  const [tenureValue, setTenureValue] = useState(queryTenurePeriod);
   const [sortValue, setSortValue] = useState("asc");
-  const [priceRange, setPriceRange] = useState([0, 2500]);
+  const [priceRange, setPriceRange] = useState([queryMinPrice, queryMaxPrice]);
   const [spaceTypeValue, setSpaceTypeValue] = useState("");
   const [genderValue, setGenderValue] = useState("");
 
   const [selectedFilterParams, setSelectedFilterParams] = useState({
     sort: "rental",
     direction: sortValue,
+    search: querySearch,
+    city: queryCity,
+    state: queryState,
   });
 
   const amenitiesTag = listingSelector.getFacilityTag(listingTagOptionData);
@@ -188,8 +199,8 @@ const SearchWithSlug = ({ id }) => {
   }, []);
 
   useEffect(() => {
-    fetchListingProperty(selectedFilterParams);
-  }, [selectedFilterParams]);
+    fetchListingProperty(selectedFilterParams, queryPage);
+  }, [selectedFilterParams, queryPage]);
 
   const fetchListingTagOption = () => {
     getListingTagOptionRequest();
