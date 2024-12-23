@@ -21,6 +21,7 @@ import * as commonSelector from "@/src/selectors/common";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
+import Alert from "@/components/Alert";
 
 const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
   const { t } = useTranslation("common");
@@ -33,8 +34,8 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
   const phonePrefixOption = commonSelector.getPhonePrefix(selectOptionData);
 
   const [signUpLoading, setSignUpLoading] = useState(false);
+  const [signInErrorMessage, setSignInErrorMessage] = useState("");
 
-  const [selectedRole, setSelectedRole] = useState("tenant");
   const [nameValue, setNameValue] = useState("");
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("+60");
@@ -45,6 +46,8 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
   const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const handleSubmit = async () => {
+    setSignInErrorMessage("");
+
     if (
       isEmpty(nameValue) ||
       isEmpty(passwordValue) ||
@@ -52,15 +55,15 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
       isEmpty(passwordValue) ||
       isEmpty(confirmPasswordValue)
     ) {
-      return Toast.error("All fields are required.");
+      return setSignInErrorMessage("All fields are required.");
     }
 
     if (!includes(emailValue, "@")) {
-      return Toast.error("Invalid email format, need '@' symbol.");
+      return setSignInErrorMessage("Invalid email format, need '@' symbol.");
     }
 
     if (!isEqual(passwordValue, confirmPasswordValue)) {
-      return Toast.error("Password and Confirm Password not same.");
+      return setSignInErrorMessage("Password and Confirm Password not same.");
     }
 
     const postData = {
@@ -106,7 +109,14 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
       postData,
       setSignUpLoading,
       signUpSuccessCallback,
+      signUpErrorCallback,
     );
+  };
+
+  const signUpErrorCallback = (err) => {
+    const message = get(err, ["response", "data", "message"], "Action error.");
+
+    setSignInErrorMessage(message);
   };
 
   const signUpSuccessCallback = () => {
@@ -126,7 +136,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
       ) : (
         <div
           style={{
-            background: isEqual(selectedUserType, Constant.OWNER)
+            background: isEqual(toLower(selectedUserType), Constant.OWNER)
               ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
               : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
           }}
@@ -135,7 +145,15 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
             <form method="dialog" className={`flex justify-end `}>
               <button
                 className="btn btn-sm btn-circle btn-ghost right-2"
-                onClick={() => setSelectedUserType("")}
+                onClick={() => {
+                  setSelectedUserType("");
+                  setSignInErrorMessage("");
+                  setNameValue("");
+                  setPhoneValue("");
+                  setEmailValue("");
+                  setPasswordValue("");
+                  setConfirmPasswordValue("");
+                }}
               >
                 <CustomImage
                   src={Images.closeIconWhite}
@@ -167,7 +185,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 <CustomText
                   textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
                   styles={{
-                    color: isEqual(selectedUserType, Constant.TENANT)
+                    color: isEqual(toLower(selectedUserType), Constant.TENANT)
                       ? "#F05A22"
                       : "#D71440",
                     fontSize: 32,
@@ -175,6 +193,14 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 >
                   {selectedUserType}
                 </CustomText>
+
+                {isEmpty(signInErrorMessage) ? (
+                  false
+                ) : (
+                  <div className="pb-4">
+                    <Alert message={signInErrorMessage} />
+                  </div>
+                )}
 
                 <input
                   type="text"
@@ -184,9 +210,9 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                   onChange={onChangeNameValue}
                 />
 
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-4 gap-2 mb-4">
                   <select
-                    className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                    className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input col-span-2"
                     value={countryCode}
                     onChange={onChangeCountryCode}
                   >
@@ -259,9 +285,11 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(selectedUserType, Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
                     buttonText="Sign Up for FREE"
                     onClick={handleSubmit}
+                    disable={signUpLoading}
+                    loading={signUpLoading}
                   />
                 </div>
 
@@ -278,8 +306,6 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 </CustomText>
               </div>
             </div>
-
-            <LoadingOverlay loading={signUpLoading} />
           </div>
         </div>
       )}

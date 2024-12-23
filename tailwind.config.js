@@ -32,6 +32,7 @@ module.exports = {
         disable: "#94a1a6",
         black: "#2c2c2c",
         white: "#FFFFFF",
+        "error-light": "#FFEEF3",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

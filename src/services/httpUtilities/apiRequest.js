@@ -34,17 +34,37 @@ const apiRequest = async (
     }
   } catch (err) {
     setLoading(false);
-    errorCallback();
+    errorCallback(err);
     apiRequestErrorResponse(err, ignoreSuccessMessage);
   }
 };
 
-const signInRequest = async (postData, setLoading, successCallback) => {
-  await apiRequest(api.signInAccount(postData), setLoading, successCallback);
+const signInRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+  errorCallback,
+) => {
+  await apiRequest(
+    api.signInAccount(postData),
+    setLoading,
+    successCallback,
+    errorCallback,
+  );
 };
 
-const signUpRequest = async (postData, setLoading, successCallback) => {
-  await apiRequest(api.signUpAccount(postData), setLoading, successCallback);
+const signUpRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+  errorCallback,
+) => {
+  await apiRequest(
+    api.signUpAccount(postData),
+    setLoading,
+    successCallback,
+    errorCallback,
+  );
 };
 
 const postChangePasswordRequest = async (
