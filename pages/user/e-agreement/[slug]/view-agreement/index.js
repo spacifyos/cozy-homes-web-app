@@ -148,10 +148,12 @@ const ViewAgreement = ({ id }) => {
 
       await handleAgreeAgreement();
     } else if (isCanSign) {
-      if (hasPinNumber) {
+      if (isOwnerAgreement) {
         handleOpenSignatureModal(responsive);
       } else {
-        if (!isOwnerAgreement) {
+        if (hasPinNumber) {
+          handleOpenSignatureModal(responsive);
+        } else {
           handleOpenPinNumberInfoModal(responsive);
         }
       }
