@@ -22,7 +22,7 @@ const routeList = [
 
 const nextConfig = {
   reactStrictMode: false,
-  i18n,
+  // i18n,
   env: {
     DOMAIN: process.env.DOMAIN,
     API_DOMAIN: process.env.API_DOMAIN,
