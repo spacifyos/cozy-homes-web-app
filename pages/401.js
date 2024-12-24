@@ -12,7 +12,7 @@ export default function Custom403() {
 
     return (
         <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-color">
-            <NextSeo title="User Forbidden - Spacify Asia" />
+            <NextSeo title="User Invalid - Spacify Asia" />
             <div className="flex gap-1">
                 <CustomText
                     textClassName="font-bold"
