@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
     "@ashwinthomas/react-time-picker-dropdown": "^1.0.5",
@@ -31,6 +32,7 @@
     "next-recaptcha-v3": "^1.4.1",
     "next-redux-wrapper": "^8.1.0",
     "next-seo": "^6.5.0",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-calendar": "^4.8.0",
     "react-date-picker": "^10.6.0",
