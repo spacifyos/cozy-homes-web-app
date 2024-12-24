@@ -3,16 +3,14 @@ import { isEmpty } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import DOMPurify from "isomorphic-dompurify";
 
-const Description = ({ t, description }) => {
+const Description = ({ description }) => {
   const sanitizedDescription = isEmpty(description)
     ? ""
     : DOMPurify.sanitize(description);
 
   return (
     <div className="mb-5 content-container">
-      <CustomText textClassName="section-title">
-        {t("propertyDetail.description")}
-      </CustomText>
+      <CustomText textClassName="section-title">Description</CustomText>
       <div className="">
         {isEmpty(description) ? (
           <div className="py-10">

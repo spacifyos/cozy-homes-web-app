@@ -7,7 +7,6 @@ import * as listingSelector from "@/src/selectors/listing";
 import RentChargesComponent from "@/components/Booking/RentChargesComponent";
 
 const DesktopPropertyPriceSection = ({
-  t,
   data,
   lists,
   totalMoveInCost,
@@ -39,9 +38,7 @@ const DesktopPropertyPriceSection = ({
           <CustomText textClassName="black-text text-base font-bold pr-2">
             RM{rental}
           </CustomText>
-          <CustomText textClassName="black-text text-sm">
-            / month
-          </CustomText>
+          <CustomText textClassName="black-text text-sm">/ month</CustomText>
         </div>
       </div>
 
@@ -60,8 +57,7 @@ const DesktopPropertyPriceSection = ({
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
             <CustomText textClassName="disable-text text-xs">
-              {t("propertyDetail.memberSince")}{" "}
-              {moment(picMemberStartDate).format("YYYY-MM-DD")}
+              Member since {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
           </div>
 
@@ -87,14 +83,18 @@ const DesktopPropertyPriceSection = ({
         </div>
 
         <div className="p-3 bg-color flex items-center justify-between">
-          <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">Total Move-In Cost</CustomText>
+          <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
+            Total Move-In Cost
+          </CustomText>
           <CustomText textClassName="primary-text font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             RM {totalMoveInCost}
           </CustomText>
         </div>
 
         <div className="px-3 py-5">
-          <CustomText textClassName="xl:text-base lg:text-base md:text-sm sm:text-sm text-sm pb-1">Move In Cost</CustomText>
+          <CustomText textClassName="xl:text-base lg:text-base md:text-sm sm:text-sm text-sm pb-1">
+            Move In Cost
+          </CustomText>
           <CustomText textClassName="disable-text text-xs text-justify">
             Please check the payment breakdown below. Should you have any
             inquiries, please contact the owner or agent before proceeding with
@@ -141,7 +141,9 @@ const DesktopPropertyPriceSection = ({
                     <CustomText textClassName="font-bold pr-2 text-sm">
                       {isEmpty(label) ? "-" : label}
                     </CustomText>
-                    <CustomText textClassName="text-sm">RM{isEmpty(amount) ? "0" : amount}</CustomText>
+                    <CustomText textClassName="text-sm">
+                      RM{isEmpty(amount) ? "0" : amount}
+                    </CustomText>
                   </div>
                 );
               })}

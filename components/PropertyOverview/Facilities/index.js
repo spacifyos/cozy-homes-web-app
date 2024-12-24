@@ -4,12 +4,10 @@ import { isEmpty, map } from "lodash";
 import FacilitiesComponent from "@/components/PropertyOverview/FacilitiesComponent";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 
-const Facilities = ({ t, facilitiesList }) => {
+const Facilities = ({ facilitiesList }) => {
   return (
     <div className="content-container">
-      <CustomText textClassName="section-title">
-        {t("propertyDetail.facilities")}
-      </CustomText>
+      <CustomText textClassName="section-title">Facilities</CustomText>
 
       <div className="flex flex-row justify-between items-center flex-wrap pr-15">
         {isEmpty(facilitiesList) ? (

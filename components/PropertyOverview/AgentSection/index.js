@@ -45,7 +45,7 @@ const AgentSection = ({
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
             <CustomText textClassName="disable-text text-xs">
-              {t("propertyDetail.memberSince")}{" "}
+              Member since
               {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
             {/*<CustomText textClassName="text-xs power-on-text">*/}
@@ -85,7 +85,7 @@ const AgentSection = ({
           <div className="flex secondary-bg-color h-full py-2 px-4 justify-between items-center">
             <div className="flex flex-col leading-4">
               <CustomText textClassName="text-xs">
-                {t("propertyDetail.totalMoveInCost")}
+                Total Move In Cost
               </CustomText>
               <CustomText textClassName="text-sm primary-text font-bold">
                 RM{isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
@@ -105,7 +105,7 @@ const AgentSection = ({
               onClick={onClickBooking}
             >
               <CustomText textClassName="text-base font-bold text-white">
-                {t("propertyDetail.bookNow")}
+                Book Now
               </CustomText>
               <CustomImage
                 src={Images.righWhiteIcon}
@@ -118,7 +118,7 @@ const AgentSection = ({
               className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
             >
               <CustomText textClassName="text-base font-bold text-white">
-                {t("propertyDetail.bookNow")}
+                Book Now
               </CustomText>
               <CustomImage
                 src={Images.righWhiteIcon}

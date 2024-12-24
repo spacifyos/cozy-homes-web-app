@@ -3,26 +3,26 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 
-const DetailFeatureSection = ({ t, rental, bedType, bathroom, squareFeet }) => {
+const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
   const lists = [
     {
       icon: Images.bathAmenitiesIcon,
-      title: t("propertyDetail.bathRoom"),
+      title: "Bath Room",
       value: _.isEmpty(bathroom) ? "-" : bathroom,
     },
     {
       icon: Images.bedInactiveIcon,
-      title: t("propertyDetail.bed"),
+      title: "Bed",
       value: _.isEmpty(bedType) ? "-" : bedType,
     },
     {
       icon: Images.squareIcon,
-      title: t("propertyDetail.squareFt"),
+      title: "Sqft",
       value: `${_.isEmpty(squareFeet) ? "-" : squareFeet} Sqft`,
     },
     {
       icon: Images.rentalFeeIcon,
-      title: t("propertyDetail.rentalFee"),
+      title: "Rental Fee",
       value: `RM ${_.isEmpty(rental) ? "0" : rental} / mth`,
     },
   ];

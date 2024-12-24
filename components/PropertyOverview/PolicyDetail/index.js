@@ -4,7 +4,7 @@ import { isEmpty } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import DOMPurify from "dompurify";
 
-const PolicyDetail = ({ t, loading, data }) => {
+const PolicyDetail = ({ loading, data }) => {
   const htmlContent = listingSelector.getHtmlContent(data);
   const title = listingSelector.getTitle(data);
 
