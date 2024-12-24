@@ -1,6 +1,6 @@
 import Color from "@/src/utils/Color";
 import { Toaster } from "react-hot-toast";
-// import { appWithTranslation, useTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "@/src/utils/store";
@@ -126,4 +126,4 @@ function AppContent({ Component, pageProps }) {
   );
 }
 
-export default (MyApp);
+export default appWithTranslation(MyApp);
