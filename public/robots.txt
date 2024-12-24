@@ -7,8 +7,12 @@ Disallow: /loading
 Disallow: /payment-failed
 Disallow: /payment-successful
 Disallow: /sign-in
-Disallow: /sign-up
+Disallow: /sign-in/*
+Disallow: /sign-up/*
 Disallow: /user/*
+Disallow: /reset-password
+Disallow: /401
+Disallow: /403
 
 Sitemap: https://www.spacify.asia/sitemap.xml
 Sitemap: https://www.spacify.asia/sitemap/general.xml
