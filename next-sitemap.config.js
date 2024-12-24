@@ -2,7 +2,6 @@
 module.exports = {
   siteUrl: "https://www.spacify.asia",
   generateRobotsTxt: false, // (optional)
-  sitemapBaseFileName: "sitemap_index",
   exclude: [
     "/agency/*",
     "/booking/*/payment-failed",
