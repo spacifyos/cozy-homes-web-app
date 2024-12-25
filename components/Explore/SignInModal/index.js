@@ -24,7 +24,6 @@ const SignInModal = ({
   setSelectedUserType,
   onClickSignUp,
 }) => {
-  const { t } = useTranslation("common");
   const router = useRouter();
   const routeQuery = get(router, ["query"], "");
 
@@ -195,7 +194,7 @@ const SignInModal = ({
                     value={phoneNumber}
                     onChange={onChangePhoneNumber}
                     type="number"
-                    placeholder={t("signIn.phoneNumber")}
+                    placeholder="Phone Number"
                     className="input input-bordered w-full input-error primaryWhite-bg-color col-span-2 user-input"
                   />
                 </div>
@@ -204,7 +203,7 @@ const SignInModal = ({
                   value={password}
                   onChange={onChangePassword}
                   type="password"
-                  placeholder={t("signIn.password")}
+                  placeholder="Password"
                   className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
                   onKeyDown={handleKeyDown}
                 />
@@ -212,7 +211,7 @@ const SignInModal = ({
                 <div className="flex justify-center pb-2">
                   <CustomButton
                     buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
-                    buttonText={t("signIn.signIn")}
+                    buttonText="Sign In"
                     onClick={onClickToLogin}
                     disable={signInLoading}
                     loading={signInLoading}
@@ -221,7 +220,7 @@ const SignInModal = ({
 
                 <Link href={`/user/forgot-password?type=${selectedUserType}`}>
                   <CustomText textClassName="text-center pb-2 underline cursor-pointer text-sm">
-                    {t("signIn.forgotPassword")}
+                    Forgot Password
                   </CustomText>
                 </Link>
 

@@ -24,7 +24,6 @@ import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 import Alert from "@/components/Alert";
 
 const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
-  const { t } = useTranslation("common");
   const router = useRouter();
   const ref = useRef();
 
@@ -204,7 +203,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <input
                   type="text"
-                  placeholder={t("signUp.yourName")}
+                  placeholder="Your Name"
                   className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
                   value={nameValue}
                   onChange={onChangeNameValue}
@@ -247,7 +246,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <input
                   type="password"
-                  placeholder={t("signUp.yourPassword")}
+                  placeholder="Your Password"
                   className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
                   value={passwordValue}
                   onChange={onChangePasswordValue}
@@ -255,7 +254,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <input
                   type="password"
-                  placeholder={t("signUp.confirmYourPassword")}
+                  placeholder="Confirm Your Password"
                   className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
                   value={confirmPasswordValue}
                   onChange={onChangeConfirmPasswordValue}

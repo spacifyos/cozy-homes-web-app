@@ -40,13 +40,18 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return map(routeList, (list) => {
-      return {
+    return [
+      ...routeList.map((list) => ({
         source: list,
         destination: "/404",
         permanent: true,
-      };
-    });
+      })),
+      {
+        source: "/chat",
+        destination: "/user/chat",
+        permanent: true,
+      },
+    ];
   },
   // matcher: [
   //   /*
