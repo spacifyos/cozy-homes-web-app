@@ -80,9 +80,14 @@ const EnquiriesForm = ({
         placeholder="Enter your message"
         onChange={(e) => {
           setPostData((prevState) => {
+            const { request_type } = prevState;
+
             return {
               ...prevState,
-              ...{ issues_description: e.target.value },
+              ...{
+                [`${request_type === 1 ? "description" : "issues_description"}`]:
+                  e.target.value,
+              },
             };
           });
         }}

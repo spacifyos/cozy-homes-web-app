@@ -197,7 +197,8 @@ const NewRequest = ({}) => {
     setPostData((prevState) => {
       return {
         ...prevState,
-        maintenance_type: selectNestedHelpCenterSection,
+        [`${selectSection === 1 ? "enquiry_type" : "maintenance_type"}`]:
+          selectNestedHelpCenterSection,
       };
     });
 
