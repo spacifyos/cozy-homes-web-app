@@ -5,124 +5,122 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
+import Constant from "@/src/utils/Constant";
 
 const SpecificRequestComponent = ({
-  t,
   selectNestedHelpCenterSection,
   onClickChangeUploadModalTitle,
 }) => {
-  const displayComponent = (value) => {
-    const requestSelect = {
-      t: t,
-      placeholder: t(`newRequest.select${value}`),
-      lists: [],
-    };
-
-    switch (value) {
-      case "Amenities":
-        requestSelect.title = t("newRequest.selectAmenities");
-        requestSelect.lists = [
-          { label: t("newRequest.washer"), value: "washer" },
-          { label: t("newRequest.dryer"), value: "dryer" },
-          { label: t("newRequest.oven"), value: "oven" },
-          { label: t("newRequest.airConditioner"), value: "airConditioner" },
-          { label: t("newRequest.waterHeater"), value: "waterHeater" },
-          { label: t("newRequest.cellingFan"), value: "cellingFan" },
-        ];
-        break;
-      case "Electrical":
-        requestSelect.title = t("newRequest.selectElectrical");
-        requestSelect.lists = [
-          { label: t("newRequest.lights"), value: "lights" },
-          { label: t("newRequest.wellSocket"), value: "well socket" },
-          { label: t("newRequest.wiring"), value: "wiring" },
-          { label: t("newRequest.smartMeter"), value: "smart meter" },
-        ];
-        break;
-      case "Plumbing":
-        requestSelect.title = t("newRequest.selectPlumbing");
-        requestSelect.lists = [
-          { label: t("newRequest.leaking"), value: "leaking" },
-          { label: t("newRequest.faucets"), value: "faucets" },
-          { label: t("newRequest.pipes"), value: "pipes" },
-          { label: t("newRequest.pumps"), value: "pumps" },
-        ];
-        break;
-      case "Exterior&Interior":
-        requestSelect.title = t("newRequest.selectExterior&Interior");
-        requestSelect.lists = [
-          { label: t("newRequest.doors"), value: "doors" },
-          { label: t("newRequest.windows"), value: "windows" },
-          { label: t("newRequest.flooring"), value: "flooring" },
-          { label: t("newRequest.wall"), value: "wall" },
-        ];
-        break;
-      case "Cleaning":
-        requestSelect.title = t("newRequest.selectCleaning");
-        requestSelect.lists = [
-          { label: t("newRequest.bedroom"), value: "bedroom" },
-          { label: t("newRequest.washroom"), value: "washroom" },
-        ];
-        break;
-      default:
-        return null;
-    }
-
-    return (
-      <BookingSelect
-        {...requestSelect}
-        className="pb-2"
-        bgColor="primaryWhite-bg-color"
-      />
-    );
-  };
+  // const displayComponent = (value) => {
+  //   const requestSelect = {
+  //     t: t,
+  //     placeholder: t(`newRequest.select${value}`),
+  //     lists: [],
+  //   };
+  //
+  //   switch (value) {
+  //     case "Amenities":
+  //       requestSelect.title = t("newRequest.selectAmenities");
+  //       requestSelect.lists = [
+  //         { label: t("newRequest.washer"), value: "washer" },
+  //         { label: t("newRequest.dryer"), value: "dryer" },
+  //         { label: t("newRequest.oven"), value: "oven" },
+  //         { label: t("newRequest.airConditioner"), value: "airConditioner" },
+  //         { label: t("newRequest.waterHeater"), value: "waterHeater" },
+  //         { label: t("newRequest.cellingFan"), value: "cellingFan" },
+  //       ];
+  //       break;
+  //     case "Electrical":
+  //       requestSelect.title = t("newRequest.selectElectrical");
+  //       requestSelect.lists = [
+  //         { label: t("newRequest.lights"), value: "lights" },
+  //         { label: t("newRequest.wellSocket"), value: "well socket" },
+  //         { label: t("newRequest.wiring"), value: "wiring" },
+  //         { label: t("newRequest.smartMeter"), value: "smart meter" },
+  //       ];
+  //       break;
+  //     case "Plumbing":
+  //       requestSelect.title = t("newRequest.selectPlumbing");
+  //       requestSelect.lists = [
+  //         { label: t("newRequest.leaking"), value: "leaking" },
+  //         { label: t("newRequest.faucets"), value: "faucets" },
+  //         { label: t("newRequest.pipes"), value: "pipes" },
+  //         { label: t("newRequest.pumps"), value: "pumps" },
+  //       ];
+  //       break;
+  //     case "Exterior&Interior":
+  //       requestSelect.title = t("newRequest.selectExterior&Interior");
+  //       requestSelect.lists = [
+  //         { label: t("newRequest.doors"), value: "doors" },
+  //         { label: t("newRequest.windows"), value: "windows" },
+  //         { label: t("newRequest.flooring"), value: "flooring" },
+  //         { label: t("newRequest.wall"), value: "wall" },
+  //       ];
+  //       break;
+  //     case "Cleaning":
+  //       requestSelect.title = t("newRequest.selectCleaning");
+  //       requestSelect.lists = [
+  //         { label: t("newRequest.bedroom"), value: "bedroom" },
+  //         { label: t("newRequest.washroom"), value: "washroom" },
+  //       ];
+  //       break;
+  //     default:
+  //       return null;
+  //   }
+  //
+  //   return (
+  //     <BookingSelect
+  //       {...requestSelect}
+  //       className="pb-2"
+  //       bgColor="primaryWhite-bg-color"
+  //     />
+  //   );
+  // };
 
   return selectNestedHelpCenterSection ? (
     <div>
       <DividerSection
-        title={t("newRequest.pleaseSpecificTheRequest")}
-        subtitle={t("newRequest.chooseToSpecifyTheIssue")}
+        title={"Please Specific The Request"}
+        subtitle={"Choose to specific the issue."}
       />
 
-      {displayComponent(selectNestedHelpCenterSection)}
+      {/*<BookingSelect*/}
+      {/*  bgColor="primaryWhite-bg-color"*/}
+      {/*  className="pb-2"*/}
+      {/*  title={t("newRequest.selectIssue")}*/}
+      {/*  placeholder={t("newRequest.selectIssue")}*/}
+      {/*  lists={[{ name: t("newRequest.notWorking"), value: "not working" }]}*/}
+      {/*/>*/}
 
       <BookingSelect
         bgColor="primaryWhite-bg-color"
         className="pb-2"
-        title={t("newRequest.selectIssue")}
-        placeholder={t("newRequest.selectIssue")}
-        lists={[{ name: t("newRequest.notWorking"), value: "not working" }]}
-      />
-
-      <BookingSelect
-        bgColor="primaryWhite-bg-color"
-        className="pb-2"
-        title={t("newRequest.selectPriority")}
-        placeholder={t("newRequest.selectPriority")}
+        title={"Select Priority"}
+        placeholder={"Select Priority"}
         lists={[
-          { name: t("newRequest.critical"), value: "critical" },
-          { name: t("newRequest.high"), value: "high" },
-          { name: t("newRequest.medium"), value: "medium" },
-          { name: t("newRequest.low"), value: "low" },
+          { label: "Critical", value: Constant.CRITICAL },
+          { label: "High", value: Constant.HIGH },
+          { label: "Normal", value: Constant.NORMAL },
+          { label: "Low", value: Constant.LOW },
         ]}
       />
 
       <BookingTextArea
         bgColor="primaryWhite-bg-color"
         className="pb-2"
-        title={t("newRequest.describeTheIssue")}
-        placeholder={t("newRequest.describeTheIssue")}
+        title={"Describe The Issue"}
+        placeholder={"Enter your message"}
       />
 
       <CustomText textClassName="pb-2 text-xs">
-        {t("newRequest.uploadPhoto")}
+        {"Upload Photo (max file size: 2MB,up to 5 photo):"}
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">
         <CustomImage
           src={Images.imageNotFound}
           imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius"
+          className="global-border-radius border"
         />
         <div
           className="bg-color global-border-radius cursor-pointer flex items-center justify-center"
@@ -142,14 +140,14 @@ const SpecificRequestComponent = ({
       </div>
 
       <CustomText textClassName="pb-2 text-xs">
-        {t("newRequest.uploadVideo")}
+        {"Upload Video (max file size: 2MB, up to 2 video):"}
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2  pb-4">
         <CustomImage
           src={Images.imageNotFound}
           imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius"
+          className="global-border-radius border"
         />
 
         <div

@@ -5,7 +5,7 @@ import CustomButton from "@/components/CustomButton";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
-const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
+const MeterComponent = ({ onClickToMeterOverview, item }) => {
   const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
@@ -38,7 +38,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="pr-3 text-xs disable-text">
-              {t("myStay.meterStatus")}
+              Meter Status
             </CustomText>
 
             <div className="flex items-center pr-3">
@@ -50,7 +50,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
               <CustomText
                 textClassName={`${wifi ? "power-on-text" : "disable-text"} text-sm`}
               >
-                {t("myStay.wifi")}
+                WIFI
               </CustomText>
             </div>
 
@@ -63,7 +63,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
               <CustomText
                 textClassName={`${power ? "power-on-text" : "disable-text"} text-sm`}
               >
-                {t("myStay.power")}
+                Power
               </CustomText>
             </div>
           </div>
@@ -73,7 +73,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
       <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
         <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-color">
           <CustomText textClassName="disable-text text-xs">
-            {t("myStay.balanceUnit")}
+            Balance Unit
           </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="primary-text text-base font-bold pe-1">
@@ -87,7 +87,7 @@ const MeterComponent = ({ t, onClickToMeterOverview, item }) => {
           <CustomButton
             buttonClassName="w-full primary-btn h-14"
             textClassName="text-lg"
-            buttonText={t("myStay.topUp")}
+            buttonText="Top Up"
           />
         </a>
       </div>

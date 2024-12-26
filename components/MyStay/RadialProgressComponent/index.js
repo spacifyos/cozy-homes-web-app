@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { isEmpty } from "lodash";
 
 const RadialProgressComponent = ({
-  t,
   dimensions,
   tenancyRemaining,
   totalDays,
@@ -54,12 +53,12 @@ const RadialProgressComponent = ({
     >
       <div className="flex-col flex justify-end items-center pt-1 px-2">
         <CustomText textClassName="text-xs disable-text line-clamp-2 text-center">
-          {t("myStay.tenancyRemaining")}
+          Tenancy Remaining
         </CustomText>
         <CustomText textClassName="text-sm primary-text font-bold">
           {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
-        <CustomText textClassName="text-xs">{t("myStay.days")}</CustomText>
+        <CustomText textClassName="text-xs">Days</CustomText>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import StatusLabel from "@/components/StatusLabel";
 import { map, isEmpty } from "lodash";
 import * as invoiceSelector from "@/src/selectors/invoice";
 
-const InvoiceComponent = ({ t, data, type }) => {
+const InvoiceComponent = ({ data, type }) => {
   return (
     <div className="flex flex-col gap-3">
       {map(data, (item, index) => {
@@ -32,7 +32,7 @@ const InvoiceComponent = ({ t, data, type }) => {
               <div className="flex flex-col">
                 <div className="flex items-end pb-0.5">
                   <CustomText textClassName="black-text text-sm font-bold line-clamp-1 pr-2">
-                    {t("myStay.invoice")} #: {isEmpty(code) ? "-" : code}
+                    Invoice #: {isEmpty(code) ? "-" : code}
                   </CustomText>
                 </div>
 
@@ -43,15 +43,13 @@ const InvoiceComponent = ({ t, data, type }) => {
                     >
                       Amount
                     </CustomText>
-                    <CustomText
-                      textClassName={`text-sm black-text font-bold`}
-                    >
+                    <CustomText textClassName={`text-sm black-text font-bold`}>
                       {`RM${isEmpty(totalAmount) ? "0" : totalAmount}`}
                     </CustomText>
                   </div>
                   <div className="pr-3">
                     <CustomText textClassName="text-xs disable-text">
-                      {t("myStay.status")}
+                      Status
                     </CustomText>
 
                     <div className="flex items-center">
@@ -70,7 +68,7 @@ const InvoiceComponent = ({ t, data, type }) => {
 
                 <div className="flex items-center">
                   <CustomText textClassName="pr-3 text-xs disable-text italic">
-                    {t("myStay.dueDate")} {isEmpty(dueDate) ? "-" : dueDate}
+                    Due Date {isEmpty(dueDate) ? "-" : dueDate}
                   </CustomText>
                 </div>
               </div>

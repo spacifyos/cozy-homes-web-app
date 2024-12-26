@@ -1,13 +1,16 @@
 import Images from "@/src/utils/Image";
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import { map, get, filter, isEqual } from "lodash";
 import { useState } from "react";
 import HelpCenterListingCard from "@/components/HelpCenterListingCard";
 import AuthWrapper from "@/components/AuthWrapper";
+import { NextSeo } from "next-seo";
+import CustomText from "@/components/CustomText";
+import CustomImage from "@/components/CustomImage";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 const lists = [
@@ -55,19 +58,19 @@ const HelpCenter = () => {
   const [selectedStatus, setSelectedStatus] = useState("All");
   const btnLists = [
     {
-      btnText: t("helpCenter.all"),
+      btnText: "All",
       status: "All",
     },
     {
-      btnText: t("helpCenter.inProgress"),
+      btnText: "In Progress",
       status: "In Progress",
     },
     {
-      btnText: t("helpCenter.completed"),
+      btnText: "Complete",
       status: "Completed",
     },
     {
-      btnText: t("helpCenter.cancelled"),
+      btnText: "Cancelled",
       status: "Cancelled",
     },
   ];
@@ -81,62 +84,83 @@ const HelpCenter = () => {
   };
 
   const onClickToNewRequest = () => {
-    router.push("/help-center/new-request");
+    router.push("/user/help-center/new-request");
   };
 
   const onClickToRequestOverview = (id) => {
-    router.push(`/help-center/${id}`);
+    router.push(`/user/help-center/${id}`);
   };
 
   const formattedList = () => {
-    if (_.isEqual(selectedStatus, "All")) {
+    if (isEqual(selectedStatus, "All")) {
       return lists;
     }
 
-    return _.filter(lists, (item) => {
-      return _.isEqual(item.status, selectedStatus);
+    return filter(lists, (item) => {
+      return isEqual(item.status, selectedStatus);
     });
   };
 
   return (
-    <CustomHeader
-      pageTitle={t("pageTitle.helpCenter")}
-      hideBgImage
-      rightButtonIcon={Images.plusIcon}
-      onClickGoBack={onClickGoBack}
-      onClickRightButton={onClickToNewRequest}
-    >
-      <div className="body-container pb-4">
-        <div className="flex items-center pb-4">
-          {_.map(btnLists, (item, index) => {
-            return (
-              <CustomButton
-                key={index}
-                buttonText={_.get(item, ["btnText"], "")}
-                buttonClassName={`btn-sm ${_.isEqual(selectedStatus, _.get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
-                textClassName="text-xs"
-                onClick={() =>
-                  onClickSelectStatusCategory(_.get(item, ["status"], ""))
-                }
-              />
-            );
-          })}
-        </div>
+    <div className="min-h-screen primaryWhite-bg-color">
+      <NextSeo title="My Invoice - Spacify Asia" />
 
-        <div className="flex flex-col gap-4">
-          {_.map(formattedList(), (item, index) => {
-            return (
-              <HelpCenterListingCard
-                t={t}
-                key={index}
-                item={item}
-                onClickToRequestOverview={onClickToRequestOverview}
+      <DesktopLayout
+        // loading={invoiceListingLoading && isEmpty(invoiceListingData)}
+        rightButtonIcon={Images.plusIcon}
+        onClickRightButton={onClickToNewRequest}
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap">
+                <li>
+                  <CustomText textClassName="text-base">Help Center</CustomText>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
               />
-            );
-          })}
+              <CustomText textClassName="text-base">Help Center</CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div className="flex flex-col flex-1 h-full">
+          <div className="flex items-center pb-4">
+            {map(btnLists, (item, index) => {
+              return (
+                <CustomButton
+                  key={index}
+                  buttonText={get(item, ["btnText"], "")}
+                  buttonClassName={`btn-sm ${isEqual(selectedStatus, get(item, ["status"], "")) ? "primary-btn" : "default-btn"} mr-2`}
+                  textClassName="text-xs"
+                  onClick={() =>
+                    onClickSelectStatusCategory(get(item, ["status"], ""))
+                  }
+                />
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {map(formattedList(), (item, index) => {
+              return (
+                <HelpCenterListingCard
+                  key={index}
+                  item={item}
+                  onClickToRequestOverview={onClickToRequestOverview}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </CustomHeader>
+      </DesktopLayout>
+    </div>
   );
 };
 

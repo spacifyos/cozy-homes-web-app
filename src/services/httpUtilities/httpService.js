@@ -225,6 +225,18 @@ const postResetPasswordVerify = (postData) =>
 const postResetPassword = (postData) =>
   apiInstance.post(`/reset-password`, postData);
 
+const getMaintenanceTicket = (per_page, page) =>
+  apiInstance.get(`/maintenance-ticket?per_page=${per_page}&page=${page}`);
+
+const getMaintenanceTicketOption = () =>
+  apiInstance.get(`/maintenance-ticket/create`);
+
+const getMaintenanceTicketDetail = (id) =>
+  apiInstance.get(`/maintenance-ticket/${id}`);
+
+const postMaintenanceTicket = (postData) =>
+  apiInstance.post(`/maintenance-ticket/store`, postData);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -280,4 +292,8 @@ export default {
   getPropertyOption,
   postResetPasswordVerify,
   postResetPassword,
+  getMaintenanceTicket,
+  getMaintenanceTicketOption,
+  getMaintenanceTicketDetail,
+  postMaintenanceTicket,
 };

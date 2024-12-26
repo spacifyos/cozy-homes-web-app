@@ -20,17 +20,26 @@ const Constant = {
   HOME_FOR_RENT: "whole-unit",
   ROOM_FOR_RENT: "sublet",
 
-  MAINTENANCE_REQUESTS: "Maintenance Requests",
-  GENERAL_ENQUIRIES: "General Enquiries Requests",
+  MAINTENANCE_REQUEST_VALUE: 1,
+  GENERAL_ENQUIRIES_VALUE: 2,
 
-  ENQUIRY: "Enquiry",
-  FEEDBACK: "Feedback",
+  ENQUIRY: 1,
+  FEEDBACK: 2,
 
-  AMENITIES: "Amenities",
-  ELECTRICAL: "Electrical",
-  PLUMBING: "Plumbing",
-  EXTERIOR_INTERIOR: "Exterior&Interior",
-  CLEANING: "Cleaning",
+  AMENITIES: 3,
+  ELECTRICAL: 4,
+  PLUMBING: 5,
+  EXTERIOR_INTERIOR: 6,
+  CLEANING: 7,
+
+  SUGGESTION: 1,
+  REVIEW: 2,
+  COMPLAINT: 3,
+
+  LOW: 1,
+  NORMAL: 2,
+  HIGH: 3,
+  CRITICAL: 4,
 
   WALLET_EXPENSE: 1,
   WALLET_RENTAL_INCOME: 2,

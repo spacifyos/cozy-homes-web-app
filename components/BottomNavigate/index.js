@@ -8,7 +8,7 @@ import Helper from "@/src/utils/Helper";
 import { useRouter } from "next/router";
 import Toast from "../../src/utils/Toast";
 
-const BottomNavigate = ({ routeName, t, routeQuery }) => {
+const BottomNavigate = ({ routeName, routeQuery }) => {
   const router = useRouter();
   const [lists, setLists] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
@@ -21,14 +21,16 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
 
       setLists([
         {
-          name: t("root.explore"),
+          name: "Explore",
           value: "/",
           icon: Images.searchIcon,
           activeIcon: Images.searchIconActive,
         },
         {
           name: "My Property",
-          value: isEqual(userType, "owner") ? "/user/owner" : "/user/my-property",
+          value: isEqual(userType, "owner")
+            ? "/user/owner"
+            : "/user/my-property",
           icon: Images.homeIcon,
           activeIcon: Images.homeIconActive,
         },
@@ -45,7 +47,7 @@ const BottomNavigate = ({ routeName, t, routeQuery }) => {
         //   activeIcon: Images.renoExpertIconActive,
         // },
         {
-          name: t("root.account"),
+          name: "Account",
           value: "/user/account",
           icon: Images.accountIcon,
           activeIcon: Images.accountIconActive,

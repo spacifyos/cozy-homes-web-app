@@ -10,6 +10,7 @@ const CategoryCard = ({
   onClickChangeSection,
   btnText,
   btnDescription,
+  subType,
 }) => {
   return (
     <div className="col-span-2 pb-4">
@@ -22,14 +23,12 @@ const CategoryCard = ({
             className="cursor-pointer"
             src={`${isEqual(selectedValue, value) ? icon : iconActive}`}
             imageStyle={{ width: 30, height: 30 }}
-            onClick={() => onClickChangeSection(value)}
+            onClick={() => onClickChangeSection(value, subType)}
           />
         </div>
 
-        <CustomText textClassName="font-bold text-xs">
-          {btnText}
-        </CustomText>
-        <CustomText textClassName="disable-text text-xs text-center ">
+        <CustomText textClassName="font-bold text-xs">{btnText}</CustomText>
+        <CustomText textClassName="disable-text text-xs text-center">
           {btnDescription}
         </CustomText>
       </div>

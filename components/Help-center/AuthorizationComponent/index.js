@@ -7,7 +7,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 import { useState } from "react";
 import moment from "moment";
 import BookingDateInput from "@/components/Booking/BookingDateInput";
-const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
+const AuthorizationComponent = ({ onClickToRequestOverview }) => {
   const [dateValue, setDateValue] = useState(
     moment(new Date()).format("YYYY-MM-DD"),
   );
@@ -18,16 +18,16 @@ const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
   return (
     <div>
       <DividerSection
-        title={t("newRequest.authorization&Availability")}
-        subtitle={t("newRequest.pleaseProvideThePossibleOptionsBelow")}
+        title={"Authorization & Availability"}
+        subtitle={"Please provide the possible options below."}
       />
 
       <BookingSelect
-        title={t("newRequest.canOurTechnicianEnterWhenYou'reNotThere")}
-        placeholder={t("newRequest.selectYesOrNo")}
+        title={"Can Our Technician Enter When You're Not There?"}
+        placeholder="Select Yes Or No"
         lists={[
-          { name: t("newRequest.yes"), value: "yes" },
-          { name: t("newRequest.no"), value: "no" },
+          { label: "Yes", value: true },
+          { label: "No", value: false },
         ]}
         className="pb-2"
         bgColor="primaryWhite-bg-color"
@@ -39,19 +39,24 @@ const AuthorizationComponent = ({ t, onClickToRequestOverview }) => {
         bgColor="primaryWhite-bg-color"
       />
 
-      <BookingSelect
-        className="pb-2"
-        bgColor="primaryWhite-bg-color"
-        title={t("newRequest.time")}
-        placeholder={t("newRequest.selectTime")}
-        lists={[{ name: "8:30am - 12.00pm", value: "8:30am - 12.00pm" }]}
-      />
+      <div className="flex gap-2 pb-2">
+        <BookingDateInput
+          title="Start Time"
+          type="time"
+          bgColor="primaryWhite-bg-color"
+        />
+        <BookingDateInput
+          title="End Time"
+          type="time"
+          bgColor="primaryWhite-bg-color"
+        />
+      </div>
 
       <div className="flex justify-center items-center pt-2">
         <CustomButton
           buttonStyles={{ padding: "5px 30px" }}
           buttonClassName="primary-btn"
-          buttonText={t("newRequest.createARequest")}
+          buttonText={"Create A Request"}
           onClick={() => onClickToRequestOverview(1)}
         />
       </div>

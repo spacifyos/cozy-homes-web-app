@@ -29,7 +29,7 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   );
 };
 
-const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
+const TenancySection = ({ onChangeAutoPay, isChecked, data }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [tenancyViewMore, setTenancyViewMore] = useState(false);
 
@@ -41,12 +41,10 @@ const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
 
   return (
     <div className="pb-7 relative">
-      <CustomText textClassName="section-title pb-2">
-        {t("myStay.myTenancy")}
-      </CustomText>
+      <CustomText textClassName="section-title pb-2">My Tenancy</CustomText>
 
       {isEmpty(data) ? (
-        <TenancyComponent t={t} />
+        <TenancyComponent />
       ) : (
         <Swiper
           className="mySwiper global-box-shadow global-border-radius cursor-grab primaryWhite-bg-color"
@@ -56,7 +54,7 @@ const TenancySection = ({ t, onChangeAutoPay, isChecked, data }) => {
           {map(data, (item, index) => {
             return (
               <SwiperSlide key={index}>
-                <TenancyComponent item={item} t={t} />
+                <TenancyComponent item={item} />
               </SwiperSlide>
             );
           })}

@@ -75,8 +75,7 @@
 }
 
 .input-title {
-  color: $primary-black-color;
-  @apply text-xs;
+  @apply text-xs text-disable;
 }
 
 .booking-select:focus-within,

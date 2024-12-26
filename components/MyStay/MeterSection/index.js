@@ -5,12 +5,12 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
-const MeterSection = ({ t, data }) => {
+const MeterSection = ({ data }) => {
   return (
     <div className="pb-7">
       <div className="flex justify-between items-center pb-2">
         <CustomText textClassName="section-title">
-          {t("myStay.myMeter")}
+          My Meter
         </CustomText>
 
         <a href={"/user/my-meter"} className="flex">
@@ -26,7 +26,7 @@ const MeterSection = ({ t, data }) => {
         <CustomEmptyBox emptyTitle="No meter found" />
       ) : (
         map(data, (item, index) => {
-          return <MeterComponent key={index} t={t} item={item} />;
+          return <MeterComponent key={index} item={item} />;
         })
       )}
     </div>

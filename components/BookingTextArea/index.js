@@ -8,6 +8,7 @@ const BookingTextArea = ({
   title,
   name,
   bgColor = "bg-color",
+  ...props
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
@@ -18,6 +19,7 @@ const BookingTextArea = ({
         className={`booking-textarea ${bgColor}`}
         name={name}
         required
+        {...props}
       />
       {_.isEmpty(errorMessage) ? (
         false

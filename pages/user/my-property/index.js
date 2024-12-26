@@ -115,7 +115,8 @@ const MyStay = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="My Stay - Spacify Asia" />
 
-      <DesktopLayout footerPaddingBottom="pb-20"
+      <DesktopLayout
+        footerPaddingBottom="pb-20"
         loading={
           userProfileLoading ||
           tenancyListingLoading ||
@@ -126,30 +127,26 @@ const MyStay = () => {
           <div className="breadcrumbs text-sm">
             <ul>
               <li>
-                <CustomText textClassName="text-base">
-                  My Property
-                </CustomText>
+                <CustomText textClassName="text-base">My Property</CustomText>
               </li>
             </ul>
           </div>
         }
       >
         <div className="">
-          <UserSection t={t} data={userProfileData} />
+          <UserSection data={userProfileData} />
 
           <TenancySection
-            t={t}
             onChangeAutoPay={onChangeAutoPay}
             isChecked={isChecked}
             data={tenancyListingData}
           />
 
-          <DesktopFeatureSection t={t} />
+          <DesktopFeatureSection />
 
-          <MeterSection t={t} data={meterListingData} />
+          <MeterSection data={meterListingData} />
 
           <InvoiceSection
-            t={t}
             onClickSelectCategory={onClickSelectCategory}
             selectedCategory={selectedCategory}
             data={invoiceListingData}
@@ -157,7 +154,7 @@ const MyStay = () => {
         </div>
       </DesktopLayout>
 
-      <BottomNavigate t={t} routeName={routeName} routeQuery={routeQuery} />
+      <BottomNavigate routeName={routeName} routeQuery={routeQuery} />
     </div>
   );
 };

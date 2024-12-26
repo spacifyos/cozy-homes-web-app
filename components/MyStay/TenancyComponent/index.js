@@ -7,7 +7,7 @@ import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent
 import * as tenancySelector from "@/src/selectors/tenancy";
 import { useEffect, useRef, useState } from "react";
 
-const TenancyComponent = ({ item, t }) => {
+const TenancyComponent = ({ item }) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -56,19 +56,19 @@ const TenancyComponent = ({ item, t }) => {
         </div>
 
         <CustomLabelValue
-          label={t("myStay.tenancyCode")}
+          label="Tenancy Code"
           value={isEmpty(tenancyCode) ? "-" : tenancyCode}
           highlight
         />
 
         <CustomLabelValue
-          label={t("myStay.tenancyPeriod")}
+          label="Tenancy Period"
           value={isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
           highlight
         />
 
         <CustomLabelValue
-          label={t("myStay.rentalFee")}
+          label="Rental Fee"
           value={`RM${isEmpty(rental) ? "0" : rental}`}
           highlight
         />
@@ -84,7 +84,6 @@ const TenancyComponent = ({ item, t }) => {
         ref={targetRef}
       >
         <RadialProgressComponent
-          t={t}
           dimensions={dimensions}
           tenancyRemaining={tenancyRemaining}
           totalDays={totalDays}

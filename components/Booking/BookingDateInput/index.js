@@ -44,10 +44,14 @@ const BookingDateInput = ({
           {...props}
         />
 
-        <CustomImage
-          src={Images.calendarIcon}
-          imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
-        />
+        {isEqual(type,"date")?<CustomImage
+            src={Images.calendarIcon}
+            imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
+        />:<CustomImage
+            src={Images.clockIcon}
+            imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
+        />}
+
       </div>
       {_.isEmpty(errorMessage) ? (
         false

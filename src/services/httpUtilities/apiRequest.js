@@ -452,6 +452,54 @@ const postResetPasswordRequest = async (
   );
 };
 
+const getMaintenanceTicketOptionRequest = async (
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getMaintenanceTicketOption(),
+    setLoading,
+    successCallback,
+  );
+};
+
+const getMaintenanceTicketListingRequest = async (
+  perPage,
+  page,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getMaintenanceTicket(perPage, page),
+    setLoading,
+    successCallback,
+  );
+};
+
+const getMaintenanceTicketDetailRequest = async (
+  id,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getWalletTransactionDetail(id),
+    setLoading,
+    successCallback,
+  );
+};
+
+const postMaintenanceTicketRequest = async (
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postMaintenanceTicket(postData),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -489,4 +537,8 @@ export default {
   getPropertyOptionRequest,
   postResetPasswordVerifyRequest,
   postResetPasswordRequest,
+  getMaintenanceTicketOptionRequest,
+  getMaintenanceTicketListingRequest,
+  getMaintenanceTicketDetailRequest,
+  postMaintenanceTicketRequest,
 };

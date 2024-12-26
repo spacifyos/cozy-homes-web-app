@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
 import { isEmpty } from "lodash";
 
-const UserSection = ({ t, data }) => {
+const UserSection = ({ data }) => {
   const name = authSelector.getName(data);
   const email = authSelector.getEmail(data);
   const phoneNumber = authSelector.getPhoneNumber(data);

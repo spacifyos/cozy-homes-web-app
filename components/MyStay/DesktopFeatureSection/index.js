@@ -2,24 +2,20 @@ import Images from "@/src/utils/Image";
 import _ from "lodash";
 import FeatureComponent from "@/components/MyStay/FeatureComponent";
 
-const DesktopFeatureSection = ({ t }) => {
+const DesktopFeatureSection = ({}) => {
   return (
     <div className="flex gap-5 pb-7">
-      <FeatureComponent disable name={t("myStay.scan")} icon={Images.qrIcon} />
+      <FeatureComponent disable name="Scan" icon={Images.qrIcon} />
+      <FeatureComponent disable name="Smart Lock" icon={Images.lockIcon} />
       <FeatureComponent
-        disable
-        name={t("myStay.smartLock")}
-        icon={Images.lockIcon}
-      />
-      <FeatureComponent
-        name={t("myStay.eAgreement")}
+        name="E Agreement"
         icon={Images.agreementIconActive}
         route="/user/e-agreement"
       />
       <FeatureComponent
-        disable
-        name={t("myStay.helpCenter")}
+        name="Help Center"
         icon={Images.helpIcon}
+        route="/user/help-center"
       />
     </div>
   );

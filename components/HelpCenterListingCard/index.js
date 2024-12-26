@@ -5,7 +5,7 @@ import StatusLabel from "@/components/StatusLabel";
 import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 
-const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
+const HelpCenterListingCard = ({ item, onClickToRequestOverview, key }) => {
   const status = _.get(item, ["status"], "");
   const secondStatus = _.get(item, ["secondStatus"], "");
   const date = _.get(item, ["date"], "");
@@ -27,18 +27,13 @@ const HelpCenterListingCard = ({ t, item, onClickToRequestOverview, key }) => {
 
       <div className="flex justify-between items-center">
         <div className="pr-2">
-          <CustomText textClassName="font-bold text-sm">
-            {date}
-          </CustomText>
+          <CustomText textClassName="font-bold text-sm">{date}</CustomText>
 
           <CustomText textClassName="font-bold primary-text">
-            {t("helpCenter.request")} #: {requestNum}
+            Request #: {requestNum}
           </CustomText>
 
-          <CustomText
-            textClassName="disable-text text-xs"
-            lineClamp={2}
-          >
+          <CustomText textClassName="disable-text text-xs" lineClamp={2}>
             {request}
           </CustomText>
         </div>

@@ -4,7 +4,6 @@ import Images from "@/src/utils/Image";
 import CustomModal from "@/components/CustomModal";
 
 const UploadModal = ({
-  t,
   changeUploadModalTitle,
   onClickOpenCamera,
   onClickSelectFile,
@@ -12,9 +11,7 @@ const UploadModal = ({
   return (
     <CustomModal id="help_center_upload_modal">
       <CustomText textClassName="font-bold mb-5">
-        {changeUploadModalTitle
-          ? t("newRequest.uploadPhotoTitle")
-          : t("newRequest.uploadVideoTitle")}
+        {changeUploadModalTitle ? "Upload Photo" : "Upload Video"}
       </CustomText>
 
       <div className="flex gap-5">
@@ -25,9 +22,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickOpenCamera}
           />
-          <CustomText textClassName="font-bold text-sm">
-            {t("newRequest.camera")}
-          </CustomText>
+          <CustomText textClassName="font-bold text-sm">Camera</CustomText>
         </div>
 
         <div className="flex flex-col items-center">
@@ -37,9 +32,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />
-          <CustomText textClassName="font-bold text-sm">
-            {t("newRequest.album")}
-          </CustomText>
+          <CustomText textClassName="font-bold text-sm">Album</CustomText>
         </div>
 
         <div className="flex flex-col items-center">
@@ -49,9 +42,7 @@ const UploadModal = ({
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />
-          <CustomText textClassName="font-bold text-sm">
-            {t("newRequest.document")}
-          </CustomText>
+          <CustomText textClassName="font-bold text-sm">Document</CustomText>
         </div>
       </div>
     </CustomModal>

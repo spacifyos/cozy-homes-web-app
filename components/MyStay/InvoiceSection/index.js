@@ -7,7 +7,6 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
 const InvoiceSection = ({
-  t,
   selectedCategory,
   onClickSelectCategory,
   data,
@@ -33,9 +32,7 @@ const InvoiceSection = ({
       {hideTitle ? (
         false
       ) : (
-        <CustomText textClassName="section-title pb-2">
-          {t("myStay.myInvoice")}
-        </CustomText>
+        <CustomText textClassName="section-title pb-2">My Invoice</CustomText>
       )}
 
       <div className="flex justify-between items-end pb-4">
@@ -56,10 +53,7 @@ const InvoiceSection = ({
           })}
         </div>
 
-        <a
-          href={`/user/my-invoice`}
-          className="flex"
-        >
+        <a href={`/user/my-invoice`} className="flex">
           <CustomText textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
             View More
           </CustomText>
@@ -74,7 +68,7 @@ const InvoiceSection = ({
             <CustomEmptyBox emptyTitle="No invoice found" />
           </div>
         ) : (
-          <InvoiceComponent t={t} data={data} type={type} />
+          <InvoiceComponent data={data} type={type} />
         )}
       </div>
     </div>

@@ -13,6 +13,7 @@ const BookingSelect = ({
   rightIcon = Images.downIcon,
   required,
   bgColor = "bg-color",
+  disabled = true,
   ...props
 }) => {
   return (
@@ -34,7 +35,7 @@ const BookingSelect = ({
         className={`${bgColor} booking-select-container flex justify-between`}
       >
         <select className="booking-select" name={name} title={title} {...props}>
-          <option disabled value="">
+          <option disabled={disabled ? true : false} value="">
             {placeholder}
           </option>
           {map(lists, (list) => {
