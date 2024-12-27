@@ -224,12 +224,12 @@ const InvoiceOverview = ({ id }) => {
             <div className="flex justify-between">
               <CustomLabelValue
                 value={isEmpty(code) ? "-" : code}
-                label={t("invoiceOverview.invoiceNumber")}
+                label={'Invoice Number'}
                 highlight
               />
               <div className="pb-2">
                 <CustomText textClassName="text-xs disable-text">
-                  {t("invoiceOverview.status")}
+                  {"Status"}
                 </CustomText>
                 <StatusLabel status={paymentStatus} />
               </div>
@@ -242,32 +242,32 @@ const InvoiceOverview = ({ id }) => {
 
             <CustomLabelValue
               value={isEmpty(billTo) ? "-" : billTo}
-              label={t("invoiceOverview.billTo")}
+              label={"Bill To"}
             />
             <CustomLabelValue
               value={isEmpty(property) ? "-" : property}
-              label={t("invoiceOverview.property")}
+              label={"Property"}
             />
 
             <div className="flex justify-between items-center">
               <CustomLabelValue
                 value={isEmpty(invoiceDate) ? "-" : invoiceDate}
-                label={t("invoiceOverview.invoiceDate")}
+                label={"Invoice Date"}
               />
               <CustomLabelValue
                 value={isEmpty(dueDate) ? "-" : dueDate}
-                label={t("invoiceOverview.dueDate")}
+                label={"Due Date"}
                 highlight
               />
             </div>
 
             <CustomLabelValue
               value={isEmpty(tenancyCode) ? "-" : tenancyCode}
-              label={t("invoiceOverview.tenancyCode")}
+              label={"Tenancy Code"}
             />
             <CustomLabelValue
               value={isEmpty(schedule) ? "-" : schedule}
-              label={t("invoiceOverview.schedule")}
+              label={"Schedule"}
             />
 
             <div
@@ -276,7 +276,7 @@ const InvoiceOverview = ({ id }) => {
             ></div>
 
             <CustomText textClassName="text-xs disable-text">
-              {t("invoiceOverview.items")}
+              {"Items"}
             </CustomText>
 
             <div className="gap-2">
@@ -318,13 +318,13 @@ const InvoiceOverview = ({ id }) => {
 
             <div className="grid grid-cols-2 gap-2">
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.subtotal")}
+                {"Subtotal"}
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(grandTotal) ? "0" : grandTotal}
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.tax")}
+                {"Tax"}
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(tax) ? "0" : tax}
@@ -338,7 +338,7 @@ const InvoiceOverview = ({ id }) => {
 
             <div className="grid grid-cols-2 gap-2">
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.totalAmount")}
+                {"Total Amount"}
               </CustomText>
               <CustomText textClassName="col-span-1 primary-text text-sm font-bold text-end">
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}
@@ -353,13 +353,13 @@ const InvoiceOverview = ({ id }) => {
             {!isEqual(upperCase(paymentStatus), Constant.PAID) ? (
               <div className="grid grid-cols-2 gap-2 pt-4">
                 <CustomButton
-                  buttonText={t("invoiceOverview.cancel")}
+                  buttonText={"Cancel"}
                   buttonClassName="default-btn-outline"
                   onClick={onClickGoBack}
                 />
 
                 <CustomButton
-                  buttonText={t("invoiceOverview.payNow")}
+                  buttonText={"Pay Now"}
                   buttonClassName="primary-btn"
                   onClick={() => onClickToPayment(code)}
                 />

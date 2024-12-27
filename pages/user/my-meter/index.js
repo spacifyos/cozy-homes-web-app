@@ -95,7 +95,7 @@ const MyMeter = () => {
             </div>
           ) : (
             map(meterListingData, (item, index) => (
-              <MeterComponent t={t} key={index} item={item} />
+              <MeterComponent key={index} item={item} />
             ))
           )}
 

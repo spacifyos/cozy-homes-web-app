@@ -6,7 +6,6 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
 const DesktopChangePasswordModal = ({
-  t,
   currentPasswordValue,
   onChangeCurrentPassword,
   errorMessage,
@@ -31,7 +30,7 @@ const DesktopChangePasswordModal = ({
         </form>
         <BookingInput
           title="Current Password"
-          placeholder={t("editProfile.password")}
+          placeholder={"Current Password"}
           bgColor="primaryWhite-bg-color"
           className="pb-3"
           value={currentPasswordValue}
@@ -41,8 +40,8 @@ const DesktopChangePasswordModal = ({
         />
 
         <BookingInput
-          title={t("editProfile.password")}
-          placeholder={t("editProfile.password")}
+          title={"Password"}
+          placeholder={"Password"}
           bgColor="primaryWhite-bg-color"
           className="pb-3"
           value={passwordValue}
@@ -52,8 +51,8 @@ const DesktopChangePasswordModal = ({
         />
 
         <BookingInput
-          title={t("editProfile.confirmPassword")}
-          placeholder={t("editProfile.confirmPassword")}
+          title={"Confirm Password"}
+          placeholder={"Confirm Password"}
           bgColor="primaryWhite-bg-color"
           className="pb-3"
           value={confirmPasswordValue}
@@ -65,7 +64,7 @@ const DesktopChangePasswordModal = ({
         <div className="grid grid-cols-2 gap-4 pt-2">
           <CustomButton
             buttonClassName={`${changePasswordLoading ? "disable-btn" : "default-btn-outline"}`}
-            buttonText={t("myTenancy.cancel")}
+            buttonText={"Cancel"}
             disable={changePasswordLoading}
             onClick={() =>
               onClickCloseChangePasswordModal("desktop_change_password_modal")
@@ -74,7 +73,7 @@ const DesktopChangePasswordModal = ({
 
           <CustomButton
             buttonClassName={`${changePasswordLoading ? "disable-btn" : "primary-btn"}`}
-            buttonText={t("myTenancy.submit")}
+            buttonText={"Submit"}
             onClick={onClickChangePassword}
             loading={changePasswordLoading}
             disable={changePasswordLoading}

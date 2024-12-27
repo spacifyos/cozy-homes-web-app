@@ -359,7 +359,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                     <CustomText
                       textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "black-text font-bold" : "disable-text"}`}
                     >
-                      {t("propertyDetail.tenancy")}
+                      {"Tenancy"}
                     </CustomText>
                   </a>
                   <a
@@ -378,7 +378,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                     <CustomText
                       textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "disable-text" : "black-text font-bold"}`}
                     >
-                      {t("propertyDetail.policy")}
+                      {"Policy"}
                     </CustomText>
                   </a>
                 </div>

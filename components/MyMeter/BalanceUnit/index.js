@@ -4,7 +4,6 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 
 const BalanceUnit = ({
-  t,
   balanceUnit,
   balanceCredit,
   lastConnectedAt,
@@ -28,8 +27,7 @@ const BalanceUnit = ({
       </div>
 
       <CustomText textClassName="disable-text text-xs italic">
-        {t("myMeterOverview.lastConnectedAt")}:{" "}
-        {moment(lastConnectedAt).format("DD MMM YYYY, HH:mm")}
+        Last ConnectedAt: {moment(lastConnectedAt).format("DD MMM YYYY, HH:mm")}
       </CustomText>
     </div>
   );

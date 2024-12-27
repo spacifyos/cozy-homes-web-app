@@ -6,23 +6,23 @@ const MeterFeature = ({ t, onClickToTopUpMeter }) => {
   return (
     <div className="grid grid-cols-4 gap-4 justify-center pb-7">
       <MeterFeatureComponent
-        name={t("myMeterOverview.topUp")}
+        name={"Top Up"}
         icon={Images.topUpIcon}
         onClick={()=>onClickToTopUpMeter(1)}
       />
 
       <MeterFeatureComponent
-        name={t("myMeterOverview.clearBalance")}
+        name={"Clear Balance"}
         icon={Images.clearIcon}
       />
 
       <MeterFeatureComponent
-        name={t("myMeterOverview.usage")}
+        name={"Usage"}
         icon={Images.usageIcon}
       />
 
       <MeterFeatureComponent
-        name={t("myMeterOverview.disconnect")}
+        name={"Disconnect"}
         icon={Images.disconnect}
       />
     </div>

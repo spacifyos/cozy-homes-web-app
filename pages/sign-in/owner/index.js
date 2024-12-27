@@ -177,7 +177,7 @@ const SignInOwner = () => {
                 value={phoneNumber}
                 onChange={onChangePhoneNumber}
                 type="number"
-                placeholder={t("signIn.phoneNumber")}
+                placeholder={"Phone Number"}
                 className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
               />
             </div>
@@ -186,7 +186,7 @@ const SignInOwner = () => {
               value={password}
               onChange={onChangePassword}
               type="password"
-              placeholder={t("signIn.password")}
+              placeholder={"Password"}
               className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
               onKeyDown={handleKeyDown}
             />

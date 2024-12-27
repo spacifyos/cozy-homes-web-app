@@ -6,7 +6,6 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
 const DesktopPinModal = ({
-  t,
   onClickSubmitSignature,
   onClickClosePinModal,
   pinNumberValue,
@@ -25,12 +24,12 @@ const DesktopPinModal = ({
           </button>
         </form>
         <CustomText textClassName="text-base font-bold pb-5">
-          {t("viewAgreement.insertPinNumber")}
+          Insert PinNumber
         </CustomText>
 
         <BookingInput
-          title={t("viewAgreement.pinNUmber")}
-          placeholder={t("viewAgreement.enterSixDigitNumber")}
+          title={"Pin Number"}
+          placeholder={"Enter Six Digit Number"}
           bgColor="primaryWhite-bg-color"
           className="pb-3"
           value={pinNumberValue}
@@ -41,12 +40,12 @@ const DesktopPinModal = ({
 
         <div className="grid grid-cols-2 gap-2 pt-6">
           <CustomButton
-            buttonText={t("viewAgreement.cancel")}
+            buttonText={"Cancel"}
             buttonClassName="default-btn-outline"
             onClick={() => onClickClosePinModal("desktop")}
           />
           <CustomButton
-            buttonText={t("viewAgreement.submit")}
+            buttonText={"Submit"}
             buttonClassName="primary-btn"
             onClick={() => onClickSubmitSignature("desktop")}
           />

@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useRouter } from "next/router";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
@@ -13,10 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import { useEffect, useState } from "react";
 import { isEmpty, isEqual } from "lodash";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import ChangePasswordModal from "@/components/EditProfile/ChangePasswordModal";
 import { NextSeo } from "next-seo";
 import Helper from "@/src/utils/Helper";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -224,21 +221,21 @@ const EditProfile = () => {
 
             <BookingInput
               bgColor="primaryWhite-bg-color"
-              title={t("editProfile.name")}
-              placeholder={t("editProfile.name")}
+              title={"Name"}
+              placeholder={"Name"}
               className="pb-3"
               value={nameValue}
               onChange={onChangeNameValue}
             />
 
             <CustomLabelValue
-              label={t("editProfile.email")}
+              label={"Email"}
               value={isEmpty(email) ? "-" : email}
               className="pb-4"
             />
 
             <CustomLabelValue
-              label={t("editProfile.phoneNumber")}
+              label={"Phone Number"}
               value={isEmpty(phoneNumber) ? "-" : phoneNumber}
               className="pb-0"
             />
@@ -263,13 +260,13 @@ const EditProfile = () => {
             <div className="grid grid-cols-2 gap-5 pt-10">
               <CustomButton
                 buttonClassName="default-btn-outline"
-                buttonText={t("myTenancy.cancel")}
+                buttonText={"Cancel"}
                 onClick={onClickGoBack}
               />
 
               <CustomButton
                 buttonClassName=" primary-btn"
-                buttonText={t("myTenancy.submit")}
+                buttonText={"Submit"}
                 onClick={onClickSubmit}
               />
             </div>
@@ -277,7 +274,6 @@ const EditProfile = () => {
         </div>
 
         <DesktopChangePasswordModal
-          t={t}
           currentPasswordValue={currentPasswordValue}
           onChangeCurrentPassword={onChangeCurrentPassword}
           errorMessage={errorMessage}

@@ -4,7 +4,7 @@ import CustomText from "@/components/CustomText";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
-const MeterComponent = ({ t, item }) => {
+const MeterComponent = ({ item }) => {
   const id = meterSelector.getId(item);
   const name = meterSelector.getName(item);
   const power = meterSelector.getPower(item);
@@ -44,7 +44,7 @@ const MeterComponent = ({ t, item }) => {
 
         <div className="flex items-center">
           <CustomText textClassName="pr-2 text-xs disable-text">
-            {t("myStay.meterStatus")}
+            Meter Status
           </CustomText>
 
           <div className="flex flex-wrap">
@@ -57,7 +57,7 @@ const MeterComponent = ({ t, item }) => {
               <CustomText
                 textClassName={`${wifi ? "power-on-text" : "disable-text"} text-xs`}
               >
-                {t("myStay.wifi")}
+                Wifi
               </CustomText>
             </div>
 
@@ -70,7 +70,7 @@ const MeterComponent = ({ t, item }) => {
               <CustomText
                 textClassName={`${power ? "power-on-text" : "disable-text"} text-xs`}
               >
-                {t("myStay.power")}
+                Power
               </CustomText>
             </div>
           </div>

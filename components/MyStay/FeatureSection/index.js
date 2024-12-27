@@ -2,23 +2,23 @@ import Images from "@/src/utils/Image";
 import _ from "lodash";
 import FeatureComponent from "@/components/MyStay/FeatureComponent";
 
-const FeatureSection = ({ t }) => {
+const FeatureSection = ({ }) => {
   return (
     <div className="grid grid-cols-4 gap-4 flex justify-center pb-7">
-      <FeatureComponent disable name={t("myStay.scan")} icon={Images.qrIcon} />
+      <FeatureComponent disable name={"Scan"} icon={Images.qrIcon} />
       <FeatureComponent
         disable
-        name={t("myStay.smartLock")}
+        name={"Smart Lock"}
         icon={Images.lockIcon}
       />
       <FeatureComponent
-        name={t("myStay.eAgreement")}
+        name={"EAgreement"}
         icon={Images.agreementIconActive}
         route="/user/e-agreement"
       />
       <FeatureComponent
         disable
-        name={t("myStay.helpCenter")}
+        name={"help Center"}
         icon={Images.helpIcon}
       />
     </div>

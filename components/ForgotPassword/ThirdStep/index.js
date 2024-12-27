@@ -15,7 +15,7 @@ const ThirdStep = ({
     <div>
       <input
         type="password"
-        placeholder={t("signUp.yourPassword")}
+        placeholder={"Your Password"}
         className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
         value={passwordValue}
         onChange={onChangePasswordValue}
@@ -23,7 +23,7 @@ const ThirdStep = ({
 
       <input
         type="password"
-        placeholder={t("signUp.confirmYourPassword")}
+        placeholder={"Confirm Your Password"}
         className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
         value={confirmPasswordValue}
         onChange={onChangeConfirmPasswordValue}

@@ -87,7 +87,7 @@ const AgencySignIn = () => {
                 type="email"
                 value={email}
                 onChange={onChangeEmail}
-                placeholder={t("signIn.email")}
+                placeholder={"Email"}
                 className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
               />
 
@@ -95,14 +95,14 @@ const AgencySignIn = () => {
                 type="password"
                 value={password}
                 onChange={onChangePassword}
-                placeholder={t("signIn.password")}
+                placeholder={"Password"}
                 className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
               />
 
               <div className="flex justify-center">
                 <CustomButton
                   buttonClassName="primary-btn w-2/4 mb-2"
-                  buttonText={t("signIn.signIn")}
+                  buttonText={"Sign In"}
                   onClick={onClickToLogin}
                 />
               </div>

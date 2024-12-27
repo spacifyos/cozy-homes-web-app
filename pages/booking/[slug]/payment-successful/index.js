@@ -47,7 +47,7 @@ const PaymentSuccessful = ({ id }) => {
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
-        {t("payment.paymentSuccessful")}
+          Payment Successful
       </CustomText>
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="text-xs text-center">
@@ -59,7 +59,7 @@ const PaymentSuccessful = ({ id }) => {
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={t("payment.viewBooking")}
+        buttonText={"View Booking"}
         onClick={onClickGoToBookingOverview}
       />
     </div>

@@ -35,7 +35,7 @@ const PaymentFailed = ({ id }) => {
       />
 
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
-        {t("payment.paymentFailed")}
+          Payment Failed
       </CustomText>
 
       <div className="pb-4 px-10 pt-4">

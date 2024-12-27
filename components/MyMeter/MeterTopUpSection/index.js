@@ -15,7 +15,6 @@ const topUpOptions = [
 ];
 
 const MeterTopUpSection = ({
-  t,
   onClickSelectPrice,
   selectedPrice,
   unitPrice,
@@ -79,7 +78,7 @@ const MeterTopUpSection = ({
           <input
             type="number"
             className="input w-4/5 bg-color global-box-shadow meter-input"
-            placeholder={t("topUpMeter.unit")}
+            placeholder={"unit"}
             value={selectedPrice}
             onChange={onChangeSelectedPriceValue}
           />
@@ -97,7 +96,7 @@ const MeterTopUpSection = ({
           onClick={onClickClearSelectedPrice}
         />
         <CustomButton
-          buttonText={t("topUpMeter.payNow")}
+          buttonText={"Pay Now"}
           buttonClassName="primary-btn"
           onClick={onClickPayNow}
         />

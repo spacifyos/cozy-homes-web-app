@@ -47,7 +47,7 @@ const PaymentFailed = ({ id }) => {
       />
 
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>
-        {t("payment.paymentFailed")}
+          Payment Failed
       </CustomText>
 
       <div className="pb-4 px-10 pt-4">
@@ -60,7 +60,7 @@ const PaymentFailed = ({ id }) => {
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={t("payment.viewBooking")}
+        buttonText={"View Booking"}
         onClick={onClickPaymentFail}
       />
     </div>

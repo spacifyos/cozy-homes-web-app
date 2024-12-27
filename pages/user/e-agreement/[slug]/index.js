@@ -116,12 +116,12 @@ const EAgreementOverview = ({ id }) => {
               <CustomLabelValue
                 highlight
                 value={isEmpty(referenceNumber) ? "-" : referenceNumber}
-                label={t("eAgreementOverview.referenceNumber")}
+                label={"Reference Number"}
               />
 
               <div className="pb-2">
                 <CustomText textClassName="text-xs disable-text">
-                  {t("eAgreementOverview.status")}
+                  {"Status"}
                 </CustomText>
                 <StatusLabel status={status} />
               </div>
@@ -139,17 +139,17 @@ const EAgreementOverview = ({ id }) => {
 
             <CustomLabelValue
               value={isEmpty(property) ? "-" : property}
-              label={t("eAgreementOverview.property")}
+              label={"Property"}
             />
 
             <CustomLabelValue
               value={isEmpty(agreementDate) ? "-" : agreementDate}
-              label={t("eAgreementOverview.agreementDate")}
+              label={"Agreement Date"}
             />
 
             <CustomLabelValue
               value={isEmpty(tenurePeriod) ? "-" : tenurePeriod}
-              label={t("eAgreementOverview.tenure")}
+              label={"Tenure"}
             />
 
             <div
@@ -159,12 +159,12 @@ const EAgreementOverview = ({ id }) => {
 
             <CustomLabelValue
               value={isEmpty(tenantName) ? "-" : tenantName}
-              label={t("eAgreementOverview.tenant")}
+              label={"Tenant"}
             />
 
             <div className="pb-2">
               <CustomText textClassName="text-xs disable-text">
-                {t("eAgreementOverview.activity")}
+                {"Activity"}
               </CustomText>
               <div className="pt-1 grid grid-cols-2 gap-2">
                 <div className="flex mr-3 items-start">
@@ -177,7 +177,7 @@ const EAgreementOverview = ({ id }) => {
                   />
                   <div className="flex flex-col">
                     <CustomText textClassName="text-sm disable-text">
-                      {t("eAgreementOverview.agreed")}
+                      Agreed
                     </CustomText>
                     <CustomText textClassName="text-xs disable-text">
                       {isEmpty(agreedDate) ? "-" : agreedDate}
@@ -194,7 +194,7 @@ const EAgreementOverview = ({ id }) => {
                   />
                   <div className="flex flex-col">
                     <CustomText textClassName="text-sm disable-text">
-                      {t("eAgreementOverview.signed")}
+                      Signed
                     </CustomText>
                     <CustomText textClassName="text-xs disable-text">
                       {isEmpty(signedDate) ? "-" : signedDate}

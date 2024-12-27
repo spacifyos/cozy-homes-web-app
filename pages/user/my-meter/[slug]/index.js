@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import CustomText from "@/components/CustomText";
@@ -7,14 +6,11 @@ import Images from "@/src/utils/Image";
 import MeterRadialProgressComponent from "@/components/MyMeter/MeterRadialProgressComponent";
 import MeterDetail from "@/components/MyMeter/MeterDetail";
 import BalanceUnit from "@/components/MyMeter/BalanceUnit";
-import MeterFeature from "@/components/MyMeter/MeterFeature";
-import MeterUsageSection from "@/components/MyMeter/MeterUsageSection";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import * as meterAction from "@/src/actions/meter";
 import * as meterSelector from "@/src/selectors/meter";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import MeterTopUpSection from "@/components/MyMeter/MeterTopUpSection";
 import { isEmpty } from "lodash";
@@ -181,9 +177,7 @@ const MyMeterOverview = ({ id }) => {
       >
         <div className="">
           <div className="flex flex-row justify-between">
-            <CustomText textClassName="section-title">
-              {t("myMeterOverview.todayUsage")}
-            </CustomText>
+            <CustomText textClassName="section-title">Today Usage</CustomText>
             <CustomImage
               className="mr-4 cursor-pointer"
               onClick={onClickSyncMeter}
@@ -194,17 +188,15 @@ const MyMeterOverview = ({ id }) => {
 
           <div className="radial-container pb-7">
             <MeterRadialProgressComponent
-              t={t}
               balanceUnit={balanceUnit}
               balanceCredit={balanceCredit}
               isShowBalanceInPrice={isShowBalanceInPrice}
             />
           </div>
 
-          <MeterDetail t={t} data={meterOverviewData} />
+          <MeterDetail data={meterOverviewData} />
 
           <BalanceUnit
-            t={t}
             balanceUnit={balanceUnit}
             lastConnectedAt={lastConnectedAt}
             balanceCredit={balanceCredit}
@@ -212,7 +204,6 @@ const MyMeterOverview = ({ id }) => {
           />
 
           <MeterTopUpSection
-            t={t}
             onClickSelectPrice={onClickSelectPrice}
             selectedPrice={selectedPrice}
             unitPrice={unitPrice}

@@ -5,7 +5,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
 
-const MeterDetail = ({ t, data }) => {
+const MeterDetail = ({ data }) => {
   const name = meterSelector.getName(data);
   const power = meterSelector.getPower(data);
   const wifi = meterSelector.getWifi(data);
@@ -33,11 +33,11 @@ const MeterDetail = ({ t, data }) => {
 
       <div className="flex flex-col items-start flex-1">
         <CustomLabelValue
-          label={t("myMeterOverview.serialNumber")}
+          label={"Serial Number"}
           value={serialNumber === 0 ? "" : serialNumber}
         />
         <CustomText textClassName="text-xs disable-text">
-          {t("myMeterOverview.meterStatus")}
+          Meter Status
         </CustomText>
 
         <div className="flex items-center pt-1 gap-5">
@@ -67,11 +67,11 @@ const MeterDetail = ({ t, data }) => {
 
         <div className="flex items-center gap-5 pt-2">
           <CustomLabelValue
-            label={t("myMeterOverview.usedUnit")}
+            label={"Used Unit"}
             value={isEmpty(totalUnit) ? "0" : totalUnit}
           />
           <CustomLabelValue
-            label={t("myMeterOverview.unitPrice")}
+            label={"Unit Price"}
             value={`RM${isEmpty(unitPrice) ? "0" : unitPrice}`}
           />
         </div>

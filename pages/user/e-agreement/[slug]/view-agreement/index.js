@@ -416,18 +416,18 @@ const ViewAgreement = ({ id }) => {
 
             <div className="flex flex-col items-center pt-5">
               <CustomText textClassName="text-white text-sm py-2">
-                {t("viewAgreement.page")} {pageNumber} of {totalPages}
+                Page {pageNumber} of {totalPages}
               </CustomText>
 
               <div className="flex gap-2 pt-2">
                 <CustomButton
-                  buttonText={t("viewAgreement.previous")}
+                  buttonText={"Previous"}
                   buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
                   onClick={onClickPrevious}
                   disable={!isDocumentReady}
                 />
                 <CustomButton
-                  buttonText={t("viewAgreement.next")}
+                  buttonText={"Next"}
                   buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
                   onClick={onClickNext}
                   disable={!isDocumentReady}
@@ -482,7 +482,6 @@ const ViewAgreement = ({ id }) => {
         />
 
         <DesktopPinModal
-          t={t}
           onClickSubmitSignature={handleSignAgreement}
           onClickClosePinModal={onClickClosePinModal}
           pinNumberValue={pinNumberValue}

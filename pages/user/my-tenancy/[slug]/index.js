@@ -86,7 +86,7 @@ const MyTenancy = ({ id }) => {
 
   return (
     <CustomHeader
-      pageTitle={t("pageTitle.myTenancyOverview")}
+      pageTitle={"My Tenancy Overview"}
       hideBgImage
       onClickGoBack={onClickGoBack}
       // rightButtonIcon={Images.downloadIcon}

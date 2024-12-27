@@ -128,7 +128,7 @@ const PaymentSuccessful = ({ id }) => {
           {/*  3,800*/}
           {/*</CustomText>*/}
           <CustomText textClassName="font-bold text-lg">
-            {t("invoiceSuccessful.congratulations")}
+            Congratulations
           </CustomText>
         </div>
 
@@ -136,7 +136,7 @@ const PaymentSuccessful = ({ id }) => {
           <div className="flex items-center justify-center py-4">
             <CustomImage src={Images.checkGreenIcon} className="mr-2 w-6" />
             <CustomText textClassName="black-text font-bold text-base">
-              {t("invoiceSuccessful.paymentCompleted")}
+              Payment Completed
             </CustomText>
           </div>
 
@@ -164,7 +164,7 @@ const PaymentSuccessful = ({ id }) => {
           <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
             <CustomLabelValue
               value={isEmpty(billTo) ? "-" : billTo}
-              label={t("invoiceOverview.billTo")}
+              label={"Bill To"}
             />
             <CustomLabelValue
               value={isEmpty(code) ? "-" : code}
@@ -172,15 +172,15 @@ const PaymentSuccessful = ({ id }) => {
             />
             <CustomLabelValue
               value={isEmpty(property) ? "-" : property}
-              label={t("invoiceOverview.property")}
+              label={"Property"}
             />
             <CustomLabelValue
               value={isEmpty(tenancyCode) ? "-" : tenancyCode}
-              label={t("invoiceOverview.tenancyCode")}
+              label={"Tenancy Code"}
             />
             <CustomLabelValue
               value={isEmpty(schedule) ? "-" : schedule}
-              label={t("invoiceOverview.schedule")}
+              label={"Schedule"}
             />
 
             <div
@@ -189,7 +189,7 @@ const PaymentSuccessful = ({ id }) => {
             ></div>
 
             <CustomText textClassName="text-xs disable-text">
-              {t("invoiceOverview.items")}
+              Items
             </CustomText>
 
             <div className="gap-2">
@@ -231,13 +231,13 @@ const PaymentSuccessful = ({ id }) => {
 
             <div className="grid grid-cols-2 gap-2">
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.subtotal")}
+                Subtotal
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(grandTotal) ? "0" : grandTotal}
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.tax")}
+                Tax
               </CustomText>
               <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
                 RM{isEmpty(tax) ? "0" : tax}
@@ -251,7 +251,7 @@ const PaymentSuccessful = ({ id }) => {
 
             <div className="grid grid-cols-2 gap-2">
               <CustomText textClassName="col-span-1 black-text text-sm font-bold">
-                {t("invoiceOverview.totalAmount")}
+                Total Amount
               </CustomText>
               <CustomText textClassName="col-span-1 primary-text text-sm font-bold text-end">
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}

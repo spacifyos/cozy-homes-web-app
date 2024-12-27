@@ -4,30 +4,10 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 
 const MeterRadialProgressComponent = ({
-  t,
   balanceUnit,
   balanceCredit,
   isShowBalanceInPrice,
 }) => {
-  const [meterUnit, setMeterUnit] = useState(0);
-  const [percentage, setPercentage] = useState(0);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const newNumber = meterUnit + 1;
-  //     const newPercentage = (newNumber / 365) * 100;
-  //
-  //     if (newPercentage <= 70) {
-  //       setMeterUnit(newNumber);
-  //       setPercentage(newPercentage);
-  //     } else {
-  //       clearInterval(interval);
-  //     }
-  //   }, 3);
-  //
-  //   return () => clearInterval(interval);
-  // }, [meterUnit]);
-
   return (
     <div
       className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"

@@ -8,7 +8,7 @@ const InvoiceSection = ({ t, selectChange, onClickChange }) => {
   return (
     <div>
       <CustomText textClassName="section-title">
-        {t("myMeterOverview.meterUsage")}
+          Meter Usage
       </CustomText>
 
       <div className="flex items-center pb-3">

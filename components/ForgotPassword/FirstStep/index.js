@@ -38,7 +38,7 @@ const FirstStep = ({
           value={phoneNumber}
           onChange={onChangePhoneNumber}
           type="number"
-          placeholder={t("signIn.phoneNumber")}
+          placeholder={"Phone Number"}
           className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
         />
       </div>
