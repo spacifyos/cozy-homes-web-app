@@ -223,7 +223,7 @@ const NewRequest = ({}) => {
     uploadVideoRef && uploadVideoRef.current.click();
   };
 
-  const onClickSubmitEnquiry = async () => {
+  const onClickSubmitRequest = async () => {
     await apiRequest.postMaintenanceTicketRequest(
       postData,
       setCreateMaintenanceTicketLoading,
@@ -231,7 +231,9 @@ const NewRequest = ({}) => {
     );
   };
 
-  const createSuccessCallback = () => {};
+  const createSuccessCallback = () => {
+    router.replace("/user/help-center/request-successful");
+  };
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
@@ -314,7 +316,7 @@ const NewRequest = ({}) => {
                 onClickCheckFeedbackMatters={onClickCheckFeedbackMatters}
                 checkFeedbackMatters={checkFeedbackMatters}
                 setPostData={setPostData}
-                onClickSubmit={onClickSubmitEnquiry}
+                onClickSubmit={onClickSubmitRequest}
               />
             ) : (
               false
@@ -332,13 +334,15 @@ const NewRequest = ({}) => {
             ) ? (
               <div>
                 <SpecificRequestComponent
+                  setPostData={setPostData}
                   selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                   onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
                 />
 
                 {displayAuthorizationComponent ? (
                   <AuthorizationComponent
-                    onClickToRequestOverview={onClickToRequestOverview}
+                    setPostData={setPostData}
+                    onClickToRequestOverview={onClickSubmitRequest}
                   />
                 ) : (
                   <div className="flex justify-center">

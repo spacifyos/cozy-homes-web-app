@@ -5,23 +5,21 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import { get, isEmpty } from "lodash";
 import { NextSeo } from "next-seo";
 
 export { getServerSideProps };
 
-const PaymentSuccessful = ({}) => {
+const RequestSuccessful = ({}) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
-    router.replace("/");
+    router.replace("/user/help-center");
   };
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-color h-screen">
-      <NextSeo title="Payment Successful - Spacify Asia" />
+      <NextSeo title="Request Successful - Spacify Asia" />
       {/*<CustomImage*/}
       {/*  src={Images.cancelIcon}*/}
       {/*  imageStyle={{ width: 20 }}*/}
@@ -33,21 +31,21 @@ const PaymentSuccessful = ({}) => {
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4 text-2xl">
-        Payment Successful
+        Thank You!
       </CustomText>
       <div className="pb-4 px-10 pt-4">
         <CustomText textClassName="text-sm text-center">
-          {isEmpty(message) ? "" : message}
+          Request received. We will update you soon.
         </CustomText>
       </div>
       <CustomButton
         buttonClassName="primary-btn"
         buttonStyles={{ padding: "5px 30px" }}
-        buttonText={"Back to home page"}
+        buttonText={"View Your Request"}
         onClick={onClickGoMainPage}
       />
     </div>
   );
 };
 
-export default PaymentSuccessful;
+export default RequestSuccessful;

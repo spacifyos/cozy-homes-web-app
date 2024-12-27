@@ -1,9 +1,8 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import { map, get, isEqual, omit } from "lodash";
+import { map, get, isEqual } from "lodash";
 import CustomText from "@/components/CustomText";
 import DividerSection from "@/components/Help-center/DividerSection";
-import BookingInput from "@/components/Booking/BookingInput";
 import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 import Constant from "@/src/utils/Constant";
@@ -74,7 +73,7 @@ const EnquiriesForm = ({
       )}
 
       <BookingTextArea
-        // title="Description"
+        title={"Describe The Issue"}
         bgColor="primaryWhite-bg-color"
         className="pb-2"
         placeholder="Enter your message"

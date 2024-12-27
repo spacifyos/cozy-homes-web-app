@@ -10,6 +10,7 @@ import Constant from "@/src/utils/Constant";
 const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
   onClickChangeUploadModalTitle,
+  setPostData,
 }) => {
   // const displayComponent = (value) => {
   //   const requestSelect = {
@@ -97,12 +98,21 @@ const SpecificRequestComponent = ({
         className="pb-2"
         title={"Select Priority"}
         placeholder={"Select Priority"}
+        disabled={false}
         lists={[
           { label: "Critical", value: Constant.CRITICAL },
           { label: "High", value: Constant.HIGH },
           { label: "Normal", value: Constant.NORMAL },
           { label: "Low", value: Constant.LOW },
         ]}
+        onChange={(e) => {
+          setPostData((prevState) => {
+            return {
+              ...prevState,
+              priority: e.target.value,
+            };
+          });
+        }}
       />
 
       <BookingTextArea
@@ -110,6 +120,19 @@ const SpecificRequestComponent = ({
         className="pb-2"
         title={"Describe The Issue"}
         placeholder={"Enter your message"}
+        onChange={(e) => {
+          setPostData((prevState) => {
+            const { request_type } = prevState;
+
+            return {
+              ...prevState,
+              ...{
+                [`${request_type === 1 ? "description" : "issues_description"}`]:
+                  e.target.value,
+              },
+            };
+          });
+        }}
       />
 
       <CustomText textClassName="pb-2 text-xs">
