@@ -23,6 +23,8 @@ import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSectio
 import * as commonSelector from "@/src/selectors/common";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomImage from "@/components/CustomImage";
+import Helper from "@/src/utils/Helper";
+import EventBanner from "@/components/EventBanner";
 
 export { getServerSideProps };
 
@@ -80,7 +82,12 @@ function Home() {
   useEffect(() => {
     fetchListingData();
     fetchListingBannerData();
+    handleEventModalOpen();
   }, []);
+
+  const handleEventModalOpen = () => {
+    Helper.documentGetElementById("event-modal").showModal();
+  };
 
   const fetchListingData = () => {
     getListingRequest();
@@ -221,6 +228,8 @@ function Home() {
           </div>
         </div>
       </DesktopLayout>
+
+      <EventBanner />
 
       {/*<BottomNavigate*/}
       {/*  t={t}*/}
