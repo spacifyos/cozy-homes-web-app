@@ -6,6 +6,7 @@ import invoice from "@/src/reducers/invoice";
 import meter from "@/src/reducers/meter";
 import common from "@/src/reducers/common";
 import agreement from "@/src/reducers/agreement";
+import maintenanceTicket from "@/src/reducers/maintenance-ticket";
 
 export const rootReducers = combineReducers({
   common,
@@ -15,4 +16,5 @@ export const rootReducers = combineReducers({
   invoice,
   meter,
   agreement,
+  maintenanceTicket,
 });

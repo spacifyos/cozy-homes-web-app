@@ -6,6 +6,7 @@ import tenancySaga from "@/src/sagas/tenancy";
 import invoiceSaga from "@/src/sagas/invoice";
 import meterSaga from "@/src/sagas/meter";
 import agreementSaga from "@/src/sagas/agreement";
+import maintenanceTicketSaga from "@/src/sagas/maintenance-ticket";
 
 export default function* rootSaga() {
   yield all([
@@ -16,5 +17,6 @@ export default function* rootSaga() {
     invoiceSaga(),
     meterSaga(),
     agreementSaga(),
+    maintenanceTicketSaga(),
   ]);
 }

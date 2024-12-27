@@ -1,28 +1,34 @@
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
 import StatusLabel from "@/components/StatusLabel";
 import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
+import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import { isEqual } from "lodash";
 
-const HelpCenterListingCard = ({ item, onClickToRequestOverview, key }) => {
-  const status = _.get(item, ["status"], "");
-  const secondStatus = _.get(item, ["secondStatus"], "");
-  const date = _.get(item, ["date"], "");
-  const requestNum = _.get(item, ["requestNum"], "");
-  const request = _.get(item, ["request"], "");
-  const address = _.get(item, "address", "");
-  const state = _.get(item, ["state"], "");
+const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
+  const id = maintenanceTicketSelector.getId(data);
+  const status = maintenanceTicketSelector.getStatus(data);
+  const priority = maintenanceTicketSelector.getPriority(data);
+  const date = maintenanceTicketSelector.getCreatedAt(data);
+  const requestNumber = maintenanceTicketSelector.getRequestNumber(data);
+  const requestInfo = maintenanceTicketSelector.getRequestInfo(data);
+  const address = maintenanceTicketSelector.getPropertyUnitName(data);
+  const roomName = maintenanceTicketSelector.getRoomName(data);
 
   return (
     <div
-      key={key}
       className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color cursor-pointer relative"
-      onClick={() => onClickToRequestOverview(1)}
+      onClick={() => onClickToRequestOverview(id)}
     >
       <div className="flex items-center gap-2 pb-2">
         <StatusLabel status={status} />
-        <StatusLabelOutline status={secondStatus} />
+
+        {isEqual(priority, "N/A") ? (
+          false
+        ) : (
+          <StatusLabelOutline status={priority} />
+        )}
       </div>
 
       <div className="flex justify-between items-center">
@@ -30,17 +36,17 @@ const HelpCenterListingCard = ({ item, onClickToRequestOverview, key }) => {
           <CustomText textClassName="font-bold text-sm">{date}</CustomText>
 
           <CustomText textClassName="font-bold primary-text">
-            Request #: {requestNum}
+            Request #: {requestNumber}
           </CustomText>
 
           <CustomText textClassName="disable-text text-xs" lineClamp={2}>
-            {request}
+            {requestInfo}
           </CustomText>
         </div>
 
         <CustomImage
           src={Images.rightIcon}
-          imageStyle={{ width: 18, height: 18 }}
+          className="w-3 h-3"
         />
       </div>
 
@@ -65,15 +71,15 @@ const HelpCenterListingCard = ({ item, onClickToRequestOverview, key }) => {
             className="mr-2"
             imageStyle={{ width: 18, height: 18 }}
           />
-          <CustomText textClassName="text-sm">{state}</CustomText>
+          <CustomText textClassName="text-sm">{roomName}</CustomText>
         </div>
       </div>
 
-      {_.isEqual(item.status, "In Progress") ? (
-        <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>
-      ) : (
-        false
-      )}
+      {/*{_.isEqual(item.status, "In Progress") ? (*/}
+      {/*  <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
     </div>
   );
 };

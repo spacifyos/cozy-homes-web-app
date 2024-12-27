@@ -225,8 +225,10 @@ const postResetPasswordVerify = (postData) =>
 const postResetPassword = (postData) =>
   apiInstance.post(`/reset-password`, postData);
 
-const getMaintenanceTicket = (per_page, page) =>
-  apiInstance.get(`/maintenance-ticket?per_page=${per_page}&page=${page}`);
+const getMaintenanceTicket = (per_page, page, status) =>
+  apiInstance.get(
+    `/maintenance-ticket?per_page=${per_page}&page=${page}&status=${status}`,
+  );
 
 const getMaintenanceTicketOption = () =>
   apiInstance.get(`/maintenance-ticket/create`);
