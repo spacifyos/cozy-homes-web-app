@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { withTranslation, useTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
@@ -11,10 +10,9 @@ import CustomButton from "@/components/CustomButton";
 import * as agreementSelector from "@/src/selectors/agreement";
 import * as agreementAction from "@/src/actions/agreement";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
+import { useEffect } from "react";
 import AuthWrapper from "@/components/AuthWrapper";
-import { get, isEmpty } from "lodash";
+import { isEmpty } from "lodash";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 
@@ -71,40 +69,35 @@ const EAgreementOverview = ({ id }) => {
       <DesktopLayout
         loading={agreementOverviewDataLoading}
         pageBreadcrumbs={
-         <div>
-           <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
-             <ul>
-               {/*<li>*/}
-               {/*  <a href={"/user/my-property"}>*/}
-               {/*    <CustomText textClassName="text-base disable-text">*/}
-               {/*      My Property*/}
-               {/*    </CustomText>*/}
-               {/*  </a>*/}
-               {/*</li>*/}
-               <li>
-                 <a href={"/user/e-agreement"}>
-                   <CustomText textClassName="text-base disable-text">
-                     My E-Agreement
-                   </CustomText>
-                 </a>
-               </li>
-               <li>
-                 <CustomText textClassName="text-base ">
-                   {referenceNumber}
-                 </CustomText>
-               </li>
-             </ul>
-           </div>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul>
+                <li>
+                  <a href={"/user/e-agreement"}>
+                    <CustomText textClassName="text-base disable-text">
+                      My E-Agreement
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base ">
+                    {referenceNumber}
+                  </CustomText>
+                </li>
+              </ul>
+            </div>
 
-           <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
-             <CustomImage
-                 src={Images.leftIcon}
-                 className="w-2"
-                 onClick={onClickGoBack}
-             />
-             <CustomText textClassName="text-base"> {referenceNumber}</CustomText>
-           </div>
-         </div>
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">
+                {referenceNumber}
+              </CustomText>
+            </div>
+          </div>
         }
       >
         <div className="relative pt-6 flex justify-center">

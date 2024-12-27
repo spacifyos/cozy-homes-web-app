@@ -7,28 +7,12 @@ import { useState } from "react";
 import moment from "moment/moment";
 import BookingDateInput from "@/components/Booking/BookingDateInput";
 import { isEmpty } from "lodash";
-const MaintenanceScheduleInformation = ({ t }) => {
-  const [dateValue, setDateValue] = useState(
-    moment(new Date()).format("YYYY-MM-DD"),
-  );
-
-  const [timeValue, setTimeValue] = useState(
-    moment(new Date()).format("hh:mm"),
-  );
-
-  const onChangeDate = (e) => {
-    setDateValue(e.target.value);
-  };
-
-  const onChangeTime = (e) => {
-    setTimeValue(e.target.value);
-  };
-
+const MaintenanceScheduleInformation = ({}) => {
   return (
-    <div className=" global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
       <div className="flex justify-between items-center">
         <CustomText textClassName="disable-text text-sm">
-          {t("requestOverview.maintenanceScheduleInformation")}
+          Maintenance Schedule Information
         </CustomText>
         <CustomImage
           src={Images.refreshIconActive}
@@ -42,50 +26,41 @@ const MaintenanceScheduleInformation = ({ t }) => {
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
-      <BookingSelect
-        className="pb-2"
-        bgColor="primaryWhite-bg-color"
-        placeholder="Tenure Period"
-        title="Technician"
-        lists={[]}
-        required
-      />
+      <div className="pb-4">
+        <CustomText textClassName="text-xs disable-text pb-1">
+          Technician
+        </CustomText>
+        <CustomText textClassName="border px-2 py-1 rounded-lg">
+          Firdaus
+        </CustomText>
+      </div>
 
-      <BookingDateInput
-        // type="datetime"
-        bgColor="primaryWhite-bg-color"
-        className="pb-2"
-        placeholder="12/02/2023"
-        title="Date"
-        required
-      />
+      <div className="pb-4">
+        <CustomText textClassName="text-xs disable-text pb-1">Date</CustomText>
+        <CustomText textClassName="border px-2 py-1 rounded-lg">
+          awgajd adsa
+        </CustomText>
+      </div>
 
-      <BookingDateInput
-        type="time"
-        bgColor="primaryWhite-bg-color"
-        className="pb-2"
-        placeholder="12/02/2023"
-        title="Time"
-        required
-      />
+      <div className="pb-4">
+        <CustomText textClassName="text-xs disable-text pb-1">Time</CustomText>
+        <CustomText textClassName="border px-2 py-1 rounded-lg">
+          awgajd adsa
+        </CustomText>
+      </div>
 
-      <BookingSelect
-        className="pb-2"
-        bgColor="primaryWhite-bg-color"
-        placeholder="Tenure Period"
-        title="Status"
-        lists={[]}
-        required
-      />
+      <div className="pb-4">
+        <CustomText textClassName="text-xs disable-text pb-1">
+          Status
+        </CustomText>
+        <CustomText textClassName="border px-2 py-1 rounded-lg">
+          awgajd adsa
+        </CustomText>
+      </div>
 
-      <div className="flex flex-col justify-center items-center">
-        <CustomButton
-          buttonStyles={{ padding: "5px 30px" }}
-          buttonClassName="disable-btn my-2"
-          buttonText={t("requestOverview.assign")}
-        />
+      <div className="flex flex-col justify-center items-center pt-4">
         <CustomText textClassName="disable-text text-xs">
-          {t("requestOverview.maintenanceScheduleInformationWillBeUpdatedSoon")}
+          Maintenance Schedule Information Will Be Updated Soon
         </CustomText>
       </div>
     </div>

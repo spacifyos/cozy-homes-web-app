@@ -19,13 +19,13 @@ export const getMaintenanceTicketListingLoading = (state, status) =>
     false,
   );
 
-export const getAgreementOverviewData = (state, id) =>
+export const getMaintenanceTicketOverviewData = (state, id) =>
   get(
     state,
     ["maintenanceTicket", "maintenanceTicketOverview", id, "data"],
     null,
   );
-export const getAgreementOverviewLoading = (state) =>
+export const getMaintenanceTicketOverviewLoading = (state) =>
   get(
     state,
     ["maintenanceTicket", "maintenanceTicketOverview", "loading"],
@@ -38,13 +38,22 @@ export const getRequestTypeSubType = (state) => get(state, ["sub_types"], []);
 export const getLabel = (state) => get(state, ["label"], []);
 export const getValue = (state) => get(state, ["value"], []);
 export const getCreatedAt = (state) => get(state, ["created_at"], "");
+export const getAvailableDate = (state) => get(state, ["available_date"], "");
 export const getId = (state) => get(state, ["id"], "");
 export const getPriority = (state) => get(state, ["priority"], "");
 export const getPriorityValue = (state) => get(state, ["priority_value"], "");
+export const getIsAllowedEntry = (state) =>
+    get(state, ["is_allowed_entry"], "");
 export const getPropertyUnitName = (state) =>
   get(state, ["property_unit_name"], "");
+export const getRequestDate = (state) =>
+    get(state, ["request_date"], "");
+export const getPropertyName = (state) =>
+    get(state, ["property_name"], "");
 export const getRequestInfo = (state) => get(state, ["request_info"], "");
+export const getRequestDetails = (state) => get(state, ["request_details"], "");
 export const getRequestNumber = (state) => get(state, ["request_number"], "");
+export const getRequesterName = (state) => get(state, ["requester_name"], "");
 export const getRoomName = (state) => get(state, ["room_name"], "");
 export const getStatus = (state) => get(state, ["status"], "");
 export const getStatusValue = (state) => get(state, ["status_value"], "");

@@ -27,7 +27,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
           setPostData((prevState) => {
             return {
               ...prevState,
-              is_allowed_entry: isEqual(e.target.value, "true" ? true : false),
+              is_allowed_entry: isEqual(e.target.value, "true") ? true : false,
             };
           });
         }}
