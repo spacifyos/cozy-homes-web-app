@@ -12,7 +12,7 @@ const routeList = [
   "/sign-in",
   "/sign-up",
   "/user/coins-transaction",
-  // "/user/help-center",
+  "/user/help-center",
   "/user/latest-update",
   "/user/my-appointment",
   "/user/owner/my-bank",

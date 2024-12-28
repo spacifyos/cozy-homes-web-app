@@ -82,12 +82,12 @@ function Home() {
   useEffect(() => {
     fetchListingData();
     fetchListingBannerData();
-    handleEventModalOpen();
+    // handleEventModalOpen();
   }, []);
 
-  const handleEventModalOpen = () => {
-    Helper.documentGetElementById("event-modal").showModal();
-  };
+  // const handleEventModalOpen = () => {
+  //   Helper.documentGetElementById("event-modal").showModal();
+  // };
 
   const fetchListingData = () => {
     getListingRequest();
@@ -229,7 +229,7 @@ function Home() {
         </div>
       </DesktopLayout>
 
-      <EventBanner />
+      {/*<EventBanner />*/}
 
       {/*<BottomNavigate*/}
       {/*  t={t}*/}

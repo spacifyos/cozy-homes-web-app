@@ -21,10 +21,12 @@ const EventBanner = () => {
             </button>
           </form>
         </div>
-        <CustomImage
-          src={"/images/event-image/spacify-event-1.png"}
-          className="h-full object-contain"
-        />
+        <a href={`https://wa.me/+601137354267`} target="_blank">
+          <CustomImage
+            src={"/images/event-image/spacify-event-1.png"}
+            className="h-full object-contain"
+          />
+        </a>
       </div>
     </dialog>
   );

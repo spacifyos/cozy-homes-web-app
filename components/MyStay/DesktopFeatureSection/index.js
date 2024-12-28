@@ -15,7 +15,8 @@ const DesktopFeatureSection = ({}) => {
       <FeatureComponent
         name="Help Center"
         icon={Images.helpIcon}
-        route="/user/help-center"
+        disable
+        // route="/user/help-center"
       />
     </div>
   );
