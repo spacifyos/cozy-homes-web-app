@@ -15,4 +15,4 @@ Disallow: /401
 Disallow: /403
 Disallow: /sitemap/*
 
-Sitemap: https://www.spacify.asia/sitemap_index.xml
+Sitemap: https://www.spacify.asia/sitemap.xml
