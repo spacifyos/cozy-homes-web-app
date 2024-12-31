@@ -99,6 +99,12 @@ $tenant-color: linear-gradient(125.08deg, #f05a22 54.69%, #d71440 96.79%);
   color: $completed-color;
 }
 
+.error-border-color {
+  border: 1px solid $error-color;
+  background-color: $primary-white-color;
+  color: $error-color;
+}
+
 .low-border-color {
   border: 1px solid $tertiary-bg-color;
   background-color: $primary-white-color;

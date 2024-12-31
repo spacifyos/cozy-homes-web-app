@@ -85,7 +85,9 @@ const RequestOverview = ({ id }) => {
         <div className="relative flex flex-col justify-center">
           <RequestOverviewDetail data={maintenanceTicketOverviewData} />
 
-          <MaintenanceScheduleInformationComponent />
+          <MaintenanceScheduleInformationComponent
+            data={maintenanceTicketOverviewData}
+          />
 
           {/*<CommentComponent t={t} chatList={chatList} />*/}
         </div>

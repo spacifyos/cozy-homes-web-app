@@ -4,7 +4,6 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import HelpCenterSection from "@/components/Help-center/HelpCenterSection";
 import { useEffect, useRef, useState } from "react";
 import DividerSection from "@/components/Help-center/DividerSection";
-import UploadModal from "@/components/Help-center/UploadModal";
 import AuthorizationComponent from "@/components/Help-center/AuthorizationComponent";
 import CustomButton from "@/components/CustomButton";
 import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
@@ -19,9 +18,11 @@ import CustomImage from "@/components/CustomImage";
 import DesktopLayout from "@/components/DesktopLayout";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
-import { get, includes, isEmpty, map } from "lodash";
+import { get, includes, isEmpty, isEqual, map, split } from "lodash";
 import NestedRequestComponents from "@/components/Help-center/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
+import apiInstance from "@/src/services/httpUtilities/httpManager";
+import axios from "axios";
 
 export { getServerSideProps };
 
@@ -36,6 +37,9 @@ const NewRequest = ({}) => {
     useState(false);
   const [createMaintenanceTicketLoading, setCreateMaintenanceTicketLoading] =
     useState(false);
+
+  const [getGalleryLinkLoading, setGetGalleryLinkLoading] = useState(false);
+  const [imageUploading, setImageUploading] = useState(false);
 
   const requestTypeOption = maintenanceTicketSelector.getRequestType(
     maintenanceTicketOption,
@@ -53,7 +57,8 @@ const NewRequest = ({}) => {
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
-  const [messageValue, setMessageValue] = useState("");
+  const [imageBase64, setImageBase64] = useState("");
+  const [imageList, setImageList] = useState([]);
 
   useEffect(() => {
     fetchMaintenanceTicketOption();
@@ -235,6 +240,80 @@ const NewRequest = ({}) => {
     router.replace("/user/help-center/request-successful");
   };
 
+  const fetchGalleryLink = (image) => {
+    setGetGalleryLinkLoading(true);
+
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
+
+        Toast.success("Get gallery link success.");
+        getGalleryLinkSuccess(url, image, path);
+      })
+      .catch((err) => Toast.error("Get gallery link failure."))
+      .finally(() => setGetGalleryLinkLoading(false));
+  };
+
+  const getGalleryLinkSuccess = (url, image, path) => {
+    setImageUploading(true);
+
+    axios
+      .put(url, image)
+      .then((result) => {
+        Toast.success("Image upload success.");
+        convertToBase64(image, path);
+      })
+      .catch((err) => Toast.error("Image upload failure."))
+      .then(() => setImageUploading(false));
+  };
+
+  const convertToBase64 = (image, path) => {
+    const name = get(image, ["name"], "");
+    const extension = split(name, ".");
+    const mimeType = get(image, ["type"], "");
+
+    if (image) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImageBase64(get(e, ["target", "result"], ""));
+        setImageList([
+          {
+            type: 2,
+            name: name,
+            extension: extension[1],
+            mime_type: mimeType,
+            path: path,
+          },
+        ]);
+      };
+      reader.readAsDataURL(image);
+    } else {
+      setImageBase64("");
+    }
+  };
+
+  const checkImageSize = (image, imageNumber) => {
+    const isLt2M = image && image.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      Toast.error(`Your ${imageNumber} is larger than 2MB`);
+      return;
+    }
+
+    if (image && image.size > 1) {
+      fetchGalleryLink(image);
+    }
+  };
+
+  const onChangeImage = (e) => {
+    const images = e.target.files;
+
+    return map(images, (image, index) => {
+      checkImageSize(image, index + 1);
+    });
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center New Request - Spacify Asia" />
@@ -334,9 +413,11 @@ const NewRequest = ({}) => {
             ) ? (
               <div>
                 <SpecificRequestComponent
+                  uploadImageRef={uploadImageRef}
                   setPostData={setPostData}
                   selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                   onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
+                  onChangeImage={onChangeImage}
                 />
 
                 {displayAuthorizationComponent ? (
@@ -364,11 +445,11 @@ const NewRequest = ({}) => {
             )}
           </div>
 
-          <UploadModal
-            changeUploadModalTitle={changeUploadModalTitle}
-            onClickOpenCamera={onClickOpenCamera}
-            onClickSelectFile={onClickSelectFile}
-          />
+          {/*<UploadModal*/}
+          {/*  changeUploadModalTitle={changeUploadModalTitle}*/}
+          {/*  onClickOpenCamera={onClickOpenCamera}*/}
+          {/*  onClickSelectFile={onClickSelectFile}*/}
+          {/*/>*/}
 
           <input
             capture="environment"

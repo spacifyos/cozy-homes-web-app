@@ -4,10 +4,12 @@ import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import StatusLabel from "@/components/StatusLabel";
+import { isEmpty, map } from "lodash";
 
 const RequestOverviewDetail = ({ data }) => {
-  const status = maintenanceTicketSelector.getStatus(data);
-  const priority = maintenanceTicketSelector.getPriority(data);
+  const status = maintenanceTicketSelector.getStatusLabel(data);
+  const priority = maintenanceTicketSelector.getPriorityLabel(data);
   const requestDate = maintenanceTicketSelector.getRequestDate(data);
   const availableDate = maintenanceTicketSelector.getAvailableDate(data);
   const requestNumber = maintenanceTicketSelector.getRequestNumber(data);
@@ -16,6 +18,7 @@ const RequestOverviewDetail = ({ data }) => {
   const requesterName = maintenanceTicketSelector.getRequesterName(data);
   const requestDetails = maintenanceTicketSelector.getRequestDetails(data);
   const isAllowedEntry = maintenanceTicketSelector.getIsAllowedEntry(data);
+  const images = maintenanceTicketSelector.getImages(data);
 
   return (
     <div className="global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
@@ -25,7 +28,12 @@ const RequestOverviewDetail = ({ data }) => {
           value={requestNumber}
           highlight
         />
-        <CustomLabelValue label="Status" value={status} highlight />
+        <div className={`pb-2`}>
+          <CustomText textClassName={`disable-text text-xs font-normal`}>
+            Status
+          </CustomText>
+          <StatusLabel status={status} />
+        </div>
       </div>
 
       <div
@@ -56,22 +64,27 @@ const RequestOverviewDetail = ({ data }) => {
 
       <CustomLabelValue label={"Request Details"} value={requestDetails} />
 
-      <CustomText textClassName="disable-text text-xs pb-1">
-        Photos Or Videos
-      </CustomText>
-
-      <div className="flex items-start gap-2 pb-2">
-        <CustomImage
-          src={Images.imageNotFound}
-          imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius"
-        />
-        <CustomImage
-          src={Images.imageNotFound}
-          imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius"
-        />
-      </div>
+      {!isEmpty(images) ? (
+        <>
+          <CustomText textClassName="disable-text text-xs pb-1">
+            Photos Or Videos
+          </CustomText>
+          <div className="flex items-start gap-2 pb-2">
+            {map(images, (image, index) => {
+              return (
+                <CustomImage
+                  key={index}
+                  src={image}
+                  imageStyle={{ width: 100, height: 100 }}
+                  className="global-border-radius border"
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        false
+      )}
 
       <CustomLabelValue
         label={"Authorized Entry When Requester Is Absent"}

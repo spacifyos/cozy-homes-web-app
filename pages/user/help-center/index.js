@@ -15,6 +15,7 @@ import Constant from "@/src/utils/Constant";
 import * as maintenanceTicketAction from "@/src/actions/maintenance-ticket";
 import { useDispatch, useSelector } from "react-redux";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import CustomEmptyBox from "@/components/CustomEmptyBox";
 
 export { getServerSideProps };
 
@@ -171,16 +172,22 @@ const HelpCenter = () => {
             })}
           </div>
 
-          <div className="flex flex-col gap-4">
-            {map(maintenanceTicketListingData, (data, index) => {
-              return (
-                <HelpCenterListingCard
-                  key={index}
-                  data={data}
-                  onClickToRequestOverview={onClickToRequestOverview}
-                />
-              );
-            })}
+          <div className="flex flex-col gap-4 h-full">
+            {isEmpty(maintenanceTicketListingData) ? (
+              <div className="flex flex-1 items-center justify-center py-10 h-full">
+                <CustomEmptyBox emptyTitle="No ticket found" />
+              </div>
+            ) : (
+              map(maintenanceTicketListingData, (data, index) => {
+                return (
+                  <HelpCenterListingCard
+                    key={index}
+                    data={data}
+                    onClickToRequestOverview={onClickToRequestOverview}
+                  />
+                );
+              })
+            )}
           </div>
 
           {hasMorePage &&

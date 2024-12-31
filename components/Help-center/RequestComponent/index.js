@@ -11,73 +11,9 @@ const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
   onClickChangeUploadModalTitle,
   setPostData,
+  uploadImageRef,
+  onChangeImage,
 }) => {
-  // const displayComponent = (value) => {
-  //   const requestSelect = {
-  //     t: t,
-  //     placeholder: t(`newRequest.select${value}`),
-  //     lists: [],
-  //   };
-  //
-  //   switch (value) {
-  //     case "Amenities":
-  //       requestSelect.title = t("newRequest.selectAmenities");
-  //       requestSelect.lists = [
-  //         { label: t("newRequest.washer"), value: "washer" },
-  //         { label: t("newRequest.dryer"), value: "dryer" },
-  //         { label: t("newRequest.oven"), value: "oven" },
-  //         { label: t("newRequest.airConditioner"), value: "airConditioner" },
-  //         { label: t("newRequest.waterHeater"), value: "waterHeater" },
-  //         { label: t("newRequest.cellingFan"), value: "cellingFan" },
-  //       ];
-  //       break;
-  //     case "Electrical":
-  //       requestSelect.title = t("newRequest.selectElectrical");
-  //       requestSelect.lists = [
-  //         { label: t("newRequest.lights"), value: "lights" },
-  //         { label: t("newRequest.wellSocket"), value: "well socket" },
-  //         { label: t("newRequest.wiring"), value: "wiring" },
-  //         { label: t("newRequest.smartMeter"), value: "smart meter" },
-  //       ];
-  //       break;
-  //     case "Plumbing":
-  //       requestSelect.title = t("newRequest.selectPlumbing");
-  //       requestSelect.lists = [
-  //         { label: t("newRequest.leaking"), value: "leaking" },
-  //         { label: t("newRequest.faucets"), value: "faucets" },
-  //         { label: t("newRequest.pipes"), value: "pipes" },
-  //         { label: t("newRequest.pumps"), value: "pumps" },
-  //       ];
-  //       break;
-  //     case "Exterior&Interior":
-  //       requestSelect.title = t("newRequest.selectExterior&Interior");
-  //       requestSelect.lists = [
-  //         { label: t("newRequest.doors"), value: "doors" },
-  //         { label: t("newRequest.windows"), value: "windows" },
-  //         { label: t("newRequest.flooring"), value: "flooring" },
-  //         { label: t("newRequest.wall"), value: "wall" },
-  //       ];
-  //       break;
-  //     case "Cleaning":
-  //       requestSelect.title = t("newRequest.selectCleaning");
-  //       requestSelect.lists = [
-  //         { label: t("newRequest.bedroom"), value: "bedroom" },
-  //         { label: t("newRequest.washroom"), value: "washroom" },
-  //       ];
-  //       break;
-  //     default:
-  //       return null;
-  //   }
-  //
-  //   return (
-  //     <BookingSelect
-  //       {...requestSelect}
-  //       className="pb-2"
-  //       bgColor="primaryWhite-bg-color"
-  //     />
-  //   );
-  // };
-
   return selectNestedHelpCenterSection ? (
     <div>
       <DividerSection
@@ -140,55 +76,61 @@ const SpecificRequestComponent = ({
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">
-        <CustomImage
-          src={Images.imageNotFound}
-          imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius border"
-        />
         <div
           className="bg-color global-border-radius cursor-pointer flex items-center justify-center"
           style={{ width: 100, height: 100 }}
-          onClick={() => {
-            Helper.documentGetElementById(
-              "help_center_upload_modal",
-            ).showModal();
-            onClickChangeUploadModalTitle(true);
-          }}
+          onClick={() => uploadImageRef && uploadImageRef.current.click()}
+          // onClick={() => {
+          //   Helper.documentGetElementById(
+          //     "help_center_upload_modal",
+          //   ).showModal();
+          //   onClickChangeUploadModalTitle(true);
+          // }}
         >
           <CustomImage
             src={Images.plusIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
+
+          <input
+            capture="environment"
+            accept="image/*"
+            type="file"
+            multiple
+            hidden
+            onChange={onChangeImage}
+            ref={uploadImageRef}
+          ></input>
         </div>
       </div>
 
-      <CustomText textClassName="pb-2 text-xs">
-        {"Upload Video (max file size: 2MB, up to 2 video):"}
-      </CustomText>
+      {/*<CustomText textClassName="pb-2 text-xs">*/}
+      {/*  {"Upload Video (max file size: 2MB, up to 2 video):"}*/}
+      {/*</CustomText>*/}
 
-      <div className=" flex flex-row items-center gap-2  pb-4">
-        <CustomImage
-          src={Images.imageNotFound}
-          imageStyle={{ width: 100, height: 100 }}
-          className="global-border-radius border"
-        />
+      {/*<div className=" flex flex-row items-center gap-2  pb-4">*/}
+      {/*  <CustomImage*/}
+      {/*    src={Images.imageNotFound}*/}
+      {/*    imageStyle={{ width: 100, height: 100 }}*/}
+      {/*    className="global-border-radius border"*/}
+      {/*  />*/}
 
-        <div
-          className="bg-color global-border-radius cursor-pointer flex items-center justify-center"
-          style={{ width: 100, height: 100 }}
-          onClick={() => {
-            Helper.documentGetElementById(
-              "help_center_upload_modal",
-            ).showModal();
-            onClickChangeUploadModalTitle(false);
-          }}
-        >
-          <CustomImage
-            src={Images.plusIcon}
-            imageStyle={{ width: 20, height: 20 }}
-          />
-        </div>
-      </div>
+      {/*  <div*/}
+      {/*    className="bg-color global-border-radius cursor-pointer flex items-center justify-center"*/}
+      {/*    style={{ width: 100, height: 100 }}*/}
+      {/*    onClick={() => {*/}
+      {/*      Helper.documentGetElementById(*/}
+      {/*        "help_center_upload_modal",*/}
+      {/*      ).showModal();*/}
+      {/*      onClickChangeUploadModalTitle(false);*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    <CustomImage*/}
+      {/*      src={Images.plusIcon}*/}
+      {/*      imageStyle={{ width: 20, height: 20 }}*/}
+      {/*    />*/}
+      {/*  </div>*/}
+      {/*</div>*/}
     </div>
   ) : (
     false
