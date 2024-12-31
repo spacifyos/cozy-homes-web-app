@@ -13,6 +13,9 @@ Disallow: /user/*
 Disallow: /reset-password
 Disallow: /401
 Disallow: /403
-Disallow: /sitemap/*
 
 Sitemap: https://www.spacify.asia/sitemap.xml
+Sitemap: https://www.spacify.asia/sitemap/general.xml
+Sitemap: https://www.spacify.asia/sitemap/listing-head.xml
+Sitemap: https://www.spacify.asia/sitemap/booking-head.xml
+Sitemap: https://www.spacify.asia/sitemap/search-head.xml
