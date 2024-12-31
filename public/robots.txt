@@ -1,4 +1,4 @@
-User-Agent: *
+User-agent: *
 Allow: /
 Disallow: /agency/*
 Disallow: /booking/*/payment-failed
@@ -15,7 +15,3 @@ Disallow: /401
 Disallow: /403
 
 Sitemap: https://www.spacify.asia/sitemap.xml
-Sitemap: https://www.spacify.asia/sitemap/general.xml
-Sitemap: https://www.spacify.asia/sitemap/listing-head.xml
-Sitemap: https://www.spacify.asia/sitemap/booking-head.xml
-Sitemap: https://www.spacify.asia/sitemap/search-head.xml
