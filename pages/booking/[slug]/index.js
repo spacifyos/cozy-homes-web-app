@@ -467,7 +467,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
         convertToBase64(type, image, path);
       })
       .catch((err) => Toast.error("Image upload failure."))
-      .then(() => {
+      .finally(() => {
         if (isEqual(type, "front")) {
           setFrontIcUploading(false);
         } else {

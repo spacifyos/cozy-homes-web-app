@@ -190,6 +190,7 @@ const Image = {
   shareIconDisable: "/images/icon/share_icon_disable.png",
   listIconActive: "/images/icon/list_icon_active.png",
   beliveWhatsAppIcon: "/images/icon/belive_whatsapp_icon.webp",
+  deleteIcon: "/images/icon/delete_icon.png"
 };
 
 export default { ...Image };

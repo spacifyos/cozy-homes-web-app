@@ -6,6 +6,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
 import Constant from "@/src/utils/Constant";
+import { get, isEmpty, map, size } from "lodash";
 
 const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
@@ -13,6 +14,8 @@ const SpecificRequestComponent = ({
   setPostData,
   uploadImageRef,
   onChangeImage,
+  imageList,
+  onClickRemoveImage,
 }) => {
   return selectNestedHelpCenterSection ? (
     <div>
@@ -76,32 +79,63 @@ const SpecificRequestComponent = ({
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">
-        <div
-          className="bg-color global-border-radius cursor-pointer flex items-center justify-center"
-          style={{ width: 100, height: 100 }}
-          onClick={() => uploadImageRef && uploadImageRef.current.click()}
-          // onClick={() => {
-          //   Helper.documentGetElementById(
-          //     "help_center_upload_modal",
-          //   ).showModal();
-          //   onClickChangeUploadModalTitle(true);
-          // }}
-        >
-          <CustomImage
-            src={Images.plusIcon}
-            imageStyle={{ width: 20, height: 20 }}
-          />
+        {map(imageList, (list) => {
+          const loading = get(list, ["loading"], false);
+          const status = get(list, ["status"], false);
+          const base64Image = get(list, ["base64"], "");
+          const path = get(list, ["path"], "");
 
-          <input
-            capture="environment"
-            accept="image/*"
-            type="file"
-            multiple
-            hidden
-            onChange={onChangeImage}
-            ref={uploadImageRef}
-          ></input>
-        </div>
+          return (
+            <div
+              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
+            >
+              <CustomImage
+                src={isEmpty(base64Image) ? Images.imageNotFound : base64Image}
+                className={`${loading ? "opacity-50" : ""}`}
+              />
+              {loading ? (
+                <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+              ) : (
+                <div
+                  className="absolute top-1 right-1 cursor-pointer"
+                  onClick={() => onClickRemoveImage(path)}
+                >
+                  <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
+                </div>
+              )}
+            </div>
+          );
+        })}
+
+        {size(imageList) >= 5 ? (
+          false
+        ) : (
+          <div
+            className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+            onClick={() => uploadImageRef && uploadImageRef.current.click()}
+            // onClick={() => {
+            //   Helper.documentGetElementById(
+            //     "help_center_upload_modal",
+            //   ).showModal();
+            //   onClickChangeUploadModalTitle(true);
+            // }}
+          >
+            <CustomImage
+              src={Images.plusIcon}
+              imageStyle={{ width: 20, height: 20 }}
+            />
+
+            <input
+              capture="environment"
+              accept="image/*"
+              type="file"
+              multiple
+              hidden
+              onChange={onChangeImage}
+              ref={uploadImageRef}
+            ></input>
+          </div>
+        )}
       </div>
 
       {/*<CustomText textClassName="pb-2 text-xs">*/}

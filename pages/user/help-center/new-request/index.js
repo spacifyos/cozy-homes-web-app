@@ -18,7 +18,17 @@ import CustomImage from "@/components/CustomImage";
 import DesktopLayout from "@/components/DesktopLayout";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
-import { get, includes, isEmpty, isEqual, map, split } from "lodash";
+import {
+  filter,
+  get,
+  includes,
+  isEmpty,
+  isEqual,
+  map,
+  size,
+  some,
+  split,
+} from "lodash";
 import NestedRequestComponents from "@/components/Help-center/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
@@ -57,7 +67,6 @@ const NewRequest = ({}) => {
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
-  const [imageBase64, setImageBase64] = useState("");
   const [imageList, setImageList] = useState([]);
 
   useEffect(() => {
@@ -230,7 +239,7 @@ const NewRequest = ({}) => {
 
   const onClickSubmitRequest = async () => {
     await apiRequest.postMaintenanceTicketRequest(
-      postData,
+      { ...postData, maintenance_ticket_images: imageList },
       setCreateMaintenanceTicketLoading,
       createSuccessCallback,
     );
@@ -240,9 +249,62 @@ const NewRequest = ({}) => {
     router.replace("/user/help-center/request-successful");
   };
 
-  const fetchGalleryLink = (image) => {
-    setGetGalleryLinkLoading(true);
+  const checkImageSize = async (image, imageNumber) => {
+    const isLt2M = image && image.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      Toast.error(`Your some image is larger than 2MB`);
+      return;
+    }
 
+    if (image && image.size > 1) {
+      const name = get(image, ["name"], "");
+      const extension = split(name, ".");
+      const mimeType = get(image, ["type"], "");
+
+      if (some(imageList, { name })) {
+        Toast.error(`Image with the name "${name}" already exists.`);
+        return;
+      }
+
+      try {
+        const base64 = await convertToBase64(image);
+        const newImage = {
+          type: 22,
+          name: name,
+          extension: extension[1],
+          mime_type: mimeType,
+          status: false,
+          loading: true,
+          base64: base64,
+        };
+
+        setImageList((prevState) => [...prevState, newImage]);
+
+        fetchGalleryLink(newImage);
+      } catch (error) {
+        Toast.error("Error converting image to base64:", error);
+        console.error("Error converting image to base64:", error);
+      }
+    }
+  };
+
+  const convertToBase64 = (image) => {
+    return new Promise((resolve, reject) => {
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target.result;
+          resolve(result);
+        };
+        reader.onerror = (err) => reject(err);
+        reader.readAsDataURL(image);
+      } else {
+        resolve("");
+      }
+    });
+  };
+
+  const fetchGalleryLink = (image) => {
     apiInstance
       .get("/gallery")
       .then((res) => {
@@ -252,66 +314,69 @@ const NewRequest = ({}) => {
         Toast.success("Get gallery link success.");
         getGalleryLinkSuccess(url, image, path);
       })
-      .catch((err) => Toast.error("Get gallery link failure."))
-      .finally(() => setGetGalleryLinkLoading(false));
+      .catch((err) => Toast.error("Get gallery link failure."));
   };
 
   const getGalleryLinkSuccess = (url, image, path) => {
-    setImageUploading(true);
+    setImageList((prevState) => {
+      return map(prevState, (state) => {
+        if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+          return { ...state, url: url, path: path };
+        } else {
+          return state;
+        }
+      });
+    });
 
+    postUploadImage(url, image);
+  };
+
+  const postUploadImage = (url, image) => {
     axios
       .put(url, image)
       .then((result) => {
         Toast.success("Image upload success.");
-        convertToBase64(image, path);
+        setImageList((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: true, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
       })
-      .catch((err) => Toast.error("Image upload failure."))
-      .then(() => setImageUploading(false));
-  };
-
-  const convertToBase64 = (image, path) => {
-    const name = get(image, ["name"], "");
-    const extension = split(name, ".");
-    const mimeType = get(image, ["type"], "");
-
-    if (image) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setImageBase64(get(e, ["target", "result"], ""));
-        setImageList([
-          {
-            type: 2,
-            name: name,
-            extension: extension[1],
-            mime_type: mimeType,
-            path: path,
-          },
-        ]);
-      };
-      reader.readAsDataURL(image);
-    } else {
-      setImageBase64("");
-    }
-  };
-
-  const checkImageSize = (image, imageNumber) => {
-    const isLt2M = image && image.size / 1024 / 1024 < 2;
-    if (!isLt2M) {
-      Toast.error(`Your ${imageNumber} is larger than 2MB`);
-      return;
-    }
-
-    if (image && image.size > 1) {
-      fetchGalleryLink(image);
-    }
+      .catch((err) => {
+        Toast.error("Image upload failure.");
+        setImageList((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: false, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
+      });
   };
 
   const onChangeImage = (e) => {
     const images = e.target.files;
 
+    if (size(images) + size(imageList) >= 6) {
+      Toast.error(`Your image limit is up to 5.`);
+      return;
+    }
+
     return map(images, (image, index) => {
       checkImageSize(image, index + 1);
     });
+  };
+
+  const onClickRemoveImage = (path) => {
+    setImageList(
+      filter(imageList, (list) => !isEqual(get(list, ["path"], ""), path)),
+    );
   };
 
   return (
@@ -418,6 +483,8 @@ const NewRequest = ({}) => {
                   selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                   onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
                   onChangeImage={onChangeImage}
+                  imageList={imageList}
+                  onClickRemoveImage={onClickRemoveImage}
                 />
 
                 {displayAuthorizationComponent ? (

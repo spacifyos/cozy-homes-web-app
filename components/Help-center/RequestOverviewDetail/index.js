@@ -75,8 +75,7 @@ const RequestOverviewDetail = ({ data }) => {
                 <CustomImage
                   key={index}
                   src={image}
-                  imageStyle={{ width: 100, height: 100 }}
-                  className="global-border-radius border"
+                  className="global-border-radius border w-28 h-28"
                 />
               );
             })}
