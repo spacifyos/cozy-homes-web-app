@@ -7,7 +7,7 @@ import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 import StatusLabel from "@/components/StatusLabel";
 import { isEmpty, map } from "lodash";
 
-const RequestOverviewDetail = ({ data }) => {
+const RequestOverviewDetail = ({ data, imageList, imageLoading }) => {
   const status = maintenanceTicketSelector.getStatusLabel(data);
   const priority = maintenanceTicketSelector.getPriorityLabel(data);
   const requestDate = maintenanceTicketSelector.getRequestDate(data);
@@ -18,7 +18,6 @@ const RequestOverviewDetail = ({ data }) => {
   const requesterName = maintenanceTicketSelector.getRequesterName(data);
   const requestDetails = maintenanceTicketSelector.getRequestDetails(data);
   const isAllowedEntry = maintenanceTicketSelector.getIsAllowedEntry(data);
-  const images = maintenanceTicketSelector.getImages(data);
 
   return (
     <div className="global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
@@ -64,17 +63,17 @@ const RequestOverviewDetail = ({ data }) => {
 
       <CustomLabelValue label={"Request Details"} value={requestDetails} />
 
-      {!isEmpty(images) ? (
+      {!isEmpty(imageList) ? (
         <>
           <CustomText textClassName="disable-text text-xs pb-1">
             Photos Or Videos
           </CustomText>
           <div className="flex items-start gap-2 pb-2">
-            {map(images, (image, index) => {
+            {map(imageList, (list, index) => {
               return (
                 <CustomImage
                   key={index}
-                  src={image}
+                  src={list}
                   className="global-border-radius border w-28 h-28"
                 />
               );

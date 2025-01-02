@@ -12,7 +12,13 @@ import DesktopLayout from "@/components/DesktopLayout";
 import * as maintenanceTicketAction from "@/src/actions/maintenance-ticket";
 import { useDispatch, useSelector } from "react-redux";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import { concat, get, isEmpty, map } from "lodash";
+import Helper from "@/src/utils/Helper";
+import AuthManager from "@/src/utils/AuthManager";
+import axios from "axios";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
@@ -20,6 +26,10 @@ const RequestOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const [secret, setSecret] = useState("");
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageList, setImageList] = useState([]);
 
   const getMaintenanceTicketOverviewRequest = (id) =>
     dispatch(maintenanceTicketAction.getMaintenanceTicketOverviewRequest(id));
@@ -33,13 +43,61 @@ const RequestOverview = ({ id }) => {
   const requestNumber = maintenanceTicketSelector.getRequestNumber(
     maintenanceTicketOverviewData,
   );
+  const images = maintenanceTicketSelector.getImages(
+    maintenanceTicketOverviewData,
+  );
+
+  const handleImageSecretData = async () => {
+    await apiRequest.getRootDataRequest(() => {}, getRootDataSuccessCallback);
+  };
+
+  const getRootDataSuccessCallback = (res) => {
+    const chiper1 = get(res, ["chiper1"], "");
+    const chiper2 = get(res, ["chiper2"], "");
+
+    setSecret(Helper.generateSecretKey(chiper1, chiper2));
+  };
 
   useEffect(() => {
+    if (!isEmpty(maintenanceTicketOverviewData) && !isEmpty(images)) {
+      return map(images, (image) => {
+        fetchImageData(image);
+      });
+    }
+  }, [maintenanceTicketOverviewData]);
+
+  useEffect(() => {
+    handleImageSecretData();
     fetchMaintenanceData();
   }, []);
 
   const fetchMaintenanceData = () => {
     getMaintenanceTicketOverviewRequest(id);
+  };
+
+  const fetchImageData = async (image) => {
+    setImageLoading(true);
+
+    const url = `${image}/based64`;
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: secret,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
+
+    axios
+      .get(url, { headers: headers })
+      .then(async (response) => {
+        const res = get(response, ["data"], "");
+
+        setImageList(concat(imageList, res));
+      })
+      .catch((error) => {
+        Toast.error("Fetch image failed");
+      })
+      .finally(() => setImageLoading(false));
   };
 
   const onClickGoBack = () => {
@@ -83,7 +141,11 @@ const RequestOverview = ({ id }) => {
         }
       >
         <div className="relative flex flex-col justify-center">
-          <RequestOverviewDetail data={maintenanceTicketOverviewData} />
+          <RequestOverviewDetail
+            data={maintenanceTicketOverviewData}
+            imageLoading={imageLoading}
+            imageList={imageList}
+          />
 
           <MaintenanceScheduleInformationComponent
             data={maintenanceTicketOverviewData}
