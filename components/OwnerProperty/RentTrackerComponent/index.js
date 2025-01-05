@@ -63,7 +63,7 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
             const textColor = get(item, ["textColor"], "");
 
             return (
-              <div key={index} className="flex items-center ">
+              <div key={index} className="flex items-center">
                 <div
                   className={`${bgColor} rounded-3xl mr-1`}
                   style={{ width: 10, height: 10 }}
@@ -82,7 +82,8 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
           lists={yearList}
           value={yearValue}
           onChange={(e) => setYearValue(e.target.value)}
-          className="xl:max-w-40 lg:max-w-40 md:max-w-40 sm:max-w-36 max-w-36 "
+          bgColor="bg-white"
+          className="xl:max-w-40 lg:max-w-40 md:max-w-40 sm:max-w-36 max-w-36"
         />
       </div>
 
