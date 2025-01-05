@@ -9,15 +9,14 @@ import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import { useEffect, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as ownerSelector from "@/src/selectors/owner";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import UnitCarouselComponent from "@/components/OwnerProperty/UnitCarouselComponent";
 import { get, isEmpty, filter, isEqual, map } from "lodash";
 import SpaceDetailComponent from "@/components/OwnerProperty/SpaceDetailComponent";
 import CustomButton from "@/components/CustomButton";
 import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponent";
-import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
+import moment from "moment";
 
 export { getServerSideProps };
 
@@ -35,6 +34,8 @@ const PropertyDetail = ({ id }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
   const [selectedRoom, setSelectedRoom] = useState([]);
   const [selectedUnitID, setSelectedUnitID] = useState(0);
+
+  const [yearValue, setYearValue] = useState(moment().format("YYYY"));
 
   const propertyName = ownerSelector.getPropertyName(propertyDetail);
   const propertyAddress = ownerSelector.getPropertyAddress(propertyDetail);
@@ -96,13 +97,14 @@ const PropertyDetail = ({ id }) => {
 
   useEffect(() => {
     if (isEqual(selectedCategory, "Rent Tracker") && selectedUnitID !== 0) {
-      fetchRenTrackerData(selectedUnitID);
+      fetchRenTrackerData(selectedUnitID, yearValue);
     }
-  }, [selectedCategory, selectedUnitID]);
+  }, [selectedCategory, selectedUnitID, yearValue]);
 
-  const fetchRenTrackerData = async (unitId) => {
+  const fetchRenTrackerData = async (unitId, year) => {
     await apiRequest.getRentTrackerRequest(
       unitId,
+      year,
       setRentTrackerDataLoading,
       rentTrackerDataSuccessCallback,
     );
@@ -207,32 +209,15 @@ const PropertyDetail = ({ id }) => {
               />
             </div>
 
-            {isEqual(selectedCategory, "Rent Tracker") ? (
-              <div className="flex gap-4 px-6 pb-2">
-                {map(colorList, (item, index) => {
-                  const label = get(item, ["label"], "");
-                  const bgColor = get(item, ["bgColor"], "");
-                  const textColor = get(item, ["textColor"], "");
-
-                  return (
-                    <div key={index} className="flex items-center">
-                      <div
-                        className={`${bgColor} rounded-3xl mr-1`}
-                        style={{ width: 10, height: 10 }}
-                      ></div>
-                      <CustomText textClassName={textColor}>{label}</CustomText>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              false
-            )}
-
             {isEqual(selectedCategory, "Space Details") ? (
               <SpaceDetailComponent data={selectedRoom} />
             ) : (
-              <RentTrackerComponent data={rentTrackerData} />
+              <RentTrackerComponent
+                data={rentTrackerData}
+                yearValue={yearValue}
+                setYearValue={setYearValue}
+                colorList={colorList}
+              />
             )}
           </div>
         </div>

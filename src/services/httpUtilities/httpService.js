@@ -209,7 +209,8 @@ const getOwnerReportOverview = (id, month) => {
 const postWalletWithdraw = (postData) =>
   apiInstance.post(`/wallet/request-withdrawal`, postData);
 
-const getRentTracker = (id) => apiInstance.get(`/owner/rent-tracker/${id}`);
+const getRentTracker = (id, year) =>
+  apiInstance.get(`/owner/rent-tracker/${id}?year=${year}`);
 
 const postPropertyListingCardView = (postData) =>
   apiInstance.post(`/property/card-view`, postData);

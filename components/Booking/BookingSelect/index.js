@@ -32,7 +32,7 @@ const BookingSelect = ({
       )}
 
       <div
-        className={`${bgColor} booking-select-container flex justify-between`}
+        className={`${bgColor} booking-select-container flex justify-between h-10`}
       >
         <select className="booking-select" name={name} title={title} {...props}>
           <option disabled={disabled ? true : false} value="">
