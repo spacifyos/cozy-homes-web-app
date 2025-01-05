@@ -372,9 +372,9 @@ const postWalletWithdrawRequest = async (
   );
 };
 
-const getRentTrackerRequest = async (id, setLoading, successCallback) => {
+const getRentTrackerRequest = async (id, year, setLoading, successCallback) => {
   await apiRequest(
-    api.getRentTracker(id),
+    api.getRentTracker(id, year),
     setLoading,
     successCallback,
     () => {},

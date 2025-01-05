@@ -1,6 +1,7 @@
 import { map, size, get, isEmpty } from "lodash";
 import CustomText from "@/components/CustomText";
 import * as ownerSelector from "@/src/selectors/owner";
+import BookingSelect from "@/components/Booking/BookingSelect";
 
 const VerticalLine = () => {
   return (
@@ -28,7 +29,18 @@ const HorizontalLine = () => {
   );
 };
 
-const RentTrackerComponent = ({ data }) => {
+const yearList = [
+  { label: "2024", value: "2024" },
+  { label: "2025", value: "2025" },
+  { label: "2026", value: "2026" },
+  { label: "2026", value: "2026" },
+  { label: "2027", value: "2027" },
+  { label: "2028", value: "2028" },
+  { label: "2029", value: "2029" },
+  { label: "2030", value: "2030" },
+];
+
+const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
   const monthlyTotal = ownerSelector.getMonthlyTotal(data);
   const monthlyTotalLabel = map(monthlyTotal, (label) =>
     ownerSelector.getLabel(label),
@@ -43,6 +55,38 @@ const RentTrackerComponent = ({ data }) => {
 
   return (
     <div className="">
+      <div className="xl:flex-row md:flex-row lg:flex-row md:flex-row sm:flex-col flex-col flex justify-between xl:items-center lg:items-center md:items-center gap-2 pb-2">
+        <div className="flex gap-4 pl-2">
+          {map(colorList, (item, index) => {
+            const label = get(item, ["label"], "");
+            const bgColor = get(item, ["bgColor"], "");
+            const textColor = get(item, ["textColor"], "");
+
+            return (
+              <div key={index} className="flex items-center">
+                <div
+                  className={`${bgColor} rounded-3xl mr-1`}
+                  style={{ width: 10, height: 10 }}
+                ></div>
+                <CustomText
+                  textClassName={`${textColor} xl:text-base lg:text-base md:text-sm sm:text-sm text-sm`}
+                >
+                  {label}
+                </CustomText>
+              </div>
+            );
+          })}
+        </div>
+
+        <BookingSelect
+          lists={yearList}
+          value={yearValue}
+          onChange={(e) => setYearValue(e.target.value)}
+          bgColor="bg-white"
+          className="xl:max-w-40 lg:max-w-40 md:max-w-40 sm:max-w-36 max-w-36"
+        />
+      </div>
+
       <div className="overflow-x-auto hide-scroll-bar pb-4 px-1">
         <div
           className="p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col mb-3"
@@ -105,9 +149,7 @@ const RentTrackerComponent = ({ data }) => {
                     <CustomText textClassName="text-sm primary-text font-bold">
                       {room}
                     </CustomText>
-                    <CustomText textClassName="text-xs">
-                      {roomType}
-                    </CustomText>
+                    <CustomText textClassName="text-xs">{roomType}</CustomText>
                   </div>
 
                   <VerticalLine />

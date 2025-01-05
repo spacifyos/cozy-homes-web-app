@@ -19,7 +19,7 @@ const CustomButton = ({
 }) => {
   return (
     <button
-      className={`btn ${disable || loading ? "no-animation" : ""} ${reverse ? "flex-row-reverse" : "flex"} ${buttonClassName}`}
+      className={`btn ${disable || loading ? "no-animation" : ""} ${reverse ? "flex-row-reverse" : "flex"} ${buttonClassName} cursor-pointer`}
       style={{ ...buttonStyles }}
       onClick={disable ? () => {} : onClick}
     >
