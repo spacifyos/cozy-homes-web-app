@@ -12,11 +12,20 @@ const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
   onClickChangeUploadModalTitle,
   setPostData,
+  uploadVideoRef,
   uploadImageRef,
   onChangeImage,
   imageList,
   onClickRemoveImage,
+  onChangeVideo,
+  videoList,
+  onClickRemoveVideo,
 }) => {
+  const loading = get(videoList, ["loading"], false);
+  const status = get(videoList, ["status"], false);
+  const url = get(videoList, ["tempUrl"], "");
+  const path = get(videoList, ["path"], "");
+
   return selectNestedHelpCenterSection ? (
     <div>
       <DividerSection
@@ -138,9 +147,61 @@ const SpecificRequestComponent = ({
         )}
       </div>
 
-      {/*<CustomText textClassName="pb-2 text-xs">*/}
-      {/*  {"Upload Video (max file size: 2MB, up to 2 video):"}*/}
-      {/*</CustomText>*/}
+      <CustomText textClassName="pb-2 text-xs">
+        {"Upload Video (max file size: 10MB, up to 1 video):"}
+      </CustomText>
+
+      <div className=" flex flex-row items-center gap-2 pb-3">
+        {isEmpty(videoList) ? (
+          false
+        ) : (
+          <div
+            className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
+          >
+            <video src={url} controls className="w-28 h-28" />
+            {loading ? (
+              <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+            ) : (
+              <div
+                className="absolute top-1 right-1 cursor-pointer"
+                onClick={() => onClickRemoveVideo(path)}
+              >
+                <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
+              </div>
+            )}
+          </div>
+        )}
+
+        {isEmpty(videoList) ? (
+          <div
+            className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+            onClick={() => uploadVideoRef && uploadVideoRef.current.click()}
+            // onClick={() => {
+            //   Helper.documentGetElementById(
+            //     "help_center_upload_modal",
+            //   ).showModal();
+            //   onClickChangeUploadModalTitle(true);
+            // }}
+          >
+            <CustomImage
+              src={Images.plusIcon}
+              imageStyle={{ width: 20, height: 20 }}
+            />
+
+            <input
+              capture="environment"
+              accept="video/mp4, video/quicktime"
+              type="file"
+              multiple
+              hidden
+              onChange={onChangeVideo}
+              ref={uploadVideoRef}
+            ></input>
+          </div>
+        ) : (
+          false
+        )}
+      </div>
 
       {/*<div className=" flex flex-row items-center gap-2  pb-4">*/}
       {/*  <CustomImage*/}

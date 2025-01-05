@@ -68,6 +68,7 @@ const NewRequest = ({}) => {
     useState(false);
   const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
   const [imageList, setImageList] = useState([]);
+  const [videoList, setVideoList] = useState(null);
 
   useEffect(() => {
     fetchMaintenanceTicketOption();
@@ -379,6 +380,72 @@ const NewRequest = ({}) => {
     );
   };
 
+  const onChangeVideo = (e) => {
+    const videos = e.target.files[0];
+
+    const isLt10M = videos && videos.size / 1024 / 1024 < 10;
+    if (!isLt10M) {
+      Toast.error(`Your video is larger than 10MB`);
+      return;
+    } else {
+      const videoUrl = URL.createObjectURL(videos);
+
+      const newVideo = {
+        video: videos,
+        tempUrl: videoUrl,
+        loading: true,
+        status: false,
+      };
+
+      fetchVideoGalleryLink(newVideo);
+    }
+  };
+
+  const fetchVideoGalleryLink = (videos) => {
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
+
+        Toast.success("Get gallery link success.");
+        getVideoGalleryLinkSuccess(url, videos, path);
+      })
+      .catch((err) => {
+        Toast.error("Get gallery link failure.");
+        setVideoList({ ...videos, loading: false });
+      });
+  };
+
+  const getVideoGalleryLinkSuccess = (url, videos, path) => {
+    setVideoList({ videos, url: url, path: path });
+
+    postUploadVideo(url, videos);
+  };
+
+  const postUploadVideo = (url, videos) => {
+    const { video } = videos;
+
+    axios
+      .put(url, video)
+      .then((result) => {
+        Toast.success("Image upload success.");
+
+        setVideoList({ ...videos, loading: false, status: true });
+      })
+      .catch((err) => {
+        Toast.error("Image upload failure.");
+
+        setVideoList({ ...videos, loading: false, status: false });
+      });
+  };
+
+  const onClickRemoveVideo = () => {
+    setVideoList(null);
+  };
+
+  console.log(videoList);
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center New Request - Spacify Asia" />
@@ -479,12 +546,16 @@ const NewRequest = ({}) => {
               <div>
                 <SpecificRequestComponent
                   uploadImageRef={uploadImageRef}
+                  uploadVideoRef={uploadVideoRef}
                   setPostData={setPostData}
                   selectNestedHelpCenterSection={selectNestedHelpCenterSection}
                   onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
                   onChangeImage={onChangeImage}
                   imageList={imageList}
                   onClickRemoveImage={onClickRemoveImage}
+                  onChangeVideo={onChangeVideo}
+                  videoList={videoList}
+                  onClickRemoveVideo={onClickRemoveVideo}
                 />
 
                 {displayAuthorizationComponent ? (
