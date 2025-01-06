@@ -28,11 +28,14 @@ import {
   size,
   some,
   split,
+  take,
 } from "lodash";
 import NestedRequestComponents from "@/components/Help-center/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
+import ImageModal from "@/components/PropertyOverview/ImageModal";
+import VideoModal from "@/components/VideoModal";
 
 export { getServerSideProps };
 
@@ -66,9 +69,17 @@ const NewRequest = ({}) => {
   const [checkFeedbackMatters, setCheckFeedbackMatter] = useState(false);
   const [displayAuthorizationComponent, setDisplayAuthorizationComponent] =
     useState(false);
-  const [changeUploadModalTitle, setChangUploadModalTitle] = useState(true);
+
   const [imageList, setImageList] = useState([]);
   const [videoList, setVideoList] = useState(null);
+
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [openImageModal, setOpenImageModal] = useState(false);
+
+  const [openVideoModal, setOpenVideoModal] = useState(false);
+
+  const imageBase64 = map(imageList, "base64");
+  const selectedVideo = get(videoList, ["tempUrl"], "");
 
   useEffect(() => {
     fetchMaintenanceTicketOption();
@@ -83,10 +94,6 @@ const NewRequest = ({}) => {
 
   const getMaintenanceTicketOptionSuccessCallback = (res) => {
     setMaintenanceTicketOption(res);
-  };
-
-  const onClickChangeUploadModalTitle = (changeUploadModalTitle) => {
-    setChangUploadModalTitle(changeUploadModalTitle);
   };
 
   const onClickDisplayAuthorizationComponent = (
@@ -444,7 +451,22 @@ const NewRequest = ({}) => {
     setVideoList(null);
   };
 
-  console.log(videoList);
+  const onClickCloseImageModal = () => {
+    setOpenImageModal(false);
+  };
+
+  const onClickPopupImage = (selectedImage) => {
+    setSelectedImage(selectedImage);
+    setOpenImageModal(true);
+  };
+
+  const onClickCloseVideoModal = () => {
+    setOpenVideoModal(false);
+  };
+
+  const onClickPopupVideo = () => {
+    setOpenVideoModal(true);
+  };
 
   return (
     <div className="min-h-screen primaryWhite-bg-color">
@@ -549,13 +571,14 @@ const NewRequest = ({}) => {
                   uploadVideoRef={uploadVideoRef}
                   setPostData={setPostData}
                   selectNestedHelpCenterSection={selectNestedHelpCenterSection}
-                  onClickChangeUploadModalTitle={onClickChangeUploadModalTitle}
                   onChangeImage={onChangeImage}
                   imageList={imageList}
                   onClickRemoveImage={onClickRemoveImage}
                   onChangeVideo={onChangeVideo}
                   videoList={videoList}
                   onClickRemoveVideo={onClickRemoveVideo}
+                  onClickPopupImage={onClickPopupImage}
+                  onClickPopupVideo={onClickPopupVideo}
                 />
 
                 {displayAuthorizationComponent ? (
@@ -583,25 +606,18 @@ const NewRequest = ({}) => {
             )}
           </div>
 
-          {/*<UploadModal*/}
-          {/*  changeUploadModalTitle={changeUploadModalTitle}*/}
-          {/*  onClickOpenCamera={onClickOpenCamera}*/}
-          {/*  onClickSelectFile={onClickSelectFile}*/}
-          {/*/>*/}
+          <ImageModal
+            data={imageBase64}
+            selectedImage={selectedImage}
+            onClickCloseImageModal={onClickCloseImageModal}
+            openImageModal={openImageModal}
+          />
 
-          <input
-            capture="environment"
-            accept="image/*"
-            type="file"
-            hidden
-            ref={uploadImageRef}
-          ></input>
-          <input
-            accept="video/*"
-            type="file"
-            hidden
-            ref={uploadVideoRef}
-          ></input>
+          <VideoModal
+            onClickCloseVideoModal={onClickCloseVideoModal}
+            openVideoModal={openVideoModal}
+            selectedVideo={selectedVideo}
+          />
         </div>
       </DesktopLayout>
     </div>

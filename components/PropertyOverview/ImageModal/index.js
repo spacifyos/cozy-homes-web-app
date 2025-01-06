@@ -1,6 +1,4 @@
-import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
-import Helper from "@/src/utils/Helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { map, size } from "lodash";
@@ -42,7 +40,7 @@ const ImageModal = ({
                 }}
               >
                 <Image
-                    loader={() => item}
+                  loader={() => item}
                   alt={item}
                   src={item}
                   style={{ objectFit: "contain" }}

@@ -10,7 +10,6 @@ import { get, isEmpty, map, size } from "lodash";
 
 const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
-  onClickChangeUploadModalTitle,
   setPostData,
   uploadVideoRef,
   uploadImageRef,
@@ -20,6 +19,8 @@ const SpecificRequestComponent = ({
   onChangeVideo,
   videoList,
   onClickRemoveVideo,
+  onClickPopupImage,
+  onClickPopupVideo,
 }) => {
   const loading = get(videoList, ["loading"], false);
   const status = get(videoList, ["status"], false);
@@ -88,7 +89,7 @@ const SpecificRequestComponent = ({
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">
-        {map(imageList, (list) => {
+        {map(imageList, (list, index) => {
           const loading = get(list, ["loading"], false);
           const status = get(list, ["status"], false);
           const base64Image = get(list, ["base64"], "");
@@ -96,7 +97,9 @@ const SpecificRequestComponent = ({
 
           return (
             <div
-              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
+              key={index}
+              onClick={() => onClickPopupImage(index)}
+              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius cursor-pointer`}
             >
               <CustomImage
                 src={isEmpty(base64Image) ? Images.imageNotFound : base64Image}
@@ -122,12 +125,6 @@ const SpecificRequestComponent = ({
           <div
             className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
             onClick={() => uploadImageRef && uploadImageRef.current.click()}
-            // onClick={() => {
-            //   Helper.documentGetElementById(
-            //     "help_center_upload_modal",
-            //   ).showModal();
-            //   onClickChangeUploadModalTitle(true);
-            // }}
           >
             <CustomImage
               src={Images.plusIcon}
@@ -158,12 +155,17 @@ const SpecificRequestComponent = ({
           <div
             className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
           >
-            <video src={url} controls className="w-28 h-28" />
+            <CustomImage
+              src={Images.playIcon}
+              className="w-14 h-14 cursor-pointer"
+              onClick={onClickPopupVideo}
+            />
+
             {loading ? (
               <span className="loading loading-spinner loading-lg primary-text absolute"></span>
             ) : (
               <div
-                className="absolute top-1 right-1 cursor-pointer"
+                className="absolute top-1 right-1 cursor-pointer z-10"
                 onClick={() => onClickRemoveVideo(path)}
               >
                 <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
@@ -176,12 +178,6 @@ const SpecificRequestComponent = ({
           <div
             className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
             onClick={() => uploadVideoRef && uploadVideoRef.current.click()}
-            // onClick={() => {
-            //   Helper.documentGetElementById(
-            //     "help_center_upload_modal",
-            //   ).showModal();
-            //   onClickChangeUploadModalTitle(true);
-            // }}
           >
             <CustomImage
               src={Images.plusIcon}
