@@ -390,9 +390,9 @@ const NewRequest = ({}) => {
   const onChangeVideo = (e) => {
     const videos = e.target.files[0];
 
-    const isLt10M = videos && videos.size / 1024 / 1024 < 10;
+    const isLt10M = videos && videos.size / 1024 / 1024 < 50;
     if (!isLt10M) {
-      Toast.error(`Your video is larger than 10MB`);
+      Toast.error(`Your video is larger than 50MB`);
       return;
     } else {
       const videoUrl = URL.createObjectURL(videos);

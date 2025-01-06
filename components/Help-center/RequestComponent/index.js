@@ -145,7 +145,7 @@ const SpecificRequestComponent = ({
       </div>
 
       <CustomText textClassName="pb-2 text-xs">
-        {"Upload Video (max file size: 10MB, up to 1 video):"}
+        {"Upload Video (max file size: 50MB, up to 1 video):"}
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">
@@ -198,30 +198,6 @@ const SpecificRequestComponent = ({
           false
         )}
       </div>
-
-      {/*<div className=" flex flex-row items-center gap-2  pb-4">*/}
-      {/*  <CustomImage*/}
-      {/*    src={Images.imageNotFound}*/}
-      {/*    imageStyle={{ width: 100, height: 100 }}*/}
-      {/*    className="global-border-radius border"*/}
-      {/*  />*/}
-
-      {/*  <div*/}
-      {/*    className="bg-color global-border-radius cursor-pointer flex items-center justify-center"*/}
-      {/*    style={{ width: 100, height: 100 }}*/}
-      {/*    onClick={() => {*/}
-      {/*      Helper.documentGetElementById(*/}
-      {/*        "help_center_upload_modal",*/}
-      {/*      ).showModal();*/}
-      {/*      onClickChangeUploadModalTitle(false);*/}
-      {/*    }}*/}
-      {/*  >*/}
-      {/*    <CustomImage*/}
-      {/*      src={Images.plusIcon}*/}
-      {/*      imageStyle={{ width: 20, height: 20 }}*/}
-      {/*    />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
     </div>
   ) : (
     false
