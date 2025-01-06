@@ -19,6 +19,8 @@ import Helper from "@/src/utils/Helper";
 import AuthManager from "@/src/utils/AuthManager";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
+import ImageModal from "@/components/PropertyOverview/ImageModal";
+import VideoModal from "@/components/VideoModal";
 
 export { getServerSideProps };
 
@@ -30,6 +32,8 @@ const RequestOverview = ({ id }) => {
   const [secret, setSecret] = useState("");
   const [imageLoading, setImageLoading] = useState(false);
   const [imageList, setImageList] = useState([]);
+  const [videoValue, setVideoValue] = useState("");
+  const [videoLoading, setVideoLoading] = useState(false);
 
   const getMaintenanceTicketOverviewRequest = (id) =>
     dispatch(maintenanceTicketAction.getMaintenanceTicketOverviewRequest(id));
@@ -46,6 +50,12 @@ const RequestOverview = ({ id }) => {
   const images = maintenanceTicketSelector.getImages(
     maintenanceTicketOverviewData,
   );
+  const videos = get(maintenanceTicketOverviewData, ["videos"], "");
+
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [openImageModal, setOpenImageModal] = useState(false);
+
+  const [openVideoModal, setOpenVideoModal] = useState(false);
 
   const handleImageSecretData = async () => {
     await apiRequest.getRootDataRequest(() => {}, getRootDataSuccessCallback);
@@ -60,9 +70,13 @@ const RequestOverview = ({ id }) => {
 
   useEffect(() => {
     if (!isEmpty(maintenanceTicketOverviewData) && !isEmpty(images)) {
-      return map(images, (image) => {
+      map(images, (image) => {
         fetchImageData(image);
       });
+    }
+
+    if (!isEmpty(maintenanceTicketOverviewData) && !isEmpty(videos)) {
+      fetchVideoData(videos);
     }
   }, [maintenanceTicketOverviewData]);
 
@@ -73,6 +87,31 @@ const RequestOverview = ({ id }) => {
 
   const fetchMaintenanceData = () => {
     getMaintenanceTicketOverviewRequest(id);
+  };
+
+  const fetchVideoData = async (video) => {
+    setVideoLoading(true);
+
+    const url = `${video}/based64`;
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: secret,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
+
+    axios
+      .get(url, { headers: headers })
+      .then(async (response) => {
+        const res = get(response, ["data"], "");
+
+        setVideoValue(res);
+      })
+      .catch((error) => {
+        Toast.error("Fetch image failed");
+      })
+      .finally(() => setVideoLoading(false));
   };
 
   const fetchImageData = async (image) => {
@@ -92,7 +131,7 @@ const RequestOverview = ({ id }) => {
       .then(async (response) => {
         const res = get(response, ["data"], "");
 
-        setImageList(concat(imageList, res));
+        setImageList((prevState) => concat(prevState, res));
       })
       .catch((error) => {
         Toast.error("Fetch image failed");
@@ -102,6 +141,23 @@ const RequestOverview = ({ id }) => {
 
   const onClickGoBack = () => {
     router.back();
+  };
+
+  const onClickCloseImageModal = () => {
+    setOpenImageModal(false);
+  };
+
+  const onClickPopupImage = (selectedImage) => {
+    setSelectedImage(selectedImage);
+    setOpenImageModal(true);
+  };
+
+  const onClickCloseVideoModal = () => {
+    setOpenVideoModal(false);
+  };
+
+  const onClickPopupVideo = () => {
+    setOpenVideoModal(true);
   };
 
   return (
@@ -145,6 +201,10 @@ const RequestOverview = ({ id }) => {
             data={maintenanceTicketOverviewData}
             imageLoading={imageLoading}
             imageList={imageList}
+            videoValue={videoValue}
+            videoLoading={videoLoading}
+            onClickPopupImage={onClickPopupImage}
+            onClickPopupVideo={onClickPopupVideo}
           />
 
           <MaintenanceScheduleInformationComponent
@@ -154,6 +214,19 @@ const RequestOverview = ({ id }) => {
           {/*<CommentComponent t={t} chatList={chatList} />*/}
         </div>
       </DesktopLayout>
+
+      <ImageModal
+        data={imageList}
+        selectedImage={selectedImage}
+        onClickCloseImageModal={onClickCloseImageModal}
+        openImageModal={openImageModal}
+      />
+
+      <VideoModal
+        onClickCloseVideoModal={onClickCloseVideoModal}
+        openVideoModal={openVideoModal}
+        selectedVideo={videoValue}
+      />
     </div>
   );
 };

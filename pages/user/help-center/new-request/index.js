@@ -28,7 +28,7 @@ import {
   size,
   some,
   split,
-  take,
+  last,
 } from "lodash";
 import NestedRequestComponents from "@/components/Help-center/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
@@ -50,9 +50,6 @@ const NewRequest = ({}) => {
     useState(false);
   const [createMaintenanceTicketLoading, setCreateMaintenanceTicketLoading] =
     useState(false);
-
-  const [getGalleryLinkLoading, setGetGalleryLinkLoading] = useState(false);
-  const [imageUploading, setImageUploading] = useState(false);
 
   const requestTypeOption = maintenanceTicketSelector.getRequestType(
     maintenanceTicketOption,
@@ -233,10 +230,6 @@ const NewRequest = ({}) => {
     router.back();
   };
 
-  const onClickToRequestOverview = (id) => {
-    router.push(`/help-center/${id}`);
-  };
-
   const onClickOpenCamera = () => {
     uploadImageRef && uploadImageRef.current.click();
   };
@@ -247,7 +240,11 @@ const NewRequest = ({}) => {
 
   const onClickSubmitRequest = async () => {
     await apiRequest.postMaintenanceTicketRequest(
-      { ...postData, maintenance_ticket_images: imageList },
+      {
+        ...postData,
+        maintenance_ticket_images: imageList,
+        maintenance_ticket_videos: [videoList],
+      },
       setCreateMaintenanceTicketLoading,
       createSuccessCallback,
     );
@@ -284,6 +281,7 @@ const NewRequest = ({}) => {
           status: false,
           loading: true,
           base64: base64,
+          image: image,
         };
 
         setImageList((prevState) => [...prevState, newImage]);
@@ -341,7 +339,7 @@ const NewRequest = ({}) => {
 
   const postUploadImage = (url, image) => {
     axios
-      .put(url, image)
+      .put(url, get(image, ["image"], ""))
       .then((result) => {
         Toast.success("Image upload success.");
         setImageList((prevState) => {
@@ -398,17 +396,27 @@ const NewRequest = ({}) => {
       const videoUrl = URL.createObjectURL(videos);
 
       const newVideo = {
+        type: 23,
         video: videos,
         tempUrl: videoUrl,
         loading: true,
         status: false,
+        extension: last(split(get(videos, ["name"], ""), ".")),
+        mime_type: get(videos, ["type"],"")
       };
+
+      setVideoList((prevState) => {
+        return {
+          ...prevState,
+          ...newVideo,
+        };
+      });
 
       fetchVideoGalleryLink(newVideo);
     }
   };
 
-  const fetchVideoGalleryLink = (videos) => {
+  const fetchVideoGalleryLink = (video) => {
     apiInstance
       .get("/gallery")
       .then((res) => {
@@ -416,16 +424,19 @@ const NewRequest = ({}) => {
         const path = get(res, ["data", "data", "path"], "");
 
         Toast.success("Get gallery link success.");
-        getVideoGalleryLinkSuccess(url, videos, path);
+        getVideoGalleryLinkSuccess(url, video, path);
       })
       .catch((err) => {
         Toast.error("Get gallery link failure.");
-        setVideoList({ ...videos, loading: false });
+        setVideoList((prevState) => ({
+          ...prevState,
+          loading: false,
+        }));
       });
   };
 
   const getVideoGalleryLinkSuccess = (url, videos, path) => {
-    setVideoList({ videos, url: url, path: path });
+    setVideoList((prevState) => ({ ...prevState, url: url, path: path }));
 
     postUploadVideo(url, videos);
   };
@@ -438,12 +449,20 @@ const NewRequest = ({}) => {
       .then((result) => {
         Toast.success("Image upload success.");
 
-        setVideoList({ ...videos, loading: false, status: true });
+        setVideoList((prevState) => ({
+          ...prevState,
+          loading: false,
+          status: true,
+        }));
       })
       .catch((err) => {
         Toast.error("Image upload failure.");
 
-        setVideoList({ ...videos, loading: false, status: false });
+        setVideoList((prevState) => ({
+          ...prevState,
+          loading: false,
+          status: false,
+        }));
       });
   };
 

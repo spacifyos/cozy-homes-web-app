@@ -155,11 +155,15 @@ const SpecificRequestComponent = ({
           <div
             className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
           >
-            <CustomImage
-              src={Images.playIcon}
-              className="w-14 h-14 cursor-pointer"
-              onClick={onClickPopupVideo}
-            />
+            {loading ? (
+              false
+            ) : (
+              <CustomImage
+                src={Images.playIcon}
+                className="w-14 h-14 cursor-pointer"
+                onClick={onClickPopupVideo}
+              />
+            )}
 
             {loading ? (
               <span className="loading loading-spinner loading-lg primary-text absolute"></span>
