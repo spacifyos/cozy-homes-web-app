@@ -5,7 +5,7 @@ import Images from "@/src/utils/Image";
 import * as agreementSelector from "@/src/selectors/agreement";
 import { isEmpty } from "lodash";
 
-const EAgreementCard = ({ item, t }) => {
+const EAgreementCard = ({ item }) => {
   const referenceNumber = agreementSelector.getReferenceNumber(item);
   const property = agreementSelector.getProperty(item);
   const status = agreementSelector.getStatus(item);
@@ -46,9 +46,7 @@ const EAgreementCard = ({ item, t }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="text-xs disable-text">
-              {t("eAgreement.agreed")}
-            </CustomText>
+            <CustomText textClassName="text-xs disable-text">Agreed</CustomText>
           </div>
 
           <div className="flex">
@@ -57,9 +55,7 @@ const EAgreementCard = ({ item, t }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="text-xs disable-text">
-              {t("eAgreement.signed")}
-            </CustomText>
+            <CustomText textClassName="text-xs disable-text">Signed</CustomText>
           </div>
         </div>
       </div>

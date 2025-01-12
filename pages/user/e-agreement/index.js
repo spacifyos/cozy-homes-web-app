@@ -140,7 +140,7 @@ const EAgreement = () => {
           ) : (
             <div className="flex flex-col gap-4">
               {map(agreementListingData, (item, index) => (
-                <EAgreementCard item={item} key={index} t={t} />
+                <EAgreementCard item={item} key={index} />
               ))}
             </div>
           )}
