@@ -109,7 +109,7 @@ const SpecificRequestComponent = ({
                 <span className="loading loading-spinner loading-lg primary-text absolute"></span>
               ) : (
                 <div
-                  className="absolute top-1 right-1 cursor-pointer"
+                  className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
                   onClick={() => onClickRemoveImage(path)}
                 >
                   <CustomImage src={Images.deleteIcon} className="w-5 h-5" />

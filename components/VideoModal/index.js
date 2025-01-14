@@ -1,10 +1,13 @@
 import CustomText from "@/components/CustomText";
+import { get } from "lodash";
 
 const VideoModal = ({
   selectedVideo,
   onClickCloseVideoModal,
   openVideoModal,
 }) => {
+  const video = get(selectedVideo, ["video"], "");
+
   return openVideoModal ? (
     <div
       className="h-full fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col justify-center items-center"
@@ -17,7 +20,7 @@ const VideoModal = ({
           height: "100%",
         }}
       >
-        <video src={selectedVideo} controls className="w-full h-full" />
+        <video src={video} controls className="w-full h-full" />
       </div>
 
       <div

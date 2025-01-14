@@ -240,6 +240,11 @@ const getMaintenanceTicketDetail = (id) =>
 const postMaintenanceTicket = (postData) =>
   apiInstance.post(`/maintenance-ticket/store`, postData);
 
+const putMaintenanceTicket = (id, postData) =>
+  apiInstance.put(`/maintenance-ticket/technician/${id}`, postData);
+
+const deleteGallery = (id) => apiInstance.post(`/gallery/${id}/delete`);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -299,4 +304,6 @@ export default {
   getMaintenanceTicketOption,
   getMaintenanceTicketDetail,
   postMaintenanceTicket,
+  putMaintenanceTicket,
+  deleteGallery,
 };

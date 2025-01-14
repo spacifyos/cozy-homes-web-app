@@ -41,23 +41,33 @@ export const getCreatedAt = (state) => get(state, ["created_at"], "");
 export const getAvailableDate = (state) => get(state, ["available_date"], "");
 export const getId = (state) => get(state, ["id"], "");
 export const getPriority = (state) => get(state, ["priority"], "");
-export const getPriorityLabel = (state) => get(state, ["priority","label"], "");
-export const getPriorityValue = (state) => get(state, ["priority","value"], "");
+export const getPriorityLabel = (state) =>
+  get(state, ["priority", "label"], "");
+export const getPriorityValue = (state) =>
+  get(state, ["priority", "value"], "");
 export const getIsAllowedEntry = (state) =>
-    get(state, ["is_allowed_entry"], "");
+  get(state, ["is_allowed_entry"], "");
 export const getPropertyUnitName = (state) =>
   get(state, ["property_unit_name"], "");
-export const getRequestDate = (state) =>
-    get(state, ["request_date"], "");
-export const getPropertyName = (state) =>
-    get(state, ["property_name"], "");
+export const getRequestDate = (state) => get(state, ["request_date"], "");
+export const getPropertyName = (state) => get(state, ["property_name"], "");
 export const getRequestInfo = (state) => get(state, ["request_info"], "");
 export const getRequestDetails = (state) => get(state, ["request_details"], "");
 export const getRequestNumber = (state) => get(state, ["request_number"], "");
 export const getRequesterName = (state) => get(state, ["requester_name"], "");
 export const getRoomName = (state) => get(state, ["room_name"], "");
 export const getStatus = (state) => get(state, ["status"], "");
+export const getUrl = (state) => get(state, ["url"], "");
+export const getGalleryId = (state) => get(state, ["gallery_id"], "");
 export const getTechnicianName = (state) => get(state, ["technician_name"], "");
+export const getTechnicianInternalRemarks = (state) =>
+  get(state, ["technician_internal_remarks"], "");
+export const getTechnicianExternalRemarks = (state) =>
+  get(state, ["technician_external_remarks"], "");
+export const getTechnicianTicketImages = (state) =>
+  get(state, ["technician_maintenance_info_images"], []);
+export const getTechnicianTicketVideos = (state) =>
+  get(state, ["technician_maintenance_info_video"], "");
 export const getImages = (state) => get(state, ["images"], []);
 export const getStatusLabel = (state) => get(state, ["status", "label"], "");
 export const getStatusValue = (state) => get(state, ["status", "value"], "");

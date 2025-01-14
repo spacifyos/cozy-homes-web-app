@@ -226,7 +226,7 @@ const CardListing = () => {
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
       <DesktopLayout
-        hideNav
+        // hideNav
         // footerPaddingBottom="pb-20"
         loading={
           propertyListingLoading || unitListingLoading || propertyOptionLoading
@@ -243,7 +243,7 @@ const CardListing = () => {
           </div>
         }
       >
-        <div className="container mx-auto xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8">
+        <div className="flex flex-col flex-1 h-full">
           <div
             className={`grid xl:grid-cols-11 lg:grid-cols-11 md:grid-cols-11 sm:grid-cols-11 grid-cols-11 gap-2 ${isOpenFilter ? "pb-2" : "pb-7"}`}
           >

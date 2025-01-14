@@ -115,7 +115,7 @@ const HelpCenter = () => {
   };
 
   const onClickToRequestOverview = (id) => {
-    router.push(`/user/help-center/${id}`);
+    router.push(`/agency/help-center/${id}`);
   };
 
   const onClickLoadMore = () => {
@@ -131,8 +131,6 @@ const HelpCenter = () => {
           maintenanceTicketListingDataLoading &&
           isEmpty(maintenanceTicketListingData)
         }
-        rightButtonIcon={Images.plusIcon}
-        onClickRightButton={onClickToNewRequest}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">

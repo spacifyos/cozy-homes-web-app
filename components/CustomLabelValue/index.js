@@ -8,7 +8,7 @@ const CustomLabelValue = ({
   styles,
 }) => {
   return (
-    <div className={`pb-2 ${className}`} style={styles}>
+    <div className={`pb-4 ${className}`} style={styles}>
       <CustomText textClassName={`disable-text text-xs font-normal`}>
         {label}
       </CustomText>

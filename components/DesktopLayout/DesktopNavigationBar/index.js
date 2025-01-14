@@ -178,6 +178,34 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         imageWidth={18}
       />
 
+      {!isEmpty(userData) && isTenant ? (
+        <FeatureComponent
+          title="Help Center"
+          icon={Images.helpIcon}
+          pb={3}
+          onClick={() => {
+            return router.push("/user/help-center");
+          }}
+          imageWidth={25}
+        />
+      ) : (
+        false
+      )}
+
+      {!isEmpty(userData) && isBackOffice ? (
+        <FeatureComponent
+          title="Help Center"
+          icon={Images.helpIcon}
+          pb={3}
+          onClick={() => {
+            return router.push("/agency/help-center");
+          }}
+          imageWidth={25}
+        />
+      ) : (
+        false
+      )}
+
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
           title="My Invoice"
@@ -264,7 +292,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         <FeatureComponent
           title="Property Listing"
           icon={Images.listIconActive}
-          imageWidth={23}
+          imageWidth={20}
           pb={3}
           onClick={() => {
             return router.push("/agency/card-listing");

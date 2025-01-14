@@ -500,6 +500,14 @@ const postMaintenanceTicketRequest = async (
   );
 };
 
+const putMaintenanceTicketRequest = async (id, postData, setLoading) => {
+  await apiRequest(api.putMaintenanceTicket(id, postData), setLoading);
+};
+
+const deleteGalleryRequest = async (id, setLoading, successCallback) => {
+  await apiRequest(api.deleteGallery(id), setLoading, successCallback);
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -541,4 +549,6 @@ export default {
   getMaintenanceTicketListingRequest,
   getMaintenanceTicketDetailRequest,
   postMaintenanceTicketRequest,
+  putMaintenanceTicketRequest,
+  deleteGalleryRequest,
 };

@@ -33,6 +33,9 @@ const RequestOverview = ({ id }) => {
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
 
+  const [videoDeleteLoading, setVideoDeleteLoading] = useState(false);
+  const [imageDeleteLoading, setImageDeleteLoading] = useState(false);
+
   const [imageList, setImageList] = useState([]);
   const [videoValue, setVideoValue] = useState(null);
   const [technicianImageList, setTechnicianImageList] = useState([]);
@@ -256,6 +259,18 @@ const RequestOverview = ({ id }) => {
     setOpenVideoModal(true);
   };
 
+  const onClickRemoveGallery = async (id) => {
+    await apiRequest.deleteGalleryRequest(
+      id,
+      setImageDeleteLoading,
+      deleteSuccessCallback,
+    );
+  };
+
+  const deleteSuccessCallback = () => {
+    router.reload();
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center Overview - Spacify Asia" />
@@ -309,6 +324,7 @@ const RequestOverview = ({ id }) => {
             videos={technicianVideoValue}
             onClickPopupImage={onClickPopupImage}
             onClickPopupVideo={onClickPopupVideo}
+            onClickRemoveGallery={onClickRemoveGallery}
           />
 
           {/*<CommentComponent t={t} chatList={chatList} />*/}

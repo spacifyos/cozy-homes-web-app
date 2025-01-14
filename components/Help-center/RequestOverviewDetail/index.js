@@ -28,14 +28,14 @@ const RequestOverviewDetail = ({
   const isAllowedEntry = maintenanceTicketSelector.getIsAllowedEntry(data);
 
   return (
-    <div className="global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
+    <div className="global-border global-border-radius global-box-shadow primaryWhite-bg-color p-4">
       <div className="flex justify-between">
         <CustomLabelValue
           label="Request Number"
           value={requestNumber}
           highlight
         />
-        <div className={`pb-2`}>
+        <div>
           <CustomText textClassName={`disable-text text-xs font-normal`}>
             Status
           </CustomText>
@@ -45,7 +45,7 @@ const RequestOverviewDetail = ({
 
       <div
         className="divider-line"
-        style={{ marginTop: 10, marginBottom: 10 }}
+        style={{ marginTop: 0, marginBottom: 16 }}
       ></div>
 
       <div className="flex justify-between items-center">
@@ -57,7 +57,7 @@ const RequestOverviewDetail = ({
 
       <div
         className="divider-line"
-        style={{ marginTop: 10, marginBottom: 10 }}
+        style={{ marginTop: 16, marginBottom: 16 }}
       ></div>
 
       <div className="flex justify-between">
@@ -72,17 +72,19 @@ const RequestOverviewDetail = ({
       <CustomLabelValue label={"Request Details"} value={requestDetails} />
 
       {!isEmpty(imageList) ? (
-        <div className="pb-2">
+        <div className="pb-4">
           <CustomText textClassName="disable-text text-xs pb-1">
             Photos
           </CustomText>
-          <div className="flex items-start gap-2 pb-2">
+          <div className="flex items-start gap-2">
             {map(imageList, (list, index) => {
+              const image = get(list, ["image"], "");
+
               return (
                 <CustomImage
                   onClick={() => onClickPopupImage(index)}
                   key={index}
-                  src={list}
+                  src={image}
                   className="global-border-radius border w-28 h-28 cursor-pointer"
                 />
               );
@@ -94,7 +96,7 @@ const RequestOverviewDetail = ({
       )}
 
       {!isEmpty(videoValue) ? (
-        <div className="pb-2">
+        <div className="pb-4">
           <CustomText textClassName="disable-text text-xs pb-1">
             Video
           </CustomText>
