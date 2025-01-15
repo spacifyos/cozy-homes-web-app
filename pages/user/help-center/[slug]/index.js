@@ -261,6 +261,7 @@ const RequestOverview = ({ id }) => {
       <NextSeo title="Help Center Overview - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={maintenanceTicketOverviewDataLoading}
         pageBreadcrumbs={
           <div>

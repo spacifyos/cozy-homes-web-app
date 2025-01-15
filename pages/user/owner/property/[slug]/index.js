@@ -141,6 +141,7 @@ const PropertyDetail = ({ id }) => {
       <NextSeo title="My Property Overview | Owner - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={propertyDetailLoading || rentTrackerDataLoading}
         pageBreadcrumbs={
           <div>

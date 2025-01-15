@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
 
 const VideoModal = ({
   selectedVideo,
@@ -7,6 +7,7 @@ const VideoModal = ({
   openVideoModal,
 }) => {
   const video = get(selectedVideo, ["video"], "");
+  const tempUrl = get(selectedVideo, ["tempUrl"], "");
 
   return openVideoModal ? (
     <div
@@ -20,7 +21,11 @@ const VideoModal = ({
           height: "100%",
         }}
       >
-        <video src={video} controls className="w-full h-full" />
+        <video
+          src={isEmpty(video) ? tempUrl : video}
+          controls
+          className="w-full h-full"
+        />
       </div>
 
       <div

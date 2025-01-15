@@ -151,6 +151,7 @@ const OwnerHome = () => {
       <NextSeo title="My Property | Owner - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         footerPaddingBottom="pb-20"
         loading={
           propertyListingLoading ||

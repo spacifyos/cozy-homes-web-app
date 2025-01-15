@@ -71,24 +71,26 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                 >
                   <div
                     style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
-                    className="global-border-radius flex flex-col justify-end p-3"
+                    className="global-border-radius flex flex-col justify-between p-3"
                   >
-                    {showLabel ? (
-                      <div className="flex pb-1">
-                        <CustomText textClassName="text-xs text-white available-bg-color px-4 py-0.5 rounded">
-                          Available
-                        </CustomText>
-                      </div>
-                    ) : (
-                      false
-                    )}
+                    <div className="pt-4 pl-4">
+                      {showLabel ? (
+                        <div className="flex pb-1">
+                          <CustomText textClassName="text-xs text-white available-bg-color px-4 py-0.5 rounded">
+                            Available
+                          </CustomText>
+                        </div>
+                      ) : (
+                        false
+                      )}
 
-                    <CustomText textClassName="text-white font-bold text-base">
-                      {isEmpty(propertyName) ? "-" : propertyName}
-                    </CustomText>
-                    <CustomText textClassName="text-white text-xs font-light">
-                      {isEmpty(propertyAddress) ? "-" : propertyAddress}
-                    </CustomText>
+                      <CustomText textClassName="text-white font-bold text-base">
+                        {isEmpty(propertyName) ? "-" : propertyName}
+                      </CustomText>
+                      <CustomText textClassName="text-white text-xs font-light">
+                        {isEmpty(propertyAddress) ? "-" : propertyAddress}
+                      </CustomText>
+                    </div>
 
                     <div className="flex pt-2">
                       {map(infoLists, (list, index) => {
@@ -99,7 +101,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                         return (
                           <div
                             className="p-2 flex flex-col items-center justify-center"
-                            style={{ width: 60 }}
+                            style={{ minWidth: 70 }}
                             key={index}
                           >
                             <CustomImage

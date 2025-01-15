@@ -28,6 +28,7 @@ const Testing = () => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <DesktopLayout
+        hideFooter
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">

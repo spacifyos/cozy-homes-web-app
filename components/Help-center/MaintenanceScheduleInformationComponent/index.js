@@ -11,17 +11,11 @@ const MaintenanceScheduleInformation = ({
   videos,
   onClickPopupImage,
   onClickPopupVideo,
-  onClickRemoveGallery,
 }) => {
   const technicianName = maintenanceTicketSelector.getTechnicianName(data);
   const availableDate = maintenanceTicketSelector.getAvailableDate(data);
-  const status = maintenanceTicketSelector.getStatusLabel(data);
-  const internalRemark =
-    maintenanceTicketSelector.getTechnicianInternalRemarks(data);
   const externalRemark =
     maintenanceTicketSelector.getTechnicianExternalRemarks(data);
-
-  const videoId = get(videos, ["id"], "");
 
   return (
     <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
@@ -29,11 +23,6 @@ const MaintenanceScheduleInformation = ({
         <CustomText textClassName="disable-text text-sm">
           Maintenance Schedule Information
         </CustomText>
-        {/*<CustomImage*/}
-        {/*  src={Images.refreshIconActive}*/}
-        {/*  imageStyle={{ width: 20, height: 20 }}*/}
-        {/*  className="cursor-pointer"*/}
-        {/*/>*/}
       </div>
 
       <div
@@ -45,13 +34,10 @@ const MaintenanceScheduleInformation = ({
 
       <CustomLabelValue label={"Date & Time"} value={availableDate} />
 
-      <CustomLabelValue label={"Remarks"} value={externalRemark} />
-
-      {isEmpty(internalRemark) ? (
-        false
-      ) : (
-        <CustomLabelValue label={"Internal Remarks"} value={internalRemark} />
-      )}
+      <CustomLabelValue
+        label={"Remarks"}
+        value={isEmpty(externalRemark) ? "-" : externalRemark}
+      />
 
       {!isEmpty(images) ? (
         <div className="pb-4">
@@ -61,7 +47,6 @@ const MaintenanceScheduleInformation = ({
           <div className="flex items-start gap-2">
             {map(images, (list, index) => {
               const image = get(list, ["image"], "");
-              const id = get(list, ["id"], "");
 
               return (
                 <div className="relative">
@@ -71,13 +56,6 @@ const MaintenanceScheduleInformation = ({
                     src={image}
                     className="global-border-radius border w-28 h-28 cursor-pointer"
                   />
-
-                  <div
-                    className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
-                    onClick={() => onClickRemoveImage(id)}
-                  >
-                    <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
-                  </div>
                 </div>
               );
             })}
@@ -100,13 +78,6 @@ const MaintenanceScheduleInformation = ({
               className="w-14 h-14 cursor-pointer"
               onClick={() => onClickPopupVideo("technician")}
             />
-
-            <div
-              className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
-              onClick={() => onClickRemoveGallery(videoId)}
-            >
-              <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
-            </div>
           </div>
         </div>
       ) : (

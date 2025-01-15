@@ -67,6 +67,7 @@ const EAgreementOverview = ({ id }) => {
       <NextSeo title="My E-Agreement Overview - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={agreementOverviewDataLoading}
         pageBreadcrumbs={
           <div>
@@ -131,11 +132,6 @@ const EAgreementOverview = ({ id }) => {
               className="divider-line"
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
-
-            {/*<CustomLabelValue*/}
-            {/*  value="E-Sign & E-Stamp"*/}
-            {/*  label={t("eAgreementOverview.service")}*/}
-            {/*/>*/}
 
             <CustomLabelValue
               value={isEmpty(property) ? "-" : property}
@@ -208,17 +204,6 @@ const EAgreementOverview = ({ id }) => {
               className="divider-line"
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
-
-            {/*<div className="grid grid-cols-2 gap-2">*/}
-            {/*  <CustomLabelValue*/}
-            {/*    value="Pending"*/}
-            {/*    label={t("eAgreementOverview.stampingStatus")}*/}
-            {/*  />*/}
-            {/*  <CustomLabelValue*/}
-            {/*    value="No"*/}
-            {/*    label={t("eAgreementOverview.insurance")}*/}
-            {/*  />*/}
-            {/*</div>*/}
 
             <a
               className="flex justify-center pt-5 w-full"

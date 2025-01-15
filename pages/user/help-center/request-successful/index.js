@@ -20,12 +20,7 @@ const RequestSuccessful = ({}) => {
   return (
     <div className="flex flex-col justify-center items-center relative bg-color h-screen">
       <NextSeo title="Request Successful - Spacify Asia" />
-      {/*<CustomImage*/}
-      {/*  src={Images.cancelIcon}*/}
-      {/*  imageStyle={{ width: 20 }}*/}
-      {/*  className=" absolute top-5 right-5 cursor-pointer"*/}
-      {/*  onClick={onClickGoMainPage}*/}
-      {/*/>*/}
+
       <CustomImage
         src={Images.successIcon}
         imageStyle={{ width: "150px", height: "150px" }}

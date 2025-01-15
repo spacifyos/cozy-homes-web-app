@@ -85,7 +85,7 @@ const SpecificRequestComponent = ({
       />
 
       <CustomText textClassName="pb-2 text-xs">
-        {"Upload Photo (max file size: 2MB,up to 5 photo):"}
+        {"Upload Photo (max file size 2MB, up to 5 photo):"}
       </CustomText>
 
       <div className=" flex flex-row items-center gap-2 pb-3">

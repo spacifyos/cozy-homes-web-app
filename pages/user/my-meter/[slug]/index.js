@@ -139,18 +139,12 @@ const MyMeterOverview = ({ id }) => {
       <NextSeo title="Meter Overview - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={meterOverviewLoading || syncMeterLoading || meterTopUpLoading}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <a href={"/user/my-meter"}>
                     <CustomText textClassName="text-base disable-text">

@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { get, map, size } from "lodash";
+import { get, isEmpty, map, size } from "lodash";
 import Image from "next/image";
 
 const ImageModal = ({
@@ -24,6 +24,7 @@ const ImageModal = ({
       >
         {map(data, (item, index) => {
           const image = get(item, ["image"], "");
+          const base64 = get(item, ["base64"], "");
 
           return (
             <SwiperSlide
@@ -42,9 +43,9 @@ const ImageModal = ({
                 }}
               >
                 <Image
-                  loader={() => image}
-                  alt={image}
-                  src={image}
+                  loader={() => (isEmpty(image) ? base64 : image)}
+                  alt={isEmpty(image) ? base64 : image}
+                  src={isEmpty(image) ? base64 : image}
                   style={{ objectFit: "contain" }}
                   sizes="100vw"
                   fill

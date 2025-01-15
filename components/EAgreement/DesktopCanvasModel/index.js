@@ -10,7 +10,6 @@ import DesktopModal from "@/components/DesktopModal";
 const DesktopCanvasModal = ({
   onClickReadSign,
   readSign,
-  t,
   onClickCloseSignatureModal,
   onClickSubmitSignature,
   onClickResetCanvas,
@@ -38,14 +37,14 @@ const DesktopCanvasModal = ({
           </button>
         </form>
         <CustomText textClassName="font-bold text-base pb-5">
-          {t("viewAgreement.pleaseSignBelow")}
+          Please Sign Below
         </CustomText>
         <div
           className="flex justify-end cursor-pointer"
           onClick={onClickResetCanvas}
         >
           <CustomText textClassName="primary-text text-sm pb-2">
-            {t("viewAgreement.reset")}
+            Reset
           </CustomText>
         </div>
         <div
@@ -95,7 +94,7 @@ const DesktopCanvasModal = ({
             onClick={() => onClickCloseSignatureModal("desktop")}
           />
           <CustomButton
-            buttonText={t("viewAgreement.sign")}
+            buttonText="Sign"
             buttonClassName="primary-btn"
             onClick={() => onClickSubmitSignature("desktop")}
           />

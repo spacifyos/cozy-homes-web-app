@@ -84,18 +84,12 @@ const EAgreement = () => {
       <NextSeo title="My E-Agreement - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={agreementListingDataLoading}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <CustomText textClassName="text-base">
                     My E-Agreement

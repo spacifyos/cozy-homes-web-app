@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Helper from "@/src/utils/Helper";
 import { get, isEmpty, toString } from "lodash";
-import { useDispatch, useSelector } from "react-redux";
-import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import CryptoJS from "crypto-js";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
@@ -12,8 +9,6 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import AuthWrapper from "@/components/AuthWrapper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as tenancySelector from "@/src/selectors/tenancy";
-import BottomNavigate from "@/components/BottomNavigate";
-import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomImage from "@/components/CustomImage";
@@ -24,16 +19,8 @@ export { getServerSideProps };
 const Chat = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const routeName = get(router, ["route"], "");
-  const routeQuery = get(router, ["query"], "");
-
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
-
-  const [uChatIsReady, setUChatIsReady] = useState(false);
-
-  // const bottomNavigateHeight =
-  //   Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
@@ -91,19 +78,8 @@ const Chat = () => {
           }
         });
       };
-
-      // setTimeout(() => {
-      //   setUChatIsReady(true);
-      // }, 1000);
     }
   }, [userProfileData, window]);
-
-  // useEffect(() => {
-  //   if (uChatIsReady) {
-  //
-  //     setUChatIsReady(false);
-  //   }
-  // }, [uChatIsReady]);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -120,10 +96,6 @@ const Chat = () => {
     setUserProfileData(res);
   };
 
-  const onClickChangeTab = (route) => {
-    router.push(route);
-  };
-
   const onClickGoBack = () => {
     router.back();
   };
@@ -131,6 +103,7 @@ const Chat = () => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <DesktopLayout
+        hideFooter
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -155,7 +128,7 @@ const Chat = () => {
         <div
           id="chat-container"
           className="border global-border-radius h-full w-full overflow-hidden flex justify-center items-center"
-          style={{ height: "80vh" }}
+          style={{ height: "100%" }}
         >
           <div id="embed_chatbot_container_id"></div>
 
@@ -164,15 +137,6 @@ const Chat = () => {
           ) : (
             false
           )}
-
-          {/*<LoadingOverlay loading={userProfileLoading} />*/}
-
-          {/*<BottomNavigate*/}
-          {/*  t={t}*/}
-          {/*  routeName={routeName}*/}
-          {/*  routeQuery={routeQuery}*/}
-          {/*  onClickChangeTab={onClickChangeTab}*/}
-          {/*/>*/}
         </div>
       </DesktopLayout>
     </div>

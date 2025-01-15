@@ -22,18 +22,10 @@ export { getServerSideProps };
 
 const OwnerChat = () => {
   const { t } = useTranslation("common");
-  const dispatch = useDispatch();
   const router = useRouter();
-  const routeName = get(router, ["route"], "");
-  const routeQuery = get(router, ["query"], "");
 
   const [userProfileData, setUserProfileData] = useState(false);
   const [userProfileLoading, setUserProfileLoading] = useState(false);
-
-  const [uChatIsReady, setUChatIsReady] = useState(false);
-
-  // const bottomNavigateHeight =
-  //   Helper.documentGetElementById("bottom_navbar").offsetHeight;
 
   const name = authSelector.getName(userProfileData);
   const email = authSelector.getEmail(userProfileData);
@@ -42,23 +34,6 @@ const OwnerChat = () => {
   const propertyDetails = get(userProfileData, ["property_details"], []);
 
   const propertyDetailToString = JSON.stringify(propertyDetails);
-
-  const formattedProperty = map(
-    propertyDetails,
-    (property) =>
-      `(Property: ${property.property_name}, Unit: ${property.units.join("/")})`,
-  );
-
-  const tenancyCode = tenancySelector.getTenancyCode(propertyDetails);
-  const tenancyStatus = tenancySelector.getStatus(propertyDetails);
-  const propertyName = get(propertyDetails, ["property_name"], "");
-  const unitName = get(propertyDetails, ["unit_name"], "");
-  const roomName = get(propertyDetails, ["room_name"], "");
-  const tenancyPeriod = tenancySelector.getTenancyPeriod(propertyDetails);
-  const totalDays = tenancySelector.getTotalDays(propertyDetails);
-  const tenancyRemaining =
-    tenancySelector.getTenancyRemainingDay(propertyDetails);
-  const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
   const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/embed.js?id=embed_owner_chatbot_container_id&ref=main_menu--${phoneNumber}--${propertyDetailToString}`;
@@ -99,19 +74,8 @@ const OwnerChat = () => {
           }
         });
       };
-
-      // setTimeout(() => {
-      //   setUChatIsReady(true);
-      // }, 1000);
     }
   }, [userProfileData, window]);
-
-  // useEffect(() => {
-  //   if (uChatIsReady) {
-  //
-  //     setUChatIsReady(false);
-  //   }
-  // }, [uChatIsReady]);
 
   useEffect(() => {
     fetchUserprofileData();
@@ -128,10 +92,6 @@ const OwnerChat = () => {
     setUserProfileData(res);
   };
 
-  const onClickChangeTab = (route) => {
-    router.push(route);
-  };
-
   const onClickGoBack = () => {
     router.back();
   };
@@ -139,6 +99,7 @@ const OwnerChat = () => {
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <DesktopLayout
+        hideFooter
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -172,13 +133,6 @@ const OwnerChat = () => {
           ) : (
             false
           )}
-
-          {/*<BottomNavigate*/}
-          {/*  t={t}*/}
-          {/*  routeName={routeName}*/}
-          {/*  routeQuery={routeQuery}*/}
-          {/*  onClickChangeTab={onClickChangeTab}*/}
-          {/*/>*/}
         </div>
       </DesktopLayout>
     </div>

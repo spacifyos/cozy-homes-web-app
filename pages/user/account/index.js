@@ -21,7 +21,6 @@ import CustomButton from "@/components/CustomButton";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
 import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
-import DesktopModal from "@/components/DesktopModal";
 
 export { getServerSideProps };
 
@@ -234,6 +233,7 @@ const Account = () => {
       <NextSeo title="Account - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         footerPaddingBottom="pb-20"
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}
         pageBreadcrumbs={
@@ -451,13 +451,11 @@ const Account = () => {
                 src={Images.primaryLogoutIcon}
                 className="mr-2 w-5"
               />
-              <CustomText textClassName="text-xs">
-                {"Logout"}
-              </CustomText>
+              <CustomText textClassName="text-xs">{"Logout"}</CustomText>
             </div>
 
             <CustomText textClassName="disable-text text-xs">
-             Version 2.1.0
+              Version 2.1.0
             </CustomText>
           </div>
         </div>

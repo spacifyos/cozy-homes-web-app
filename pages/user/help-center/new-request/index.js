@@ -402,7 +402,7 @@ const NewRequest = ({}) => {
         loading: true,
         status: false,
         extension: last(split(get(videos, ["name"], ""), ".")),
-        mime_type: get(videos, ["type"],"")
+        mime_type: get(videos, ["type"], ""),
       };
 
       setVideoList((prevState) => {
@@ -492,6 +492,7 @@ const NewRequest = ({}) => {
       <NextSeo title="Help Center New Request - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={
           maintenanceTicketOptionLoading || createMaintenanceTicketLoading
         }

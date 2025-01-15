@@ -32,6 +32,7 @@ const DesktopLayout = ({
   pageBreadcrumbs,
   footerPaddingBottom,
   isMinHeight = true,
+  hideFooter = false,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -248,7 +249,11 @@ const DesktopLayout = ({
         </div>
       )}
 
-      <DesktopFooter paddingBottom={footerPaddingBottom} />
+      {hideFooter ? (
+        false
+      ) : (
+        <DesktopFooter paddingBottom={footerPaddingBottom} />
+      )}
 
       <SignInModal
         selectedUserType={selectedUserType}

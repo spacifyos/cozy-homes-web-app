@@ -6,7 +6,6 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import InvoiceComponent from "@/components/MyStay/InvoiceComponent";
-import FilterModal from "@/components/MyInvoice/FilterModal";
 import * as invoiceAction from "@/src/actions/invoice";
 import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
@@ -180,6 +179,7 @@ const MyInvoice = () => {
       <NextSeo title="My Invoice - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={invoiceListingLoading && isEmpty(invoiceListingData)}
         rightButtonIcon={Images.filterProIcon}
         isFiltered={isFilter()}
@@ -188,13 +188,6 @@ const MyInvoice = () => {
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul className="flex-wrap">
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <CustomText textClassName="text-base">My Invoice</CustomText>
                 </li>

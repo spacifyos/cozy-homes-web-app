@@ -500,8 +500,17 @@ const postMaintenanceTicketRequest = async (
   );
 };
 
-const putMaintenanceTicketRequest = async (id, postData, setLoading) => {
-  await apiRequest(api.putMaintenanceTicket(id, postData), setLoading);
+const putMaintenanceTicketRequest = async (
+  id,
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.putMaintenanceTicket(id, postData),
+    setLoading,
+    successCallback,
+  );
 };
 
 const deleteGalleryRequest = async (id, setLoading, successCallback) => {

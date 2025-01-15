@@ -75,10 +75,6 @@ const MyPropertyOverview = ({ id }) => {
     router.back();
   };
 
-  const onClickToAgreementOverview = (id) => {
-    router.push(`/user/e-agreement/${id}`);
-  };
-
   const onChangeAutoPay = () => {
     setIsChecked(!isChecked);
     if (isChecked) {
@@ -93,6 +89,7 @@ const MyPropertyOverview = ({ id }) => {
       <NextSeo title="My Property Overview - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={userProfileLoading || tenancyOverviewLoading}
         pageBreadcrumbs={
           <div>

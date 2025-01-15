@@ -3,7 +3,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import RequestOverviewDetail from "@/components/Help-center/RequestOverviewDetail";
-import MaintenanceScheduleInformationComponent from "@/components/Help-center/MaintenanceScheduleInformationComponent";
+import MaintenanceScheduleInformationComponent from "@/components/Help-center/TechnicianMaintenanceScheduleInformation";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
@@ -12,15 +12,28 @@ import DesktopLayout from "@/components/DesktopLayout";
 import * as maintenanceTicketAction from "@/src/actions/maintenance-ticket";
 import { useDispatch, useSelector } from "react-redux";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import { concat, get, isEmpty, isEqual, map } from "lodash";
+import {
+  concat,
+  filter,
+  get,
+  isEmpty,
+  isEqual,
+  last,
+  map,
+  size,
+  some,
+  split,
+} from "lodash";
 import Helper from "@/src/utils/Helper";
 import AuthManager from "@/src/utils/AuthManager";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
+import apiInstance from "@/src/services/httpUtilities/httpManager";
+import * as path from "path";
 
 export { getServerSideProps };
 
@@ -28,13 +41,15 @@ const RequestOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+  const uploadImageRef = useRef(null);
+  const uploadVideoRef = useRef(null);
 
   const [secret, setSecret] = useState("");
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
+  const [ticketUpdateLoading, setTicketUpdateLoading] = useState(false);
 
-  const [videoDeleteLoading, setVideoDeleteLoading] = useState(false);
-  const [imageDeleteLoading, setImageDeleteLoading] = useState(false);
+  const [galleryDeleteLoading, setGalleryDeleteLoading] = useState(false);
 
   const [imageList, setImageList] = useState([]);
   const [videoValue, setVideoValue] = useState(null);
@@ -61,16 +76,25 @@ const RequestOverview = ({ id }) => {
     maintenanceTicketOverviewData,
   );
   const videos = get(maintenanceTicketOverviewData, ["videos"], "");
-
   const technicianImages = maintenanceTicketSelector.getTechnicianTicketImages(
     maintenanceTicketOverviewData,
   );
   const technicianVideos = maintenanceTicketSelector.getTechnicianTicketVideos(
     maintenanceTicketOverviewData,
   );
+  const externalRemark = maintenanceTicketSelector.getTechnicianExternalRemarks(
+    maintenanceTicketOverviewData,
+  );
+  const internalRemark = maintenanceTicketSelector.getTechnicianInternalRemarks(
+    maintenanceTicketOverviewData,
+  );
+  const status = maintenanceTicketSelector.getStatusValue(
+    maintenanceTicketOverviewData,
+  );
 
   const [openImageModal, setOpenImageModal] = useState(false);
   const [openVideoModal, setOpenVideoModal] = useState(false);
+  const [postData, setPostData] = useState({});
 
   const handleImageSecretData = async () => {
     await apiRequest.getRootDataRequest(() => {}, getRootDataSuccessCallback);
@@ -102,6 +126,14 @@ const RequestOverview = ({ id }) => {
 
     if (!isEmpty(maintenanceTicketOverviewData) && !isEmpty(technicianVideos)) {
       fetchTechnicianVideoData(technicianVideos);
+    }
+
+    if (!isEmpty(maintenanceTicketOverviewData)) {
+      setPostData({
+        technician_external_remarks: externalRemark,
+        technician_internal_remarks: internalRemark,
+        status: status,
+      });
     }
   }, [maintenanceTicketOverviewData]);
 
@@ -188,7 +220,7 @@ const RequestOverview = ({ id }) => {
     axios
       .get(url, { headers: headers })
       .then(async (response) => {
-        const res = { id: galleryId, video: get(response, ["data"], "") };
+        const res = { id: galleryId, tempUrl: get(response, ["data"], "") };
 
         setTechnicianVideoValue(res);
       })
@@ -216,7 +248,10 @@ const RequestOverview = ({ id }) => {
     axios
       .get(url, { headers: headers })
       .then(async (response) => {
-        const res = { id: galleryId, image: get(response, ["data"], "") };
+        const res = {
+          id: galleryId,
+          base64: get(response, ["data"], ""),
+        };
 
         setTechnicianImageList((prevState) => concat(prevState, res));
       })
@@ -251,7 +286,7 @@ const RequestOverview = ({ id }) => {
 
   const onClickPopupVideo = (type) => {
     if (isEqual(type, "technician")) {
-      setSelectedVideo(videos);
+      setSelectedVideo(technicianVideoValue);
     } else {
       setSelectedVideo(videoValue);
     }
@@ -259,15 +294,269 @@ const RequestOverview = ({ id }) => {
     setOpenVideoModal(true);
   };
 
-  const onClickRemoveGallery = async (id) => {
-    await apiRequest.deleteGalleryRequest(
-      id,
-      setImageDeleteLoading,
-      deleteSuccessCallback,
-    );
+  const onClickRemoveGallery = async (id, type, isUploadedDocument) => {
+    if (isUploadedDocument) {
+      if (isEqual(type, "image")) {
+        onClickRemoveImage(id);
+      } else if (isEqual(type, "video")) {
+        onClickRemoveVideo();
+      }
+    } else {
+      await apiRequest.deleteGalleryRequest(
+        id,
+        setGalleryDeleteLoading,
+        deleteSuccessCallback,
+      );
+    }
   };
 
   const deleteSuccessCallback = () => {
+    router.reload();
+  };
+
+  const checkImageSize = async (image) => {
+    const isLt2M = image && image.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      Toast.error(`Your some image is larger than 2MB`);
+      return;
+    }
+
+    if (image && image.size > 1) {
+      const name = get(image, ["name"], "");
+      const extension = split(name, ".");
+      const mimeType = get(image, ["type"], "");
+
+      if (some(imageList, { name })) {
+        Toast.error(`Image with the name "${name}" already exists.`);
+        return;
+      }
+
+      try {
+        const base64 = await convertToBase64(image);
+        const newImage = {
+          type: 24,
+          name: name,
+          extension: extension[1],
+          mime_type: mimeType,
+          status: false,
+          loading: true,
+          base64: base64,
+          image: image,
+        };
+
+        setTechnicianImageList((prevState) => [...prevState, newImage]);
+
+        fetchGalleryLink(newImage);
+      } catch (error) {
+        Toast.error("Error converting image to base64:", error);
+      }
+    }
+  };
+
+  const convertToBase64 = (image) => {
+    return new Promise((resolve, reject) => {
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target.result;
+          resolve(result);
+        };
+        reader.onerror = (err) => reject(err);
+        reader.readAsDataURL(image);
+      } else {
+        resolve("");
+      }
+    });
+  };
+
+  const fetchGalleryLink = (image) => {
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
+
+        Toast.success("Get gallery link success.");
+        getGalleryLinkSuccess(url, image, path);
+      })
+      .catch((err) => Toast.error("Get gallery link failure."));
+  };
+
+  const getGalleryLinkSuccess = (url, image, path) => {
+    setTechnicianImageList((prevState) => {
+      return map(prevState, (state) => {
+        if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+          return { ...state, url: url, path: path, id: path };
+        } else {
+          return state;
+        }
+      });
+    });
+
+    postUploadImage(url, image);
+  };
+
+  const postUploadImage = (url, image) => {
+    axios
+      .put(url, get(image, ["image"], ""))
+      .then((result) => {
+        Toast.success("Image upload success.");
+        setTechnicianImageList((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: true, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
+      })
+      .catch((err) => {
+        Toast.error("Image upload failure.");
+        setTechnicianImageList((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: false, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
+      });
+  };
+
+  const onChangeImage = (e) => {
+    const images = e.target.files;
+
+    if (size(images) + size(imageList) >= 6) {
+      Toast.error(`Your image limit is up to 5.`);
+      return;
+    }
+
+    return map(images, (image, index) => {
+      checkImageSize(image, index + 1);
+    });
+  };
+
+  const onChangeVideo = (e) => {
+    const videos = e.target.files[0];
+
+    const isLt10M = videos && videos.size / 1024 / 1024 < 50;
+    if (!isLt10M) {
+      Toast.error(`Your video is larger than 50MB`);
+      return;
+    } else {
+      const videoUrl = URL.createObjectURL(videos);
+
+      const newVideo = {
+        type: 25,
+        video: videos,
+        tempUrl: videoUrl,
+        loading: true,
+        status: false,
+        extension: last(split(get(videos, ["name"], ""), ".")),
+        mime_type: get(videos, ["type"], ""),
+      };
+
+      setTechnicianVideoValue((prevState) => {
+        return {
+          ...prevState,
+          ...newVideo,
+        };
+      });
+
+      fetchVideoGalleryLink(newVideo);
+    }
+  };
+
+  const fetchVideoGalleryLink = (video) => {
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
+
+        Toast.success("Get gallery link success.");
+        getVideoGalleryLinkSuccess(url, video, path);
+      })
+      .catch((err) => {
+        Toast.error("Get gallery link failure.");
+        setTechnicianVideoValue((prevState) => ({
+          ...prevState,
+          loading: false,
+        }));
+      });
+  };
+
+  const getVideoGalleryLinkSuccess = (url, videos, path) => {
+    setTechnicianVideoValue((prevState) => ({
+      ...prevState,
+      url: url,
+      path: path,
+      id: path,
+    }));
+
+    postUploadVideo(url, videos);
+  };
+
+  const postUploadVideo = (url, videos) => {
+    const { video } = videos;
+
+    axios
+      .put(url, video)
+      .then((result) => {
+        Toast.success("Image upload success.");
+
+        setTechnicianVideoValue((prevState) => ({
+          ...prevState,
+          loading: false,
+          status: true,
+        }));
+      })
+      .catch((err) => {
+        Toast.error("Image upload failure.");
+
+        setTechnicianVideoValue((prevState) => ({
+          ...prevState,
+          loading: false,
+          status: false,
+        }));
+      });
+  };
+
+  const onClickRemoveVideo = () => {
+    setTechnicianVideoValue(null);
+  };
+
+  const onClickRemoveImage = (path) => {
+    setTechnicianImageList(
+      filter(
+        technicianImageList,
+        (list) => !isEqual(get(list, ["path"], ""), path),
+      ),
+    );
+  };
+
+  const onClickUpdateTicket = async () => {
+    await apiRequest.putMaintenanceTicketRequest(
+      id,
+      {
+        ...postData,
+        maintenance_ticket_process_images: filter(
+          technicianImageList,
+          (list) => !isEmpty(get(list, ["mime_type"], "")),
+        ),
+        maintenance_ticket_process_videos: filter(
+          [technicianVideoValue],
+          (list) => !isEmpty(get(list, ["mime_type"], "")),
+        ),
+      },
+      setTicketUpdateLoading,
+      updateSuccessCallback,
+    );
+  };
+
+  const updateSuccessCallback = () => {
     router.reload();
   };
 
@@ -276,7 +565,8 @@ const RequestOverview = ({ id }) => {
       <NextSeo title="Help Center Overview - Spacify Asia" />
 
       <DesktopLayout
-        loading={maintenanceTicketOverviewDataLoading}
+        hideFooter
+        loading={galleryDeleteLoading || maintenanceTicketOverviewDataLoading || ticketUpdateLoading}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -325,6 +615,13 @@ const RequestOverview = ({ id }) => {
             onClickPopupImage={onClickPopupImage}
             onClickPopupVideo={onClickPopupVideo}
             onClickRemoveGallery={onClickRemoveGallery}
+            setPostData={setPostData}
+            postData={postData}
+            onChangeImage={onChangeImage}
+            uploadImageRef={uploadImageRef}
+            uploadVideoRef={uploadVideoRef}
+            onChangeVideo={onChangeVideo}
+            onClickUpdateTicket={onClickUpdateTicket}
           />
 
           {/*<CommentComponent t={t} chatList={chatList} />*/}

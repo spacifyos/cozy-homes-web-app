@@ -164,6 +164,7 @@ const InvoiceOverview = ({ id }) => {
       <NextSeo title="Invoice Overview - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={
           invoiceOverviewLoading ||
           getInvoicePaymentLinkLoading ||
@@ -182,13 +183,6 @@ const InvoiceOverview = ({ id }) => {
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <a href={"/user/my-invoice"}>
                     <CustomText textClassName="text-base disable-text">
@@ -224,7 +218,7 @@ const InvoiceOverview = ({ id }) => {
             <div className="flex justify-between">
               <CustomLabelValue
                 value={isEmpty(code) ? "-" : code}
-                label={'Invoice Number'}
+                label={"Invoice Number"}
                 highlight
               />
               <div className="pb-2">

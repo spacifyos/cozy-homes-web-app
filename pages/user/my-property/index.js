@@ -116,6 +116,7 @@ const MyStay = () => {
       <NextSeo title="My Stay - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         footerPaddingBottom="pb-20"
         loading={
           userProfileLoading ||

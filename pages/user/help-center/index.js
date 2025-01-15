@@ -127,6 +127,7 @@ const HelpCenter = () => {
       <NextSeo title="My Invoice - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={
           maintenanceTicketListingDataLoading &&
           isEmpty(maintenanceTicketListingData)

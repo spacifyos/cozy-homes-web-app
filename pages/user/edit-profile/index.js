@@ -179,6 +179,7 @@ const EditProfile = () => {
       <NextSeo title="Edit Profile - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={
           userProfileLoading || changePasswordLoading || editProfileLoading
         }
@@ -205,7 +206,7 @@ const EditProfile = () => {
                 className="w-2"
                 onClick={onClickGoBack}
               />
-                <CustomText textClassName="text-base">Edit Profile</CustomText>
+              <CustomText textClassName="text-base">Edit Profile</CustomText>
             </div>
           </div>
         }

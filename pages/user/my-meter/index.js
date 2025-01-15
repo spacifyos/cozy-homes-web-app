@@ -59,18 +59,12 @@ const MyMeter = () => {
       <NextSeo title="My Meter - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={meterListingLoading}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <CustomText textClassName="text-base">My Meter</CustomText>
                 </li>

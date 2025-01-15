@@ -52,19 +52,21 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
               >
                 <div
                   style={{ height: 250, backgroundColor: "rgba(0,0,0,0.7)" }}
-                  className="global-border-radius flex flex-col justify-end p-3"
+                  className="global-border-radius flex flex-col justify-between p-3"
                 >
-                  <div className="flex pb-1">
-                    <CustomText
-                      textClassName={`text-xs text-white ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
-                    >
-                      {unitStatus}
+                  <div className="pt-4 pl-4">
+                    <div className="flex pb-1">
+                      <CustomText
+                        textClassName={`text-xs text-white ${isEqual(unitStatus, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
+                      >
+                        {unitStatus}
+                      </CustomText>
+                    </div>
+
+                    <CustomText textClassName="text-white font-bold text-base">
+                      {isEmpty(unitName) ? "-" : unitName}
                     </CustomText>
                   </div>
-
-                  <CustomText textClassName="text-white font-bold text-base">
-                    {isEmpty(unitName) ? "-" : unitName}
-                  </CustomText>
 
                   <div className="flex pt-1">
                     {map(infoLists, (list, index) => {
@@ -75,7 +77,7 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
                       return (
                         <div
                           className="p-2 flex flex-col items-center justify-center"
-                          style={{ width: 60 }}
+                          style={{ minWidth: 70 }}
                           key={index}
                         >
                           <CustomImage

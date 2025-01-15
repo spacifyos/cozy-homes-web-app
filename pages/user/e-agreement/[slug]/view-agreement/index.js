@@ -9,7 +9,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import Helper from "@/src/utils/Helper";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import { get, isEmpty, isEqual, map, size } from "lodash";
+import { get, isEmpty, size } from "lodash";
 import Toast from "@/src/utils/Toast";
 import * as agreementSelector from "@/src/selectors/agreement";
 import axios from "axios";
@@ -24,11 +24,6 @@ import DesktopCanvasModel from "@/components/EAgreement/DesktopCanvasModel";
 export { getServerSideProps };
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
-
-const options = {
-  cMapUrl: "/cmaps/",
-  standardFontDataUrl: "/standard_fonts/",
-};
 
 const ViewAgreement = ({ id }) => {
   const { t } = useTranslation("common");
@@ -336,6 +331,7 @@ const ViewAgreement = ({ id }) => {
       <NextSeo title="My E-Agreement Document - Spacify Asia" />
 
       <DesktopLayout
+        hideFooter
         loading={loading || agreeLoading || signLoading || downloading}
         onClickRightButton={downloadPdf}
         rightButtonIcon={Images.downloadIcon}
@@ -343,13 +339,6 @@ const ViewAgreement = ({ id }) => {
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
-                {/*<li>*/}
-                {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
-                {/*      My Property*/}
-                {/*    </CustomText>*/}
-                {/*  </a>*/}
-                {/*</li>*/}
                 <li>
                   <a href={"/user/e-agreement"}>
                     <CustomText textClassName="text-base disable-text">
@@ -492,7 +481,6 @@ const ViewAgreement = ({ id }) => {
         <DesktopCanvasModel
           onClickReadSign={onClickReadSign}
           readSign={readSign}
-          t={t}
           onClickCloseSignatureModal={onClickCloseSignatureModal}
           onClickSubmitSignature={onClickSubmitSignature}
           handleDesktopSignatureRef={handleDesktopSignatureRef}
