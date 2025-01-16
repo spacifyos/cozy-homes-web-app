@@ -26,7 +26,6 @@ import CustomImage from "@/components/CustomImage";
 import DesktopRecommendSection from "@/components/PropertyOverview/DesktopRecommendSection";
 import DesktopNearbyRoomSection from "@/components/PropertyOverview/DesktopNearbyRoomSection";
 import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPropertyPriceSection";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import CustomText from "@/components/CustomText";
 import axios from "axios";
 import Image from "next/image";
@@ -51,7 +50,6 @@ export async function getServerSideProps(context) {
     props: {
       id: id,
       listingPropertyDetailData: listingPropertyDetailData,
-      ...(await serverSideTranslations(context.locale, ["common"])),
     },
   };
 }
