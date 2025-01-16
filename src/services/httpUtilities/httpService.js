@@ -245,6 +245,14 @@ const putMaintenanceTicket = (id, postData) =>
 
 const deleteGallery = (id) => apiInstance.post(`/gallery/${id}/delete`);
 
+const getMaintenanceTicketComment = (id, per_page, page, status) =>
+  apiInstance.get(
+    `/maintenance-ticket/comment/${id}?per_page=${per_page}&page=${page}&status=${status}`,
+  );
+
+const postMaintenanceTicketComment = (id, postData) =>
+  apiInstance.post(`/maintenance-ticket/comment/store/${id}`, postData);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -306,4 +314,6 @@ export default {
   postMaintenanceTicket,
   putMaintenanceTicket,
   deleteGallery,
+  getMaintenanceTicketComment,
+  postMaintenanceTicketComment,
 };

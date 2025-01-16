@@ -21,6 +21,7 @@ import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
+import CommentComponent from "@/components/Help-center/CommentComponent";
 
 export { getServerSideProps };
 
@@ -312,7 +313,7 @@ const RequestOverview = ({ id }) => {
             onClickPopupVideo={onClickPopupVideo}
           />
 
-          {/*<CommentComponent t={t} chatList={chatList} />*/}
+          <CommentComponent chatList={[]} />
         </div>
       </DesktopLayout>
 

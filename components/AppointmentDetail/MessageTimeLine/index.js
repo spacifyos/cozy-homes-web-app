@@ -1,13 +1,14 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
-const MessageTimeLine = ({ t, item }) => {
-  const date = _.get(item, ["date"], "");
-  const img = _.get(item, ["img"], "");
-  const name = _.get(item, ["name"], "");
-  const chat = _.get(item, ["chat"], "");
-  const identity = _.get(item, ["identity"], "");
+import { get, isEqual } from "lodash";
+
+const MessageTimeLine = ({ item }) => {
+  const date = get(item, ["date"], "");
+  const img = get(item, ["img"], "");
+  const name = get(item, ["name"], "");
+  const chat = get(item, ["chat"], "");
+  const identity = get(item, ["identity"], "");
 
   return (
     <div className="grid grid-cols-12 gap-1 h-full pb-3">
@@ -19,7 +20,7 @@ const MessageTimeLine = ({ t, item }) => {
       <div className="flex flex-col justify-center items-center col-span-1">
         <CustomImage
           src={
-            _.isEqual(identity, "agent")
+            isEqual(identity, "agent")
               ? Images.ellipseRedIcon
               : Images.ellipseGreenIcon
           }
