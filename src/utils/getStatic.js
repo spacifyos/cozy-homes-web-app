@@ -7,7 +7,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       id: id,
-      ...(context.locale, ["common"]),
+      // ...(context.locale, ["common"]),
     },
   };
 };

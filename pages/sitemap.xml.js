@@ -24,7 +24,12 @@ export const getServerSideProps = async ({ res, query }) => {
 
     const data = await response.json(); // Assuming the response is plain text (XML)
 
+
     res.setHeader("Content-Type", "text/xml");
+    res.setHeader(
+      "Cache-Control",
+      "public, s-maxage=10, stale-while-revalidate=59",
+    );
     res.write(data);
     res.end();
   } catch (error) {

@@ -11,8 +11,6 @@ import {
   omitBy,
 } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,10 +26,7 @@ import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 
-export { getServerSideProps };
-
 const Search = () => {
-  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
@@ -567,7 +562,6 @@ const Search = () => {
           <div className="grid grid-cols-5 gap-10 pb-2">
             <div className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5">
               <DesktopListingSection
-                t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
                 listingPropertyData={listingData}
                 lastPage={lastPage}
@@ -627,4 +621,4 @@ const Search = () => {
   );
 };
 
-export default withTranslation("common")(Search);
+export default Search;

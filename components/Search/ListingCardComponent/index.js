@@ -6,7 +6,6 @@ import Image from "next/image";
 import CustomImage from "@/components/CustomImage";
 
 const ListingCardComponent = ({
-  t,
   item,
   imageHeight = 150,
   imageClassName,

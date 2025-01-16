@@ -1,37 +1,20 @@
-import CustomHeader from "@/components/CustomHeader";
-import CustomInput from "@/components/CustomInput";
 import Images from "@/src/utils/Image";
-import CustomSelect from "@/components/CustomSelect";
 import { useRouter } from "next/router";
-import AmenitiesComponent from "@/components/Search/AmenitiesComponent";
-import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import {
   get,
   isEmpty,
   map,
   debounce,
-  includes,
   filter,
   isEqual,
-  size,
-  remove,
-  toArray,
-  split,
   concat,
-  first,
-  set,
   omitBy,
 } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
-import Skeleton from "@/components/Skeleton";
-import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import TagComponent from "@/components/Search/TagComponent";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
-import CustomEmptyBox from "@/components/CustomEmptyBox";
-import Constant from "@/src/utils/Constant";
 import CustomPagination from "@/components/CustomPagination";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -47,7 +30,6 @@ import CustomImage from "@/components/CustomImage";
 export { getServerSideProps };
 
 const SearchWithSlug = ({ id }) => {
-  const { t } = useTranslation("common");
   const dispatch = useDispatch();
   const router = useRouter();
   const amenitiesTarget = useRef();
@@ -602,7 +584,6 @@ const SearchWithSlug = ({ id }) => {
           <div className="grid grid-cols-5 gap-10 pb-2">
             <div className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5">
               <DesktopListingSection
-                t={t}
                 listingPropertyDataLoading={listingPropertyDataLoading}
                 listingPropertyData={listingData}
                 lastPage={lastPage}
@@ -662,4 +643,4 @@ const SearchWithSlug = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(SearchWithSlug);
+export default SearchWithSlug;
