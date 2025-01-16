@@ -5,7 +5,6 @@ import ListingCardComponent from "@/components/Search/ListingCardComponent";
 import CustomPagination from "@/components/CustomPagination";
 
 const DesktopListingSection = ({
-  t,
   listingPropertyDataLoading,
   listingPropertyData,
   lastPage,
@@ -76,7 +75,6 @@ const DesktopListingSection = ({
             <ListingCardComponent
               key={index}
               item={item}
-              t={t}
               imageClassName="h-52 xl:h-60 lg:h-60 md:h-52 sm:h-52 w-full"
             />
           ))}

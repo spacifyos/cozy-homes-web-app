@@ -1,5 +1,4 @@
 import { withTranslation, useTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -8,7 +7,6 @@ import * as listingAction from "@/src/actions/listing";
 import * as listingSelector from "@/src/selectors/listing";
 import { useDispatch, useSelector } from "react-redux";
 import { NextSeo } from "next-seo";
-import BottomNavigate from "@/components/BottomNavigate";
 import DesktopBanner from "@/components/Explore/DesktopBanner";
 import DesktopSearchBar from "@/components/Explore/DesktopSearchBar";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -23,10 +21,6 @@ import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSectio
 import * as commonSelector from "@/src/selectors/common";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomImage from "@/components/CustomImage";
-import Helper from "@/src/utils/Helper";
-import EventBanner from "@/components/EventBanner";
-
-export { getServerSideProps };
 
 function Home() {
   const { t } = useTranslation("common");
@@ -241,4 +235,4 @@ function Home() {
   );
 }
 
-export default withTranslation("common")(Home);
+export default Home;
