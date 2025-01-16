@@ -517,6 +517,36 @@ const deleteGalleryRequest = async (id, setLoading, successCallback) => {
   await apiRequest(api.deleteGallery(id), setLoading, successCallback);
 };
 
+const postMaintenanceTicketCommentRequest = async (
+  id,
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postMaintenanceTicketComment(id, postData),
+    setLoading,
+    successCallback,
+  );
+};
+
+const getMaintenanceTicketCommentRequest = async (
+  id,
+  perPage,
+  page,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getMaintenanceTicketComment(id, perPage, page),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -560,4 +590,6 @@ export default {
   postMaintenanceTicketRequest,
   putMaintenanceTicketRequest,
   deleteGalleryRequest,
+  postMaintenanceTicketCommentRequest,
+  getMaintenanceTicketCommentRequest,
 };

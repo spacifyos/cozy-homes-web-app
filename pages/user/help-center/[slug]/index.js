@@ -33,7 +33,10 @@ const RequestOverview = ({ id }) => {
   const [secret, setSecret] = useState("");
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
+  const [postCommentLoading, setPostCommentLoading] = useState(false);
+  const [getCommentLoading, setGetCommentLoading] = useState(false);
 
+  const [commentData, setCommentData] = useState("");
   const [imageList, setImageList] = useState([]);
   const [videoValue, setVideoValue] = useState(null);
   const [technicianImageList, setTechnicianImageList] = useState([]);
@@ -42,6 +45,8 @@ const RequestOverview = ({ id }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedImageList, setSelectedImageList] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const [messageValue, setMessageValue] = useState("");
 
   const getMaintenanceTicketOverviewRequest = (id) =>
     dispatch(maintenanceTicketAction.getMaintenanceTicketOverviewRequest(id));
@@ -106,7 +111,22 @@ const RequestOverview = ({ id }) => {
   useEffect(() => {
     handleImageSecretData();
     fetchMaintenanceData();
+    fetchTicketCommentData(id);
   }, []);
+
+  const fetchTicketCommentData = async (id, perPage = 12, page = 1) => {
+    await apiRequest.getMaintenanceTicketCommentRequest(
+      id,
+      perPage,
+      page,
+      setGetCommentLoading,
+      getCommentSuccessCallback,
+    );
+  };
+
+  const getCommentSuccessCallback = (res) => {
+    setCommentData(res);
+  };
 
   const fetchMaintenanceData = () => {
     getMaintenanceTicketOverviewRequest(id);
@@ -257,6 +277,20 @@ const RequestOverview = ({ id }) => {
     setOpenVideoModal(true);
   };
 
+  const onClickSendMessage = async () => {
+    await apiRequest.postMaintenanceTicketCommentRequest(
+      id,
+      { content: messageValue },
+      setPostCommentLoading,
+      postCommentSuccessCallback,
+    );
+  };
+
+  const postCommentSuccessCallback = async () => {
+    await fetchTicketCommentData(id);
+    setMessageValue("");
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center Overview - Spacify Asia" />
@@ -313,7 +347,15 @@ const RequestOverview = ({ id }) => {
             onClickPopupVideo={onClickPopupVideo}
           />
 
-          <CommentComponent chatList={[]} />
+          <CommentComponent
+            chatList={[]}
+            onClickSendMessage={onClickSendMessage}
+            setMessageValue={setMessageValue}
+            messageValue={messageValue}
+            data={commentData}
+            postCommentLoading={postCommentLoading}
+            getCommentLoading={getCommentLoading}
+          />
         </div>
       </DesktopLayout>
 

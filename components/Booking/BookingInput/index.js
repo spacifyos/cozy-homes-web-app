@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import _ from "lodash";
+import _, { isEmpty } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
@@ -20,14 +20,19 @@ const BookingInput = ({
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
-      <div className="flex items-center" style={{ height: 19 }}>
-        {required ? (
-          <CustomText textClassName="error-message pr-1">*</CustomText>
-        ) : (
-          false
-        )}
-        <CustomText textClassName="input-title">{title}</CustomText>
-      </div>
+      {isEmpty(title) ? (
+        false
+      ) : (
+        <div className="flex items-center" style={{ height: 19 }}>
+          {required ? (
+            <CustomText textClassName="error-message pr-1">*</CustomText>
+          ) : (
+            false
+          )}
+          <CustomText textClassName="input-title">{title}</CustomText>
+        </div>
+      )}
+
       <div className={`flex items-center gap-2 booking-input ${bgColor}`}>
         <input
           type={type}

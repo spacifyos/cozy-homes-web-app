@@ -245,9 +245,9 @@ const putMaintenanceTicket = (id, postData) =>
 
 const deleteGallery = (id) => apiInstance.post(`/gallery/${id}/delete`);
 
-const getMaintenanceTicketComment = (id, per_page, page, status) =>
+const getMaintenanceTicketComment = (id, per_page, page) =>
   apiInstance.get(
-    `/maintenance-ticket/comment/${id}?per_page=${per_page}&page=${page}&status=${status}`,
+    `/maintenance-ticket/comment/${id}?per_page=${per_page}&page=${page}`,
   );
 
 const postMaintenanceTicketComment = (id, postData) =>
