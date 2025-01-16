@@ -36,7 +36,8 @@ const RequestOverview = ({ id }) => {
   const [postCommentLoading, setPostCommentLoading] = useState(false);
   const [getCommentLoading, setGetCommentLoading] = useState(false);
 
-  const [commentData, setCommentData] = useState("");
+  const [commentData, setCommentData] = useState([]);
+  const [commentDataPagination, setCommentDataPagination] = useState("");
   const [imageList, setImageList] = useState([]);
   const [videoValue, setVideoValue] = useState(null);
   const [technicianImageList, setTechnicianImageList] = useState([]);
@@ -124,8 +125,14 @@ const RequestOverview = ({ id }) => {
     );
   };
 
-  const getCommentSuccessCallback = (res) => {
-    setCommentData(res);
+  const getCommentSuccessCallback = (res, pagination) => {
+    setCommentDataPagination(pagination);
+
+    if (isEmpty(commentData)) {
+      setCommentData(res);
+    } else {
+      setCommentData(concat(commentData, res));
+    }
   };
 
   const fetchMaintenanceData = () => {
@@ -291,6 +298,10 @@ const RequestOverview = ({ id }) => {
     setMessageValue("");
   };
 
+  const onClickLoadMore = async (currentPage) => {
+    await fetchTicketCommentData(id, 12, currentPage + 1);
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center Overview - Spacify Asia" />
@@ -348,13 +359,14 @@ const RequestOverview = ({ id }) => {
           />
 
           <CommentComponent
-            chatList={[]}
             onClickSendMessage={onClickSendMessage}
             setMessageValue={setMessageValue}
             messageValue={messageValue}
             data={commentData}
+            pagination={commentDataPagination}
             postCommentLoading={postCommentLoading}
             getCommentLoading={getCommentLoading}
+            onClickLoadMore={onClickLoadMore}
           />
         </div>
       </DesktopLayout>

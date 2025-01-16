@@ -4,16 +4,22 @@ import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
 import CustomButton from "@/components/CustomButton";
 import BookingInput from "@/components/Booking/BookingInput";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 
 const CommentComponent = ({
-  chatList,
   onClickSendMessage,
   setMessageValue,
   messageValue,
   data,
+  pagination,
   postCommentLoading,
   getCommentLoading,
+  onClickLoadMore,
 }) => {
+  const hasMorePage = maintenanceTicketSelector.getHasMorePages(pagination);
+  const lastPage = maintenanceTicketSelector.getLastPage(pagination);
+  const currentPage = maintenanceTicketSelector.getCurrentPage(pagination);
+
   return (
     <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
       <CustomText textClassName="disable-text text-sm">Comment</CustomText>
@@ -22,7 +28,7 @@ const CommentComponent = ({
         style={{ marginTop: 16, marginBottom: 16 }}
       ></div>
 
-      {getCommentLoading ? (
+      {getCommentLoading && isEmpty(data) ? (
         <div className="flex justify-center items-center py-4 primary-text">
           <span className="loading loading-spinner loading-lg"></span>
         </div>
@@ -32,6 +38,25 @@ const CommentComponent = ({
         map(data, (item) => {
           return <MessageTimeLine item={item} />;
         })
+      )}
+
+      {hasMorePage && lastPage > currentPage && !isEmpty(data) ? (
+        <div className="flex justify-center py-4">
+          {getCommentLoading && !isEmpty(data) ? (
+            <span className="loading loading-dots loading-sm"></span>
+          ) : (
+            <div
+              onClick={() => onClickLoadMore(currentPage)}
+              className="cursor-pointer"
+            >
+              <CustomText textClassName="disable-text xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
+                Load more
+              </CustomText>
+            </div>
+          )}
+        </div>
+      ) : (
+        false
       )}
 
       {isEmpty(data) ? (

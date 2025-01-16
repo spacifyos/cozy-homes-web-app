@@ -34,6 +34,7 @@ import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import * as path from "path";
+import CommentComponent from "@/components/Help-center/CommentComponent";
 
 export { getServerSideProps };
 
@@ -50,6 +51,12 @@ const RequestOverview = ({ id }) => {
   const [ticketUpdateLoading, setTicketUpdateLoading] = useState(false);
 
   const [galleryDeleteLoading, setGalleryDeleteLoading] = useState(false);
+  const [postCommentLoading, setPostCommentLoading] = useState(false);
+  const [getCommentLoading, setGetCommentLoading] = useState(false);
+
+  const [commentData, setCommentData] = useState([]);
+  const [commentDataPagination, setCommentDataPagination] = useState("");
+  const [messageValue, setMessageValue] = useState("");
 
   const [imageList, setImageList] = useState([]);
   const [videoValue, setVideoValue] = useState(null);
@@ -140,7 +147,28 @@ const RequestOverview = ({ id }) => {
   useEffect(() => {
     handleImageSecretData();
     fetchMaintenanceData();
+    fetchTicketCommentData(id);
   }, []);
+
+  const fetchTicketCommentData = async (id, perPage = 12, page = 1) => {
+    await apiRequest.getMaintenanceTicketCommentRequest(
+      id,
+      perPage,
+      page,
+      setGetCommentLoading,
+      getCommentSuccessCallback,
+    );
+  };
+
+  const getCommentSuccessCallback = (res, pagination) => {
+    setCommentDataPagination(pagination);
+
+    if (isEmpty(commentData)) {
+      setCommentData(res);
+    } else {
+      setCommentData(concat(commentData, res));
+    }
+  };
 
   const fetchMaintenanceData = () => {
     getMaintenanceTicketOverviewRequest(id);
@@ -560,13 +588,35 @@ const RequestOverview = ({ id }) => {
     router.reload();
   };
 
+  const onClickSendMessage = async () => {
+    await apiRequest.postMaintenanceTicketCommentRequest(
+      id,
+      { content: messageValue },
+      setPostCommentLoading,
+      postCommentSuccessCallback,
+    );
+  };
+
+  const postCommentSuccessCallback = async () => {
+    await fetchTicketCommentData(id);
+    setMessageValue("");
+  };
+
+  const onClickLoadMore = async (currentPage) => {
+    await fetchTicketCommentData(id, 12, currentPage + 1);
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center Overview - Spacify Asia" />
 
       <DesktopLayout
         hideFooter
-        loading={galleryDeleteLoading || maintenanceTicketOverviewDataLoading || ticketUpdateLoading}
+        loading={
+          galleryDeleteLoading ||
+          maintenanceTicketOverviewDataLoading ||
+          ticketUpdateLoading
+        }
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -624,7 +674,16 @@ const RequestOverview = ({ id }) => {
             onClickUpdateTicket={onClickUpdateTicket}
           />
 
-          {/*<CommentComponent t={t} chatList={chatList} />*/}
+          <CommentComponent
+            onClickSendMessage={onClickSendMessage}
+            setMessageValue={setMessageValue}
+            messageValue={messageValue}
+            data={commentData}
+            pagination={commentDataPagination}
+            postCommentLoading={postCommentLoading}
+            getCommentLoading={getCommentLoading}
+            onClickLoadMore={onClickLoadMore}
+          />
         </div>
       </DesktopLayout>
 
