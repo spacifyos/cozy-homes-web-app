@@ -28,7 +28,6 @@ import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
 import { NextSeo } from "next-seo";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Helper from "@/src/utils/Helper";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopPriceSection from "@/components/Booking/DesktopPriceSection";
@@ -56,7 +55,6 @@ export async function getServerSideProps(context) {
     props: {
       id: id,
       listingPropertyDetailData: listingPropertyDetailData,
-      ...(await serverSideTranslations(context.locale, ["common"])),
     },
   };
 }
