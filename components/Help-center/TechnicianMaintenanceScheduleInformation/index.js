@@ -64,7 +64,7 @@ const MaintenanceScheduleInformation = ({
         ]}
         disabled={false}
         bgColor="primaryWhite-bg-color"
-        className="pb-2"
+        className="pb-4"
         value={get(postData, ["status"], "")}
         onChange={(e) =>
           setPostData((prevState) => {
