@@ -27,6 +27,8 @@ export default function Document() {
         <meta name="msapplication-navbutton-color" content="#d71440" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#d71440" />
 
+        <meta name="msvalidate.01" content="74EA887B8E4E9BA232E18AB9F69FDC63" />
+
         <meta
           name="google-site-verification"
           content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"
