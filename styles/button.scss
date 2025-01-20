@@ -5,7 +5,7 @@
 @mixin custom-button {
   padding: 5px 10px;
   border-radius: 10px;
-  @extend .global-box-shadow;
+  //@extend .global-box-shadow;
 
   p {
     font-weight: bold !important;

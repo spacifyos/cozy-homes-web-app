@@ -23,6 +23,7 @@ const MaintenanceScheduleInformation = ({
   uploadVideoRef,
   onChangeVideo,
   onClickUpdateTicket,
+  onClickCheckIn,
 }) => {
   const technicianName = maintenanceTicketSelector.getTechnicianName(data);
   const availableDate = maintenanceTicketSelector.getAvailableDate(data);
@@ -35,11 +36,17 @@ const MaintenanceScheduleInformation = ({
   const isUploadedVideo = isEmpty(videoPath) ? false : true;
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4 mb-4">
+    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
       <div className="flex justify-between items-center">
         <CustomText textClassName="disable-text text-sm">
           Maintenance Schedule Information
         </CustomText>
+
+        <CustomButton
+          buttonClassName="default-btn-outline btn-xs min-h-8 max-h-8 min-w-20"
+          buttonText="Check In"
+          onClick={onClickCheckIn}
+        />
       </div>
 
       <div

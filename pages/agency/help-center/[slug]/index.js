@@ -606,6 +606,25 @@ const RequestOverview = ({ id }) => {
     await fetchTicketCommentData(id, 12, currentPage + 1);
   };
 
+  const onClickCheckIn = () => {
+    if (navigator.geolocation) {
+      console.log("loading...")
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (err) => {
+          console.log(err.message);
+        },
+      );
+    } else {
+      console.log("Geolocation is not supported by your browser.");
+    }
+  };
+
   return (
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Help Center Overview - Spacify Asia" />
@@ -672,6 +691,7 @@ const RequestOverview = ({ id }) => {
             uploadVideoRef={uploadVideoRef}
             onChangeVideo={onChangeVideo}
             onClickUpdateTicket={onClickUpdateTicket}
+            onClickCheckIn={onClickCheckIn}
           />
 
           <CommentComponent
