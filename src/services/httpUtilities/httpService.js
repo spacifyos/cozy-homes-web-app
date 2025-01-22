@@ -253,6 +253,12 @@ const getMaintenanceTicketComment = (id, per_page, page) =>
 const postMaintenanceTicketComment = (id, postData) =>
   apiInstance.post(`/maintenance-ticket/comment/store/${id}`, postData);
 
+const postMaintenanceTicketCheckIn = (id, postData) =>
+  apiInstance.post(`/maintenance-ticket/check-in/${id}`, postData);
+
+const postMaintenanceTicketCheckOut = (id, postData) =>
+  apiInstance.post(`/maintenance-ticket/check-out/${id}`, postData);
+
 export default {
   signUpAccount,
   setHeaderLanguage,
@@ -316,4 +322,6 @@ export default {
   deleteGallery,
   getMaintenanceTicketComment,
   postMaintenanceTicketComment,
+  postMaintenanceTicketCheckIn,
+  postMaintenanceTicketCheckOut,
 };

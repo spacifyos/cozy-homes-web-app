@@ -547,6 +547,32 @@ const getMaintenanceTicketCommentRequest = async (
   );
 };
 
+const postMaintenanceTicketCheckInRequest = async (
+  id,
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postMaintenanceTicketCheckIn(id, postData),
+    setLoading,
+    successCallback,
+  );
+};
+
+const postMaintenanceTicketCheckOutRequest = async (
+  id,
+  postData,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.postMaintenanceTicketCheckOut(id, postData),
+    setLoading,
+    successCallback,
+  );
+};
+
 export default {
   signInRequest,
   signUpRequest,
@@ -592,4 +618,6 @@ export default {
   deleteGalleryRequest,
   postMaintenanceTicketCommentRequest,
   getMaintenanceTicketCommentRequest,
+  postMaintenanceTicketCheckInRequest,
+  postMaintenanceTicketCheckOutRequest,
 };
