@@ -2,8 +2,8 @@ import Images from "@/src/utils/Image";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import RequestOverviewDetail from "@/components/Help-center/RequestOverviewDetail";
-import MaintenanceScheduleInformationComponent from "@/components/Help-center/TechnicianMaintenanceScheduleInformation";
+import RequestOverviewDetail from "@/components/HelpCenter/RequestOverviewDetail";
+import MaintenanceScheduleInformationComponent from "@/components/HelpCenter/TechnicianMaintenanceScheduleInformation";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
@@ -25,6 +25,7 @@ import {
   size,
   some,
   split,
+  toString,
 } from "lodash";
 import Helper from "@/src/utils/Helper";
 import AuthManager from "@/src/utils/AuthManager";
@@ -34,7 +35,8 @@ import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import * as path from "path";
-import CommentComponent from "@/components/Help-center/CommentComponent";
+import CommentComponent from "@/components/HelpCenter/CommentComponent";
+import TechnicianInFormationBoard from "@/components/HelpCenter/TechnicianInFormationBoard";
 
 export { getServerSideProps };
 
@@ -49,6 +51,8 @@ const RequestOverview = ({ id }) => {
   const [videoLoading, setVideoLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [ticketUpdateLoading, setTicketUpdateLoading] = useState(false);
+  const [checkInLoading, setCheckInLoading] = useState(false);
+  const [checkOutLoading, setCheckOutLoading] = useState(false);
 
   const [galleryDeleteLoading, setGalleryDeleteLoading] = useState(false);
   const [postCommentLoading, setPostCommentLoading] = useState(false);
@@ -166,7 +170,11 @@ const RequestOverview = ({ id }) => {
     if (isEmpty(commentData)) {
       setCommentData(res);
     } else {
-      setCommentData(concat(commentData, res));
+      setCommentData((prevState) => {
+        const currentIds = prevState.map((item) => item.id);
+        const newItems = res.filter((item) => !currentIds.includes(item.id));
+        return [...prevState, ...newItems];
+      });
     }
   };
 
@@ -606,22 +614,69 @@ const RequestOverview = ({ id }) => {
     await fetchTicketCommentData(id, 12, currentPage + 1);
   };
 
-  const onClickCheckIn = () => {
+  const handleCheckInLocation = async (id, postData) => {
+    await apiRequest.postMaintenanceTicketCheckInRequest(
+      id,
+      postData,
+      setCheckInLoading,
+      () => router.reload(),
+    );
+  };
+
+  const onClickCheckIn = async () => {
     if (navigator.geolocation) {
-      console.log("loading...")
+      setCheckInLoading(true);
+
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.log({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
+        async (position) => {
+          await handleCheckInLocation(id, {
+            latitude: toString(position.coords.latitude),
+            longitude: toString(position.coords.longitude),
           });
         },
         (err) => {
+          Toast.error(err.message);
           console.log(err.message);
+          setCheckInLoading(false);
         },
       );
     } else {
+      Toast.error("Geolocation is not supported by your browser.");
       console.log("Geolocation is not supported by your browser.");
+      setCheckInLoading(false);
+    }
+  };
+
+  const handleCheckOutLocation = async (id, postData) => {
+    await apiRequest.postMaintenanceTicketCheckOutRequest(
+      id,
+      postData,
+      setCheckOutLoading,
+      () => router.reload(),
+    );
+  };
+
+  const onClickCheckOut = () => {
+    if (navigator.geolocation) {
+      setCheckOutLoading(true);
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          await handleCheckOutLocation(id, {
+            latitude: toString(position.coords.latitude),
+            longitude: toString(position.coords.longitude),
+          });
+        },
+        (err) => {
+          Toast.error(err.message);
+          console.log(err.message);
+          setCheckOutLoading(false);
+        },
+      );
+    } else {
+      Toast.error("Geolocation is not supported by your browser.");
+      console.log("Geolocation is not supported by your browser.");
+      setCheckOutLoading(false);
     }
   };
 
@@ -641,7 +696,7 @@ const RequestOverview = ({ id }) => {
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
                 <li>
-                  <a href={"/user/help-center"}>
+                  <a href={"/agency/help-center"}>
                     <CustomText textClassName="text-base disable-text">
                       Help Center
                     </CustomText>
@@ -675,6 +730,14 @@ const RequestOverview = ({ id }) => {
             videoLoading={videoLoading}
             onClickPopupImage={onClickPopupImage}
             onClickPopupVideo={onClickPopupVideo}
+          />
+
+          <TechnicianInFormationBoard
+            data={maintenanceTicketOverviewData}
+            onClickCheckIn={onClickCheckIn}
+            onClickCheckOut={onClickCheckOut}
+            checkInLoading={checkInLoading}
+            checkOutLoading={checkOutLoading}
           />
 
           <MaintenanceScheduleInformationComponent

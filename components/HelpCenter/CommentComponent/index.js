@@ -33,7 +33,9 @@ const CommentComponent = ({
           <span className="loading loading-spinner loading-lg"></span>
         </div>
       ) : isEmpty(data) ? (
-        <CustomEmptyBox emptyTitle="No comment found" />
+        <div className="py-10">
+          <CustomEmptyBox emptyTitle="No comment found" emptyDesc="" />
+        </div>
       ) : (
         map(data, (item) => {
           return <MessageTimeLine item={item} />;
@@ -59,24 +61,20 @@ const CommentComponent = ({
         false
       )}
 
-      {isEmpty(data) ? (
-        false
-      ) : (
-        <div className="flex justify-center items-center pt-2 gap-4">
-          <BookingInput
-            placeholder="Message"
-            value={messageValue}
-            onChange={(e) => setMessageValue(e.target.value)}
-          />
-          <CustomButton
-            buttonClassName="primary-btn max-w-20 w-20 min-h-10 h-10"
-            buttonText="Send"
-            onClick={onClickSendMessage}
-            loading={postCommentLoading}
-            disable={postCommentLoading}
-          />
-        </div>
-      )}
+      <div className="flex justify-center items-center pt-2 gap-4">
+        <BookingInput
+          placeholder="Message"
+          value={messageValue}
+          onChange={(e) => setMessageValue(e.target.value)}
+        />
+        <CustomButton
+          buttonClassName="primary-btn max-w-20 w-20 min-h-10 h-10"
+          buttonText="Send"
+          onClick={onClickSendMessage}
+          loading={postCommentLoading}
+          disable={postCommentLoading}
+        />
+      </div>
     </div>
   );
 };

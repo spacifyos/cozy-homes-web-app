@@ -1,4 +1,4 @@
-import DividerSection from "@/components/Help-center/DividerSection";
+import DividerSection from "@/components/HelpCenter/DividerSection";
 import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import moment from "moment";

@@ -1,0 +1,143 @@
+import CustomText from "@/components/CustomText";
+import CustomButton from "@/components/CustomButton";
+import { isEmpty, map } from "lodash";
+import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import CustomLabelValue from "@/components/CustomLabelValue";
+import LocationMap from "@/components/HelpCenter/LocationMap";
+
+const TechnicianInFormationBoard = ({
+  data,
+  onClickCheckIn,
+  onClickCheckOut,
+  checkInLoading,
+  checkOutLoading,
+}) => {
+  const technician = maintenanceTicketSelector.getTechnician(data);
+  const checkedIn = maintenanceTicketSelector.getCheckedIn(data);
+  const checkedOut = maintenanceTicketSelector.getCheckedOut(data);
+  const isAllowToCheckIn = maintenanceTicketSelector.getIsAllowToCheckIn(data);
+
+  return isEmpty(technician)
+    ? false
+    : map(technician, (item, index) => {
+        const technicianName =
+          maintenanceTicketSelector.getTechnicianName(item);
+        const checkInLat = maintenanceTicketSelector.getCheckInLatitude(item);
+        const checkInLng = maintenanceTicketSelector.getCheckInLongitude(item);
+        const checkInTime = maintenanceTicketSelector.getCheckInTime(item);
+
+        const checkOutLat = maintenanceTicketSelector.getCheckOutLatitude(item);
+        const checkOutLng =
+          maintenanceTicketSelector.getCheckOutLongitude(item);
+        const checkOutTime = maintenanceTicketSelector.getCheckOutTime(item);
+
+        return (
+          <div
+            className="global-border-radius global-box-shadow primaryWhite-bg-color p-4"
+            key={index}
+          >
+            <div className="flex justify-between items-center">
+              <CustomText textClassName="disable-text text-sm">
+                Technician {index + 1}
+              </CustomText>
+
+              {isAllowToCheckIn ? (
+                !checkedIn ? (
+                  <CustomButton
+                    buttonClassName={`${checkInLoading ? "primary-btn" : "default-btn-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
+                    buttonText="Check In"
+                    onClick={onClickCheckIn}
+                    loading={checkInLoading}
+                    disable={checkInLoading}
+                  />
+                ) : !checkedOut ? (
+                  <CustomButton
+                    buttonClassName={`${checkOutLoading ? "primary-btn" : "default-btn-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
+                    buttonText="Check Out"
+                    onClick={onClickCheckOut}
+                    disable={checkOutLoading}
+                    loading={checkOutLoading}
+                  />
+                ) : (
+                  false
+                )
+              ) : (
+                false
+              )}
+            </div>
+
+            <div
+              className="divider-line"
+              style={{ marginTop: 16, marginBottom: 16 }}
+            ></div>
+
+            <CustomLabelValue
+              label={"Technician Name"}
+              value={technicianName}
+            />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
+                {isEmpty(checkInTime) ? (
+                  false
+                ) : (
+                  <CustomLabelValue
+                    label={"Check In Date & Time"}
+                    value={checkInTime}
+                  />
+                )}
+
+                {isEmpty(checkInLat) || isEmpty(checkInLng) ? (
+                  false
+                ) : (
+                  <div className={`pb-4`}>
+                    <CustomText
+                      textClassName={`disable-text text-xs font-normal pb-1`}
+                    >
+                      Check In Location
+                    </CustomText>
+
+                    <LocationMap lat={checkInLat} lng={checkInLng} />
+                  </div>
+                )}
+              </div>
+              <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
+                {isEmpty(checkOutTime) ? (
+                  false
+                ) : (
+                  <CustomLabelValue
+                    label={"Check Out Date & Time"}
+                    value={checkOutTime}
+                  />
+                )}
+
+                {isEmpty(checkOutLat) || isEmpty(checkOutLng) ? (
+                  false
+                ) : (
+                  <div className={``}>
+                    <CustomText
+                      textClassName={`disable-text text-xs font-normal pb-1`}
+                    >
+                      Check Out Location
+                    </CustomText>
+
+                    <LocationMap lat={checkOutLat} lng={checkOutLng} />
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/*<div className="flex justify-center">*/}
+            {/*    <CustomButton*/}
+            {/*        buttonStyles={{ padding: "5px 30px" }}*/}
+            {/*        buttonClassName="primary-btn"*/}
+            {/*        buttonText={"Submit"}*/}
+            {/*        onClick={onClickUpdateTicket}*/}
+            {/*    />*/}
+            {/*</div>*/}
+          </div>
+        );
+      });
+};
+
+export default TechnicianInFormationBoard;

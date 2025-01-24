@@ -2,7 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { map, get, isEqual } from "lodash";
 import CustomText from "@/components/CustomText";
-import DividerSection from "@/components/Help-center/DividerSection";
+import DividerSection from "@/components/HelpCenter/DividerSection";
 import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 import Constant from "@/src/utils/Constant";

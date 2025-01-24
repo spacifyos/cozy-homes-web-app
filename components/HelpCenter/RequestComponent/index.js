@@ -1,4 +1,4 @@
-import DividerSection from "@/components/Help-center/DividerSection";
+import DividerSection from "@/components/HelpCenter/DividerSection";
 import BookingTextArea from "@/components/BookingTextArea";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import CustomText from "@/components/CustomText";

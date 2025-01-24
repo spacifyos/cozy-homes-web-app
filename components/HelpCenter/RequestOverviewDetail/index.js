@@ -36,7 +36,7 @@ const RequestOverviewDetail = ({
           highlight
         />
         <div>
-          <CustomText textClassName={`disable-text text-xs font-normal`}>
+          <CustomText textClassName={`disable-text text-xs font-normal pb-1`}>
             Status
           </CustomText>
           <StatusLabel status={status} />

@@ -2,8 +2,8 @@ import Images from "@/src/utils/Image";
 import { useTranslation, withTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import RequestOverviewDetail from "@/components/Help-center/RequestOverviewDetail";
-import MaintenanceScheduleInformationComponent from "@/components/Help-center/MaintenanceScheduleInformationComponent";
+import RequestOverviewDetail from "@/components/HelpCenter/RequestOverviewDetail";
+import MaintenanceScheduleInformationComponent from "@/components/HelpCenter/MaintenanceScheduleInformationComponent";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
 import CustomText from "@/components/CustomText";
@@ -21,7 +21,8 @@ import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
-import CommentComponent from "@/components/Help-center/CommentComponent";
+import CommentComponent from "@/components/HelpCenter/CommentComponent";
+import TechnicianInFormationBoard from "@/components/HelpCenter/TechnicianInFormationBoard";
 
 export { getServerSideProps };
 
@@ -131,7 +132,11 @@ const RequestOverview = ({ id }) => {
     if (isEmpty(commentData)) {
       setCommentData(res);
     } else {
-      setCommentData(concat(commentData, res));
+      setCommentData((prevState) => {
+        const currentIds = prevState.map((item) => item.id);
+        const newItems = res.filter((item) => !currentIds.includes(item.id));
+        return [...prevState, ...newItems];
+      });
     }
   };
 
@@ -349,6 +354,8 @@ const RequestOverview = ({ id }) => {
             onClickPopupImage={onClickPopupImage}
             onClickPopupVideo={onClickPopupVideo}
           />
+
+          <TechnicianInFormationBoard data={maintenanceTicketOverviewData} />
 
           <MaintenanceScheduleInformationComponent
             data={maintenanceTicketOverviewData}

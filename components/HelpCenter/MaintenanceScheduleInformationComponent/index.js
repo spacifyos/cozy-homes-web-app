@@ -30,14 +30,14 @@ const MaintenanceScheduleInformation = ({
         style={{ marginTop: 16, marginBottom: 16 }}
       ></div>
 
-      <CustomLabelValue label={"Technician"} value={technicianName} />
-
-      <CustomLabelValue label={"Date & Time"} value={availableDate} />
-
-      <CustomLabelValue
-        label={"Remarks"}
-        value={isEmpty(externalRemark) ? "-" : externalRemark}
-      />
+      {isEmpty(externalRemark) ? (
+        false
+      ) : (
+        <CustomLabelValue
+          label={"Remarks"}
+          value={isEmpty(externalRemark) ? "-" : externalRemark}
+        />
+      )}
 
       {!isEmpty(images) ? (
         <div className="pb-4">

@@ -59,6 +59,7 @@ export const getRoomName = (state) => get(state, ["room_name"], "");
 export const getStatus = (state) => get(state, ["status"], "");
 export const getUrl = (state) => get(state, ["url"], "");
 export const getGalleryId = (state) => get(state, ["gallery_id"], "");
+export const getTechnician = (state) => get(state, ["technician"], []);
 export const getTechnicianName = (state) => get(state, ["technician_name"], "");
 export const getTechnicianInternalRemarks = (state) =>
   get(state, ["technician_internal_remarks"], "");
@@ -75,3 +76,17 @@ export const getHasMorePages = (state) => get(state, ["has_more_pages"], false);
 export const getTotalPage = (state) => get(state, ["total"], 1);
 export const getCurrentPage = (state) => get(state, ["current_page"], 1);
 export const getLastPage = (state) => get(state, ["last_page"], 1);
+export const getCheckedIn = (state) => get(state, ["checked_in"], false);
+export const getCheckedOut = (state) => get(state, ["checked_out"], false);
+export const getIsAllowToCheckIn = (state) =>
+  get(state, ["is_allow_to_check_in"], false);
+export const getCheckInTime = (state) => get(state, ["check_in_time"], "");
+export const getCheckInLatitude = (state) =>
+  get(state, ["check_in_latitude"], "");
+export const getCheckInLongitude = (state) =>
+  get(state, ["check_in_longitude"], "");
+export const getCheckOutTime = (state) => get(state, ["check_out_time"], "");
+export const getCheckOutLatitude = (state) =>
+  get(state, ["check_out_latitude"], "");
+export const getCheckOutLongitude = (state) =>
+  get(state, ["check_out_longitude"], "");

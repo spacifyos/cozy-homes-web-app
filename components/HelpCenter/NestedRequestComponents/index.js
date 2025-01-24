@@ -1,6 +1,6 @@
 import { map, get } from "lodash";
-import DividerSection from "@/components/Help-center/DividerSection";
-import CategoryCard from "@/components/Help-center/NewRequest/CategoryCard";
+import DividerSection from "@/components/HelpCenter/DividerSection";
+import CategoryCard from "@/components/HelpCenter/NewRequest/CategoryCard";
 
 const NestedRequestComponents = ({
   onClickSelectNestedHelpCenterSection,

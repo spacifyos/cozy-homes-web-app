@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
-import HelpCenterSection from "@/components/Help-center/HelpCenterSection";
+import HelpCenterSection from "@/components/HelpCenter/HelpCenterSection";
 import { useEffect, useRef, useState } from "react";
-import DividerSection from "@/components/Help-center/DividerSection";
-import AuthorizationComponent from "@/components/Help-center/AuthorizationComponent";
+import DividerSection from "@/components/HelpCenter/DividerSection";
+import AuthorizationComponent from "@/components/HelpCenter/AuthorizationComponent";
 import CustomButton from "@/components/CustomButton";
-import EnquiriesForm from "@/components/Help-center/EnquiriesForm";
-import SpecificRequestComponent from "@/components/Help-center/RequestComponent";
-import GeneralInformationSection from "@/components/Help-center/GenerallnformationSection";
+import EnquiriesForm from "@/components/HelpCenter/EnquiriesForm";
+import SpecificRequestComponent from "@/components/HelpCenter/RequestComponent";
+import GeneralInformationSection from "@/components/HelpCenter/GenerallnformationSection";
 import Constant from "@/src/utils/Constant";
 import AuthWrapper from "@/components/AuthWrapper";
 import { NextSeo } from "next-seo";
@@ -30,7 +30,7 @@ import {
   split,
   last,
 } from "lodash";
-import NestedRequestComponents from "@/components/Help-center/NestedRequestComponents";
+import NestedRequestComponents from "@/components/HelpCenter/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
 import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
@@ -243,7 +243,7 @@ const NewRequest = ({}) => {
       {
         ...postData,
         maintenance_ticket_images: imageList,
-        maintenance_ticket_videos: [videoList],
+        maintenance_ticket_videos: isEmpty(videoList) ? [] : [videoList],
       },
       setCreateMaintenanceTicketLoading,
       createSuccessCallback,

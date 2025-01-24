@@ -1,6 +1,6 @@
 import Images from "@/src/utils/Image";
 import { map, get } from "lodash";
-import CategoryCard from "@/components/Help-center/NewRequest/CategoryCard";
+import CategoryCard from "@/components/HelpCenter/NewRequest/CategoryCard";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 
 const HelpCenterSection = ({
