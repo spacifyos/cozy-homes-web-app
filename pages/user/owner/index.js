@@ -151,7 +151,6 @@ const OwnerHome = () => {
       <NextSeo title="My Property | Owner - Spacify Asia" />
 
       <DesktopLayout
-        footerPaddingBottom="pb-20"
         loading={
           propertyListingLoading ||
           transactionListingLoading ||
@@ -168,7 +167,7 @@ const OwnerHome = () => {
           </div>
         }
       >
-        <div className="xl:pb-0 lg:pb-0 md:pb-0 sm:pb-16 pb-16 flex flex-col min-h-full">
+        <div className="pb-0 flex flex-col min-h-full">
           <UserDetailComponent data={userProfileData} />
 
           <PropertyInfoComponent lists={lists} />

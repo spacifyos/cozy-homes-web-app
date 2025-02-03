@@ -227,7 +227,6 @@ const CardListing = () => {
 
       <DesktopLayout
         hideNav
-        // footerPaddingBottom="pb-20"
         loading={
           propertyListingLoading || unitListingLoading || propertyOptionLoading
         }

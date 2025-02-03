@@ -54,9 +54,9 @@ const Loading = () => {
   }, [router]);
 
   return (
-    <div className="flex-1 ">
-      <div className="flex justify-center" style={{ paddingTop: "20vh" }}>
-        <CustomImage src={Images.logoImage} imageStyle={{ width: 120 }} />
+    <div className="flex-1 h-screen bg-white">
+      <div className="flex justify-center items-center h-full">
+        <CustomImage src={Images.logoImage} imageStyle={{ width: 150 }} />
       </div>
 
       <LoadingOverlay loading={true} />

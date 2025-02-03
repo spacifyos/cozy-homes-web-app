@@ -11,9 +11,28 @@ import Toast from "../../src/utils/Toast";
 const BottomNavigate = ({ routeName, routeQuery }) => {
   const router = useRouter();
   const [lists, setLists] = useState([]);
-  const [isAuth, setIsAuth] = useState(false);
 
-  const tab = get(routeQuery, ["tab"], "");
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   useEffect(() => {
     const checkUserType = async () => {
@@ -40,12 +59,6 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
           icon: Images.navigateChatIcon,
           activeIcon: Images.navigateChatIconActive,
         },
-        // {
-        //   name: "RenoXpert",
-        //   value: isEqual(userType, "owner") ? "/user/reno-expert" : "/user/reno-expert",
-        //   icon: Images.renoExpertIcon,
-        //   activeIcon: Images.renoExpertIconActive,
-        // },
         {
           name: "Account",
           value: "/user/account",
@@ -74,7 +87,11 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
     <div
       id="bottom_navbar"
       className="bottom-0 w-full fixed xl:hidden lg:hidden md:hidden sm:fixed"
-      style={{ zIndex: 9999 }}
+      style={{
+        zIndex: 9999,
+        transition: "transform 0.3s ease-in-out",
+        transform: isVisible ? "translateY(0)" : "translateY(100%)",
+      }}
     >
       <div className="container mx-auto pb-2">
         <div className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius">
@@ -91,22 +108,12 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
                 className="flex flex-col justify-center items-center cursor-pointer"
               >
                 <CustomImage
-                  src={
-                    isEqual(value, routeName)
-                      ? // || (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                        // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                        activeIcon
-                      : icon
-                  }
+                  src={isEqual(value, routeName) ? activeIcon : icon}
                   imageStyle={{ width: 20, height: 20 }}
                 />
                 <CustomText
                   textClassName={`${
-                    isEqual(value, routeName)
-                      ? // || (!isEmpty(tab) && isEqual(value, `/${tab}`))
-                        // (isEqual(routeName, "/owner") && isEqual(value, "/my-stay"))
-                        "primary-text"
-                      : "disable-text"
+                    isEqual(value, routeName) ? "primary-text" : "disable-text"
                   } text-xs pt-1`}
                 >
                   {name}
