@@ -61,7 +61,7 @@ const OwnerChat = () => {
   const rental = tenancySelector.getInitialRentalFee(propertyDetails);
 
   const secretKey = "f9de772e2cdbb19af4e7c7c6627c6e8d";
-  const src = `https://app.proptechai.bot/js/widget/vza3qkxeepbyzkuu/embed.js?id=embed_owner_chatbot_container_id&ref=main_menu--${phoneNumber}--${propertyDetailToString}`;
+  const src = `https://chat.spacify.asia/js/widget/vza3qkxeepbyzkuu/embed.js?id=embed_owner_chatbot_container_id&ref=main_menu--${phoneNumber}--${propertyDetailToString}`;
 
   const encryptUserId = toString(CryptoJS.HmacSHA256(uuid, secretKey));
 
