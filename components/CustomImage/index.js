@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Images from "@/src/utils/Image";
 
 const CustomImage = ({
   className = "",
@@ -7,6 +8,10 @@ const CustomImage = ({
   onClick = () => {},
   props,
 }) => {
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}?w=100%&q=${quality || 75}`;
+  };
+
   return (
     <div
       className={className}
@@ -20,14 +25,15 @@ const CustomImage = ({
       onClick={onClick}
     >
       <Image
-        loader={() => src}
+        loader={imageLoader}
         // loading="lazy"
-        layout="responsive"
+        // layout="responsive"
         alt={"image"}
         src={src}
         width={0}
         height={0}
-        objectFit="cover"
+        style={{ objectFit: "contain", width: "100%" }}
+        // objectFit="cover"
         {...props}
       />
     </div>

@@ -143,7 +143,9 @@ function Home() {
       <DesktopLayout hideNav>
         <div className="relative xl:h-96">
           <Image
-            loader={() => "/images/desktop_banner.webp"}
+            loader={({ src, width, quality }) =>
+              `${src}?w=100%&q=${quality || 75}`
+            }
             // loading="lazy"
             alt={"image"}
             src={"/images/desktop_banner.webp"}
@@ -154,7 +156,9 @@ function Home() {
           />
 
           <Image
-            loader={() => "/images/desktop_banner.webp"}
+            loader={({ src, width, quality }) =>
+              `${src}?w=100%&q=${quality || 75}`
+            }
             // loading="lazy"
             alt={"image"}
             src={"/images/desktop_banner.webp"}

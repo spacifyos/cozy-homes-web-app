@@ -24,7 +24,7 @@ const DesktopHeader = ({
       style={{ borderBottom: "3px #f5f8fd solid" }}
     >
       {isEqual(pathname, "/") ? (
-        <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
+        <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
           <CustomImage
             src={Image.logoHorizontalColor}
             onClick={onClickExplore}
@@ -108,7 +108,7 @@ const DesktopHeader = ({
           )}
         </div>
       ) : (
-        <div className="container mx-auto flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
+        <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
           <CustomImage
             src={Image.logoHorizontalColor}
             onClick={onClickExplore}

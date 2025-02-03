@@ -226,9 +226,7 @@ const CardListing = () => {
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
       <DesktopLayout
-        hideFooter
-        // hideNav
-        // footerPaddingBottom="pb-20"
+        hideNav
         loading={
           propertyListingLoading || unitListingLoading || propertyOptionLoading
         }

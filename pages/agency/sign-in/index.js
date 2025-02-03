@@ -71,7 +71,6 @@ const AgencySignIn = () => {
 
       <DesktopLayout
         hideNav
-        footerPaddingBottom="pb-20"
         loading={signInLoading}
       >
         <div className="container mx-auto py-4">

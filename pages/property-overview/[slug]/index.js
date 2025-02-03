@@ -223,7 +223,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
       />
 
       <DesktopLayout
-        footerPaddingBottom="pb-32"
         hideNav
         // loading={listingPropertyDetailDataLoading}
         pageBreadcrumbs={

@@ -1,7 +1,7 @@
 import DesktopHeader from "@/components/DesktopLayout/DesktopHeader";
 import DesktopFooter from "@/components/DesktopLayout/DesktopFooter";
 import DesktopNavigationBar from "@/components/DesktopLayout/DesktopNavigationBar";
-import { isEmpty, isEqual } from "lodash";
+import { get, includes, isEmpty, isEqual } from "lodash";
 import Helper from "@/src/utils/Helper";
 import SignInModal from "@/components/Explore/SignInModal";
 import SignUpModal from "@/components/Explore/SignUpModal";
@@ -30,12 +30,12 @@ const DesktopLayout = ({
   isFiltered,
   loading,
   pageBreadcrumbs,
-  footerPaddingBottom,
   isMinHeight = true,
-  hideFooter = false,
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const pathname = get(router, ["pathname"], "");
 
   const getUserProfileRequest = () =>
     dispatch(authAction.getUserProfileRequest());
@@ -47,10 +47,9 @@ const DesktopLayout = ({
   );
 
   const [selectedUserType, setSelectedUserType] = useState("");
-
-  // const [userProfileData, setUserProfileData] = useState(false);
-  // const [userProfileLoading, setUserProfileLoading] = useState(false);
   const [signOutLoading, setSignOutLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const userType = authSelector.getType(userProfileData);
 
@@ -249,10 +248,10 @@ const DesktopLayout = ({
         </div>
       )}
 
-      {hideFooter ? (
+      {includes(pathname, "/user/") || includes(pathname, "/agency/") ? (
         false
       ) : (
-        <DesktopFooter paddingBottom={footerPaddingBottom} />
+        <DesktopFooter pathname={pathname} />
       )}
 
       <SignInModal

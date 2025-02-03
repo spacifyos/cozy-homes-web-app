@@ -233,8 +233,6 @@ const Account = () => {
       <NextSeo title="Account - Spacify Asia" />
 
       <DesktopLayout
-        hideFooter
-        footerPaddingBottom="pb-20"
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}
         pageBreadcrumbs={
           <div className="breadcrumbs text-sm">
