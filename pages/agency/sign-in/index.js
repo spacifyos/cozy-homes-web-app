@@ -1,14 +1,12 @@
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
-import CustomHeader from "@/components/CustomHeader";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import DesktopLayout from "@/components/DesktopLayout";
 import { useState } from "react";
 import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
-import Constant from "@/src/utils/Constant";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as authSelector from "@/src/selectors/auth";
 import AuthManager from "@/src/utils/AuthManager";
@@ -69,12 +67,9 @@ const AgencySignIn = () => {
     <div className="min-h-screen primaryWhite-bg-color">
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
-      <DesktopLayout
-        hideNav
-        loading={signInLoading}
-      >
-        <div className="container mx-auto py-4">
-          <div className="py-6 mb-4">
+      <DesktopLayout hideNav loading={signInLoading}>
+        <div className="container mx-auto max-w-screen-md">
+          <div className="py-4 mt-10">
             <CustomText textClassName="primary-text font-bold text-center xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl">
               Agency Sign In
             </CustomText>

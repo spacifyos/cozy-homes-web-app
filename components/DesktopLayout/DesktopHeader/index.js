@@ -23,7 +23,7 @@ const DesktopHeader = ({
       className="primaryWhite-bg-color"
       style={{ borderBottom: "3px #f5f8fd solid" }}
     >
-      {isEqual(pathname, "/") ? (
+      {isEqual(pathname, "/") || isEqual(pathname, "/agency/sign-in") ? (
         <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
           <CustomImage
             src={Image.logoHorizontalColor}

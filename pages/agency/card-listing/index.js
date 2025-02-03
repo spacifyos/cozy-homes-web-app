@@ -242,7 +242,7 @@ const CardListing = () => {
           </div>
         }
       >
-        <div className="flex flex-col flex-1 h-full">
+        <div className="container mx-auto flex flex-col flex-1 h-full">
           <div
             className={`grid xl:grid-cols-11 lg:grid-cols-11 md:grid-cols-11 sm:grid-cols-11 grid-cols-11 gap-2 ${isOpenFilter ? "pb-2" : "pb-7"}`}
           >
