@@ -35,15 +35,15 @@ const UserSection = ({ data }) => {
       </div>
 
       {/*<div className="coin-container">*/}
-      {/*  <div className="p-2 primary-bg-color rounded-md">*/}
+      {/*  <div className="p-2 bg-primary rounded-md">*/}
       {/*    <CustomImage src={Images.logoImage} height={30} width={30} />*/}
       {/*  </div>*/}
       {/*  <div className="pl-2">*/}
-      {/*    <CustomText textClassName="disable-text text-sm line-clamp-1">*/}
+      {/*    <CustomText textClassName="text-disable text-sm line-clamp-1">*/}
       {/*      {t("myStay.spacifyCoins")}*/}
       {/*    </CustomText>*/}
       {/*    <div className="flex items-center justify-start">*/}
-      {/*      <CustomText textClassName="primary-text font-bold text-lg pr-2">*/}
+      {/*      <CustomText textClassName="text-primary font-bold text-lg pr-2">*/}
       {/*        99,999*/}
       {/*      </CustomText>*/}
       {/*      <CustomImage src={Images.refreshIcon} height={18} width={18} />*/}

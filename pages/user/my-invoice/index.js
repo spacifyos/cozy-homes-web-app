@@ -175,7 +175,7 @@ const MyInvoice = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Invoice - Spacify Asia" />
 
       <DesktopLayout
@@ -211,7 +211,7 @@ const MyInvoice = () => {
               className="w-full flex justify-center"
               style={{ minHeight: 120, height: 120 }}
             >
-              <span className="loading loading-spinner loading-lg primary-text"></span>
+              <span className="loading loading-spinner loading-lg text-primary"></span>
             </div>
           ) : isEmpty(invoiceSummaryData) ? (
             false
@@ -222,19 +222,19 @@ const MyInvoice = () => {
           <div className="flex items-center pb-5">
             <CustomButton
               buttonText="All"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "btn-primary" : "default-btn"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("All")}
             />
             <CustomButton
               buttonText="Unpaid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "primary-btn" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "btn-primary" : "default-btn"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("Unpaid")}
             />
             <CustomButton
               buttonText="Paid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "primary-btn" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "btn-primary" : "default-btn"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("Paid")}
             />
@@ -255,7 +255,7 @@ const MyInvoice = () => {
           {hasMorePage && lastPage > 1 && !isEmpty(invoiceListingData) ? (
             <div className="flex justify-center pt-4">
               <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonClassName="btn-primary min-h-9 h-9 w-32"
                 buttonText="Load More"
                 textClassName="text-xs"
                 loading={invoiceListingLoading && !isEmpty(invoiceListingData)}

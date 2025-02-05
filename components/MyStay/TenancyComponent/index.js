@@ -41,12 +41,12 @@ const TenancyComponent = ({ item }) => {
       {/*/>*/}
 
       <div className="flex flex-col items-start col-span-1">
-        <div className="primary-bg-color p-2 global-border-radius mb-1 ">
+        <div className="bg-primary p-2 global-border-radius mb-1 ">
           <CustomImage src={Images.buildingIcon} imageStyle={{ width: 35 }} />
         </div>
 
         <div className={"pb-2"}>
-          <CustomText textClassName="font-bold text-sm primary-text">
+          <CustomText textClassName="font-bold text-sm text-primary">
             {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
           <CustomText textClassName="text-xs" lineClamp={1}>

@@ -25,7 +25,7 @@ const DesktopNearbyRoomSection = ({ data, loading, onClickViewMore }) => {
 
         <CustomButton
           buttonText="View More"
-          buttonClassName="primary-btn btn-sm"
+          buttonClassName="btn-primary btn-sm"
           onClick={onClickViewMore}
         />
       </div>

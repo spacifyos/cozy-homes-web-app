@@ -18,7 +18,7 @@ const MaintenanceScheduleInformation = ({
     maintenanceTicketSelector.getTechnicianExternalRemarks(data);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
+    <div className="global-border-radius global-box-shadow bg-white p-4">
       <div className="flex justify-between items-center">
         <CustomText textClassName="disable-text text-sm">
           Maintenance Schedule Information

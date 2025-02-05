@@ -18,10 +18,10 @@ const SignIn = () => {
   const routeQueryTab = get(routeQuery, ["tab"], "my-property");
 
   return (
-    <div className={`min-h-screen flex flex-col items-center px-10 bg-color`}>
+    <div className={`min-h-screen flex flex-col items-center px-10 bg-primary-background`}>
       <CustomText
         styles={{ fontSize: 32, paddingTop: "5vh" }}
-        textClassName="italic font-bold primary-text"
+        textClassName="italic font-bold text-primary"
       >
         Welcome To
       </CustomText>

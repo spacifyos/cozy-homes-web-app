@@ -14,9 +14,9 @@ const MeterComponent = ({ item }) => {
   return (
     <a
       href={`/user/my-meter/${id}`}
-      className="primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
+      className="bg-white global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
     >
-      <div className="primary-bg-color px-2 py-3 global-border-radius flex items-center">
+      <div className="bg-primary px-2 py-3 global-border-radius flex items-center">
         <CustomImage
           src={Images.meterIcon}
           imageStyle={{ width: 35, height: 35 }}
@@ -38,7 +38,7 @@ const MeterComponent = ({ item }) => {
       </div>
 
       <div className="flex flex-col justify-center ps-3 flex-1">
-        <CustomText textClassName="primary-text font-bold pb-1.5 line-clamp-1">
+        <CustomText textClassName="text-primary font-bold pb-1.5 line-clamp-1">
           {isEmpty(name) ? "-" : name}
         </CustomText>
 
@@ -55,7 +55,7 @@ const MeterComponent = ({ item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${wifi ? "power-on-text" : "disable-text"} text-xs`}
+                textClassName={`${wifi ? "text-aqua" : "disable-text"} text-xs`}
               >
                 Wifi
               </CustomText>
@@ -68,7 +68,7 @@ const MeterComponent = ({ item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${power ? "power-on-text" : "disable-text"} text-xs`}
+                textClassName={`${power ? "text-aqua" : "disable-text"} text-xs`}
               >
                 Power
               </CustomText>

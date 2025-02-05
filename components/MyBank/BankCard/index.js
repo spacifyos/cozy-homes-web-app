@@ -14,7 +14,7 @@ const BankCard = ({ bankDetails }) => {
   return (
     <div className="mb-10 absolute top-16 w-full px-4 z-10">
       <div
-        className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center justify-center"
+        className="bg-white global-box-shadow global-border-radius p-4 relative flex items-center justify-center"
         style={{ height: 163 }}
       >
         {isEmpty(accountNumber) ? (
@@ -23,13 +23,13 @@ const BankCard = ({ bankDetails }) => {
             className="flex flex-col justify-center items-center flex-1 cursor-pointer"
           >
             <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
-            <CustomText textClassName="disable-text pt-2">Add Bank</CustomText>
+            <CustomText textClassName="text-disable pt-2">Add Bank</CustomText>
           </a>
         ) : (
           <div className="flex-1">
             <a
               href={`/user/owner/my-bank/${replace(lowerCase(bankName), " ", "_")}`}
-              className="primary-bg-color absolute p-2 rounded-2xl flex justify-center items-center cursor-pointer"
+              className="bg-primary absolute p-2 rounded-2xl flex justify-center items-center cursor-pointer"
               style={{ width: 30, height: 30, right: -3, bottom: -3 }}
             >
               <CustomImage

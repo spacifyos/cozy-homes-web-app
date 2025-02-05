@@ -20,7 +20,7 @@ const AgencySignUp = () => {
       <div className="body-container py-4">
         <div className="py-6 mb-4">
           <CustomText
-            textClassName="primary-text font-bold leading-10"
+            textClassName="text-primary font-bold leading-10"
             styles={{ fontSize: 34 }}
           >
             {t("signUp.letGetStarted")}
@@ -31,7 +31,7 @@ const AgencySignUp = () => {
           <div className="grid grid-cols-2">
             <div onClick={onClickToSignIn} className="cursor-pointer">
               <CustomText
-                textClassName="text-center p-4 primary-text font-bold text-base"
+                textClassName="text-center p-4 text-primary font-bold text-base"
                 styles={{
                   borderRadius: "10px 10px 0 0",
                   backgroundColor: "#E8E8E8",
@@ -43,71 +43,71 @@ const AgencySignUp = () => {
             </div>
 
             <CustomText
-              textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold text-base"
+              textClassName="text-center p-4 bg-white text-primary font-bold text-base"
               styles={{ borderRadius: "10px 10px 0 0" }}
             >
               {t("signUp.signUp")}
             </CustomText>
           </div>
           <div
-            className="p-3 global-box-shadow primaryWhite-bg-color py-10"
+            className="p-3 global-box-shadow bg-white py-10"
             style={{ borderRadius: "0 0 10px 10px" }}
           >
             <input
               type="email"
               placeholder={t("signUp.companyEmail")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
             />
 
             <input
               type="text"
               placeholder={t("signUp.companyName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
             />
 
             <input
               type="text"
               placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
-              <select className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input">
+              <select className="select select-bordered w-full max-w-xs bg-white user-input">
                 <option selected>+60 Malaysia</option>
               </select>
 
               <input
                 type="text"
                 placeholder={t("signUp.phoneNumber")}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                className="input input-bordered w-full bg-white col-span-2 user-input"
               />
             </div>
 
             <input
               type="text"
               placeholder={t("signUp.conmpanyDomain")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-1 user-input"
+              className="input input-bordered w-full bg-white mb-1 user-input"
             />
 
-            <CustomText textClassName="disable-text text-xs mb-4">
+            <CustomText textClassName="text-disable text-xs mb-4">
               {t("signUp.domainInfo")}
             </CustomText>
 
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
             />
 
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+              className="input input-bordered w-full bg-white mb-8 user-input"
             />
 
             <div className="flex justify-center mb-8">
               <CustomButton
-                buttonClassName="primary-btn w-2/4 mb-2"
+                buttonClassName="btn-primary w-2/4 mb-2"
                 buttonText={t("signUp.signUpForFree")}
               />
             </div>
@@ -118,7 +118,7 @@ const AgencySignUp = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="text-xs text-center disable-text">
+            <CustomText textClassName="text-xs text-center text-disable">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

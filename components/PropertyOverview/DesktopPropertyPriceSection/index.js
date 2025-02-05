@@ -33,16 +33,16 @@ const DesktopPropertyPriceSection = ({
 
   return (
     <div className="global-box-shadow global-border-radius mt-3 overflow-hidden sticky top-5">
-      <div className="secondary-bg-color p-3">
+      <div className="bg-secondary-background p-3">
         <div className="flex items-end">
-          <CustomText textClassName="black-text text-base font-bold pr-2">
+          <CustomText textClassName="text-black text-base font-bold pr-2">
             RM{rental}
           </CustomText>
-          <CustomText textClassName="black-text text-sm">/ month</CustomText>
+          <CustomText textClassName="text-black text-sm">/ month</CustomText>
         </div>
       </div>
 
-      <div className="primaryWhite-bg-color">
+      <div className="bg-white">
         <div className="flex p-3 justify-between items-center">
           <div className="relative ">
             <CustomImage
@@ -82,7 +82,7 @@ const DesktopPropertyPriceSection = ({
           </div>
         </div>
 
-        <div className="p-3 bg-color flex items-center justify-between">
+        <div className="p-3 bg-primary-background flex items-center justify-between">
           <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             Total Move-In Cost
           </CustomText>
@@ -171,7 +171,7 @@ const DesktopPropertyPriceSection = ({
 
           <a
             href={`/booking/${propertyId}`}
-            className="primary-bg-color p-2 px-4 flex justify-center items-center cursor-pointer global-border-radius"
+            className="bg-primary p-2 px-4 flex justify-center items-center cursor-pointer global-border-radius"
           >
             <CustomText textClassName="text-base font-bold text-white">
               Book Now

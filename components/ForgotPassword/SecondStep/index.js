@@ -62,7 +62,7 @@ const SecondStep = ({
 
       <div className="grid grid-cols-4">
         <CustomButton
-          buttonClassName={`${isOtpValid ? (isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn") : "disable-btn"} col-start-2 col-span-2`}
+          buttonClassName={`${isOtpValid ? (isEqual(typeQuery, Constant.TENANT) ? "btn-secondary" : "btn-primary") : "btn-disable"} col-start-2 col-span-2`}
           buttonText="Verify Code"
           disable={!isOtpValid || otpVerifyLoading}
           loading={otpVerifyLoading}

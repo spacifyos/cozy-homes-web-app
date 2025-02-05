@@ -270,7 +270,7 @@ const ViewAgreement = ({ id }) => {
   const errorRender = () => {
     return (
       <div
-        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        className="bg-white w-full h-3 flex justify-center items-center"
         style={{ height: pdfPageHeight }}
       >
         <CustomText>This pdf cannot be found!</CustomText>
@@ -281,7 +281,7 @@ const ViewAgreement = ({ id }) => {
   const noDataRender = () => {
     return (
       <div
-        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        className="bg-white w-full h-3 flex justify-center items-center"
         style={{ height: pdfPageHeight }}
       >
         <CustomText>No page specified.</CustomText>
@@ -292,10 +292,10 @@ const ViewAgreement = ({ id }) => {
   const loadingRender = () => {
     return (
       <div
-        className="primaryWhite-bg-color w-full h-3 flex justify-center items-center"
+        className="bg-white w-full h-3 flex justify-center items-center"
         style={{ height: pdfPageHeight }}
       >
-        <span className="loading loading-spinner loading-lg primary-text"></span>
+        <span className="loading loading-spinner loading-lg text-primary"></span>
       </div>
     );
   };
@@ -327,7 +327,7 @@ const ViewAgreement = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My E-Agreement Document - Spacify Asia" />
 
       <DesktopLayout
@@ -341,14 +341,14 @@ const ViewAgreement = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/e-agreement"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My E-Agreement
                     </CustomText>
                   </a>
                 </li>
                 <li>
                   <a href={`/user/e-agreement/${id}`}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       {referenceNumber}
                     </CustomText>
                   </a>
@@ -411,13 +411,13 @@ const ViewAgreement = ({ id }) => {
               <div className="flex gap-2 pt-2">
                 <CustomButton
                   buttonText={"Previous"}
-                  buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "btn-white" : "btn-disable"}`}
                   onClick={onClickPrevious}
                   disable={!isDocumentReady}
                 />
                 <CustomButton
                   buttonText={"Next"}
-                  buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "pdf-active-btn" : "pdf-disable-btn"}`}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "btn-white" : "btn-disable"}`}
                   onClick={onClickNext}
                   disable={!isDocumentReady}
                 />
@@ -436,7 +436,7 @@ const ViewAgreement = ({ id }) => {
               </div>
               <CustomText textClassName="text-sm text-justify leading-4">
                 I,{" "}
-                <span className="primary-text">{`${tenantName} ${tenantIc}`}</span>
+                <span className="text-primary">{`${tenantName} ${tenantIc}`}</span>
                 , hereby acknowledge and confirm that I have read, understood
                 and agree to the terms and conditions of the agreement appearing
                 and irrevocably agree to be bound by the terms and conditions
@@ -453,12 +453,12 @@ const ViewAgreement = ({ id }) => {
             <div className="grid grid-cols-2 gap-2 pt-8">
               <CustomButton
                 buttonText="Cancel"
-                buttonClassName="default-btn-outline"
+                buttonClassName="btn-primary-outline"
                 onClick={onClickGoBack}
               />
               <CustomButton
                 buttonText={isCanAgree ? "Agree" : isCanSign ? "Sign" : "View"}
-                buttonClassName="primary-btn"
+                buttonClassName="btn-primary"
                 onClick={() => onClickHandlePdf("desktop")}
               />
             </div>

@@ -21,7 +21,7 @@ const CommentComponent = ({
   const currentPage = maintenanceTicketSelector.getCurrentPage(pagination);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
+    <div className="global-border-radius global-box-shadow bg-white p-4">
       <CustomText textClassName="disable-text text-sm">Comment</CustomText>
       <div
         className="divider-line "
@@ -68,7 +68,7 @@ const CommentComponent = ({
           onChange={(e) => setMessageValue(e.target.value)}
         />
         <CustomButton
-          buttonClassName="primary-btn max-w-20 w-20 min-h-10 h-10"
+          buttonClassName="btn-primary max-w-20 w-20 min-h-10 h-10"
           buttonText="Send"
           onClick={onClickSendMessage}
           loading={postCommentLoading}

@@ -18,7 +18,7 @@ const TransactionComponent = ({
           Transactions
         </CustomText>
         <a href={"/user/owner/my-report"}>
-          <CustomText textClassName="primary-text cursor-pointer text-sm">
+          <CustomText textClassName="text-primary cursor-pointer text-sm">
             View Report
           </CustomText>
         </a>
@@ -29,7 +29,7 @@ const TransactionComponent = ({
           <CustomButton
             key={index}
             buttonText={item}
-            buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "primary-btn" : "default-btn"} mr-2`}
+            buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "btn-primary" : "default-btn"} mr-2`}
             textClassName="text-xs"
             onClick={() => onClickSelectCategory(item)}
           />

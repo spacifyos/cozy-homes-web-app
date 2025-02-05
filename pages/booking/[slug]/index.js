@@ -620,7 +620,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo
         title={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName} | Spacify.asia`}
         description={`${propertyName} at RM ${rental} per month for rent by ${isEmpty(picName) ? "Spacify Asia" : picName}. Learn more about this ${isEmpty(bathroom) ? "-" : bathroom} bathroom, ${isEmpty(bedType) ? "-" : bedType} bedroom, ${isEmpty(squareFeet) ? "-" : squareFeet} Sqft Room at ${process.env.DOMAIN}.`}
@@ -663,21 +663,21 @@ const Booking = ({ id, listingPropertyDetailData }) => {
               <ul>
                 <li>
                   <a href={"/"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Explore
                     </CustomText>
                   </a>
                 </li>
                 <li>
                   <a href={"/search"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Room Listing
                     </CustomText>
                   </a>
                 </li>
                 <li>
                   <a href={`/property-overview/${id}`}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       {propertyName}
                     </CustomText>
                   </a>

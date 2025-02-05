@@ -21,7 +21,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           />
           <div className="flex gap-2 pl-2">
             <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold ">
-              <span className="primary-text">Featured Rooms</span> Just For You
+              <span className="text-primary">Featured Rooms</span> Just For You
             </CustomText>
           </div>
         </div>

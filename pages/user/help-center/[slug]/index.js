@@ -308,7 +308,7 @@ const RequestOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Help Center Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -320,7 +320,7 @@ const RequestOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/help-center"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Help Center
                     </CustomText>
                   </a>

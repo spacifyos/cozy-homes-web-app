@@ -222,7 +222,7 @@ const CardListing = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
       <DesktopLayout
@@ -308,7 +308,7 @@ const CardListing = () => {
               />
 
               <CustomButton
-                buttonClassName="primary-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
+                buttonClassName="btn-primary xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
                 buttonText="Reset"
                 onClick={onClickReset}
               />
@@ -395,7 +395,7 @@ const CardListing = () => {
                             </CustomText>
 
                             <CustomText
-                              textClassName={`${isOccupied ? "bg-occupied" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
+                              textClassName={`${isOccupied ? "bg-error" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
                             >
                               {isOccupied ? "Fully" : "Partial"}
                             </CustomText>
@@ -429,7 +429,7 @@ const CardListing = () => {
                                       ? propertyOverview
                                       : "#"
                                   }
-                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-4 global-border-radius flex flex-col gap-2 min-w-64`}
+                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-error-light"} p-4 global-border-radius flex flex-col gap-2 min-w-64`}
                                 >
                                   <div
                                     className={`flex justify-between items-center`}
@@ -441,7 +441,7 @@ const CardListing = () => {
                                           ? "bg-disable"
                                           : isEqual(status, "vacant")
                                             ? "bg-available"
-                                            : "bg-occupied"
+                                            : "bg-error"
                                       } py-1 px-2 global-border-radius`}
                                     >
                                       {!isAvailableBook &&
@@ -544,7 +544,7 @@ const CardListing = () => {
                             </CustomText>
 
                             <CustomText
-                              textClassName={`${isOccupied ? "bg-occupied" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
+                              textClassName={`${isOccupied ? "bg-error" : "bg-available"} text-xs global-border-radius px-2 py-1 text-white`}
                             >
                               {isOccupied ? "Fully" : "Partial"}
                             </CustomText>
@@ -580,7 +580,7 @@ const CardListing = () => {
                                       ? propertyOverview
                                       : "#"
                                   }
-                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-occupied-light"} p-2 global-border-radius flex flex-col gap-1`}
+                                  className={`${isEqual(status, "vacant") ? "bg-available-light" : "bg-error-light"} p-2 global-border-radius flex flex-col gap-1`}
                                 >
                                   <div
                                     className={`flex justify-between items-center`}
@@ -593,7 +593,7 @@ const CardListing = () => {
                                             ? "bg-disable"
                                             : isEqual(status, "vacant")
                                               ? "bg-available"
-                                              : "bg-occupied"
+                                              : "bg-error"
                                         } px-1 rounded`}
                                       >
                                         {!isAvailableBook &&

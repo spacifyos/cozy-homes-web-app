@@ -1,5 +1,3 @@
-@import "../utils/color";
-
 .radial-container {
   display: flex;
   flex: 1;
@@ -13,22 +11,22 @@
 }
 
 .meter-response {
-  @apply flex p-4 global-border-radius global-box-shadow primaryWhite-bg-color justify-between;
+  @apply flex p-4 global-border-radius global-box-shadow bg-white justify-between;
 }
 
 .balance-container {
-  @apply primaryWhite-bg-color global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-center items-center mt-3 mb-7;
+  @apply bg-white global-box-shadow global-border-radius px-4 pt-3 pb-4 flex flex-col justify-center items-center mt-3 mb-7;
 }
 
 .meter-feature-component {
-  @apply global-box-shadow p-2 mb-2 flex justify-center items-center primaryWhite-bg-color;
+  @apply global-box-shadow p-2 mb-2 flex justify-center items-center bg-white;
   border-radius: 999px;
 }
 
 .meter-usage-component {
-  @apply p-4 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col;
+  @apply p-4 global-border-radius global-box-shadow bg-white flex flex-col;
 }
 
 .meter-usage-inside-container {
-  @apply flex items-center primary-bg-color p-2 global-border-radius;
+  @apply flex items-center bg-primary p-2 global-border-radius;
 }

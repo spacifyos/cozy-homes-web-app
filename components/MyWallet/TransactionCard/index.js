@@ -39,9 +39,9 @@ const TransactionCard = ({ data }) => {
   const renderTextColor = (typeValue) => {
     switch (typeValue) {
       case Constant.WALLET_RENTAL_INCOME:
-        return "power-on-text";
+        return "text-aqua";
       case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
-        return "power-on-text";
+        return "text-aqua";
       case Constant.WALLET_EXPENSE:
         return "primary-text";
       case Constant.WALLET_INVOICE_PAYMENT:
@@ -51,25 +51,25 @@ const TransactionCard = ({ data }) => {
           isEqual(withdrawStatus, "Pending") ||
           isEqual(withdrawStatus, "Confirmed")
         ) {
-          return "pending-text";
+          return "text-warning";
         } else if (isEqual(withdrawStatus, "Approved")) {
           return "primary-text";
         } else if (isEqual(withdrawStatus, "Cancelled")) {
-          return "error-text";
+          return "text-error";
         } else {
-          return "black-text";
+          return "text-black";
         }
       case Constant.WALLET_WITHDRAWAL_REFUND:
-        return "power-on-text";
+        return "text-aqua";
       case Constant.WALLET_REVERT_INVOICE_PAYMENT:
-        return "power-on-text";
+        return "text-aqua";
     }
   };
 
   return (
     <a
       href={`/user/owner/my-wallet/transaction-overview/${transactionNumber}`}
-      className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer grid grid-cols-4 primaryWhite-bg-color"
+      className="global-box-shadow global-border-radius p-4 flex justify-between items-center cursor-pointer grid grid-cols-4 bg-white"
     >
       <div className="flex col-span-3">
         <div className="flex items-center" style={{ width: 35 }}>

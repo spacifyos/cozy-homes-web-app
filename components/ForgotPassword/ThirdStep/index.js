@@ -16,7 +16,7 @@ const ThirdStep = ({
       <input
         type="password"
         placeholder={"Your Password"}
-        className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+        className="input input-bordered w-full bg-white mb-4 user-input"
         value={passwordValue}
         onChange={onChangePasswordValue}
       />
@@ -24,7 +24,7 @@ const ThirdStep = ({
       <input
         type="password"
         placeholder={"Confirm Your Password"}
-        className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+        className="input input-bordered w-full bg-white mb-8 user-input"
         value={confirmPasswordValue}
         onChange={onChangeConfirmPasswordValue}
       />
@@ -32,7 +32,7 @@ const ThirdStep = ({
       <div className="grid grid-cols-4">
         <CustomButton
           buttonText="Submit"
-          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
+          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "btn-secondary" : "btn-primary"} col-start-2 col-span-2`}
           onClick={onClickSubmitChangePassword}
         />
       </div>

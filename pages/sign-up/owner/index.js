@@ -158,13 +158,13 @@ const SignUpOwner = () => {
         </div>
 
         <div className="w-full">
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
             <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
               You’re signing up as
             </CustomText>
 
             <CustomText
-              textClassName={`text-center pb-6 font-bold text-lg italic leading-10 primary-text`}
+              textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-primary`}
               styles={{ fontSize: 32 }}
             >
               Owner
@@ -173,14 +173,14 @@ const SignUpOwner = () => {
             <input
               type="text"
               placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={nameValue}
               onChange={onChangeNameValue}
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
               <select
-                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                className="select select-bordered w-full max-w-xs bg-white user-input"
                 value={countryCode}
                 onChange={onChangeCountryCode}
               >
@@ -199,7 +199,7 @@ const SignUpOwner = () => {
               <input
                 type="number"
                 placeholder={"12 345 6789"}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                className="input input-bordered w-full bg-white col-span-2 user-input"
                 value={phoneValue}
                 onChange={onChangePhoneValue}
               />
@@ -208,7 +208,7 @@ const SignUpOwner = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={emailValue}
               onChange={onChangeEmailValue}
             />
@@ -216,7 +216,7 @@ const SignUpOwner = () => {
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={passwordValue}
               onChange={onChangePasswordValue}
             />
@@ -224,7 +224,7 @@ const SignUpOwner = () => {
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={confirmPasswordValue}
               onChange={onChangeConfirmPasswordValue}
             />
@@ -248,7 +248,7 @@ const SignUpOwner = () => {
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName={`primary-btn w-2/4 mb-2`}
+                buttonClassName={`btn-primary w-2/4 mb-2`}
                 buttonText="Sign Up for FREE"
                 onClick={handleSubmit}
               />
@@ -260,7 +260,7 @@ const SignUpOwner = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="text-xs text-center disable-text">
+            <CustomText textClassName="text-xs text-center text-disable">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

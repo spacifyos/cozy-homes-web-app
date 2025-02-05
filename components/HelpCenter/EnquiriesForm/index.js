@@ -74,7 +74,7 @@ const EnquiriesForm = ({
 
       <BookingTextArea
         title={"Describe The Issue"}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-2"
         placeholder="Enter your message"
         onChange={(e) => {
@@ -94,12 +94,12 @@ const EnquiriesForm = ({
 
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           buttonText={"Cancel"}
         />
 
         <CustomButton
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           buttonText={"Submit"}
           onClick={onClickSubmit}
         />

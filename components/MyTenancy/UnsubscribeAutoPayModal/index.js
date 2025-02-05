@@ -20,14 +20,14 @@ const SubscribeAutoPayModal = ({ t }) => {
       </div>
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           buttonText={t("myTenancy.no")}
           onClick={() => {
             Helper.documentGetElementById("myTenancy_Unsubscribe_modal").close();
           }}
         />
         <CustomButton
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           buttonText={t("myTenancy.yes")}
         />
       </div>

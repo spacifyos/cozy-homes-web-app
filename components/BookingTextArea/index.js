@@ -7,7 +7,7 @@ const BookingTextArea = ({
   errorMessage,
   title,
   name,
-  bgColor = "bg-color",
+  bgColor = "bg-primary-background",
   ...props
 }) => {
   return (

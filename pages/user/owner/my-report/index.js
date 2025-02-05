@@ -82,7 +82,7 @@ const MyReport = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Report | Owner - Spacify Asia" />
       <DesktopLayout
         loading={loading}
@@ -91,7 +91,7 @@ const MyReport = () => {
             <ul className="flex-wrap">
               <li>
                 <a href={"/user/owner"}>
-                  <CustomText textClassName="text-base disable-text">
+                  <CustomText textClassName="text-base text-disable">
                     My Property
                   </CustomText>
                 </a>
@@ -123,7 +123,7 @@ const MyReport = () => {
 
             <div className="relative">
               <input
-                className="p-4 global-box-shadow global-border-radius primaryWhite-bg-color resize-input-icon text-xs"
+                className="p-4 global-box-shadow global-border-radius bg-white resize-input-icon text-xs"
                 type="month"
                 style={{ height: 48 }}
                 onChange={onChangeMonthValue}

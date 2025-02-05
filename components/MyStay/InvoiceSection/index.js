@@ -45,7 +45,7 @@ const InvoiceSection = ({
               <CustomButton
                 key={index}
                 buttonText={name}
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, value) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, value) ? "btn-primary" : "default-btn"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => onClickSelectCategory(value)}
               />

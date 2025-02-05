@@ -23,10 +23,10 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
         </CustomText>
 
         <div className="flex items-center justify-center">
-          {/*<CustomText textClassName="primary-text text-sm">*/}
+          {/*<CustomText textClassName="text-primary text-sm">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
-          <CustomText textClassName="primary-text text-lg font-bold text-center ">
+          <CustomText textClassName="text-primary text-lg font-bold text-center ">
             {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
             Coming Soon
           </CustomText>

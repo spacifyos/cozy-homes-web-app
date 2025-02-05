@@ -499,7 +499,7 @@ const SearchWithSlug = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo
         title={`Discover spaces for your needs in ${isEmpty(id) ? "rooms listing" : id} | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
@@ -536,14 +536,14 @@ const SearchWithSlug = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Explore
                     </CustomText>
                   </a>
                 </li>
                 <li>
                   <a href={"/search"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Room Listing
                     </CustomText>
                   </a>

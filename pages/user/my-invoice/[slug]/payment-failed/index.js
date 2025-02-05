@@ -19,7 +19,7 @@ const PaymentFailure = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Invoice Payment Failed - Spacify Asia" />
 
       <DesktopLayout
@@ -28,21 +28,21 @@ const PaymentFailure = ({ id }) => {
             <ul>
               <li>
                 <a href={"/user/my-property"}>
-                  <CustomText textClassName="text-base disable-text">
+                  <CustomText textClassName="text-base text-disable">
                     My Property
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={"/user/my-invoice"}>
-                  <CustomText textClassName="text-base disable-text">
+                  <CustomText textClassName="text-base text-disable">
                     Invoice
                   </CustomText>
                 </a>
               </li>
               <li>
                 <a href={`/user/my-invoice/${id}`}>
-                  <CustomText textClassName="text-base disable-text">
+                  <CustomText textClassName="text-base text-disable">
                     {id}
                   </CustomText>
                 </a>
@@ -85,7 +85,7 @@ const PaymentFailure = ({ id }) => {
           </div>
 
           <CustomButton
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             buttonStyles={{ padding: "5px 30px" }}
             buttonText={"Back to Home"}
             onClick={onClickBackToInvoiceOverview}

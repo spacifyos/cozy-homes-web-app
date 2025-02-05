@@ -18,7 +18,7 @@ const FirstStep = ({
     <div>
       <div className="grid grid-cols-3 gap-2 mb-8">
         <select
-          className="select select-bordered w-full primaryWhite-bg-color user-input"
+          className="select select-bordered w-full bg-white user-input"
           value={phonePrefix}
           onChange={onChangePhonePrefix}
         >
@@ -39,14 +39,14 @@ const FirstStep = ({
           onChange={onChangePhoneNumber}
           type="number"
           placeholder={"Phone Number"}
-          className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+          className="input input-bordered w-full bg-white col-span-2 user-input"
         />
       </div>
 
       <div className="grid grid-cols-4">
         <CustomButton
           buttonText="Send Code"
-          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
+          buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "btn-secondary" : "btn-primary"} col-start-2 col-span-2`}
           onClick={onClickSendOtp}
         />
       </div>

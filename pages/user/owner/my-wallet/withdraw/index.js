@@ -137,7 +137,7 @@ const Withdraw = () => {
         </div>
       }
     >
-      <div className="body-container bg-color flex-1 py-5">
+      <div className="body-container bg-primary-background flex-1 py-5">
         <BookingInput
           title="Withdraw Amount"
           placeholder="Key in amount"
@@ -145,7 +145,7 @@ const Withdraw = () => {
           value={withdrawAmount}
           onChange={onChangeWithdrawAmount}
           type="number"
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           errorMessage={
             toInteger(withdrawAmount) > walletWithdrawableAmount
               ? "Maximum amount is " + walletWithdrawableAmount
@@ -157,7 +157,7 @@ const Withdraw = () => {
           <CustomText textClassName="input-title">Transfer To</CustomText>
 
           <div
-            className="booking-input flex items-center primaryWhite-bg-color"
+            className="booking-input flex items-center bg-white"
             style={{ height: 50 }}
           >
             <CustomImage
@@ -174,7 +174,7 @@ const Withdraw = () => {
           title="Pin Number (6 digits)"
           required
           type="number"
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           placeholder="Your Pin Number"
           className="pb-4"
           onChange={(e) => {
@@ -187,14 +187,14 @@ const Withdraw = () => {
 
         <div className="grid grid-cols-2 gap-4 pt-6">
           <CustomButton
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             buttonText={"Cancel"}
             onClick={onClickGoBack}
           />
 
           <CustomButton
             disable={!walletIsCanWithdraw}
-            buttonClassName={`${walletIsCanWithdraw ? "primary-btn" : "disable-btn"}`}
+            buttonClassName={`${walletIsCanWithdraw ? "btn-primary" : "btn-disable"}`}
             buttonText={"Submit"}
             onClick={onClickSubmit}
           />
@@ -213,14 +213,14 @@ const Withdraw = () => {
 
           <div className="grid grid-cols-2 gap-4 pt-6 w-full">
             <CustomButton
-              buttonClassName="default-btn-outline"
+              buttonClassName="btn-primary-outline"
               buttonText={"Cancel"}
               onClick={closePinNumberWarningModal}
             />
 
             <CustomButton
               disable={!walletIsCanWithdraw}
-              buttonClassName={`${walletIsCanWithdraw ? "primary-btn" : "disable-btn"}`}
+              buttonClassName={`${walletIsCanWithdraw ? "btn-primary" : "btn-disable"}`}
               buttonText={"Set Pin Number"}
               onClick={onClickRedirectSetPinNumber}
             />

@@ -34,7 +34,7 @@ const MaintenanceScheduleInformation = ({
   const status = maintenanceTicketSelector.getStatusValue(data);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
+    <div className="global-border-radius global-box-shadow bg-white p-4">
       <div className="flex justify-between items-center">
         <CustomText textClassName="disable-text text-sm">
           Maintenance Schedule Information
@@ -58,7 +58,7 @@ const MaintenanceScheduleInformation = ({
           { label: "Closed", value: Constant.TICKET_CLOSED },
         ]}
         disabled={false}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-4"
         value={get(postData, ["status"], "")}
         onChange={(e) =>
@@ -74,7 +74,7 @@ const MaintenanceScheduleInformation = ({
       {isEqual(status, toString(Constant.TICKET_CLOSED)) ? (
         <>
           <BookingTextArea
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             className="pb-4"
             title={"Remarks"}
             placeholder={"Enter your message"}
@@ -90,7 +90,7 @@ const MaintenanceScheduleInformation = ({
           />
 
           <BookingTextArea
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             className="pb-4"
             title={"Internal Remarks"}
             placeholder={"Enter your message"}
@@ -122,7 +122,7 @@ const MaintenanceScheduleInformation = ({
                 return (
                   <div
                     key={index}
-                    className={`w-28 h-28 relative flex justify-center items-center border ${isEmpty(path) ? "" : status ? "border-available" : "border-occupied"} global-border-radius cursor-pointer`}
+                    className={`w-28 h-28 relative flex justify-center items-center border ${isEmpty(path) ? "" : status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
                   >
                     <CustomImage
                       onClick={() => onClickPopupImage(index, "technician")}
@@ -156,7 +156,7 @@ const MaintenanceScheduleInformation = ({
                 false
               ) : (
                 <div
-                  className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+                  className="bg-primary-background global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
                   onClick={() =>
                     uploadImageRef && uploadImageRef.current.click()
                   }
@@ -189,7 +189,7 @@ const MaintenanceScheduleInformation = ({
                 false
               ) : (
                 <div
-                  className={`w-28 h-28 relative flex justify-center items-center border ${isEmpty(videoPath) ? "" : videoStatus ? "border-available" : "border-occupied"} global-border-radius`}
+                  className={`w-28 h-28 relative flex justify-center items-center border ${isEmpty(videoPath) ? "" : videoStatus ? "border-available" : "border-error"} global-border-radius`}
                 >
                   {loading ? (
                     false
@@ -221,7 +221,7 @@ const MaintenanceScheduleInformation = ({
 
               {isEmpty(videos) ? (
                 <div
-                  className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+                  className="bg-primary-background global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
                   onClick={() =>
                     uploadVideoRef && uploadVideoRef.current.click()
                   }
@@ -254,7 +254,7 @@ const MaintenanceScheduleInformation = ({
       <div className="flex justify-center">
         <CustomButton
           buttonStyles={{ padding: "5px 30px" }}
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           buttonText={"Submit"}
           onClick={onClickUpdateTicket}
         />

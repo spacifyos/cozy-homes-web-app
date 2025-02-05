@@ -20,10 +20,10 @@ const CustomHeader = ({
     <div
       style={{ maxWidth: 640, zIndex: 1 }}
       className={
-        "primaryWhite-bg-color flex flex-col min-h-screen relative overflow-hidden mobile-responsive"
+        "bg-white flex flex-col min-h-screen relative overflow-hidden mobile-responsive"
       }
     >
-      <div className="flex-1 relative bg-color overflow-hidden flex flex-col">
+      <div className="flex-1 relative bg-primary-background overflow-hidden flex flex-col">
         <div
           className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}
         >
@@ -74,7 +74,7 @@ const CustomHeader = ({
               )}
               {isFiltered ? (
                 <div
-                  className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
+                  className="w-2.5 h-2.5 rounded-2xl bg-error absolute "
                   style={{ top: -10, right: -10 }}
                 ></div>
               ) : (

@@ -97,7 +97,7 @@ const OwnerChat = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <DesktopLayout
         hideFooter
         pageBreadcrumbs={
@@ -129,7 +129,7 @@ const OwnerChat = () => {
           <div id="embed_owner_chatbot_container_id"></div>
 
           {userProfileLoading ? (
-            <span className="loading loading-dots loading-lg primary-text"></span>
+            <span className="loading loading-dots loading-lg text-primary"></span>
           ) : (
             false
           )}

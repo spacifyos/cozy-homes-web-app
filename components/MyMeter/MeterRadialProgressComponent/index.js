@@ -10,7 +10,7 @@ const MeterRadialProgressComponent = ({
 }) => {
   return (
     <div
-      className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"
+      className="radial-progress bg-white text-primary border-16 border-secondary-color global-box-shadow"
       style={{
         "--value": 100,
         "--size": `9rem`,
@@ -20,7 +20,7 @@ const MeterRadialProgressComponent = ({
     >
       <div className="flex-col flex justify-column items-center">
         <div className="flex items-end gap-1">
-          <CustomText textClassName="text-base primary-text font-bold">
+          <CustomText textClassName="text-base text-primary font-bold">
             {isShowBalanceInPrice
               ? isEmpty(balanceCredit)
                 ? "0"

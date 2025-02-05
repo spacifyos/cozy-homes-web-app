@@ -22,7 +22,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
           { label: "No", value: "false" },
         ]}
         className="pb-2"
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         onChange={(e) => {
           setPostData((prevState) => {
             return {
@@ -36,7 +36,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
       <BookingDateInput
         title="Date"
         className="pb-2"
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         onChange={(e) => {
           setPostData((prevState) => {
             return {
@@ -51,7 +51,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
         <BookingDateInput
           title="Start Time"
           type="time"
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           onChange={(e) => {
             setPostData((prevState) => {
               return {
@@ -64,7 +64,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
         <BookingDateInput
           title="End Time"
           type="time"
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           onChange={(e) => {
             setPostData((prevState) => {
               return {
@@ -79,7 +79,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
       <div className="flex justify-center items-center pt-2">
         <CustomButton
           buttonStyles={{ padding: "5px 30px" }}
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           buttonText={"Create A Request"}
           onClick={onClickToRequestOverview}
         />

@@ -17,7 +17,7 @@ const UploadModal = ({
       <div className="flex gap-5">
         <div className="flex flex-col items-center">
           <CustomImage
-            className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
+            className="bg-white p-2 cursor-pointer mb-2"
             src={Images.cameraIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickOpenCamera}
@@ -27,7 +27,7 @@ const UploadModal = ({
 
         <div className="flex flex-col items-center">
           <CustomImage
-            className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
+            className="bg-white p-2 cursor-pointer mb-2"
             src={Images.albumIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
@@ -37,7 +37,7 @@ const UploadModal = ({
 
         <div className="flex flex-col items-center">
           <CustomImage
-            className="primaryWhite-bg-color p-2 cursor-pointer mb-2"
+            className="bg-white p-2 cursor-pointer mb-2"
             src={Images.primaryTermAndConditionIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}

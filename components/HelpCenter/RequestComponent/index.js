@@ -35,7 +35,7 @@ const SpecificRequestComponent = ({
       />
 
       {/*<BookingSelect*/}
-      {/*  bgColor="primaryWhite-bg-color"*/}
+      {/*  bgColor="bg-white"*/}
       {/*  className="pb-2"*/}
       {/*  title={t("newRequest.selectIssue")}*/}
       {/*  placeholder={t("newRequest.selectIssue")}*/}
@@ -43,7 +43,7 @@ const SpecificRequestComponent = ({
       {/*/>*/}
 
       <BookingSelect
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-2"
         title={"Select Priority"}
         placeholder={"Select Priority"}
@@ -65,7 +65,7 @@ const SpecificRequestComponent = ({
       />
 
       <BookingTextArea
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-2"
         title={"Describe The Issue"}
         placeholder={"Enter your message"}
@@ -99,7 +99,7 @@ const SpecificRequestComponent = ({
             <div
               key={index}
               onClick={() => onClickPopupImage(index)}
-              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius cursor-pointer`}
+              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
             >
               <CustomImage
                 src={isEmpty(base64Image) ? Images.imageNotFound : base64Image}
@@ -123,7 +123,7 @@ const SpecificRequestComponent = ({
           false
         ) : (
           <div
-            className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+            className="bg-primary-background global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
             onClick={() => uploadImageRef && uploadImageRef.current.click()}
           >
             <CustomImage
@@ -153,7 +153,7 @@ const SpecificRequestComponent = ({
           false
         ) : (
           <div
-            className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-occupied"} global-border-radius`}
+            className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-error"} global-border-radius`}
           >
             {loading ? (
               false
@@ -180,7 +180,7 @@ const SpecificRequestComponent = ({
 
         {isEmpty(videoList) ? (
           <div
-            className="bg-color global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
+            className="bg-primary-background global-border-radius cursor-pointer flex items-center justify-center w-28 h-28"
             onClick={() => uploadVideoRef && uploadVideoRef.current.click()}
           >
             <CustomImage

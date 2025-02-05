@@ -11,33 +11,33 @@ const StatusLabel = ({ status }) => {
       case "AUTHORIZED":
       case "PENDING VERIFICATION":
       case "ON HOLD":
-        return "pending-bg-color";
+        return "bg-pending";
 
       case "IN PROGRESS":
       case "PENDING CONFIRMATION":
-        return "tertiary-bg-color";
+        return "bg-tertiary";
 
       case "COMPLETED":
       case "PAID":
       case "APPROVED":
       case "CLOSED":
-        return "completed-bg-color";
+        return "bg-available";
 
       case "CONFIRMED":
       case "NEW":
       case "UNPAID":
-        return "primary-bg-color";
+        return "bg-primary";
 
       case "CANCELLED":
       case "OVERDUE":
       case "REJECTED":
-        return "error-bg-color";
+        return "bg-error";
 
       case "DRAFT":
-        return "disable-bg-color";
+        return "bg-disable";
 
       default:
-        return "pending-bg-color";
+        return "bg-pending";
     }
   };
 

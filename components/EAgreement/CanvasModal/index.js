@@ -40,7 +40,7 @@ const CanvasModal = ({
         </CustomText>
       </div>
       <div
-        className="primaryWhite-bg-color global-border-radius global-box-shadow"
+        className="bg-white global-border-radius global-box-shadow"
         ref={targetRef}
       >
         <SignatureCanvas
@@ -82,12 +82,12 @@ const CanvasModal = ({
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
           buttonText={"Cancel"}
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           onClick={() => onClickCloseSignatureModal("mobile")}
         />
         <CustomButton
           buttonText={t("viewAgreement.sign")}
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           onClick={() => onClickSubmitSignature("mobile")}
         />
       </div>

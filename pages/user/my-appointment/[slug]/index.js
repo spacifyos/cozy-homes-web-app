@@ -83,15 +83,15 @@ const Booking = () => {
             M Vertica, Kuala Lumpur
           </CustomText>
 
-          <CustomText textClassName="text-base font-bold primary-text pb-1">
+          <CustomText textClassName="text-base font-bold text-primary pb-1">
             A-01-01, Room 2
           </CustomText>
-          <CustomText textClassName="disable-text text-sm">
+          <CustomText textClassName="text-disable text-sm">
             Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala
             Lumpur, Federal Territory of Kuala Lumpur.
           </CustomText>
         </div>
-        <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
+        <div className="global-box-shadow global-border-radius bg-white p-4">
           <div className="flex items-center pb-5 relative">
             <div ref={dropdownRef}>
               <CustomImage
@@ -102,9 +102,9 @@ const Booking = () => {
                 onClick={onClickDropdown}
               />
               {isDropdownOpen ? (
-                <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 primaryWhite-bg-color absolute right-2 top-7">
+                <ul className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-30 bg-white absolute right-2 top-7">
                   <li>
-                    <a className="text-sm primary-text">Reschedule</a>
+                    <a className="text-sm text-primary">Reschedule</a>
                   </li>
                   <li>
                     <a className="text-sm">Cancel</a>
@@ -114,10 +114,10 @@ const Booking = () => {
                 false
               )}
             </div>
-              <div className="p-2 global-box-shadow global-border-radius primary-bg-color mr-2">
+              <div className="p-2 global-box-shadow global-border-radius bg-primary mr-2">
                 <CustomImage src={Images.bookingIcon} width={25} height={25} />
               </div>
-              <CustomText textClassName="font-bold text-base primary-text">
+              <CustomText textClassName="font-bold text-base text-primary">
                 {t("bookAppointment.myAppointment")}
               </CustomText>
           </div>
@@ -141,7 +141,7 @@ const Booking = () => {
 
           <input
             value={moment(new Date()).format("DD MMM YYYY")}
-            className="booking-input bg-color"
+            className="booking-input bg-primary-background"
             disabled
           />
 
@@ -151,7 +151,7 @@ const Booking = () => {
 
           <input
             value={moment(new Date()).format("hh:mm A")}
-            className="booking-input bg-color"
+            className="booking-input bg-primary-background"
             disabled
           />
 
@@ -166,7 +166,7 @@ const Booking = () => {
           <div className="flex justify-center pt-2 w-full">
             <CustomButton
               buttonText={t("bookAppointment.chat")}
-              buttonClassName="primary-btn w-3/5"
+              buttonClassName="btn-primary w-3/5"
             />
           </div>
         </div>

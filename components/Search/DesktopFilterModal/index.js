@@ -149,7 +149,7 @@ const DesktopFilterModal = ({
                 <CustomButton
                   key={name}
                   buttonText={name}
-                  buttonClassName={`btn-sm ${isEqual(sortValue, code) ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(sortValue, code) ? "btn-primary" : "default-btn"} mr-2`}
                   textClassName="text-xs"
                   onClick={() =>
                     setSortValue(isEqual(sortValue, code) ? "" : code)
@@ -178,7 +178,7 @@ const DesktopFilterModal = ({
                   <CustomButton
                     key={name}
                     buttonText={name}
-                    buttonClassName={`${isActive ? "primary-btn" : "default-btn"} btn-sm mr-2`}
+                    buttonClassName={`${isActive ? "btn-primary" : "default-btn"} btn-sm mr-2`}
                     textClassName="text-xs"
                     onClick={() => onClickGeneralTag(name, code)}
                   />
@@ -205,7 +205,7 @@ const DesktopFilterModal = ({
                   reverse
                   icon={isActive ? iconActive : icon}
                   buttonText={name}
-                  buttonClassName={`btn-sm ${isActive ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isActive ? "btn-primary" : "default-btn"} mr-2`}
                   textClassName="text-xs"
                   onClick={() => onClickSelectAmenities(name, code)}
                 />
@@ -226,7 +226,7 @@ const DesktopFilterModal = ({
                 <CustomButton
                   key={title}
                   buttonText={title}
-                  buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(genderValue, value) ? "btn-primary" : "default-btn"} mr-2`}
                   textClassName="text-xs"
                   onClick={() =>
                     setGenderValue(isEqual(genderValue, value) ? "" : value)
@@ -247,7 +247,7 @@ const DesktopFilterModal = ({
           />
           <CustomButton
             buttonText="Apply"
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={onClickApply}
           />
         </div>

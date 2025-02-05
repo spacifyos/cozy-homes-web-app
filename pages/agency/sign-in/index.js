@@ -64,25 +64,25 @@ const AgencySignIn = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
       <DesktopLayout hideNav loading={signInLoading}>
         <div className="container mx-auto max-w-screen-md">
           <div className="py-4 mt-10">
-            <CustomText textClassName="primary-text font-bold text-center xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl">
+            <CustomText textClassName="text-primary font-bold text-center xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl">
               Agency Sign In
             </CustomText>
           </div>
 
           <div className="w-full">
-            <div className="xl:p-8 lg:p-8 md:p-6 sm:p-6 p-4 global-box-shadow primaryWhite-bg-color global-border-radius">
+            <div className="xl:p-8 lg:p-8 md:p-6 sm:p-6 p-4 global-box-shadow bg-white global-border-radius">
               <input
                 type="email"
                 value={email}
                 onChange={onChangeEmail}
                 placeholder={"Email"}
-                className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                className="input input-bordered w-full bg-white mb-4 user-input"
               />
 
               <input
@@ -90,12 +90,12 @@ const AgencySignIn = () => {
                 value={password}
                 onChange={onChangePassword}
                 placeholder={"Password"}
-                className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                className="input input-bordered w-full bg-white mb-4 user-input"
               />
 
               <div className="flex justify-center">
                 <CustomButton
-                  buttonClassName="primary-btn w-2/4 mb-2"
+                  buttonClassName="btn-primary w-2/4 mb-2"
                   buttonText={"Sign In"}
                   onClick={onClickToLogin}
                 />
@@ -107,7 +107,7 @@ const AgencySignIn = () => {
                 policy.
               </CustomText>
 
-              <CustomText textClassName="text-xs text-center disable-text">
+              <CustomText textClassName="text-xs text-center text-disable">
                 This site is protected by reCAPTCHA and the Google{" "}
                 <span className="underline">Privacy Policy</span> and{" "}
                 <span className="underline">Terms of Service</span> apply.

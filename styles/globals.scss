@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import "button.scss";
-@import "text.scss";
 @import "input.scss";
 @import "select.scss";
 @import "toggle.scss";
@@ -86,12 +85,12 @@ body {
 }
 
 .toggle-primary-color {
-  background-color: $primary-color !important;
+  @apply bg-primary !important;
   border: none !important;
 }
 
 .toggle-disable-color {
-  background-color: $disable-color !important;
+  @apply bg-disable !important;
   border: none !important;
 }
 
@@ -100,7 +99,7 @@ body {
 }
 
 .border-secondary-color {
-  border-color: $secondary-border-color;
+  @apply border-secondary-background;
 }
 
 .divider-line {
@@ -149,7 +148,7 @@ body {
 }
 
 .feature-button:hover {
-  background-color: $primary-white-color;
+  @apply bg-white;
 }
 
 .collapse-arrow > .collapse-title:after {

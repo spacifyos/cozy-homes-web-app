@@ -1,5 +1,3 @@
-@import "../utils/color";
-
 .custom-calendar {
   width: 100% !important;
   box-shadow:
@@ -23,19 +21,19 @@
       }
 
       .rmdp-arrow-container:hover {
-        background-color: $primary-color !important;
+        @apply bg-primary !important;
         box-shadow: none !important;
       }
 
       .rmdp-arrow {
-        border-color: $disable-color;
+        @apply border-disable;;
         height: 10px;
         width: 10px;
         margin-top: 0;
       }
 
       .rmdp-arrow:hover {
-        border-color: $primary-white-color;
+        @apply border-white;
       }
 
       .rmdp-header-values {
@@ -63,23 +61,20 @@
       }
 
       .rmdp-week-day {
-        color: $disable-color;
+        @apply text-disable;;
       }
     }
   }
 }
 
 .selected-color-pending {
-  background-color: $tertiary-bg-color !important;
-  color: $primary-white-color;
+  @apply text-white bg-tertiary !important;
 }
 
 .selected-color-cancelled {
-  background-color: $error-color !important;
-  color: $primary-white-color;
+  @apply text-white bg-error !important;
 }
 
 .selected-color-confirmed {
-  background-color: $primary-color !important;
-  color: $primary-white-color;
+  @apply bg-primary text-white !important;
 }

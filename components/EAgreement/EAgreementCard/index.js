@@ -17,7 +17,7 @@ const EAgreementCard = ({ item }) => {
   return (
     <a
       href={`/user/e-agreement/${id}`}
-      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color flex items-center cursor-pointer"
+      className="global-box-shadow global-border-radius p-4 bg-white flex items-center cursor-pointer"
     >
       <div className="flex-1 pr-3">
         <StatusLabel status={status} />

@@ -95,21 +95,21 @@ const AddBank = () => {
       <NextSeo title="Add Bank | Owner - Spacify Asia" />
 
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
-        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 relative flex items-center">
-          <div className="primary-bg-color p-3 global-border-radius mr-2">
+        <div className="bg-white global-box-shadow global-border-radius p-4 relative flex items-center">
+          <div className="bg-primary p-3 global-border-radius mr-2">
             <CustomImage
               src={Images.bankIconWhite}
               imageStyle={{ width: 20 }}
             />
           </div>
 
-          <CustomText textClassName="primary-text font-bold">
+          <CustomText textClassName="text-primary font-bold">
             Bank Details
           </CustomText>
         </div>
       </div>
 
-      <div className="body-container bg-color flex flex-1 pt-12 pb-4 w-full">
+      <div className="body-container bg-primary-background flex flex-1 pt-12 pb-4 w-full">
         <div className="w-full">
           <CustomSelectWithIcon
             title="Bank Name"
@@ -124,7 +124,7 @@ const AddBank = () => {
           <BookingInput
             title="Account Holder Name"
             required
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             placeholder="Your Holder Name"
             className="pb-4"
             onChange={(e) => setAccountNameValue(e.target.value)}
@@ -134,7 +134,7 @@ const AddBank = () => {
             title="Account Number"
             required
             type="number"
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             placeholder="Your Account Number"
             className="pb-4"
             onChange={(e) => setAccountNumberValue(e.target.value)}
@@ -144,7 +144,7 @@ const AddBank = () => {
             title="Pin Number"
             required
             type="number"
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             placeholder="Your Pin Number"
             className="pb-4"
             onChange={(e) => {
@@ -165,7 +165,7 @@ const AddBank = () => {
               />
             </div>
 
-            <CustomText textClassName="pl-2 text-sm disable-text text-justify">
+            <CustomText textClassName="pl-2 text-sm text-disable text-justify">
               By or adding or updating your bank account details, you
               acknowledge and agree that all information provided is accurate
               and complete. Any errors or discrepancies in the information
@@ -181,13 +181,13 @@ const AddBank = () => {
 
           <div className="grid grid-cols-2 gap-4 pt-6">
             <CustomButton
-              buttonClassName="default-btn-outline"
+              buttonClassName="btn-primary-outline"
               buttonText={"Cancel"}
               onClick={onClickGoBack}
             />
 
             <CustomButton
-              buttonClassName=" primary-btn"
+              buttonClassName=" btn-primary"
               buttonText={"Submit"}
               onClick={onClickSubmit}
             />

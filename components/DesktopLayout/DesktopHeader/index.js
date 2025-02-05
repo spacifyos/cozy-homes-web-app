@@ -20,7 +20,7 @@ const DesktopHeader = ({
 
   return (
     <div
-      className="primaryWhite-bg-color"
+      className="bg-white"
       style={{ borderBottom: "3px #f5f8fd solid" }}
     >
       {isEqual(pathname, "/") || isEqual(pathname, "/agency/sign-in") ? (
@@ -41,7 +41,7 @@ const DesktopHeader = ({
                   {/*    icon={Image.registerIconActive}*/}
                   {/*    imageStyle={{ width: 13 }}*/}
                   {/*    buttonText={`Register`}*/}
-                  {/*    buttonClassName={`default-btn min-w-44 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden`}*/}
+                  {/*    buttonClassName={`btn-white min-w-44 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden`}*/}
                   {/*    textClassName="text-sm"*/}
                   {/*    reverse*/}
                   {/*    onClick={onClickSignUp}*/}
@@ -51,7 +51,7 @@ const DesktopHeader = ({
                   {/*    icon={Image.registerIconActive}*/}
                   {/*    imageStyle={{ width: 13 }}*/}
                   {/*    // buttonText={`Register`}*/}
-                  {/*    buttonClassName={`default-btn min-h-10 h-10 xl:hidden lg:hidden w-16`}*/}
+                  {/*    buttonClassName={`btn-white min-h-10 h-10 xl:hidden lg:hidden w-16`}*/}
                   {/*    textClassName="text-sm"*/}
                   {/*    reverse*/}
                   {/*    onClick={onClickSignUp}*/}
@@ -62,7 +62,7 @@ const DesktopHeader = ({
               <CustomButton
                 icon={loading ? "" : Image.primaryLogoutIcon}
                 buttonText={`Sign In`}
-                buttonClassName="default-btn w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
+                buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
                 textClassName="text-sm"
                 reverse
                 loadingColor="primary-text"
@@ -73,7 +73,7 @@ const DesktopHeader = ({
               <CustomButton
                   icon={loading ? "" : Image.primaryLogoutIcon}
                   buttonText={`Sign In`}
-                  buttonClassName="default-btn min-h-10 h-10 xl:hidden lg:hidden"
+                  buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
                   textClassName="text-sm"
                   reverse
                   loadingColor="primary-text"
@@ -88,7 +88,7 @@ const DesktopHeader = ({
                 imageStyle={{ width: 13 }}
                 textClassName="text-xs"
                 buttonText={`Hi, ${name}`}
-                buttonClassName={`default-btn min-w-40 xl:flex lg:flex md:hidden sm:hidden hidden`}
+                buttonClassName={`btn-white min-w-40 xl:flex lg:flex md:hidden sm:hidden hidden`}
                 reverse
                 loading={loading}
                 onClick={onClickMyAccount}
@@ -99,7 +99,7 @@ const DesktopHeader = ({
                 imageStyle={{ width: 13 }}
                 textClassName="text-xs"
                 // buttonText={`Hi, ${name}`}
-                buttonClassName={`default-btn xl:hidden lg:hidden w-16`}
+                buttonClassName={`btn-white xl:hidden lg:hidden w-16`}
                 reverse
                 loading={loading}
                 onClick={onClickMyAccount}
@@ -124,7 +124,7 @@ const DesktopHeader = ({
                   icon={Image.registerIconActive}
                   imageStyle={{ width: 13 }}
                   buttonText={`Register`}
-                  buttonClassName={`default-btn min-w-44 min-h-10 h-10`}
+                  buttonClassName={`btn-white min-w-44 min-h-10 h-10`}
                   textClassName="text-sm"
                   reverse
                   onClick={onClickSignUp}
@@ -134,7 +134,7 @@ const DesktopHeader = ({
               <CustomButton
                 icon={loading ? "" : Image.primaryLogoutIcon}
                 buttonText={`Sign In`}
-                buttonClassName="default-btn w-36 min-h-10 h-10"
+                buttonClassName="btn-white w-36 min-h-10 h-10"
                 textClassName="text-sm"
                 reverse
                 loadingColor="primary-text"
@@ -148,7 +148,7 @@ const DesktopHeader = ({
                 icon={Image.registerIconActive}
                 imageStyle={{ width: 13 }}
                 buttonText={`Hi, ${name}`}
-                buttonClassName={`default-btn min-w-44`}
+                buttonClassName={`btn-white min-w-44`}
                 reverse
                 loading={loading}
                 onClick={onClickMyAccount}

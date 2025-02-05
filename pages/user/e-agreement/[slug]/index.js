@@ -63,7 +63,7 @@ const EAgreementOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My E-Agreement Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -75,7 +75,7 @@ const EAgreementOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/e-agreement"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My E-Agreement
                     </CustomText>
                   </a>
@@ -103,7 +103,7 @@ const EAgreementOverview = ({ id }) => {
       >
         <div className="relative pt-6 flex justify-center">
           <div
-            className="primary-bg-color pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
+            className="bg-primary pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
             style={{ height: 54 }}
           >
             <CustomImage
@@ -112,7 +112,7 @@ const EAgreementOverview = ({ id }) => {
             />
           </div>
 
-          <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
+          <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <div className="flex justify-between">
               <CustomLabelValue
                 highlight
@@ -121,7 +121,7 @@ const EAgreementOverview = ({ id }) => {
               />
 
               <div className="pb-2">
-                <CustomText textClassName="text-xs disable-text">
+                <CustomText textClassName="text-xs text-disable">
                   {"Status"}
                 </CustomText>
                 <StatusLabel status={status} />
@@ -159,7 +159,7 @@ const EAgreementOverview = ({ id }) => {
             />
 
             <div className="pb-2">
-              <CustomText textClassName="text-xs disable-text">
+              <CustomText textClassName="text-xs text-disable">
                 {"Activity"}
               </CustomText>
               <div className="pt-1 grid grid-cols-2 gap-2">
@@ -172,10 +172,10 @@ const EAgreementOverview = ({ id }) => {
                     imageStyle={{ width: 18, height: 18 }}
                   />
                   <div className="flex flex-col">
-                    <CustomText textClassName="text-sm disable-text">
+                    <CustomText textClassName="text-sm text-disable">
                       Agreed
                     </CustomText>
-                    <CustomText textClassName="text-xs disable-text">
+                    <CustomText textClassName="text-xs text-disable">
                       {isEmpty(agreedDate) ? "-" : agreedDate}
                     </CustomText>
                   </div>
@@ -189,10 +189,10 @@ const EAgreementOverview = ({ id }) => {
                     imageStyle={{ width: 18, height: 18 }}
                   />
                   <div className="flex flex-col">
-                    <CustomText textClassName="text-sm disable-text">
+                    <CustomText textClassName="text-sm text-disable">
                       Signed
                     </CustomText>
-                    <CustomText textClassName="text-xs disable-text">
+                    <CustomText textClassName="text-xs text-disable">
                       {isEmpty(signedDate) ? "-" : signedDate}
                     </CustomText>
                   </div>
@@ -217,7 +217,7 @@ const EAgreementOverview = ({ id }) => {
                       ? "View & Sign"
                       : "View"
                 }
-                buttonClassName="primary-btn w-3/5"
+                buttonClassName="btn-primary w-3/5"
               />
             </a>
           </div>

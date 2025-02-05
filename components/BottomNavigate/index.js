@@ -94,7 +94,7 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
       }}
     >
       <div className="container mx-auto pb-2">
-        <div className="primaryWhite-bg-color global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius">
+        <div className="bg-white global-box-shadow flex justify-between items-center py-4 px-6 global-border-radius">
           {map(lists, (item, index) => {
             const name = get(item, ["name"], "");
             const value = get(item, ["value"], "");

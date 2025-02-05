@@ -159,7 +159,7 @@ const SignInModal = ({
             </div>
 
             <div className="w-full">
-              <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
+              <div className="p-6 global-box-shadow bg-white global-border-radius">
                 <CustomText textClassName="text-center pb-6 font-bold text-lg">
                   Sign In
                 </CustomText>
@@ -174,7 +174,7 @@ const SignInModal = ({
 
                 <div className="grid grid-cols-3 gap-2 mb-4">
                   <select
-                    className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                    className="select select-bordered w-full max-w-xs bg-white user-input"
                     value={phonePrefix}
                     onChange={onChangePhonePrefix}
                   >
@@ -195,7 +195,7 @@ const SignInModal = ({
                     onChange={onChangePhoneNumber}
                     type="number"
                     placeholder="Phone Number"
-                    className="input input-bordered w-full input-error primaryWhite-bg-color col-span-2 user-input"
+                    className="input input-bordered w-full input-error bg-white col-span-2 user-input"
                   />
                 </div>
 
@@ -204,13 +204,13 @@ const SignInModal = ({
                   onChange={onChangePassword}
                   type="password"
                   placeholder="Password"
-                  className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+                  className="input input-bordered w-full bg-white mb-8 user-input"
                   onKeyDown={handleKeyDown}
                 />
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "secondary-btn" : "primary-btn"} primary-btn w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "btn-secondary" : "btn-primary"} btn-primary w-2/4 mb-2`}
                     buttonText="Sign In"
                     onClick={onClickToLogin}
                     disable={signInLoading}
@@ -229,7 +229,7 @@ const SignInModal = ({
                     Don’t have account? Click{" "}
                   </CustomText>
                   <div onClick={onClickSignUp} className="cursor-pointer">
-                    <CustomText textClassName="primary-text font-bold pl-1 underline text-sm">
+                    <CustomText textClassName="text-primary font-bold pl-1 underline text-sm">
                       here
                     </CustomText>
                   </div>

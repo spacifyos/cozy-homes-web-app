@@ -16,7 +16,7 @@ const GeneralInformationSection = ({ tenancyOption, setPostData }) => {
         placeholder={"Select tenancy"}
         lists={tenancyOption}
         disabled={false}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-2"
         onChange={(e) =>
           setPostData((prevState) => {
@@ -32,7 +32,7 @@ const GeneralInformationSection = ({ tenancyOption, setPostData }) => {
       {/*  title={"Link Equipment"}*/}
       {/*  placeholder={"Select Link Equipment"}*/}
       {/*  lists={[{ name: "None", value: "none" }]}*/}
-      {/*  bgColor="primaryWhite-bg-color"*/}
+      {/*  bgColor="bg-white"*/}
       {/*  className="pb-2"*/}
       {/*/>*/}
     </div>

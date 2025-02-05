@@ -19,11 +19,11 @@ const ListingCardComponent = ({
   return (
     <a href={`/property-overview/${propertyId}`} className="cursor-pointer">
       {/*<div*/}
-      {/*  className="relative rounded-2xl global-box-shadow w-full overflow-hidden primaryWhite-bg-color"*/}
+      {/*  className="relative rounded-2xl global-box-shadow w-full overflow-hidden bg-white"*/}
       {/*  style={{ height: imageHeight }}*/}
       {/*>*/}
       <CustomImage
-        className={`rounded-2xl mb-2 global-box-shadow primaryWhite-bg-color overflow-hidden ${imageClassName}`}
+        className={`rounded-2xl mb-2 global-box-shadow bg-white overflow-hidden ${imageClassName}`}
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
       />
       {/*<Image*/}
@@ -41,7 +41,7 @@ const ListingCardComponent = ({
       <CustomText textClassName="text-sm leading-5 line-clamp-1 pt-2">
         {isEmpty(propertyName) ? "-" : propertyName}
       </CustomText>
-      {/*<CustomText textClassName="text-xs primary-text leading-4 line-clamp-1">*/}
+      {/*<CustomText textClassName="text-xs text-primary leading-4 line-clamp-1">*/}
       {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
       {/*</CustomText>*/}
       <div className="flex items-center flex-wrap pt-0.5">

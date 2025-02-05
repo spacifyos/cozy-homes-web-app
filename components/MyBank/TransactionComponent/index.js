@@ -23,13 +23,13 @@ const TransactionComponent = ({
       {/*<div className="pb-4">*/}
       {/*  <CustomButton*/}
       {/*    buttonText="All"*/}
-      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*    textClassName="text-xs"*/}
       {/*    onClick={() => onClickSelectCategory("All")}*/}
       {/*  />*/}
       {/*  <CustomButton*/}
       {/*    buttonText="Cash Out"*/}
-      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "Cash Out") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*    buttonClassName={`btn-sm ${isEqual(selectedCategory, "Cash Out") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*    textClassName="text-xs"*/}
       {/*    onClick={() => onClickSelectCategory("Cash Out")}*/}
       {/*  />*/}

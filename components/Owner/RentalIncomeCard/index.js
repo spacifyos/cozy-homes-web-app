@@ -11,12 +11,12 @@ const RentalIncomeCard = ({ item }) => {
   const amount = ownerSelector.getAmount(item);
 
   return (
-    <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center primaryWhite-bg-color">
+    <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center bg-white">
       <div className="flex">
         <CustomImage src={Images.rentalInIcon} imageStyle={{ width: 35 }} />
 
         <div className="px-3">
-          <CustomText textClassName="disable-text italic text-xs">
+          <CustomText textClassName="text-disable italic text-xs">
             {isEmpty(paidAt)
               ? "-"
               : moment(paidAt).format("DD MMM YYYY, HH:mm")}
@@ -24,13 +24,13 @@ const RentalIncomeCard = ({ item }) => {
           <CustomText textClassName="font-bold text-sm">
             {isEmpty(unitRoomName) ? "-" : unitRoomName}
           </CustomText>
-          <CustomText textClassName="disable-text text-xs">
+          <CustomText textClassName="text-disable text-xs">
             {/*Transferred to Wallet*/}
           </CustomText>
         </div>
       </div>
 
-      <CustomText textClassName="font-bold primary-text text-base">
+      <CustomText textClassName="font-bold text-primary text-base">
         {`+RM${isEmpty(amount) ? "0" : amount}`}
       </CustomText>
     </div>

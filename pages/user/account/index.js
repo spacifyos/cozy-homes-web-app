@@ -229,7 +229,7 @@ const Account = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Account - Spacify Asia" />
 
       <DesktopLayout
@@ -261,17 +261,17 @@ const Account = () => {
 
         <div className="">
           <CustomText textClassName="text-base">Referral Code</CustomText>
-          <CustomText textClassName="text-xs disable-text pb-1">
+          <CustomText textClassName="text-xs text-disable pb-1">
             Share and Earn, Don’t Miss the Opportunity
           </CustomText>
-          <div className="primaryWhite-bg-color mt-2 p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
+          <div className="bg-white mt-2 p-2 px-4 global-border-radius global-box-shadow flex justify-between items-center">
             <div className="flex items-center">
               <CustomText textClassName="pr-2 text-sm">
                 {isEmpty(referralCode) ? "" : referralCode}
               </CustomText>
               <CustomButton
                 textClassName="text-xs"
-                buttonClassName={`${isCopy ? "disable-btn" : "primary-btn"} btn-sm`}
+                buttonClassName={`${isCopy ? "btn-disable" : "btn-primary"} btn-sm`}
                 buttonText={isCopy ? "Copied" : "Copy"}
                 onClick={onClickCopy}
               />
@@ -452,7 +452,7 @@ const Account = () => {
               <CustomText textClassName="text-xs">{"Logout"}</CustomText>
             </div>
 
-            <CustomText textClassName="disable-text text-xs">
+            <CustomText textClassName="text-disable text-xs">
               Version 2.1.0
             </CustomText>
           </div>

@@ -36,7 +36,7 @@ const WalletSummary = ({ data }) => {
           const icon = get(list, ["icon"], "");
 
           return (
-            <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color">
+            <div className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center bg-white">
               <CustomImage src={icon} imageStyle={{ width: 35 }} />
 
               <CustomText textClassName="text-lg font-bold leading-4 py-1 text-center">

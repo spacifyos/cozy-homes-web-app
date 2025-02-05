@@ -26,7 +26,7 @@ const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
     >
       {loading ? (
         <div className="flex justify-center items-center">
-          <span className="loading loading-spinner loading-md primary-text"></span>
+          <span className="loading loading-spinner loading-md text-primary"></span>
         </div>
       ) : (
         _.map(data, (item, index) => {
@@ -47,7 +47,7 @@ const AmenitiesComponent = ({ data, loading, onClickSelectAmenities }) => {
                 imageStyle={{ width: 25, height: 25 }}
               />
               <CustomText
-                textClassName={`${isActive ? "primary-text" : "disable-text"} text-center text-xs`}
+                textClassName={`${isActive ? "text-primary" : "disable-text"} text-center text-xs`}
               >
                 {name}
               </CustomText>

@@ -160,7 +160,7 @@ const InvoiceOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Invoice Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -185,7 +185,7 @@ const InvoiceOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/my-invoice"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My Invoice
                     </CustomText>
                   </a>
@@ -208,13 +208,13 @@ const InvoiceOverview = ({ id }) => {
         }
       >
         <div className="relative pt-6 flex justify-center">
-          <div className="primary-bg-color p-2 ps-2.5 global-border-radius absolute top-0">
+          <div className="bg-primary p-2 ps-2.5 global-border-radius absolute top-0">
             <CustomImage
               src={Images.invoiceIcon}
               imageStyle={{ width: 35, height: 35 }}
             />
           </div>
-          <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
+          <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <div className="flex justify-between">
               <CustomLabelValue
                 value={isEmpty(code) ? "-" : code}
@@ -222,7 +222,7 @@ const InvoiceOverview = ({ id }) => {
                 highlight
               />
               <div className="pb-2">
-                <CustomText textClassName="text-xs disable-text">
+                <CustomText textClassName="text-xs text-disable">
                   {"Status"}
                 </CustomText>
                 <StatusLabel status={paymentStatus} />
@@ -269,7 +269,7 @@ const InvoiceOverview = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="text-xs disable-text">
+            <CustomText textClassName="text-xs text-disable">
               {"Items"}
             </CustomText>
 
@@ -288,16 +288,16 @@ const InvoiceOverview = ({ id }) => {
                       >
                         <div className="">
                           <CustomText
-                            textClassName={`black-text text-sm font-bold`}
+                            textClassName={`text-black text-sm font-bold`}
                           >
                             {itemName}
                           </CustomText>
-                          <CustomText textClassName={`text-xs disable-text`}>
+                          <CustomText textClassName={`text-xs text-disable`}>
                             RM{unitPrice} per unit
                           </CustomText>
                         </div>
 
-                        <CustomText textClassName={`black-text font-bold`}>
+                        <CustomText textClassName={`text-black font-bold`}>
                           X{quantity}
                         </CustomText>
                       </div>
@@ -311,16 +311,16 @@ const InvoiceOverview = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 {"Subtotal"}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold text-end">
                 RM{isEmpty(grandTotal) ? "0" : grandTotal}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 {"Tax"}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold text-end">
                 RM{isEmpty(tax) ? "0" : tax}
               </CustomText>
             </div>
@@ -331,10 +331,10 @@ const InvoiceOverview = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 {"Total Amount"}
               </CustomText>
-              <CustomText textClassName="col-span-1 primary-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-primary text-sm font-bold text-end">
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}
               </CustomText>
             </div>
@@ -348,13 +348,13 @@ const InvoiceOverview = ({ id }) => {
               <div className="grid grid-cols-2 gap-2 pt-4">
                 <CustomButton
                   buttonText={"Cancel"}
-                  buttonClassName="default-btn-outline"
+                  buttonClassName="btn-primary-outline"
                   onClick={onClickGoBack}
                 />
 
                 <CustomButton
                   buttonText={"Pay Now"}
-                  buttonClassName="primary-btn"
+                  buttonClassName="btn-primary"
                   onClick={() => onClickToPayment(code)}
                 />
               </div>

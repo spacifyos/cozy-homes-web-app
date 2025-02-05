@@ -1,5 +1,3 @@
-@import "../utils/color";
-
 .react-date-picker__wrapper {
   border: none !important;
 }
@@ -28,11 +26,11 @@
   }
   .react-calendar__tile--now {
     border-radius: 200px;
-    background: $primary-color;
+    @apply bg-primary;
     color: white;
   }
   .react-calendar__month-view__weekdays {
-    color: $disable-color;
+    @apply text-disable;;
   }
 }
 .react-date-picker__inputGroup__month {

@@ -58,14 +58,14 @@ const TopUpMeter = () => {
         <CustomText textClassName="section-title">
           {t("topUpMeter.topUpUnit")}
         </CustomText>
-        <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
+        <div className="global-box-shadow global-border-radius bg-white p-5">
           <div className="grid grid-cols-3 gap-3 justify-center items-center pb-8">
             {_.map(btnUnit, (item, index) => {
               const btn = _.get(item, ["btn"], "");
               return (
                 <CustomButton
                   key={index}
-                  buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, btn) ? "primary-btn" : "pending-btn"}`}
+                  buttonClassName={`btn-md ${_.isEqual(topUpUnitChange, btn) ? "btn-primary" : "btn-primary-background"}`}
                   buttonText={btn}
                   onClick={() => onClickTopUp(btn)}
                 />
@@ -74,17 +74,17 @@ const TopUpMeter = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-1">
-            <CustomText textClassName="disable-text">
+            <CustomText textClassName="text-disable">
               {t("topUpMeter.otherUnit")}
             </CustomText>
 
-            <CustomText textClassName="primary-text font-bold">
+            <CustomText textClassName="text-primary font-bold">
               {t("topUpMeter.totalPrice")}
             </CustomText>
 
             <input
               type="number"
-              className="input w-4/5 bg-color global-box-shadow meter-input"
+              className="input w-4/5 bg-primary-background global-box-shadow meter-input"
               style={{ height: 40 }}
               placeholder={t("topUpMeter.unit")}
             />
@@ -101,11 +101,11 @@ const TopUpMeter = () => {
         <div className="grid grid-cols-2 gap-2 pt-7 ">
           <CustomButton
             buttonText={t("topUpMeter.cancel")}
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
           />
           <CustomButton
             buttonText={t("topUpMeter.payNow")}
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
           />
         </div>
       </div>

@@ -13,8 +13,8 @@ const FeaturesSection = ({ tags }) => {
       >
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-row-reverse flex-nowrap primaryWhite-bg-color border-none global-box-shadow feature-button"
-          textClassName="black-text font-normal text-sm line-clamp-1"
+          buttonClassName="flex-row-reverse flex-nowrap bg-white border-none global-box-shadow feature-button"
+          textClassName="text-black font-normal text-sm line-clamp-1"
           buttonText="Rooms For Rent"
           icon={Image.bedIconActive}
           imageHeight={25}
@@ -27,8 +27,8 @@ const FeaturesSection = ({ tags }) => {
       >
         <CustomButton
           buttonStyles={{ height: 60, width: "100%" }}
-          buttonClassName="flex-row-reverse flex-nowrap primaryWhite-bg-color border-none global-box-shadow feature-button"
-          textClassName="black-text font-normal text-sm line-clamp-1"
+          buttonClassName="flex-row-reverse flex-nowrap bg-white border-none global-box-shadow feature-button"
+          textClassName="text-black font-normal text-sm line-clamp-1"
           buttonText="Car Park"
           icon={Image.carParkSpaceIcon}
           imageHeight={25}
@@ -45,8 +45,8 @@ const FeaturesSection = ({ tags }) => {
       {/*    <div className="col-span-3" key={index}>*/}
       {/*      <CustomButton*/}
       {/*        buttonStyles={{ height: 60, width: "100%" }}*/}
-      {/*        buttonClassName="flex-col-reverse gap-0 primaryWhite-bg-color border-none global-box-shadow p-2 feature-button"*/}
-      {/*        textClassName="black-text font-normal text-xs line-clamp-1 mt-1.5"*/}
+      {/*        buttonClassName="flex-col-reverse gap-0 bg-white border-none global-box-shadow p-2 feature-button"*/}
+      {/*        textClassName="text-black font-normal text-xs line-clamp-1 mt-1.5"*/}
       {/*        buttonText={name}*/}
       {/*        icon={icon}*/}
       {/*        imageStyle={{ width: 20, height: 20 }}*/}

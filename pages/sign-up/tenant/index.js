@@ -169,7 +169,7 @@ const SignUpTenant = () => {
           {/*<div className="grid grid-cols-2">*/}
           {/*  <div onClick={onClickToSignIn} className="cursor-pointer">*/}
           {/*    <CustomText*/}
-          {/*      textClassName="text-center p-4 primary-text font-bold text-base"*/}
+          {/*      textClassName="text-center p-4 text-primary font-bold text-base"*/}
           {/*      styles={{*/}
           {/*        borderRadius: "10px 10px 0 0",*/}
           {/*        backgroundColor: "#E8E8E8",*/}
@@ -181,13 +181,13 @@ const SignUpTenant = () => {
           {/*  </div>*/}
 
           {/*  <CustomText*/}
-          {/*    textClassName="text-center p-4 primaryWhite-bg-color primary-text font-bold text-base"*/}
+          {/*    textClassName="text-center p-4 bg-white text-primary font-bold text-base"*/}
           {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
           {/*  >*/}
           {/*    {t("signUp.signUp")}*/}
           {/*  </CustomText>*/}
           {/*</div>*/}
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
             <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
               You’re signing up as
             </CustomText>
@@ -204,12 +204,12 @@ const SignUpTenant = () => {
 
             {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
             {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "btn-primary" : "btn-primary-outline"}`}*/}
             {/*    buttonText={t("signIn.tenant")}*/}
             {/*    onClick={() => setSelectedRole("tenant")}*/}
             {/*  />*/}
             {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "primary-btn" : "default-btn-outline"}`}*/}
+            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "btn-primary" : "btn-primary-outline"}`}*/}
             {/*    buttonText={t("signIn.owner")}*/}
             {/*    onClick={() => setSelectedRole("owner")}*/}
             {/*  />*/}
@@ -218,14 +218,14 @@ const SignUpTenant = () => {
             <input
               type="text"
               placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={nameValue}
               onChange={onChangeNameValue}
             />
 
             <div className="grid grid-cols-3 gap-2 mb-4">
               <select
-                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                className="select select-bordered w-full max-w-xs bg-white user-input"
                 value={countryCode}
                 onChange={onChangeCountryCode}
               >
@@ -244,7 +244,7 @@ const SignUpTenant = () => {
               <input
                 type="number"
                 placeholder={"12 345 6789"}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                className="input input-bordered w-full bg-white col-span-2 user-input"
                 value={phoneValue}
                 onChange={onChangePhoneValue}
               />
@@ -253,7 +253,7 @@ const SignUpTenant = () => {
             <input
               type="email"
               placeholder="Your Email"
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={emailValue}
               onChange={onChangeEmailValue}
             />
@@ -261,7 +261,7 @@ const SignUpTenant = () => {
             <input
               type="password"
               placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={passwordValue}
               onChange={onChangePasswordValue}
             />
@@ -269,7 +269,7 @@ const SignUpTenant = () => {
             <input
               type="password"
               placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+              className="input input-bordered w-full bg-white mb-4 user-input"
               value={confirmPasswordValue}
               onChange={onChangeConfirmPasswordValue}
             />
@@ -298,7 +298,7 @@ const SignUpTenant = () => {
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName={`secondary-btn w-2/4 mb-2`}
+                buttonClassName={`btn-secondary w-2/4 mb-2`}
                 buttonText="Sign Up for FREE"
                 onClick={handleSubmit}
               />
@@ -310,7 +310,7 @@ const SignUpTenant = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="text-xs text-center disable-text">
+            <CustomText textClassName="text-xs text-center text-disable">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

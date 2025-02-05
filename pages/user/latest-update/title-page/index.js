@@ -24,17 +24,17 @@ const TitlePage = () => {
       onClickGoBack={onClickGoBack}
     >
       <div className="body-container relative pt-6 pb-4 flex justify-center">
-        <div className="primary-bg-color p-2 global-border-radius absolute top-0">
+        <div className="bg-primary p-2 global-border-radius absolute top-0">
           <CustomImage
             src={Images.ringIcon}
             imageStyle={{ width: 30, height: 30 }}
           />
         </div>
-        <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
-          <CustomText textClassName="disable-text text-sm mb-5">
+        <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
+          <CustomText textClassName="text-disable text-sm mb-5">
             15 Dec 2024
           </CustomText>
-          <CustomText textClassName="disable-text text-xs">
+          <CustomText textClassName="text-disable text-xs">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et
             lorem ut ligula posuere viverra. Nam sem lorem, egestas quis
             ultricies ut, pellentesque et nibh. Duis sit amet pulvinar

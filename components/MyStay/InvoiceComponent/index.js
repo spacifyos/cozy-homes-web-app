@@ -31,7 +31,7 @@ const InvoiceComponent = ({ data, type }) => {
 
               <div className="flex flex-col">
                 <div className="flex items-end pb-0.5">
-                  <CustomText textClassName="black-text text-sm font-bold line-clamp-1 pr-2">
+                  <CustomText textClassName="text-black text-sm font-bold line-clamp-1 pr-2">
                     Invoice #: {isEmpty(code) ? "-" : code}
                   </CustomText>
                 </div>
@@ -39,16 +39,16 @@ const InvoiceComponent = ({ data, type }) => {
                 <div className="flex items-center pb-0.5">
                   <div className="pr-6">
                     <CustomText
-                      textClassName={`disable-text text-xs font-normal`}
+                      textClassName={`text-disable text-xs font-normal`}
                     >
                       Amount
                     </CustomText>
-                    <CustomText textClassName={`text-sm black-text font-bold`}>
+                    <CustomText textClassName={`text-sm text-black font-bold`}>
                       {`RM${isEmpty(totalAmount) ? "0" : totalAmount}`}
                     </CustomText>
                   </div>
                   <div className="pr-3">
-                    <CustomText textClassName="text-xs disable-text">
+                    <CustomText textClassName="text-xs text-disable">
                       Status
                     </CustomText>
 
@@ -58,7 +58,7 @@ const InvoiceComponent = ({ data, type }) => {
                         imageStyle={{ width: 15 }}
                         className="mr-1"
                       />
-                      <CustomText textClassName="disable-text text-xs leading-4">
+                      <CustomText textClassName="text-disable text-xs leading-4">
                         {isEmpty(status) ? "-" : status}
                       </CustomText>
                     </div>
@@ -67,7 +67,7 @@ const InvoiceComponent = ({ data, type }) => {
                 </div>
 
                 <div className="flex items-center">
-                  <CustomText textClassName="pr-3 text-xs disable-text italic">
+                  <CustomText textClassName="pr-3 text-xs text-disable italic">
                     Due Date {isEmpty(dueDate) ? "-" : dueDate}
                   </CustomText>
                 </div>

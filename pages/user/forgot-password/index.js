@@ -227,7 +227,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Forgot Password - Spacify Asia" />
 
       <DesktopLayout

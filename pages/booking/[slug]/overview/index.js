@@ -61,7 +61,7 @@ const BookingOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Booking Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -72,7 +72,7 @@ const BookingOverview = ({ id }) => {
             <ul>
               <li>
                 <a href={"/"}>
-                  <CustomText textClassName="text-base disable-text">
+                  <CustomText textClassName="text-base text-disable">
                     Explore
                   </CustomText>
                 </a>

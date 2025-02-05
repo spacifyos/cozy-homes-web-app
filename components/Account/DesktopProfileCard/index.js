@@ -11,7 +11,7 @@ const DesktopProfileCard = ({ data }) => {
 
   return (
     <div
-      className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative"
+      className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius bg-white flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative"
       style={{ minHeight: 140 }}
     >
       <a
@@ -27,7 +27,7 @@ const DesktopProfileCard = ({ data }) => {
       />
 
       <div className="pl-2">
-        <CustomText textClassName="text-sm font-bold primary-text pb-2 xl:text-left lg:text-left md:text-left sm:text-center text-center">
+        <CustomText textClassName="text-sm font-bold text-primary pb-2 xl:text-left lg:text-left md:text-left sm:text-center text-center">
           {isEmpty(name) ? "-" : name}
         </CustomText>
 

@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Noto Sans", "sans-serif"],
+      },
       fontSize: {
         xxs: "10px",
       },
@@ -24,22 +27,47 @@ module.exports = {
       },
       colors: {
         primary: "#d71440",
-        "regal-blue": "#243c5a",
-        "available-light": "#DFFFEA",
-        "occupied-light": "#FFEEF3",
+        "primary-background": "#f5f8fd",
+        secondary: "#F05A22",
+        "secondary-background": "#FFF4E0",
         available: "#03b78c",
-        occupied: "#ff2e2e",
-        disable: "#94a1a6",
+        "available-light": "#DFFFEA",
+        error: "#ff2e2e",
+        "error-light": "#FFEEF3",
+        tertiary: "#0379b7",
+        warning: "#ff8a00",
+        disable: "#CCCCCC",
         black: "#2c2c2c",
         white: "#FFFFFF",
-        "error-light": "#FFEEF3",
+        aqua: "#41c0be",
+        "owner-background":
+          "linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      borderColor: {
+        primary: "#d71440",
+        warning: "#ff8a00",
+        available: "#03b78c",
+        tertiary: "#0379b7",
+        disable: "#CCCCCC",
+        white: "#FFFFFF",
+        "primary-background": "#f5f8fd",
+        "secondary-background": "#FFF4E0",
+      },
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#d71440",
+        },
+      },
+    ],
+  },
 };

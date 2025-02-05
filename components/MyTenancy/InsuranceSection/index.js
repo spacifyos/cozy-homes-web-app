@@ -4,7 +4,7 @@ import Images from "@/src/utils/Image";
 
 const InsuranceSection = ({ t }) => {
   return (
-    <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
+    <div className="global-box-shadow global-border-radius bg-white p-4">
       <CustomText textClassName="disable-text text-sm">
         {t("myTenancy.insurance")}
       </CustomText>

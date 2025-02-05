@@ -23,7 +23,7 @@ const ListingCardComponent = ({ item, hideLabel = false, imageClassName }) => {
       className="flex flex-col items-center cursor-pointer"
     >
       <CustomImage
-        className={`rounded-2xl ${hideLabel ? false : "mb-2"} global-box-shadow primaryWhite-bg-color overflow-hidden ${imageClassName}`}
+        className={`rounded-2xl ${hideLabel ? false : "mb-2"} global-box-shadow bg-white overflow-hidden ${imageClassName}`}
         src={isEmpty(imageUrl) ? Images.imageNotFound : imageUrl}
       />
       {hideLabel ? (

@@ -42,7 +42,7 @@ const SetPinNumberModal = ({
         <BookingInput
           title="Pin Number"
           placeholder="Pin Number"
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           className="pb-3"
           value={pinNumberValue}
           onChange={onChangePinNumber}
@@ -53,7 +53,7 @@ const SetPinNumberModal = ({
         <BookingInput
           title="Confirm Pin Number"
           placeholder={"Confirm Pin Number"}
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           className="pb-3"
           value={confirmPinNumberValue}
           onChange={onChangeConfirmPinNumber}
@@ -65,7 +65,7 @@ const SetPinNumberModal = ({
           <BookingInput
             title="Otp Number"
             placeholder={"Otp Number"}
-            bgColor="primaryWhite-bg-color"
+            bgColor="bg-white"
             className="pb-3"
             value={otpValue}
             onChange={onChangeOtpValue}
@@ -80,7 +80,7 @@ const SetPinNumberModal = ({
                 : `Resend OTP in ${timeLeft} seconds`
             }
             textClassName="text-sm"
-            buttonClassName={`${isResendEnabled ? "primary-btn" : "disable-btn"} mb-4`}
+            buttonClassName={`${isResendEnabled ? "btn-primary" : "btn-disable"} mb-4`}
             onClick={onClickGenerateOtp}
             loading={otpRequestLoading}
             disable={otpRequestLoading || !isResendEnabled}
@@ -90,14 +90,14 @@ const SetPinNumberModal = ({
 
         <div className="grid grid-cols-2 gap-4 pt-2">
           <CustomButton
-            buttonClassName={`${setPinNumberLoading ? "disable-btn" : "default-btn-outline"}`}
+            buttonClassName={`${setPinNumberLoading ? "btn-disable" : "btn-primary-outline"}`}
             buttonText="Cancel"
             disable={setPinNumberLoading}
             onClick={onClickCloseSetPinNumberModal}
           />
 
           <CustomButton
-            buttonClassName={`${setPinNumberLoading ? "disable-btn" : "primary-btn"}`}
+            buttonClassName={`${setPinNumberLoading ? "btn-disable" : "btn-primary"}`}
             buttonText="Submit"
             onClick={onClickSetPinNumber}
             loading={setPinNumberLoading}

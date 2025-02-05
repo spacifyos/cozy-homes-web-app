@@ -15,7 +15,7 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="auto-pay-button">
       <CustomText
-        textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold pr-3`}
+        textClassName={`${isChecked ? "text-primary" : "text-disable"} font-bold pr-3`}
       >
         AutoPay
       </CustomText>
@@ -47,7 +47,7 @@ const TenancySection = ({ onChangeAutoPay, isChecked, data }) => {
         <TenancyComponent />
       ) : (
         <Swiper
-          className="mySwiper global-box-shadow global-border-radius cursor-grab primaryWhite-bg-color"
+          className="mySwiper global-box-shadow global-border-radius cursor-grab bg-white"
           onSlideChange={onSlideChange}
           style={{ width: "100%", maxHeight: 300 }}
         >

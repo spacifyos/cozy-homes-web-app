@@ -30,7 +30,7 @@ const DesktopPinModal = ({
         <BookingInput
           title={"Pin Number"}
           placeholder={"Enter Six Digit Number"}
-          bgColor="primaryWhite-bg-color"
+          bgColor="bg-white"
           className="pb-3"
           value={pinNumberValue}
           onChange={onChangePinNumberValue}
@@ -41,12 +41,12 @@ const DesktopPinModal = ({
         <div className="grid grid-cols-2 gap-2 pt-6">
           <CustomButton
             buttonText={"Cancel"}
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             onClick={() => onClickClosePinModal("desktop")}
           />
           <CustomButton
             buttonText={"Submit"}
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={() => onClickSubmitSignature("desktop")}
           />
         </div>

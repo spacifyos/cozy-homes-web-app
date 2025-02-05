@@ -111,7 +111,7 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen">
       <NextSeo
         title={`Explore available rooms for rent anywhere in malaysia | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
@@ -140,13 +140,12 @@ function Home() {
         <CustomImage src={Images.beliveWhatsAppIcon} className="w-16 h-16" />
       </a>
 
-      <DesktopLayout hideNav>
+      <DesktopLayout hideNav backgroundColor="bg-white">
         <div className="relative xl:h-96">
           <Image
             loader={({ src, width, quality }) =>
               `${src}?w=100%&q=${quality || 75}`
             }
-            // loading="lazy"
             alt={"image"}
             src={"/images/desktop_banner.webp"}
             width={0}
@@ -159,7 +158,6 @@ function Home() {
             loader={({ src, width, quality }) =>
               `${src}?w=100%&q=${quality || 75}`
             }
-            // loading="lazy"
             alt={"image"}
             src={"/images/desktop_banner.webp"}
             width={0}
@@ -178,7 +176,7 @@ function Home() {
 
         <div className="xl:pt-52">
           <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 container mx-auto">
-            <CustomText textClassName="primary-text font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md">
+            <CustomText textClassName="text-primary font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md">
               Space For All
             </CustomText>
             <CustomText textClassName="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs ">
@@ -189,7 +187,7 @@ function Home() {
 
           <DesktopBanner imageData={listingBannerData} />
 
-          <div className="bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+          <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPopularCitySection
               onClickViewMore={onClickToSearch}
               data={popularCity}
@@ -203,7 +201,7 @@ function Home() {
             onClickViewMore={onClickToSearch}
           />
 
-          <div className="bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+          <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPopularUniversitySection
               data={popularUniversity}
               loading={listingDataLoading}
@@ -217,7 +215,7 @@ function Home() {
             onClickViewMore={onClickToSearch}
           />
 
-          <div className="primary-bg-color xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+          <div className="bg-primary xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
             <DesktopPromotionSection
               data={specialPromotion}
               loading={listingDataLoading}

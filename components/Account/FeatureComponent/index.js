@@ -20,7 +20,7 @@ const FeatureComponent = ({
     >
       <div className="flex items-center">
         <div
-          className="primaryWhite-bg-color global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
+          className="bg-white global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
           style={{ width: 46, height: 46 }}
         >
           <CustomImage
@@ -41,7 +41,7 @@ const FeatureComponent = ({
     >
       <div className="flex items-center pr-2">
         <div
-          className="primaryWhite-bg-color global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
+          className="bg-white global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
           style={{ width: 46, height: 46 }}
         >
           <CustomImage

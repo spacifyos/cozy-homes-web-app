@@ -43,7 +43,7 @@ const AppointmentSuccessful = ({}) => {
       </div>
 
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={t("bookAppointment.viewAppointment")}
         onClick={onClickToMyAppointment}

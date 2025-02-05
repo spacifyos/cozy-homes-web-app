@@ -16,7 +16,7 @@ const CategoryCard = ({
     <div className="col-span-2 pb-4">
       <div className=" flex flex-col justify-center items-center">
         <div
-          className={`${isEqual(selectedValue, value) ? "primary-bg-color" : "bg-color"} p-2 mb-2`}
+          className={`${isEqual(selectedValue, value) ? "bg-primary" : "bg-primary-background"} p-2 mb-2`}
           style={{ borderRadius: 100 }}
         >
           <CustomImage

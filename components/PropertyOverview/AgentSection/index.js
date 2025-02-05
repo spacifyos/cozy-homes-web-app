@@ -21,7 +21,7 @@ const AgentSection = ({
   return (
     <div className="agent-section-container z-10 xl:hidden lg:hidden md:hidden sm:block block">
       <div
-        className=" primaryWhite-bg-color rounded-2xl global-box-shadow relative "
+        className=" bg-white rounded-2xl global-box-shadow relative "
         style={{ overflow: "hidden" }}
       >
         <div className=" flex-row flex p-2 pl-3 justify-between items-center">
@@ -33,7 +33,7 @@ const AgentSection = ({
             />
 
             {/*<div*/}
-            {/*  className="flex flex-col bottom-0 absolute primaryWhite-bg-color rounded-2xl"*/}
+            {/*  className="flex flex-col bottom-0 absolute bg-white rounded-2xl"*/}
             {/*  style={{ right: -3 }}*/}
             {/*>*/}
             {/*  <CustomImage src={Images.paidIcon} width={14} />*/}
@@ -48,7 +48,7 @@ const AgentSection = ({
               Member since
               {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
-            {/*<CustomText textClassName="text-xs power-on-text">*/}
+            {/*<CustomText textClassName="text-xs text-aqua">*/}
             {/*  15 Active Listing*/}
             {/*</CustomText>*/}
           </div>
@@ -82,7 +82,7 @@ const AgentSection = ({
         </div>
 
         <div className="grid grid-cols-2 justify-center items-center ">
-          <div className="flex secondary-bg-color h-full py-2 px-4 justify-between items-center">
+          <div className="flex bg-secondary-background h-full py-2 px-4 justify-between items-center">
             <div className="flex flex-col leading-4">
               <CustomText textClassName="text-xs">
                 Total Move In Cost
@@ -101,7 +101,7 @@ const AgentSection = ({
           </div>
           {isEmpty(propertyId) ? (
             <div
-              className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
+              className="bg-primary gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
               onClick={onClickBooking}
             >
               <CustomText textClassName="text-base font-bold text-white">
@@ -115,7 +115,7 @@ const AgentSection = ({
           ) : (
             <a
               href={`/booking/${propertyId}`}
-              className="primary-bg-color gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
+              className="bg-primary gap-4 h-full p-2 px-4 flex flex-row justify-between items-center cursor-pointer"
             >
               <CustomText textClassName="text-base font-bold text-white">
                 Book Now

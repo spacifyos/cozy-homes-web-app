@@ -1,15 +1,15 @@
 .booking-overview-btn {
   min-height: 30px !important;
   height: 40px;
-  @apply primary-btn;
+  @apply btn-primary;
 }
 
 .step-section-infor-font {
-  @apply disable-text text-xs;
+  @apply text-disable text-xs;
 }
 
 .step-section-complete-font {
-  @apply text-xs tertiary-bg-color global-border-radius text-white px-4 leading-5;
+  @apply text-xs bg-tertiary global-border-radius text-white px-4 leading-5;
 }
 
 .step-section-step-font {
@@ -17,12 +17,12 @@
 }
 
 .step-section-pending-font {
-  @apply text-xs disable-bg-color global-border-radius text-white px-4 leading-5;
+  @apply text-xs bg-disable global-border-radius text-white px-4 leading-5;
 }
 
 .modal-box {
   max-width: 28rem;
-  @apply primaryWhite-bg-color;
+  @apply bg-white;
 }
 
 .modal-x-btn {
@@ -42,11 +42,11 @@
 }
 
 .modal-font-main {
-  @apply primary-text font-bold;
+  @apply text-primary font-bold;
 }
 
 .modal-sub-font{
-  @apply disable-text text-xs
+  @apply text-disable text-xs
 }
 
 .divider-bookingOverview {

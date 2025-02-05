@@ -31,14 +31,14 @@ const RentChargesSection = ({
 
   return (
     <div
-      className="col-span-6 flex flex-col primaryWhite-bg-color p-4 global-box-shadow"
+      className="col-span-6 flex flex-col bg-white p-4 global-box-shadow"
       style={{ borderRadius: 15 }}
     >
       <div className="flex items-center">
         <CustomImage src={Images.logoImage} imageStyle={{ width: 40 }} />
 
         <div className="flex flex-col pl-2">
-          <CustomText textClassName="font-bold primary-text text-base">
+          <CustomText textClassName="font-bold text-primary text-base">
             {isEmpty(title) ? "-" : title}
           </CustomText>
           <CustomText textClassName="font-light text-sm disable-text">
@@ -112,7 +112,7 @@ const RentChargesSection = ({
         <CustomText textClassName="font-bold pr-2">
           Total Move-in Cost
         </CustomText>
-        <CustomText textClassName="primary-text font-bold">
+        <CustomText textClassName="text-primary font-bold">
           RM{totalMoveInCostFull}
         </CustomText>
       </div>

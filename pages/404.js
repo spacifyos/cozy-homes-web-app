@@ -13,7 +13,7 @@ export default function Custom404() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-color">
+    <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
       <NextSeo title="Page Not Found - Spacify Asia" />
       <div className="flex gap-1">
         <CustomImage src={Images.pageNotFound} className="w-64" />
@@ -32,7 +32,7 @@ export default function Custom404() {
 
       <CustomButton
         buttonText="Go Back"
-        buttonClassName="primary-btn w-40"
+        buttonClassName="btn-primary w-40"
         onClick={onClickGoToBack}
       />
     </div>

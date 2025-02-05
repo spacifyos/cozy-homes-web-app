@@ -54,7 +54,7 @@ const DesktopPriceSection = ({
           imageStyle={{ width: "100%", height: 450 }}
         />
         <div className="p-5">
-          <CustomText textClassName="text-sm primary-text font-bold">
+          <CustomText textClassName="text-sm text-primary font-bold">
             {isEmpty(title) ? "-" : title}
           </CustomText>
 
@@ -66,7 +66,7 @@ const DesktopPriceSection = ({
             {isEmpty(propertyName) ? "-" : propertyName}
           </CustomText>
 
-          {/*<CustomText textClassName="text-sm primary-text text-sm">*/}
+          {/*<CustomText textClassName="text-sm text-primary text-sm">*/}
           {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
           {/*</CustomText>*/}
 
@@ -79,12 +79,12 @@ const DesktopPriceSection = ({
           ) : (
             <>
               <form ref={dateFormRef}>
-                <div className="py-3 grid grid-cols-6 gap-2 primaryWhite-bg-color">
+                <div className="py-3 grid grid-cols-6 gap-2 bg-white">
                   <CustomText textClassName="text-sm col-span-4 font-bold">
                     Tenancy Period
                   </CustomText>
                   <BookingDateInput
-                    bgColor="bg-color"
+                    bgColor="bg-primary-background"
                     className="col-span-3"
                     placeholder="12/02/2023"
                     title="Check in date"
@@ -97,7 +97,7 @@ const DesktopPriceSection = ({
                   <BookingInput
                     required
                     disabled
-                    bgColor="bg-color"
+                    bgColor="bg-primary-background"
                     className="col-span-3"
                     title="Check out date"
                     value={
@@ -109,7 +109,7 @@ const DesktopPriceSection = ({
 
                   <BookingSelect
                     className="col-span-6"
-                    bgColor="bg-color"
+                    bgColor="bg-primary-background"
                     placeholder="Tenure Period"
                     title="Tenure Period"
                     lists={isEmpty(tenureOption) ? defaultOption : tenureOption}
@@ -167,11 +167,11 @@ const DesktopPriceSection = ({
           )}
         </div>
 
-        <div className="p-5 bg-color flex items-center justify-between">
+        <div className="p-5 bg-primary-background flex items-center justify-between">
           <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             Total Move-In Cost
           </CustomText>
-          <CustomText textClassName="primary-text font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
+          <CustomText textClassName="text-primary font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             RM {totalMoveInCost}
           </CustomText>
         </div>
@@ -246,7 +246,7 @@ const DesktopPriceSection = ({
                 <CustomText textClassName="font-bold pr-2 text-sm">
                   Total Move-in Cost
                 </CustomText>
-                <CustomText textClassName="primary-text font-bold text-sm">
+                <CustomText textClassName="text-primary font-bold text-sm">
                   RM{totalMoveInCostFull}
                 </CustomText>
               </div>

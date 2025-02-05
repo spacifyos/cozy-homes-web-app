@@ -32,7 +32,7 @@ const FilterModal = ({
       style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
     >
       <div
-        className="bg-color px-6 pb-6 rounded-t-2xl"
+        className="bg-primary-background px-6 pb-6 rounded-t-2xl"
         style={{ maxWidth: 500, width: "100%" }}
       >
         <div className="divider divider-custom justify-center"></div>
@@ -42,7 +42,7 @@ const FilterModal = ({
           </CustomText>
 
           <CustomText
-            textClassName="underline error-text text-xs cursor-pointer"
+            textClassName="underline text-error text-xs cursor-pointer"
             onClick={onClickReset}
           >
             Reset
@@ -56,7 +56,7 @@ const FilterModal = ({
             </CustomText>
 
             <input
-              className="primaryWhite-bg-color booking-input"
+              className="bg-white booking-input"
               placeholder="XXXX-InvXXXXXXXX"
               name="name"
               value={invoiceNumberValue}
@@ -69,9 +69,9 @@ const FilterModal = ({
               Date From
             </CustomText>
 
-            <div className="primaryWhite-bg-color flex items-center booking-input relative">
+            <div className="bg-white flex items-center booking-input relative">
               <input
-                className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
+                className="bg-white flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateFromValue}
                 onChange={onChangeDateFrom}
@@ -89,9 +89,9 @@ const FilterModal = ({
               Date To
             </CustomText>
 
-            <div className="primaryWhite-bg-color flex items-center booking-input relative">
+            <div className="bg-white flex items-center booking-input relative">
               <input
-                className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
+                className="bg-white flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateToValue}
                 onChange={onChangeDateTo}
@@ -107,13 +107,13 @@ const FilterModal = ({
 
           <CustomButton
             buttonText="Cancel"
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             onClick={onClickCancel}
           />
 
           <CustomButton
             buttonText="Submit"
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={onClickSubmit}
           />
         </div>

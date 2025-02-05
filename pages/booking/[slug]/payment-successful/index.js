@@ -31,7 +31,7 @@ const PaymentSuccessful = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center relative bg-color h-screen">
+    <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Booking Payment Successful - Spacify Asia" />
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
@@ -57,7 +57,7 @@ const PaymentSuccessful = ({ id }) => {
         </CustomText>
       </div>
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={"View Booking"}
         onClick={onClickGoToBookingOverview}

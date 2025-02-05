@@ -65,18 +65,18 @@ const PropertyDetail = ({ id }) => {
   const colorList = [
     {
       label: "Paid",
-      bgColor: "available-bg-color",
-      textColor: "power-on-text",
+      bgColor: "bg-aqua",
+      textColor: "text-aqua",
     },
     {
       label: "Coming Due",
-      bgColor: "pending-bg-color",
-      textColor: "pending-text",
+      bgColor: "bg-pending",
+      textColor: "text-warning",
     },
     {
       label: "Overdue",
-      bgColor: "error-bg-color",
-      textColor: "error-text",
+      bgColor: "bg-error",
+      textColor: "text-error",
     },
   ];
 
@@ -137,7 +137,7 @@ const PropertyDetail = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Property Overview | Owner - Spacify Asia" />
 
       <DesktopLayout
@@ -149,7 +149,7 @@ const PropertyDetail = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/owner"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My Property
                     </CustomText>
                   </a>
@@ -198,13 +198,13 @@ const PropertyDetail = ({ id }) => {
             <div className="pb-4 flex">
               <CustomButton
                 buttonText="Space Details"
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "btn-primary" : "default-btn"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => setSelectedCategory("Space Details")}
               />
               <CustomButton
                 buttonText="Rent Tracker"
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "btn-primary" : "default-btn"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => setSelectedCategory("Rent Tracker")}
               />

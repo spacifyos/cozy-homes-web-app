@@ -52,7 +52,7 @@ const RoomPicCarousel = ({ recommendedList }) => {
               </div>
 
               {/*<div className="flex flex-col left-3 top-12 absolute">*/}
-              {/*  <div className="primaryWhite-bg-color p-1 global-border-radius mb-1">*/}
+              {/*  <div className="bg-white p-1 global-border-radius mb-1">*/}
               {/*    <CustomImage src={Images.windowIcon} width={20} height={20} />*/}
               {/*  </div>*/}
               {/*</div>*/}

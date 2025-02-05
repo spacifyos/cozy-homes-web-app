@@ -14,10 +14,10 @@ const UserTypeSelectSection = ({ setSelectedUserType }) => {
         </button>
       </form>
 
-      <div className={`flex flex-col items-center primaryWhite-bg-color`}>
+      <div className={`flex flex-col items-center bg-white`}>
         <CustomText
           styles={{ fontSize: 30 }}
-          textClassName="italic font-bold primary-text"
+          textClassName="italic font-bold text-primary"
         >
           Welcome To
         </CustomText>

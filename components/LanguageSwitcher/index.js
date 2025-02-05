@@ -24,7 +24,7 @@ const LanguageSwitcher = ({
     <div className="global-horizontal-padding relative" style={{ height: 50 }}>
       <div
         onClick={onClickOpenSwitcher}
-        className={`collapse collapse-arrow primaryWhite-bg-color absolute right-7 global-box-shadow  ${openSwitcher ? "collapse-open" : ""}`}
+        className={`collapse collapse-arrow bg-white absolute right-7 global-box-shadow  ${openSwitcher ? "collapse-open" : ""}`}
         style={{ width: 90, zIndex: 999 }}
       >
         <div

@@ -15,7 +15,7 @@ const BalanceUnit = ({
         <CustomText textClassName="text-base">
           {isShowBalanceInPrice ? "Balance Credit" : "Balance Unit"}
         </CustomText>
-        <CustomText textClassName="text-lg primary-text font-bold pl-2">
+        <CustomText textClassName="text-lg text-primary font-bold pl-2">
           {isShowBalanceInPrice
             ? isEmpty(balanceCredit)
               ? "0"

@@ -46,7 +46,7 @@ const DesktopFormSection = ({
     <div className="xl:px-5 lg:px-5 md:px-5 sm:px-0 px-0 xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 overflow-hidden">
       <form ref={formRef}>
         <div className="grid grid-cols-6 gap-2">
-          <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base primary-text">
+          <CustomText textClassName="col-span-6 font-bold xl:text-lg lg:text-lg md:text-base sm:text-base text-base text-primary">
             Please Fill in The Form
           </CustomText>
 
@@ -250,7 +250,7 @@ const DesktopFormSection = ({
                 {/*    className="col-span-3 cursor-pointer flex justify-end"*/}
                 {/*    onClick={() => onClickRemoveContact(index)}*/}
                 {/*  >*/}
-                {/*    <CustomText textClassName="error-text">Remove</CustomText>*/}
+                {/*    <CustomText textClassName="text-error">Remove</CustomText>*/}
                 {/*  </div>*/}
                 {/*) : (*/}
                 {/*  false*/}
@@ -340,7 +340,7 @@ const DesktopFormSection = ({
           buttonText={
             isResendEnabled ? "Send Code" : `Resend OTP in ${timeLeft} seconds`
           }
-          buttonClassName={`${isResendEnabled ? "default-btn-outline" : "disable-btn"} col-span-2 my-1`}
+          buttonClassName={`${isResendEnabled ? "btn-primary-outline" : "btn-disable"} col-span-2 my-1`}
           onClick={onClickGenerateOtp}
           loading={otpRequestLoading}
           disable={otpRequestLoading || !isResendEnabled}
@@ -349,7 +349,7 @@ const DesktopFormSection = ({
 
       <div className="grid grid-cols-1 pb-3">
         <BookingInput
-          bgColor="bg-color"
+          bgColor="bg-primary-background"
           className="col-span-1"
           placeholder="Referral Code"
           title="Referral Code (Optional)"
@@ -372,7 +372,7 @@ const DesktopFormSection = ({
           </CustomText>
         </div>
 
-        <CustomText textClassName="col-span-6 font-light disable-text text-sm">
+        <CustomText textClassName="col-span-6 font-light text-disable text-sm">
           Example:
         </CustomText>
 
@@ -391,7 +391,7 @@ const DesktopFormSection = ({
             icon={Images.uploadIconActive}
             buttonText="Front Image"
             imageStyle={{ width: 15 }}
-            buttonClassName="default-btn-outline flex-row-reverse mt-1 w-full"
+            buttonClassName="btn-primary-outline flex-row-reverse mt-1 w-full"
             onChangeImage={onChangeFrontICImage}
             onClickSelectImage={() =>
               Helper.documentGetElementById("front_image").click()
@@ -414,7 +414,7 @@ const DesktopFormSection = ({
             icon={Images.uploadIconActive}
             imageStyle={{ width: 15 }}
             buttonText="Back Image"
-            buttonClassName="default-btn-outline flex-row-reverse mt-1 w-full"
+            buttonClassName="btn-primary-outline flex-row-reverse mt-1 w-full"
             onChangeImage={onChangeBackICImage}
             onClickSelectImage={() =>
               Helper.documentGetElementById("back_image").click()
@@ -433,7 +433,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <CustomText textClassName="pl-3 font-bold disable-text text-xs text-justify">
+        <CustomText textClassName="pl-3 font-bold text-disable text-xs text-justify">
           I understand and agree to give Spacify and CTOS the consent to process
           my personal data as per PDPA Act.
         </CustomText>
@@ -441,7 +441,7 @@ const DesktopFormSection = ({
 
       <div
         style={{ height: 48 }}
-        className="primary-bg-color p-2 px-4 my-4 flex justify-center items-center cursor-pointer global-border-radius"
+        className="bg-primary p-2 px-4 my-4 flex justify-center items-center cursor-pointer global-border-radius"
         onClick={onClickBooking}
       >
         <CustomText textClassName="text-base font-bold text-white">

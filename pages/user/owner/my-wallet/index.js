@@ -129,10 +129,10 @@ const MyWallet = () => {
 
           <a
             href={"/user/owner/my-wallet/withdraw"}
-            className="global-box-shadow global-border-radius p-3 primaryWhite-bg-color flex justify-center items-center cursor-pointer"
+            className="global-box-shadow global-border-radius p-3 bg-white flex justify-center items-center cursor-pointer"
           >
             <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 25 }} />
-            <CustomText textClassName="primary-text pl-2 text-sm">
+            <CustomText textClassName="text-primary pl-2 text-sm">
               Withdraw
             </CustomText>
           </a>
@@ -143,7 +143,7 @@ const MyWallet = () => {
 
       <WalletSummary data={walletData} />
 
-      <div className="body-container bg-color flex-1 pb-4 pt-24">
+      <div className="body-container bg-primary-background flex-1 pb-4 pt-24">
         <TransactionComponent
           selectedCategory={selectedCategory}
           onClickSelectCategory={onClickSelectCategory}
@@ -153,7 +153,7 @@ const MyWallet = () => {
         {hasMorePage && lastPage > 1 && !isEmpty(walletTransactionListing) ? (
           <div className="flex justify-center  pt-3">
             <CustomButton
-              buttonClassName="primary-btn min-h-9 h-9 w-32"
+              buttonClassName="btn-primary min-h-9 h-9 w-32"
               buttonText="Load More"
               textClassName="text-xs"
               loading={

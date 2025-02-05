@@ -482,7 +482,7 @@ const Search = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo
         title={`Discover spaces for your needs in room listing | Spacify.asia`}
         description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
@@ -519,7 +519,7 @@ const Search = () => {
               <ul>
                 <li>
                   <a href={"/"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Explore
                     </CustomText>
                   </a>

@@ -71,7 +71,7 @@ const WithdrawSuccessful = ({ id }) => {
   };
 
   return (
-    <div className="relative p-4 pt-10 bg-color flex flex-col flex-1 items-center">
+    <div className="relative p-4 pt-10 bg-primary-background flex flex-col flex-1 items-center">
       <NextSeo title="Invoice Payment Successful - Spacify Asia" />
 
       <div className="absolute top-5 right-5 cursor-pointer">
@@ -91,14 +91,14 @@ const WithdrawSuccessful = ({ id }) => {
       {/*  {t("invoiceSuccessful.spacifyCoinsEarned")}*/}
       {/*</CustomText>*/}
 
-      {/*<CustomText textClassName="primary-text font-bold text-lg">*/}
+      {/*<CustomText textClassName="text-primary font-bold text-lg">*/}
       {/*  3,800*/}
       {/*</CustomText>*/}
       <CustomText textClassName="font-bold text-lg">
         Congratulations!
       </CustomText>
 
-      <div className="flex flex-col global-border-radius primaryWhite-bg-color py-2 px-4 global-box-shadow w-full my-7">
+      <div className="flex flex-col global-border-radius bg-white py-2 px-4 global-box-shadow w-full my-7">
         <div className="flex items-center justify-center py-4">
           <CustomImage
             src={Images.checkGreenIcon}
@@ -106,7 +106,7 @@ const WithdrawSuccessful = ({ id }) => {
             width={30}
             height={30}
           />
-          <CustomText textClassName="black-text font-bold text-base">
+          <CustomText textClassName="text-black font-bold text-base">
             Request
           </CustomText>
         </div>
@@ -114,10 +114,10 @@ const WithdrawSuccessful = ({ id }) => {
         <div className="divider-line" style={{ margin: 0 }}></div>
 
         <div className="flex flex-col items-center py-4">
-          <CustomText textClassName="primary-text font-bold text-base">
+          <CustomText textClassName="text-primary font-bold text-base">
             RM {isEmpty(amount) ? "0" : amount}
           </CustomText>
-          <CustomText textClassName="disable-text text-xs">
+          <CustomText textClassName="text-disable text-xs">
             {isEmpty(updatedAt)
               ? moment().format("DD MMM YYYY HH:mmm")
               : updatedAt}
@@ -126,13 +126,13 @@ const WithdrawSuccessful = ({ id }) => {
       </div>
 
       <div className="relative pt-6 flex justify-center w-full">
-        <div className="primary-bg-color p-3 global-border-radius absolute top-0">
+        <div className="bg-primary p-3 global-border-radius absolute top-0">
           <CustomImage
             src={Images.withdrawIconWhite}
             imageStyle={{ width: 30, height: 30 }}
           />
         </div>
-        <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
+        <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
           <CustomLabelValue
             value={isEmpty(transferTo) ? "-" : transferTo}
             label="Withdraw requestor"

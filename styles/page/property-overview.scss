@@ -1,17 +1,13 @@
-@import "../utils/color";
-@import "../utils/scaling";
-@import "../text";
-
 .dot-btn {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: $disable-color;
+  @apply bg-disable;;
 }
 
 .dot-btn:active,
 .dot-btn.active {
-  background-color: $primary-color;
+  @apply bg-primary;
 }
 
 .map-container {
@@ -21,7 +17,7 @@
 }
 
 .detail-feature-container {
-  @apply global-border-radius global-box-shadow primaryWhite-bg-color p-3 h-full;
+  @apply global-border-radius global-box-shadow bg-white p-3 h-full;
 }
 
 .agent-section-container {
@@ -45,7 +41,7 @@
 
 .cancellation-policy {
   ol {
-    background-color: $primary-bg-color !important;
+    @apply bg-primary-background !important;
     margin: 0 !important;
   }
 }
@@ -63,15 +59,14 @@
 }
 
 .property-overview-swiper .swiper-pagination .swiper-pagination-bullet-active {
-  background: $primary-color;
+  @apply bg-primary border-primary;
   width: 15px;
   height: 7px;
-  border: 1px solid $primary-color;
   border-radius: 20px;
 }
 
 .content-container {
-  @apply global-box-shadow global-border-radius primaryWhite-bg-color p-3;
+  @apply global-box-shadow global-border-radius bg-white p-3;
 }
 
 .image-modal-swiper .swiper-button-next {
@@ -90,8 +85,8 @@
 
 .image-modal-swiper .swiper-button-next:after,
 .image-modal-swiper .swiper-button-prev:after {
+  @apply text-white;
   border-radius: 100px;
-  color: $primary-white-color;
   font-weight: bolder;
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 20px;

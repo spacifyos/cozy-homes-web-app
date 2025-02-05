@@ -31,6 +31,7 @@ const DesktopLayout = ({
   loading,
   pageBreadcrumbs,
   isMinHeight = true,
+  backgroundColor = "bg-primary-background",
 }) => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -128,7 +129,7 @@ const DesktopLayout = ({
   };
 
   return (
-    <div className="flex flex-col primaryWhite-bg-color w-full min-h-screen relative">
+    <div className="flex flex-col bg-white w-full min-h-screen relative">
       <DesktopHeader
         onClickSignIn={onClickSignIn}
         onClickSignUp={onClickSignUp}
@@ -141,112 +142,114 @@ const DesktopLayout = ({
         onClickChat={onClickChat}
       />
 
-      {hideNav ? (
-        <div
-          className={`flex-1 h-full relative ${isMinHeight ? "min-h-screen" : ""}`}
-        >
-          {isEmpty(pageBreadcrumbs) ? (
-            false
-          ) : (
-            <div className="pb-5 container mx-auto xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6 pt-4">
-              {pageBreadcrumbs}
-            </div>
-          )}
-          {children}
+      <div className={`${backgroundColor}`}>
+        {hideNav ? (
+          <div
+            className={`flex-1 h-full relative ${isMinHeight ? "min-h-screen" : ""}`}
+          >
+            {isEmpty(pageBreadcrumbs) ? (
+              false
+            ) : (
+              <div className="pb-5 container mx-auto xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6 pt-4">
+                {pageBreadcrumbs}
+              </div>
+            )}
+            {children}
 
-          {loading ? (
-            <div
-              className={
-                "absolute top-0 flex justify-center items-center h-full w-full"
-              }
-              style={{
-                backgroundColor: "rgba(256,256,256,0.5)",
-                zIndex: 9999,
-              }}
-            >
-              <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
-            </div>
-          ) : (
-            false
-          )}
-        </div>
-      ) : (
-        <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-4 xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6">
-          <div className="flex justify-between items-center pb-5">
-            {pageBreadcrumbs}
-
-            <div className="flex justify-center items-center gap-4">
-              {isEmpty(rightSecondButtonIcon) ? (
-                false
-              ) : (
-                <CustomImage
-                  src={rightSecondButtonIcon}
-                  imageStyle={{ width: 23, height: 23 }}
-                  onClick={onClickRightSecondButton}
-                  className="cursor-pointer"
-                />
-              )}
-
+            {loading ? (
               <div
-                style={{ width: 23, height: 23 }}
-                onClick={onClickRightButton}
-                className="relative"
+                className={
+                  "absolute top-0 flex justify-center items-center h-full w-full"
+                }
+                style={{
+                  backgroundColor: "rgba(256,256,256,0.5)",
+                  zIndex: 9999,
+                }}
               >
-                {isEmpty(rightButtonIcon) ? (
-                  rightContent
+                <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+              </div>
+            ) : (
+              false
+            )}
+          </div>
+        ) : (
+          <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-4 xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6">
+            <div className="flex justify-between items-center pb-5">
+              {pageBreadcrumbs}
+
+              <div className="flex justify-center items-center gap-4">
+                {isEmpty(rightSecondButtonIcon) ? (
+                  false
                 ) : (
                   <CustomImage
-                    src={rightButtonIcon}
+                    src={rightSecondButtonIcon}
                     imageStyle={{ width: 23, height: 23 }}
-                    onClick={onClickRightButton}
+                    onClick={onClickRightSecondButton}
                     className="cursor-pointer"
                   />
                 )}
-                {isFiltered ? (
+
+                <div
+                  style={{ width: 23, height: 23 }}
+                  onClick={onClickRightButton}
+                  className="relative"
+                >
+                  {isEmpty(rightButtonIcon) ? (
+                    rightContent
+                  ) : (
+                    <CustomImage
+                      src={rightButtonIcon}
+                      imageStyle={{ width: 23, height: 23 }}
+                      onClick={onClickRightButton}
+                      className="cursor-pointer"
+                    />
+                  )}
+                  {isFiltered ? (
+                    <div
+                      className="w-2.5 h-2.5 rounded-2xl bg-error absolute "
+                      style={{ top: -10, right: -10 }}
+                    ></div>
+                  ) : (
+                    false
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-4 gap-10">
+              <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
+                <DesktopNavigationBar
+                  userData={userProfileData}
+                  onClickLogout={onClickLogoutModal}
+                />
+              </div>
+
+              <div
+                className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4 relative"
+                style={{ minHeight: "80vh" }}
+              >
+                {children}
+
+                {loading ? (
                   <div
-                    className="w-2.5 h-2.5 rounded-2xl error-bg-color absolute "
-                    style={{ top: -10, right: -10 }}
-                  ></div>
+                    className={
+                      "absolute top-0 left-0 flex justify-center items-center h-full w-full"
+                    }
+                    style={{
+                      backgroundColor: "rgba(256,256,256,0.5)",
+                      zIndex: 9999,
+                    }}
+                  >
+                    <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+                  </div>
                 ) : (
                   false
                 )}
               </div>
             </div>
           </div>
-
-          <div className="grid grid-cols-4 gap-10">
-            <div className="col-span-1 sticky top-10 hidden xl:block lg:block md:block sm:hidden">
-              <DesktopNavigationBar
-                userData={userProfileData}
-                onClickLogout={onClickLogoutModal}
-              />
-            </div>
-
-            <div
-              className="col-span-4 xl:col-span-3 lg:col-span-3 md:col-span-3 md:col-span-3 sm:col-span-4 relative"
-              style={{ minHeight: "80vh" }}
-            >
-              {children}
-
-              {loading ? (
-                <div
-                  className={
-                    "absolute top-0 left-0 flex justify-center items-center h-full w-full"
-                  }
-                  style={{
-                    backgroundColor: "rgba(256,256,256,0.5)",
-                    zIndex: 9999,
-                  }}
-                >
-                  <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
-                </div>
-              ) : (
-                false
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {includes(pathname, "/user/") || includes(pathname, "/agency/") ? (
         false
@@ -277,13 +280,13 @@ const DesktopLayout = ({
 
             <div className=" pt-2 flex justify-end gap-4">
               <CustomButton
-                buttonClassName={`primary-btn min-h-10 h-10 min-w-24 w-24`}
+                buttonClassName={`btn-primary min-h-10 h-10 min-w-24 w-24`}
                 buttonText="Cancel"
                 onClick={onClickCancelLogout}
               />
 
               <CustomButton
-                buttonClassName={`default-btn-outline min-h-10 h-10 min-w-24 w-24`}
+                buttonClassName={`btn-primary-outline min-h-10 h-10 min-w-24 w-24`}
                 buttonText="Logout"
                 onClick={onClickLogout}
               />

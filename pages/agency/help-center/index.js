@@ -123,7 +123,7 @@ const HelpCenter = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Invoice - Spacify Asia" />
 
       <DesktopLayout
@@ -163,7 +163,7 @@ const HelpCenter = () => {
                 <CustomButton
                   key={index}
                   buttonText={label}
-                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "btn-primary" : "default-btn"} mr-2`}
                   textClassName="text-xs"
                   onClick={() => setSelectedStatus(value)}
                 />
@@ -194,7 +194,7 @@ const HelpCenter = () => {
           !isEmpty(maintenanceTicketListingData) ? (
             <div className="flex justify-center pt-3">
               <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonClassName="btn-primary min-h-9 h-9 w-32"
                 buttonText="Load More"
                 textClassName="text-xs"
                 loading={

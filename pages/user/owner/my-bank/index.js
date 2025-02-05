@@ -127,7 +127,7 @@ const MyBank = () => {
 
       <BankCard bankDetails={bankDetails} />
 
-      <div className="body-container bg-color flex flex-col flex-1 pb-4">
+      <div className="body-container bg-primary-background flex flex-col flex-1 pb-4">
         <div className="pt-16 flex flex-col flex-1">
           <div className="flex justify-between items-end pb-2 pt-2">
             <CustomText textClassName="font-bold">Transactions</CustomText>
@@ -138,7 +138,7 @@ const MyBank = () => {
               <CustomButton
                 key={index}
                 buttonText={item}
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "primary-btn" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "btn-primary" : "default-btn"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => onClickSelectCategory(item)}
               />
@@ -169,7 +169,7 @@ const MyBank = () => {
                 !isEmpty(walletTransactionListing) ? (
                   <div className="flex justify-center pb-3 pt-1">
                     <CustomButton
-                      buttonClassName="primary-btn min-h-9 h-9 w-32"
+                      buttonClassName="btn-primary min-h-9 h-9 w-32"
                       buttonText="Load More"
                       textClassName="text-xs"
                       loading={

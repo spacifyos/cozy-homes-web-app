@@ -1,7 +1,3 @@
-table :where(thead, tbody) :where(tr) :where(th, td):not(:last-child),
-table :where(thead, tbody) :where(tr) :where(th, td):first-child:last-child {
-}
-
 .table :where(thead, tbody) :where(tr) {
   border: none;
 }
@@ -43,7 +39,7 @@ table :where(thead, tbody) :where(tr) :where(th, td):first-child:last-child {
 }
 
 .table :where(p) {
-  @apply primaryWhite-bg-color;
+  @apply bg-white;
   padding: 12px;
   height: 40px;
 }

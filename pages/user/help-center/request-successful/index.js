@@ -18,7 +18,7 @@ const RequestSuccessful = ({}) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center relative bg-color h-screen">
+    <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Request Successful - Spacify Asia" />
 
       <CustomImage
@@ -34,7 +34,7 @@ const RequestSuccessful = ({}) => {
         </CustomText>
       </div>
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={"View Your Request"}
         onClick={onClickGoMainPage}

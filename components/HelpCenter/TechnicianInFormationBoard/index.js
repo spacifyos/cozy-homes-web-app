@@ -33,7 +33,7 @@ const TechnicianInFormationBoard = ({
 
         return (
           <div
-            className="global-border-radius global-box-shadow primaryWhite-bg-color p-4"
+            className="global-border-radius global-box-shadow bg-white p-4"
             key={index}
           >
             <div className="flex justify-between items-center">
@@ -44,7 +44,7 @@ const TechnicianInFormationBoard = ({
               {isAllowToCheckIn ? (
                 !checkedIn ? (
                   <CustomButton
-                    buttonClassName={`${checkInLoading ? "primary-btn" : "default-btn-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
+                    buttonClassName={`${checkInLoading ? "btn-primary" : "btn-primary-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
                     buttonText="Check In"
                     onClick={onClickCheckIn}
                     loading={checkInLoading}
@@ -52,7 +52,7 @@ const TechnicianInFormationBoard = ({
                   />
                 ) : !checkedOut ? (
                   <CustomButton
-                    buttonClassName={`${checkOutLoading ? "primary-btn" : "default-btn-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
+                    buttonClassName={`${checkOutLoading ? "btn-primary" : "btn-primary-outline"} btn-xs min-h-8 max-h-8 min-w-20`}
                     buttonText="Check Out"
                     onClick={onClickCheckOut}
                     disable={checkOutLoading}
@@ -130,7 +130,7 @@ const TechnicianInFormationBoard = ({
             {/*<div className="flex justify-center">*/}
             {/*    <CustomButton*/}
             {/*        buttonStyles={{ padding: "5px 30px" }}*/}
-            {/*        buttonClassName="primary-btn"*/}
+            {/*        buttonClassName="btn-primary"*/}
             {/*        buttonText={"Submit"}*/}
             {/*        onClick={onClickUpdateTicket}*/}
             {/*    />*/}

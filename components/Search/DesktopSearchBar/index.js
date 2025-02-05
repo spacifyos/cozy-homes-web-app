@@ -23,7 +23,7 @@ const DesktopSearchBar = ({
     <div className="grid xl:grid-cols-12 lg:grid-cols-10 md:grid-cols-10 sm:grid-cols-10 grid-cols-10 gap-5 pb-8">
       <div className="xl:col-span-1 xl:block hidden"></div>
 
-      <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
+      <div className="xl:col-span-3 lg:col-span-3 md:col-span-3 sm:col-span-8 col-span-8 global-border-radius global-box-shadow bg-white flex flex-col justify-center ">
         <CustomText textClassName="text-xs pt-2 pl-4">Search</CustomText>
         <CustomInput
           hideShadow
@@ -36,7 +36,7 @@ const DesktopSearchBar = ({
         />
       </div>
 
-      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color px-4 py-2 flex flex-col justify-center">
+      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow bg-white px-4 py-2 flex flex-col justify-center">
         <CustomText textClassName="text-xs">Your Budget</CustomText>
 
         <RangeSlider
@@ -55,7 +55,7 @@ const DesktopSearchBar = ({
         </div>
       </div>
 
-      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow primaryWhite-bg-color flex flex-col justify-center ">
+      <div className="col-span-3 xl:block lg:block md:block sm:hidden hidden global-border-radius global-box-shadow bg-white flex flex-col justify-center ">
         <CustomText textClassName="text-xs pt-2 pl-4">Tenure Period</CustomText>
         <CustomSelect
           hideShadow
@@ -70,11 +70,11 @@ const DesktopSearchBar = ({
       </div>
 
       <div
-        className="default-btn xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative cursor-pointer"
+        className="btn-white xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative cursor-pointer"
         onClick={onClickOpenModal}
       >
         {isFilter ? (
-          <div className="absolute top-3 right-3 primary-bg-color w-2 h-2 rounded-2xl"></div>
+          <div className="absolute top-3 right-3 bg-primary w-2 h-2 rounded-2xl"></div>
         ) : (
           false
         )}

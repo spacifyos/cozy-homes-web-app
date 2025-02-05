@@ -18,7 +18,7 @@ const SpaceDetailCard = ({ item }) => {
 
   return (
     <div
-      className={`global-box-shadow global-border-radius p-2 flex justify-between items-center ${isEqual(status, "Available") ? "primaryWhite-bg-color" : "occupied-bg-color"}`}
+      className={`global-box-shadow global-border-radius p-2 flex justify-between items-center ${isEqual(status, "Available") ? "bg-white" : "bg-error"}`}
     >
       <div className="flex flex-1 items-center">
         <CustomImage
@@ -31,7 +31,7 @@ const SpaceDetailCard = ({ item }) => {
             <div className="flex justify-between items-center pb-0.5">
               <div className="flex">
                 <CustomText
-                  textClassName={`text-xs text-white ${isEqual(status, "Available") ? "available-bg-color" : "error-bg-color"} px-4 py-0.5 rounded`}
+                  textClassName={`text-xs text-white ${isEqual(status, "Available") ? "bg-aqua" : "bg-error"} px-4 py-0.5 rounded`}
                 >
                   {isEmpty(status) ? "-" : status}
                 </CustomText>

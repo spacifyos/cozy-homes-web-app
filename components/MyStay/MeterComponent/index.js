@@ -25,7 +25,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       {/*/>*/}
 
       <div className="flex items-center pb-1">
-        <div className="primary-bg-color p-2 global-border-radius mb-1 mr-2">
+        <div className="bg-primary p-2 global-border-radius mb-1 mr-2">
           <CustomImage
             src={Images.meterIcon}
             imageStyle={{ width: 35, height: 35 }}
@@ -33,11 +33,11 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="primary-text text-sm font-bold pb-1 line-clamp-1 pr-5">
+          <CustomText textClassName="text-primary text-sm font-bold pb-1 line-clamp-1 pr-5">
             {isEmpty(name) ? "-" : name}
           </CustomText>
           <div className="flex items-center">
-            <CustomText textClassName="pr-3 text-xs disable-text">
+            <CustomText textClassName="pr-3 text-xs text-disable">
               Meter Status
             </CustomText>
 
@@ -48,7 +48,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${wifi ? "power-on-text" : "disable-text"} text-sm`}
+                textClassName={`${wifi ? "text-aqua" : "text-disable"} text-sm`}
               >
                 WIFI
               </CustomText>
@@ -61,7 +61,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
                 className="mr-1"
               />
               <CustomText
-                textClassName={`${power ? "power-on-text" : "disable-text"} text-sm`}
+                textClassName={`${power ? "text-aqua" : "text-disable"} text-sm`}
               >
                 Power
               </CustomText>
@@ -71,12 +71,12 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       </div>
 
       <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
-        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-color">
+        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-primary-background">
           <CustomText textClassName="disable-text text-xs">
             Balance Unit
           </CustomText>
           <div className="flex items-center">
-            <CustomText textClassName="primary-text text-base font-bold pe-1">
+            <CustomText textClassName="text-primary text-base font-bold pe-1">
               {isEmpty(balanceUnit) ? "-" : balanceUnit}
             </CustomText>
             {/*<CustomImage src={Images.refreshIcon} width={15} height={15} />*/}
@@ -85,7 +85,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
         <a className="col-span-4" href={`/user/my-meter/${id}`}>
           <CustomButton
-            buttonClassName="w-full primary-btn h-14"
+            buttonClassName="w-full btn-primary h-14"
             textClassName="text-lg"
             buttonText="Top Up"
           />

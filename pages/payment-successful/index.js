@@ -20,7 +20,7 @@ const PaymentSuccessful = ({}) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center relative bg-color h-screen">
+    <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Payment Successful - Spacify Asia" />
       {/*<CustomImage*/}
       {/*  src={Images.cancelIcon}*/}
@@ -41,7 +41,7 @@ const PaymentSuccessful = ({}) => {
         </CustomText>
       </div>
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={"Back to home page"}
         onClick={onClickGoMainPage}

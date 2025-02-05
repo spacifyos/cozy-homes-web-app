@@ -1,11 +1,9 @@
-@import "../utils/color";
-
 .amenities-container::-webkit-scrollbar {
   display: none !important;
 }
 
 .amenities-nav-container {
-  @apply amenities-container grid grid-cols-1 gap-5 primaryWhite-bg-color px-3 py-6 global-box-shadow sticky overflow-y-scroll;
+  @apply amenities-container grid grid-cols-1 gap-5 bg-white px-3 py-6 global-box-shadow sticky overflow-y-scroll;
 }
 
 .tag-container::-webkit-scrollbar {
@@ -17,17 +15,15 @@
 }
 
 .join-item {
-  @apply primaryWhite-bg-color global-box-shadow;
-  border-color: $primary-white-color;
+  @apply bg-white global-box-shadow border-white;
 
   p {
-    @apply disable-text text-xs;
+    @apply text-disable text-xs;
   }
 }
 
 .join-item:hover {
-  @apply primary-bg-color;
-  border-color: $primary-color;
+  @apply bg-primary border-primary;
   @layer utilities {
     p {
       @apply text-white text-xs;
@@ -40,8 +36,7 @@
 }
 
 .join-item-active {
-  @apply primary-bg-color text-white;
-  border-color: $primary-color;
+  @apply bg-primary text-white border-primary;
 
   p {
     @apply text-white text-xs;
@@ -59,14 +54,13 @@
   margin: 8px 0;
 
   .range-slider__thumb {
-    background: $primary-white-color !important;
-    border: 2px $primary-color solid;
+    @apply border-primary border-2 border-solid border-white;
     width: 15px !important;
     height: 15px !important;
   }
 
   .range-slider__range {
-    background: $primary-color !important;
+    @apply bg-primary !important;
     height: 6px !important;
   }
 }

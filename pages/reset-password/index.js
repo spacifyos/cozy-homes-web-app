@@ -86,7 +86,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Forgot Password - Spacify Asia" />
 
       <DesktopLayout
@@ -138,7 +138,7 @@ const ResetPassword = () => {
                 <input
                   type="password"
                   placeholder={"Your Password"}
-                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
                   value={passwordValue}
                   onChange={(e) => setPasswordValue(e.target.value)}
                 />
@@ -146,7 +146,7 @@ const ResetPassword = () => {
                 <input
                   type="password"
                   placeholder={"Confirm Your Password"}
-                  className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+                  className="input input-bordered w-full bg-white mb-8 user-input"
                   value={confirmPasswordValue}
                   onChange={(e) => setConfirmPasswordValue(e.target.value)}
                 />
@@ -154,7 +154,7 @@ const ResetPassword = () => {
                 <div className="grid grid-cols-4">
                   <CustomButton
                     buttonText="Submit"
-                    buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "secondary-btn" : "primary-btn"} col-start-2 col-span-2`}
+                    buttonClassName={`${isEqual(typeQuery, Constant.TENANT) ? "btn-secondary" : "btn-primary"} col-start-2 col-span-2`}
                     onClick={onClickSubmitChangePassword}
                   />
                 </div>

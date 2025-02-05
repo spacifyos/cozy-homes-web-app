@@ -6,7 +6,7 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
   return (
     <a
       // href={route}
-      className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius primaryWhite-bg-color flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative cursor-pointer"
+      className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius bg-white flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative cursor-pointer"
     >
       {/*<div className="absolute right-1 top-3 cursor-pointer">*/}
       {/*  <CustomImage src={Images.moreIcon} imageStyle={{ width: 22 }} />*/}
@@ -22,10 +22,10 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
         </CustomText>
 
         <div className="flex items-center justify-center">
-          {/*<CustomText textClassName="primary-text text-sm">*/}
+          {/*<CustomText textClassName="text-primary text-sm">*/}
           {/*  Coming Soon*/}
           {/*</CustomText>*/}
-          <CustomText textClassName="primary-text text-sm font-bold xl:text-left lg:text-left md:text-left sm:text-center text-center">
+          <CustomText textClassName="text-primary text-sm font-bold xl:text-left lg:text-left md:text-left sm:text-center text-center">
             {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
             Coming Soon
           </CustomText>

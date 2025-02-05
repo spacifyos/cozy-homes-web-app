@@ -150,14 +150,14 @@ const SignInTenant = () => {
         </div>
 
         <div className="w-full">
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
             <CustomText textClassName="text-center pb-6 pt-3 font-bold text-lg">
               Sign In
             </CustomText>
 
             <div className="grid grid-cols-3 gap-2 mb-4">
               <select
-                className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input"
+                className="select select-bordered w-full max-w-xs bg-white user-input"
                 value={phonePrefix}
                 onChange={onChangePhonePrefix}
               >
@@ -178,7 +178,7 @@ const SignInTenant = () => {
                 onChange={onChangePhoneNumber}
                 type="number"
                 placeholder={t("signIn.phoneNumber")}
-                className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                className="input input-bordered w-full bg-white col-span-2 user-input"
               />
             </div>
 
@@ -187,13 +187,13 @@ const SignInTenant = () => {
               onChange={onChangePassword}
               type="password"
               placeholder={t("signIn.password")}
-              className="input input-bordered w-full primaryWhite-bg-color mb-8 user-input"
+              className="input input-bordered w-full bg-white mb-8 user-input"
               onKeyDown={handleKeyDown}
             />
 
             <div className="flex justify-center pb-2">
               <CustomButton
-                buttonClassName={`secondary-btn w-2/4 mb-2`}
+                buttonClassName={`btn-secondary w-2/4 mb-2`}
                 buttonText={t("signIn.signIn")}
                 onClick={onClickToLogin}
               />
@@ -208,7 +208,7 @@ const SignInTenant = () => {
             <div className="flex justify-center items-center mb-5">
               <CustomText>Don’t have account? Click </CustomText>
               <div onClick={onClickToSignUp} className="cursor-pointer">
-                <CustomText textClassName="primary-text font-bold pl-1 underline">
+                <CustomText textClassName="text-primary font-bold pl-1 underline">
                   here
                 </CustomText>
               </div>
@@ -220,7 +220,7 @@ const SignInTenant = () => {
               policy.
             </CustomText>
 
-            <CustomText textClassName="text-xs text-center disable-text">
+            <CustomText textClassName="text-xs text-center text-disable">
               This site is protected by reCAPTCHA and the Google{" "}
               <span className="underline">Privacy Policy</span> and{" "}
               <span className="underline">Terms of Service</span> apply.

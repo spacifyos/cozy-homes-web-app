@@ -39,7 +39,7 @@ const DesktopFilterModal = ({
             </CustomText>
 
             <input
-              className="primaryWhite-bg-color booking-input"
+              className="bg-white booking-input"
               placeholder="XXXX-InvXXXXXXXX"
               name="name"
               value={invoiceNumberValue}
@@ -52,9 +52,9 @@ const DesktopFilterModal = ({
               Date From
             </CustomText>
 
-            <div className="primaryWhite-bg-color flex items-center booking-input relative">
+            <div className="bg-white flex items-center booking-input relative">
               <input
-                className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
+                className="bg-white flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateFromValue}
                 onChange={onChangeDateFrom}
@@ -72,9 +72,9 @@ const DesktopFilterModal = ({
               Date To
             </CustomText>
 
-            <div className="primaryWhite-bg-color flex items-center booking-input relative">
+            <div className="bg-white flex items-center booking-input relative">
               <input
-                className="primaryWhite-bg-color flex-1 w-full resize-input-icon"
+                className="bg-white flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateToValue}
                 onChange={onChangeDateTo}
@@ -90,13 +90,13 @@ const DesktopFilterModal = ({
 
           <CustomButton
             buttonText="Reset"
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             onClick={onClickReset}
           />
 
           <CustomButton
             buttonText="Submit"
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={onClickSubmit}
           />
         </div>

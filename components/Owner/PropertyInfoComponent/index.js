@@ -12,7 +12,7 @@ const PropertyInfoComponent = ({ lists }) => {
 
         return (
           <div
-            className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center primaryWhite-bg-color"
+            className="global-box-shadow global-border-radius p-2 flex flex-col items-center justify-center bg-white"
             key={index}
           >
             <div imageStyle={{ width: 22, height: 22 }}>
@@ -25,7 +25,7 @@ const PropertyInfoComponent = ({ lists }) => {
               </CustomText>
               <CustomText
                 styles={{ height: 30 }}
-                textClassName="disable-text text-xs text-center flex items-center"
+                textClassName="text-disable text-xs text-center flex items-center"
               >
                 {name}
               </CustomText>

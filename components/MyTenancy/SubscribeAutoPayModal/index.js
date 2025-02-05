@@ -12,9 +12,9 @@ const SubscribeAutoPayModal = ({ t }) => {
       <CustomText textClassName="font-bold text-base pb-3">
         {t("myTenancy.subscribeAutoPay")}
       </CustomText>
-      <div className="global-border-radius global-box-shadow primaryWhite-bg-color p-4">
+      <div className="global-border-radius global-box-shadow bg-white p-4">
         <div className="flex items-center pb-2">
-          <div className="primary-bg-color p-2 global-border-radius mb-1">
+          <div className="bg-primary p-2 global-border-radius mb-1">
             <CustomImage src={Images.buildingIcon} width={30} height={30} />
           </div>
           <div className="pl-2">
@@ -69,14 +69,14 @@ const SubscribeAutoPayModal = ({ t }) => {
       </div>
       <div className=" grid grid-cols-2 gap-4  pt-4">
         <CustomButton
-          buttonClassName=" default-btn-outline"
+          buttonClassName=" btn-primary-outline"
           buttonText={t("myTenancy.cancel")}
           onClick={() => {
             Helper.documentGetElementById("myTenancy_Subscribe_modal").close();
           }}
         />
         <CustomButton
-          buttonClassName=" primary-btn"
+          buttonClassName=" btn-primary"
           buttonText={t("myTenancy.submit")}
         />
       </div>

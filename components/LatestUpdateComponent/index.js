@@ -7,11 +7,11 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
   const date = _.get(item, "date", "");
   return (
     <div
-      className="global-box-shadow primaryWhite-bg-color global-border-radius relative p-3"
+      className="global-box-shadow bg-white global-border-radius relative p-3"
       onClick={onClickToTitle}
     >
       <div className="flex items-center">
-        <div className="global-border-radius primary-bg-color p-3 mr-3">
+        <div className="global-border-radius bg-primary p-3 mr-3">
           <CustomImage
             src={Images.ringIcon}
             imageStyle={{ width: 30, height: 30 }}
@@ -33,7 +33,7 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
         <CustomImage src={Images.moreIcon} width={25} height={25} />
 
         {_.isEqual(item.date, "15 Dec 2024") ? (
-          <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>
+          <div className="bg-error rounded-2xl h-3 w-3 absolute right-0 top-0"></div>
         ) : (
           false
         )}

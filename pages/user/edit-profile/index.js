@@ -175,7 +175,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Edit Profile - Spacify Asia" />
 
       <DesktopLayout
@@ -189,7 +189,7 @@ const EditProfile = () => {
               <ul>
                 <li>
                   <a href={"/user/account"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Account
                     </CustomText>
                   </a>
@@ -221,7 +221,7 @@ const EditProfile = () => {
             </div>
 
             <BookingInput
-              bgColor="primaryWhite-bg-color"
+              bgColor="bg-white"
               title={"Name"}
               placeholder={"Name"}
               className="pb-3"
@@ -241,7 +241,7 @@ const EditProfile = () => {
               className="pb-0"
             />
 
-            <CustomText textClassName="primary-text text-xs pb-4">
+            <CustomText textClassName="text-primary text-xs pb-4">
               Use this phone number to login system
             </CustomText>
 
@@ -250,7 +250,7 @@ const EditProfile = () => {
             </CustomText>
 
             <CustomButton
-              buttonClassName="default-btn-outline btn-sm mb-4"
+              buttonClassName="btn-primary-outline btn-sm mb-4"
               buttonStyles={{ paddingRight: 30, paddingLeft: 30, height: 40 }}
               buttonText="Change Password"
               onClick={() =>
@@ -260,13 +260,13 @@ const EditProfile = () => {
 
             <div className="grid grid-cols-2 gap-5 pt-10">
               <CustomButton
-                buttonClassName="default-btn-outline"
+                buttonClassName="btn-primary-outline"
                 buttonText={"Cancel"}
                 onClick={onClickGoBack}
               />
 
               <CustomButton
-                buttonClassName=" primary-btn"
+                buttonClassName=" btn-primary"
                 buttonText={"Submit"}
                 onClick={onClickSubmit}
               />

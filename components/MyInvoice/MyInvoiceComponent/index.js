@@ -8,15 +8,15 @@ const MyInvoiceComponent = ({ data }) => {
   const textColor = (value) => {
     switch (value) {
       case "Total Paid Invoices":
-        return "completed-text";
+        return "text-available";
       case "Total Overdue Invoices":
-        return "error-text";
+        return "text-error";
       case "Total Unpaid Invoices":
-        return "pending-text";
+        return "text-warning";
       case "Total Invoices":
-        return "primary-text";
+        return "text-primary";
       default:
-        return "pending-text";
+        return "text-warning";
     }
   };
 

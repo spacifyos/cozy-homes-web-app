@@ -36,7 +36,7 @@ const MessageTimeLine = ({ item }) => {
             {name}
           </CustomText>
         </div>
-        <CustomText textClassName="bg-color py-2 px-4 rounded-2xl disable-text text-sm">
+        <CustomText textClassName="bg-primary-background py-2 px-4 rounded-2xl disable-text text-sm">
           {content}
         </CustomText>
       </div>

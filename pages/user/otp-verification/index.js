@@ -106,7 +106,7 @@ const OtpVerification = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Otp Verification - Spacify Asia" />
 
       <DesktopLayout
@@ -141,7 +141,7 @@ const OtpVerification = () => {
         <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col items-center justify-center">
           <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
             <CustomText
-              textClassName="primary-text font-bold leading-10 pb-5 text-center"
+              textClassName="text-primary font-bold leading-10 pb-5 text-center"
               styles={{ fontSize: 34 }}
             >
               Otp Verification
@@ -151,7 +151,7 @@ const OtpVerification = () => {
               Enter the 6 digit code that we sent you on your mobile number.
             </CustomText>
 
-            <CustomText textClassName="pb-5 text-sm disable-text text-center">
+            <CustomText textClassName="pb-5 text-sm text-disable text-center">
               Sent to {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
 
@@ -176,12 +176,12 @@ const OtpVerification = () => {
               />
             </div>
 
-            <CustomText textClassName="pb-5 text-sm disable-text text-center">
+            <CustomText textClassName="pb-5 text-sm text-disable text-center">
               Not received code yet.
             </CustomText>
 
             <CustomText
-              textClassName="pb-5 text-sm primary-text text-center cursor-pointer"
+              textClassName="pb-5 text-sm text-primary text-center cursor-pointer"
               onClick={isResendEnabled ? handleResend : () => {}}
             >
               {isResendEnabled
@@ -190,7 +190,7 @@ const OtpVerification = () => {
             </CustomText>
 
             <CustomButton
-              buttonClassName={`${isOtpValid ? "primary-btn" : "disable-btn"} w-36 flex`}
+              buttonClassName={`${isOtpValid ? "btn-primary" : "btn-disable"} w-36 flex`}
               buttonText="Verify Code"
               disable={!isOtpValid || otpRequestLoading || otpVerifyLoading}
               loading={otpRequestLoading || otpVerifyLoading}

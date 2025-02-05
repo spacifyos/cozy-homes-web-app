@@ -59,21 +59,21 @@ const Booking = () => {
             M Vertica, Kuala Lumpur
           </CustomText>
 
-          <CustomText textClassName="text-base font-bold primary-text pb-1">
+          <CustomText textClassName="text-base font-bold text-primary pb-1">
             A-01-01, Room 2
           </CustomText>
-          <CustomText textClassName="disable-text text-sm">
+          <CustomText textClassName="text-disable text-sm">
             Residensi M Vertica, 555, Jln Cheras, Taman Pertama, 56000 Kuala
             Lumpur, Federal Territory of Kuala Lumpur.
           </CustomText>
         </div>
-        <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-4">
+        <div className="global-box-shadow global-border-radius bg-white p-4">
           <div className="flex gap-2 items-center pb-5">
-            <div className="p-2 global-box-shadow global-border-radius primary-bg-color">
+            <div className="p-2 global-box-shadow global-border-radius bg-primary">
               <CustomImage src={Images.bookingIcon} width={25} height={25} />
             </div>
 
-            <CustomText textClassName="font-bold text-base primary-text">
+            <CustomText textClassName="font-bold text-base text-primary">
               {t("bookAppointment.myAppointment")}
             </CustomText>
           </div>
@@ -95,7 +95,7 @@ const Booking = () => {
           <CustomText textClassName="pb-1"> {t("bookAppointment.date")}</CustomText>
           <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-                className="bg-color flex-1 w-full resize-input-icon"
+                className="bg-primary-background flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateValue}
                 onChange={onChangeDate}
@@ -112,7 +112,7 @@ const Booking = () => {
 
           <div className="flex items-center global-border-radius p-2 relative booking-input pb-1">
             <input
-              className="bg-color flex-1 w-full resize-input-icon "
+              className="bg-primary-background flex-1 w-full resize-input-icon "
               type="time"
               value={timeValue}
               onChange={onChangeTime}
@@ -136,7 +136,7 @@ const Booking = () => {
           <div className="flex justify-center w-full">
             <CustomButton
               buttonText={t("bookAppointment.bookAppointment")}
-              buttonClassName="primary-btn w-3/5"
+              buttonClassName="btn-primary w-3/5"
               onClick={()=>onClickBookSuccess(1)}
             />
           </div>

@@ -85,7 +85,7 @@ const MyPropertyOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Property Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -97,7 +97,7 @@ const MyPropertyOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/my-property"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My Property
                     </CustomText>
                   </a>

@@ -22,7 +22,7 @@ const DetailLabel = ({ title, value, highlight = false }) => {
     <div className="grid grid-cols-3 gap-3">
       <CustomText textClassName="text-sm">{title}</CustomText>
       <CustomText
-        textClassName={`text-end text-sm col-span-2 ${highlight ? "primary-text" : ""}`}
+        textClassName={`text-end text-sm col-span-2 ${highlight ? "text-primary" : ""}`}
       >
         {value}
       </CustomText>
@@ -104,21 +104,21 @@ const TransactionOverview = ({ id }) => {
       <NextSeo title="Transaction Overview | Owner - Spacify Asia" />
 
       {/*<div className="px-4 absolute top-16 w-full z-10">*/}
-      {/*  <div className="global-box-shadow global-border-radius p-5 flex items-center primaryWhite-bg-color">*/}
+      {/*  <div className="global-box-shadow global-border-radius p-5 flex items-center bg-white">*/}
       {/*    <CustomImage src={renderIcon(typeValue)} imageStyle={{ width: 30 }} />*/}
 
       {/*    <div>*/}
       {/*      <CustomText textClassName="text-lg font-bold px-3 leading-4">*/}
       {/*        {isEmpty(amount) ? "RM0" : amount}*/}
       {/*      </CustomText>*/}
-      {/*      /!*<CustomText textClassName="text-xs disable-text px-3">*!/*/}
+      {/*      /!*<CustomText textClassName="text-xs text-disable px-3">*!/*/}
       {/*      /!*  {`withdraw amount`}*!/*/}
       {/*      /!*</CustomText>*!/*/}
       {/*    </div>*/}
       {/*  </div>*/}
       {/*</div>*/}
 
-      <div className="body-container primaryWhite-bg-color flex-1 py-5">
+      <div className="body-container bg-white flex-1 py-5">
         <DetailLabel
           title="Amount"
           value={`${currency} ${isEmpty(amount) ? "-" : amount}`}

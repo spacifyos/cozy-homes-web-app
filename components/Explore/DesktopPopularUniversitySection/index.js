@@ -22,7 +22,7 @@ const DesktopPopularUniversitySection = ({
             src={Images.collegeIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
-          <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold primary-text pl-2">
+          <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold text-primary pl-2">
             Popular University/College
           </CustomText>
         </div>

@@ -22,12 +22,12 @@ const CustomAlertModal = ({
       </div>
       <div className="grid grid-cols-2 gap-2">
         <CustomButton
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           buttonText={cancelText}
           onClick={onClickCancel}
         />
         <CustomButton
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           buttonText={confirmText}
           onClick={onClickConfirm}
         />

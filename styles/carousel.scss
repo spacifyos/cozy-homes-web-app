@@ -1,5 +1,3 @@
-@import "utils/color";
-
 .react-multi-carousel-dot button {
   width: 6px !important;
   height: 6px !important;
@@ -8,8 +6,7 @@
 }
 
 .react-multi-carousel-dot--active button {
-  background-color: $primary-color !important;
-  border: 1px solid $primary-color !important;
+  @apply bg-primary border-primary !important;
   width: 15px !important;
   height: 7px !important;
   border-radius: 20px !important;
@@ -23,8 +20,7 @@
 }
 
 .owner-invoice-summary .react-multi-carousel-dot--active button {
-  background-color: $primary-white-color !important;
-  border: 1px solid $primary-white-color !important;
+  @apply bg-white border-white !important;
   width: 15px !important;
   height: 7px !important;
   border-radius: 20px !important;

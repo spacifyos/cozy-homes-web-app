@@ -29,12 +29,12 @@ const CustomSelectWithIcon = ({
       </div>
       <div className="booking-select-container relative">
         <div
-          className="booking-select primaryWhite-bg-color flex justify-between cursor-pointer"
+          className="booking-select bg-white flex justify-between cursor-pointer"
           onClick={onClickOpenSelect}
         >
           {isEmpty(value) ? (
             <CustomText
-              textClassName={`${isEmpty(value) ? "disable-text" : "black-text"} text-xs`}
+              textClassName={`${isEmpty(value) ? "disable-text" : "text-black"} text-xs`}
             >
               {placeholder}
             </CustomText>
@@ -55,7 +55,7 @@ const CustomSelectWithIcon = ({
 
         {openSelectBank ? (
           <div
-            className="absolute primaryWhite-bg-color w-full py-2 px-4 grid gap-2 overflow-y-auto z-10"
+            className="absolute bg-white w-full py-2 px-4 grid gap-2 overflow-y-auto z-10"
             style={{
               borderRadius: "0 0 10px 10px",
               bottom: "-31",

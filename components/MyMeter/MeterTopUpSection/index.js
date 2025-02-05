@@ -31,7 +31,7 @@ const MeterTopUpSection = ({
         Top Up Price (Malaysia Ringgit - RM)
       </CustomText>
 
-      <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-5">
+      <div className="global-box-shadow global-border-radius bg-white p-5">
         <div className="grid grid-cols-2 gap-1">
             <CustomText textClassName="text-sm font-bold col-span-2">
               Tenancy
@@ -40,7 +40,7 @@ const MeterTopUpSection = ({
             <CustomSelect
               selectStyles={{ border: "unset" }}
               className="max-w-full mb-8 col-span-2 min-w-full"
-              selectClassName="bg-color w-full"
+              selectClassName="bg-primary-background w-full"
               placeholder={"Select tenancy"}
               optionList={tenancy}
               onChange={onChangeTenancyValue}
@@ -59,7 +59,7 @@ const MeterTopUpSection = ({
               return (
                 <CustomButton
                   key={index}
-                  buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "primary-btn" : "pending-btn"}`}
+                  buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "btn-primary" : "btn-primary-background"}`}
                   buttonText={name}
                   onClick={() => onClickSelectPrice(value)}
                 />
@@ -71,13 +71,13 @@ const MeterTopUpSection = ({
             Other Price
           </CustomText>
 
-          <CustomText textClassName="text-sm primary-text font-bold">
+          <CustomText textClassName="text-sm text-primary font-bold">
             Total Unit
           </CustomText>
 
           <input
             type="number"
-            className="input w-4/5 bg-color global-box-shadow meter-input"
+            className="input w-4/5 bg-primary-background global-box-shadow meter-input"
             placeholder={"unit"}
             value={selectedPrice}
             onChange={onChangeSelectedPriceValue}
@@ -92,12 +92,12 @@ const MeterTopUpSection = ({
       <div className="grid grid-cols-2 gap-2 pt-7 ">
         <CustomButton
           buttonText={"Clear"}
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           onClick={onClickClearSelectedPrice}
         />
         <CustomButton
           buttonText={"Pay Now"}
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           onClick={onClickPayNow}
         />
       </div>

@@ -112,10 +112,10 @@ const MyReport = ({ id }) => {
     >
       <NextSeo title="Statement Overview | Owner - Spacify Asia" />
 
-      <div className="bg-color flex flex-col flex-1 global-horizontal-padding py-5">
+      <div className="bg-primary-background flex flex-col flex-1 global-horizontal-padding py-5">
         <div className="flex justify-between pb-2">
           <div className="flex justify-center items-center">
-            <CustomText textClassName="font-bold primary-text pr-2">
+            <CustomText textClassName="font-bold text-primary pr-2">
               Monthly P&L Statement
             </CustomText>
 
@@ -137,11 +137,11 @@ const MyReport = ({ id }) => {
 
         <div className="divider-line" style={{ margin: "10px 0 18px 0" }}></div>
 
-        <CustomText textClassName="disable-text text-xs pb-1">
+        <CustomText textClassName="text-disable text-xs pb-1">
           Income
         </CustomText>
 
-        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+        <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
           {isEmpty(incomeList)
             ? false
             : map(incomeList, (income) => {
@@ -163,20 +163,20 @@ const MyReport = ({ id }) => {
                         <div className="flex justify-between">
                           <div className="flex items-start justify-center">
                             <div
-                              className="cancelled-bg-color rounded mr-1.5 mt-2"
+                              className="bg-disable rounded mr-1.5 mt-2"
                               style={{ width: 3, height: 3 }}
                             ></div>
                             <div className="">
-                              <CustomText textClassName="disable-text text-xs">
+                              <CustomText textClassName="text-disable text-xs">
                                 {isEmpty(title) ? "-" : title}
                               </CustomText>
-                              <CustomText textClassName="disable-text text-xs leading-1">
+                              <CustomText textClassName="text-disable text-xs leading-1">
                                 {isEmpty(period) ? "-" : period}
                               </CustomText>
                             </div>
                           </div>
 
-                          <CustomText textClassName="disable-text text-xs">
+                          <CustomText textClassName="text-disable text-xs">
                             {isEmpty(amount) ? "-" : amount}
                           </CustomText>
                         </div>
@@ -194,17 +194,17 @@ const MyReport = ({ id }) => {
 
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Income</CustomText>
-            <CustomText textClassName="font-bold power-on-text">
+            <CustomText textClassName="font-bold text-aqua">
               {isEmpty(totalIncome) ? "0" : totalIncome}
             </CustomText>
           </div>
         </div>
 
-        <CustomText textClassName="disable-text text-xs pb-1">
+        <CustomText textClassName="text-disable text-xs pb-1">
           Expenses
         </CustomText>
 
-        <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+        <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
           {isEmpty(expenseList)
             ? false
             : map(expenseList, (expense) => {
@@ -218,12 +218,12 @@ const MyReport = ({ id }) => {
                       <CustomText textClassName="font-bold">
                         {isEmpty(label) ? "-" : label}
                       </CustomText>
-                      <CustomText textClassName="disable-text text-xs">
+                      <CustomText textClassName="text-disable text-xs">
                         {isEmpty(description) ? "-" : description}
                       </CustomText>
                     </div>
 
-                    <CustomText textClassName="disable-text text-xs">
+                    <CustomText textClassName="text-disable text-xs">
                       {isEmpty(amount) ? "0" : amount}
                     </CustomText>
                   </div>
@@ -238,7 +238,7 @@ const MyReport = ({ id }) => {
 
           <div className="flex justify-between">
             <CustomText textClassName="font-bold">Total Expenses</CustomText>
-            <CustomText textClassName="font-bold primary-text">
+            <CustomText textClassName="font-bold text-primary">
               {isEmpty(totalExpense) ? "0" : totalExpense}
             </CustomText>
           </div>
@@ -247,7 +247,7 @@ const MyReport = ({ id }) => {
         {isEmpty(outstandingList) ? (
           false
         ) : (
-          <CustomText textClassName="disable-text text-xs pb-1">
+          <CustomText textClassName="text-disable text-xs pb-1">
             Outstanding
           </CustomText>
         )}
@@ -255,7 +255,7 @@ const MyReport = ({ id }) => {
         {isEmpty(outstandingList) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             {map(outstandingList, (outstanding) => {
               const label = reportSelector.getLabel(outstanding);
               const amount = reportSelector.getAmount(outstanding);
@@ -270,21 +270,21 @@ const MyReport = ({ id }) => {
                     </CustomText>
                     <div className="flex items-start justify-center">
                       <div
-                        className="cancelled-bg-color rounded mr-1.5 mt-2"
+                        className="bg-disable rounded mr-1.5 mt-2"
                         style={{ width: 3, height: 3 }}
                       ></div>
                       <div className="">
-                        <CustomText textClassName="disable-text text-xs">
+                        <CustomText textClassName="text-disable text-xs">
                           {isEmpty(title) ? "-" : title}
                         </CustomText>
-                        <CustomText textClassName="disable-text text-xs leading-1">
+                        <CustomText textClassName="text-disable text-xs leading-1">
                           {isEmpty(description) ? "-" : description}
                         </CustomText>
                       </div>
                     </div>
                   </div>
 
-                  <CustomText textClassName="disable-text text-xs">
+                  <CustomText textClassName="text-disable text-xs">
                     {isEmpty(amount) ? "0" : amount}
                   </CustomText>
                 </div>
@@ -302,7 +302,7 @@ const MyReport = ({ id }) => {
                 Total Outstanding
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${totalOutstandingIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${totalOutstandingIsAmountNegative ? "text-primary" : "text-aqua"}`}
               >
                 {isEmpty(totalOutstandingAmount) ? "0" : totalOutstandingAmount}
               </CustomText>
@@ -313,10 +313,10 @@ const MyReport = ({ id }) => {
         {isEmpty(totalIncome) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">Total Income</CustomText>
-              <CustomText textClassName={`font-bold power-on-text`}>
+              <CustomText textClassName={`font-bold text-aqua`}>
                 {totalIncome}
               </CustomText>
             </div>
@@ -326,10 +326,10 @@ const MyReport = ({ id }) => {
         {isEmpty(totalExpense) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">Total Expense</CustomText>
-              <CustomText textClassName={`font-bold primary-text`}>
+              <CustomText textClassName={`font-bold text-primary`}>
                 {totalExpense}
               </CustomText>
             </div>
@@ -339,13 +339,13 @@ const MyReport = ({ id }) => {
         {isEmpty(currentMonthPNLAmount) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Current Month P&L
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${currentMonthPNLIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${currentMonthPNLIsAmountNegative ? "text-primary" : "text-aqua"}`}
               >
                 {currentMonthPNLAmount}
               </CustomText>
@@ -356,13 +356,13 @@ const MyReport = ({ id }) => {
         {isEmpty(carryForwardDeductionAmount) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Carry Forward Deduction
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "text-primary" : "text-aqua"}`}
               >
                 {carryForwardDeductionAmount}
               </CustomText>
@@ -373,13 +373,13 @@ const MyReport = ({ id }) => {
         {isEmpty(currentMonthPayoutAmount) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5 mb-4">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Current Month Payout
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
               >
                 {currentMonthPayoutAmount}
               </CustomText>
@@ -390,13 +390,13 @@ const MyReport = ({ id }) => {
         {isEmpty(totalNetPayoutAmount) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
                 Total Net Payout
               </CustomText>
               <CustomText
-                textClassName={`font-bold ${totalNetPayoutIsAmountNegative ? "primary-text" : "power-on-text"}`}
+                textClassName={`font-bold ${totalNetPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
               >
                 {totalNetPayoutAmount}
               </CustomText>
@@ -407,7 +407,7 @@ const MyReport = ({ id }) => {
         {isEmpty(grandTotal) ? (
           false
         ) : (
-          <div className="primaryWhite-bg-color global-box-shadow global-border-radius p-4 py-5">
+          <div className="bg-white global-box-shadow global-border-radius p-4 py-5">
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">Grand Total</CustomText>
               <CustomText textClassName="font-bold">{grandTotal}</CustomText>
@@ -479,7 +479,7 @@ const MyReport = ({ id }) => {
         <CustomText textClassName="font-bold pb-2">Total Net Payout</CustomText>
         <CustomText textClassName="font-light">
           This section displays the final net payout for the month. If the{" "}
-          <span className="font-bold black-text">Current Month Payout</span> is
+          <span className="font-bold text-black">Current Month Payout</span> is
           positive, it will match the net payout. However, if the{" "}
           <span className="font-bold">Current Month Payout</span> is negative,
           the net payout will be zero.

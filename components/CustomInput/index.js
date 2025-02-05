@@ -36,7 +36,7 @@ const CustomInput = ({
     >
       <div className="flex">
         {required ? (
-          <CustomText textClassName="error-text pr-1">*</CustomText>
+          <CustomText textClassName="text-error pr-1">*</CustomText>
         ) : (
           false
         )}
@@ -54,7 +54,7 @@ const CustomInput = ({
         <input
           ref={inputRef}
           type={inputType}
-          className={`grow input-primary primaryWhite-bg-color ${inputClassName}`}
+          className={`grow input-primary bg-white ${inputClassName}`}
           placeholder={placeholder}
           autoFocus={autoFocus}
           value={value}

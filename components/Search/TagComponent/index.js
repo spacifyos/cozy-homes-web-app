@@ -17,8 +17,8 @@ const TagComponent = ({ lists, onClickGeneralTag, className, style }) => {
           <CustomButton
             key={index}
             buttonText={name}
-            buttonClassName={`${isActive ? "tag-button-active" : "tag-button"} btn-sm cursor-pointer mr-2`}
-            textClassName="primary-text"
+            buttonClassName={`${isActive ? "btn-primary" : "btn-white"} btn-sm cursor-pointer mr-2`}
+            textClassName="text-primary"
             onClick={() => onClickGeneralTag(name, code)}
           />
         );

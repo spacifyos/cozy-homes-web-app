@@ -20,7 +20,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
           />
           <div className="flex gap-2 pl-2">
             <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold">
-              <span className="primary-text">Cheapest Rooms</span> Just For You
+              <span className="text-primary">Cheapest Rooms</span> Just For You
             </CustomText>
           </div>
         </div>

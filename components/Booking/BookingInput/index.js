@@ -14,7 +14,7 @@ const BookingInput = ({
   type = "text",
   onChange,
   disabled = false,
-  bgColor = "bg-color",
+  bgColor = "bg-primary-background",
   required,
   ...props
 }) => {

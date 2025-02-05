@@ -42,7 +42,7 @@ const AddBankSuccessful = ({}) => {
         </CustomText>
       </div>
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={"View My Bank"}
         onClick={onClickToMyBankPage}

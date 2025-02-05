@@ -12,7 +12,7 @@ const UserDetailComponent = ({ data }) => {
   const walletBalance = authSelector.getWalletBalance(data);
 
   return (
-    <div className="p-3 relative w-full primaryWhite-bg-color global-border-radius global-box-shadow flex justify-between items-end mb-6">
+    <div className="p-3 relative w-full bg-white global-border-radius global-box-shadow flex justify-between items-end mb-6">
       <div className="flex items-end">
         <CustomImage src={Images.userIcon} imageStyle={{ width: 50 }} />
 
@@ -24,7 +24,7 @@ const UserDetailComponent = ({ data }) => {
           <div className="flex items-center">
             <CustomImage src={Images.phoneIcon} imageStyle={{ width: 12 }} />
             <CustomText
-              textClassName="text-xs pl-2 disable-text"
+              textClassName="text-xs pl-2 text-disable"
               lineClamp={1}
             >
               {isEmpty(phoneNumber) ? "-" : phoneNumber}
@@ -33,7 +33,7 @@ const UserDetailComponent = ({ data }) => {
           <div className="flex items-center">
             <CustomImage src={Images.emailIcon} imageStyle={{ width: 12 }} />
             <CustomText
-              textClassName="text-xs pl-2 disable-text"
+              textClassName="text-xs pl-2 text-disable"
               lineClamp={1}
             >
               {isEmpty(email) ? "-" : email}
@@ -47,16 +47,16 @@ const UserDetailComponent = ({ data }) => {
       {/*  className="flex justify-end items-center cursor-pointer"*/}
       {/*>*/}
       {/*  <CustomImage*/}
-      {/*    className="bg-color global-box-shadow global-border-radius"*/}
+      {/*    className="bg-primary-background global-box-shadow global-border-radius"*/}
       {/*    src={Images.logoImage}*/}
       {/*    imageStyle={{ width: 40, height: 40 }}*/}
       {/*  />*/}
 
       {/*  <div className="flex flex-col pl-2">*/}
-      {/*    <CustomText textClassName="disable-text text-xs">*/}
+      {/*    <CustomText textClassName="text-disable text-xs">*/}
       {/*      My Wallet*/}
       {/*    </CustomText>*/}
-      {/*    <CustomText textClassName="primary-text text-base font-bold">*/}
+      {/*    <CustomText textClassName="text-primary text-base font-bold">*/}
       {/*      {`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
       {/*    </CustomText>*/}
       {/*  </div>*/}

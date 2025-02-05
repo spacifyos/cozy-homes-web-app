@@ -8,15 +8,15 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
   const textColor = (value) => {
     switch (value) {
       case "Total Paid Invoices":
-        return "completed-text";
+        return "text-available";
       case "Total Overdue Invoices":
-        return "error-text";
+        return "text-error";
       case "Total Unpaid Invoices":
-        return "pending-text";
+        return "text-warning";
       case "Total Invoices":
         return "primary-text";
       default:
-        return "pending-text";
+        return "text-warning";
     }
   };
 

@@ -21,7 +21,7 @@ const ChangePasswordModal = ({
       <BookingInput
         title="Current Password"
         placeholder={t("editProfile.password")}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-3"
         value={currentPasswordValue}
         onChange={onChangeCurrentPassword}
@@ -32,7 +32,7 @@ const ChangePasswordModal = ({
       <BookingInput
         title={t("editProfile.password")}
         placeholder={t("editProfile.password")}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-3"
         value={passwordValue}
         onChange={onChangePassword}
@@ -43,7 +43,7 @@ const ChangePasswordModal = ({
       <BookingInput
         title={t("editProfile.confirmPassword")}
         placeholder={t("editProfile.confirmPassword")}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-3"
         value={confirmPasswordValue}
         onChange={onChangeConfirmPassword}
@@ -53,7 +53,7 @@ const ChangePasswordModal = ({
 
       <div className="grid grid-cols-2 gap-4 pt-2">
         <CustomButton
-          buttonClassName={`${changePasswordLoading ? "disable-btn" : "default-btn-outline"}`}
+          buttonClassName={`${changePasswordLoading ? "btn-disable" : "btn-primary-outline"}`}
           buttonText={t("myTenancy.cancel")}
           disable={changePasswordLoading}
           onClick={() =>
@@ -62,7 +62,7 @@ const ChangePasswordModal = ({
         />
 
         <CustomButton
-          buttonClassName={`${changePasswordLoading ? "disable-btn" : "primary-btn"}`}
+          buttonClassName={`${changePasswordLoading ? "btn-disable" : "btn-primary"}`}
           buttonText={t("myTenancy.submit")}
           onClick={onClickChangePassword}
           loading={changePasswordLoading}

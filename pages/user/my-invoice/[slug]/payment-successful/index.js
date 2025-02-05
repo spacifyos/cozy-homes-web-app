@@ -65,7 +65,7 @@ const PaymentSuccessful = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Invoice Payment Successful - Spacify Asia" />
 
       <DesktopLayout
@@ -76,21 +76,21 @@ const PaymentSuccessful = ({ id }) => {
               <ul>
                 {/*<li>*/}
                 {/*  <a href={"/user/my-property"}>*/}
-                {/*    <CustomText textClassName="text-base disable-text">*/}
+                {/*    <CustomText textClassName="text-base text-disable">*/}
                 {/*      My Property*/}
                 {/*    </CustomText>*/}
                 {/*  </a>*/}
                 {/*</li>*/}
                 <li>
                   <a href={"/user/my-invoice"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Invoice
                     </CustomText>
                   </a>
                 </li>
                 <li>
                   <a href={`/user/my-invoice/${id}`}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       {id}
                     </CustomText>
                   </a>
@@ -124,7 +124,7 @@ const PaymentSuccessful = ({ id }) => {
           {/*  {t("invoiceSuccessful.spacifyCoinsEarned")}*/}
           {/*</CustomText>*/}
 
-          {/*<CustomText textClassName="primary-text font-bold text-lg">*/}
+          {/*<CustomText textClassName="text-primary font-bold text-lg">*/}
           {/*  3,800*/}
           {/*</CustomText>*/}
           <CustomText textClassName="font-bold text-lg">
@@ -132,10 +132,10 @@ const PaymentSuccessful = ({ id }) => {
           </CustomText>
         </div>
 
-        <div className="flex flex-col global-border-radius primaryWhite-bg-color py-2 px-4 global-box-shadow w-full my-7">
+        <div className="flex flex-col global-border-radius bg-white py-2 px-4 global-box-shadow w-full my-7">
           <div className="flex items-center justify-center py-4">
             <CustomImage src={Images.checkGreenIcon} className="mr-2 w-6" />
-            <CustomText textClassName="black-text font-bold text-base">
+            <CustomText textClassName="text-black font-bold text-base">
               Payment Completed
             </CustomText>
           </div>
@@ -143,10 +143,10 @@ const PaymentSuccessful = ({ id }) => {
           <div className="divider-line" style={{ margin: 0 }}></div>
 
           <div className="flex flex-col items-center py-4">
-            <CustomText textClassName="primary-text font-bold text-base">
+            <CustomText textClassName="text-primary font-bold text-base">
               RM{isEmpty(totalAmount) ? "0" : totalAmount}
             </CustomText>
-            <CustomText textClassName="disable-text text-xs">
+            <CustomText textClassName="text-disable text-xs">
               {isEmpty(paidAt)
                 ? moment(new Date()).format("DD MMM YYYY HH:mm")
                 : paidAt}
@@ -155,13 +155,13 @@ const PaymentSuccessful = ({ id }) => {
         </div>
 
         <div className="relative pt-6 flex justify-center w-full">
-          <div className="primary-bg-color p-2 global-border-radius absolute top-0">
+          <div className="bg-primary p-2 global-border-radius absolute top-0">
             <CustomImage
               src={Images.invoiceIcon}
               imageStyle={{ width: 35, height: 35 }}
             />
           </div>
-          <div className="global-box-shadow global-border-radius p-5 primaryWhite-bg-color pt-10 w-full">
+          <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <CustomLabelValue
               value={isEmpty(billTo) ? "-" : billTo}
               label={"Bill To"}
@@ -188,7 +188,7 @@ const PaymentSuccessful = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="text-xs disable-text">
+            <CustomText textClassName="text-xs text-disable">
               Items
             </CustomText>
 
@@ -207,16 +207,16 @@ const PaymentSuccessful = ({ id }) => {
                       >
                         <div className="">
                           <CustomText
-                            textClassName={`black-text text-sm font-bold`}
+                            textClassName={`text-black text-sm font-bold`}
                           >
                             {itemName}
                           </CustomText>
-                          <CustomText textClassName={`text-xs disable-text`}>
+                          <CustomText textClassName={`text-xs text-disable`}>
                             RM{unitPrice} per unit
                           </CustomText>
                         </div>
 
-                        <CustomText textClassName={`black-text font-bold`}>
+                        <CustomText textClassName={`text-black font-bold`}>
                           X{quantity}
                         </CustomText>
                       </div>
@@ -230,16 +230,16 @@ const PaymentSuccessful = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 Subtotal
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold text-end">
                 RM{isEmpty(grandTotal) ? "0" : grandTotal}
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 Tax
               </CustomText>
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold text-end">
                 RM{isEmpty(tax) ? "0" : tax}
               </CustomText>
             </div>
@@ -250,10 +250,10 @@ const PaymentSuccessful = ({ id }) => {
             ></div>
 
             <div className="grid grid-cols-2 gap-2">
-              <CustomText textClassName="col-span-1 black-text text-sm font-bold">
+              <CustomText textClassName="col-span-1 text-black text-sm font-bold">
                 Total Amount
               </CustomText>
-              <CustomText textClassName="col-span-1 primary-text text-sm font-bold text-end">
+              <CustomText textClassName="col-span-1 text-primary text-sm font-bold text-end">
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}
               </CustomText>
             </div>

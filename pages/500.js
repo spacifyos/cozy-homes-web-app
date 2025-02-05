@@ -11,7 +11,7 @@ export default function Custom500() {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-color">
+        <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
             <NextSeo title="Internet Server Error - Spacify Asia" />
             <div className="flex gap-1">
                 <CustomText
@@ -44,7 +44,7 @@ export default function Custom500() {
 
             <CustomButton
                 buttonText="Go to home page"
-                buttonClassName="primary-btn"
+                buttonClassName="btn-primary"
                 onClick={onClickGoToBack}
             />
         </div>

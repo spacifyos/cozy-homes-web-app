@@ -80,7 +80,7 @@ const EAgreement = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My E-Agreement - Spacify Asia" />
 
       <DesktopLayout
@@ -119,7 +119,7 @@ const EAgreement = () => {
                 <CustomButton
                   key={index}
                   buttonText={name}
-                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "primary-btn" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "btn-primary" : "default-btn"} mr-2`}
                   textClassName="text-xs"
                   onClick={() => onClickSelectStatus(value)}
                 />
@@ -142,7 +142,7 @@ const EAgreement = () => {
           {hasMorePage && lastPage > 1 && !isEmpty(agreementListingData) ? (
             <div className="flex justify-center pt-3">
               <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonClassName="btn-primary min-h-9 h-9 w-32"
                 buttonText="Load More"
                 textClassName="text-xs"
                 loading={

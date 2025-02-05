@@ -112,7 +112,7 @@ const MyStay = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Stay - Spacify Asia" />
 
       <DesktopLayout

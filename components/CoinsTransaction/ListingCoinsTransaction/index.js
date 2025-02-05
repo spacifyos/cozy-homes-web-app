@@ -11,7 +11,7 @@ const ListingCoinsTransaction = ({ item }) => {
 
   return (
     <div className="pb-4 w-full">
-      <div className="global-border-radius global-box-shadow primaryWhite-bg-color grid grid-cols-2 p-5 relative">
+      <div className="global-border-radius global-box-shadow bg-white grid grid-cols-2 p-5 relative">
         <div className="flex flex-col col-span-1">
           <CustomText textClassName="text-xs disable-text pb-1">
             {date}

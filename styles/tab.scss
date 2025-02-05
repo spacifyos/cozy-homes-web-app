@@ -1,29 +1,5 @@
-@import "utils/color";
-
 .tab:is(.tab-active, [aria-selected="true"]):not(.tab-disabled):not(
     [disabled]
   ) {
-  border-color: $primary-black-color !important;
+  @apply border-black !important;
 }
-
-//.tabs-lifted
-//  > .tab:is(.tab-active, [aria-selected="true"]):not(.tab-disabled):not(
-//    [disabled]
-//  ) {
-//  @apply primaryWhite-bg-color;
-//  //border-inline-start-color: $primary-color !important;
-//  //border-inline-end-color: $primary-color !important;
-//  //border-top-color: $primary-color !important;
-//}
-//
-//.tabs-lifted
-//  > .tab:is(.tab-active, [aria-selected="true"]):not(.tab-disabled):not(
-//    [disabled]
-//  ):before {
-//  --radius-start: unset !important;
-//  --radius-end: unset !important;
-//}
-//
-//.tabs-lifted > .tab {
-//  //border-bottom-color: $primary-color !important;
-//}

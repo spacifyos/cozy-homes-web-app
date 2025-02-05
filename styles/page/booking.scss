@@ -1,46 +1,43 @@
-@import "../utils/color";
-@import "../utils/scaling";
-
 .booking-textarea {
   width: 100%;
-  border: 1px solid $disable-color;
+  @apply border-disable;;
   border-radius: 10px;
   padding: 10px;
   margin: 4px 0;
-  color: $primary-black-color;
+  @apply text-black;
   height: 100px;
   resize: none;
   @apply text-xs;
 }
 
 .booking-textarea::placeholder {
-  color: $disable-color;
+  @apply text-disable;;
 }
 
 .booking-input {
+  @apply bg-primary-background;
   width: 100%;
-  border: 1px solid $disable-color;
-  background-color: $primary-bg-color;
+  @apply border-disable;;
   border-radius: 10px;
   padding: 10px;
   margin: 4px 0;
-  color: $primary-black-color;
+  @apply text-black;
   height: 40px;
 
   @apply text-xs;
 }
 
 .booking-input::placeholder {
-  color: $disable-color;
+  @apply text-disable;;
 }
 
 .booking-select-container {
   width: 100%;
-  border: 1px solid $disable-color;
+  @apply border-disable;;
   border-radius: 10px;
   margin: 4px 0;
   padding-right: 10px;
-  color: $primary-black-color;
+  @apply text-black;
 }
 
 .booking-select {
@@ -48,29 +45,28 @@
   width: 100%;
   border-radius: 10px;
   padding: 10px 0 10px 10px;
-  color: $primary-black-color;
+  @apply text-black;
   -webkit-appearance: none;
   @apply text-xs;
 
   option[value=""][disabled] {
     display: none;
-    color: $disable-color;
+    @apply text-disable;;
   }
 
   option {
-    color: $primary-black-color;
+    @apply text-black;
   }
 }
 
 .booking-select:required:invalid {
   @apply text-xs;
-  color: $disable-color;
+  @apply text-disable;;
 }
 
 .error-message {
-  color: $error-color;
   padding-bottom: 4px;
-  @apply text-xs;
+  @apply text-xs text-error;
 }
 
 .input-title {
@@ -91,10 +87,10 @@
 }
 
 .booking-radio:checked {
-  background-color: $primary-color;
+  @apply bg-primary;
   box-shadow:
-    0 0 0 4px $primary-bg-color inset,
-    0 0 0 4px $primary-bg-color inset;
+    0 0 0 4px #f5f8fd inset,
+    0 0 0 4px #f5f8fd inset;
 }
 
 .booking-radio {

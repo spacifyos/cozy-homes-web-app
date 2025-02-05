@@ -20,7 +20,7 @@ const StepSection = ({ t, data }) => {
   };
 
   return (
-    <div className="global-box-shadow global-border-radius primaryWhite-bg-color p-7">
+    <div className="global-box-shadow global-border-radius bg-white p-7">
       <div className="flex flex-row items-start gap-2 ">
         <CustomImage
           src={Images.stepCompleteIcon}

@@ -49,11 +49,11 @@ const DesktopSearchBar = ({
         {/*    return (*/}
         {/*      <div*/}
         {/*        onClick={() => setSearchTypeValue(value)}*/}
-        {/*        className={`cursor-pointer px-6 py-4 w-40 ${isEqual(searchTypeValue, value) ? "primaryWhite-bg-color" : "bg-color"}`}*/}
+        {/*        className={`cursor-pointer px-6 py-4 w-40 ${isEqual(searchTypeValue, value) ? "bg-white" : "bg-primary-background"}`}*/}
         {/*        style={{ borderRadius: "10px 10px 0 0" }}*/}
         {/*      >*/}
         {/*        <CustomText*/}
-        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "primary-text font-bold" : "disable-text"} text-base`}*/}
+        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "text-primary font-bold" : "disable-text"} text-base`}*/}
         {/*        >*/}
         {/*          {name}*/}
         {/*        </CustomText>*/}
@@ -63,7 +63,7 @@ const DesktopSearchBar = ({
         {/*</div>*/}
 
         <div
-          className="xl:p-8 lg:p-8 md:p-6 sm:p-4 p-4 global-box-shadow primaryWhite-bg-color"
+          className="xl:p-8 lg:p-8 md:p-6 sm:p-4 p-4 global-box-shadow bg-white"
           style={{ borderRadius: "10px 10px 10px 10px" }}
         >
           <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ const DesktopSearchBar = ({
 
             <div className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2">
               <CustomButton
-                buttonClassName="primary-btn w-full"
+                buttonClassName="btn-primary w-full"
                 buttonText="Search"
                 onClick={() =>
                   onClickSearch(keywordValue, stateValue, cityValue)
@@ -139,7 +139,7 @@ const DesktopSearchBar = ({
 
           {/*  <div className="col-span-2">*/}
           {/*    <CustomButton*/}
-          {/*      buttonClassName="primary-btn w-full"*/}
+          {/*      buttonClassName="btn-primary w-full"*/}
           {/*      buttonText="Search"*/}
           {/*      onClick={onClickSearch}*/}
           {/*    />*/}

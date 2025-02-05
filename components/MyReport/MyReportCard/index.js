@@ -18,7 +18,7 @@ const MyReportCard = ({ data, targetMonth }) => {
           <a
             href={`/user/owner/my-report/${id}?month=${isEmpty(targetMonth) ? moment().format("DD-MM-YYYY") : moment(targetMonth).format("DD-MM-YYYY")}`}
             key={index}
-            className="flex items-center primaryWhite-bg-color global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
+            className="flex items-center bg-white global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
           >
             <CustomImage src={Images.paperIcon} imageStyle={{ width: 25 }} />
 
@@ -26,7 +26,7 @@ const MyReportCard = ({ data, targetMonth }) => {
               {/*<CustomText textClassName="text-xs disable-text italic">*/}
               {/*  08 Aug 2024, 3.35pm*/}
               {/*</CustomText>*/}
-              <CustomText textClassName="text-sm primary-text font-bold">
+              <CustomText textClassName="text-sm text-primary font-bold">
                 {isEmpty(propertyName) ? "-" : propertyName}
               </CustomText>
               <CustomText textClassName="text-sm font-bold">

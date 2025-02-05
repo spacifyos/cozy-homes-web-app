@@ -32,7 +32,7 @@ const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
       {_.map(lists, (list, index) => {
         return (
           <div
-            className={`detail-feature-container ${index === 3 ? "secondary-bg-color" : ""} flex flex-col`}
+            className={`detail-feature-container ${index === 3 ? "bg-secondary-background" : ""} flex flex-col`}
             key={index}
           >
             {/*<div>*/}

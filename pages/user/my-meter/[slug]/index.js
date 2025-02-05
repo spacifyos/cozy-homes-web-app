@@ -135,7 +135,7 @@ const MyMeterOverview = ({ id }) => {
   // };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Meter Overview - Spacify Asia" />
 
       <DesktopLayout
@@ -147,7 +147,7 @@ const MyMeterOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/user/my-meter"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       My Meter
                     </CustomText>
                   </a>

@@ -17,10 +17,10 @@ const MeterDetail = ({ data }) => {
   return (
     <div className="meter-response">
       <div className="flex flex-1 flex-col items-center">
-        <div className="primary-bg-color p-3 global-border-radius">
+        <div className="bg-primary p-3 global-border-radius">
           <CustomImage src={Images.meterIcon} imageStyle={{ width: 40 }} />
         </div>
-        <CustomText textClassName="primary-text font-bold ">
+        <CustomText textClassName="text-primary font-bold ">
           {isEmpty(name) ? "-" : name}
         </CustomText>
 
@@ -36,7 +36,7 @@ const MeterDetail = ({ data }) => {
           label={"Serial Number"}
           value={serialNumber === 0 ? "" : serialNumber}
         />
-        <CustomText textClassName="text-xs disable-text">
+        <CustomText textClassName="text-xs text-disable">
           Meter Status
         </CustomText>
 
@@ -47,7 +47,7 @@ const MeterDetail = ({ data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${wifi ? "power-on-text" : "disable-text"} text-xs`}
+              textClassName={`${wifi ? "text-aqua" : "text-disable"} text-xs`}
             >
               Wifi
             </CustomText>
@@ -58,7 +58,7 @@ const MeterDetail = ({ data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText
-              textClassName={`${power ? "power-on-text" : "disable-text"} text-xs`}
+              textClassName={`${power ? "text-aqua" : "text-disable"} text-xs`}
             >
               Power
             </CustomText>

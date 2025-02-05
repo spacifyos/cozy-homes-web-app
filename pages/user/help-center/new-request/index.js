@@ -488,7 +488,7 @@ const NewRequest = ({}) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Help Center New Request - Spacify Asia" />
 
       <DesktopLayout
@@ -502,7 +502,7 @@ const NewRequest = ({}) => {
               <ul className="flex-wrap">
                 <li>
                   <a href={"/user/help-center"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Help Center
                     </CustomText>
                   </a>
@@ -525,7 +525,7 @@ const NewRequest = ({}) => {
         }
       >
         <div className="flex flex-col flex-1 h-full">
-          <div className="global-box-shadow global-border-radius primaryWhite-bg-color flex flex-col p-5 h-full">
+          <div className="global-box-shadow global-border-radius bg-white flex flex-col p-5 h-full">
             <GeneralInformationSection
               tenancyOption={tenancyOption}
               setPostData={setPostData}
@@ -610,7 +610,7 @@ const NewRequest = ({}) => {
                   <div className="flex justify-center">
                     <CustomButton
                       buttonStyles={{ padding: "5px 30px" }}
-                      buttonClassName="primary-btn"
+                      buttonClassName="btn-primary"
                       buttonText={"Continue"}
                       onClick={() =>
                         onClickDisplayAuthorizationComponent(

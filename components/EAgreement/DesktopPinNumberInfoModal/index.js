@@ -33,12 +33,12 @@ const DesktopPinNumberInfoModal = ({
         <div className="grid grid-cols-2 gap-2 pt-6">
           <CustomButton
             buttonText={"Cancel"}
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             onClick={() => onClickCloseModal("desktop")}
           />
           <CustomButton
             buttonText={"Set pin number"}
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={() => onClickToSetPinNumber("desktop")}
           />
         </div>

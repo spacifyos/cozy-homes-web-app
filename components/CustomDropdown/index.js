@@ -4,7 +4,7 @@ import { map, isEmpty, size, get } from "lodash";
 const CustomDropdown = ({ items, top, onClickDownloadDocument }) => {
   return (
     <div
-      className="absolute  right-4 global-border-radius global-box-shadow primaryWhite-bg-color max-w-36 min-w-10 z-50 global-border"
+      className="absolute  right-4 global-border-radius global-box-shadow bg-white max-w-36 min-w-10 z-50 global-border"
       style={{ top: top }}
     >
       <div className="flex flex-col justify-center items-center w-36 ">

@@ -55,7 +55,7 @@ const MyMeter = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Meter - Spacify Asia" />
 
       <DesktopLayout
@@ -96,7 +96,7 @@ const MyMeter = () => {
           {hasMorePage && lastPage > 1 && !isEmpty(meterListingData) ? (
             <div className="flex justify-center">
               <CustomButton
-                buttonClassName="primary-btn min-h-9 h-9 w-32"
+                buttonClassName="btn-primary min-h-9 h-9 w-32"
                 buttonText="Load More"
                 textClassName="text-xs"
               />

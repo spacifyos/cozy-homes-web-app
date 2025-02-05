@@ -89,7 +89,7 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
 
       <div className="overflow-x-auto hide-scroll-bar pb-4 px-1">
         <div
-          className="p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col mb-3"
+          className="p-4 bg-white global-box-shadow global-border-radius flex flex-col mb-3"
           style={{ width: 1293 }}
         >
           <div className="flex">
@@ -115,7 +115,7 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
               return (
                 <div className="flex justify-center" key={index}>
                   <CustomText
-                    textClassName="text-sm text-center primary-text"
+                    textClassName="text-sm text-center text-primary"
                     styles={{ width: index === 0 || index === 1 ? 100 : 70 }}
                   >
                     {item}
@@ -139,14 +139,14 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
 
           return (
             <div
-              className={`p-4 primaryWhite-bg-color global-box-shadow global-border-radius flex flex-col ${size(roomList) === index + 1 ? "" : "mb-3"}`}
+              className={`p-4 bg-white global-box-shadow global-border-radius flex flex-col ${size(roomList) === index + 1 ? "" : "mb-3"}`}
               style={{ width: 1293 }}
               key={index}
             >
               <div className="flex">
                 <div className="flex justify-center items-center">
                   <div style={{ width: 100 }}>
-                    <CustomText textClassName="text-sm primary-text font-bold">
+                    <CustomText textClassName="text-sm text-primary font-bold">
                       {room}
                     </CustomText>
                     <CustomText textClassName="text-xs">{roomType}</CustomText>
@@ -180,13 +180,13 @@ const RentTrackerComponent = ({ data, yearValue, setYearValue, colorList }) => {
 
                                 switch (status) {
                                   case "full_paid":
-                                    return "power-on-text";
+                                    return "text-aqua";
                                   case "overdue":
-                                    return "error-text";
+                                    return "text-error";
                                   case "coming_due":
-                                    return "pending-text";
+                                    return "text-warning";
                                   default:
-                                    return "black-text";
+                                    return "text-black";
                                 }
                               };
 

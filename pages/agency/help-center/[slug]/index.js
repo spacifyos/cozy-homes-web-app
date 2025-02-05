@@ -681,7 +681,7 @@ const RequestOverview = ({ id }) => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="Help Center Overview - Spacify Asia" />
 
       <DesktopLayout

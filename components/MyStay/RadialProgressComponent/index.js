@@ -43,7 +43,7 @@ const RadialProgressComponent = ({
 
   return (
     <div
-      className="radial-progress primaryWhite-bg-color primary-text border-16 border-secondary-color global-box-shadow"
+      className="radial-progress bg-white text-primary border-16 border-secondary-color global-box-shadow"
       style={{
         "--value": percentage,
         "--size": `${calculateChartSize(dimensions)}px`,
@@ -55,7 +55,7 @@ const RadialProgressComponent = ({
         <CustomText textClassName="text-xs disable-text line-clamp-2 text-center">
           Tenancy Remaining
         </CustomText>
-        <CustomText textClassName="text-sm primary-text font-bold">
+        <CustomText textClassName="text-sm text-primary font-bold">
           {tenancyRemaining === 0 ? "0" : tenancyRemaining}
         </CustomText>
         <CustomText textClassName="text-xs">Days</CustomText>

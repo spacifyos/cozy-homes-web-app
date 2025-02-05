@@ -48,7 +48,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
   }, [targetRef]);
 
   return (
-    <div className="global-border-radius global-box-shadow primaryWhite-bg-color pt-4 pb-2 px-4">
+    <div className="global-border-radius global-box-shadow bg-white pt-4 pb-2 px-4">
       <div className="flex justify-between items-center">
         <CustomLabelValue
           label={t("myStay.tenancyCode")}
@@ -79,7 +79,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
 
       <div className="flex flex-col items-start">
         <div className="flex items-end py-3">
-          <div className="primary-bg-color p-2 global-border-radius ">
+          <div className="bg-primary p-2 global-border-radius ">
             <CustomImage src={Images.buildingIcon} imageStyle={{ width: 30 }} />
           </div>
 

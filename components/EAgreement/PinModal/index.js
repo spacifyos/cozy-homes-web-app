@@ -20,7 +20,7 @@ const PinModal = ({
       <BookingInput
         title={t("viewAgreement.pinNUmber")}
         placeholder={t("viewAgreement.enterSixDigitNumber")}
-        bgColor="primaryWhite-bg-color"
+        bgColor="bg-white"
         className="pb-3"
         value={pinNumberValue}
         onChange={onChangePinNumberValue}
@@ -31,12 +31,12 @@ const PinModal = ({
       <div className="grid grid-cols-2 gap-2 pt-6">
         <CustomButton
           buttonText={t("viewAgreement.cancel")}
-          buttonClassName="default-btn-outline"
+          buttonClassName="btn-primary-outline"
           onClick={() => onClickClosePinModal("mobile")}
         />
         <CustomButton
           buttonText={t("viewAgreement.submit")}
-          buttonClassName="primary-btn"
+          buttonClassName="btn-primary"
           onClick={() => onClickSubmitSignature("mobile")}
         />
       </div>

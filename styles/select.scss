@@ -1,19 +1,14 @@
-@import "utils/color";
-@import "utils/scaling";
-@import "text";
-
 @mixin custom-select($bgColor) {
   border-radius: 0.5rem;
 
   select {
-    color: $primary-black-color;
+    @apply text-black border-white;
     background-color: $bgColor;
-    border: 1px solid $primary-white-color;
   }
 
   select:required:invalid {
     @apply text-sm;
-    color: $disable-color;
+    @apply text-disable;;
     //font-style: italic !important;
   }
 
@@ -22,7 +17,7 @@
   }
 
   option {
-    color: $primary-black-color;
+    @apply text-black;
   }
 
   select:focus {
@@ -36,9 +31,9 @@
   outline: none;
   outline-offset: unset;
   border: none;
-  @include custom-select($primary-white-color);
+  @include custom-select(#FFFFFF);
 }
 
 .default-select {
-  @include custom-select($primary-white-color);
+  @include custom-select(#FFFFFF);
 }

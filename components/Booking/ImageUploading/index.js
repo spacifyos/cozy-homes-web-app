@@ -8,7 +8,7 @@ const ImageUploading = ({ loading }) => {
         backgroundColor: "rgba(255,255,255,0.7)",
       }}
     >
-      <span className="loading loading-spinner loading-lg primary-text"></span>
+      <span className="loading loading-spinner loading-lg text-primary"></span>
     </div>
   ) : (
     false

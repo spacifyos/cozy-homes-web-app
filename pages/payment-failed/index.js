@@ -20,7 +20,7 @@ const PaymentFailed = ({ id }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center relative bg-color h-screen">
+    <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Payment Failed - Spacify Asia" />
       {/*<CustomImage*/}
       {/*  src={Images.cancelIcon}*/}
@@ -45,7 +45,7 @@ const PaymentFailed = ({ id }) => {
       </div>
 
       <CustomButton
-        buttonClassName="primary-btn"
+        buttonClassName="btn-primary"
         buttonStyles={{ padding: "5px 30px" }}
         buttonText={"Back to home page"}
         onClick={onClickGoMainPage}

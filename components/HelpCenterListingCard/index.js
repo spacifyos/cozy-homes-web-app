@@ -18,7 +18,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
 
   return (
     <div
-      className="global-box-shadow global-border-radius p-4 primaryWhite-bg-color cursor-pointer relative"
+      className="global-box-shadow global-border-radius p-4 bg-white cursor-pointer relative"
       onClick={() => onClickToRequestOverview(id)}
     >
       <div className="flex items-center gap-2 pb-2">
@@ -35,11 +35,11 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
         <div className="pr-2">
           <CustomText textClassName="font-bold text-sm">{date}</CustomText>
 
-          <CustomText textClassName="font-bold primary-text">
+          <CustomText textClassName="font-bold text-primary">
             Request #: {requestNumber}
           </CustomText>
 
-          <CustomText textClassName="disable-text text-xs" lineClamp={2}>
+          <CustomText textClassName="text-disable text-xs" lineClamp={2}>
             {requestInfo}
           </CustomText>
         </div>
@@ -76,7 +76,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
       </div>
 
       {/*{_.isEqual(item.status, "In Progress") ? (*/}
-      {/*  <div className="error-bg-color rounded-2xl h-3 w-3 absolute right-0 top-0"></div>*/}
+      {/*  <div className="bg-error rounded-2xl h-3 w-3 absolute right-0 top-0"></div>*/}
       {/*) : (*/}
       {/*  false*/}
       {/*)}*/}

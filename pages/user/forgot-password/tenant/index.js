@@ -257,7 +257,7 @@ const ForgotPasswordTenant = () => {
         </div>
 
         <div className="w-full">
-          <div className="p-3 global-box-shadow primaryWhite-bg-color pb-10 global-border-radius">
+          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
             <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
               Reset password as
             </CustomText>

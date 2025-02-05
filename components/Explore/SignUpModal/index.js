@@ -176,7 +176,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
             </div>
 
             <div className="w-full">
-              <div className="p-6 global-box-shadow primaryWhite-bg-color global-border-radius">
+              <div className="p-6 global-box-shadow bg-white global-border-radius">
                 <CustomText textClassName="text-center pb-1 font-bold text-lg">
                   You’re signing up as
                 </CustomText>
@@ -204,14 +204,14 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
                   value={nameValue}
                   onChange={onChangeNameValue}
                 />
 
                 <div className="grid grid-cols-4 gap-2 mb-4">
                   <select
-                    className="select select-bordered w-full max-w-xs primaryWhite-bg-color user-input col-span-2"
+                    className="select select-bordered w-full max-w-xs bg-white user-input col-span-2"
                     value={countryCode}
                     onChange={onChangeCountryCode}
                   >
@@ -230,7 +230,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                   <input
                     type="number"
                     placeholder={"12 345 6789"}
-                    className="input input-bordered w-full primaryWhite-bg-color col-span-2 user-input"
+                    className="input input-bordered w-full bg-white col-span-2 user-input"
                     value={phoneValue}
                     onChange={onChangePhoneValue}
                   />
@@ -239,7 +239,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
                   value={emailValue}
                   onChange={onChangeEmailValue}
                 />
@@ -247,7 +247,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 <input
                   type="password"
                   placeholder="Your Password"
-                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
                   value={passwordValue}
                   onChange={onChangePasswordValue}
                 />
@@ -255,7 +255,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                 <input
                   type="password"
                   placeholder="Confirm Your Password"
-                  className="input input-bordered w-full primaryWhite-bg-color mb-4 user-input"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
                   value={confirmPasswordValue}
                   onChange={onChangeConfirmPasswordValue}
                 />
@@ -284,7 +284,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "secondary-btn" : "primary-btn"} w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "btn-secondary" : "btn-primary"} w-2/4 mb-2`}
                     buttonText="Sign Up for FREE"
                     onClick={handleSubmit}
                     disable={signUpLoading}

@@ -147,7 +147,7 @@ const OwnerHome = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <NextSeo title="My Property | Owner - Spacify Asia" />
 
       <DesktopLayout

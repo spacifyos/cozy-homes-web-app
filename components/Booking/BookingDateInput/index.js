@@ -12,7 +12,7 @@ const BookingDateInput = ({
   inputClassName,
   onChange,
   disabled = false,
-  bgColor = "bg-color",
+  bgColor = "bg-primary-background",
   required,
   type = "date",
   inputStyle,

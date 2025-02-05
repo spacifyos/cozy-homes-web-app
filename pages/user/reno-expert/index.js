@@ -26,7 +26,7 @@ const Testing = () => {
   };
 
   return (
-    <div className="min-h-screen primaryWhite-bg-color">
+    <div className="min-h-screen bg-white">
       <DesktopLayout
         hideFooter
         pageBreadcrumbs={

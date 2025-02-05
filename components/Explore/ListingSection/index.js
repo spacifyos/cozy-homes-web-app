@@ -37,25 +37,25 @@ const ListingSection = ({
 
       {/*<CustomButton*/}
       {/*  buttonText="City"*/}
-      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "City") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "City") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("City")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="College"*/}
-      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "College") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "College") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("College")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="Condominium"*/}
-      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "Condominium") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "Condominium") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("Condominium")}*/}
       {/*/>*/}
       {/*<CustomButton*/}
       {/*  buttonText="All"*/}
-      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "primary-btn" : "default-btn"} mr-2`}*/}
+      {/*  buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "btn-primary" : "default-btn"} mr-2`}*/}
       {/*  textClassName="text-xs"*/}
       {/*  onClick={() => onClickSelectCategory("All")}*/}
       {/*/>*/}

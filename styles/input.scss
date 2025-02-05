@@ -1,14 +1,12 @@
-@import "utils/color";
-@import "utils/scaling";
-
 @mixin custom-input($bgColor) {
+  @apply border-white;
   background-color: $bgColor;
-  border: 1px solid $primary-white-color;
 
   textarea {
+
     width: 100%;
     height: 100%;
-    color: $primary-black-color;
+    @apply text-black;
     -moz-appearance: textfield;
   }
   textarea:focus {
@@ -18,7 +16,7 @@
 }
 input {
   width: 100%;
-  color: $primary-black-color;
+  @apply text-black;
   -moz-appearance: textfield;
 }
 
@@ -54,17 +52,17 @@ input:focus {
 }
 
 .user-input {
-  color: $primary-black-color;
-  border-color: $disable-color;
+  @apply text-black;
+  @apply border-disable;;
 }
 
 .default-input {
-  @include custom-input($primary-white-color);
+  @include custom-input(#FFFFFF);
 }
 
 .user-input:focus,
 .user-input:focus-within {
-  border: 1px solid $disable-color;
+  @apply border-disable;;
   outline: none;
 }
 
@@ -75,7 +73,7 @@ input:focus {
   outline: none;
   outline-offset: unset;
   border: none;
-  @include custom-input($primary-white-color);
+  @include custom-input(#FFFFFF);
 }
 
 .resize-input-icon {

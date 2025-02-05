@@ -76,7 +76,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
                     <div className="pt-4 pl-4">
                       {showLabel ? (
                         <div className="flex pb-1">
-                          <CustomText textClassName="text-xs text-white available-bg-color px-4 py-0.5 rounded">
+                          <CustomText textClassName="text-xs text-white bg-aqua px-4 py-0.5 rounded">
                             Available
                           </CustomText>
                         </div>

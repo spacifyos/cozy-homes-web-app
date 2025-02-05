@@ -48,7 +48,7 @@ const DesktopCanvasModal = ({
           </CustomText>
         </div>
         <div
-          className="bg-color global-border-radius global-box-shadow"
+          className="bg-primary-background global-border-radius global-box-shadow"
           ref={targetRef}
         >
           <SignatureCanvas
@@ -90,12 +90,12 @@ const DesktopCanvasModal = ({
         <div className="grid grid-cols-2 gap-2">
           <CustomButton
             buttonText={"Cancel"}
-            buttonClassName="default-btn-outline"
+            buttonClassName="btn-primary-outline"
             onClick={() => onClickCloseSignatureModal("desktop")}
           />
           <CustomButton
             buttonText="Sign"
-            buttonClassName="primary-btn"
+            buttonClassName="btn-primary"
             onClick={() => onClickSubmitSignature("desktop")}
           />
         </div>
