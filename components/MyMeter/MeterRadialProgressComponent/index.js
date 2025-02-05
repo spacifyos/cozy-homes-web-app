@@ -30,7 +30,7 @@ const MeterRadialProgressComponent = ({
                 : balanceUnit}
           </CustomText>
 
-          <CustomText textClassName="text-xs disable-text line-clamp-1">
+          <CustomText textClassName="text-xs text-disable line-clamp-1">
             {isShowBalanceInPrice ? "credit" : "unit"}
           </CustomText>
         </div>

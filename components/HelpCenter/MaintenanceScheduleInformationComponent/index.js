@@ -20,7 +20,7 @@ const MaintenanceScheduleInformation = ({
   return (
     <div className="global-border-radius global-box-shadow bg-white p-4">
       <div className="flex justify-between items-center">
-        <CustomText textClassName="disable-text text-sm">
+        <CustomText textClassName="text-disable text-sm">
           Maintenance Schedule Information
         </CustomText>
       </div>
@@ -41,7 +41,7 @@ const MaintenanceScheduleInformation = ({
 
       {!isEmpty(images) ? (
         <div className="pb-4">
-          <CustomText textClassName="disable-text text-xs pb-1">
+          <CustomText textClassName="text-disable text-xs pb-1">
             Photos
           </CustomText>
           <div className="flex items-start gap-2">
@@ -67,7 +67,7 @@ const MaintenanceScheduleInformation = ({
 
       {!isEmpty(videos) ? (
         <div className="pb-4">
-          <CustomText textClassName="disable-text text-xs pb-1">
+          <CustomText textClassName="text-disable text-xs pb-1">
             Video
           </CustomText>
           <div
@@ -85,7 +85,7 @@ const MaintenanceScheduleInformation = ({
       )}
 
       <div className="flex flex-col justify-center items-center pt-4">
-        <CustomText textClassName="disable-text text-xs">
+        <CustomText textClassName="text-disable text-xs">
           Maintenance Schedule Information Will Be Updated Soon
         </CustomText>
       </div>

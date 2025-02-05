@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
@@ -16,7 +15,6 @@ import * as tenancySelector from "@/src/selectors/tenancy";
 import { useDispatch, useSelector } from "react-redux";
 import * as authAction from "@/src/actions/auth";
 import * as authSelector from "@/src/selectors/auth";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import Helper from "@/src/utils/Helper";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";

@@ -16,7 +16,7 @@ const PolicyDetail = ({ loading, data }) => {
     <div className="">
       {loading ? (
         <div className="flex justify-center items-center pt-40">
-          <span className="loading loading-spinner loading-lg primary-text"></span>
+          <span className="loading loading-spinner loading-lg text-primary"></span>
         </div>
       ) : (
         <div className="content-container">

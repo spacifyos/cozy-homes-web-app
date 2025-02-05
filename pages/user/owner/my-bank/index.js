@@ -138,7 +138,7 @@ const MyBank = () => {
               <CustomButton
                 key={index}
                 buttonText={item}
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "btn-primary" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, item) ? "btn-primary" : "btn-white"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => onClickSelectCategory(item)}
               />

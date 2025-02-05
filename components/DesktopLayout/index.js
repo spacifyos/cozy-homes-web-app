@@ -166,7 +166,7 @@ const DesktopLayout = ({
                   zIndex: 9999,
                 }}
               >
-                <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+                <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md text-primary"></span>
               </div>
             ) : (
               false
@@ -240,7 +240,7 @@ const DesktopLayout = ({
                       zIndex: 9999,
                     }}
                   >
-                    <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md primary-text"></span>
+                    <span className="loading loading-dots xl:loading-lg lg:loading-lg md:loading-md sm:loading-md loading-md text-primary"></span>
                   </div>
                 ) : (
                   false

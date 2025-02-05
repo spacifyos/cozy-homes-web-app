@@ -44,7 +44,7 @@ const AgentSection = ({
             <CustomText textClassName="text-xs font-bold line-clamp-1">
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
-            <CustomText textClassName="disable-text text-xs">
+            <CustomText textClassName="text-disable text-xs">
               Member since
               {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
@@ -87,7 +87,7 @@ const AgentSection = ({
               <CustomText textClassName="text-xs">
                 Total Move In Cost
               </CustomText>
-              <CustomText textClassName="text-sm primary-text font-bold">
+              <CustomText textClassName="text-sm text-primary font-bold">
                 RM{isEmpty(totalMoveInCost) ? "0" : totalMoveInCost}
               </CustomText>
             </div>

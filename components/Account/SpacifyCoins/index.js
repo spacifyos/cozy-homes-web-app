@@ -18,7 +18,7 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <CustomText textClassName="disable-text text-sm">
+        <CustomText textClassName="text-disable text-sm">
           My Wallet
         </CustomText>
 

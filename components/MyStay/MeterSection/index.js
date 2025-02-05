@@ -23,7 +23,9 @@ const MeterSection = ({ data }) => {
       </div>
 
       {isEmpty(data) ? (
+          <div className="bg-white p-6 global-border-radius global-box-shadow">
         <CustomEmptyBox emptyTitle="No meter found" />
+          </div>
       ) : (
         map(data, (item, index) => {
           return <MeterComponent key={index} item={item} />;

@@ -20,7 +20,7 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
           />
           <div className="flex gap-2 pl-2">
             <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold">
-              <span className="primary-text">Recommend</span> For You
+              <span className="text-primary">Recommend</span> For You
             </CustomText>
           </div>
         </div>

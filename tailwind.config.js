@@ -17,7 +17,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Noto Sans", "sans-serif"],
+        sans: ["Noto Sans"],
       },
       fontSize: {
         xxs: "10px",
@@ -66,6 +66,7 @@ module.exports = {
       {
         mytheme: {
           primary: "#d71440",
+          black: "#2c2c2c",
         },
       },
     ],

@@ -38,7 +38,7 @@ const ListingCardComponent = ({
       {/*/>*/}
       {/*</div>*/}
 
-      <CustomText textClassName="text-sm leading-5 line-clamp-1 pt-2">
+      <CustomText textClassName="text-sm leading-5 line-clamp-1 pt-1">
         {isEmpty(propertyName) ? "-" : propertyName}
       </CustomText>
       {/*<CustomText textClassName="text-xs text-primary leading-4 line-clamp-1">*/}
@@ -48,7 +48,7 @@ const ListingCardComponent = ({
         <CustomText textClassName="text-sm mr-2">
           RM {isEmpty(rental) ? "0" : rental}
         </CustomText>
-        <CustomText textClassName="text-xs disable-text">
+        <CustomText textClassName="text-xs text-disable">
           / month
         </CustomText>
       </div>

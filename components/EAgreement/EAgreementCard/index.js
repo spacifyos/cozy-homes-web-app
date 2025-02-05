@@ -22,7 +22,7 @@ const EAgreementCard = ({ item }) => {
       <div className="flex-1 pr-3">
         <StatusLabel status={status} />
 
-        <CustomText textClassName="text-sm primary-text font-bold pt-1">
+        <CustomText textClassName="text-sm text-primary font-bold pt-1">
           {isEmpty(referenceNumber) ? "-" : referenceNumber}
         </CustomText>
 
@@ -30,7 +30,7 @@ const EAgreementCard = ({ item }) => {
           {isEmpty(property) ? "-" : property}
         </CustomText>
 
-        <CustomText textClassName="disable-text text-xs pt-1">
+        <CustomText textClassName="text-disable text-xs pt-1">
           {isEmpty(tenurePeriod) ? "-" : tenurePeriod}
         </CustomText>
 
@@ -46,7 +46,7 @@ const EAgreementCard = ({ item }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="text-xs disable-text">Agreed</CustomText>
+            <CustomText textClassName="text-xs text-disable">Agreed</CustomText>
           </div>
 
           <div className="flex">
@@ -55,7 +55,7 @@ const EAgreementCard = ({ item }) => {
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
-            <CustomText textClassName="text-xs disable-text">Signed</CustomText>
+            <CustomText textClassName="text-xs text-disable">Signed</CustomText>
           </div>
         </div>
       </div>

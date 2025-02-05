@@ -8,8 +8,7 @@
 
   select:required:invalid {
     @apply text-sm;
-    @apply text-disable;;
-    //font-style: italic !important;
+    @apply text-disable;
   }
 
   option[value=""][disabled] {

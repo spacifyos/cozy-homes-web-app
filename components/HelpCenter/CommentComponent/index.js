@@ -22,14 +22,14 @@ const CommentComponent = ({
 
   return (
     <div className="global-border-radius global-box-shadow bg-white p-4">
-      <CustomText textClassName="disable-text text-sm">Comment</CustomText>
+      <CustomText textClassName="text-disable text-sm">Comment</CustomText>
       <div
         className="divider-line "
         style={{ marginTop: 16, marginBottom: 16 }}
       ></div>
 
       {getCommentLoading && isEmpty(data) ? (
-        <div className="flex justify-center items-center py-4 primary-text">
+        <div className="flex justify-center items-center py-4 text-primary">
           <span className="loading loading-spinner loading-lg"></span>
         </div>
       ) : isEmpty(data) ? (
@@ -51,7 +51,7 @@ const CommentComponent = ({
               onClick={() => onClickLoadMore(currentPage)}
               className="cursor-pointer"
             >
-              <CustomText textClassName="disable-text xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
+              <CustomText textClassName="text-disable xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
                 Load more
               </CustomText>
             </div>

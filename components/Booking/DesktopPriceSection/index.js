@@ -70,7 +70,7 @@ const DesktopPriceSection = ({
           {/*  {isEmpty(unitRoomName) ? "-" : unitRoomName}*/}
           {/*</CustomText>*/}
 
-          <CustomText textClassName="text-sm disable-text text-xs">
+          <CustomText textClassName="text-sm text-disable text-xs">
             {isEmpty(address) ? "-" : address}
           </CustomText>
 
@@ -180,7 +180,7 @@ const DesktopPriceSection = ({
           <CustomText textClassName="font-bold pb-1 xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             Move In Cost
           </CustomText>
-          <CustomText textClassName="text-xs font-light leading-4 disable-text">
+          <CustomText textClassName="text-xs font-light leading-4 text-disable">
             Please check the payment breakdown below. Should you have any
             inquiries, please contact the owner or agent before proceeding with
             your payment.

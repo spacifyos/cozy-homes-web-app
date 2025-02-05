@@ -56,7 +56,7 @@ const PaymentFailure = ({ id }) => {
           </div>
         }
       >
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center h-full">
           <div className="absolute top-5 right-5 cursor-pointer">
             <CustomImage
               src={Images.cancelIcon}

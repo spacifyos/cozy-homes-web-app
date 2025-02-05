@@ -43,7 +43,7 @@ const DesktopCanvasModal = ({
           className="flex justify-end cursor-pointer"
           onClick={onClickResetCanvas}
         >
-          <CustomText textClassName="primary-text text-sm pb-2">
+          <CustomText textClassName="text-primary text-sm pb-2">
             Reset
           </CustomText>
         </div>

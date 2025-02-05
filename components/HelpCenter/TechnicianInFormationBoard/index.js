@@ -37,7 +37,7 @@ const TechnicianInFormationBoard = ({
             key={index}
           >
             <div className="flex justify-between items-center">
-              <CustomText textClassName="disable-text text-sm">
+              <CustomText textClassName="text-disable text-sm">
                 Technician {index + 1}
               </CustomText>
 
@@ -92,7 +92,7 @@ const TechnicianInFormationBoard = ({
                 ) : (
                   <div className={`pb-4`}>
                     <CustomText
-                      textClassName={`disable-text text-xs font-normal pb-1`}
+                      textClassName={`text-disable text-xs font-normal pb-1`}
                     >
                       Check In Location
                     </CustomText>
@@ -116,7 +116,7 @@ const TechnicianInFormationBoard = ({
                 ) : (
                   <div className={``}>
                     <CustomText
-                      textClassName={`disable-text text-xs font-normal pb-1`}
+                      textClassName={`text-disable text-xs font-normal pb-1`}
                     >
                       Check Out Location
                     </CustomText>

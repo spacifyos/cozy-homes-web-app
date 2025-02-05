@@ -165,7 +165,7 @@ const HelpCenter = () => {
                 <CustomButton
                   key={index}
                   buttonText={label}
-                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "btn-primary" : "default-btn"} mr-2`}
+                  buttonClassName={`btn-sm ${isEqual(selectedStatus, value) ? "btn-primary" : "btn-white"} mr-2`}
                   textClassName="text-xs"
                   onClick={() => setSelectedStatus(value)}
                 />

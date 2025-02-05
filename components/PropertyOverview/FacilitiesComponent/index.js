@@ -10,7 +10,7 @@ const FacilitiesComponent = ({ item }) => {
     <div className="flex gap-2 py-2 w-1/2">
       <CustomImage src={icon} imageStyle={{ width: 20, height: 20 }} />
 
-      <CustomText textClassName="disable-text text-xs">
+      <CustomText textClassName="text-disable text-xs">
         {name}
       </CustomText>
     </div>

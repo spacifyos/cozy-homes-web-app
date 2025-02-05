@@ -12,10 +12,10 @@ const BookingOverviewDetail = ({ t, data, id }) => {
   return (
     <div className="p-4 pb-7">
       <div className="flex items-center gap-1 pb-4">
-        <CustomText textClassName="text-xs disable-text">
+        <CustomText textClassName="text-xs text-disable">
           {t("bookingOverview.bookingCode")}
         </CustomText>
-        <CustomText textClassName="primary-text font-bold">
+        <CustomText textClassName="text-primary font-bold">
           {_.isEmpty(referenceNumber) ? "-" : referenceNumber}
         </CustomText>
       </div>
@@ -24,13 +24,13 @@ const BookingOverviewDetail = ({ t, data, id }) => {
         false
       ) : (
         <div className="flex flex-col">
-          <CustomText textClassName="primary-text font-bold">
+          <CustomText textClassName="text-primary font-bold">
             {_.isEmpty(title) ? "-" : title}
           </CustomText>
-          <CustomText textClassName="text-xs disable-text pb-4">
+          <CustomText textClassName="text-xs text-disable pb-4">
             {_.isEmpty(address) ? "-" : address}
           </CustomText>
-          {/*<CustomText textClassName="text-xs disable-text pb-4">*/}
+          {/*<CustomText textClassName="text-xs text-disable pb-4">*/}
           {/*  YOLO Type A, Single Bedroom, 106 sqft.*/}
           {/*</CustomText>*/}
           <div className="grid-cols-2 grid">

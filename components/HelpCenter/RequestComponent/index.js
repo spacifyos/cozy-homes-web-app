@@ -106,7 +106,7 @@ const SpecificRequestComponent = ({
                 className={`${loading ? "opacity-50" : ""}`}
               />
               {loading ? (
-                <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+                <span className="loading loading-spinner loading-lg text-primary absolute"></span>
               ) : (
                 <div
                   className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
@@ -166,7 +166,7 @@ const SpecificRequestComponent = ({
             )}
 
             {loading ? (
-              <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+              <span className="loading loading-spinner loading-lg text-primary absolute"></span>
             ) : (
               <div
                 className="absolute top-1 right-1 cursor-pointer z-10"

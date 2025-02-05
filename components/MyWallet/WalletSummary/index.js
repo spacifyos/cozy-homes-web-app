@@ -43,7 +43,7 @@ const WalletSummary = ({ data }) => {
                 {isEmpty(value) ? "RM0" : value}
               </CustomText>
 
-              <CustomText textClassName="disable-text text-xs">
+              <CustomText textClassName="text-disable text-xs">
                 {name}
               </CustomText>
             </div>

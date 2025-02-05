@@ -529,6 +529,7 @@ const SearchWithSlug = ({ id }) => {
       </a>
 
       <DesktopLayout
+        backgroundColor="bg-white"
         hideNav
         pageBreadcrumbs={
           <div>

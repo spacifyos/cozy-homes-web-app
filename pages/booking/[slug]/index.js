@@ -651,6 +651,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
       />
 
       <DesktopLayout
+        backgroundColor="bg-white"
         hideNav
         loading={
           selectOptionDataLoading ||

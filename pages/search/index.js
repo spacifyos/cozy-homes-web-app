@@ -512,6 +512,7 @@ const Search = () => {
       </a>
 
       <DesktopLayout
+        backgroundColor="bg-white"
         hideNav
         pageBreadcrumbs={
           <div>

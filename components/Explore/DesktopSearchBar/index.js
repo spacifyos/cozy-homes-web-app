@@ -53,7 +53,7 @@ const DesktopSearchBar = ({
         {/*        style={{ borderRadius: "10px 10px 0 0" }}*/}
         {/*      >*/}
         {/*        <CustomText*/}
-        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "text-primary font-bold" : "disable-text"} text-base`}*/}
+        {/*          textClassName={`text-center ${isEqual(searchTypeValue, value) ? "text-primary font-bold" : "text-disable"} text-base`}*/}
         {/*        >*/}
         {/*          {name}*/}
         {/*        </CustomText>*/}

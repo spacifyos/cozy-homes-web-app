@@ -11,7 +11,7 @@ const EventBanner = () => {
         <div className="modal-action">
           <form method="dialog">
             <button
-              className="btn default-btn"
+              className="btn btn-white"
               style={{ backgroundColor: "transparent", border: "none" }}
             >
               <CustomImage

@@ -113,7 +113,7 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
                 />
                 <CustomText
                   textClassName={`${
-                    isEqual(value, routeName) ? "primary-text" : "disable-text"
+                    isEqual(value, routeName) ? "text-primary" : "text-disable"
                   } text-xs pt-1`}
                 >
                   {name}

@@ -177,7 +177,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <div className="py-3 grid grid-cols-6 gap-2">
+        <div className="pt-8 grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-6 font-bold text-sm">
             Address Information
           </CustomText>
@@ -230,7 +230,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <div className="py-3 grid grid-cols-6 gap-2">
+        <div className="pt-8 grid grid-cols-6 gap-2">
           <CustomText textClassName="col-span-6 font-bold text-sm">
             Emergency Contact Information
           </CustomText>
@@ -318,7 +318,7 @@ const DesktopFormSection = ({
         </div>
       </form>
 
-      <div className="py-3 grid grid-cols-6 gap-2 flex items-end">
+      <div className="pt-8 grid grid-cols-6 gap-2 flex items-end">
         <CustomText textClassName="col-span-6 font-bold text-sm">
           Verification
         </CustomText>
@@ -358,7 +358,7 @@ const DesktopFormSection = ({
         />
       </div>
 
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-6 gap-2 pt-8">
         <CustomText textClassName="col-span-6 font-bold text-sm">
           Supporting Documents
         </CustomText>

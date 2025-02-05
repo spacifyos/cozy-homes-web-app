@@ -5,7 +5,7 @@ import BookingSelect from "@/components/Booking/BookingSelect";
 const GeneralInformationSection = ({ tenancyOption, setPostData }) => {
   return (
     <div>
-      <CustomText textClassName="second-section-title primary-text pb-2">
+      <CustomText textClassName="second-section-title text-primary pb-2">
         General Information
       </CustomText>
 

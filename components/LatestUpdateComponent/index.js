@@ -18,13 +18,13 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
           />
         </div>
         <div className="flex-col flex-1">
-          <CustomText textClassName="text-xs disable-text">
+          <CustomText textClassName="text-xs text-disable">
             {date}
           </CustomText>
           <CustomText textClassName="text-sm font-bold">
             Title
           </CustomText>
-          <CustomText textClassName="text-xs disable-text leading-3">
+          <CustomText textClassName="text-xs text-disable leading-3">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce et
             lorem ut ligula posuere viverra.
           </CustomText>

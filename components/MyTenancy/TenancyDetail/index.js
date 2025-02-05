@@ -12,7 +12,7 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
     <div className="tenancy-auto-pay-button">
       <CustomText
-        textClassName={`${isChecked ? "primary-text" : "disable-text"} font-bold text-xs pr-3`}
+        textClassName={`${isChecked ? "text-primary" : "text-disable"} font-bold text-xs pr-3`}
       >
         AutoPay
       </CustomText>
@@ -51,7 +51,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
     <div className="global-border-radius global-box-shadow bg-white pt-4 pb-2 px-4">
       <div className="flex justify-between items-center">
         <CustomLabelValue
-          label={t("myStay.tenancyCode")}
+          label={"Tenancy Code"}
           value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
           highlight
         />
@@ -67,7 +67,6 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
       >
         {totalDays !== 0 && tenancyRemaining !== 0 ? (
           <RadialProgressComponent
-            t={t}
             dimensions={dimensions}
             tenancyRemaining={tenancyRemaining}
             totalDays={totalDays}
@@ -84,7 +83,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
           </div>
 
           <div className={"pl-2"}>
-            <CustomText textClassName="font-bold text-sm primary-text">
+            <CustomText textClassName="font-bold text-sm text-primary">
               {_.isEmpty(propertyName) ? "-" : propertyName}
             </CustomText>
             <CustomText textClassName="text-xs">
@@ -94,19 +93,19 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
           </div>
         </div>
         <CustomLabelValue
-          label={t("myStay.rentalFee")}
+          label={"Rental Fee"}
           value={`RM${_.isEmpty(rental) ? "0" : rental} / monthly`}
         />
         <CustomLabelValue
-          label={t("myStay.tenancyPeriod")}
+          label={"Tenancy Period"}
           value={_.isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
         />
         <CustomLabelValue
-          label={t("myTenancy.address")}
+          label={"Address"}
           value={_.isEmpty(address) ? "-" : address}
         />
         <CustomLabelValue
-          label={t("myTenancy.createdAt")}
+          label={"Created At"}
           value={moment(createdAt).format("DD MMM YYYY, HH:mm:ss")}
         />
       </div>

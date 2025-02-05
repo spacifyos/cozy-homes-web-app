@@ -46,7 +46,7 @@ const LatestUpdate = () => {
               <CustomButton
                 key={index}
                 buttonText={btn}
-                buttonClassName={`btn-sm ${_.isEqual(selectBtn, btn) ? "btn-primary" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${_.isEqual(selectBtn, btn) ? "btn-primary" : "btn-white"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => onClickSelectBtn(btn)}
               />

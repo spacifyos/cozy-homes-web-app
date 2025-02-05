@@ -32,7 +32,7 @@ const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
       {_.map(lists, (list, index) => {
         return (
           <div
-            className={`detail-feature-container ${index === 3 ? "bg-secondary-background" : ""} flex flex-col`}
+            className={`detail-feature-container ${index === 3 ? "bg-secondary-background" : "bg-white"} flex flex-col`}
             key={index}
           >
             {/*<div>*/}
@@ -42,14 +42,14 @@ const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
                 imageStyle={{ width: 25 }}
               />
             </div>
-            {/*<CustomText textClassName="disable-text text-xs max-h-9 leading-3 my-1">*/}
+            {/*<CustomText textClassName="text-disable text-xs max-h-9 leading-3 my-1">*/}
             {/*  {_.get(list, ["title"], "")}*/}
             {/*</CustomText>*/}
             {/*</div>*/}
 
             <div className="flex items-center pt-1" style={{ height: 36 }}>
               <CustomText
-                textClassName={`primary-text text-xs font-bold`}
+                textClassName={`text-primary text-xs font-bold`}
                 lineClamp={2}
               >
                 {_.get(list, ["value"], "")}

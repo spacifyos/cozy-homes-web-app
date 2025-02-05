@@ -14,7 +14,7 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
       case "Total Unpaid Invoices":
         return "text-warning";
       case "Total Invoices":
-        return "primary-text";
+        return "text-primary";
       default:
         return "text-warning";
     }
@@ -27,14 +27,14 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
         const totalAmountText = invoiceSelector.getTotalAmountText(item);
 
         return (
-          <div className="flex flex-col justify-center items-center global-border-radius global-box-shadow px-5 py-3" key={index} style={{minHeight:120, height:120}}>
+          <div className="bg-white flex flex-col justify-center items-center global-border-radius global-box-shadow px-5 py-3" key={index} style={{minHeight:120, height:120}}>
             <CustomText textClassName="text-center text-sm">{isEmpty(name) ? "-" : name}</CustomText>
             <CustomText
               textClassName={`${textColor(name)} font-bold text-2xl`}
             >
               RM{isEmpty(totalAmountText) ? "0" : totalAmountText}
             </CustomText>
-            <CustomText textClassName="disable-text text-xs">
+            <CustomText textClassName="text-disable text-xs">
               {`Last updated: ${moment().format("DD MMM YYYY")}`}
             </CustomText>
           </div>

@@ -36,7 +36,7 @@ const RequestOverviewDetail = ({
           highlight
         />
         <div>
-          <CustomText textClassName={`disable-text text-xs font-normal pb-1`}>
+          <CustomText textClassName={`text-disable text-xs font-normal pb-1`}>
             Status
           </CustomText>
           <StatusLabel status={status} />
@@ -49,7 +49,7 @@ const RequestOverviewDetail = ({
       ></div>
 
       <div className="flex justify-between items-center">
-        <CustomText textClassName="disable-text text-xs">
+        <CustomText textClassName="text-disable text-xs">
           Basic Information
         </CustomText>
         <StatusLabelOutline status={priority} />
@@ -73,7 +73,7 @@ const RequestOverviewDetail = ({
 
       {!isEmpty(imageList) ? (
         <div className="pb-4">
-          <CustomText textClassName="disable-text text-xs pb-1">
+          <CustomText textClassName="text-disable text-xs pb-1">
             Photos
           </CustomText>
           <div className="flex items-start gap-2">
@@ -97,7 +97,7 @@ const RequestOverviewDetail = ({
 
       {!isEmpty(videoValue) ? (
         <div className="pb-4">
-          <CustomText textClassName="disable-text text-xs pb-1">
+          <CustomText textClassName="text-disable text-xs pb-1">
             Video
           </CustomText>
           <div

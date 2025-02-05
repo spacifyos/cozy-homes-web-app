@@ -65,6 +65,7 @@ const BookingOverview = ({ id }) => {
       <NextSeo title="Booking Overview - Spacify Asia" />
 
       <DesktopLayout
+        backgroundColor="bg-white"
         hideNav
         loading={bookingOverviewLoading}
         pageBreadcrumbs={
@@ -78,9 +79,7 @@ const BookingOverview = ({ id }) => {
                 </a>
               </li>
               <li>
-                <CustomText textClassName="text-base">
-                  {id}
-                </CustomText>
+                <CustomText textClassName="text-base">{id}</CustomText>
               </li>
             </ul>
           </div>

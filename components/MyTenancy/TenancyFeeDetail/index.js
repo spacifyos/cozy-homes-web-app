@@ -7,7 +7,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 const TenancyFeeDetail = ({ title, data }) => {
   return (
     <div className="global-border-radius global-box-shadow bg-white p-4 ">
-      <CustomText textClassName="disable-text text-sm">
+      <CustomText textClassName="text-disable text-sm">
         {title}
       </CustomText>
 

@@ -65,7 +65,7 @@ const DesktopHeader = ({
                 buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
                 textClassName="text-sm"
                 reverse
-                loadingColor="primary-text"
+                loadingColor="text-primary"
                 loading={loading}
                 onClick={onClickSignIn}
               />
@@ -76,7 +76,7 @@ const DesktopHeader = ({
                   buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
                   textClassName="text-sm"
                   reverse
-                  loadingColor="primary-text"
+                  loadingColor="text-primary"
                   loading={loading}
                   onClick={onClickSignIn}
               />
@@ -137,7 +137,7 @@ const DesktopHeader = ({
                 buttonClassName="btn-white w-36 min-h-10 h-10"
                 textClassName="text-sm"
                 reverse
-                loadingColor="primary-text"
+                loadingColor="text-primary"
                 loading={loading}
                 onClick={onClickSignIn}
               />

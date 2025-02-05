@@ -298,7 +298,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                   policy.
                 </CustomText>
 
-                <CustomText textClassName="text-xs text-center disable-text">
+                <CustomText textClassName="text-xs text-center text-disable">
                   This site is protected by reCAPTCHA and the Google{" "}
                   <span className="underline">Privacy Policy</span> and{" "}
                   <span className="underline">Terms of Service</span> apply.

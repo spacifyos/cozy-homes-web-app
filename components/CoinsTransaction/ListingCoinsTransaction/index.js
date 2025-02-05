@@ -13,7 +13,7 @@ const ListingCoinsTransaction = ({ item }) => {
     <div className="pb-4 w-full">
       <div className="global-border-radius global-box-shadow bg-white grid grid-cols-2 p-5 relative">
         <div className="flex flex-col col-span-1">
-          <CustomText textClassName="text-xs disable-text pb-1">
+          <CustomText textClassName="text-xs text-disable pb-1">
             {date}
           </CustomText>
           <CustomText textClassName="text-xs font-bold">
@@ -25,7 +25,7 @@ const ListingCoinsTransaction = ({ item }) => {
         </div>
 
         <div className="flex justify-center items-center">
-          <CustomText textClassName="text-xs primary-text font-bold pt-4">
+          <CustomText textClassName="text-xs text-primary font-bold pt-4">
             + {coins} coins
           </CustomText>
           <CustomImage

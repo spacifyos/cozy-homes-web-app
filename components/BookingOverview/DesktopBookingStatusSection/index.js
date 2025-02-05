@@ -23,7 +23,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
   return (
     <div className="xl:col-span-3 lg:col-span-3 md:col-span-2 sm:col-span-4 col-span-4 relative">
       <div className="global-border-radius global-box-shadow p-5 sticky top-10">
-        <CustomText textClassName="primary-text text-lg font-bold pb-5">
+        <CustomText textClassName="text-primary text-lg font-bold pb-5">
           Booking Status
         </CustomText>
 
@@ -59,7 +59,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
             />
 
             <CustomText
-              textClassName={`text-base font-bold pt-2 ${!isEqual(paymentStatus, "Paid") ? "disable-text" : ""}`}
+              textClassName={`text-base font-bold pt-2`}
             >
               Step 2
             </CustomText>
@@ -73,12 +73,12 @@ const DesktopBookingStatusSection = ({ t, data }) => {
               <CustomButton
                 buttonClassName="booking-overview-btn"
                 buttonStyles={{ width: 150 }}
-                buttonText={t("bookingOverview.payNow")}
+                buttonText={"Pay Now"}
                 onClick={onClickPayNow}
               />
             ) : (
               <CustomText textClassName="step-section-infor-font">
-                {t("bookingOverview.paymentAuthorizedAt")}{" "}
+                Payment Authorized At{" "}
                 {moment(authorizedAt).format("YYYY-MM-DD HH:mm:ss")}
               </CustomText>
             )}

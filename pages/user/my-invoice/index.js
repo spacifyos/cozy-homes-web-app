@@ -222,19 +222,19 @@ const MyInvoice = () => {
           <div className="flex items-center pb-5">
             <CustomButton
               buttonText="All"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "btn-primary" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "All") ? "btn-primary" : "btn-white"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("All")}
             />
             <CustomButton
               buttonText="Unpaid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "btn-primary" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Unpaid") ? "btn-primary" : "btn-white"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("Unpaid")}
             />
             <CustomButton
               buttonText="Paid"
-              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "btn-primary" : "default-btn"} mr-2`}
+              buttonClassName={`btn-sm ${isEqual(selectedCategory, "Paid") ? "btn-primary" : "btn-white"} mr-2`}
               textClassName="text-xs"
               onClick={() => onClickSelectCategory("Paid")}
             />

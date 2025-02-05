@@ -61,7 +61,7 @@ const StepSection = ({ t, data }) => {
         />
         <div className="flex flex-col ">
           <CustomText
-            textClassName={`step-section-step-font ${!isEqual(paymentStatus, "Paid") ? "disable-text" : ""}  py-2`}
+            textClassName={`step-section-step-font ${!isEqual(paymentStatus, "Paid") ? "text-disable" : ""}  py-2`}
           >
             {t("bookingOverview.step2")}
           </CustomText>
@@ -102,7 +102,7 @@ const StepSection = ({ t, data }) => {
           imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col">
-          <CustomText textClassName="text-base font-bold disable-text py-2">
+          <CustomText textClassName="text-base font-bold text-disable py-2">
             {t("bookingOverview.step3")}
           </CustomText>
           <CustomText textClassName="text-xs">

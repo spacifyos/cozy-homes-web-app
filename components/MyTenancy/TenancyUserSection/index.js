@@ -15,7 +15,7 @@ const TenancyUserSection = ({ t, data }) => {
         <CustomImage src={Images.userIcon} imageStyle={{ width: 60 }} />
 
         <div className="user-info-content">
-          <CustomText textClassName="user-name primary-text">
+          <CustomText textClassName="user-name text-primary">
             {_.isEmpty(name) ? "-" : name}
           </CustomText>
 
@@ -25,7 +25,6 @@ const TenancyUserSection = ({ t, data }) => {
               imageStyle={{ width: 15 }}
             />
             <CustomText textClassName="user-info">
-              {" "}
               {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
           </div>

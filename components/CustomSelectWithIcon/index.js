@@ -34,7 +34,7 @@ const CustomSelectWithIcon = ({
         >
           {isEmpty(value) ? (
             <CustomText
-              textClassName={`${isEmpty(value) ? "disable-text" : "text-black"} text-xs`}
+              textClassName={`${isEmpty(value) ? "text-disable" : "text-black"} text-xs`}
             >
               {placeholder}
             </CustomText>

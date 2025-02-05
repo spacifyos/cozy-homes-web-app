@@ -26,7 +26,7 @@ const BalanceUnit = ({
         </CustomText>
       </div>
 
-      <CustomText textClassName="disable-text text-xs italic">
+      <CustomText textClassName="text-disable text-xs italic">
         Last ConnectedAt: {moment(lastConnectedAt).format("DD MMM YYYY, HH:mm")}
       </CustomText>
     </div>

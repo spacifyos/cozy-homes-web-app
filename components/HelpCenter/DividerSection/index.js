@@ -20,7 +20,7 @@ const DividerSection = ({
       )}
       <CustomText textClassName="second-section-title">{title}</CustomText>
 
-      <CustomText textClassName="disable-text text-xs mb-6">
+      <CustomText textClassName="text-disable text-xs mb-6">
         {subtitle}
       </CustomText>
     </div>

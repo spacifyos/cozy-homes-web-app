@@ -23,7 +23,7 @@ const MyReportCard = ({ data, targetMonth }) => {
             <CustomImage src={Images.paperIcon} imageStyle={{ width: 25 }} />
 
             <div className="pl-3">
-              {/*<CustomText textClassName="text-xs disable-text italic">*/}
+              {/*<CustomText textClassName="text-xs text-disable italic">*/}
               {/*  08 Aug 2024, 3.35pm*/}
               {/*</CustomText>*/}
               <CustomText textClassName="text-sm text-primary font-bold">
@@ -32,7 +32,7 @@ const MyReportCard = ({ data, targetMonth }) => {
               <CustomText textClassName="text-sm font-bold">
                 {isEmpty(description) ? "-" : description}
               </CustomText>
-              <CustomText textClassName="disable-text text-sm">
+              <CustomText textClassName="text-disable text-sm">
                 {isEmpty(period) ? "-" : period}
               </CustomText>
             </div>

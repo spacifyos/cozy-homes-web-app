@@ -697,7 +697,7 @@ const RequestOverview = ({ id }) => {
               <ul>
                 <li>
                   <a href={"/agency/help-center"}>
-                    <CustomText textClassName="text-base disable-text">
+                    <CustomText textClassName="text-base text-disable">
                       Help Center
                     </CustomText>
                   </a>

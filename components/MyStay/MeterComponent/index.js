@@ -72,7 +72,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
       <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
         <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-primary-background">
-          <CustomText textClassName="disable-text text-xs">
+          <CustomText textClassName="text-disable text-xs">
             Balance Unit
           </CustomText>
           <div className="flex items-center">

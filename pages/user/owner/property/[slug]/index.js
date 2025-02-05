@@ -70,7 +70,7 @@ const PropertyDetail = ({ id }) => {
     },
     {
       label: "Coming Due",
-      bgColor: "bg-pending",
+      bgColor: "bg-warning",
       textColor: "text-warning",
     },
     {
@@ -198,13 +198,13 @@ const PropertyDetail = ({ id }) => {
             <div className="pb-4 flex">
               <CustomButton
                 buttonText="Space Details"
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "btn-primary" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Space Details") ? "btn-primary" : "btn-white"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => setSelectedCategory("Space Details")}
               />
               <CustomButton
                 buttonText="Rent Tracker"
-                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "btn-primary" : "default-btn"} mr-2`}
+                buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rent Tracker") ? "btn-primary" : "btn-white"} mr-2`}
                 textClassName="text-xs"
                 onClick={() => setSelectedCategory("Rent Tracker")}
               />

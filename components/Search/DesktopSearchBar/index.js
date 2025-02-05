@@ -70,7 +70,7 @@ const DesktopSearchBar = ({
       </div>
 
       <div
-        className="btn-white xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative cursor-pointer"
+        className="btn-white global-border-radius xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 h-full flex justify-center items-center relative cursor-pointer"
         onClick={onClickOpenModal}
       >
         {isFilter ? (

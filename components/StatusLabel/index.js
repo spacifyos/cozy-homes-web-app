@@ -11,7 +11,7 @@ const StatusLabel = ({ status }) => {
       case "AUTHORIZED":
       case "PENDING VERIFICATION":
       case "ON HOLD":
-        return "bg-pending";
+        return "bg-warning";
 
       case "IN PROGRESS":
       case "PENDING CONFIRMATION":
@@ -37,7 +37,7 @@ const StatusLabel = ({ status }) => {
         return "bg-disable";
 
       default:
-        return "bg-pending";
+        return "bg-warning";
     }
   };
 

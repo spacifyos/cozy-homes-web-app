@@ -30,7 +30,7 @@ const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
         </div>
 
         <div className="flex flex-col pl-3">
-          <CustomText textClassName="disable-text text-xs italic">
+          <CustomText textClassName="text-disable text-xs italic">
             15 Dec 2022
           </CustomText>
 

@@ -52,7 +52,7 @@ const RadialProgressComponent = ({
       role="progressbar"
     >
       <div className="flex-col flex justify-end items-center pt-1 px-2">
-        <CustomText textClassName="text-xs disable-text line-clamp-2 text-center">
+        <CustomText textClassName="text-xs text-disable line-clamp-2 text-center">
           Tenancy Remaining
         </CustomText>
         <CustomText textClassName="text-sm text-primary font-bold">

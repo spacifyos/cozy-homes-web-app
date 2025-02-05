@@ -21,8 +21,7 @@ input {
 }
 
 ::placeholder {
-  @apply text-sm;
-  //font-style: italic;
+  @apply text-sm text-disable !important;
   opacity: 1;
 }
 
@@ -53,7 +52,7 @@ input:focus {
 
 .user-input {
   @apply text-black;
-  @apply border-disable;;
+  @apply border-disable;
 }
 
 .default-input {
@@ -62,7 +61,7 @@ input:focus {
 
 .user-input:focus,
 .user-input:focus-within {
-  @apply border-disable;;
+  @apply border-disable;
   outline: none;
 }
 

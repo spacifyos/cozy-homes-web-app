@@ -31,17 +31,17 @@ const DesktopFooter = () => {
       <div className="py-6" style={{ backgroundColor: "#F0F0F0" }}>
         <div className="container mx-auto grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 grid-cols-1 xl:gap-10 lg:gap-10 md:gap-8 sm:gap-6 gap-6">
           <div className="col-span-1">
-            <CustomText textClassName="primary-text text-xs pb-2 text-justify">
+            <CustomText textClassName="text-primary text-xs pb-2 text-justify">
               Malaysia’s Leading CoLiving Platform for Students, Professionals,
               and Families
             </CustomText>
             <CustomText textClassName="text-justify text-xs leading-4">
               Discover your ideal living space with our comprehensive platform,
               designed for room rentals and beyond. Whether you’re searching for{" "}
-              <span className="primary-text">rooms</span>,{" "}
-              <span className="primary-text">entire units</span>,{" "}
-              <span className="primary-text">short-term stays</span>,{" "}
-              <span className="primary-text">or carpark rentals</span>, our
+              <span className="text-primary">rooms</span>,{" "}
+              <span className="text-primary">entire units</span>,{" "}
+              <span className="text-primary">short-term stays</span>,{" "}
+              <span className="text-primary">or carpark rentals</span>, our
               user-friendly platform caters to all your needs across Malaysia.
             </CustomText>
 
@@ -54,7 +54,7 @@ const DesktopFooter = () => {
           </div>
 
           <div className="col-span-1">
-            <CustomText textClassName="primary-text text-xs pb-2 text-justify">
+            <CustomText textClassName="text-primary text-xs pb-2 text-justify">
               Your Journey to the Perfect Space Starts Here
             </CustomText>
             <CustomText textClassName="text-justify text-xs leading-4">
@@ -113,26 +113,26 @@ const DesktopFooter = () => {
             <ul className="list-disc pl-4">
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Diverse Listings</span>:
+                  <span className="text-primary">Diverse Listings</span>:
                   Explore options for{" "}
-                  <span className="primary-text">room rentals</span>,{" "}
-                  <span className="primary-text">whole-unit rentals</span>,{" "}
-                  <span className="primary-text">short stays</span>, and even{" "}
-                  <span className="primary-text">carpark spaces</span>.
+                  <span className="text-primary">room rentals</span>,{" "}
+                  <span className="text-primary">whole-unit rentals</span>,{" "}
+                  <span className="text-primary">short stays</span>, and even{" "}
+                  <span className="text-primary">carpark spaces</span>.
                 </CustomText>
               </li>
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Optimized Convenience</span>:
+                  <span className="text-primary">Optimized Convenience</span>:
                   Access real-time availability, secure online bookings, and
                   transparent pricing.
                 </CustomText>
               </li>
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Expert Guidance</span>:
+                  <span className="text-primary">Expert Guidance</span>:
                   Leverage our{" "}
-                  <span className="primary-text">insider guides</span>, market
+                  <span className="text-primary">insider guides</span>, market
                   insights, and professional support to make informed decisions.
                 </CustomText>
               </li>
@@ -149,21 +149,21 @@ const DesktopFooter = () => {
             <ul className="list-disc pl-4">
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Short-Term Stays</span>:
+                  <span className="text-primary">Short-Term Stays</span>:
                   Perfect for business trips, vacations, or temporary
                   accommodations.
                 </CustomText>
               </li>
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Whole-Unit Rentals</span>:
+                  <span className="text-primary">Whole-Unit Rentals</span>:
                   Ideal for families or groups seeking private and spacious
                   living spaces.
                 </CustomText>
               </li>
               <li>
                 <CustomText textClassName="text-justify text-xs">
-                  <span className="primary-text">Carpark Rentals</span>: Secure
+                  <span className="text-primary">Carpark Rentals</span>: Secure
                   parking options in prime locations.
                 </CustomText>
               </li>
@@ -175,9 +175,9 @@ const DesktopFooter = () => {
             <CustomText textClassName="text-justify text-xs">
               Whether you’re a student, working professional, or family, our
               advanced search tools,{" "}
-              <span className="primary-text">tenant-friendly policies</span>,
+              <span className="text-primary">tenant-friendly policies</span>,
               and{" "}
-              <span className="primary-text">landlord support services</span>{" "}
+              <span className="text-primary">landlord support services</span>{" "}
               ensure a seamless experience. Start your property journey with us
               today and join thousands of satisfied tenants.
             </CustomText>
@@ -188,7 +188,7 @@ const DesktopFooter = () => {
             {/*<ul className="list-disc">*/}
             {/*  <li>*/}
             {/*    <CustomText>*/}
-            {/*      <span className="primary-text">*/}
+            {/*      <span className="text-primary">*/}
             {/*        Interactive Maps*/}
             {/*      </span>*/}
             {/*      : Locate properties near universities, public transport, or*/}
@@ -197,11 +197,11 @@ const DesktopFooter = () => {
             {/*  </li>*/}
             {/*  <li>*/}
             {/*    <CustomText>*/}
-            {/*      <span className="primary-text">*/}
+            {/*      <span className="text-primary">*/}
             {/*        Smart Technology Integration*/}
             {/*      </span>*/}
             {/*      : Simplify rental processes with{" "}*/}
-            {/*      <span className="primary-text">*/}
+            {/*      <span className="text-primary">*/}
             {/*        smart contracts*/}
             {/*      </span>{" "}*/}
             {/*      and automated billing systems.*/}
@@ -209,7 +209,7 @@ const DesktopFooter = () => {
             {/*  </li>*/}
             {/*  <li>*/}
             {/*    <CustomText>*/}
-            {/*      <span className="primary-text">*/}
+            {/*      <span className="text-primary">*/}
             {/*        Dedicated Support*/}
             {/*      </span>*/}
             {/*      : Reach out to our team for personalized assistance anytime.*/}
@@ -220,7 +220,7 @@ const DesktopFooter = () => {
 
           <div className="col-span-1 xl:gap-10 lg:gap-10 md:gap-8 sm:gap-6 gap-6 grid grid-cols-2">
             <div className="flex flex-col col-span-1 gap-2">
-              <CustomText textClassName="primary-text font-bold text-base pb-2">
+              <CustomText textClassName="text-primary font-bold text-base pb-2">
                 Company
               </CustomText>
 
@@ -232,7 +232,7 @@ const DesktopFooter = () => {
             </div>
 
             <div className="flex flex-col col-span-1 gap-2">
-              <CustomText textClassName="primary-text font-bold text-base pb-2">
+              <CustomText textClassName="text-primary font-bold text-base pb-2">
                 Help Center
               </CustomText>
 
@@ -246,7 +246,7 @@ const DesktopFooter = () => {
             </div>
 
             <div className="flex flex-col col-span-1 gap-2">
-              <CustomText textClassName="primary-text font-bold text-base pb-2">
+              <CustomText textClassName="text-primary font-bold text-base pb-2">
                 Discover
               </CustomText>
 
@@ -262,7 +262,7 @@ const DesktopFooter = () => {
             </div>
 
             <div className="flex flex-col col-span-1 gap-2">
-              <CustomText textClassName="primary-text font-bold text-base pb-2">
+              <CustomText textClassName="text-primary font-bold text-base pb-2">
                 Others
               </CustomText>
 

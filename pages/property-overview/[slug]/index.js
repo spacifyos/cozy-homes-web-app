@@ -29,6 +29,7 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import CustomText from "@/components/CustomText";
 import axios from "axios";
 import Image from "next/image";
+import DesktopModal from "@/components/DesktopModal";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -191,6 +192,10 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
     router.push("search");
   };
 
+  const onClickCloseRentChargeModal = () => {
+    Helper.documentGetElementById("rent_charges_details").close();
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <NextSeo
@@ -224,7 +229,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
 
       <DesktopLayout
         hideNav
-        // loading={listingPropertyDetailDataLoading}
+        backgroundColor="bg-white"
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -345,14 +350,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                     role="tab"
                     className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "tab-active" : ""} h-10 gap-2`}
                   >
-                    {/*<CustomImage*/}
-                    {/*  src={*/}
-                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
-                    {/*      ? Images.tenancyIconActive*/}
-                    {/*      : Images.tenancyIcon*/}
-                    {/*  }*/}
-                    {/*  className="w-4"*/}
-                    {/*/>*/}
                     <CustomText
                       textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "text-black font-bold" : "text-disable"}`}
                     >
@@ -364,14 +361,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
                     role="tab"
                     className={`tab ${isEqual(selectDetail, Constant.TENANCY) ? "" : "tab-active"} h-10 gap-2`}
                   >
-                    {/*<CustomImage*/}
-                    {/*  src={*/}
-                    {/*    isEqual(selectDetail, Constant.TENANCY)*/}
-                    {/*      ? Images.policyIcon*/}
-                    {/*      : Images.policyIconActive*/}
-                    {/*  }*/}
-                    {/*  className="w-4"*/}
-                    {/*/>*/}
                     <CustomText
                       textClassName={`${isEqual(selectDetail, Constant.TENANCY) ? "text-disable" : "text-black font-bold"}`}
                     >
@@ -466,7 +455,9 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
         openImageModal={openImageModal}
       />
 
-      <RentChargeModal />
+      <RentChargeModal
+        onClickCloseRentChargeModal={onClickCloseRentChargeModal}
+      />
     </div>
   );
 };

@@ -81,14 +81,14 @@ const MoveInCostModal = ({
 
       <div className="flex justify-between items-center">
         <CustomText textClassName="pr-2">Full Amount</CustomText>
-        <CustomText textClassName="primary-text font-bold">
+        <CustomText textClassName="text-primary font-bold">
           RM{_.isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
         </CustomText>
       </div>
 
       <div className="flex justify-between items-center">
         <CustomText textClassName="pr-2">Partial Amount</CustomText>
-        <CustomText textClassName="primary-text font-bold">
+        <CustomText textClassName="text-primary font-bold">
           RM{_.isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
         </CustomText>
       </div>

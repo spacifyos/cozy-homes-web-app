@@ -13,7 +13,7 @@ const MessageTimeLine = ({ item }) => {
   return (
     <div className="grid grid-cols-12 gap-1 h-full pb-4">
       <div className="xl:col-span-2 lg:col-span-2 md:col-span-2 sm:col-span-3 col-span-3">
-        <CustomText textClassName="text-xs disable-text text-end">
+        <CustomText textClassName="text-xs text-disable text-end">
           {date}
         </CustomText>
       </div>
@@ -36,7 +36,7 @@ const MessageTimeLine = ({ item }) => {
             {name}
           </CustomText>
         </div>
-        <CustomText textClassName="bg-primary-background py-2 px-4 rounded-2xl disable-text text-sm">
+        <CustomText textClassName="bg-primary-background py-2 px-4 rounded-2xl text-disable text-sm">
           {content}
         </CustomText>
       </div>

@@ -43,9 +43,9 @@ const TransactionCard = ({ data }) => {
       case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
         return "text-aqua";
       case Constant.WALLET_EXPENSE:
-        return "primary-text";
+        return "text-primary";
       case Constant.WALLET_INVOICE_PAYMENT:
-        return "primary-text";
+        return "text-primary";
       case Constant.WALLET_WITHDRAWAL:
         if (
           isEqual(withdrawStatus, "Pending") ||
@@ -53,7 +53,7 @@ const TransactionCard = ({ data }) => {
         ) {
           return "text-warning";
         } else if (isEqual(withdrawStatus, "Approved")) {
-          return "primary-text";
+          return "text-primary";
         } else if (isEqual(withdrawStatus, "Cancelled")) {
           return "text-error";
         } else {
@@ -80,7 +80,7 @@ const TransactionCard = ({ data }) => {
           {typeValue === Constant.WALLET_WITHDRAWAL ? (
             <StatusLabel status={withdrawStatus} />
           ) : (
-            <CustomText textClassName="disable-text text-xs pr-2">
+            <CustomText textClassName="text-disable text-xs pr-2">
               {isEmpty(typeLabel) ? "-" : typeLabel}
             </CustomText>
           )}
@@ -92,7 +92,7 @@ const TransactionCard = ({ data }) => {
             {isEmpty(remarks) ? "-" : remarks}
           </CustomText>
 
-          <CustomText textClassName="disable-text italic text-xs">
+          <CustomText textClassName="text-disable italic text-xs">
             {isEmpty(updatedAt)
               ? moment().format("DD MMM YYYY, HH:mmm")
               : updatedAt}

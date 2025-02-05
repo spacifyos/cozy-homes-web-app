@@ -28,7 +28,7 @@ function AuthWrapper(WrappedComponent) {
     if (isLoading) {
       return (
         <div className={"flex justify-center items-center h-screen w-full"}>
-          <span className="loading loading-dots loading-lg text-neutral primary-text"></span>
+          <span className="loading loading-dots loading-lg text-neutral text-primary"></span>
         </div>
       );
     }

@@ -77,14 +77,14 @@ const RoomPicCarousel = ({ recommendedList }) => {
                 <CustomText textClassName="text-base font-bold leading-5 line-clamp-1">
                   {propertyName}
                 </CustomText>
-                {/*<CustomText textClassName="text-xs primary-text leading-4 line-clamp-1">*/}
+                {/*<CustomText textClassName="text-xs text-primary leading-4 line-clamp-1">*/}
                 {/*  {unitRoomName}*/}
                 {/*</CustomText>*/}
                 <div className="flex items-end">
                   <CustomText textClassName="text-base font-bold mr-2">
                     RM{rental}
                   </CustomText>
-                  <CustomText textClassName="disable-text text-xs">
+                  <CustomText textClassName="text-disable text-xs">
                     / month
                   </CustomText>
                 </div>

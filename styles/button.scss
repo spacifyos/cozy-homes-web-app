@@ -6,14 +6,20 @@
   @apply text-white;
 }
 
+.btn-black {
+  @apply bg-black text-white;
+}
+
+.btn-black:hover {
+  @apply bg-black text-white;
+}
+
 .btn-white {
-  @apply border border-solid border-disable;
-  //@apply global-box-shadow;
+  @apply bg-white global-box-shadow;
 }
 
 .btn-white:hover {
-  //@apply border border-solid border-disable;
-  @apply global-box-shadow;
+  @apply bg-white shadow-lg !important;
 }
 
 .btn-primary-outline {

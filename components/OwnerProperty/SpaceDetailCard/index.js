@@ -41,13 +41,13 @@ const SpaceDetailCard = ({ item }) => {
                 <CustomText textClassName="font-bold text-base pr-1">
                   {isEmpty(remainingDays) ? "0" : remainingDays}
                 </CustomText>
-                <CustomText textClassName="disable-text text-xs pb-0.5">
+                <CustomText textClassName="text-disable text-xs pb-0.5">
                   remaining days
                 </CustomText>
               </div>
             </div>
 
-            <CustomText textClassName="font-bold primary-text pb-0.5">
+            <CustomText textClassName="font-bold text-primary pb-0.5">
               {isEmpty(roomName) ? "-" : roomName}
             </CustomText>
 

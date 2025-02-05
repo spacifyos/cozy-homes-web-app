@@ -411,13 +411,13 @@ const ViewAgreement = ({ id }) => {
               <div className="flex gap-2 pt-2">
                 <CustomButton
                   buttonText={"Previous"}
-                  buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "btn-white" : "btn-disable"}`}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== 1 && isDocumentReady ? "btn-white" : "btn-black"}`}
                   onClick={onClickPrevious}
                   disable={!isDocumentReady}
                 />
                 <CustomButton
                   buttonText={"Next"}
-                  buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "btn-white" : "btn-disable"}`}
+                  buttonClassName={`btn-md w-32 ${pageNumber !== totalPages && isDocumentReady ? "btn-white" : "btn-black"}`}
                   onClick={onClickNext}
                   disable={!isDocumentReady}
                 />

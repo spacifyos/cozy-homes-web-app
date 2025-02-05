@@ -1,6 +1,6 @@
 .booking-textarea {
   width: 100%;
-  @apply border-disable;;
+  @apply border-disable;
   border-radius: 10px;
   padding: 10px;
   margin: 4px 0;
@@ -11,29 +11,25 @@
 }
 
 .booking-textarea::placeholder {
-  @apply text-disable;;
+  @apply text-disable;
 }
 
 .booking-input {
-  @apply bg-primary-background;
+  @apply bg-primary-background border-disable text-black text-xs !important;
   width: 100%;
-  @apply border-disable;;
   border-radius: 10px;
   padding: 10px;
   margin: 4px 0;
-  @apply text-black;
   height: 40px;
-
-  @apply text-xs;
 }
 
 .booking-input::placeholder {
-  @apply text-disable;;
+  @apply text-disable;
 }
 
 .booking-select-container {
   width: 100%;
-  @apply border-disable;;
+  @apply border-disable;
   border-radius: 10px;
   margin: 4px 0;
   padding-right: 10px;
@@ -51,7 +47,7 @@
 
   option[value=""][disabled] {
     display: none;
-    @apply text-disable;;
+    @apply text-disable;
   }
 
   option {
@@ -61,7 +57,7 @@
 
 .booking-select:required:invalid {
   @apply text-xs;
-  @apply text-disable;;
+  @apply text-disable;
 }
 
 .error-message {

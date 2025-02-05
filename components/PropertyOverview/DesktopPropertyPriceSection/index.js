@@ -56,7 +56,7 @@ const DesktopPropertyPriceSection = ({
             <CustomText textClassName="text-xs font-bold line-clamp-1">
               {isEmpty(picName) ? "-" : picName}
             </CustomText>
-            <CustomText textClassName="disable-text text-xs">
+            <CustomText textClassName="text-disable text-xs">
               Member since {moment(picMemberStartDate).format("YYYY-MM-DD")}
             </CustomText>
           </div>
@@ -86,7 +86,7 @@ const DesktopPropertyPriceSection = ({
           <CustomText textClassName="font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             Total Move-In Cost
           </CustomText>
-          <CustomText textClassName="primary-text font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
+          <CustomText textClassName="text-primary font-bold xl:text-base lg:text-base md:text-sm sm:text-sm text-sm">
             RM {totalMoveInCost}
           </CustomText>
         </div>
@@ -95,7 +95,7 @@ const DesktopPropertyPriceSection = ({
           <CustomText textClassName="xl:text-base lg:text-base md:text-sm sm:text-sm text-sm pb-1">
             Move In Cost
           </CustomText>
-          <CustomText textClassName="disable-text text-xs text-justify">
+          <CustomText textClassName="text-disable text-xs text-justify">
             Please check the payment breakdown below. Should you have any
             inquiries, please contact the owner or agent before proceeding with
             your payment.
@@ -156,14 +156,14 @@ const DesktopPropertyPriceSection = ({
 
           <div className="flex justify-between items-center">
             <CustomText textClassName="pr-2 text-sm">Full Amount</CustomText>
-            <CustomText textClassName="primary-text font-bold text-sm">
+            <CustomText textClassName="text-primary font-bold text-sm">
               RM{isEmpty(totalMoveInCostFull) ? "0" : totalMoveInCostFull}
             </CustomText>
           </div>
 
           <div className="flex justify-between items-center pb-4">
             <CustomText textClassName="pr-2 text-sm">Partial Amount</CustomText>
-            <CustomText textClassName="primary-text font-bold text-sm">
+            <CustomText textClassName="text-primary font-bold text-sm">
               RM
               {isEmpty(totalMoveInCostPartial) ? "0" : totalMoveInCostPartial}
             </CustomText>

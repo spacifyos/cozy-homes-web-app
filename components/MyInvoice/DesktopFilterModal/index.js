@@ -18,25 +18,25 @@ const DesktopFilterModal = ({
   return (
     <DesktopModal id="desktop_invoice_filter_modal">
       <div className="p-6">
-        <div className="flex justify-between items-center pb-4">
-          <CustomText textClassName="font-bold text-base">
+        <div className="flex items-center">
+          <CustomText textClassName="flex-1 text-center text-base font-bold">
             Search Filter
           </CustomText>
           <form method="dialog" className={`flex justify-end`}>
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
+                className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
                 src={Images.cancelIcon}
-                imageStyle={{ width: 18, height: 18 }}
               />
             </button>
           </form>
         </div>
 
+        <div className="divider-line"></div>
+
         <div className="grid grid-cols-2 gap-2">
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="text-sm pb-1">
-              Invoice Number
-            </CustomText>
+            <CustomText textClassName="text-sm pb-1">Invoice Number</CustomText>
 
             <input
               className="bg-white booking-input"
@@ -48,13 +48,11 @@ const DesktopFilterModal = ({
           </div>
 
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="text-sm pb-1">
-              Date From
-            </CustomText>
+            <CustomText textClassName="text-sm pb-1">Date From</CustomText>
 
             <div className="bg-white flex items-center booking-input relative">
               <input
-                className="bg-white flex-1 w-full resize-input-icon"
+                className="flex-1 w-full resize-input-icon bg-primary-background"
                 type="date"
                 value={dateFromValue}
                 onChange={onChangeDateFrom}
@@ -68,13 +66,11 @@ const DesktopFilterModal = ({
           </div>
 
           <div className="col-span-2 pb-6">
-            <CustomText textClassName="text-sm pb-1">
-              Date To
-            </CustomText>
+            <CustomText textClassName="text-sm pb-1">Date To</CustomText>
 
             <div className="bg-white flex items-center booking-input relative">
               <input
-                className="bg-white flex-1 w-full resize-input-icon"
+                className="bg-primary-background flex-1 w-full resize-input-icon"
                 type="date"
                 value={dateToValue}
                 onChange={onChangeDateTo}

@@ -19,13 +19,13 @@ const TransactionComponent = ({
       <div className="pb-4 flex">
         <CustomButton
           buttonText="Rental Income"
-          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rental") ? "btn-primary" : "default-btn"} mr-2`}
+          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Rental") ? "btn-primary" : "btn-white"} mr-2`}
           textClassName="text-xs"
           onClick={() => onClickSelectCategory("Rental")}
         />
         <CustomButton
           buttonText="Invoice"
-          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Invoice") ? "btn-primary" : "default-btn"} mr-2`}
+          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Invoice") ? "btn-primary" : "btn-white"} mr-2`}
           textClassName="text-xs"
           onClick={() => onClickSelectCategory("Invoice")}
         />

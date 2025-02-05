@@ -29,7 +29,7 @@ const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
             </CustomText>
             <StatusLabel status={item} />
           </div>
-          <CustomText textClassName="disable-text text-xs">
+          <CustomText textClassName="text-disable text-xs">
             Appointment with
           </CustomText>
           <CustomText textClassName="font-bold text-sm">

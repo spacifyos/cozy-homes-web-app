@@ -36,7 +36,7 @@ const MaintenanceScheduleInformation = ({
   return (
     <div className="global-border-radius global-box-shadow bg-white p-4">
       <div className="flex justify-between items-center">
-        <CustomText textClassName="disable-text text-sm">
+        <CustomText textClassName="text-disable text-sm">
           Maintenance Schedule Information
         </CustomText>
       </div>
@@ -106,7 +106,7 @@ const MaintenanceScheduleInformation = ({
           />
 
           <div className="pb-4">
-            <CustomText textClassName="disable-text text-xs pb-1">
+            <CustomText textClassName="text-disable text-xs pb-1">
               {"Upload Photo (max file size 2MB, up to 5 photo):"}
             </CustomText>
             <div className=" flex flex-row items-center gap-2 pb-3">
@@ -134,7 +134,7 @@ const MaintenanceScheduleInformation = ({
                       className={`${loading ? "opacity-50" : ""}`}
                     />
                     {loading ? (
-                      <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+                      <span className="loading loading-spinner loading-lg text-primary absolute"></span>
                     ) : (
                       <div
                         className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
@@ -181,7 +181,7 @@ const MaintenanceScheduleInformation = ({
           </div>
 
           <div className="pb-4">
-            <CustomText textClassName="disable-text text-xs pb-1">
+            <CustomText textClassName="text-disable text-xs pb-1">
               {"Upload Video (max file size: 50MB, up to 1 video):"}
             </CustomText>
             <div className=" flex flex-row items-center gap-2 pb-3">
@@ -202,7 +202,7 @@ const MaintenanceScheduleInformation = ({
                   )}
 
                   {loading ? (
-                    <span className="loading loading-spinner loading-lg primary-text absolute"></span>
+                    <span className="loading loading-spinner loading-lg text-primary absolute"></span>
                   ) : (
                     <div
                       className="absolute top-1 right-1 cursor-pointer z-10"
@@ -261,7 +261,7 @@ const MaintenanceScheduleInformation = ({
       </div>
 
       <div className="flex flex-col justify-center items-center pt-4">
-        <CustomText textClassName="disable-text text-xs">
+        <CustomText textClassName="text-disable text-xs">
           Maintenance Schedule Information Will Be Updated Soon
         </CustomText>
       </div>
