@@ -58,7 +58,7 @@ const MaintenanceScheduleInformation = ({
           { label: "Closed", value: Constant.TICKET_CLOSED },
         ]}
         disabled={false}
-        bgColor="bg-white"
+        bgColor="bg-white border border-disable"
         className="pb-4"
         value={get(postData, ["status"], "")}
         onChange={(e) =>
@@ -74,7 +74,7 @@ const MaintenanceScheduleInformation = ({
       {isEqual(status, toString(Constant.TICKET_CLOSED)) ? (
         <>
           <BookingTextArea
-            bgColor="bg-white"
+            bgColor="bg-white border border-disable"
             className="pb-4"
             title={"Remarks"}
             placeholder={"Enter your message"}
@@ -90,7 +90,7 @@ const MaintenanceScheduleInformation = ({
           />
 
           <BookingTextArea
-            bgColor="bg-white"
+            bgColor="bg-white border border-disable"
             className="pb-4"
             title={"Internal Remarks"}
             placeholder={"Enter your message"}
@@ -106,10 +106,10 @@ const MaintenanceScheduleInformation = ({
           />
 
           <div className="pb-4">
-            <CustomText textClassName="text-disable text-xs pb-1">
+            <CustomText textClassName="text-xs pb-1">
               {"Upload Photo (max file size 2MB, up to 5 photo):"}
             </CustomText>
-            <div className=" flex flex-row items-center gap-2 pb-3">
+            <div className="flex flex-row items-center gap-2 pb-3">
               {map(images, (list, index) => {
                 const loading = get(list, ["loading"], false);
                 const status = get(list, ["status"], false);
@@ -181,7 +181,7 @@ const MaintenanceScheduleInformation = ({
           </div>
 
           <div className="pb-4">
-            <CustomText textClassName="text-disable text-xs pb-1">
+            <CustomText textClassName="text-xs pb-1">
               {"Upload Video (max file size: 50MB, up to 1 video):"}
             </CustomText>
             <div className=" flex flex-row items-center gap-2 pb-3">

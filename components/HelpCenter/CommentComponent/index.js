@@ -62,7 +62,8 @@ const CommentComponent = ({
       )}
 
       <div className="flex justify-center items-center pt-2 gap-4">
-        <BookingInput
+        <BookingInput bgColor="bg-white border border-disable"
+                      inputClassName="border-none"
           placeholder="Message"
           value={messageValue}
           onChange={(e) => setMessageValue(e.target.value)}

@@ -35,7 +35,7 @@
 }
 
 .btn-disable {
-  @apply text-black border !important;
+  @apply bg-disable text-black border !important;
 }
 
 .default-btn:focus-visible,

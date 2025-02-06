@@ -22,7 +22,7 @@ const CustomSelect = ({
       {!isEmpty(label) ? <CustomText>{label}</CustomText> : ""}
       <select
         aria-label={isEmpty(label) ? placeholder : label}
-        className={`select select-bordered text-sm ${selectClassName}`}
+        className={`select select-bordered text-sm w-full ${selectClassName}`}
         style={selectStyles}
         onChange={onChange}
         value={value}

@@ -255,7 +255,7 @@ const CardListing = () => {
             />
 
             <CustomSelect
-              className="xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5 xl:block lg:block md:block hidden"
+              className="w-full xl:col-span-5 lg:col-span-5 md:col-span-5 sm:col-span-5 col-span-5 xl:block lg:block md:block hidden"
               placeholder={"Unit"}
               optionList={unitOption}
               onChange={onChangeUnitValue}
@@ -263,7 +263,7 @@ const CardListing = () => {
             />
 
             <div
-              className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 flex justify-center items-center global-box-shadow global-border-radius cursor-pointer"
+              className="bg-white xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 flex justify-center items-center global-box-shadow global-border-radius cursor-pointer"
               onClick={() => setIsOpenFilter(!isOpenFilter)}
             >
               <CustomImage src={Images.filterProIcon} className="h-6 w-6" />
@@ -317,7 +317,7 @@ const CardListing = () => {
             false
           )}
 
-          <div className="grid grid-cols-12 xl:gap-8 lg:gap-8 md:gap-8 sm:gap-4 gap-4 relative">
+          <div className="grid grid-cols-12 xl:gap-8 lg:gap-8 md:gap-8 sm:gap-4 gap-4 relative pb-4">
             <div className="xl:col-span-2 lg:col-span-2 md:col-span-12 sm:col-span-12 col-span-12 relative">
               <div className="gap-4 flex xl:flex-col lg:flex-col md:flex-row sm:flex-row flex-row xl:h-screen lg:h-screen overflow-y-scroll sticky top-4">
                 {map(propertyListing, (list) => {
@@ -376,7 +376,7 @@ const CardListing = () => {
 
             <div className="col-span-10 xl:flex lg:flex md:hidden sm:hidden hidden flex-col gap-4 relative">
               {isEmpty(unitListing) ? (
-                <div className="flex justify-center items-center h-screen">
+                <div className="bg-white flex justify-center items-center h-screen border global-border-radius">
                   <CustomEmptyBox />
                 </div>
               ) : (
@@ -387,7 +387,7 @@ const CardListing = () => {
                     const isOccupied = listingSelector.getIsOccupied(list);
 
                     return (
-                      <div className="border global-border-radius overflow-hidden relative">
+                      <div className="bg-white border global-border-radius overflow-hidden relative">
                         <div className="px-4 pt-4 sticky">
                           <div className="flex items-center gap-2">
                             <CustomText textClassName="text-base">
@@ -535,7 +535,7 @@ const CardListing = () => {
                     const isOccupied = listingSelector.getIsOccupied(list);
 
                     return (
-                      <div className="collapse border global-border-radius">
+                      <div className="bg-white collapse border global-border-radius">
                         <input type="checkbox" />
                         <div className="collapse-title">
                           <div className="flex items-center gap-2">
