@@ -17,6 +17,8 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import Helper from "@/src/utils/Helper";
 import CustomModal from "@/components/CustomModal";
 import CustomImage from "@/components/CustomImage";
+import DesktopLayout from "@/components/DesktopLayout";
+import DesktopModal from "@/components/DesktopModal";
 
 export { getServerSideProps };
 
@@ -103,54 +105,98 @@ const MyReport = ({ id }) => {
   };
 
   return (
-    <CustomOwnerHeader
-      className="pb-0"
-      rightButtonIcon={Images.downloadWhiteIcon}
-      onClickRightButton={onClickDownload}
-      title="Statement Overview"
-      onClickGoBack={onClickGoBack}
-    >
+    <div className="min-h-screen bg-white">
       <NextSeo title="PnL Statement Overview | Owner - Spacify Asia" />
+      <DesktopLayout
+        loading={loading}
+        rightButtonIcon={Images.downloadIcon}
+        onClickRightButton={onClickDownload}
+        pageBreadcrumbs={
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap">
+                <li>
+                  <a href={"/user/owner"}>
+                    <CustomText textClassName="text-base text-disable">
+                      My Property
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <a href={"/user/owner/my-report"}>
+                    <CustomText textClassName="text-base text-disable">
+                      My Report
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base font-bold">
+                    {month}
+                  </CustomText>
+                </li>
+              </ul>
+            </div>
 
-      <div className="bg-primary-background flex flex-col flex-1 global-horizontal-padding py-5">
-        <div className="flex justify-between pb-2">
-          <div className="flex justify-center items-center">
-            <CustomText textClassName="font-bold text-primary pr-2">
-              Monthly P&L Statement
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">{month}</CustomText>
+            </div>
+          </div>
+        }
+      >
+        <div className="bg-white flex flex-col flex-1 p-10 h-full border global-border-radius">
+          <div className="flex justify-between pb-2">
+            <div className="flex justify-center items-center">
+              <CustomText textClassName="font-bold text-primary pr-2">
+                Monthly P&L Statement
+              </CustomText>
+
+              <CustomImage
+                onClick={onClickOpenInformationModal}
+                src={Images.infoIconBlack}
+                className="w-4 h-4 cursor-pointer"
+              />
+            </div>
+            <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
+          </div>
+
+          <div className="divider-line"></div>
+
+          <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+            Property
+          </CustomText>
+
+          <div className="divider-line"></div>
+
+          <CustomText textClassName="pb-10 xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+            {isEmpty(property) ? "" : property}, {isEmpty(unit) ? "" : unit}
+          </CustomText>
+
+          <div className="pb-10">
+            <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+              Rental Income
             </CustomText>
 
-            <CustomImage
-              onClick={onClickOpenInformationModal}
-              src={Images.infoIconBlack}
-              imageStyle={{ width: 16, height: 16 }}
-            />
-          </div>
-          <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
-        </div>
+            <div className="divider-line"></div>
 
-        <CustomLabelValue
-          label="Property"
-          value={isEmpty(property) ? "-" : property}
-        />
-
-        <CustomLabelValue label="Unit" value={isEmpty(unit) ? "-" : unit} />
-
-        <div className="divider-line" style={{ margin: "10px 0 18px 0" }}></div>
-
-        <CustomText textClassName="text-disable text-xs pb-1">
-          Income
-        </CustomText>
-
-        <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-          {isEmpty(incomeList)
-            ? false
-            : map(incomeList, (income) => {
+            {isEmpty(incomeList) ? (
+              <div className="flex justify-center">
+                <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+                  No Rental Income
+                </CustomText>
+              </div>
+            ) : (
+              map(incomeList, (income) => {
                 const label = reportSelector.getLabel(income);
                 const items = reportSelector.getItems(income);
 
                 return (
                   <div>
-                    <CustomText textClassName="font-bold pb-2">
+                    <CustomText textClassName="pb-2">
                       {isEmpty(label) ? "-" : label}
                     </CustomText>
 
@@ -184,30 +230,38 @@ const MyReport = ({ id }) => {
                     })}
                   </div>
                 );
-              })}
+              })
+            )}
 
-          {isEmpty(incomeList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
+            <div className="divider-line"></div>
 
-          <div className="flex justify-between">
-            <CustomText textClassName="font-bold">Total Income</CustomText>
-            <CustomText textClassName="font-bold text-aqua">
-              {isEmpty(totalIncome) ? "0" : totalIncome}
-            </CustomText>
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">
+                Total Rental Income
+              </CustomText>
+              <CustomText textClassName="font-bold text-aqua">
+                {isEmpty(totalIncome) ? "0" : totalIncome}
+              </CustomText>
+            </div>
+
+            <div className="divider-line"></div>
           </div>
-        </div>
 
-        <CustomText textClassName="text-disable text-xs pb-1">
-          Expenses
-        </CustomText>
+          <div className="pb-10">
+            <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+              Expenses
+            </CustomText>
 
-        <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-          {isEmpty(expenseList)
-            ? false
-            : map(expenseList, (expense) => {
+            <div className="divider-line"></div>
+
+            {isEmpty(expenseList) ? (
+              <div className="flex justify-center">
+                <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+                  No Expenses
+                </CustomText>
+              </div>
+            ) : (
+              map(expenseList, (expense) => {
                 const label = reportSelector.getLabel(expense);
                 const amount = reportSelector.getAmount(expense);
                 const description = reportSelector.getDescription(expense);
@@ -215,7 +269,7 @@ const MyReport = ({ id }) => {
                 return (
                   <div className="flex justify-between items-center">
                     <div>
-                      <CustomText textClassName="font-bold">
+                      <CustomText textClassName="pb-2">
                         {isEmpty(label) ? "-" : label}
                       </CustomText>
                       <CustomText textClassName="text-disable text-xs">
@@ -228,74 +282,73 @@ const MyReport = ({ id }) => {
                     </CustomText>
                   </div>
                 );
-              })}
+              })
+            )}
 
-          {isEmpty(expenseList) ? (
-            false
-          ) : (
-            <div className="divider-line" style={{ margin: "10px 0" }}></div>
-          )}
+            <div className="divider-line"></div>
 
-          <div className="flex justify-between">
-            <CustomText textClassName="font-bold">Total Expenses</CustomText>
-            <CustomText textClassName="font-bold text-primary">
-              {isEmpty(totalExpense) ? "0" : totalExpense}
-            </CustomText>
+            <div className="flex justify-between">
+              <CustomText textClassName="font-bold">Total Expenses</CustomText>
+              <CustomText textClassName="font-bold text-primary">
+                {isEmpty(totalExpense) ? "0" : totalExpense}
+              </CustomText>
+            </div>
+
+            <div className="divider-line"></div>
           </div>
-        </div>
 
-        {isEmpty(outstandingList) ? (
-          false
-        ) : (
-          <CustomText textClassName="text-disable text-xs pb-1">
-            Outstanding
-          </CustomText>
-        )}
+          <div className="pb-10">
+            <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+              Outstanding
+            </CustomText>
 
-        {isEmpty(outstandingList) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            {map(outstandingList, (outstanding) => {
-              const label = reportSelector.getLabel(outstanding);
-              const amount = reportSelector.getAmount(outstanding);
-              const description = reportSelector.getDescription(outstanding);
-              const title = reportSelector.getTitle(outstanding);
-
-              return (
-                <div className="flex justify-between items-center pb-1">
-                  <div>
-                    <CustomText textClassName="font-bold pb-2">
-                      {isEmpty(label) ? "-" : label}
-                    </CustomText>
-                    <div className="flex items-start justify-center">
-                      <div
-                        className="bg-disable rounded mr-1.5 mt-2"
-                        style={{ width: 3, height: 3 }}
-                      ></div>
-                      <div className="">
-                        <CustomText textClassName="text-disable text-xs">
-                          {isEmpty(title) ? "-" : title}
-                        </CustomText>
-                        <CustomText textClassName="text-disable text-xs leading-1">
-                          {isEmpty(description) ? "-" : description}
-                        </CustomText>
-                      </div>
-                    </div>
-                  </div>
-
-                  <CustomText textClassName="text-disable text-xs">
-                    {isEmpty(amount) ? "0" : amount}
-                  </CustomText>
-                </div>
-              );
-            })}
+            <div className="divider-line"></div>
 
             {isEmpty(outstandingList) ? (
-              false
+              <div className="flex justify-center">
+                <CustomText textClassName="text-disable xl:text-base lg:text-base md:text-base sm:text-sm text-sm">
+                  No Outstanding
+                </CustomText>
+              </div>
             ) : (
-              <div className="divider-line" style={{ margin: "10px 0" }}></div>
+              map(outstandingList, (outstanding) => {
+                const label = reportSelector.getLabel(outstanding);
+                const amount = reportSelector.getAmount(outstanding);
+                const description = reportSelector.getDescription(outstanding);
+                const title = reportSelector.getTitle(outstanding);
+
+                return (
+                  <div className="flex justify-between items-center pb-1">
+                    <div>
+                      <CustomText textClassName="pb-2">
+                        {isEmpty(label) ? "-" : label}
+                      </CustomText>
+
+                      <div className="flex items-start justify-center">
+                        <div
+                          className="bg-disable rounded mr-1.5 mt-2"
+                          style={{ width: 3, height: 3 }}
+                        ></div>
+                        <div className="">
+                          <CustomText textClassName="text-disable text-xs">
+                            {isEmpty(title) ? "-" : title}
+                          </CustomText>
+                          <CustomText textClassName="text-disable text-xs leading-1">
+                            {isEmpty(description) ? "-" : description}
+                          </CustomText>
+                        </div>
+                      </div>
+                    </div>
+
+                    <CustomText textClassName="text-disable text-xs">
+                      {isEmpty(amount) ? "0" : amount}
+                    </CustomText>
+                  </div>
+                );
+              })
             )}
+
+            <div className="divider-line"></div>
 
             <div className="flex justify-between">
               <CustomText textClassName="font-bold">
@@ -307,187 +360,152 @@ const MyReport = ({ id }) => {
                 {isEmpty(totalOutstandingAmount) ? "0" : totalOutstandingAmount}
               </CustomText>
             </div>
-          </div>
-        )}
 
-        {isEmpty(totalIncome) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Total Income</CustomText>
-              <CustomText textClassName={`font-bold text-aqua`}>
-                {totalIncome}
+            <div className="divider-line"></div>
+          </div>
+
+          <div className="flex justify-between">
+            <CustomText textClassName="font-bold">Current Month P&L</CustomText>
+            <CustomText
+              textClassName={`font-bold ${currentMonthPNLIsAmountNegative ? "text-primary" : "text-aqua"}`}
+            >
+              {isEmpty(currentMonthPNLAmount) ? "0" : currentMonthPNLAmount}
+            </CustomText>
+          </div>
+
+          <div className="divider-line"></div>
+
+          <div className="flex justify-between">
+            <CustomText textClassName="font-bold">
+              Carry Forward Deduction
+            </CustomText>
+            <CustomText
+              textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "text-primary" : "text-aqua"}`}
+            >
+              {isEmpty(carryForwardDeductionAmount)
+                ? "0"
+                : carryForwardDeductionAmount}
+            </CustomText>
+          </div>
+
+          <div className="divider-line"></div>
+
+          <div className="flex justify-between">
+            <CustomText textClassName="font-bold">
+              Current Month Payout
+            </CustomText>
+            <CustomText
+              textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
+            >
+              {isEmpty(currentMonthPayoutAmount)
+                ? "0"
+                : currentMonthPayoutAmount}
+            </CustomText>
+          </div>
+
+          <div className="divider-line"></div>
+
+          <div className="flex justify-between">
+            <CustomText textClassName="font-bold">Total Net Payout</CustomText>
+            <CustomText
+              textClassName={`font-bold ${totalNetPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
+            >
+              {isEmpty(totalNetPayoutAmount) ? "0" : totalNetPayoutAmount}
+            </CustomText>
+          </div>
+
+          <div className="divider-line"></div>
+        </div>
+
+        <DesktopModal id="report_information_modal">
+          <div className="p-6">
+            <div className="flex items-center">
+              <CustomText textClassName="flex-1 text-center text-base font-bold">
+                How to Read Your Profit and Loss Report
               </CustomText>
+              <form method="dialog" className={`flex justify-end`}>
+                <button className="btn btn-sm btn-circle btn-ghost right-2">
+                  <CustomImage
+                    className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
+                    src={Images.cancelIcon}
+                  />
+                </button>
+              </form>
             </div>
+
+            <div className="divider-line"></div>
+
+            <CustomText textClassName="font-bold pb-2">Total Income</CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section reflects all rental payments received during the
+              specified month. It includes both the current month’s rental paid
+              within the same month as well as any outstanding rentals that were
+              cleared during the payout month.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Total Expenses
+            </CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section outlines all expenses incurred during the payout
+              month. It covers costs such as maintenance, repairs, or any other
+              charges deducted from your income.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Total Outstanding
+            </CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section displays the total amount of rent still owed by
+              tenants, as of the end of the payout month. It helps you track any
+              unpaid rentals for future reference.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Current Month P&L (Profit & Loss)
+            </CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section is calculated by subtracting{" "}
+              <span className="font-bold">Total Expenses</span> from{" "}
+              <span className="font-bold">Total Income</span> for the payout
+              month. It gives you an overview of your profit or loss during the
+              current month.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Carry Forward Deduction
+            </CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section shows any deductions carried over from the previous
+              month’s Payout Report. These are typically unresolved amounts that
+              affect your current month’s balance.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Current Month Payout
+            </CustomText>
+            <CustomText textClassName="pb-4 font-light">
+              This section is determined by adding the{" "}
+              <span className="font-bold">Current Month P&L</span> to the{" "}
+              <span className="font-bold">Carry Forward Deduction</span>. It
+              reflects the payout for the current month, accounting for any past
+              adjustments.
+            </CustomText>
+
+            <CustomText textClassName="font-bold pb-2">
+              Total Net Payout
+            </CustomText>
+            <CustomText textClassName="font-light">
+              This section displays the final net payout for the month. If the{" "}
+              <span className="font-bold text-black">Current Month Payout</span>{" "}
+              is positive, it will match the net payout. However, if the{" "}
+              <span className="font-bold">Current Month Payout</span> is
+              negative, the net payout will be zero.
+            </CustomText>
           </div>
-        )}
-
-        {isEmpty(totalExpense) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Total Expense</CustomText>
-              <CustomText textClassName={`font-bold text-primary`}>
-                {totalExpense}
-              </CustomText>
-            </div>
-          </div>
-        )}
-
-        {isEmpty(currentMonthPNLAmount) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">
-                Current Month P&L
-              </CustomText>
-              <CustomText
-                textClassName={`font-bold ${currentMonthPNLIsAmountNegative ? "text-primary" : "text-aqua"}`}
-              >
-                {currentMonthPNLAmount}
-              </CustomText>
-            </div>
-          </div>
-        )}
-
-        {isEmpty(carryForwardDeductionAmount) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">
-                Carry Forward Deduction
-              </CustomText>
-              <CustomText
-                textClassName={`font-bold ${carryForwardDeductionIsAmountNegative ? "text-primary" : "text-aqua"}`}
-              >
-                {carryForwardDeductionAmount}
-              </CustomText>
-            </div>
-          </div>
-        )}
-
-        {isEmpty(currentMonthPayoutAmount) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5 mb-4">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">
-                Current Month Payout
-              </CustomText>
-              <CustomText
-                textClassName={`font-bold ${currentMonthPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
-              >
-                {currentMonthPayoutAmount}
-              </CustomText>
-            </div>
-          </div>
-        )}
-
-        {isEmpty(totalNetPayoutAmount) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">
-                Total Net Payout
-              </CustomText>
-              <CustomText
-                textClassName={`font-bold ${totalNetPayoutIsAmountNegative ? "text-primary" : "text-aqua"}`}
-              >
-                {totalNetPayoutAmount}
-              </CustomText>
-            </div>
-          </div>
-        )}
-
-        {isEmpty(grandTotal) ? (
-          false
-        ) : (
-          <div className="bg-white global-box-shadow global-border-radius p-4 py-5">
-            <div className="flex justify-between">
-              <CustomText textClassName="font-bold">Grand Total</CustomText>
-              <CustomText textClassName="font-bold">{grandTotal}</CustomText>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <CustomModal id="report_information_modal">
-        <CustomText textClassName="font-bold pb-4">
-          How to Read Your Profit and Loss Report
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">Total Income</CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section reflects all rental payments received during the
-          specified month. It includes both the current month’s rental paid
-          within the same month as well as any outstanding rentals that were
-          cleared during the payout month.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">Total Expenses</CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section outlines all expenses incurred during the payout month.
-          It covers costs such as maintenance, repairs, or any other charges
-          deducted from your income.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">
-          Total Outstanding
-        </CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section displays the total amount of rent still owed by tenants,
-          as of the end of the payout month. It helps you track any unpaid
-          rentals for future reference.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">
-          Current Month P&L (Profit & Loss)
-        </CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section is calculated by subtracting{" "}
-          <span className="font-bold">Total Expenses</span> from{" "}
-          <span className="font-bold">Total Income</span> for the payout month.
-          It gives you an overview of your profit or loss during the current
-          month.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">
-          Carry Forward Deduction
-        </CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section shows any deductions carried over from the previous
-          month’s Payout Report. These are typically unresolved amounts that
-          affect your current month’s balance.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">
-          Current Month Payout
-        </CustomText>
-        <CustomText textClassName="pb-4 font-light">
-          This section is determined by adding the{" "}
-          <span className="font-bold">Current Month P&L</span> to the{" "}
-          <span className="font-bold">Carry Forward Deduction</span>. It
-          reflects the payout for the current month, accounting for any past
-          adjustments.
-        </CustomText>
-
-        <CustomText textClassName="font-bold pb-2">Total Net Payout</CustomText>
-        <CustomText textClassName="font-light">
-          This section displays the final net payout for the month. If the{" "}
-          <span className="font-bold text-black">Current Month Payout</span> is
-          positive, it will match the net payout. However, if the{" "}
-          <span className="font-bold">Current Month Payout</span> is negative,
-          the net payout will be zero.
-        </CustomText>
-      </CustomModal>
-
-      <LoadingOverlay loading={loading} />
-    </CustomOwnerHeader>
+        </DesktopModal>
+      </DesktopLayout>
+    </div>
   );
 };
 
