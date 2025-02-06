@@ -15,6 +15,7 @@ import { NextSeo } from "next-seo";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import DesktopLayout from "@/components/DesktopLayout";
+import CustomImage from "@/components/CustomImage";
 
 export { getServerSideProps };
 
@@ -87,21 +88,32 @@ const MyReport = () => {
       <DesktopLayout
         loading={loading}
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul className="flex-wrap">
-              <li>
-                <a href={"/user/owner"}>
-                  <CustomText textClassName="text-base text-disable">
-                    My Property
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap">
+                <li>
+                  <a href={"/user/owner"}>
+                    <CustomText textClassName="text-base text-disable">
+                      My Property
+                    </CustomText>
+                  </a>
+                </li>
+                <li>
+                  <CustomText textClassName="text-base font-bold">
+                    My Report
                   </CustomText>
-                </a>
-              </li>
-              <li>
-                <CustomText textClassName="text-base font-bold">
-                  My Report
-                </CustomText>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIcon}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">My Report</CustomText>
+            </div>
           </div>
         }
       >

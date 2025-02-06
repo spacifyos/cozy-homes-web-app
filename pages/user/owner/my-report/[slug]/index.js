@@ -101,7 +101,6 @@ const MyReport = ({ id }) => {
   };
 
   const onClickOpenInformationModal = () => {
-    
     Helper.documentGetElementById("report_information_modal").showModal();
   };
 
