@@ -12,11 +12,12 @@ const GeneralInformationSection = ({ tenancyOption, setPostData }) => {
       <CustomLabelValue label={"Requester"} value="Joan Lim" />
 
       <BookingSelect
+        required
         title={"Tenancy"}
         placeholder={"Select tenancy"}
         lists={tenancyOption}
         disabled={false}
-        bgColor="bg-white"
+        bgColor="bg-white border border-disable border-solid"
         className="pb-2"
         onChange={(e) =>
           setPostData((prevState) => {
@@ -27,14 +28,6 @@ const GeneralInformationSection = ({ tenancyOption, setPostData }) => {
           })
         }
       />
-
-      {/*<BookingSelect*/}
-      {/*  title={"Link Equipment"}*/}
-      {/*  placeholder={"Select Link Equipment"}*/}
-      {/*  lists={[{ name: "None", value: "none" }]}*/}
-      {/*  bgColor="bg-white"*/}
-      {/*  className="pb-2"*/}
-      {/*/>*/}
     </div>
   );
 };

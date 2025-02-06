@@ -8,11 +8,20 @@ const BookingTextArea = ({
   title,
   name,
   bgColor = "bg-primary-background",
+  required,
   ...props
 }) => {
   return (
     <label className={`form-control w-full ${className}`}>
-      <CustomText textClassName="input-title">{title}</CustomText>
+      <div className="flex items-center">
+        {required ? (
+          <CustomText textClassName="error-message pr-1">*</CustomText>
+        ) : (
+          false
+        )}
+        <CustomText textClassName="input-title">{title}</CustomText>
+      </div>
+
       <textarea
         typeof="text"
         placeholder={placeholder}

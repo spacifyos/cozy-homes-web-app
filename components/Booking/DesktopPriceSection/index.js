@@ -84,6 +84,7 @@ const DesktopPriceSection = ({
                     Tenancy Period
                   </CustomText>
                   <BookingDateInput
+                    inputStyle={{ border: "none" }}
                     bgColor="bg-primary-background"
                     className="col-span-3"
                     placeholder="12/02/2023"

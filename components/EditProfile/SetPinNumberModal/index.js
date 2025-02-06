@@ -26,8 +26,8 @@ const SetPinNumberModal = ({
   return (
     <DesktopModal id={id} disableClose>
       <div className="p-6">
-        <div className="flex justify-between items-center pb-4">
-          <CustomText textClassName="font-bold text-base">
+        <div className="flex items-center">
+          <CustomText textClassName="flex-1 text-center text-base font-bold">
             Set Pin Number
           </CustomText>
           <form method="dialog" className={`flex justify-end`}>
@@ -39,11 +39,16 @@ const SetPinNumberModal = ({
             </button>
           </form>
         </div>
+
+        <div className="divider-line"></div>
+
         <BookingInput
+          required
           title="Pin Number"
           placeholder="Pin Number"
-          bgColor="bg-white"
+          bgColor="bg-white border border-disable"
           className="pb-3"
+          inputClassName="border-none"
           value={pinNumberValue}
           onChange={onChangePinNumber}
           type="password"
@@ -51,10 +56,12 @@ const SetPinNumberModal = ({
         />
 
         <BookingInput
+          required
           title="Confirm Pin Number"
           placeholder={"Confirm Pin Number"}
-          bgColor="bg-white"
+          bgColor="bg-white border border-disable"
           className="pb-3"
+          inputClassName="border-none"
           value={confirmPinNumberValue}
           onChange={onChangeConfirmPinNumber}
           type="password"
@@ -63,10 +70,12 @@ const SetPinNumberModal = ({
 
         <div className="grid grid-cols-2 flex items-end gap-4">
           <BookingInput
+            required
             title="Otp Number"
             placeholder={"Otp Number"}
-            bgColor="bg-white"
+            bgColor="bg-white border border-disable"
             className="pb-3"
+            inputClassName="border-none"
             value={otpValue}
             onChange={onChangeOtpValue}
             type="number"
@@ -79,8 +88,8 @@ const SetPinNumberModal = ({
                 ? "Request Otp"
                 : `Resend OTP in ${timeLeft} seconds`
             }
-            textClassName="text-sm"
-            buttonClassName={`${isResendEnabled ? "btn-primary" : "btn-disable"} mb-4`}
+            textClassName="text-xs"
+            buttonClassName={`${isResendEnabled ? "btn-primary" : "btn-warning"} mb-4`}
             onClick={onClickGenerateOtp}
             loading={otpRequestLoading}
             disable={otpRequestLoading || !isResendEnabled}

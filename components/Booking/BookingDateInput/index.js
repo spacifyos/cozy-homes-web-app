@@ -30,7 +30,7 @@ const BookingDateInput = ({
       </div>
 
       <div
-        className={`flex items-center gap-2 booking-input relative ${bgColor}`}
+        className={`flex items-center gap-2 booking-input relative border border-disable border-solid ${bgColor}`}
         style={inputStyle}
       >
         <input
@@ -44,14 +44,17 @@ const BookingDateInput = ({
           {...props}
         />
 
-        {isEqual(type,"date")?<CustomImage
+        {isEqual(type, "date") ? (
+          <CustomImage
             src={Images.calendarIcon}
             imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
-        />:<CustomImage
+          />
+        ) : (
+          <CustomImage
             src={Images.clockIcon}
             imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
-        />}
-
+          />
+        )}
       </div>
       {_.isEmpty(errorMessage) ? (
         false

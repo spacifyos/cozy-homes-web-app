@@ -11,17 +11,21 @@ const DesktopPinNumberInfoModal = ({
   return (
     <DesktopModal id="desktop_pin_number_info_modal">
       <div className="p-6">
-        <form method="dialog" className={`flex justify-end`}>
-          <button className="btn btn-sm btn-circle btn-ghost right-2">
-            <CustomImage
-              src={Images.cancelIcon}
-              imageStyle={{ width: 20, height: 20 }}
-            />
-          </button>
-        </form>
-        <CustomText textClassName="font-bold text-base pb-5">
-          Pin Number Unset
-        </CustomText>
+        <div className="flex items-center">
+          <CustomText textClassName="flex-1 text-center text-base font-bold">
+            Pin Number Unset
+          </CustomText>
+          <form method="dialog" className={`flex justify-end`}>
+            <button className="btn btn-sm btn-circle btn-ghost right-2">
+              <CustomImage
+                className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
+                src={Images.cancelIcon}
+              />
+            </button>
+          </form>
+        </div>
+
+        <div className="divider-line"></div>
 
         <div className="flex flex-col justify-center items-center p-6">
           <CustomImage src={Images.dangerIcon} className="w-20" />

@@ -23,11 +23,11 @@
 }
 
 .btn-primary-outline {
-  @apply border-primary border border-solid text-primary;
+  @apply bg-white border-primary border border-solid text-primary;
 }
 
 .btn-primary-outline:hover {
-  @apply global-box-shadow;
+  @apply bg-white global-box-shadow;
 }
 
 .btn-secondary {
@@ -35,7 +35,7 @@
 }
 
 .btn-disable {
-  @apply text-white;
+  @apply text-black border !important;
 }
 
 .default-btn:focus-visible,

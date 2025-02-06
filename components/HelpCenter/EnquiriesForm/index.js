@@ -73,8 +73,9 @@ const EnquiriesForm = ({
       )}
 
       <BookingTextArea
+        required
         title={"Describe The Issue"}
-        bgColor="bg-white"
+        bgColor="bg-white border border-disable border-solid"
         className="pb-2"
         placeholder="Enter your message"
         onChange={(e) => {

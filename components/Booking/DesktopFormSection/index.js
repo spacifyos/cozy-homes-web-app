@@ -347,7 +347,7 @@ const DesktopFormSection = ({
         />
       </div>
 
-      <div className="grid grid-cols-1 pb-3">
+      <div className="grid grid-cols-1 pb-3 pt-2">
         <BookingInput
           bgColor="bg-primary-background"
           className="col-span-1"
@@ -372,7 +372,7 @@ const DesktopFormSection = ({
           </CustomText>
         </div>
 
-        <CustomText textClassName="col-span-6 font-light text-disable text-sm">
+        <CustomText textClassName="col-span-6 font-light text-black text-sm">
           Example:
         </CustomText>
 
@@ -433,7 +433,7 @@ const DesktopFormSection = ({
           />
         </div>
 
-        <CustomText textClassName="pl-3 font-bold text-disable text-xs text-justify">
+        <CustomText textClassName="pl-3 font-bold text-black text-xs text-justify">
           I understand and agree to give Spacify and CTOS the consent to process
           my personal data as per PDPA Act.
         </CustomText>

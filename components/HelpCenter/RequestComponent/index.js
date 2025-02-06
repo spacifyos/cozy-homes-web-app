@@ -43,7 +43,8 @@ const SpecificRequestComponent = ({
       {/*/>*/}
 
       <BookingSelect
-        bgColor="bg-white"
+        required
+        bgColor="bg-white border border-disable border-solid"
         className="pb-2"
         title={"Select Priority"}
         placeholder={"Select Priority"}
@@ -65,7 +66,8 @@ const SpecificRequestComponent = ({
       />
 
       <BookingTextArea
-        bgColor="bg-white"
+        required
+        bgColor="bg-white border border-disable border-solid"
         className="pb-2"
         title={"Describe The Issue"}
         placeholder={"Enter your message"}

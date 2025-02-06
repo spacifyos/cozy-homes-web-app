@@ -15,7 +15,7 @@
 }
 
 .booking-input {
-  @apply bg-primary-background border-disable text-black text-xs !important;
+  @apply border-disable text-black text-xs !important;
   width: 100%;
   border-radius: 10px;
   padding: 10px;
@@ -66,7 +66,7 @@
 }
 
 .input-title {
-  @apply text-xs text-disable;
+  @apply text-xs text-black;
 }
 
 .booking-select:focus-within,

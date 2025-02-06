@@ -110,7 +110,7 @@ const MyReport = ({ id }) => {
       title="Statement Overview"
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Statement Overview | Owner - Spacify Asia" />
+      <NextSeo title="PnL Statement Overview | Owner - Spacify Asia" />
 
       <div className="bg-primary-background flex flex-col flex-1 global-horizontal-padding py-5">
         <div className="flex justify-between pb-2">

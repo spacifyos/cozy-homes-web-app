@@ -211,7 +211,7 @@ const EditProfile = () => {
           </div>
         }
       >
-        <div className="grid grid-cols-1 flex-1">
+        <div className="grid grid-cols-1 flex-1 bg-white">
           <div className="global-border-radius global-box-shadow p-5">
             <div className="flex justify-center items-center">
               <CustomImage
@@ -221,7 +221,8 @@ const EditProfile = () => {
             </div>
 
             <BookingInput
-              bgColor="bg-white"
+              bgColor="bg-white border border-disable"
+              inputClassName="border-none"
               title={"Name"}
               placeholder={"Name"}
               className="pb-3"
@@ -238,7 +239,7 @@ const EditProfile = () => {
             <CustomLabelValue
               label={"Phone Number"}
               value={isEmpty(phoneNumber) ? "-" : phoneNumber}
-              className="pb-0"
+              styles={{ paddingBottom: 0 }}
             />
 
             <CustomText textClassName="text-primary text-xs pb-4">

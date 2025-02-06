@@ -22,7 +22,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
           { label: "No", value: "false" },
         ]}
         className="pb-2"
-        bgColor="bg-white"
+        bgColor="bg-white border border-disable border-solid"
         onChange={(e) => {
           setPostData((prevState) => {
             return {
@@ -35,7 +35,7 @@ const AuthorizationComponent = ({ onClickToRequestOverview, setPostData }) => {
 
       <BookingDateInput
         title="Date"
-        className="pb-2"
+        className="pb-2 bg-white"
         bgColor="bg-white"
         onChange={(e) => {
           setPostData((prevState) => {

@@ -4,6 +4,7 @@ import { get } from "lodash";
 import CustomButton from "@/components/CustomButton";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import CustomText from "@/components/CustomText";
 
 const DesktopChangePasswordModal = ({
   currentPasswordValue,
@@ -20,18 +21,28 @@ const DesktopChangePasswordModal = ({
   return (
     <DesktopModal id="desktop_change_password_modal">
       <div className="p-6">
-        <form method="dialog" className={`flex justify-end`}>
-          <button className="btn btn-sm btn-circle btn-ghost right-2">
-            <CustomImage
-              src={Images.cancelIcon}
-              imageStyle={{ width: 20, height: 20 }}
-            />
-          </button>
-        </form>
+        <div className="flex items-center">
+          <CustomText textClassName="flex-1 text-center text-base font-bold">
+            Change Password
+          </CustomText>
+          <form method="dialog" className={`flex justify-end`}>
+            <button className="btn btn-sm btn-circle btn-ghost right-2">
+              <CustomImage
+                className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
+                src={Images.cancelIcon}
+              />
+            </button>
+          </form>
+        </div>
+
+        <div className="divider-line"></div>
+
         <BookingInput
+          required
           title="Current Password"
           placeholder={"Current Password"}
-          bgColor="bg-white"
+          bgColor="bg-white border border-disable"
+          inputClassName="border-none"
           className="pb-3"
           value={currentPasswordValue}
           onChange={onChangeCurrentPassword}
@@ -40,9 +51,11 @@ const DesktopChangePasswordModal = ({
         />
 
         <BookingInput
+          required
           title={"Password"}
           placeholder={"Password"}
-          bgColor="bg-white"
+          bgColor="bg-white border border-disable"
+          inputClassName="border-none"
           className="pb-3"
           value={passwordValue}
           onChange={onChangePassword}
@@ -51,9 +64,11 @@ const DesktopChangePasswordModal = ({
         />
 
         <BookingInput
+          required
           title={"Confirm Password"}
           placeholder={"Confirm Password"}
-          bgColor="bg-white"
+          bgColor="bg-white border border-disable"
+          inputClassName="border-none"
           className="pb-3"
           value={confirmPasswordValue}
           onChange={onChangeConfirmPassword}

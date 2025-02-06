@@ -3,6 +3,9 @@ import CustomButton from "@/components/CustomButton";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import DesktopModal from "@/components/DesktopModal";
+import BookingDateInput from "@/components/Booking/BookingDateInput";
+import moment from "moment/moment";
+import BookingInput from "@/components/Booking/BookingInput";
 
 const DesktopFilterModal = ({
   t,
@@ -36,52 +39,39 @@ const DesktopFilterModal = ({
 
         <div className="grid grid-cols-2 gap-2">
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="text-sm pb-1">Invoice Number</CustomText>
-
-            <input
-              className="bg-white booking-input"
-              placeholder="XXXX-InvXXXXXXXX"
-              name="name"
+            <BookingInput
+              required
+              title={"Invoice Number"}
+              placeholder={"Enter Six Digit Number"}
+              bgColor="bg-white border"
+              inputClassName="border-none"
               value={invoiceNumberValue}
               onChange={onChangeInvoiceNumber}
+              type="number"
             />
           </div>
 
           <div className="col-span-2 pb-2">
-            <CustomText textClassName="text-sm pb-1">Date From</CustomText>
-
-            <div className="bg-white flex items-center booking-input relative">
-              <input
-                className="flex-1 w-full resize-input-icon bg-primary-background"
-                type="date"
-                value={dateFromValue}
-                onChange={onChangeDateFrom}
-              />
-
-              <CustomImage
-                src={Images.calendarIcon}
-                imageStyle={{ width: 20, height: 20, marginRight: 4 }}
-              />
-            </div>
+            <BookingDateInput
+              required
+              title="Date From"
+              className="bg-white"
+              bgColor="bg-white"
+              value={dateFromValue}
+              onChange={onChangeDateFrom}
+            />
           </div>
 
           <div className="col-span-2 pb-6">
-            <CustomText textClassName="text-sm pb-1">Date To</CustomText>
-
-            <div className="bg-white flex items-center booking-input relative">
-              <input
-                className="bg-primary-background flex-1 w-full resize-input-icon"
-                type="date"
-                value={dateToValue}
-                onChange={onChangeDateTo}
-                min={dateFromValue}
-              />
-
-              <CustomImage
-                src={Images.calendarIcon}
-                imageStyle={{ width: 20, height: 20, marginRight: 4 }}
-              />
-            </div>
+            <BookingDateInput
+              required
+              title="Date To"
+              className="bg-white"
+              bgColor="bg-white"
+              value={dateToValue}
+              onChange={onChangeDateTo}
+              min={dateFromValue}
+            />
           </div>
 
           <CustomButton
