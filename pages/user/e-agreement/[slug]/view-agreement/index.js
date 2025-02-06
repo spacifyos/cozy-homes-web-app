@@ -97,12 +97,14 @@ const ViewAgreement = ({ id }) => {
       .then(async (response) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
-        if (!isEmpty(resUrl)) {
-          await apiRequest.downloadFileRequest(
-            resUrl,
-            headers,
-            referenceNumber,
-          );
+        if (!isEmpty(resUrl) && !downloading) {
+          console.log("hihi");
+          await apiRequest
+            .downloadFileRequest(resUrl, headers, referenceNumber)
+            .catch((error) => {
+              Toast.error(error);
+            })
+            .finally(() => setDownloading(false));
         }
       })
       .catch((error) => {
