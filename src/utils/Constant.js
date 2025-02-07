@@ -1,4 +1,6 @@
 const Constant = {
+  VERSION: "2.1.0",
+
   TENANT: "tenant",
   OWNER: "owner",
 

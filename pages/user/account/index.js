@@ -21,6 +21,7 @@ import CustomButton from "@/components/CustomButton";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopProfileCard from "@/components/Account/DesktopProfileCard";
 import DesktopSpacifyCoins from "@/components/Account/DesktopSpacifyCoins";
+import Constant from "@/src/utils/Constant";
 
 export { getServerSideProps };
 
@@ -453,7 +454,7 @@ const Account = () => {
             </div>
 
             <CustomText textClassName="text-disable text-xs">
-              Version 2.1.0
+              {`Version ${Constant.VERSION}`}
             </CustomText>
           </div>
         </div>
