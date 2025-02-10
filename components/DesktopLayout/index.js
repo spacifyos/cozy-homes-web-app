@@ -18,6 +18,14 @@ import DesktopModal from "@/components/DesktopModal";
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
+import {
+  getCookie,
+  getCookies,
+  setCookie,
+  deleteCookie,
+  hasCookie,
+} from "cookies-next";
+import Constant from "@/src/utils/Constant";
 
 const DesktopLayout = ({
   children,
@@ -119,6 +127,13 @@ const DesktopLayout = ({
 
     setTimeout(() => {
       setSignOutLoading(false);
+
+      if (isEqual(userType, "tenant")) {
+        deleteCookie(Constant.TENANT_UCHAT_COOKIES);
+      } else {
+        deleteCookie(Constant.OWNER_UCHAT_COOKIES);
+      }
+
       signOutAccountRequest();
     }, 2000);
   };

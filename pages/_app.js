@@ -50,25 +50,21 @@ function AppContent({ Component, pageProps }) {
     commonSelector.getSelectOptionDateLoading(state),
   );
 
-  const botWidget = Array.from(
-    Helper.documentGetElementByClassName("bot-widget-holder"),
-  );
-
   useEffect(() => {
     if (isEmpty(selectOptionData)) {
       getSelectOptionRequest();
     }
   }, []);
 
-  useEffect(() => {
-    for (let i = 0; i < botWidget.length; i++) {
-      if (isEqual(pathname, "/user/chat")) {
-        botWidget[i].style.display = "block";
-      } else {
-        botWidget[i].style.display = "none";
-      }
-    }
-  }, [divRef.current, router, botWidget]);
+  // useEffect(() => {
+  //   for (let i = 0; i < botWidget.length; i++) {
+  //     if (isEqual(pathname, "/user/chat")||isEqual(pathname, "/user/owner/chat")) {
+  //       botWidget[i].style.display = "block";
+  //     } else {
+  //       botWidget[i].style.display = "none";
+  //     }
+  //   }
+  // }, [divRef.current, router, botWidget]);
 
   useEffect(() => {
     typeof window !== "undefined" &&
