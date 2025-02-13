@@ -192,6 +192,10 @@ const Image = {
   beliveWhatsAppIcon: "/images/icon/belive_whatsapp_icon.webp",
   deleteIcon: "/images/icon/delete_icon.png",
   playIcon: "/images/icon/play-icon.png",
+  cinemaHouseIcon: "/images/icon/cinema_house_icon.png",
+  cinemaCarIcon: "/images/icon/cinema_car_icon.png",
+  zoomInIcon: "/images/icon/zoom_in_icon.png",
+  zoomOutIcon: "/images/icon/zoom_out_icon.png",
 };
 
 export default { ...Image };

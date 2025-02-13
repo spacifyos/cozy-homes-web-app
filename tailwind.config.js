@@ -49,6 +49,7 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       borderColor: {
+        DEFAULT: "#CCCCCC",
         primary: "#d71440",
         warning: "#ff8a00",
         available: "#03b78c",
@@ -70,6 +71,7 @@ module.exports = {
           black: "#2c2c2c",
           disable: "#CCCCCC",
         },
+
       },
     ],
   },

@@ -165,7 +165,7 @@ const DesktopLayout = ({
             {isEmpty(pageBreadcrumbs) ? (
               false
             ) : (
-              <div className="pb-5 container mx-auto xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6 pt-4">
+              <div className="container mx-auto xl:py-4 lg:py-4 md:py-4 sm:py-4 py-2">
                 {pageBreadcrumbs}
               </div>
             )}
@@ -188,8 +188,8 @@ const DesktopLayout = ({
             )}
           </div>
         ) : (
-          <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-4 xl:pt-6 lg:pt-6 md:pt-6 sm:pt-6">
-            <div className="flex justify-between items-center pb-5">
+          <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-2 xl:pt-4 lg:pt-4 md:pt-4 sm:pt-4">
+            <div className="flex justify-between items-center xl:pb-4 lg:pb-4 md:pb-4 sm:pb-4 pb-2">
               {pageBreadcrumbs}
 
               <div className="flex justify-center items-center gap-4">
