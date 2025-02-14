@@ -12,7 +12,6 @@ import {
   filter,
   isEmpty,
   isEqual,
-  map,
   toString,
   get,
   includes,
@@ -21,10 +20,7 @@ import {
 } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import Toast from "@/src/utils/Toast";
-import CustomSelect from "@/components/CustomSelect";
 import * as reportSelector from "@/src/selectors/report";
-import CustomButton from "@/components/CustomButton";
-import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
 import FilterSection from "@/components/PropertyCardView/FilterSection";
@@ -34,12 +30,15 @@ import MobileUnitContent from "@/components/PropertyCardView/MobileUnitContent";
 import CinemaUnitContent from "@/components/PropertyCardView/CinemaUnitContent";
 import CardViewModal from "@/components/PropertyCardView/CardViewModal";
 import Helper from "@/src/utils/Helper";
+import * as authSelector from "@/src/selectors/auth";
+import { useRouter } from "next/router";
 
 export { getServerSideProps };
 
 const CardListing = () => {
   const { t } = useTranslation("common");
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
@@ -49,6 +48,12 @@ const CardListing = () => {
   const listingTagOptionDataLoading = useSelector((state) =>
     listingSelector.getListingTagOptionDataLoading(state),
   );
+
+  const userProfileData = useSelector((state) =>
+    authSelector.getUserProfileData(state),
+  );
+
+  const userRole = authSelector.getRolePermissionsRole(userProfileData);
 
   const [propertyListing, setPropertyListing] = useState([]);
   const [propertyListingLoading, setPropertyListingLoading] = useState(false);
@@ -240,6 +245,10 @@ const CardListing = () => {
     setIsCinemaView(!isCinemaView);
   };
 
+  const onClickGoBack = () => {
+    router.push("/user/account");
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <NextSeo title="Agency Property Card View - Spacify Asia" />
@@ -250,14 +259,26 @@ const CardListing = () => {
           propertyListingLoading || unitListingLoading || propertyOptionLoading
         }
         pageBreadcrumbs={
-          <div className="breadcrumbs text-sm">
-            <ul>
-              <li>
+          <div>
+            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
+              <ul className="flex-wrap">
+                <li>
+                  <CustomText textClassName="text-base">
+                    Property Listing
+                  </CustomText>
+                </li>
+              </ul>
+              <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+                <CustomImage
+                  src={Images.leftIcon}
+                  className="w-2"
+                  onClick={onClickGoBack}
+                />
                 <CustomText textClassName="text-base">
                   Property Listing
                 </CustomText>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         }
       >
@@ -301,6 +322,7 @@ const CardListing = () => {
               propertyListing={propertyListing}
               onClickSelectProperty={onClickSelectProperty}
               selectedPropertyId={selectedPropertyId}
+              userRole={userRole}
             />
 
             {isCinemaView ? (

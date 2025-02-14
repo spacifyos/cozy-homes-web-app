@@ -1,13 +1,15 @@
-import { isEmpty, isEqual, map } from "lodash";
+import { includes, isEmpty, isEqual, map } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import Constant from "@/src/utils/Constant";
 
 const PropertySelectionComponent = ({
   propertyListing,
   onClickSelectProperty,
   selectedPropertyId,
+  userRole,
 }) => {
   return (
     <div className="xl:col-span-2 lg:col-span-2 md:col-span-12 sm:col-span-12 col-span-12 relative">
@@ -44,17 +46,23 @@ const PropertySelectionComponent = ({
                 {isEmpty(name) ? "-" : name}
               </CustomText>
 
-              {/*<div className="xl:block lg:block hidden">*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>*/}
-              {/*</div>*/}
+              {includes(userRole, Constant.MASTER_AGENCY_ROLE) ? (
+                <>
+                  <div className="xl:block lg:block hidden">
+                    <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom}) - OR: ${roomOccupancyRate}%`}</CustomText>
+                    <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark}) - OR: ${carParkOccupancyRate}%`}</CustomText>
+                  </div>
 
-              {/*<div className="xl:hidden lg:hidden block">*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom})`}</CustomText>*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`OR: ${roomOccupancyRate}%`}</CustomText>*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark})`}</CustomText>*/}
-              {/*  <CustomText textClassName="text-xxs text-center">{`OR: ${carParkOccupancyRate}%`}</CustomText>*/}
-              {/*</div>*/}
+                  <div className="xl:hidden lg:hidden block">
+                    <CustomText textClassName="text-xxs text-center">{`R: ${totalOccupiedRoom}/${totalRoom} (${totalVacantRoom})`}</CustomText>
+                    <CustomText textClassName="text-xxs text-center">{`OR: ${roomOccupancyRate}%`}</CustomText>
+                    <CustomText textClassName="text-xxs text-center">{`CP: ${totalOccupiedCarPark}/${totalCarPark} (${totalVacantCarPark})`}</CustomText>
+                    <CustomText textClassName="text-xxs text-center">{`OR: ${carParkOccupancyRate}%`}</CustomText>
+                  </div>
+                </>
+              ) : (
+                false
+              )}
             </div>
           );
         })}

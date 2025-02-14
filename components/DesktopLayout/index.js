@@ -11,12 +11,10 @@ import * as authAction from "@/src/actions/auth";
 import { useDispatch, useSelector } from "react-redux";
 import * as authSelector from "@/src/selectors/auth";
 import CustomImage from "@/components/CustomImage";
-import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import CustomText from "@/components/CustomText";
-import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import {
   getCookie,
@@ -81,10 +79,6 @@ const DesktopLayout = ({
   const fetchUserprofileData = () => {
     getUserProfileRequest();
   };
-  //
-  // const getUserSuccessCallback = (res) => {
-  //   setUserProfileData(res);
-  // };
 
   const onClickSignIn = () => {
     Helper.documentGetElementById("sign_in_modal").showModal();

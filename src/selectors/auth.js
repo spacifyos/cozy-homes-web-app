@@ -62,3 +62,4 @@ export const getWalletWithdrawableAmount = (state) =>
 export const getHasSetPinNumber = (state) =>
   _.get(state, ["has_set_pin_number"], false);
 export const getReferralCode = (state) => _.get(state, ["referral_code"], "");
+export const getRolePermissionsRole = (state) => _.get(state, ["role_permissions", "roles"], []);

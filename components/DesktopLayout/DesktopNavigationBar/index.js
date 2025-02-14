@@ -29,6 +29,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
   const userPhoneNumber = authSelector.getPhoneNumber(userData);
   const isTenant = isEqual(userType, "tenant");
   const isBackOffice = isEqual(userType, "back-office");
+  const userRole = authSelector.getRolePermissionsRole(userData);
 
   useEffect(() => {
     if (timeLeft > 0 && !isResendEnabled) {
@@ -288,7 +289,9 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         false
       )}
 
-      {!isEmpty(userData) && isBackOffice ? (
+      {!isEmpty(userData) &&
+      isBackOffice &&
+      (Helper.isMasterAgency(userRole) || Helper.isAgency(userRole)) ? (
         <FeatureComponent
           title="Property Listing"
           icon={Images.listIconActive}

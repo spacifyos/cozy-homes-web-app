@@ -1,7 +1,16 @@
-import { ceil, join, replace, reverse, split, toString } from "lodash";
+import {
+  ceil,
+  includes,
+  join,
+  replace,
+  reverse,
+  split,
+  toString,
+} from "lodash";
 import React from "react";
 import CryptoJS from "crypto-js";
 import axios from "axios";
+import Constant from "@/src/utils/Constant";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -61,12 +70,16 @@ const generateSecretKey = (secret1, secret2) => {
 };
 
 const documentGetElementById = (id) => {
-  return typeof window !== "undefined" && document && document.getElementById(id);
+  return (
+    typeof window !== "undefined" && document && document.getElementById(id)
+  );
 };
 
 const documentGetElementByClassName = (className) => {
   return (
-    typeof window !== "undefined" && document && document.getElementsByClassName(className)
+    typeof window !== "undefined" &&
+    document &&
+    document.getElementsByClassName(className)
   );
 };
 
@@ -101,6 +114,18 @@ const getFileAsBase64 = async (url, headers) => {
   }
 };
 
+const isMasterAgency = (role) => {
+  return includes(role, Constant.MASTER_AGENCY_ROLE);
+};
+
+const isAgency = (role) => {
+  return includes(role, Constant.AGENCY_ROLE);
+};
+
+const isTechnician = (role) => {
+  return includes(role, Constant.TECHNICIAN_ROLE);
+};
+
 export default {
   isProduction,
   secToMin,
@@ -110,4 +135,7 @@ export default {
   getFileAsBase64,
   windowInnerHeight,
   documentGetElementByClassName,
+  isMasterAgency,
+  isAgency,
+  isTechnician,
 };

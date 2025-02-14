@@ -52,7 +52,7 @@ const AgencySignIn = () => {
     AuthManager.setToken(authToken);
     AuthManager.setLoginType(userType);
 
-    return router.replace(`/agency/card-listing`);
+    return router.replace(`/user/account`);
   };
 
   const onChangeEmail = (e) => {
