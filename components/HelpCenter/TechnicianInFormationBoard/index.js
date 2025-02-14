@@ -13,9 +13,6 @@ const TechnicianInFormationBoard = ({
   checkOutLoading,
 }) => {
   const technician = maintenanceTicketSelector.getTechnician(data);
-  const checkedIn = maintenanceTicketSelector.getCheckedIn(data);
-  const checkedOut = maintenanceTicketSelector.getCheckedOut(data);
-  const isAllowToCheckIn = maintenanceTicketSelector.getIsAllowToCheckIn(data);
 
   return isEmpty(technician)
     ? false
@@ -30,6 +27,10 @@ const TechnicianInFormationBoard = ({
         const checkOutLng =
           maintenanceTicketSelector.getCheckOutLongitude(item);
         const checkOutTime = maintenanceTicketSelector.getCheckOutTime(item);
+        const checkedIn = maintenanceTicketSelector.getCheckedIn(item);
+        const checkedOut = maintenanceTicketSelector.getCheckedOut(item);
+        const isAllowToCheckIn =
+          maintenanceTicketSelector.getIsAllowToCheckIn(item);
 
         return (
           <div
