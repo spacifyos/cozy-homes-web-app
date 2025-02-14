@@ -316,6 +316,34 @@ const Account = () => {
             imageWidth={18}
           />
 
+          {!isEmpty(userProfileData) && isTenant ? (
+            <FeatureComponent
+              title="Help Center"
+              icon={Images.helpIcon}
+              pb={3}
+              onClick={() => {
+                return router.push("/user/help-center");
+              }}
+              imageWidth={25}
+            />
+          ) : (
+            false
+          )}
+
+          {!isEmpty(userProfileData) && isBackOffice ? (
+            <FeatureComponent
+              title="Help Center"
+              icon={Images.helpIcon}
+              pb={3}
+              onClick={() => {
+                return router.push("/agency/help-center");
+              }}
+              imageWidth={25}
+            />
+          ) : (
+            false
+          )}
+
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
               title="My Invoice"

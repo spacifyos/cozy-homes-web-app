@@ -107,7 +107,7 @@ const HelpCenter = () => {
   };
 
   const onClickGoBack = () => {
-    router.push("/user/my-property");
+    router.push("/user/account");
   };
 
   const onClickToNewRequest = () => {
