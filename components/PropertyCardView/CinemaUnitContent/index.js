@@ -5,6 +5,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
+import { getAbbrBathroom } from "@/src/selectors/listing";
 
 const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
   const [zoomIn, setZoomIn] = useState(true);
@@ -51,7 +52,7 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
 
                 <div className="flex gap-2 flex-wrap">
                   {map(rooms, (room) => {
-                    const bathroom = get(room, ["bathroom"], "");
+                    const bathroom = listingSelector.getAbbrBathroom(room);
                     const bedType = listingSelector.getAbbrBedType(room);
                     const bookingLink = listingSelector.getBookingLink(room);
                     const propertyOverview =
@@ -72,34 +73,52 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
                       >
                         <div className={`flex justify-between items-center`}>
                           <div className="flex items-center gap-1">
-                            <CustomText
-                              textClassName={`text-white text-xxs ${
-                                !isAvailableBook && isEqual(status, "vacant")
-                                  ? "bg-disable"
-                                  : isEqual(status, "vacant")
-                                    ? "bg-available"
-                                    : "bg-error"
-                              } px-1 rounded`}
-                            >
-                              {!isAvailableBook && isEqual(status, "vacant")
-                                ? "N"
-                                : isEqual(status, "vacant")
-                                  ? "V"
-                                  : "O"}
-                            </CustomText>
+                            {/*<CustomText*/}
+                            {/*  textClassName={`text-white text-xxs ${*/}
+                            {/*    !isAvailableBook && isEqual(status, "vacant")*/}
+                            {/*      ? "bg-disable"*/}
+                            {/*      : isEqual(status, "vacant")*/}
+                            {/*        ? "bg-available"*/}
+                            {/*        : "bg-error"*/}
+                            {/*  } px-1 rounded`}*/}
+                            {/*>*/}
+                            {/*  {!isAvailableBook && isEqual(status, "vacant")*/}
+                            {/*    ? "N"*/}
+                            {/*    : isEqual(status, "vacant")*/}
+                            {/*      ? "V"*/}
+                            {/*      : "O"}*/}
+                            {/*</CustomText>*/}
 
                             <CustomImage
                               src={
                                 isEqual(spaceType, "R")
-                                  ? Images.cinemaHouseIcon
-                                  : Images.cinemaCarIcon
+                                  ? !isAvailableBook &&
+                                    isEqual(status, "vacant")
+                                    ? Images.roomDisableIcon
+                                    : isEqual(status, "vacant")
+                                      ? Images.roomAvailableIcon
+                                      : Images.roomOccupiedIcon
+                                  : !isAvailableBook &&
+                                      isEqual(status, "vacant")
+                                    ? Images.carDisableIcon
+                                    : isEqual(status, "vacant")
+                                      ? Images.carAvailableIcon
+                                      : Images.carOccupiedIcon
                               }
-                              className="w-4 h-4"
+                              className="w-5 h-5"
                             />
 
-                            {/*<CustomText textClassName="text-xxs bg-primary text-white px-1 rounded">*/}
-                            {/*  {isEmpty(spaceType) ? "-" : spaceType}*/}
-                            {/*</CustomText>*/}
+                            <div className="flex items-center justify-start gap-1">
+                              <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
+                                {isEmpty(bedType) ? "-" : bedType}
+                              </CustomText>
+
+                              <CustomText>|</CustomText>
+
+                              <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">
+                                {isEmpty(bathroom) ? "-" : bathroom}
+                              </CustomText>
+                            </div>
                           </div>
 
                           {/*<CustomImage*/}
@@ -120,18 +139,6 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
                         {/*<CustomText textClassName="text-xxs line-clamp-1">*/}
                         {/*  {isEmpty(name) ? "-" : name}*/}
                         {/*</CustomText>*/}
-
-                        {/*<div className="flex items-center justify-start gap-1">*/}
-                        {/*  <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">*/}
-                        {/*    {isEmpty(bedType) ? "-" : bedType}*/}
-                        {/*  </CustomText>*/}
-
-                        {/*  <CustomText>|</CustomText>*/}
-
-                        {/*  <CustomText textClassName="text-xs bg-primary text-white px-1 rounded">*/}
-                        {/*    {isEmpty(bathroom) ? "-" : bathroom}*/}
-                        {/*  </CustomText>*/}
-                        {/*</div>*/}
 
                         <CustomText textClassName="text-xs">
                           RM{isEmpty(rental) ? "0" : toNumber(rental)}

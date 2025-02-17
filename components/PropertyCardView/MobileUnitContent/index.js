@@ -40,7 +40,7 @@ const MobileUnitContent = ({ unitListing, onClickShareBooking }) => {
                 <div className="collapse-content">
                   <div className="grid md:grid-cols-5 sm:grid-cols-4 grid-cols-3 gap-2">
                     {map(rooms, (room) => {
-                      const bathroom = get(room, ["bathroom"], "");
+                      const bathroom = listingSelector.getAbbrBathroom(room);
                       const bedType = listingSelector.getAbbrBedType(room);
                       const bookingLink = listingSelector.getBookingLink(room);
                       const propertyOverview =

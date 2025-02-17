@@ -196,6 +196,12 @@ const Image = {
   cinemaCarIcon: "/images/icon/cinema_car_icon.png",
   zoomInIcon: "/images/icon/zoom_in_icon.png",
   zoomOutIcon: "/images/icon/zoom_out_icon.png",
+  roomAvailableIcon: "/images/icon/room_available_icon.png",
+  roomDisableIcon: "/images/icon/room_disable_icon.png",
+  roomOccupiedIcon: "/images/icon/room_occupied_icon.png",
+  carAvailableIcon: "/images/icon/car_available_icon.png",
+  carDisableIcon: "/images/icon/car_disable_icon.png",
+  carOccupiedIcon: "/images/icon/car_occupied_icon.png",
 };
 
 export default { ...Image };
