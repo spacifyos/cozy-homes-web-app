@@ -11,7 +11,7 @@ const DesktopBanner = ({ imageData }) => {
   return (
     <div className="xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4 container mx-auto ">
       <Swiper
-        className="mySwiper xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64"
+        className="mySwiper"
         style={{ width: "100%" }}
         loop={true}
         breakpoints={{
@@ -52,10 +52,19 @@ const DesktopBanner = ({ imageData }) => {
 
           return (
             <SwiperSlide style={{ minWidth: 100 }} className="" key={index}>
-              <div className="overflow-hidden rounded-3xl">
-                <CustomImage
+              <div
+                key={index}
+                className="relative w-full rounded-3xl overflow-hidden"
+                style={{ aspectRatio: "16 / 9" }}
+              >
+                <Image
+                  loader={({ src, width, quality }) =>
+                    `${src}?w=${width}&q=${quality || 75}`
+                  }
                   src={isEmpty(banner) ? Images.imageNotFound : banner}
-                  className="cover xl:h-80 lg:h-72 md:h-64 sm:h-64 h-64"
+                  alt="Banner"
+                  fill
+                  className="object-cover"
                 />
               </div>
             </SwiperSlide>
