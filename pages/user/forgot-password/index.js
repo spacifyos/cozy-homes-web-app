@@ -234,35 +234,13 @@ const ForgotPassword = () => {
         isMinHeight={false}
         hideNav
         loading={otpRequestLoading || forgotPasswordLoading}
-        pageBreadcrumbs={
-          <div>
-            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
-              <ul>
-                <li>
-                  <CustomText textClassName="text-base">
-                    Forgot Password
-                  </CustomText>
-                </li>
-              </ul>
-            </div>
-
-            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
-              <CustomImage
-                src={Images.leftIcon}
-                className="w-2"
-                onClick={onClickGoBack}
-              />
-              <CustomText textClassName="text-base">Forgot Password</CustomText>
-            </div>
-          </div>
-        }
       >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col justify-center items-center h-screen">
-          <div className="bg-white border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
-            <CustomText textClassName="font-bold leading-10 text-center pb-4 text-3xl">
-              Reset Password
-            </CustomText>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start pt-20">
+          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
+            Forgot Password
+          </CustomText>
 
+          <div className="bg-white border global-border-radius w-full p-10">
             <div className="w-full">
               <CustomText
                 textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-3xl`}

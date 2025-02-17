@@ -151,10 +151,10 @@ const DesktopLayout = ({
         onClickChat={onClickChat}
       />
 
-      <div className={`${backgroundColor}`}>
+      <div className={`${backgroundColor} flex-1 flex flex-col`}>
         {hideNav ? (
           <div
-            className={`flex-1 h-full relative ${isMinHeight ? "min-h-screen" : ""}`}
+            className={`flex-1 flex flex-col h-full relative ${isMinHeight ? "min-h-screen" : ""}`}
           >
             {isEmpty(pageBreadcrumbs) ? (
               false

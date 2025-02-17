@@ -67,13 +67,11 @@ const AgencySignIn = () => {
     <div className="min-h-screen bg-white">
       <NextSeo title="Agency Sign In - Spacify Asia" />
 
-      <DesktopLayout hideNav loading={signInLoading}>
-        <div className="container mx-auto max-w-screen-md">
-          <div className="py-4 mt-10">
-            <CustomText textClassName="text-primary font-bold text-center xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl">
-              Agency Sign In
-            </CustomText>
-          </div>
+      <DesktopLayout hideNav isMinHeight={false} loading={signInLoading}>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start xl:pt-20 lg:pt-20 md:pt-20 sm:pt-10 pt-10">
+          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
+            Agency Sign In
+          </CustomText>
 
           <div className="w-full">
             <div className="xl:p-8 lg:p-8 md:p-6 sm:p-6 p-4 global-box-shadow bg-white global-border-radius">

@@ -19,11 +19,8 @@ const DesktopHeader = ({
   const pathname = get(router, ["pathname"], "");
 
   return (
-    <div
-      className="bg-white"
-      style={{ borderBottom: "3px #f5f8fd solid" }}
-    >
-      {isEqual(pathname, "/") || isEqual(pathname, "/agency/sign-in") ? (
+    <div className="bg-white" style={{ borderBottom: "3px #f5f8fd solid" }}>
+      {isEqual(pathname, "/") ? (
         <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
           <CustomImage
             src={Image.logoHorizontalColor}
@@ -33,32 +30,6 @@ const DesktopHeader = ({
 
           {isEmpty(data) ? (
             <div className="flex gap-3 flex">
-              {loading ? (
-                false
-              ) : (
-                <div>
-                  {/*<CustomButton*/}
-                  {/*    icon={Image.registerIconActive}*/}
-                  {/*    imageStyle={{ width: 13 }}*/}
-                  {/*    buttonText={`Register`}*/}
-                  {/*    buttonClassName={`btn-white min-w-44 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden`}*/}
-                  {/*    textClassName="text-sm"*/}
-                  {/*    reverse*/}
-                  {/*    onClick={onClickSignUp}*/}
-                  {/*/>*/}
-
-                  {/*<CustomButton*/}
-                  {/*    icon={Image.registerIconActive}*/}
-                  {/*    imageStyle={{ width: 13 }}*/}
-                  {/*    // buttonText={`Register`}*/}
-                  {/*    buttonClassName={`btn-white min-h-10 h-10 xl:hidden lg:hidden w-16`}*/}
-                  {/*    textClassName="text-sm"*/}
-                  {/*    reverse*/}
-                  {/*    onClick={onClickSignUp}*/}
-                  {/*/>*/}
-                </div>
-              )}
-
               <CustomButton
                 icon={loading ? "" : Image.primaryLogoutIcon}
                 buttonText={`Sign In`}
@@ -71,14 +42,14 @@ const DesktopHeader = ({
               />
 
               <CustomButton
-                  icon={loading ? "" : Image.primaryLogoutIcon}
-                  buttonText={`Sign In`}
-                  buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
-                  textClassName="text-sm"
-                  reverse
-                  loadingColor="text-primary"
-                  loading={loading}
-                  onClick={onClickSignIn}
+                icon={loading ? "" : Image.primaryLogoutIcon}
+                buttonText={`Sign In`}
+                buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
+                textClassName="text-sm"
+                reverse
+                loadingColor="text-primary"
+                loading={loading}
+                onClick={onClickSignIn}
               />
             </div>
           ) : (
@@ -117,20 +88,6 @@ const DesktopHeader = ({
 
           {isEmpty(data) ? (
             <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-              {loading ? (
-                false
-              ) : (
-                <CustomButton
-                  icon={Image.registerIconActive}
-                  imageStyle={{ width: 13 }}
-                  buttonText={`Register`}
-                  buttonClassName={`btn-white min-w-44 min-h-10 h-10`}
-                  textClassName="text-sm"
-                  reverse
-                  onClick={onClickSignUp}
-                />
-              )}
-
               <CustomButton
                 icon={loading ? "" : Image.primaryLogoutIcon}
                 buttonText={`Sign In`}
