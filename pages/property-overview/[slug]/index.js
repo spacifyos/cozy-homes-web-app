@@ -45,6 +45,12 @@ export async function getServerSideProps(context) {
     listingPropertyDetailData = get(response, ["data", "data"], null);
   } catch (error) {
     console.error("Error fetching listing details:", error);
+
+    return {
+      redirect: {
+        destination: "/404",
+      },
+    };
   }
 
   return {
