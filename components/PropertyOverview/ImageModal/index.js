@@ -20,9 +20,10 @@ const ImageModal = ({
       style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
     >
       {size(data) <= 1 ? (
-        <div className="bg-white">
+        <div className="w-4/5 h-4/5 flex justify-center items-center overflow-hidden">
           <CustomImage
             src={isEmpty(selectedImage) ? Images.imageNotFound : selectedImage}
+            className="w-full"
           />
         </div>
       ) : (

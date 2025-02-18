@@ -849,6 +849,11 @@ const RequestOverview = ({ id }) => {
     );
   };
 
+  const onClickSelectedCommentImage = (image) => {
+    setSelectedImage(image);
+    setOpenImageModal(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <NextSeo title="Help Center Overview - Spacify Asia" />
@@ -937,6 +942,7 @@ const RequestOverview = ({ id }) => {
             onClickLoadMore={onClickLoadMore}
             onChangeCommentImage={onChangeCommentImage}
             uploadCommentImageRef={uploadCommentImageRef}
+            onClickSelectedCommentImage={onClickSelectedCommentImage}
           />
         </div>
       </DesktopLayout>

@@ -18,10 +18,7 @@ const CommentImageUploadModal = ({
   const initBase64 = get(selectedImage, ["base64"], "");
 
   return open ? (
-    <div
-      className="bg-black h-full fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col gap-4 justify-center items-center"
-      // style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
-    >
+    <div className="bg-black h-full fixed inset-0 z-10 flex-1 h-screen overflow-hidden flex flex-col gap-4 justify-center items-center">
       <div className="bg-white w-4/5 h-4/5 relative flex">
         <Image
           loader={() => (isEmpty(initImage) ? initBase64 : initImage)}
