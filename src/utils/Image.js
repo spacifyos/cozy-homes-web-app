@@ -202,6 +202,7 @@ const Image = {
   carAvailableIcon: "/images/icon/car_available_icon.png",
   carDisableIcon: "/images/icon/car_disable_icon.png",
   carOccupiedIcon: "/images/icon/car_occupied_icon.png",
+  imageIcon: "/images/icon/image_icon.png"
 };
 
 export default { ...Image };

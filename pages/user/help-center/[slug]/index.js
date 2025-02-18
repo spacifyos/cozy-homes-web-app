@@ -12,9 +12,20 @@ import DesktopLayout from "@/components/DesktopLayout";
 import * as maintenanceTicketAction from "@/src/actions/maintenance-ticket";
 import { useDispatch, useSelector } from "react-redux";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import { concat, get, isEmpty, isEqual, map } from "lodash";
+import {
+  concat,
+  forEach,
+  get,
+  head,
+  isEmpty,
+  isEqual,
+  map,
+  size,
+  some,
+  split,
+} from "lodash";
 import Helper from "@/src/utils/Helper";
 import AuthManager from "@/src/utils/AuthManager";
 import axios from "axios";
@@ -23,6 +34,8 @@ import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
 import CommentComponent from "@/components/HelpCenter/CommentComponent";
 import TechnicianInFormationBoard from "@/components/HelpCenter/TechnicianInFormationBoard";
+import apiInstance from "@/src/services/httpUtilities/httpManager";
+import CommentImageUploadModal from "@/components/HelpCenter/CommentImageUploadModal";
 
 export { getServerSideProps };
 
@@ -30,6 +43,7 @@ const RequestOverview = ({ id }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
+  const uploadCommentImageRef = useRef(null);
 
   const [secret, setSecret] = useState("");
   const [videoLoading, setVideoLoading] = useState(false);
@@ -43,7 +57,10 @@ const RequestOverview = ({ id }) => {
   const [videoValue, setVideoValue] = useState(null);
   const [technicianImageList, setTechnicianImageList] = useState([]);
   const [technicianVideoValue, setTechnicianVideoValue] = useState(null);
+  const [commentImage, setCommentImage] = useState([]);
+  const [isCommentImageModalOpen, setIsCommentImageModalOpen] = useState(false);
 
+  const [selectedCommentImage, setSelectedCommentImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedImageList, setSelectedImageList] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -76,6 +93,12 @@ const RequestOverview = ({ id }) => {
 
   const [openImageModal, setOpenImageModal] = useState(false);
   const [openVideoModal, setOpenVideoModal] = useState(false);
+
+  useEffect(() => {
+    if (!isEmpty(commentImage)) {
+      setSelectedCommentImage(head(commentImage));
+    }
+  }, [commentImage]);
 
   const handleImageSecretData = async () => {
     await apiRequest.getRootDataRequest(() => {}, getRootDataSuccessCallback);
@@ -301,10 +324,171 @@ const RequestOverview = ({ id }) => {
   const postCommentSuccessCallback = async () => {
     await fetchTicketCommentData(id);
     setMessageValue("");
+    setCommentImage([]);
   };
 
   const onClickLoadMore = async (currentPage) => {
     await fetchTicketCommentData(id, 12, currentPage + 1);
+  };
+
+  const onChangeCommentImage = (e) => {
+    const images = e.target.files;
+
+    if (size(images) + size(imageList) >= 6) {
+      Toast.error(`Your image limit is up to 5.`);
+      return;
+    }
+
+    forEach(images, (image, index) => checkImageSize(image, index + 1));
+
+    e.target.value = "";
+  };
+
+  const checkImageSize = async (image) => {
+    const isLt2M = image && image.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      Toast.error(`Your some image is larger than 2MB`);
+      return;
+    }
+
+    if (image && image.size > 1) {
+      const name = get(image, ["name"], "");
+      const extension = split(name, ".");
+      const mimeType = get(image, ["type"], "");
+
+      if (some(imageList, { name })) {
+        Toast.error(`Image with the name "${name}" already exists.`);
+        return;
+      }
+
+      try {
+        const base64 = await convertToBase64(image);
+        const newImage = {
+          type: 27,
+          name: name,
+          extension: extension[1],
+          mime_type: mimeType,
+          status: false,
+          loading: true,
+          base64: base64,
+          image: image,
+        };
+
+        setCommentImage((prevState) => [...prevState, newImage]);
+
+        fetchGalleryLink(newImage);
+      } catch (error) {
+        Toast.error("Error converting image to base64:", error);
+      }
+    }
+  };
+
+  const convertToBase64 = (image) => {
+    return new Promise((resolve, reject) => {
+      if (image) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const result = e.target.result;
+          resolve(result);
+        };
+        reader.onerror = (err) => reject(err);
+        reader.readAsDataURL(image);
+      } else {
+        resolve("");
+      }
+    });
+  };
+
+  const fetchGalleryLink = (image) => {
+    apiInstance
+      .get("/gallery")
+      .then((res) => {
+        const url = get(res, ["data", "data", "url"], "");
+        const path = get(res, ["data", "data", "path"], "");
+
+        Toast.success("Get gallery link success.");
+        getGalleryLinkSuccess(url, image, path);
+      })
+      .catch((err) => Toast.error("Get gallery link failure."));
+  };
+
+  const getGalleryLinkSuccess = (url, image, path) => {
+    setCommentImage((prevState) => {
+      return map(prevState, (state) => {
+        if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+          return { ...state, url: url, path: path, id: path };
+        } else {
+          return state;
+        }
+      });
+    });
+
+    postUploadImage(url, image);
+  };
+
+  const postUploadImage = (url, image) => {
+    axios
+      .put(url, get(image, ["image"], ""))
+      .then((result) => {
+        Toast.success("Image upload success.");
+
+        setCommentImage((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: true, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
+
+        handleCommentImageUploadModalOpen();
+      })
+      .catch((err) => {
+        Toast.error("Image upload failure.");
+        setCommentImage((prevState) => {
+          return map(prevState, (state) => {
+            if (isEqual(get(state, ["name"], ""), get(image, ["name"], ""))) {
+              return { ...state, status: false, loading: false };
+            } else {
+              return state;
+            }
+          });
+        });
+      });
+  };
+
+  const handleCommentImageUploadModalOpen = () => {
+    setIsCommentImageModalOpen(true);
+  };
+
+  const handleCommentImageUploadModalClose = () => {
+    setIsCommentImageModalOpen(false);
+    setCommentImage([]);
+  };
+
+  const onClickRemoveCommentImage = (image) => {
+    const base64 = get(image, ["base64"], "");
+
+    setCommentImage((prevState) =>
+      prevState.filter((img) => get(img, ["base64"], "") !== base64),
+    );
+  };
+
+  const onClickUploadCommentImage = async () => {
+    setIsCommentImageModalOpen(false);
+
+    await apiRequest.postMaintenanceTicketCommentRequest(
+      id,
+      { maintenance_ticket_comment_images: commentImage },
+      setPostCommentLoading,
+      postCommentSuccessCallback,
+    );
+  };
+
+  const onClickSelectedCommentImage = (image) => {
+    setSelectedImage(image);
+    setOpenImageModal(true);
   };
 
   return (
@@ -374,6 +558,9 @@ const RequestOverview = ({ id }) => {
             postCommentLoading={postCommentLoading}
             getCommentLoading={getCommentLoading}
             onClickLoadMore={onClickLoadMore}
+            onChangeCommentImage={onChangeCommentImage}
+            uploadCommentImageRef={uploadCommentImageRef}
+            onClickSelectedCommentImage={onClickSelectedCommentImage}
           />
         </div>
       </DesktopLayout>
@@ -389,6 +576,16 @@ const RequestOverview = ({ id }) => {
         onClickCloseVideoModal={onClickCloseVideoModal}
         openVideoModal={openVideoModal}
         selectedVideo={selectedVideo}
+      />
+
+      <CommentImageUploadModal
+        imageList={commentImage}
+        selectedImage={selectedCommentImage}
+        onClickCloseModal={handleCommentImageUploadModalClose}
+        open={isCommentImageModalOpen}
+        setSelectedCommentImage={setSelectedCommentImage}
+        onClickRemoveCommentImage={onClickRemoveCommentImage}
+        onClickUploadCommentImage={onClickUploadCommentImage}
       />
     </div>
   );

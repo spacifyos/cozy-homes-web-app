@@ -218,7 +218,7 @@ const postPropertyListingCardView = (postData) =>
 const postUnitCardView = (postData) =>
   apiInstance.post(`/unit/card-view`, postData);
 
-const getPropertyOption = () => apiInstance.get(`/property/options`);
+const getPropertyOption = () => apiInstance.get(`/property/get-property-unit-options`);
 
 const postResetPasswordVerify = (postData) =>
   apiInstance.post(`/reset-password/verify`, postData);

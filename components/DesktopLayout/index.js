@@ -183,7 +183,7 @@ const DesktopLayout = ({
           </div>
         ) : (
           <div className="flex-1 h-full flex flex-col container mx-auto pb-4 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pt-2 xl:pt-4 lg:pt-4 md:pt-4 sm:pt-4">
-            <div className="flex justify-between items-center xl:pb-4 lg:pb-4 md:pb-4 sm:pb-4 pb-2">
+            <div className="flex justify-between items-center xl:pb-6 lg:pb-6 md:pb-6 sm:pb-6 pb-6">
               {pageBreadcrumbs}
 
               <div className="flex justify-center items-center gap-4">
@@ -192,25 +192,19 @@ const DesktopLayout = ({
                 ) : (
                   <CustomImage
                     src={rightSecondButtonIcon}
-                    imageStyle={{ width: 23, height: 23 }}
                     onClick={onClickRightSecondButton}
-                    className="cursor-pointer"
+                    className="cursor-pointer w-5 h-5"
                   />
                 )}
 
-                <div
-                  style={{ width: 23, height: 23 }}
-                  onClick={onClickRightButton}
-                  className="relative"
-                >
+                <div onClick={onClickRightButton} className="relative w-5 h-5">
                   {isEmpty(rightButtonIcon) ? (
                     rightContent
                   ) : (
                     <CustomImage
                       src={rightButtonIcon}
-                      imageStyle={{ width: 23, height: 23 }}
                       onClick={onClickRightButton}
-                      className="cursor-pointer"
+                      className="cursor-pointer w-5 h-5"
                     />
                   )}
                   {isFiltered ? (

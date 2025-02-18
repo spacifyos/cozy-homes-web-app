@@ -77,56 +77,60 @@ const TechnicianInFormationBoard = ({
               value={technicianName}
             />
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
-                {isEmpty(checkInTime) ? (
-                  false
-                ) : (
-                  <CustomLabelValue
-                    label={"Check In Date & Time"}
-                    value={checkInTime}
-                  />
-                )}
+            {checkedIn ? (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
+                  {isEmpty(checkInTime) ? (
+                    false
+                  ) : (
+                    <CustomLabelValue
+                      label={"Check In Date & Time"}
+                      value={checkInTime}
+                    />
+                  )}
 
-                {isEmpty(checkInLat) || isEmpty(checkInLng) ? (
-                  false
-                ) : (
-                  <div className={`pb-4`}>
-                    <CustomText
-                      textClassName={`text-disable text-xs font-normal pb-1`}
-                    >
-                      Check In Location
-                    </CustomText>
+                  {isEmpty(checkInLat) || isEmpty(checkInLng) ? (
+                    false
+                  ) : (
+                    <div className={`pb-4`}>
+                      <CustomText
+                        textClassName={`text-disable text-xs font-normal pb-1`}
+                      >
+                        Check In Location
+                      </CustomText>
 
-                    <LocationMap lat={checkInLat} lng={checkInLng} />
-                  </div>
-                )}
+                      <LocationMap lat={checkInLat} lng={checkInLng} />
+                    </div>
+                  )}
+                </div>
+                <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
+                  {isEmpty(checkOutTime) ? (
+                    false
+                  ) : (
+                    <CustomLabelValue
+                      label={"Check Out Date & Time"}
+                      value={checkOutTime}
+                    />
+                  )}
+
+                  {isEmpty(checkOutLat) || isEmpty(checkOutLng) ? (
+                    false
+                  ) : (
+                    <div className={``}>
+                      <CustomText
+                        textClassName={`text-disable text-xs font-normal pb-1`}
+                      >
+                        Check Out Location
+                      </CustomText>
+
+                      <LocationMap lat={checkOutLat} lng={checkOutLng} />
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="xl:col-span-1 lg:col-span-1 md:col-span-2 sm:col-span-2 col-span-2">
-                {isEmpty(checkOutTime) ? (
-                  false
-                ) : (
-                  <CustomLabelValue
-                    label={"Check Out Date & Time"}
-                    value={checkOutTime}
-                  />
-                )}
-
-                {isEmpty(checkOutLat) || isEmpty(checkOutLng) ? (
-                  false
-                ) : (
-                  <div className={``}>
-                    <CustomText
-                      textClassName={`text-disable text-xs font-normal pb-1`}
-                    >
-                      Check Out Location
-                    </CustomText>
-
-                    <LocationMap lat={checkOutLat} lng={checkOutLng} />
-                  </div>
-                )}
-              </div>
-            </div>
+            ) : (
+              false
+            )}
 
             {/*<div className="flex justify-center">*/}
             {/*    <CustomButton*/}

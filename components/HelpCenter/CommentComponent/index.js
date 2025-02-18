@@ -1,10 +1,12 @@
 import CustomText from "@/components/CustomText";
-import { isEmpty, map } from "lodash";
+import { isEmpty, map, size } from "lodash";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
 import CustomButton from "@/components/CustomButton";
 import BookingInput from "@/components/Booking/BookingInput";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import CustomImage from "@/components/CustomImage";
+import Images from "@/src/utils/Image";
 
 const CommentComponent = ({
   onClickSendMessage,
@@ -15,6 +17,9 @@ const CommentComponent = ({
   postCommentLoading,
   getCommentLoading,
   onClickLoadMore,
+  onChangeCommentImage,
+  uploadCommentImageRef,
+  onClickSelectedCommentImage,
 }) => {
   const hasMorePage = maintenanceTicketSelector.getHasMorePages(pagination);
   const lastPage = maintenanceTicketSelector.getLastPage(pagination);
@@ -37,8 +42,14 @@ const CommentComponent = ({
           <CustomEmptyBox emptyTitle="No comment found" emptyDesc="" />
         </div>
       ) : (
-        map(data, (item) => {
-          return <MessageTimeLine item={item} />;
+        map(data, (item, index) => {
+          return (
+            <MessageTimeLine
+              item={item}
+              key={index}
+              onClickSelectedCommentImage={onClickSelectedCommentImage}
+            />
+          );
         })
       )}
 
@@ -61,9 +72,32 @@ const CommentComponent = ({
         false
       )}
 
-      <div className="flex justify-center items-center pt-2 gap-4">
-        <BookingInput bgColor="bg-white border border-disable"
-                      inputClassName="border-none"
+      <div className="flex justify-center items-center pt-2 gap-2">
+        {/*{size(images) >= 5 ? (*/}
+        {/*    false*/}
+        {/*) : (*/}
+        <div
+          className="cursor-pointer flex items-center justify-center"
+          onClick={() =>
+            uploadCommentImageRef && uploadCommentImageRef.current.click()
+          }
+        >
+          <CustomImage src={Images.imageIcon} className="w-10 h-10" />
+
+          <input
+            capture="environment"
+            accept="image/*"
+            type="file"
+            multiple
+            hidden
+            onChange={onChangeCommentImage}
+            ref={uploadCommentImageRef}
+          ></input>
+        </div>
+        {/*)}*/}
+        <BookingInput
+          bgColor="bg-white border border-disable"
+          inputClassName="border-none"
           placeholder="Message"
           value={messageValue}
           onChange={(e) => setMessageValue(e.target.value)}

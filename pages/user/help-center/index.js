@@ -156,7 +156,7 @@ const HelpCenter = () => {
         }
       >
         <div className="flex flex-col flex-1 h-full">
-          <div className="flex items-center pb-4">
+          <div className="flex items-center pb-4 overflow-x-scroll overflow-y-hidden hide-scroll-bar">
             {map(btnLists, (list, index) => {
               const value = get(list, ["value"], "");
               const label = get(list, ["label"], "");

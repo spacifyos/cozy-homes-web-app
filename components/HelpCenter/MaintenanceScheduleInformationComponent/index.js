@@ -84,7 +84,7 @@ const MaintenanceScheduleInformation = ({
         false
       )}
 
-      <div className="flex flex-col justify-center items-center pt-4">
+      <div className="flex flex-col justify-center items-center">
         <CustomText textClassName="text-disable text-xs">
           Maintenance Schedule Information Will Be Updated Soon
         </CustomText>
