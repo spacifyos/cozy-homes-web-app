@@ -131,10 +131,6 @@ function Home() {
           siteName: `${process.env.DOMAIN}`,
         }}
       />
-      <h1 className="hidden">
-        Provides the safe and innovative platform for you need to ﬁnd your dream
-        space.
-      </h1>
 
       <a
         target="_blank"
@@ -183,10 +179,10 @@ function Home() {
             <CustomText textClassName="text-primary font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md">
               Space For All
             </CustomText>
-            <CustomText textClassName="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs ">
+            <h1 className="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs">
               Provides the safe and innovative platform for you need to ﬁnd your
               dream space.
-            </CustomText>
+            </h1>
           </div>
 
           <DesktopBanner imageData={listingBannerData} />
