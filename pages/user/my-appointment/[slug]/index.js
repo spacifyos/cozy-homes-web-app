@@ -27,14 +27,14 @@ const Booking = () => {
     },
     {
       date: "10 Sep 21, 11.35am",
-      img: Images.agentIcon,
+      img: Images.imageNotFound,
       name: "Razak bin Osman",
       chat: "Hi Joan, sure,see you soon.",
       identity: "agent",
     },
     {
       date: "10 Sep 21, 12.00am",
-      img: Images.filterDefaultImage,
+      img: Images.imageNotFound,
       name: "Joan Lim",
       chat: "See you.",
       icon: Images.ellipseGreenIcon,
@@ -127,7 +127,7 @@ const Booking = () => {
           </CustomText>
           <div className="flex gap-2 items-center pb-5">
             <CustomImage
-              src={Images.agentIcon}
+              src={Images.imageNotFound}
               width={43}
               className="global-border-radius"
             />

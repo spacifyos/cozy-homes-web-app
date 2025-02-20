@@ -15,15 +15,17 @@ const SubscribeAutoPayModal = ({ t }) => {
       <div className="global-border-radius global-box-shadow bg-white p-4">
         <div className="flex items-center pb-2">
           <div className="bg-primary p-2 global-border-radius mb-1">
-            <CustomImage src={Images.buildingIcon} width={30} height={30} />
+            <CustomImage
+              src={Images.buildingIcon}
+              width={30}
+              height={30}
+            />
           </div>
           <div className="pl-2">
             <CustomText textClassName="font-bold text-sm text-primary">
               M Vertica
             </CustomText>
-            <CustomText textClassName="text-xs">
-              A-01-01, Room 1
-            </CustomText>
+            <CustomText textClassName="text-xs">A-01-01, Room 1</CustomText>
           </div>
         </div>
         <div className="flex flex-col">

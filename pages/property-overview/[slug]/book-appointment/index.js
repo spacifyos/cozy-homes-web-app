@@ -83,7 +83,7 @@ const Booking = () => {
           </CustomText>
           <div className="flex gap-2 items-center pb-5">
             <CustomImage
-              src={Images.agentIcon}
+              src={Images.imageNotFound}
               width={43}
               className="global-border-radius"
             />
