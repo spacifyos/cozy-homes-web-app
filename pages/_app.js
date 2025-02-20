@@ -20,9 +20,7 @@ import React, { useEffect, useRef } from "react";
 import * as commonSelector from "@/src/selectors/common";
 import { DefaultSeo } from "next-seo";
 import Images from "@/src/utils/Image";
-import Helper from "@/src/utils/Helper";
 import Head from "next/head";
-import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -55,16 +53,6 @@ function AppContent({ Component, pageProps }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   for (let i = 0; i < botWidget.length; i++) {
-  //     if (isEqual(pathname, "/user/chat")||isEqual(pathname, "/user/owner/chat")) {
-  //       botWidget[i].style.display = "block";
-  //     } else {
-  //       botWidget[i].style.display = "none";
-  //     }
-  //   }
-  // }, [divRef.current, router, botWidget]);
-
   useEffect(() => {
     typeof window !== "undefined" &&
       document.addEventListener("gesturestart", function (e) {
@@ -89,7 +77,6 @@ function AppContent({ Component, pageProps }) {
   return (
     <div ref={divRef}>
       <Head>
-        {/*<link rel="canonical" href={`${process.env.DOMAIN}`} />*/}
         <meta
           name="keywords"
           content="Spacify Asia, Property, Rental Management, Smart Meter"
@@ -139,17 +126,17 @@ function AppContent({ Component, pageProps }) {
         />
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script
+          <script
             strategy="afterInteractive"
             async
             src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
-          />
+          ></script>
         ) : (
           false
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script id="" strategy="afterInteractive">
+          <script id="" strategy="afterInteractive">
             {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -157,13 +144,13 @@ function AppContent({ Component, pageProps }) {
 
             gtag('config', 'G-JSLN7PTKGY');
             `}
-          </Script>
+          </script>
         ) : (
           false
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script
+          <script
             id="Organization"
             type="application/ld+json"
             strategy="afterInteractive"
@@ -188,13 +175,13 @@ function AppContent({ Component, pageProps }) {
               "description":
                 "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
             }`}
-          </Script>
+          </script>
         ) : (
           false
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script
+          <script
             id="LocalBusiness"
             type="application/ld+json"
             strategy="afterInteractive"
@@ -218,13 +205,13 @@ function AppContent({ Component, pageProps }) {
                 "url": "https://www.sapcify.asia/",
                 "image": "${Images.logoImage}"
               }`}
-          </Script>
+          </script>
         ) : (
           false
         )}
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <Script
+          <script
             id="WebSite"
             type="application/ld+json"
             strategy="afterInteractive"
@@ -238,7 +225,7 @@ function AppContent({ Component, pageProps }) {
                 "description":
                   "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
               }`}
-          </Script>
+          </script>
         ) : (
           false
         )}

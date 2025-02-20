@@ -131,6 +131,10 @@ function Home() {
           siteName: `${process.env.DOMAIN}`,
         }}
       />
+      <h1 className="hidden">
+        Provides the safe and innovative platform for you need to ﬁnd your dream
+        space.
+      </h1>
 
       <a
         target="_blank"
