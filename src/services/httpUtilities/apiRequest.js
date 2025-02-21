@@ -165,6 +165,7 @@ const getRootDataRequest = async (
     successCallback,
     () => {},
     successMessage,
+    true,
   );
 };
 
@@ -460,6 +461,9 @@ const getMaintenanceTicketOptionRequest = async (
     api.getMaintenanceTicketOption(),
     setLoading,
     successCallback,
+    () => {},
+    "",
+    true,
   );
 };
 

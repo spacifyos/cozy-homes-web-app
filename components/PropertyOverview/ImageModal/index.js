@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { get, isEmpty, map, size } from "lodash";
+import { get, head, isEmpty, map, size } from "lodash";
 import Image from "next/image";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
@@ -20,9 +20,15 @@ const ImageModal = ({
       style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
     >
       {size(data) <= 1 ? (
-        <div className="w-4/5 h-4/5 flex justify-center items-center overflow-hidden">
+        <div className=" flex justify-center items-center overflow-hidden">
           <CustomImage
-            src={isEmpty(selectedImage) ? Images.imageNotFound : selectedImage}
+            src={
+              isEmpty(imageDataValidate)
+                ? isEmpty(selectedImage)
+                  ? Images.imageNotFound
+                  : selectedImage
+                : head(imageDataValidate)
+            }
             className="w-full"
           />
         </div>

@@ -100,8 +100,8 @@ const SpecificRequestComponent = ({
           return (
             <div
               key={index}
-              onClick={() => onClickPopupImage(index)}
-              className={`w-28 h-28 relative flex justify-center items-center border ${status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
+              onClick={() => onClickPopupImage(list)}
+              className={`w-28 h-28 relative overflow-hidden flex justify-center items-center border ${status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
             >
               <CustomImage
                 src={isEmpty(base64Image) ? Images.imageNotFound : base64Image}

@@ -29,6 +29,7 @@ import {
   some,
   split,
   last,
+  omit,
 } from "lodash";
 import NestedRequestComponents from "@/components/HelpCenter/NestedRequestComponents";
 import Toast from "@/src/utils/Toast";
@@ -115,10 +116,24 @@ const NewRequest = ({}) => {
 
   const onClickChangeSection = (selectSection, subType) => {
     setPostData((prevState) => {
-      return {
-        ...prevState,
-        request_type: selectSection,
-      };
+      switch (selectSection) {
+        case 1: {
+          const validateData = omit(prevState, ["maintenance_type"]);
+
+          return {
+            ...validateData,
+            request_type: selectSection,
+          };
+        }
+        case 2: {
+          const validateData = omit(prevState, ["enquiry_type"]);
+
+          return {
+            ...validateData,
+            request_type: selectSection,
+          };
+        }
+      }
     });
 
     setRequestSubType(formatSubType(selectSection, subType));
