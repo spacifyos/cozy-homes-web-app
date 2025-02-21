@@ -85,7 +85,7 @@ const RequestOverviewDetail = ({
                   onClick={() => onClickPopupImage(index)}
                   key={index}
                   src={image}
-                  className="global-border-radius border w-28 h-28 cursor-pointer"
+                  className="global-border-radius border w-28 h-28 cursor-pointer overflow-hidden"
                 />
               );
             })}

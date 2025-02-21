@@ -98,7 +98,6 @@ const ViewAgreement = ({ id }) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl) && !downloading) {
-          console.log("hihi");
           await apiRequest
             .downloadFileRequest(resUrl, headers, referenceNumber)
             .catch((error) => {

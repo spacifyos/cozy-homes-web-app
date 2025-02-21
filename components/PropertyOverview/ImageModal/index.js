@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { get, head, isEmpty, map, size } from "lodash";
+import { get, head, isEmpty, map, size, isArray } from "lodash";
 import Image from "next/image";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
@@ -13,6 +13,8 @@ const ImageModal = ({
   openImageModal,
 }) => {
   const imageDataValidate = isEmpty(data) ? selectedImage : data;
+  console.log("data", data);
+  console.log("selectedImage", selectedImage);
 
   return openImageModal ? (
     <div
@@ -27,7 +29,11 @@ const ImageModal = ({
                 ? isEmpty(selectedImage)
                   ? Images.imageNotFound
                   : selectedImage
-                : head(imageDataValidate)
+                : isEmpty(get(head(imageDataValidate), ["image"], ""))
+                  ? isArray(imageDataValidate)
+                    ? head(imageDataValidate)
+                    : imageDataValidate
+                  : get(head(imageDataValidate), ["image"], "")
             }
             className="w-full"
           />
@@ -61,9 +67,15 @@ const ImageModal = ({
                   }}
                 >
                   <Image
-                    loader={() => (isEmpty(image) ? base64 : image)}
-                    alt={isEmpty(image) ? base64 : image}
-                    src={isEmpty(image) ? base64 : image}
+                    loader={() =>
+                      isEmpty(image) ? (isEmpty(base64) ? item : base64) : image
+                    }
+                    alt={
+                      isEmpty(image) ? (isEmpty(base64) ? item : base64) : image
+                    }
+                    src={
+                      isEmpty(image) ? (isEmpty(base64) ? item : base64) : image
+                    }
                     style={{ objectFit: "contain" }}
                     sizes="100vw"
                     fill

@@ -285,6 +285,8 @@ const RequestOverview = ({ id }) => {
 
   const onClickCloseImageModal = () => {
     setOpenImageModal(false);
+    setSelectedImage(null);
+    setSelectedImageList([]);
   };
 
   const onClickPopupImage = (selectedImage, type) => {
