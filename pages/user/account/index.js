@@ -50,6 +50,7 @@ const Account = () => {
   const referralCode = authSelector.getReferralCode(userProfileData);
   const isTenant = isEqual(type, "tenant");
   const isBackOffice = isEqual(type, "back-office");
+  const userRole = authSelector.getRolePermissionsRole(userProfileData);
 
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
@@ -474,10 +475,7 @@ const Account = () => {
               className="logout-container cursor-pointer"
               onClick={onClickLogoutModal}
             >
-              <CustomImage
-                src={Images.signUpIconActive}
-                className="mr-2 w-5"
-              />
+              <CustomImage src={Images.signUpIconActive} className="mr-2 w-5" />
               <CustomText textClassName="text-xs">{"Logout"}</CustomText>
             </div>
 
@@ -506,12 +504,16 @@ const Account = () => {
         otpRequestLoading={otpRequestLoading}
       />
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      {Helper.isTenant(userRole) || Helper.isOwner(userRole) ? (
+        <BottomNavigate
+          t={t}
+          routeName={routeName}
+          routeQuery={routeQuery}
+          onClickChangeTab={onClickChangeTab}
+        />
+      ) : (
+        false
+      )}
     </div>
   );
 };

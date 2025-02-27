@@ -126,6 +126,14 @@ const isTechnician = (role) => {
   return includes(role, Constant.TECHNICIAN_ROLE);
 };
 
+const isTenant = (role) => {
+  return includes(role, Constant.TENANT_ROLE);
+};
+
+const isOwner = (role) => {
+  return includes(role, Constant.OWNER_ROLE);
+};
+
 export default {
   isProduction,
   secToMin,
@@ -138,4 +146,6 @@ export default {
   isMasterAgency,
   isAgency,
   isTechnician,
+  isTenant,
+  isOwner,
 };

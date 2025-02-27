@@ -7,6 +7,8 @@ const Constant = {
   MASTER_AGENCY_ROLE: "master-agency",
   AGENCY_ROLE: "agency",
   TECHNICIAN_ROLE: "technician",
+  TENANT_ROLE: "tenant",
+  OWNER_ROLE: "owner",
 
   TENANT: "tenant",
   OWNER: "owner",
