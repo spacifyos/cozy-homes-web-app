@@ -4,10 +4,8 @@ import * as listingSelector from "@/src/selectors/listing";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import { getBookingSettingLink } from "@/src/selectors/listing";
 
 const MobileUnitContent = ({ unitListing, onClickShareBooking }) => {
-  console.log(unitListing);
   return (
     <div className="md:col-span-12 sm:col-span-12 col-span-12 xl:hidden lg:hidden md:block sm:block block relative">
       {isEmpty(unitListing) ? (

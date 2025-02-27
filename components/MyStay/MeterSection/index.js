@@ -9,23 +9,21 @@ const MeterSection = ({ data }) => {
   return (
     <div className="pb-7">
       <div className="flex justify-between items-center pb-2">
-        <CustomText textClassName="section-title">
-          My Meter
-        </CustomText>
+        <CustomText textClassName="section-title">My Meter</CustomText>
 
         <a href={"/user/my-meter"} className="flex">
           <CustomText textClassName="cursor-pointer pr-1.5 xl:text-sm lg:text-sm md:text-sm sm:text-xs text-xs">
             View More
           </CustomText>
 
-          <CustomImage src={Images.rightIcon} className="w-1.5" />
+          <CustomImage src={Images.rightIconBlack} className="w-1.5" />
         </a>
       </div>
 
       {isEmpty(data) ? (
-          <div className="bg-white p-6 global-border-radius global-box-shadow">
-        <CustomEmptyBox emptyTitle="No meter found" />
-          </div>
+        <div className="bg-white p-6 global-border-radius global-box-shadow">
+          <CustomEmptyBox emptyTitle="No meter found" />
+        </div>
       ) : (
         map(data, (item, index) => {
           return <MeterComponent key={index} item={item} />;

@@ -102,17 +102,29 @@ function AppContent({ Component, pageProps }) {
           content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"
         />
 
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" href="/spacify/favicon.ico" sizes="any" />
+        <link rel="icon" sizes="32x32" href="/spacify/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="/spacify/favicon-16x16.png" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="/spacify/android-chrome-192x192.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="/spacify/android-chrome-512x512.png"
+        />
 
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/apple-touch-icon.png"
+          href="/spacify/apple-touch-icon.png"
         />
 
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/spacify/manifest.json" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -170,8 +182,8 @@ function AppContent({ Component, pageProps }) {
               "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
               "telephone": "+603-58789831",
               "url": "https://www.sapcify.asia/",
-              "image": "${Images.logoImage}",
-              "logo": "${Images.logoImage}",
+              "image": "${Images.logo}",
+              "logo": "${Images.logo}",
               "description":
                 "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
             }`}
@@ -203,7 +215,7 @@ function AppContent({ Component, pageProps }) {
                 "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
                 "telephone": "+603-58789831",
                 "url": "https://www.sapcify.asia/",
-                "image": "${Images.logoImage}"
+                "image": "${Images.logo}"
               }`}
           </script>
         ) : (
@@ -220,7 +232,7 @@ function AppContent({ Component, pageProps }) {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
                 "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
-                "image": "${Images.logoImage}",
+                "image": "${Images.logo}",
                 "url": "https://www.sapcify.asia/",
                 "description":
                   "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"

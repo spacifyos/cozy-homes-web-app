@@ -181,7 +181,7 @@ const MyInvoice = () => {
       <DesktopLayout
         hideFooter
         loading={invoiceListingLoading && isEmpty(invoiceListingData)}
-        rightButtonIcon={Images.filterProIcon}
+        rightButtonIcon={Images.filterIconBlack}
         isFiltered={isFilter()}
         onClickRightButton={() => onClickOpenFilter("desktop")}
         pageBreadcrumbs={
@@ -196,7 +196,7 @@ const MyInvoice = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

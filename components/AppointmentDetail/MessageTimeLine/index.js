@@ -14,7 +14,7 @@ const MessageTimeLine = ({ item, onClickSelectedCommentImage }) => {
     <div className="grid grid-cols-12 gap-1 h-full pb-4">
       <div className="flex flex-col justify-center items-center col-span-1">
         <CustomImage
-          src={isAuthor ? Images.ellipseRedIcon : Images.ellipseGreenIcon}
+          src={isAuthor ? Images.circleIconActive : Images.circleIconAqua}
           imageStyle={{ width: 15, height: 15 }}
         />
         <div className="h-full bg-disable w-0.5 mt-2.5"></div>

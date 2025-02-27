@@ -34,7 +34,7 @@ const LanguageSwitcher = ({
           <CustomImage
             src={
               _.isEmpty(currentLanguageIcon)
-                ? Image.logoImage
+                ? Image.logo
                 : currentLanguageIcon
             }
             imageStyle={{ height: 30, width: 30 }}

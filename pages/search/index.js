@@ -39,8 +39,6 @@ const Search = () => {
   const queryMinPrice = get(router, ["query", "min_p"], 0);
   const queryMaxPrice = get(router, ["query", "max_p"], 2500);
 
-  // const formatQueryTags = split(queryTags, ",");
-
   const getListingTagOptionRequest = () =>
     dispatch(listingAction.getListingTagOptionRequest());
   const listingTagOptionData = useSelector((state) =>
@@ -493,7 +491,7 @@ const Search = () => {
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {
-              url: Images.logoImage,
+              url: Images.logo,
               width: 800,
               height: 600,
               alt: `Spacify Image`,
@@ -508,7 +506,7 @@ const Search = () => {
         href={`https://wa.me/+601137354267`}
         className="fixed bottom-10 right-6 z-10"
       >
-        <CustomImage src={Images.beliveWhatsAppIcon} className="w-16 h-16" />
+        <CustomImage src={Images.beliveWhatsappIcon} className="w-16 h-16" />
       </a>
 
       <DesktopLayout
@@ -535,7 +533,7 @@ const Search = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

@@ -4,7 +4,6 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { get, isEmpty, isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
-import CustomButton from "@/components/CustomButton";
 
 const CardViewModal = ({ data, onClickShareBooking }) => {
   const bathroom = get(data, ["bathroom"], "");
@@ -29,7 +28,7 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.cancelIcon}
+                src={Images.closeIconBlack}
               />
             </button>
           </form>
@@ -92,14 +91,14 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <CustomImage src={Images.bedTypeIconActive} className="w-4" />
+            <CustomImage src={Images.bedIconActive} className="w-4" />
             <CustomText textClassName="text-xs">
               {isEmpty(bedType) ? "-" : bedType}
             </CustomText>
           </div>
 
           <div className="flex items-center gap-2">
-            <CustomImage src={Images.spaceTypeIconActive} className="w-4" />
+            <CustomImage src={Images.spaceIconActive} className="w-4" />
             <CustomText textClassName="text-xs">
               {isEmpty(spaceType) ? "-" : spaceType}
             </CustomText>

@@ -68,7 +68,7 @@ const DesktopSearchBar = ({
         >
           <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-4">
             <CustomInput
-              rightIcon={Images.searchOutlineActiveIcon}
+              rightIcon={Images.searchIconActive}
               className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
               placeholder="Search Rooms ..."
               value={keywordValue}

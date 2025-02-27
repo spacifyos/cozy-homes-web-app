@@ -46,7 +46,7 @@ const DesktopPropertyPriceSection = ({
         <div className="flex p-3 justify-between items-center">
           <div className="relative ">
             <CustomImage
-              src={Images.userIcon}
+              src={Images.userIconActive}
               className="rounded-2xl"
               imageStyle={{ width: 43 }}
             />
@@ -66,7 +66,7 @@ const DesktopPropertyPriceSection = ({
               href={`tel:${picContactNumber}`}
               className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
             >
-              <CustomImage src={Images.callIcon} width={28} />
+              <CustomImage src={Images.phoneIconBlack} width={28} />
             </a>
             <a
               href={`${

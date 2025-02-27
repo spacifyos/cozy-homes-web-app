@@ -22,13 +22,13 @@ const AppointmentSuccessful = ({}) => {
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <CustomImage
-        src={Images.cancelIcon}
+        src={Images.closeIconBlack}
         imageStyle={{ width: "20px" }}
         className=" absolute top-5 right-5 cursor-pointer"
         onClick={onClickGoMainPage}
       />
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>

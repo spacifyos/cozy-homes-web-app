@@ -129,7 +129,7 @@ const SpecificRequestComponent = ({
             onClick={() => uploadImageRef && uploadImageRef.current.click()}
           >
             <CustomImage
-              src={Images.plusIcon}
+              src={Images.addIconBlack}
               imageStyle={{ width: 20, height: 20 }}
             />
 
@@ -186,7 +186,7 @@ const SpecificRequestComponent = ({
             onClick={() => uploadVideoRef && uploadVideoRef.current.click()}
           >
             <CustomImage
-              src={Images.plusIcon}
+              src={Images.addIconBlack}
               imageStyle={{ width: 20, height: 20 }}
             />
 

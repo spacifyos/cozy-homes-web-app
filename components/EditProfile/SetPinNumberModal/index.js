@@ -33,7 +33,7 @@ const SetPinNumberModal = ({
           <form method="dialog" className={`flex justify-end`}>
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
-                src={Images.cancelIcon}
+                src={Images.closeIconBlack}
                 imageStyle={{ width: 18, height: 18 }}
               />
             </button>

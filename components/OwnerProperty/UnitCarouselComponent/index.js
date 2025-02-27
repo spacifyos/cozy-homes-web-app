@@ -27,17 +27,17 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
             {
               name: "Car Park",
               value: `${ownerSelector.getTotalCarPark(item)}`,
-              icon: Images.carParkOccupancyIcon,
+              icon: Images.carParkIconActive,
             },
             {
               name: "Room Occupancy",
               value: `${ownerSelector.getTotalRoomOccupancy(item)}%`,
-              icon: Images.occupancyIcon,
+              icon: Images.occupancyIconActive,
             },
             {
               name: "Car Park Occupancy",
               value: `${ownerSelector.getTotalCarParkOccupancy(item)}%`,
-              icon: Images.carParkOccupancyIcon,
+              icon: Images.carParkOccupancyIconActive,
             },
           ];
 
@@ -45,7 +45,7 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
             <SwiperSlide key={unitName}>
               <div
                 style={{
-                  background: `url(${isEmpty(unitImage) ? Images.logoImage : unitImage}) no-repeat center center`,
+                  background: `url(${isEmpty(unitImage) ? Images.logo : unitImage}) no-repeat center center`,
                   backgroundSize: "contain",
                 }}
                 className="owner-property-banner global-border-radius"

@@ -47,7 +47,7 @@ const FilterSection = ({
           className="bg-white xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 flex justify-center items-center global-box-shadow global-border-radius cursor-pointer"
           onClick={() => setIsOpenFilter(!isOpenFilter)}
         >
-          <CustomImage src={Images.filterProIcon} className="h-6 w-6" />
+          <CustomImage src={Images.filterIconBlack} className="h-6 w-6" />
         </div>
       </div>
 

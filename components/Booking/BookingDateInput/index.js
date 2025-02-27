@@ -1,5 +1,5 @@
 import CustomText from "@/components/CustomText";
-import _, { isEqual } from "lodash";
+import { isEqual, isEmpty } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 
@@ -46,17 +46,17 @@ const BookingDateInput = ({
 
         {isEqual(type, "date") ? (
           <CustomImage
-            src={Images.calendarIcon}
+            src={Images.calenderIconBlack}
             imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
           />
         ) : (
           <CustomImage
-            src={Images.clockIcon}
+            src={Images.clockIconBlack}
             imageStyle={{ width: isEqual(type, "month") ? 30 : 20 }}
           />
         )}
       </div>
-      {_.isEmpty(errorMessage) ? (
+      {isEmpty(errorMessage) ? (
         false
       ) : (
         <CustomText textClassName="error-message">* {errorMessage}</CustomText>

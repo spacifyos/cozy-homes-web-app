@@ -21,13 +21,13 @@ const RequestSuccessful = ({}) => {
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Request Successful - Spacify Asia" />
       {/*<CustomImage*/}
-      {/*  src={Images.cancelIcon}*/}
+      {/*  src={Images.closeIconBlack}*/}
       {/*  imageStyle={{ width: 20 }}*/}
       {/*  className=" absolute top-5 right-5 cursor-pointer"*/}
       {/*  onClick={onClickGoMainPage}*/}
       {/*/>*/}
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4 text-2xl">

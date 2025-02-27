@@ -8,7 +8,7 @@ const UserTypeSelectSection = ({ setSelectedUserType }) => {
       <form method="dialog" className={`flex justify-end`}>
         <button className="btn btn-sm btn-circle btn-ghost right-2">
           <CustomImage
-            src={Images.cancelIcon}
+            src={Images.closeIconBlack}
             imageStyle={{ width: 20, height: 20 }}
           />
         </button>

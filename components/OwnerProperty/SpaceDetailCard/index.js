@@ -53,7 +53,7 @@ const SpaceDetailCard = ({ item }) => {
 
             <div className="flex items-end">
               <CustomImage
-                src={Images.spaceIcon}
+                src={Images.spaceIconActive}
                 imageStyle={{ width: 18 }}
                 className="mr-2"
               />

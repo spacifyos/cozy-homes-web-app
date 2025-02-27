@@ -31,7 +31,7 @@ const FeatureComponent = ({
         <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} className="w-2" />
+      <CustomImage src={Images.rightIconBlack} className="w-2" />
     </div>
   ) : (
     <a
@@ -52,7 +52,7 @@ const FeatureComponent = ({
         <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIcon} className="w-2" />
+      <CustomImage src={Images.rightIconBlack} className="w-2" />
     </a>
   );
 };

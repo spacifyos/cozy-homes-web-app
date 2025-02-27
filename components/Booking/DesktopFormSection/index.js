@@ -381,7 +381,7 @@ const DesktopFormSection = ({
             <ImageUploading loading={frontIcUploading} />
 
             <CustomImage
-              src={isEmpty(icFrontBase64) ? Images.icFront : icFrontBase64}
+              src={isEmpty(icFrontBase64) ? Images.icFrontSample : icFrontBase64}
               imageStyle={{ width: "100%" }}
             />
           </div>
@@ -404,7 +404,7 @@ const DesktopFormSection = ({
             <ImageUploading loading={backIcUploading} />
 
             <CustomImage
-              src={isEmpty(icBackBase64) ? Images.icBack : icBackBase64}
+              src={isEmpty(icBackBase64) ? Images.icBackSample : icBackBase64}
               imageStyle={{ width: "100%" }}
             />
           </div>
@@ -426,7 +426,7 @@ const DesktopFormSection = ({
       <div className="flex items-start pt-6 pb-2">
         <div style={{ width: 20 }}>
           <CustomImage
-            src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+            src={isReadAgree ? Images.checkIconAqua : Images.uncheckIconWhite}
             imageStyle={{ width: 20 }}
             onClick={onClickReadAgree}
             className="cursor-pointer"

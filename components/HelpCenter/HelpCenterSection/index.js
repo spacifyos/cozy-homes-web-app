@@ -17,8 +17,8 @@ const HelpCenterSection = ({
           ...option,
           ...{
             description: "Have A Question Or Want To Send Feedback",
-            icon: Images.generalEnquiriesIcon,
-            iconActive: Images.generalEnquiriesIconActive,
+            icon: Images.generalEnquiryIconWhite,
+            iconActive: Images.generalEnquiryIconActive,
           },
         };
       case 2:
@@ -26,8 +26,8 @@ const HelpCenterSection = ({
           ...option,
           ...{
             description: "Submit Maintenance Requests For Issue Resolution",
-            icon: Images.maintenanceIcon,
-            iconActive: Images.maintenanceIconActive,
+            icon: Images.maintenanceRequestIconWhite,
+            iconActive: Images.maintenanceRequestIconActive,
           },
         };
     }

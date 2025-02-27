@@ -154,7 +154,7 @@ const NewRequest = ({}) => {
                 ...type,
                 ...{
                   description: "Have a question?",
-                  icon: Images.enquiryIcon,
+                  icon: Images.enquiryIconWhite,
                   iconActive: Images.enquiryIconActive,
                 },
               };
@@ -163,7 +163,7 @@ const NewRequest = ({}) => {
                 ...type,
                 ...{
                   description: "Write us your feedback.",
-                  icon: Images.feedbackIcon,
+                  icon: Images.feedbackIconWhite,
                   iconActive: Images.feedbackIconActive,
                 },
               };
@@ -178,8 +178,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.amenitiesIcon,
-                  iconActive: Images.amenitiesIconActive,
+                  icon: Images.washingMachineIconWhite,
+                  iconActive: Images.washingMachineIconActive,
                   description:
                     "Washer, dryer, oven, air conditioner, water heater, celling fan",
                 },
@@ -188,7 +188,7 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.electricalIcon,
+                  icon: Images.electricalIconWhite,
                   iconActive: Images.electricalIconActive,
                   description: "Lights, well socket, wiring, smart meter",
                 },
@@ -197,7 +197,7 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.plumbingIcon,
+                  icon: Images.plumbimgIconWhite,
                   iconActive: Images.plumbingIconActive,
                   description: "Leaking, faucets, pipes, pump",
                 },
@@ -206,8 +206,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.exteriorInteriorIcon,
-                  iconActive: Images.exteriorInteriorIconActive,
+                  icon: Images.windowIconWhite,
+                  iconActive: Images.windowIconActive,
                   description: "Doors, windows, flooring, wall",
                 },
               };
@@ -215,7 +215,7 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.cleaningIcon,
+                  icon: Images.cleaningIconWhite,
                   iconActive: Images.cleaningIconActive,
                   description: "Submit a cleaning service request",
                 },
@@ -530,7 +530,7 @@ const NewRequest = ({}) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

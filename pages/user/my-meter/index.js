@@ -1,4 +1,3 @@
-import CustomHeader from "@/components/CustomHeader";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
@@ -11,7 +10,6 @@ import { useEffect } from "react";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as invoiceSelector from "@/src/selectors/invoice";
 import MeterComponent from "@/components/MyMeter/MeterComponent";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
@@ -73,7 +71,7 @@ const MyMeter = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

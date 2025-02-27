@@ -100,7 +100,7 @@ const EAgreement = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

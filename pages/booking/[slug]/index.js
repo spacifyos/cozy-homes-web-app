@@ -7,7 +7,6 @@ import {
   isEmpty,
   isEqual,
   map,
-  some,
   forEach,
   split,
   includes,
@@ -76,15 +75,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
   const initialTime = 60;
 
   const queryReferralCode = get(router, ["query", "referral_code"], "");
-
-  // const getListingPropertyDetailRequest = (id) =>
-  //   dispatch(listingAction.getListingPropertyDetailRequest(id));
-  // const listingPropertyDetailData = useSelector((state) =>
-  //   listingSelector.getListingPropertyDetailData(state, id),
-  // );
-  // const listingPropertyDetailDataLoading = useSelector((state) =>
-  //   listingSelector.getListingPropertyDetailDataLoading(state),
-  // );
 
   const getSelectOptionRequest = () =>
     dispatch(commonAction.getSelectOptionRequest());
@@ -225,10 +215,6 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
     checkLocationStorageReferralCode();
   }, [queryReferralCode]);
-
-  // const fetchListingPropertyDetail = (id) => {
-  //   getListingPropertyDetailRequest(id);
-  // };
 
   const fetchSelectOption = () => {
     getSelectOptionRequest();
@@ -638,7 +624,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
           images: isEmpty(imageUrl)
             ? [
                 {
-                  url: Images.logoImage,
+                  url: Images.logo,
                   width: 800,
                   height: 600,
                   alt: `${propertyName} Image`,
@@ -697,7 +683,7 @@ const Booking = ({ id, listingPropertyDetailData }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

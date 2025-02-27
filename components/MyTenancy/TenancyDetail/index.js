@@ -78,8 +78,8 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
 
       <div className="flex flex-col items-start">
         <div className="flex items-end py-3">
-          <div className="bg-primary p-2 global-border-radius ">
-            <CustomImage src={Images.buildingIcon} imageStyle={{ width: 30 }} />
+          <div className="bg-primary p-3 global-border-radius ">
+            <CustomImage src={Images.buildingIconWhite} className="w-6" />
           </div>
 
           <div className={"pl-2"}>

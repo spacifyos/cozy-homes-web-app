@@ -132,7 +132,7 @@ const HelpCenter = () => {
           maintenanceTicketListingDataLoading &&
           isEmpty(maintenanceTicketListingData)
         }
-        rightButtonIcon={Images.plusIcon}
+        rightButtonIcon={Images.addIconBlack}
         onClickRightButton={onClickToNewRequest}
         pageBreadcrumbs={
           <div>
@@ -146,7 +146,7 @@ const HelpCenter = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

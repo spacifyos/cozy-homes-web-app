@@ -13,7 +13,7 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
       {/*</div>*/}
 
       <div className="profile-coin-icon-container">
-        <CustomImage src={Images.logoImage} className="xl:w-20 lg:w-20 md:w-20 sm:w-16 w-12" />
+        <CustomImage src={Images.logo} className="xl:w-20 lg:w-20 md:w-20 sm:w-16 w-12" />
       </div>
 
       <div className="flex flex-col xl:pl-4 lg:pl-4 md:pl-4 sm:pt-4 pt-4">

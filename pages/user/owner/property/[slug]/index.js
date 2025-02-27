@@ -44,7 +44,7 @@ const PropertyDetail = ({ id }) => {
     {
       name: "Unit",
       value: ownerSelector.getTotalUnits(propertyDetail),
-      icon: Images.spaceIcon,
+      icon: Images.spaceIconActive,
     },
     {
       name: "Room",
@@ -54,12 +54,12 @@ const PropertyDetail = ({ id }) => {
     {
       name: "Room Occupancy",
       value: `${ownerSelector.getOccupancyRoom(propertyDetail)}%`,
-      icon: Images.occupancyIcon,
+      icon: Images.occupancyIconActive,
     },
     {
       name: "Car Park Occupancy",
       value: `${ownerSelector.getOccupancyCarPark(propertyDetail)}%`,
-      icon: Images.carParkOccupancyIcon,
+      icon: Images.carParkOccupancyIconActive,
     },
   ];
   const colorList = [
@@ -164,7 +164,7 @@ const PropertyDetail = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

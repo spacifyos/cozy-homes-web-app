@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -61,17 +63,26 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".btn-primary-background": {
+          "background-color": "#f5f8fd",
+        },
+      });
+    }),
+  ],
   daisyui: {
     themes: [
       {
         mytheme: {
           primary: "#d71440",
+          "primary-background": "#f5f8fd",
           secondary: "#F05A22",
           black: "#2c2c2c",
           disable: "#CCCCCC",
         },
-
       },
     ],
   },

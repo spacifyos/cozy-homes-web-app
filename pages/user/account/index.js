@@ -293,7 +293,7 @@ const Account = () => {
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
               title="My Property"
-              icon={Images.homeActiveOutline}
+              icon={Images.homeIconActive}
               pb={3}
               onClick={() => {
                 return router.push(
@@ -308,23 +308,23 @@ const Account = () => {
 
           <FeatureComponent
             title="My Account"
-            icon={Images.registerIconActiveOutline}
+            icon={Images.accountIconActive}
             pb={3}
             onClick={() => {
               return router.push("/user/account");
             }}
-            imageWidth={18}
+            imageWidth={16}
           />
 
           {!isEmpty(userProfileData) && isTenant ? (
             <FeatureComponent
               title="Help Center"
-              icon={Images.helpIcon}
+              icon={Images.helpCenterIconActive}
               pb={3}
               onClick={() => {
                 return router.push("/user/help-center");
               }}
-              imageWidth={25}
+              imageWidth={18}
             />
           ) : (
             false
@@ -333,12 +333,12 @@ const Account = () => {
           {!isEmpty(userProfileData) && isBackOffice ? (
             <FeatureComponent
               title="Help Center"
-              icon={Images.helpIcon}
+              icon={Images.helpCenterIconActive}
               pb={3}
               onClick={() => {
                 return router.push("/agency/help-center");
               }}
-              imageWidth={25}
+              imageWidth={18}
             />
           ) : (
             false
@@ -347,8 +347,8 @@ const Account = () => {
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
               title="My Invoice"
-              icon={Images.primaryInvoiceIcon}
-              imageWidth={23}
+              icon={Images.invoiceIconActive}
+              imageWidth={16}
               pb={3}
               onClick={() => {
                 return router.push("/user/my-invoice");
@@ -362,7 +362,7 @@ const Account = () => {
             <FeatureComponent
               title={"My E-Agreement"}
               icon={Images.agreementIconActive}
-              imageWidth={23}
+              imageWidth={18}
               pb={3}
               onClick={() => {
                 return router.push("/user/e-agreement");
@@ -375,8 +375,8 @@ const Account = () => {
           {!isEmpty(userProfileData) && isTenant && !isBackOffice ? (
             <FeatureComponent
               title={"My Meter"}
-              icon={Images.primaryMeterIcon}
-              imageWidth={13}
+              icon={Images.meterIconActive}
+              imageWidth={16}
               pb={3}
               onClick={() => {
                 return router.push("/user/my-meter");
@@ -389,7 +389,7 @@ const Account = () => {
           {!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (
             <FeatureComponent
               title={"My Report"}
-              icon={Images.paperIcon}
+              icon={Images.reportIconActive}
               imageWidth={16}
               pb={3}
               onClick={() => {
@@ -417,8 +417,8 @@ const Account = () => {
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
               title="Set Pin Number"
-              icon={Images.primaryLockIcon}
-              imageWidth={23}
+              icon={Images.lockIconActive}
+              imageWidth={16}
               pb={3}
               onClick={onClickOpenSetPinNumberModal}
             />
@@ -430,7 +430,7 @@ const Account = () => {
             <FeatureComponent
               title="Property Listing"
               icon={Images.listIconActive}
-              imageWidth={23}
+              imageWidth={18}
               pb={3}
               onClick={() => {
                 return router.push("/agency/card-listing");
@@ -443,7 +443,7 @@ const Account = () => {
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
               title="Chat"
-              icon={Images.chatOutlineIcon}
+              icon={Images.chatIconActive}
               imageWidth={18}
               pb={3}
               onClick={() => {
@@ -460,8 +460,8 @@ const Account = () => {
 
           <FeatureComponent
             title={"Term And Condition"}
-            icon={Images.primaryTermAndConditionIcon}
-            imageWidth={23}
+            icon={Images.termIconActive}
+            imageWidth={18}
             pb={3}
             route={"https://tms.spacify.asia/privacy-policy"}
             target="_blank"
@@ -475,7 +475,7 @@ const Account = () => {
               onClick={onClickLogoutModal}
             >
               <CustomImage
-                src={Images.primaryLogoutIcon}
+                src={Images.signUpIconActive}
                 className="mr-2 w-5"
               />
               <CustomText textClassName="text-xs">{"Logout"}</CustomText>

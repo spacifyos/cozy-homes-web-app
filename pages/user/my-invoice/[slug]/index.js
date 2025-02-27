@@ -173,7 +173,7 @@ const InvoiceOverview = ({ id }) => {
         }
         rightContent={
           <CustomImage
-            src={Images.downloadIcon}
+            src={Images.downIconBlack}
             imageStyle={{ width: 25 }}
             className="cursor-pointer"
             onClick={onClickDownload}
@@ -198,7 +198,7 @@ const InvoiceOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -208,10 +208,10 @@ const InvoiceOverview = ({ id }) => {
         }
       >
         <div className="relative pt-6 flex justify-center">
-          <div className="bg-primary p-2 ps-2.5 global-border-radius absolute top-0">
+          <div className="bg-primary p-3 global-border-radius absolute top-0">
             <CustomImage
-              src={Images.invoiceIcon}
-              imageStyle={{ width: 35, height: 35 }}
+              src={Images.invoiceIconWhite}
+              className="w-6"
             />
           </div>
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">

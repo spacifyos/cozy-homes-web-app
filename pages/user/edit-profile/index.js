@@ -202,7 +202,7 @@ const EditProfile = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -215,7 +215,7 @@ const EditProfile = () => {
           <div className="global-border-radius global-box-shadow p-5">
             <div className="flex justify-center items-center">
               <CustomImage
-                src={Images.userIcon}
+                src={Images.userIconActive}
                 className="my-2 xl:w-36 lg:w-36 md:w-32 sm:w-28 w-20"
               />
             </div>

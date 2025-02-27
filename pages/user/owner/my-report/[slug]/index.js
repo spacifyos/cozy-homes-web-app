@@ -1,6 +1,5 @@
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
@@ -11,11 +10,8 @@ import { get, isEmpty, map } from "lodash";
 import moment from "moment";
 import * as reportSelector from "@/src/selectors/report";
 import AuthManager from "@/src/utils/AuthManager";
-import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
-import CustomLabelValue from "@/components/CustomLabelValue";
 import Helper from "@/src/utils/Helper";
-import CustomModal from "@/components/CustomModal";
 import CustomImage from "@/components/CustomImage";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopModal from "@/components/DesktopModal";
@@ -109,7 +105,7 @@ const MyReport = ({ id }) => {
       <NextSeo title="PnL Statement Overview | Owner - Spacify Asia" />
       <DesktopLayout
         loading={loading}
-        rightButtonIcon={Images.downloadIcon}
+        rightButtonIcon={Images.downloadIconBlack}
         onClickRightButton={onClickDownload}
         pageBreadcrumbs={
           <div>
@@ -139,7 +135,7 @@ const MyReport = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -427,7 +423,7 @@ const MyReport = ({ id }) => {
                 <button className="btn btn-sm btn-circle btn-ghost right-2">
                   <CustomImage
                     className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                    src={Images.cancelIcon}
+                    src={Images.closeIconBlack}
                   />
                 </button>
               </form>

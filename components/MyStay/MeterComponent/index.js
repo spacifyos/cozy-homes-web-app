@@ -25,10 +25,10 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       {/*/>*/}
 
       <div className="flex items-center pb-1">
-        <div className="bg-primary p-2 global-border-radius mb-1 mr-2">
+        <div className="bg-primary p-3 global-border-radius mb-1 mr-2">
           <CustomImage
-            src={Images.meterIcon}
-            imageStyle={{ width: 35, height: 35 }}
+            src={Images.meterIconWhite}
+            className="w-4"
           />
         </div>
 
@@ -43,7 +43,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
             <div className="flex items-center pr-3">
               <CustomImage
-                src={wifi ? Images.onIcon : Images.offIcon}
+                src={wifi ? Images.powerIconAqua : Images.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />
@@ -56,7 +56,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
             <div className="flex items-center">
               <CustomImage
-                src={power ? Images.onIcon : Images.offIcon}
+                src={power ? Images.powerIconAqua : Images.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />

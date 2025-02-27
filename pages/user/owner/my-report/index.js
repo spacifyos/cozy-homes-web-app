@@ -7,10 +7,8 @@ import CustomSelect from "@/components/CustomSelect";
 import ListingComponent from "@/components/MyReport/ListingComponent";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import { useEffect, useState } from "react";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import * as reportSelector from "@/src/selectors/report";
 import moment from "moment";
-import CustomOwnerHeader from "@/components/CustomOwnerHeader";
 import { NextSeo } from "next-seo";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
@@ -108,7 +106,7 @@ const MyReport = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

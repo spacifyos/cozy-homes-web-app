@@ -15,7 +15,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.promotionIcon}
+            src={Images.promotionIconWhite}
             imageStyle={{ width: 20, height: 20 }}
           />
           <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold text-white pl-2">

@@ -335,7 +335,7 @@ const ViewAgreement = ({ id }) => {
         hideFooter
         loading={loading || agreeLoading || signLoading || downloading}
         onClickRightButton={downloadPdf}
-        rightButtonIcon={Images.downloadIcon}
+        rightButtonIcon={Images.downloadIconBlack}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -364,7 +364,7 @@ const ViewAgreement = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -431,7 +431,9 @@ const ViewAgreement = ({ id }) => {
               <div style={{ width: 23 }} onClick={onClickReadAgree}>
                 <CustomImage
                   className="cursor-pointer"
-                  src={readAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                  src={
+                    readAgree ? Images.checkIconAqua : Images.uncheckIconWhite
+                  }
                   imageStyle={{ width: 23 }}
                 />
               </div>

@@ -22,7 +22,7 @@ const RequestSuccessful = ({}) => {
       <NextSeo title="Request Successful - Spacify Asia" />
 
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4 text-2xl">

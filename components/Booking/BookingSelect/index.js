@@ -10,7 +10,7 @@ const BookingSelect = ({
   title,
   lists,
   name,
-  rightIcon = Images.downIcon,
+  rightIcon = Images.downIconBlack,
   required,
   bgColor = "bg-primary-background",
   disabled = true,

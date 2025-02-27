@@ -59,7 +59,7 @@ const MeterTopUpSection = ({
               return (
                 <CustomButton
                   key={index}
-                  buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "btn-primary" : "btn-primary-background"}`}
+                  buttonClassName={`btn-md ${isEqual(selectedPrice, value) ? "btn-primary" : "btn-primary-background"} `}
                   buttonText={name}
                   onClick={() => onClickSelectPrice(value)}
                 />

@@ -55,7 +55,7 @@ const CoinsTransaction = () => {
       <div className="body-container flex flex-col justify-center items-center">
         <div className="profile-coin-container w-1/2 mb-7">
           <div className="profile-coin-icon-container">
-            <CustomImage src={Images.logoImage} imageStyle={{ width:30 }} />
+            <CustomImage src={Images.logo} imageStyle={{ width:30 }} />
           </div>
 
           <CustomText textClassName="text-disable text-sm">

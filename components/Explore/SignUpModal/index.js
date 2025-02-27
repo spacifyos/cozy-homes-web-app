@@ -162,7 +162,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
             </form>
             <div className="pb-6 flex flex-col items-center">
               <CustomImage
-                src={Images.blackLogo}
+                src={Images.logoBlackWithText}
                 imageStyle={{ width: 120 }}
                 className="mb-2"
               />
@@ -260,7 +260,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                   onChange={onChangeConfirmPasswordValue}
                 />
 
-                <div className="mb-4">
+                <div className="mb-4 overflow-hidden w-full">
                   <Script
                     id={DEFAULT_SCRIPT_ID}
                     src={SCRIPT_URL}
@@ -284,7 +284,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "btn-secondary" : "btn-primary"} w-2/4 mb-2`}
+                    buttonClassName={`${isEqual(toLower(selectedUserType), Constant.TENANT) ? "btn-secondary" : "btn-primary"} xl:w-2/4 lg:w-2/4 md:w-2/4 sm:w-3/4 w-3/4 mb-2`}
                     buttonText="Sign Up for FREE"
                     onClick={handleSubmit}
                     disable={signUpLoading}

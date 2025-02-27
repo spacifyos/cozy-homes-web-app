@@ -36,7 +36,7 @@ const DesktopCanvasModal = ({
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.cancelIcon}
+                src={Images.closeIconBlack}
               />
             </button>
           </form>
@@ -79,7 +79,7 @@ const DesktopCanvasModal = ({
           <div style={{ width: 23 }} onClick={onClickReadSign}>
             <CustomImage
               className="cursor-pointer"
-              src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}
+              src={readSign ? Images.checkIconAqua : Images.uncheckIconWhite}
               imageStyle={{ width: 23 }}
             />
           </div>

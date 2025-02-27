@@ -24,8 +24,8 @@ const InvoiceComponent = ({ data, type }) => {
             <div className="flex items-center">
               <div className="invoice-icon-container">
                 <CustomImage
-                  src={Images.invoiceIcon}
-                  imageStyle={{ width: 35, height: 35 }}
+                  src={Images.invoiceIconWhite}
+                  className="w-5"
                 />
               </div>
 
@@ -54,7 +54,7 @@ const InvoiceComponent = ({ data, type }) => {
 
                     <div className="flex items-center">
                       <CustomImage
-                        src={Images.paidIcon}
+                        src={Images.checkIconAqua}
                         imageStyle={{ width: 15 }}
                         className="mr-1"
                       />

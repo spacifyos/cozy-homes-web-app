@@ -57,8 +57,8 @@ const EnquiriesForm = ({
                   className="cursor-pointer"
                   src={
                     isEqual(checkFeedbackMatters, value)
-                      ? Images.checkGreenIcon
-                      : Images.uncheckIcon
+                      ? Images.checkIconAqua
+                      : Images.uncheckIconWhite
                   }
                   imageStyle={{ width: 20, height: 20 }}
                   onClick={() => onClickCheckFeedbackMatters(value)}

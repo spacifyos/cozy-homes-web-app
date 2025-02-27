@@ -36,14 +36,14 @@ const PaymentSuccessful = ({ id }) => {
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
       {/*  <CustomImage*/}
-      {/*    src={Images.cancelIcon}*/}
+      {/*    src={Images.closeIconBlack}*/}
       {/*    imageStyle={{ width: 20 }}*/}
       {/*    onClick={onClickGoMainPage}*/}
       {/*  />*/}
       {/*</div>*/}
 
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>

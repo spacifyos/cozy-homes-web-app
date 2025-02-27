@@ -145,13 +145,13 @@ const SignInModal = ({
             </form>
             <div className="pb-6 flex flex-col items-center">
               <CustomImage
-                src={Images.blackLogo}
+                src={Images.logoBlackWithText}
                 imageStyle={{ width: 120 }}
                 className="mb-4"
               />
 
               <CustomText
-                textClassName="text-white font-bold leading-10"
+                textClassName="text-white font-bold leading-10 text-center"
                 styles={{ fontSize: 32 }}
               >
                 Welcome Back, {selectedUserType}
@@ -172,7 +172,7 @@ const SignInModal = ({
                   </div>
                 )}
 
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-2 mb-4">
                   <select
                     className="select select-bordered w-full max-w-xs bg-white user-input"
                     value={phonePrefix}
@@ -194,8 +194,8 @@ const SignInModal = ({
                     value={phoneNumber}
                     onChange={onChangePhoneNumber}
                     type="number"
-                    placeholder="Phone Number"
-                    className="input input-bordered w-full input-error bg-white col-span-2 user-input"
+                    placeholder="12 345 6789"
+                    className="input input-bordered w-full input-error bg-white xl:col-span-2 lg:col-span-2 md:col-span-2 sm:col-span-1 col-span-1 user-input"
                   />
                 </div>
 

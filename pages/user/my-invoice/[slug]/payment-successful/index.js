@@ -105,7 +105,7 @@ const PaymentSuccessful = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickClose}
               />
@@ -116,7 +116,7 @@ const PaymentSuccessful = ({ id }) => {
       >
         <div className="flex flex-col justify-center items-center">
           <CustomImage
-            src={Images.successIcon}
+            src={Images.paymentSuccessIcon}
             className="xl:w-40 lg:w-36 md:w-32 sm:w-28 w-28"
           />
 

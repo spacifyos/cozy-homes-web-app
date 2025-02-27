@@ -33,7 +33,7 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIcon} className="w-1.5" />*/}
+        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
       <div className="gap-1 flex justify-center items-center">

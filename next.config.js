@@ -2,7 +2,7 @@
 const { i18n } = require("./next-i18next.config");
 
 const withPWA = require("next-pwa")({
-  dest: "public",
+  dest: "public/spacify",
   disable: process.env.PRODUCTION === "DEVELOPMENT",
 });
 
@@ -29,6 +29,7 @@ const nextConfig = {
     CLOUDFLARE_RECAPTCHA_SITE: process.env.CLOUDFLARE_RECAPTCHA_SITE,
     SENTRY_DSN: process.env.SENTRY_DSN,
     PRODUCTION: process.env.PRODUCTION,
+    PROJECT_NAME: process.env.PROJECT_NAME,
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -52,16 +53,6 @@ const nextConfig = {
       },
     ];
   },
-  // matcher: [
-  //   /*
-  //    * Match all request paths except for the ones starting with:
-  //    * - api (API routes)
-  //    * - _next/static (static files)
-  //    * - _next/image (image optimization files)
-  //    * - favicon.ico, sitemap.xml, robots.txt (metadata files)
-  //    */
-  //   "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  // ],
 };
 
 // Injected content via Sentry wizard below
@@ -69,9 +60,9 @@ const nextConfig = {
 const { withSentryConfig } = require("@sentry/nextjs");
 const { map } = require("lodash");
 
-module.exports = {
+module.exports = withPWA({
   ...nextConfig,
-};
+});
 
 // module.exports = withSentryConfig(
 //   // withPWA(

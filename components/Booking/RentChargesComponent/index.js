@@ -30,7 +30,7 @@ const RentChargesComponent = ({
             false
           ) : (
             <CustomImage
-              src={!openCharges ? Images.upIcon : Images.downIcon}
+              src={!openCharges ? Images.upIconBlack : Images.downIconBlack}
               imageStyle={{ width: 13 }}
             />
           )}
@@ -42,9 +42,8 @@ const RentChargesComponent = ({
       <div className="collapse-content p-0">
         <div className="flex items-center pt-1">
           <CustomImage
-            src={Images.infoIcon}
-            imageStyle={{ width: 20 }}
-            className="cursor-pointer"
+            src={Images.infoIconActive}
+            className="cursor-pointer w-4"
             onClick={() =>
               Helper.documentGetElementById("rent_charges_details").showModal()
             }

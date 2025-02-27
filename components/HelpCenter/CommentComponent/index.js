@@ -82,7 +82,7 @@ const CommentComponent = ({
             uploadCommentImageRef && uploadCommentImageRef.current.click()
           }
         >
-          <CustomImage src={Images.imageIcon} className="w-10 h-10" />
+          <CustomImage src={Images.imageIconDisable} className="w-10 h-10" />
 
           <input
             capture="environment"

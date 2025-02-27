@@ -12,7 +12,7 @@ const UserSection = ({ data }) => {
   return (
     <div className="flex justify-between pb-5">
       <div className="user-info-container">
-        <CustomImage src={Images.userIcon} imageStyle={{ width: 55 }} />
+        <CustomImage src={Images.userIconActive} imageStyle={{ width: 55 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name">
@@ -20,13 +20,13 @@ const UserSection = ({ data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.phoneIcon} imageStyle={{ width: 16 }} />
+            <CustomImage src={Images.phoneIconBlack} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
           </div>
           <div className="flex items-center">
-            <CustomImage src={Images.emailIcon} imageStyle={{ width: 16 }} />
+            <CustomImage src={Images.emailIconBlack} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {isEmpty(email) ? "-" : email}
             </CustomText>
@@ -36,7 +36,7 @@ const UserSection = ({ data }) => {
 
       {/*<div className="coin-container">*/}
       {/*  <div className="p-2 bg-primary rounded-md">*/}
-      {/*    <CustomImage src={Images.logoImage} height={30} width={30} />*/}
+      {/*    <CustomImage src={Images.logo} height={30} width={30} />*/}
       {/*  </div>*/}
       {/*  <div className="pl-2">*/}
       {/*    <CustomText textClassName="text-disable text-sm line-clamp-1">*/}

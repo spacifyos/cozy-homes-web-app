@@ -112,7 +112,7 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
 
                           <div className="flex items-center gap-2">
                             <CustomImage
-                              src={Images.bedTypeIconActive}
+                              src={Images.bedIconActive}
                               className="w-4"
                             />
                             <CustomText textClassName="text-xs">
@@ -122,7 +122,7 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
 
                           <div className="flex items-center gap-2">
                             <CustomImage
-                              src={Images.spaceTypeIconActive}
+                              src={Images.spaceIconActive}
                               className="w-4"
                             />
                             <CustomText textClassName="text-xs">

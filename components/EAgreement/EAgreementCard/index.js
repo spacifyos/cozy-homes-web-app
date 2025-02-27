@@ -42,7 +42,7 @@ const EAgreementCard = ({ item }) => {
         <div className="flex">
           <div className="flex mr-5">
             <CustomImage
-              src={getAgreed ? Images.checkGreenIcon : Images.checkGreyIcon}
+              src={getAgreed ? Images.checkIconAqua : Images.checkIconDisable}
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
@@ -51,7 +51,7 @@ const EAgreementCard = ({ item }) => {
 
           <div className="flex">
             <CustomImage
-              src={getSigned ? Images.checkGreenIcon : Images.checkGreyIcon}
+              src={getSigned ? Images.checkIconAqua : Images.checkIconDisable}
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
@@ -60,7 +60,7 @@ const EAgreementCard = ({ item }) => {
         </div>
       </div>
       <CustomImage
-        src={Images.rightIcon}
+        src={Images.rightIconBlack}
         imageStyle={{ width: 10, height: 10 }}
       />
     </a>

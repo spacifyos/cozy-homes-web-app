@@ -108,7 +108,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.righWhiteIcon}
+                src={Images.rightWhiteIcon}
                 imageStyle={{ width: 8 }}
               />
             </div>
@@ -121,7 +121,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.righWhiteIcon}
+                src={Images.rightWhiteIcon}
                 imageStyle={{ width: 8 }}
               />
             </a>

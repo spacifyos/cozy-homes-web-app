@@ -14,7 +14,7 @@ const UserDetailComponent = ({ data }) => {
   return (
     <div className="p-3 relative w-full bg-white global-border-radius global-box-shadow flex justify-between items-end mb-6">
       <div className="flex items-end">
-        <CustomImage src={Images.userIcon} imageStyle={{ width: 50 }} />
+        <CustomImage src={Images.userIconActive} imageStyle={{ width: 50 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="font-bold pb-1" lineClamp={1}>
@@ -22,7 +22,7 @@ const UserDetailComponent = ({ data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.phoneIcon} imageStyle={{ width: 12 }} />
+            <CustomImage src={Images.phoneIconBlack} imageStyle={{ width: 12 }} />
             <CustomText
               textClassName="text-xs pl-2 text-disable"
               lineClamp={1}
@@ -31,7 +31,7 @@ const UserDetailComponent = ({ data }) => {
             </CustomText>
           </div>
           <div className="flex items-center">
-            <CustomImage src={Images.emailIcon} imageStyle={{ width: 12 }} />
+            <CustomImage src={Images.emailIconBlack} imageStyle={{ width: 12 }} />
             <CustomText
               textClassName="text-xs pl-2 text-disable"
               lineClamp={1}
@@ -48,7 +48,7 @@ const UserDetailComponent = ({ data }) => {
       {/*>*/}
       {/*  <CustomImage*/}
       {/*    className="bg-primary-background global-box-shadow global-border-radius"*/}
-      {/*    src={Images.logoImage}*/}
+      {/*    src={Images.logo}*/}
       {/*    imageStyle={{ width: 40, height: 40 }}*/}
       {/*  />*/}
 

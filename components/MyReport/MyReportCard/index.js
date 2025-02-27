@@ -20,7 +20,7 @@ const MyReportCard = ({ data, targetMonth }) => {
             key={index}
             className="flex items-center bg-white global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
           >
-            <CustomImage src={Images.paperIcon} imageStyle={{ width: 25 }} />
+            <CustomImage src={Images.reportIconActive} imageStyle={{ width: 25 }} />
 
             <div className="pl-3">
               {/*<CustomText textClassName="text-xs text-disable italic">*/}

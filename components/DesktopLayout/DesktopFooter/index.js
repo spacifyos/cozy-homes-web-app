@@ -48,7 +48,7 @@ const DesktopFooter = () => {
             {/*<div className="flex justify-center">*/}
             {/*  <CustomImage*/}
             {/*    imageStyle={{ width: 150, height: 150 }}*/}
-            {/*    src={Image.logoImage}*/}
+            {/*    src={Image.logo}*/}
             {/*  />*/}
             {/*</div>*/}
           </div>
@@ -90,7 +90,7 @@ const DesktopFooter = () => {
               <div className="flex items-start xl:grid lg:grid md:flex sm:flex flex grid-cols-8 gap-2">
                 <div className="col-span-1">
                   <CustomImage
-                    src={Image.locationOutlineActive}
+                    src={Image.locationIconActive}
                     className="w-5"
                   />
                 </div>

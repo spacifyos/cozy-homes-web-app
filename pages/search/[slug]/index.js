@@ -510,7 +510,7 @@ const SearchWithSlug = ({ id }) => {
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {
-              url: Images.logoImage,
+              url: Images.logo,
               width: 800,
               height: 600,
               alt: `Spacify Image`,
@@ -557,7 +557,7 @@ const SearchWithSlug = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

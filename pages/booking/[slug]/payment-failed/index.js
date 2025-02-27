@@ -35,14 +35,14 @@ const PaymentFailed = ({ id }) => {
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
       {/*  <CustomImage*/}
-      {/*    src={Images.cancelIcon}*/}
+      {/*    src={Images.closeIconBlack}*/}
       {/*    imageStyle={{ width: 20 }}*/}
       {/*    onClick={onClickGoMainPage}*/}
       {/*  />*/}
       {/*</div>*/}
 
       <CustomImage
-        src={Images.failIcon}
+        src={Images.paymentFailedIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
 

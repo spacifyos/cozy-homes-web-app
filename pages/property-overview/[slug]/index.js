@@ -14,7 +14,6 @@ import Description from "@/components/Detail/Description";
 import * as listingSelector from "@/src/selectors/listing";
 import * as listingAction from "@/src/actions/listing";
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "@/components/CustomButton";
 import MoveInCostModal from "@/components/PropertyOverview/MoveInCostModal";
 import Constant from "@/src/utils/Constant";
 import Helper from "@/src/utils/Helper";
@@ -29,7 +28,6 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import CustomText from "@/components/CustomText";
 import axios from "axios";
 import Image from "next/image";
-import DesktopModal from "@/components/DesktopModal";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -65,15 +63,6 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
   const dispatch = useDispatch();
-
-  // const getListingPropertyDetailRequest = (id) =>
-  //   dispatch(listingAction.getListingPropertyDetailRequest(id));
-  // const listingPropertyDetailData = useSelector((state) =>
-  //   listingSelector.getListingPropertyDetailData(state, id),
-  // );
-  // const listingPropertyDetailDataLoading = useSelector((state) =>
-  //   listingSelector.getListingPropertyDetailDataLoading(state),
-  // );
 
   const getListingCancellationRequest = () =>
     dispatch(listingAction.getListingCancellationRequest());
@@ -215,7 +204,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           images: isEmpty(roomImageUrl)
             ? [
                 {
-                  url: Images.logoImage,
+                  url: Images.logo,
                   width: 800,
                   height: 600,
                   alt: `${propertyName} Image`,
@@ -264,7 +253,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -280,7 +269,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
           >
             <div className="row-span-2 col-span-2 global-border-radius border overflow-hidden">
               {isEmpty(videoUrl) ? (
-                <CustomImage className="w-full h-full" src={Images.logoImage} />
+                <CustomImage className="w-full h-full" src={Images.logo} />
               ) : (
                 <iframe
                   width="100%"

@@ -1,5 +1,5 @@
 const Constant = {
-  VERSION: "2.2.0",
+  VERSION: "2.3.0",
 
   TENANT_UCHAT_COOKIES: "cw_user_pzh0cmyd7blgdoiw",
   OWNER_UCHAT_COOKIES: "cw_user_vza3qkxeepbyzkuu",

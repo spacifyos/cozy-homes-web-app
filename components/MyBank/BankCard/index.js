@@ -44,7 +44,7 @@ const BankCard = ({ bankDetails }) => {
               </CustomText>
 
               <CustomImage
-                src={isEmpty(bankLogo) ? Images.logoImage : bankLogo}
+                src={isEmpty(bankLogo) ? Images.logo : bankLogo}
                 imageStyle={{ width: 60 }}
               />
             </div>

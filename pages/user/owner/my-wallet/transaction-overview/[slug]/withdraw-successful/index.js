@@ -76,14 +76,14 @@ const WithdrawSuccessful = ({ id }) => {
 
       <div className="absolute top-5 right-5 cursor-pointer">
         <CustomImage
-          src={Images.cancelIcon}
+          src={Images.closeIconBlack}
           imageStyle={{ width: 20 }}
           onClick={onClickClose}
         />
       </div>
 
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: 150, height: 150 }}
       />
 

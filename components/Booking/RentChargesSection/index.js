@@ -35,7 +35,7 @@ const RentChargesSection = ({
       style={{ borderRadius: 15 }}
     >
       <div className="flex items-center">
-        <CustomImage src={Images.logoImage} imageStyle={{ width: 40 }} />
+        <CustomImage src={Images.logo} imageStyle={{ width: 40 }} />
 
         <div className="flex flex-col pl-2">
           <CustomText textClassName="font-bold text-primary text-base">

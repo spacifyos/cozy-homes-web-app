@@ -5,7 +5,7 @@ import { includes } from "lodash";
 
 const CustomEmptyBox = ({
   textColor = "#545454",
-  emptyImage = Images.questionMarkIcon,
+  emptyImage = Images.questionMarkIconDisable,
   emptyTitle = "No data found",
   emptyDesc = "No data available now try again later.",
 }) => {

@@ -16,14 +16,13 @@ const CategoryCard = ({
     <div className="col-span-2 pb-4">
       <div className=" flex flex-col justify-center items-center">
         <div
-          className={`${isEqual(selectedValue, value) ? "bg-primary" : "bg-primary-background"} p-2 mb-2`}
+          className={`${isEqual(selectedValue, value) ? "bg-primary" : "bg-primary-background"} p-3 mb-2 cursor-pointer`}
           style={{ borderRadius: 100 }}
+          onClick={() => onClickChangeSection(value, subType)}
         >
           <CustomImage
-            className="cursor-pointer"
+            className="w-6"
             src={`${isEqual(selectedValue, value) ? icon : iconActive}`}
-            imageStyle={{ width: 30, height: 30 }}
-            onClick={() => onClickChangeSection(value, subType)}
           />
         </div>
 

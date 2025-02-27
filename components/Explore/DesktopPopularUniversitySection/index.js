@@ -35,7 +35,7 @@ const DesktopPopularUniversitySection = ({
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIcon} className="w-1.5" />*/}
+        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
 

@@ -50,7 +50,7 @@ const CustomSelectWithIcon = ({
             </div>
           )}
 
-          <CustomImage src={Images.downIcon} imageStyle={{ width: 10 }} />
+          <CustomImage src={Images.downIconBlack} imageStyle={{ width: 10 }} />
         </div>
 
         {openSelectBank ? (

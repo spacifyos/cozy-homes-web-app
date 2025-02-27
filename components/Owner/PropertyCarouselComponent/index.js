@@ -45,17 +45,17 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
             {
               name: "Car Park",
               value: `${ownerSelector.getTotalCarPark(item)}`,
-              icon: Images.carParkIcon,
+              icon: Images.carParkIconActive,
             },
             {
               name: "Room Occupancy",
               value: `${ownerSelector.getOccupancyRoom(item)}%`,
-              icon: Images.occupancyIcon,
+              icon: Images.occupancyIconActive,
             },
             {
               name: "Car Park Occupancy",
               value: `${ownerSelector.getOccupancyCarPark(item)}%`,
-              icon: Images.carParkOccupancyIcon,
+              icon: Images.carParkOccupancyIconActive,
             },
           ];
 
@@ -64,7 +64,7 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
               <a href={`/user/owner/property/${propertyId}`}>
                 <div
                   style={{
-                    background: `url(${isEmpty(propertyImage) ? Images.logoImage : propertyImage}) no-repeat center center`,
+                    background: `url(${isEmpty(propertyImage) ? Images.logo : propertyImage}) no-repeat center center`,
                     backgroundSize: "contain",
                   }}
                   className="owner-property-banner global-border-radius"

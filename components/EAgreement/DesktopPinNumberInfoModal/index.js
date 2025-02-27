@@ -19,7 +19,7 @@ const DesktopPinNumberInfoModal = ({
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.cancelIcon}
+                src={Images.closeIconBlack}
               />
             </button>
           </form>
@@ -28,7 +28,7 @@ const DesktopPinNumberInfoModal = ({
         <div className="divider-line"></div>
 
         <div className="flex flex-col justify-center items-center p-6">
-          <CustomImage src={Images.dangerIcon} className="w-20" />
+          <CustomImage src={Images.alertIconActive} className="w-20" />
           <CustomText textClassName="text-base pt-4 text-center">
             You may set pin number before you sign agreement.
           </CustomText>

@@ -27,7 +27,7 @@ const DesktopSearchBar = ({
         <CustomText textClassName="text-xs pt-2 pl-4">Search</CustomText>
         <CustomInput
           hideShadow
-          rightIcon={Images.searchOutlineActiveIcon}
+          rightIcon={Images.searchIconActive}
           className=""
           placeholder="Search Rooms ..."
           value={keywordValue}
@@ -79,7 +79,7 @@ const DesktopSearchBar = ({
           false
         )}
 
-        <CustomImage src={Images.filterProIcon} className="w-6" />
+        <CustomImage src={Images.filterIconBlack} className="w-6" />
       </div>
 
       <div className="col-span-1 xl:block hidden"></div>

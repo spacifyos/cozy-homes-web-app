@@ -1,35 +1,35 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import _ from "lodash";
+import { isEmpty, map, get } from "lodash";
 
 const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
   const lists = [
     {
-      icon: Images.bathAmenitiesIcon,
+      icon: Images.bathroomIconDisable,
       title: "Bath Room",
-      value: _.isEmpty(bathroom) ? "-" : bathroom,
+      value: isEmpty(bathroom) ? "-" : bathroom,
     },
     {
-      icon: Images.bedInactiveIcon,
+      icon: Images.bedIconDisable,
       title: "Bed",
-      value: _.isEmpty(bedType) ? "-" : bedType,
+      value: isEmpty(bedType) ? "-" : bedType,
     },
     {
       icon: Images.squareIcon,
       title: "Sqft",
-      value: `${_.isEmpty(squareFeet) ? "-" : squareFeet} Sqft`,
+      value: `${isEmpty(squareFeet) ? "-" : squareFeet} Sqft`,
     },
     {
-      icon: Images.rentalFeeIcon,
+      icon: Images.coinIconDisable,
       title: "Rental Fee",
-      value: `RM ${_.isEmpty(rental) ? "0" : rental} / mth`,
+      value: `RM ${isEmpty(rental) ? "0" : rental} / mth`,
     },
   ];
 
   return (
     <div className="grid grid-cols-4 gap-2 pb-5">
-      {_.map(lists, (list, index) => {
+      {map(lists, (list, index) => {
         return (
           <div
             className={`detail-feature-container ${index === 3 ? "bg-secondary-background" : "bg-white"} flex flex-col`}
@@ -38,12 +38,12 @@ const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
             {/*<div>*/}
             <div style={{ width: 25, height: 25 }}>
               <CustomImage
-                src={_.get(list, ["icon"], "")}
+                src={get(list, ["icon"], "")}
                 imageStyle={{ width: 25 }}
               />
             </div>
             {/*<CustomText textClassName="text-disable text-xs max-h-9 leading-3 my-1">*/}
-            {/*  {_.get(list, ["title"], "")}*/}
+            {/*  {get(list, ["title"], "")}*/}
             {/*</CustomText>*/}
             {/*</div>*/}
 
@@ -52,7 +52,7 @@ const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
                 textClassName={`text-primary text-xs font-bold`}
                 lineClamp={2}
               >
-                {_.get(list, ["value"], "")}
+                {get(list, ["value"], "")}
               </CustomText>
             </div>
           </div>

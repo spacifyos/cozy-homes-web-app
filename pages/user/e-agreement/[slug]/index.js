@@ -90,7 +90,7 @@ const EAgreementOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIcon}
+                src={Images.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -103,13 +103,10 @@ const EAgreementOverview = ({ id }) => {
       >
         <div className="relative pt-6 flex justify-center">
           <div
-            className="bg-primary pt-3 pe-2 ps-3 global-border-radius absolute top-0 z-10"
+            className="bg-primary p-3 global-border-radius absolute top-0 z-10"
             style={{ height: 54 }}
           >
-            <CustomImage
-              src={Images.agreementIcon}
-              imageStyle={{ width: 30, height: 30 }}
-            />
+            <CustomImage src={Images.agreementIconWhite} className="w-6" />
           </div>
 
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
@@ -166,7 +163,7 @@ const EAgreementOverview = ({ id }) => {
                 <div className="flex mr-3 items-start">
                   <CustomImage
                     src={
-                      getAgree ? Images.checkGreenIcon : Images.checkGreyIcon
+                      getAgree ? Images.checkIconAqua : Images.checkIconDisable
                     }
                     className="mr-1"
                     imageStyle={{ width: 18, height: 18 }}
@@ -183,7 +180,7 @@ const EAgreementOverview = ({ id }) => {
                 <div className="flex items-start">
                   <CustomImage
                     src={
-                      getSigned ? Images.checkGreenIcon : Images.checkGreyIcon
+                      getSigned ? Images.checkIconAqua : Images.checkIconDisable
                     }
                     className="mr-1"
                     imageStyle={{ width: 18, height: 18 }}

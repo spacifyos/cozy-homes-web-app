@@ -72,7 +72,7 @@ const OwnerHome = () => {
     {
       name: "Unit",
       value: ownerSelector.getTotalUnits(propertyListing),
-      icon: Images.spaceIcon,
+      icon: Images.spaceIconActive,
     },
     {
       name: "Room",
@@ -82,7 +82,7 @@ const OwnerHome = () => {
     {
       name: "Car Park",
       value: `${ownerSelector.getTotalCarPark(propertyListing)}`,
-      icon: Images.carParkOccupancyIcon,
+      icon: Images.carParkOccupancyIconActive,
     },
   ];
 

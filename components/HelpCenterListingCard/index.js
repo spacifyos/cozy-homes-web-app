@@ -45,7 +45,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
         </div>
 
         <CustomImage
-          src={Images.rightIcon}
+          src={Images.rightIconBlack}
           className="w-3 h-3"
         />
       </div>
@@ -67,7 +67,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
 
         <div className="flex items-center col-span-1">
           <CustomImage
-            src={Images.spaceIcon}
+            src={Images.spaceIconActive}
             className="mr-2"
             imageStyle={{ width: 18, height: 18 }}
           />

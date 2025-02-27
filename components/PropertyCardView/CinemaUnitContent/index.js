@@ -5,7 +5,6 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
-import { getAbbrBathroom } from "@/src/selectors/listing";
 
 const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
   const [zoomIn, setZoomIn] = useState(true);

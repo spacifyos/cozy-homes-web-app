@@ -23,14 +23,14 @@ const AddBankSuccessful = ({}) => {
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <NextSeo title="Booking Payment Successful - Spacify Asia" />
       <CustomImage
-        src={Images.cancelIcon}
+        src={Images.closeIconBlack}
         imageStyle={{ width: 20, position: "absolute" }}
         className="top-5 right-5 cursor-pointer"
         onClick={onClickToMyBankPage}
       />
 
       <CustomImage
-        src={Images.successIcon}
+        src={Images.paymentSuccessIcon}
         imageStyle={{ width: "150px", height: "150px" }}
       />
       <CustomText textClassName="font-bold pt-4" styles={{ fontSize: "25px" }}>

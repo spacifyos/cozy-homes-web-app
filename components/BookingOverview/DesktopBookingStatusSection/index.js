@@ -30,7 +30,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
         <div className="flex flex-col justify-center items-center">
           <div className="flex flex-col items-center">
             <CustomImage
-              src={Images.stepCompleteIcon}
+              src={Images.stepCompletedIcon}
               imageStyle={{ width: 30, height: 30 }}
             />
 
@@ -53,7 +53,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
               src={
                 !isEqual(paymentStatus, "Paid")
                   ? Images.step2Icon
-                  : Images.stepCompleteIcon
+                  : Images.paymentFailedIcon
               }
               imageStyle={{ width: 30, height: 30 }}
             />
@@ -92,7 +92,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
             <CustomImage
               src={
                 isEqual(agencyReviewStatus, "Approved")
-                  ? Images.stepCompleteIcon
+                  ? Images.paymentFailedIcon
                   : Images.step3Icon
               }
               imageStyle={{ width: 30, height: 30 }}

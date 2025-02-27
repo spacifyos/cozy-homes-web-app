@@ -5,8 +5,12 @@ import FeatureComponent from "@/components/MyStay/FeatureComponent";
 const DesktopFeatureSection = ({}) => {
   return (
     <div className="flex gap-5 pb-7">
-      <FeatureComponent disable name="Scan" icon={Images.qrIcon} />
-      <FeatureComponent disable name="Smart Lock" icon={Images.lockIcon} />
+      <FeatureComponent disable name="Scan" icon={Images.qrIconActive} />
+      <FeatureComponent
+        disable
+        name="Smart Lock"
+        icon={Images.smartLockIconActive}
+      />
       <FeatureComponent
         name="E Agreement"
         icon={Images.agreementIconActive}
@@ -14,7 +18,7 @@ const DesktopFeatureSection = ({}) => {
       />
       <FeatureComponent
         name="Help Center"
-        icon={Images.helpIcon}
+        icon={Images.helpCenterIconActive}
         route="/user/help-center"
       />
     </div>

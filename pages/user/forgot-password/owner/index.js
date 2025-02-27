@@ -243,7 +243,7 @@ const ForgotPasswordOwner = () => {
 
         <div className="py-6 flex flex-col items-center">
           <CustomImage
-            src={Images.blackLogo}
+            src={Images.logoBlackWithText}
             imageStyle={{ width: 120 }}
             className="mb-2"
           />

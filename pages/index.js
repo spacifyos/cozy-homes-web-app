@@ -122,7 +122,7 @@ function Home() {
           description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
           images: [
             {
-              url: Images.logoImage,
+              url: Images.logo,
               width: 800,
               height: 600,
               alt: `Spacify Image`,
@@ -137,7 +137,7 @@ function Home() {
         href={`https://wa.me/+601137354267`}
         className="fixed bottom-10 right-6 z-10"
       >
-        <CustomImage src={Images.beliveWhatsAppIcon} className="w-16 h-16" />
+        <CustomImage src={Images.beliveWhatsappIcon} className="w-16 h-16" />
       </a>
 
       <DesktopLayout hideNav backgroundColor="bg-white">
@@ -147,7 +147,7 @@ function Home() {
               `${src}?w=100%&q=${quality || 75}`
             }
             alt={"image"}
-            src={"/images/desktop_banner.webp"}
+            src={"/spacify/images/desktop_banner.webp"}
             width={0}
             height={0}
             className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full"
@@ -159,7 +159,7 @@ function Home() {
               `${src}?w=100%&q=${quality || 75}`
             }
             alt={"image"}
-            src={"/images/desktop_banner.webp"}
+            src={"/spacify/images/desktop_banner.webp"}
             width={0}
             height={0}
             className="xl:hidden lg:hidden md:hidden sm:block block md:object-cover sm:object-cover object-cover"

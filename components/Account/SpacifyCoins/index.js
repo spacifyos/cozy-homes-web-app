@@ -14,7 +14,7 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
       {/*</div>*/}
 
       <div className="profile-coin-icon-container">
-        <CustomImage src={Images.logoImage} imageStyle={{ width: 30 }} />
+        <CustomImage src={Images.logo} imageStyle={{ width: 30 }} />
       </div>
 
       <div className="flex flex-col items-center justify-center">
