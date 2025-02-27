@@ -27,7 +27,7 @@ const AgentSection = ({
         <div className=" flex-row flex p-2 pl-3 justify-between items-center">
           <div className="relative ">
             <CustomImage
-              src={Images.userIcon}
+              src={Images.userIconActive}
               className="rounded-2xl"
               imageStyle={{ width: 43 }}
             />
@@ -65,7 +65,7 @@ const AgentSection = ({
               href={`tel:${picContactNumber}`}
               className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
             >
-              <CustomImage src={Images.callIcon} width={28} />
+              <CustomImage src={Images.phoneIconBlack} width={28} />
             </a>
             <a
               href={`${
@@ -93,9 +93,8 @@ const AgentSection = ({
             </div>
 
             <CustomImage
-              imageStyle={{ width: 25 }}
-              className="cursor-pointer"
-              src={Images.infoIcon}
+              className="w-5 cursor-pointer"
+              src={Images.infoIconActive}
               onClick={onClickOpenMoveInCostModal}
             />
           </div>
@@ -108,7 +107,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.rightWhiteIcon}
+                src={Images.rightIconWhite}
                 imageStyle={{ width: 8 }}
               />
             </div>
@@ -121,7 +120,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.rightWhiteIcon}
+                src={Images.rightIconWhite}
                 imageStyle={{ width: 8 }}
               />
             </a>
