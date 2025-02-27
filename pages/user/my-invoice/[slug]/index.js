@@ -173,7 +173,7 @@ const InvoiceOverview = ({ id }) => {
         }
         rightContent={
           <CustomImage
-            src={Images.downIconBlack}
+            src={Images.downloadIconBlack}
             imageStyle={{ width: 25 }}
             className="cursor-pointer"
             onClick={onClickDownload}

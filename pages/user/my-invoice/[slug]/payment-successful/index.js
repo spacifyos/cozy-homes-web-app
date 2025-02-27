@@ -134,7 +134,7 @@ const PaymentSuccessful = ({ id }) => {
 
         <div className="flex flex-col global-border-radius bg-white py-2 px-4 global-box-shadow w-full my-7">
           <div className="flex items-center justify-center py-4">
-            <CustomImage src={Images.checkGreenIcon} className="mr-2 w-6" />
+            <CustomImage src={Images.checkIconAqua} className="mr-2 w-6" />
             <CustomText textClassName="text-black font-bold text-base">
               Payment Completed
             </CustomText>
@@ -156,10 +156,7 @@ const PaymentSuccessful = ({ id }) => {
 
         <div className="relative pt-6 flex justify-center w-full">
           <div className="bg-primary p-2 global-border-radius absolute top-0">
-            <CustomImage
-              src={Images.invoiceIcon}
-              imageStyle={{ width: 35, height: 35 }}
-            />
+            <CustomImage src={Images.infoIconActive} className="w-6" />
           </div>
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <CustomLabelValue
@@ -188,9 +185,7 @@ const PaymentSuccessful = ({ id }) => {
               style={{ marginTop: 10, marginBottom: 10 }}
             ></div>
 
-            <CustomText textClassName="text-xs text-disable">
-              Items
-            </CustomText>
+            <CustomText textClassName="text-xs text-disable">Items</CustomText>
 
             <div className="gap-2">
               {isEmpty(items)

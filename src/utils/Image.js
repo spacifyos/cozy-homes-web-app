@@ -397,6 +397,7 @@ const images = () => {
         ownerCard: "/spacify/images/owner_card.png",
         tenantCard: "/spacify/images/tenant_card.png",
         imageNotFound: "/spacify/images/logo.webp",
+        pageNotFound: "/spacify/images/404_image.png",
       };
   }
 };

@@ -93,7 +93,7 @@ const AgentSection = ({
             </div>
 
             <CustomImage
-              className="w-5 cursor-pointer"
+              className="w-5  cursor-pointer"
               src={Images.infoIconActive}
               onClick={onClickOpenMoveInCostModal}
             />

@@ -6,7 +6,6 @@ import AuthManager from "@/src/utils/AuthManager";
 import { useEffect, useState } from "react";
 import Helper from "@/src/utils/Helper";
 import { useRouter } from "next/router";
-import Toast from "../../src/utils/Toast";
 
 const BottomNavigate = ({ routeName, routeQuery }) => {
   const router = useRouter();
@@ -42,28 +41,28 @@ const BottomNavigate = ({ routeName, routeQuery }) => {
         {
           name: "Explore",
           value: "/",
-          icon: Images.searchIcon,
-          activeIcon: Images.searchIconActive,
+          icon: Images.searchIconDisable,
+          activeIcon: Images.searchIconFillActive,
         },
         {
           name: "My Property",
           value: isEqual(userType, "owner")
             ? "/user/owner"
             : "/user/my-property",
-          icon: Images.homeIcon,
-          activeIcon: Images.homeIconActive,
+          icon: Images.homeIconDisable,
+          activeIcon: Images.homeIconFillActive,
         },
         {
           name: "Chat",
           value: isEqual(userType, "owner") ? "/user/owner/chat" : "/user/chat",
-          icon: Images.navigateChatIcon,
-          activeIcon: Images.navigateChatIconActive,
+          icon: Images.chatIconDisable,
+          activeIcon: Images.chatIconActive,
         },
         {
           name: "Account",
           value: "/user/account",
-          icon: Images.accountIcon,
-          activeIcon: Images.accountIconActive,
+          icon: Images.accountIconDisable,
+          activeIcon: Images.accountIconFillActive,
         },
       ]);
     };

@@ -343,6 +343,7 @@ const DesktopFormSection = ({
           buttonClassName={`${isResendEnabled ? "btn-primary-outline" : "btn-disable"} col-span-2 my-1`}
           onClick={onClickGenerateOtp}
           loading={otpRequestLoading}
+          loadingColor={otpRequestLoading ? "text-primary" : "text-white"}
           disable={otpRequestLoading || !isResendEnabled}
         />
       </div>
@@ -381,7 +382,9 @@ const DesktopFormSection = ({
             <ImageUploading loading={frontIcUploading} />
 
             <CustomImage
-              src={isEmpty(icFrontBase64) ? Images.icFrontSample : icFrontBase64}
+              src={
+                isEmpty(icFrontBase64) ? Images.icFrontSample : icFrontBase64
+              }
               imageStyle={{ width: "100%" }}
             />
           </div>
