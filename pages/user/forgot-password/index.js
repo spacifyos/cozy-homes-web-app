@@ -235,15 +235,15 @@ const ForgotPassword = () => {
         hideNav
         loading={otpRequestLoading || forgotPasswordLoading}
       >
-        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start pt-20">
-          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-xl text-xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start xl:pt-20 lg:pt-20 md:pt-20 sm:pt-20 pt-10">
+          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-2xl text-2xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
             Forgot Password
           </CustomText>
 
-          <div className="bg-white border global-border-radius w-full p-10">
+          <div className="bg-white border global-border-radius w-full flex flex-col justify-center items-center p-6">
             <div className="w-full">
               <CustomText
-                textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-3xl`}
+                textClassName={`text-center pb-6 font-bold text-2xl italic leading-10`}
                 styles={{
                   color: isEqual(typeQuery, Constant.TENANT)
                     ? "#F05A22"

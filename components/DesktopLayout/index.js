@@ -254,7 +254,9 @@ const DesktopLayout = ({
         )}
       </div>
 
-      {includes(pathname, "/user/") || includes(pathname, "/agency/") ? (
+      {includes(pathname, "/user/") ||
+      includes(pathname, "/agency/") ||
+      includes(pathname, "/reset-password") ? (
         false
       ) : (
         <DesktopFooter pathname={pathname} />

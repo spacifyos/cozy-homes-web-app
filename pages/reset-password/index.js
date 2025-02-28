@@ -7,13 +7,10 @@ import { get, isEmpty, isEqual, toLower } from "lodash";
 import Constant from "@/src/utils/Constant";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-
-export { getServerSideProps };
 
 const ResetPassword = () => {
   const { t } = useTranslation("common");
@@ -87,52 +84,26 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Forgot Password - Spacify Asia" />
+      <NextSeo title="Reset Password - Spacify Asia" />
 
-      <DesktopLayout
-        hideNav
-        isMinHeight={false}
-        // loading={otpRequestLoading || forgotPasswordLoading}
-        pageBreadcrumbs={
-          <div>
-            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
-              <ul>
-                <li>
-                  <CustomText textClassName="text-base">
-                    Reset Password
-                  </CustomText>
-                </li>
-              </ul>
-            </div>
+      <DesktopLayout hideNav isMinHeight={false}>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start xl:pt-20 lg:pt-20 md:pt-20 sm:pt-20 pt-10">
+          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-2xl text-2xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
+            Reset Password
+          </CustomText>
 
-            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
-              <CustomImage
-                src={Images.leftIconBlack}
-                className="w-2"
-                // onClick={onClickGoBack}
-              />
-              <CustomText textClassName="text-base">Reset Password</CustomText>
-            </div>
-          </div>
-        }
-      >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col justify-center items-center">
-          <div className="bg-white border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
-            <CustomText textClassName="font-bold leading-10 text-center pb-4 text-3xl">
-              Reset Password
-            </CustomText>
-
+          <div className="bg-white border global-border-radius w-full flex flex-col justify-center items-center p-6">
             <div className="w-full">
-              {/*<CustomText*/}
-              {/*  textClassName={`text-center pb-6 font-bold text-lg italic leading-10 text-3xl`}*/}
-              {/*  styles={{*/}
-              {/*    color: isEqual(typeQuery, Constant.TENANT)*/}
-              {/*      ? "#F05A22"*/}
-              {/*      : "#D71440",*/}
-              {/*  }}*/}
-              {/*>*/}
-              {/*  {typeQuery}*/}
-              {/*</CustomText>*/}
+              <CustomText
+                textClassName={`text-center pb-6 font-bold text-2xl italic leading-10`}
+                styles={{
+                  color: isEqual(typeQuery, Constant.TENANT)
+                    ? "#F05A22"
+                    : "#D71440",
+                }}
+              >
+                {typeQuery}
+              </CustomText>
 
               <div>
                 <input
