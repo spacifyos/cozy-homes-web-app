@@ -2,7 +2,6 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
 import { get, isEmpty, map } from "lodash";
 import * as authSelector from "@/src/selectors/auth";
@@ -17,14 +16,11 @@ import * as commonSelector from "@/src/selectors/common";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import Constant from "@/src/utils/Constant";
-
-export { getServerSideProps };
+import DesktopLayout from "@/components/DesktopLayout";
 
 const SignInTenant = () => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const routeQuery = get(router, ["query"], "");
-  const routeQueryTab = get(routeQuery, ["tab"], "my-property");
 
   const selectOptionData = useSelector((state) =>
     commonSelector.getSelectOptionData(state),
@@ -77,7 +73,7 @@ const SignInTenant = () => {
       AuthManager.setToken(authToken);
       AuthManager.setLoginType(userType);
 
-      return router.replace(`/loading?tab=${routeQueryTab}`);
+      return router.replace(`/loading`);
     } else {
       return router.push({
         pathname: "/user/otp-verification",
@@ -105,133 +101,125 @@ const SignInTenant = () => {
     }
   };
 
-  const onClickGoBack = () => {
-    router.replace(`/sign-in?tab=${routeQueryTab}`);
-  };
-
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
-      }}
-      className={`min-h-screen pb-4`}
-    >
-      <NextSeo title="Sign In - Spacify Asia" />
+    <div className="min-h-screen bg-white">
+      <NextSeo title="Sign In | Tenant - Spacify Asia" />
 
-      <div className="body-container">
-        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
-          <CustomImage
-            className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
-            imageStyle={{ width: 10, height: 10 }}
-          />
-        </div>
+      <DesktopLayout hideNav isMinHeight={false}>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start py-10">
+          {/*<div*/}
+          {/*  style={{*/}
+          {/*    background:*/}
+          {/*      "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",*/}
+          {/*  }}*/}
+          {/*  className={`min-h-screen pb-4`}*/}
+          {/*>*/}
+          <div className="">
+            <div className="pb-6 flex flex-col items-center">
+              <CustomImage
+                src={Images.logoBlackWithText}
+                imageStyle={{ width: 120 }}
+                className="mb-4"
+              />
 
-        <div className="py-6 flex flex-col items-center">
-          <CustomImage
-            src={Images.logoBlackWithText}
-            imageStyle={{ width: 120 }}
-            className="mb-4"
-          />
-
-          <CustomText
-            textClassName="text-white font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            Welcome Back,
-          </CustomText>
-          <CustomText
-            textClassName="text-white font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            Tenant
-          </CustomText>
-        </div>
-
-        <div className="w-full">
-          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-6 pt-3 font-bold text-lg">
-              Sign In
-            </CustomText>
-
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <select
-                className="select select-bordered w-full max-w-xs bg-white user-input"
-                value={phonePrefix}
-                onChange={onChangePhonePrefix}
+              <CustomText
+                textClassName="text-white font-bold leading-10"
+                styles={{ fontSize: 32 }}
               >
-                {map(phonePrefixOption, (list) => {
-                  const name = get(list, ["label"], "");
-                  const value = get(list, ["value"], "");
-
-                  return (
-                    <option key={value} value={value}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <input
-                value={phoneNumber}
-                onChange={onChangePhoneNumber}
-                type="number"
-                placeholder={t("signIn.phoneNumber")}
-                className="input input-bordered w-full bg-white col-span-2 user-input"
-              />
-            </div>
-
-            <input
-              value={password}
-              onChange={onChangePassword}
-              type="password"
-              placeholder={t("signIn.password")}
-              className="input input-bordered w-full bg-white mb-8 user-input"
-              onKeyDown={handleKeyDown}
-            />
-
-            <div className="flex justify-center pb-2">
-              <CustomButton
-                buttonClassName={`btn-secondary w-2/4 mb-2`}
-                buttonText={t("signIn.signIn")}
-                onClick={onClickToLogin}
-              />
-            </div>
-
-            <Link href={`/user/forgot-password/${Constant.TENANT}`}>
-              <CustomText textClassName="text-center pb-2 underline cursor-pointer">
-                {t("signIn.forgotPassword")}
+                Welcome Back,
               </CustomText>
-            </Link>
+              <CustomText
+                textClassName="text-white font-bold leading-10"
+                styles={{ fontSize: 32 }}
+              >
+                Tenant
+              </CustomText>
+            </div>
 
-            <div className="flex justify-center items-center mb-5">
-              <CustomText>Don’t have account? Click </CustomText>
-              <div onClick={onClickToSignUp} className="cursor-pointer">
-                <CustomText textClassName="text-primary font-bold pl-1 underline">
-                  here
+            <div className="w-full">
+              <div className="p-6 global-box-shadow bg-white global-border-radius">
+                <CustomText textClassName="text-center pb-6 font-bold text-lg">
+                  Sign In
+                </CustomText>
+
+                <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-2 mb-4">
+                  <select
+                    className="select select-bordered w-full max-w-xs bg-white user-input"
+                    value={phonePrefix}
+                    onChange={onChangePhonePrefix}
+                  >
+                    {map(phonePrefixOption, (list) => {
+                      const name = get(list, ["label"], "");
+                      const value = get(list, ["value"], "");
+
+                      return (
+                        <option key={value} value={value}>
+                          {name}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <input
+                    value={phoneNumber}
+                    onChange={onChangePhoneNumber}
+                    type="number"
+                    placeholder="12 345 6789"
+                    className="input input-bordered w-full bg-white xl:col-span-2 lg:col-span-2 md:col-span-2 sm:col-span-1 col-span-1 user-input"
+                  />
+                </div>
+
+                <input
+                  value={password}
+                  onChange={onChangePassword}
+                  type="password"
+                  placeholder="Password"
+                  className="input input-bordered w-full bg-white mb-8 user-input"
+                  onKeyDown={handleKeyDown}
+                />
+
+                <div className="flex justify-center pb-2">
+                  <CustomButton
+                    buttonClassName={`btn-secondary w-2/4 mb-2`}
+                    buttonText="Sign In"
+                    onClick={onClickToLogin}
+                  />
+                </div>
+
+                <Link href={`/user/forgot-password/${Constant.TENANT}`}>
+                  <CustomText textClassName="text-center pb-2 underline cursor-pointer">
+                    Forgot password
+                  </CustomText>
+                </Link>
+
+                <div className="flex justify-center items-center mb-5">
+                  <CustomText>Don’t have account? Click </CustomText>
+                  <div onClick={onClickToSignUp} className="cursor-pointer">
+                    <CustomText textClassName="text-primary font-bold pl-1 underline">
+                      here
+                    </CustomText>
+                  </div>
+                </div>
+
+                <CustomText textClassName="text-sm my-5 text-center">
+                  By using our services, you are deemed unconditionally agree,
+                  consent and be bound by our terms and conditions and privacy
+                  policy.
+                </CustomText>
+
+                <CustomText textClassName="text-xs text-center text-disable">
+                  This site is protected by reCAPTCHA and the Google{" "}
+                  <span className="underline">Privacy Policy</span> and{" "}
+                  <span className="underline">Terms of Service</span> apply.
                 </CustomText>
               </div>
             </div>
-
-            <CustomText textClassName="text-sm my-5">
-              By using our services, you are deemed unconditionally agree,
-              consent and be bound by our terms and conditions and privacy
-              policy.
-            </CustomText>
-
-            <CustomText textClassName="text-xs text-center text-disable">
-              This site is protected by reCAPTCHA and the Google{" "}
-              <span className="underline">Privacy Policy</span> and{" "}
-              <span className="underline">Terms of Service</span> apply.
-            </CustomText>
           </div>
         </div>
-
-        <LoadingOverlay loading={signInLoading} />
-      </div>
+        {/*</div>*/}
+      </DesktopLayout>
     </div>
   );
 };
 
-export default withTranslation("common")(SignInTenant);
+export default SignInTenant;

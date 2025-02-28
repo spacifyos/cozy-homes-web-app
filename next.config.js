@@ -9,8 +9,8 @@ const withPWA = require("next-pwa")({
 const routeList = [
   // "/agency/sign-in",
   "/agency/sign-up",
-  "/sign-in",
-  "/sign-up",
+  // "/sign-in",
+  // "/sign-up",
   "/user/coins-transaction",
   "/user/latest-update",
   "/user/my-appointment",
@@ -18,6 +18,7 @@ const routeList = [
   "/user/owner/my-wallet",
   "/user/forgot-password/owner",
   "/user/forgot-password/tenant",
+  "/property-overview/:slug",
 ];
 
 const nextConfig = {
@@ -49,6 +50,11 @@ const nextConfig = {
       {
         source: "/chat",
         destination: "/user/chat",
+        permanent: true,
+      },
+      {
+        source: "/",
+        destination: "/sign-in",
         permanent: true,
       },
     ];

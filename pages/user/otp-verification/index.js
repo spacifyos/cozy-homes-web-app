@@ -2,25 +2,20 @@ import CustomText from "@/components/CustomText";
 import { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import CustomButton from "@/components/CustomButton";
-import _ from "lodash";
+import { size, get, isEmpty } from "lodash";
 import { useRouter } from "next/router";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import AuthManager from "@/src/utils/AuthManager";
 import * as authSelector from "@/src/selectors/auth";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
 import { withTranslation, useTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
-
-export { getServerSideProps };
 
 const OtpVerification = () => {
   const router = useRouter();
   const initialTime = 60;
-  const phoneNumber = _.get(router, ["query", "phoneNumber"], "");
-  const type = _.get(router, ["query", "type"], "");
+  const phoneNumber = get(router, ["query", "phoneNumber"], "");
+  const type = get(router, ["query", "type"], "");
 
   const [otp, setOtp] = useState("");
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -29,7 +24,7 @@ const OtpVerification = () => {
   const [otpVerifyLoading, setOtpVerifyLoading] = useState(false);
   const [otpToken, setOtpToken] = useState("");
 
-  const isOtpValid = _.size(otp) == 6;
+  const isOtpValid = size(otp) == 6;
 
   useEffect(() => {
     if (timeLeft > 0) {
@@ -43,7 +38,7 @@ const OtpVerification = () => {
   }, [timeLeft]);
 
   useEffect(() => {
-    if (!_.isEmpty(phoneNumber)) {
+    if (!isEmpty(phoneNumber)) {
       handleSendOtp(phoneNumber);
     }
   }, [phoneNumber]);
@@ -66,7 +61,7 @@ const OtpVerification = () => {
   };
 
   const otpRequestSuccess = (res) => {
-    setOtpToken(_.get(res, ["token"], ""));
+    setOtpToken(get(res, ["token"], ""));
   };
 
   const handleResend = async () => {
@@ -92,67 +87,32 @@ const OtpVerification = () => {
     const isUserVerify = authSelector.getIsAccountVerify(res);
     const authToken = authSelector.getToken(res);
 
-    if (!_.isEmpty(authToken) && isUserVerify) {
+    if (!isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
 
-      router.push("/user/my-property");
+      router.replace("/user/my-property");
     } else {
-      router.push("/");
+      router.replace("/");
     }
-  };
-
-  const onClickGoBack = () => {
-    router.back();
   };
 
   return (
     <div className="min-h-screen bg-white">
       <NextSeo title="Otp Verification - Spacify Asia" />
 
-      <DesktopLayout
-        isMinHeight={false}
-        hideNav
-        loading={otpRequestLoading || otpVerifyLoading}
-        pageBreadcrumbs={
-          <div>
-            <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
-              <ul>
-                <li>
-                  <CustomText textClassName="text-base">
-                    Otp Verification
-                  </CustomText>
-                </li>
-              </ul>
-            </div>
+      <DesktopLayout hideNav isMinHeight={false}>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start xl:pt-20 lg:pt-20 md:pt-20 sm:pt-20 pt-10">
+          <CustomText textClassName="text-primary font-bold text-center w-full xl:text-3xl lg:text-2xl md:text-2xl sm:text-2xl text-2xl xl:pb-10 lg:pb-10 md:pb-10 sm:pb-5 pb-5">
+            Otp Verification
+          </CustomText>
 
-            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
-              <CustomImage
-                src={Images.leftIconBlack}
-                className="w-2"
-                onClick={onClickGoBack}
-              />
-              <CustomText textClassName="text-base">
-                Otp Verification
-              </CustomText>
-            </div>
-          </div>
-        }
-      >
-        <div className="container mx-auto flex-1 xl:pb-8 lg:pb-8 md:pb-8 sm:pb-8 pb-8 flex flex-col items-center justify-center">
-          <div className="border global-border-radius w-full h-full flex-1 flex flex-col justify-center items-center p-10">
-            <CustomText
-              textClassName="text-primary font-bold leading-10 pb-5 text-center"
-              styles={{ fontSize: 34 }}
-            >
-              Otp Verification
-            </CustomText>
-
+          <div className="bg-white border global-border-radius w-full flex flex-col justify-center items-center p-6">
             <CustomText textClassName="pb-5 text-center">
               Enter the 6 digit code that we sent you on your mobile number.
             </CustomText>
 
             <CustomText textClassName="pb-5 text-sm text-disable text-center">
-              Sent to {_.isEmpty(phoneNumber) ? "-" : phoneNumber}
+              Sent to {isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
 
             <div className="flex justify-center pb-7">

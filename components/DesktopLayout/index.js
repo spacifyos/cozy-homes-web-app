@@ -109,7 +109,7 @@ const DesktopLayout = ({
   };
 
   const onClickExplore = () => {
-    router.push("/");
+    router.push("/sign-in");
   };
 
   const onClickLogoutModal = () => {
@@ -254,7 +254,10 @@ const DesktopLayout = ({
         )}
       </div>
 
-      {includes(pathname, "/user/") || includes(pathname, "/agency/") ? (
+      {includes(pathname, "/user/") ||
+      includes(pathname, "/agency/") ||
+      includes(pathname, "/sign-in") ||
+      includes(pathname, "/reset-password") ? (
         false
       ) : (
         <DesktopFooter pathname={pathname} />
