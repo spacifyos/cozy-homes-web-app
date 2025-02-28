@@ -50,7 +50,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
               <CustomText
                 textClassName={`${wifi ? "text-aqua" : "text-disable"} text-sm`}
               >
-                WIFI
+                Wifi
               </CustomText>
             </div>
 
