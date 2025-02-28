@@ -26,10 +26,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
       <div className="flex items-center pb-1">
         <div className="bg-primary p-3 global-border-radius mb-1 mr-2">
-          <CustomImage
-            src={Images.meterIconWhite}
-            className="w-4"
-          />
+          <CustomImage src={Images.meterIconWhite} className="w-4" />
         </div>
 
         <div className="flex flex-col">
