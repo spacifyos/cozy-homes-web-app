@@ -155,7 +155,7 @@ const SignUpTenant = () => {
 
             <div className="w-full">
               <div className="p-6 global-box-shadow bg-white pb-10 global-border-radius">
-                <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
+                <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg ">
                   You’re signing up as
                 </CustomText>
 
