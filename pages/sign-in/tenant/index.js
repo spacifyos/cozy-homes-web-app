@@ -5,7 +5,6 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { useState } from "react";
 import { get, isEmpty, map } from "lodash";
 import * as authSelector from "@/src/selectors/auth";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
@@ -17,6 +16,7 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Constant from "@/src/utils/Constant";
 import DesktopLayout from "@/components/DesktopLayout";
+import AuthWrapper from "@/components/AuthWrapper";
 
 const SignInTenant = () => {
   const { t } = useTranslation("common");
@@ -221,4 +221,4 @@ const SignInTenant = () => {
   );
 };
 
-export default SignInTenant;
+export default AuthWrapper(SignInTenant);

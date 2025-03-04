@@ -1,16 +1,13 @@
 import CustomText from "@/components/CustomText";
 import { useRouter } from "next/router";
 import { useTranslation, withTranslation } from "next-i18next";
-import { getServerSideProps } from "@/src/utils/getStatic";
 import { get } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
-import BottomNavigate from "@/components/BottomNavigate";
 import Constant from "@/src/utils/Constant";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
-
-export { getServerSideProps };
+import AuthWrapper from "@/components/AuthWrapper";
 
 const SignIn = () => {
   const { t } = useTranslation("common");
@@ -71,4 +68,4 @@ const SignIn = () => {
   );
 };
 
-export default withTranslation("common")(SignIn);
+export default AuthWrapper(SignIn);

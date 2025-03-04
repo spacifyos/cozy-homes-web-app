@@ -41,6 +41,10 @@ function AuthWrapper(WrappedComponent) {
         // query: { tab: replace(pathname, "/", "") },
       });
       return null;
+    } else {
+      router.push({
+        pathname: "/user/my-property",
+      });
     }
 
     return <WrappedComponent {...props} />;

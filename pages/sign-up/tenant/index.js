@@ -1,16 +1,13 @@
-import { getServerSideProps } from "@/src/utils/getStatic";
 import { useTranslation, withTranslation } from "next-i18next";
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { isEmpty, isEqual, includes, map, get, toLower } from "lodash";
+import { isEmpty, isEqual, includes, map, get } from "lodash";
 import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import { NextSeo } from "next-seo";
 import {
-  DEFAULT_ONLOAD_NAME,
   DEFAULT_SCRIPT_ID,
   SCRIPT_URL,
   Turnstile,
@@ -21,10 +18,8 @@ import Images from "@/src/utils/Image";
 import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
 import Constant from "@/src/utils/Constant";
-import Link from "next/link";
 import DesktopLayout from "@/components/DesktopLayout";
-
-export { getServerSideProps };
+import AuthWrapper from "@/components/AuthWrapper";
 
 const SignUpTenant = () => {
   const { t } = useTranslation("common");
@@ -275,4 +270,4 @@ const SignUpTenant = () => {
   );
 };
 
-export default withTranslation("common")(SignUpTenant);
+export default AuthWrapper(SignUpTenant);
