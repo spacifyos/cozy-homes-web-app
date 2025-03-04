@@ -437,7 +437,7 @@ const DesktopFormSection = ({
         </div>
 
         <CustomText textClassName="pl-3 font-bold text-black text-xs text-justify">
-          I understand and agree to give Spacify and CTOS the consent to process
+          I understand and agree to give CozyHomes and CTOS the consent to process
           my personal data as per PDPA Act.
         </CustomText>
       </div>

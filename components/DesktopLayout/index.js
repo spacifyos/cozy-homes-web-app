@@ -257,6 +257,7 @@ const DesktopLayout = ({
       {includes(pathname, "/user/") ||
       includes(pathname, "/agency/") ||
       includes(pathname, "/sign-in") ||
+      includes(pathname, "/sign-up")||
       includes(pathname, "/reset-password") ? (
         false
       ) : (

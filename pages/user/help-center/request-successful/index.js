@@ -19,7 +19,7 @@ const RequestSuccessful = ({}) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Request Successful - Spacify Asia" />
+      <NextSeo title="Request Successful - CozyHomes" />
 
       <CustomImage
         src={Images.paymentSuccessIcon}

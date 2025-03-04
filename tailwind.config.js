@@ -19,18 +19,21 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Noto Sans"],
+        sans: ["Barlow"],
       },
       fontSize: {
         xxs: "10px",
+      },
+      fontWeight: {
+        normal: "500",
       },
       spacing: {
         125: "500px",
       },
       colors: {
-        primary: "#d71440",
+        primary: "#36A9E1",
         "primary-background": "#f5f8fd",
-        secondary: "#F05A22",
+        secondary: "#18407E",
         "secondary-background": "#FFF4E0",
         available: "#03b78c",
         "available-light": "#DFFFEA",
@@ -52,7 +55,7 @@ module.exports = {
       },
       borderColor: {
         DEFAULT: "#CCCCCC",
-        primary: "#d71440",
+        primary: "#36A9E1",
         warning: "#ff8a00",
         available: "#03b78c",
         tertiary: "#0379b7",
@@ -77,9 +80,9 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#d71440",
+          primary: "#36A9E1",
           "primary-background": "#f5f8fd",
-          secondary: "#F05A22",
+          secondary: "#18407E",
           black: "#2c2c2c",
           disable: "#CCCCCC",
         },

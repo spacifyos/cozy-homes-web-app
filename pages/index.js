@@ -114,18 +114,18 @@ function Home() {
     <div className="min-h-screen">
       <NextSeo
         title={`Explore available rooms for rent anywhere in malaysia | Spacify.asia`}
-        description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
+        description={`Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`}
         canonical={process.env.DOMAIN}
         openGraph={{
           url: process.env.DOMAIN,
           title: `Explore available rooms for rent anywhere in malaysia | Spacify.asia`,
-          description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
+          description: `Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`,
           images: [
             {
               url: Images.logo,
               width: 800,
               height: 600,
-              alt: `Spacify Image`,
+              alt: `CozyHomes Image`,
             },
           ],
           siteName: `${process.env.DOMAIN}`,

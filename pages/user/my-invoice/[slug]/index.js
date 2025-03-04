@@ -161,7 +161,7 @@ const InvoiceOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Invoice Overview - Spacify Asia" />
+      <NextSeo title="Invoice Overview - CozyHomes" />
 
       <DesktopLayout
         hideFooter

@@ -21,7 +21,7 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Sign In - Spacify Asia" />
+      <NextSeo title="Sign In - CozyHomes" />
 
       <DesktopLayout
         hideNav

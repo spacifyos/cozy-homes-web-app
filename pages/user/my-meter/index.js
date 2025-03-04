@@ -54,7 +54,7 @@ const MyMeter = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Meter - Spacify Asia" />
+      <NextSeo title="My Meter - CozyHomes" />
 
       <DesktopLayout
         hideFooter

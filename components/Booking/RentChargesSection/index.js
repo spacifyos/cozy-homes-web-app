@@ -42,7 +42,7 @@ const RentChargesSection = ({
             {isEmpty(title) ? "-" : title}
           </CustomText>
           <CustomText textClassName="font-light text-sm text-disable">
-            Hosted by Spacify
+            Hosted by CozyHomes
           </CustomText>
         </div>
       </div>

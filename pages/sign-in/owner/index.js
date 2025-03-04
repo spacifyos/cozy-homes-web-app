@@ -104,7 +104,7 @@ const SignInOwner = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Sign In | Owner - Spacify Asia" />
+      <NextSeo title="Sign In | Owner - CozyHomes" />
 
       <DesktopLayout hideNav isMinHeight={false}>
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start py-10">
@@ -118,19 +118,18 @@ const SignInOwner = () => {
           <div className="body-container">
             <div className="pb-6 flex flex-col items-center">
               <CustomImage
-                src={Images.logoBlackWithText}
-                imageStyle={{ width: 120 }}
-                className="mb-4"
+                src={Images.logoHorizontalColor}
+                className="mb-4 h-32 w-3/4"
               />
 
               <CustomText
-                textClassName="text-white font-bold leading-10"
+                textClassName="text-black font-bold leading-10"
                 styles={{ fontSize: 32 }}
               >
                 Welcome Back,
               </CustomText>
               <CustomText
-                textClassName="text-white font-bold leading-10"
+                textClassName="text-secondary font-bold leading-10"
                 styles={{ fontSize: 32 }}
               >
                 Owner
@@ -181,7 +180,7 @@ const SignInOwner = () => {
 
                 <div className="flex justify-center pb-2">
                   <CustomButton
-                    buttonClassName={`btn-primary w-2/4 mb-2`}
+                    buttonClassName={`btn-secondary w-2/4 mb-2`}
                     buttonText={"Sign In"}
                     onClick={onClickToLogin}
                   />

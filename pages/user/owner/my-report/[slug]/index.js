@@ -102,7 +102,7 @@ const MyReport = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="PnL Statement Overview | Owner - Spacify Asia" />
+      <NextSeo title="PnL Statement Overview | Owner - CozyHomes" />
       <DesktopLayout
         loading={loading}
         rightButtonIcon={Images.downloadIconBlack}

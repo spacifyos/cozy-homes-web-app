@@ -138,7 +138,7 @@ const PropertyDetail = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Property Overview | Owner - Spacify Asia" />
+      <NextSeo title="My Property Overview | Owner - CozyHomes" />
 
       <DesktopLayout
         hideFooter

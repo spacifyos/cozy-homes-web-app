@@ -62,7 +62,7 @@ const BookingOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Booking Overview - Spacify Asia" />
+      <NextSeo title="Booking Overview - CozyHomes" />
 
       <DesktopLayout
         backgroundColor="bg-white"

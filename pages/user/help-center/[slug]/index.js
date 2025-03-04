@@ -495,7 +495,7 @@ const RequestOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Help Center Overview - Spacify Asia" />
+      <NextSeo title="Help Center Overview - CozyHomes" />
 
       <DesktopLayout
         hideFooter
