@@ -186,7 +186,7 @@ const SignInOwner = () => {
                   />
                 </div>
 
-                <Link href={`/user/forgot-password/${Constant.OWNER}`}>
+                <Link href={`/user/forgot-password`}>
                   <CustomText textClassName="text-center pb-2 underline cursor-pointer">
                     Forgot Password
                   </CustomText>

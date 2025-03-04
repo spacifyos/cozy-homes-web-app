@@ -12,8 +12,8 @@ function AuthWrapper(WrappedComponent) {
     const pathname = get(router, ["pathname"], "");
 
     // Define public routes (accessible when not authenticated)
-    const publicRoutes = ["/", "/sign-in", "/sign-up"];
-    const isPublicRoute = publicRoutes.includes(pathname);
+    const isPublicRoute =
+      !pathname.includes("/user") || !pathname.includes("/agency");
 
     // Check if the route is protected (includes "/user" or "/agency")
     const isProtectedRoute =
