@@ -299,8 +299,8 @@ const DesktopFooter = () => {
           </div>
 
           <CustomText textClassName="text-xs text-center">
-            Copyright © {moment().year()} Spacify Technologies Sdn Bhd (Co.No.:
-            201901004017) All rights reserved.
+            Copyright © {moment().year()} The Property Guys Sdn Bhd (Co.No.:
+            201801034852) All rights reserved.
           </CustomText>
         </div>
       </div>

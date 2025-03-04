@@ -7,12 +7,12 @@ export default function Custom500() {
     const router = useRouter();
 
     const onClickGoToBack = () => {
-        router.replace("/");
+        router.replace("/sign-in");
     };
 
     return (
         <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
-            <NextSeo title="Internet Server Error - Spacify Asia" />
+            <NextSeo title="Internet Server Error - CozyHomes" />
             <div className="flex gap-1">
                 <CustomText
                     textClassName="font-bold"

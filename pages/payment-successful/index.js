@@ -16,12 +16,12 @@ const PaymentSuccessful = ({}) => {
   const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
-    router.replace("/");
+    router.replace("/user/my-property");
   };
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Payment Successful - Spacify Asia" />
+      <NextSeo title="Payment Successful - CozyHomes" />
       {/*<CustomImage*/}
       {/*  src={Images.closeIconBlack}*/}
       {/*  imageStyle={{ width: 20 }}*/}

@@ -65,7 +65,7 @@ const AgencySignIn = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Agency Sign In - Spacify Asia" />
+      <NextSeo title="Agency Sign In - CozyHomes" />
 
       <DesktopLayout hideNav isMinHeight={false} loading={signInLoading}>
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start xl:pt-20 lg:pt-20 md:pt-20 sm:pt-10 pt-10">

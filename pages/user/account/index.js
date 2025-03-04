@@ -232,7 +232,7 @@ const Account = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Account - Spacify Asia" />
+      <NextSeo title="Account - CozyHomes" />
 
       <DesktopLayout
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}

@@ -176,7 +176,7 @@ const MyInvoice = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Invoice - Spacify Asia" />
+      <NextSeo title="My Invoice - CozyHomes" />
 
       <DesktopLayout
         hideFooter

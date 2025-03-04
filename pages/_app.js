@@ -79,12 +79,12 @@ function AppContent({ Component, pageProps }) {
       <Head>
         <meta
           name="keywords"
-          content="Spacify Asia, Property, Rental Management, Smart Meter"
+          content="CozyHomes, Property, Rental Management, Smart Meter"
         />
-        {/*<title>Spacify Asia</title>*/}
+        {/*<title>CozyHomes</title>*/}
         {/*<meta*/}
         {/*  name="description"*/}
-        {/*  content="Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"*/}
+        {/*  content="Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"*/}
         {/*/>*/}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
@@ -102,29 +102,29 @@ function AppContent({ Component, pageProps }) {
           content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"
         />
 
-        <link rel="icon" href="/spacify/favicon.ico" sizes="any" />
-        <link rel="icon" sizes="32x32" href="/spacify/favicon-32x32.png" />
-        <link rel="icon" sizes="16x16" href="/spacify/favicon-16x16.png" />
+        <link rel="icon" href="/cozyHomes/favicon.ico" sizes="any" />
+        <link rel="icon" sizes="32x32" href="/cozyHomes/favicon-32x32.png" />
+        <link rel="icon" sizes="16x16" href="/cozyHomes/favicon-16x16.png" />
         <link
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href="/spacify/android-chrome-192x192.png"
+          href="/cozyHomes/android-chrome-192x192.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="512x512"
-          href="/spacify/android-chrome-512x512.png"
+          href="/cozyHomes/android-chrome-512x512.png"
         />
 
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/spacify/apple-touch-icon.png"
+          href="/cozyHomes/apple-touch-icon.png"
         />
 
-        <link rel="manifest" href="/spacify/manifest.json" />
+        <link rel="manifest" href="/cozyHomes/manifest.json" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -133,8 +133,8 @@ function AppContent({ Component, pageProps }) {
           crossOrigin="true"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         />
 
         {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
@@ -179,13 +179,13 @@ function AppContent({ Component, pageProps }) {
                   "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."
               },
               "email": "spacify.asia@gmail.com",
-              "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+              "name": "CozyHomes | The Property Guys Sdn Bhd",
               "telephone": "+603-58789831",
               "url": "https://www.sapcify.asia/",
               "image": "${Images.logo}",
               "logo": "${Images.logo}",
               "description":
-                "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
+                "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"
             }`}
           </script>
         ) : (
@@ -211,8 +211,8 @@ function AppContent({ Component, pageProps }) {
                     "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."
                 },
                 "description":
-                  "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!",
-                "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+                  "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my",
+                "name": "CozyHomes | The Property Guys Sdn Bhd",
                 "telephone": "+603-58789831",
                 "url": "https://www.sapcify.asia/",
                 "image": "${Images.logo}"
@@ -231,11 +231,11 @@ function AppContent({ Component, pageProps }) {
             {`{
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "name": "Spacify Asia | BELIVE VENTURES SDN BHD",
+                "name": "CozyHomes | The Property Guys Sdn Bhd",
                 "image": "${Images.logo}",
                 "url": "https://www.sapcify.asia/",
                 "description":
-                  "Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!"
+                  "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"
               }`}
           </script>
         ) : (

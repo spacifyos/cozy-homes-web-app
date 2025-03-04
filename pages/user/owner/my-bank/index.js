@@ -123,7 +123,7 @@ const MyBank = () => {
       title="My Bank"
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="My Bank | Owner - Spacify Asia" />
+      <NextSeo title="My Bank | Owner - CozyHomes" />
 
       <BankCard bankDetails={bankDetails} />
 

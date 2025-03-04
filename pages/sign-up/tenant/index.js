@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
 import Constant from "@/src/utils/Constant";
 import Link from "next/link";
+import DesktopLayout from "@/components/DesktopLayout";
 
 export { getServerSideProps };
 
@@ -132,194 +133,144 @@ const SignUpTenant = () => {
   };
 
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
-      }}
-      className={`min-h-screen pb-4`}
-    >
-      <NextSeo title="Sign Up - Spacify Asia" />
+    <div className="min-h-screen bg-white">
+      <NextSeo title="Sign Up | Tenant - CozyHomes" />
 
-      <div className="body-container">
-        <div onClick={onClickGoBack} className="cursor-pointer pt-5">
-          <CustomImage
-            className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
-            imageStyle={{ width: 10, height: 10 }}
-          />
-        </div>
+      <DesktopLayout hideNav isMinHeight={false}>
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start pb-10">
+          <div>
+            <div className="pb-6 flex flex-col items-center">
+              <CustomImage
+                src={Images.logoHorizontalColor}
+                className="mb-4 h-32 w-3/4"
+              />
 
-        <div className="py-6 flex flex-col items-center">
-          <CustomImage
-            src={Images.logoBlackWithText}
-            imageStyle={{ width: 120 }}
-            className="mb-2"
-          />
-
-          <CustomText
-            textClassName="text-white font-bold leading-10"
-            styles={{ fontSize: 32 }}
-          >
-            Let’s Get Started
-          </CustomText>
-        </div>
-
-        <div className="w-full">
-          {/*<div className="grid grid-cols-2">*/}
-          {/*  <div onClick={onClickToSignIn} className="cursor-pointer">*/}
-          {/*    <CustomText*/}
-          {/*      textClassName="text-center p-4 text-primary font-bold text-base"*/}
-          {/*      styles={{*/}
-          {/*        borderRadius: "10px 10px 0 0",*/}
-          {/*        backgroundColor: "#E8E8E8",*/}
-          {/*        color: "#C3C4C6",*/}
-          {/*      }}*/}
-          {/*    >*/}
-          {/*      {t("signUp.signIn")}*/}
-          {/*    </CustomText>*/}
-          {/*  </div>*/}
-
-          {/*  <CustomText*/}
-          {/*    textClassName="text-center p-4 bg-white text-primary font-bold text-base"*/}
-          {/*    styles={{ borderRadius: "10px 10px 0 0" }}*/}
-          {/*  >*/}
-          {/*    {t("signUp.signUp")}*/}
-          {/*  </CustomText>*/}
-          {/*</div>*/}
-          <div className="p-3 global-box-shadow bg-white pb-10 global-border-radius">
-            <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg">
-              You’re signing up as
-            </CustomText>
-
-            <CustomText
-              textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
-              styles={{
-                color: "#F05A22",
-                fontSize: 32,
-              }}
-            >
-              Tenant
-            </CustomText>
-
-            {/*<div className="grid grid-cols-2 gap-2 mb-8">*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "tenant") ? "btn-primary" : "btn-primary-outline"}`}*/}
-            {/*    buttonText={t("signIn.tenant")}*/}
-            {/*    onClick={() => setSelectedRole("tenant")}*/}
-            {/*  />*/}
-            {/*  <CustomButton*/}
-            {/*    buttonClassName={`${isEqual(selectedRole, "owner") ? "btn-primary" : "btn-primary-outline"}`}*/}
-            {/*    buttonText={t("signIn.owner")}*/}
-            {/*    onClick={() => setSelectedRole("owner")}*/}
-            {/*  />*/}
-            {/*</div>*/}
-
-            <input
-              type="text"
-              placeholder={t("signUp.yourName")}
-              className="input input-bordered w-full bg-white mb-4 user-input"
-              value={nameValue}
-              onChange={onChangeNameValue}
-            />
-
-            <div className="grid grid-cols-3 gap-2 mb-4">
-              <select
-                className="select select-bordered w-full max-w-xs bg-white user-input"
-                value={countryCode}
-                onChange={onChangeCountryCode}
+              <CustomText
+                textClassName="text-black font-bold leading-10"
+                styles={{ fontSize: 32 }}
               >
-                {map(phonePrefixOption, (item) => {
-                  const name = get(item, ["label"], "");
-                  const value = get(item, ["value"], "");
-
-                  return (
-                    <option key={value} value={value}>
-                      {name}
-                    </option>
-                  );
-                })}
-              </select>
-
-              <input
-                type="number"
-                placeholder={"12 345 6789"}
-                className="input input-bordered w-full bg-white col-span-2 user-input"
-                value={phoneValue}
-                onChange={onChangePhoneValue}
-              />
+                Let’s Get Started
+              </CustomText>
             </div>
 
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="input input-bordered w-full bg-white mb-4 user-input"
-              value={emailValue}
-              onChange={onChangeEmailValue}
-            />
+            <div className="w-full">
+              <div className="p-6 global-box-shadow bg-white pb-10 global-border-radius">
+                <CustomText textClassName="text-center pb-1 pt-3 font-bold text-lg ">
+                  You’re signing up as
+                </CustomText>
 
-            <input
-              type="password"
-              placeholder={t("signUp.yourPassword")}
-              className="input input-bordered w-full bg-white mb-4 user-input"
-              value={passwordValue}
-              onChange={onChangePasswordValue}
-            />
+                <CustomText
+                  textClassName="text-primary text-center font-bold leading-10 pb-6"
+                  styles={{ fontSize: 32 }}
+                >
+                  Tenant
+                </CustomText>
 
-            <input
-              type="password"
-              placeholder={t("signUp.confirmYourPassword")}
-              className="input input-bordered w-full bg-white mb-4 user-input"
-              value={confirmPasswordValue}
-              onChange={onChangeConfirmPasswordValue}
-            />
+                <input
+                  type="text"
+                  placeholder={"Your Name"}
+                  className="input input-bordered w-full bg-white mb-4 user-input"
+                  value={nameValue}
+                  onChange={onChangeNameValue}
+                />
 
-            <div className="mb-4">
-              <Script
-                id={DEFAULT_SCRIPT_ID}
-                src={SCRIPT_URL}
-                strategy="beforeInteractive"
-              />
+                <div className="grid grid-cols-3 gap-2 mb-4">
+                  <select
+                    className="select select-bordered w-full max-w-xs bg-white user-input"
+                    value={countryCode}
+                    onChange={onChangeCountryCode}
+                  >
+                    {map(phonePrefixOption, (item) => {
+                      const name = get(item, ["label"], "");
+                      const value = get(item, ["value"], "");
 
-              <Turnstile
-                siteKey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
-                ref={ref}
-                options={{ refreshExpired: "manual", theme: "light" }}
-                onExpire={() => ref.current?.reset()}
-                onError={(err) => console.error(err)}
-                onSuccess={(token) => setRecaptchaToken(token)}
-              />
-              {/*<Turnstile*/}
-              {/*  theme="light"*/}
-              {/*  sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}*/}
-              {/*  onVerify={(token) => setRecaptchaToken(token)}*/}
-              {/*/>*/}
+                      return (
+                        <option key={value} value={value}>
+                          {name}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <input
+                    type="number"
+                    placeholder={"12 345 6789"}
+                    className="input input-bordered w-full bg-white col-span-2 user-input"
+                    value={phoneValue}
+                    onChange={onChangePhoneValue}
+                  />
+                </div>
+
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  className="input input-bordered w-full bg-white mb-4 user-input"
+                  value={emailValue}
+                  onChange={onChangeEmailValue}
+                />
+
+                <input
+                  type="password"
+                  placeholder={"Your Password"}
+                  className="input input-bordered w-full bg-white mb-4 user-input"
+                  value={passwordValue}
+                  onChange={onChangePasswordValue}
+                />
+
+                <input
+                  type="password"
+                  placeholder={"Confirm Your Password"}
+                  className="input input-bordered w-full bg-white mb-4 user-input"
+                  value={confirmPasswordValue}
+                  onChange={onChangeConfirmPasswordValue}
+                />
+
+                <div className="mb-4">
+                  <Script
+                    id={DEFAULT_SCRIPT_ID}
+                    src={SCRIPT_URL}
+                    strategy="beforeInteractive"
+                  />
+
+                  <Turnstile
+                    siteKey={process.env.CLOUDFLARE_RECAPTCHA_SITE}
+                    ref={ref}
+                    options={{ refreshExpired: "manual", theme: "light" }}
+                    onExpire={() => ref.current?.reset()}
+                    onError={(err) => console.error(err)}
+                    onSuccess={(token) => setRecaptchaToken(token)}
+                  />
+                  {/*<Turnstile*/}
+                  {/*  theme="light"*/}
+                  {/*  sitekey={process.env.CLOUDFLARE_RECAPTCHA_SITE}*/}
+                  {/*  onVerify={(token) => setRecaptchaToken(token)}*/}
+                  {/*/>*/}
+                </div>
+
+                <div className="flex justify-center pb-2">
+                  <CustomButton
+                    buttonClassName={`btn-primary w-2/4 mb-2`}
+                    buttonText="Sign Up for FREE"
+                    onClick={handleSubmit}
+                  />
+                </div>
+
+                <CustomText textClassName="text-sm mb-5 text-center">
+                  By using our services, you are deemed unconditionally agree,
+                  consent and be bound by our terms and conditions and privacy
+                  policy.
+                </CustomText>
+
+                <CustomText textClassName="text-xs text-center text-disable">
+                  This site is protected by reCAPTCHA and the Google{" "}
+                  <span className="underline">Privacy Policy</span> and{" "}
+                  <span className="underline">Terms of Service</span> apply.
+                </CustomText>
+              </div>
             </div>
-
-            <div className="flex justify-center pb-2">
-              <CustomButton
-                buttonClassName={`btn-secondary w-2/4 mb-2`}
-                buttonText="Sign Up for FREE"
-                onClick={handleSubmit}
-              />
-            </div>
-
-            <CustomText textClassName="text-sm mb-5">
-              By using our services, you are deemed unconditionally agree,
-              consent and be bound by our terms and conditions and privacy
-              policy.
-            </CustomText>
-
-            <CustomText textClassName="text-xs text-center text-disable">
-              This site is protected by reCAPTCHA and the Google{" "}
-              <span className="underline">Privacy Policy</span> and{" "}
-              <span className="underline">Terms of Service</span> apply.
-            </CustomText>
           </div>
         </div>
-
-        <LoadingOverlay loading={signUpLoading} />
-      </div>
+      </DesktopLayout>
     </div>
   );
 };

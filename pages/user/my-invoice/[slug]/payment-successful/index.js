@@ -66,7 +66,7 @@ const PaymentSuccessful = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Invoice Payment Successful - Spacify Asia" />
+      <NextSeo title="Invoice Payment Successful - CozyHomes" />
 
       <DesktopLayout
         loading={invoiceOverviewLoading}

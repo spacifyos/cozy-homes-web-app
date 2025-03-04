@@ -16,12 +16,12 @@ const PaymentFailed = ({ id }) => {
   const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
-    router.replace("/");
+    router.replace("/user/my-property");
   };
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Payment Failed - Spacify Asia" />
+      <NextSeo title="Payment Failed - CozyHomes" />
       {/*<CustomImage*/}
       {/*  src={Images.closeIconBlack}*/}
       {/*  imageStyle={{ width: "20px" }}*/}

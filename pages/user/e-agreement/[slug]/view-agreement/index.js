@@ -329,7 +329,7 @@ const ViewAgreement = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My E-Agreement Document - Spacify Asia" />
+      <NextSeo title="My E-Agreement Document - CozyHomes" />
 
       <DesktopLayout
         hideFooter

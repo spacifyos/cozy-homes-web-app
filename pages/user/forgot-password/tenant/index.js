@@ -230,7 +230,7 @@ const ForgotPasswordTenant = () => {
       }}
       className={`min-h-screen pb-4`}
     >
-      <NextSeo title="Forgot Password - Spacify Asia" />
+      <NextSeo title="Forgot Password - CozyHomes" />
 
       <div className="body-container">
         <div onClick={onClickGoBack} className="cursor-pointer pt-5">

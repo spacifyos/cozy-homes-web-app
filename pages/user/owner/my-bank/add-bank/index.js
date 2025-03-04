@@ -92,7 +92,7 @@ const AddBank = () => {
       className="pb-10"
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Add Bank | Owner - Spacify Asia" />
+      <NextSeo title="Add Bank | Owner - CozyHomes" />
 
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
         <div className="bg-white global-box-shadow global-border-radius p-4 relative flex items-center">
@@ -171,7 +171,7 @@ const AddBank = () => {
               and complete. Any errors or discrepancies in the information
               submitted, including but not limited to the bank name, account
               holder name, and account number, are solely your responsibility.
-              Spacify shall not be liable for any loss or delay in transactions
+              CozyHomes shall not be liable for any loss or delay in transactions
               caused by incorrect or incomplete details provided by you. It is
               your responsibility to ensure that the details are correct before
               confirming the update. If you encounter any issues, please contact

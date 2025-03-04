@@ -43,7 +43,7 @@
   },
   "account": {
     "account": "Account",
-    "spacifyCoins": "Spacify Coins",
+    "spacifyCoins": "CozyHomes Coins",
     "smartMeterPairing": "Smart Meter Pairing",
     "myInvoice": "My Invoice",
     "myAppointment": "My Appointment",
@@ -63,7 +63,7 @@
     "month": "Month"
   },
   "myStay": {
-    "spacifyCoins": " Spacify Coins",
+    "spacifyCoins": " CozyHomes Coins",
     "myTenancy": "My Tenancy",
     "tenancyPeriod": "Tenancy Period",
     "tenancyCode": "Tenancy Code",
@@ -219,7 +219,7 @@
     "yourName": "Your Name",
     "phoneNumber": "Your Phone Number",
     "companyDomain": "Company Domain",
-    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is Spacify, I will enter RZ",
+    "domainInfo": "A unique domain for your company. Min: 2, Max: 12 alphabet only. eg: My company name is CozyHomes, I will enter RZ",
     "yourPassword": "Your Password",
     "confirmYourPassword": "Confirm Your Password",
     "signUpForFree": "Sign Up for FREE",
@@ -282,7 +282,7 @@
     "downloadReceipt": "Download Receipt"
   },
   "invoiceSuccessful": {
-    "spacifyCoinsEarned": "Spacify Coins earned",
+    "spacifyCoinsEarned": "CozyHomes Coins earned",
     "paymentCompleted": "Payment Completed",
     "congratulations": "Congratulations!"
   },

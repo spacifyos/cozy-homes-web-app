@@ -502,18 +502,18 @@ const SearchWithSlug = ({ id }) => {
     <div className="min-h-screen bg-white">
       <NextSeo
         title={`Discover spaces for your needs in ${isEmpty(id) ? "rooms listing" : id} | Spacify.asia`}
-        description={`Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`}
+        description={`Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`}
         canonical={`${process.env.DOMAIN}/search/${id}`}
         openGraph={{
           url: process.env.DOMAIN,
           title: `Discover spaces for your needs in ${isEmpty(id) ? "rooms listing" : id} | Spacify.asia`,
-          description: `Don't be lost finding quality & affordable rooms for rent! Find and rent a Spacify-standard room you love with ease now!`,
+          description: `Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`,
           images: [
             {
               url: Images.logo,
               width: 800,
               height: 600,
-              alt: `Spacify Image`,
+              alt: `CozyHomes Image`,
             },
           ],
           siteName: `${process.env.DOMAIN}`,

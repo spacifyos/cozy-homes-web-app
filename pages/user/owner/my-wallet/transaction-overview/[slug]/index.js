@@ -101,7 +101,7 @@ const TransactionOverview = ({ id }) => {
       onClickGoBack={onClickGoBack}
       className="pb-0"
     >
-      <NextSeo title="Transaction Overview | Owner - Spacify Asia" />
+      <NextSeo title="Transaction Overview | Owner - CozyHomes" />
 
       {/*<div className="px-4 absolute top-16 w-full z-10">*/}
       {/*  <div className="global-box-shadow global-border-radius p-5 flex items-center bg-white">*/}
