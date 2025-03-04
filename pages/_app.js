@@ -91,9 +91,9 @@ function AppContent({ Component, pageProps }) {
           content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
           name="viewport"
         />
-        <meta name="theme-color" content="#d71440" />
-        <meta name="msapplication-navbutton-color" content="#d71440" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="#d71440" />
+        <meta name="theme-color" content="#36A9E1" />
+        <meta name="msapplication-navbutton-color" content="#36A9E1" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="#36A9E1" />
 
         <meta name="msvalidate.01" content="74EA887B8E4E9BA232E18AB9F69FDC63" />
 

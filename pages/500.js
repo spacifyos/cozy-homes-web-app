@@ -28,7 +28,7 @@ export default function Custom500() {
                 </CustomText>
                 <CustomText
                     textClassName="font-bold"
-                    styles={{ fontSize: 70, color: "#d71440" }}
+                    styles={{ fontSize: 70, color: "#36A9E1" }}
                 >
                     0
                 </CustomText>

@@ -137,7 +137,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
           style={{
             background: isEqual(toLower(selectedUserType), Constant.OWNER)
               ? "linear-gradient(125.08deg, #D71440 44.39%, #F9A533 96.79%)"
-              : "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+              : "linear-gradient(125.08deg, #18407E 54.69%, #D71440 96.79%)",
           }}
         >
           <div className="p-6">
@@ -185,7 +185,7 @@ const SignUpModal = ({ selectedUserType, setSelectedUserType }) => {
                   textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
                   styles={{
                     color: isEqual(toLower(selectedUserType), Constant.TENANT)
-                      ? "#F05A22"
+                      ? "#18407E"
                       : "#D71440",
                     fontSize: 32,
                   }}

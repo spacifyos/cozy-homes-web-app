@@ -226,7 +226,7 @@ const ForgotPasswordTenant = () => {
     <div
       style={{
         background:
-          "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",
+          "linear-gradient(125.08deg, #18407E 54.69%, #D71440 96.79%)",
       }}
       className={`min-h-screen pb-4`}
     >
@@ -265,7 +265,7 @@ const ForgotPasswordTenant = () => {
             <CustomText
               textClassName={`text-center pb-6 font-bold text-lg italic leading-10`}
               styles={{
-                color: "#F05A22",
+                color: "#18407E",
                 fontSize: 32,
               }}
             >

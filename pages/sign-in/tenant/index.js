@@ -110,7 +110,7 @@ const SignInTenant = () => {
           {/*<div*/}
           {/*  style={{*/}
           {/*    background:*/}
-          {/*      "linear-gradient(125.08deg, #F05A22 54.69%, #D71440 96.79%)",*/}
+          {/*      "linear-gradient(125.08deg, #18407E 54.69%, #D71440 96.79%)",*/}
           {/*  }}*/}
           {/*  className={`min-h-screen pb-4`}*/}
           {/*>*/}

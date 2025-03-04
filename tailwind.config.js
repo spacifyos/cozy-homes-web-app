@@ -46,7 +46,7 @@ module.exports = {
         white: "#FFFFFF",
         aqua: "#41c0be",
         "owner-background":
-          "linear-gradient(88.34deg, #d71440 33.59%, #f9a533 131.55%)",
+          "linear-gradient(88.34deg, #36A9E1 33.59%, #f9a533 131.55%)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

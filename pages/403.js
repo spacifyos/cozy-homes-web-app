@@ -28,7 +28,7 @@ export default function Custom403() {
         </CustomText>
         <CustomText
           textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#d71440" }}
+          styles={{ fontSize: 70, color: "#36A9E1" }}
         >
           3
         </CustomText>
