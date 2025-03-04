@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthManager from "@/src/utils/AuthManager";
-import { get, isEmpty, isEqual, replace } from "lodash";
+import { get, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 
 function AuthWrapper(WrappedComponent) {
@@ -11,6 +11,14 @@ function AuthWrapper(WrappedComponent) {
     const [isLoading, setIsLoading] = useState(true);
     const pathname = get(router, ["pathname"], "");
 
+    // Define public routes (accessible when not authenticated)
+    const publicRoutes = ["/", "/sign-in", "/sign-up"];
+    const isPublicRoute = publicRoutes.includes(pathname);
+
+    // Check if the route is protected (includes "/user" or "/agency")
+    const isProtectedRoute =
+      pathname.includes("/user") || pathname.includes("/agency");
+
     useEffect(() => {
       const checkAuthentication = async () => {
         const token = await AuthManager.retrieveToken();
@@ -18,6 +26,8 @@ function AuthWrapper(WrappedComponent) {
 
         if (!isEmpty(token) && !isEmpty(type)) {
           setIsAuthenticated(true);
+        } else {
+          setIsAuthenticated(false);
         }
         setIsLoading(false);
       };
@@ -33,21 +43,41 @@ function AuthWrapper(WrappedComponent) {
       );
     }
 
-    if (!isAuthenticated) {
-      // Toast.error("You need to sign in to your account.");
-
-      router.push({
-        pathname: "/",
-        // query: { tab: replace(pathname, "/", "") },
-      });
+    // If authenticated and on a public route, redirect to /my-property
+    if (isAuthenticated && isPublicRoute) {
+      router.push("/user/my-property");
       return null;
-    } else {
-      router.push({
-        pathname: "/user/my-property",
-      });
     }
 
-    return <WrappedComponent {...props} />;
+    // If authenticated and on a protected route, allow access
+    if (isAuthenticated && isProtectedRoute) {
+      return <WrappedComponent {...props} />;
+    }
+
+    // If not authenticated and on a protected route, redirect to sign-in
+    if (!isAuthenticated && isProtectedRoute) {
+      Toast.error("You need to sign in to access this page.");
+      router.push({
+        pathname: "/sign-in",
+        query: { returnUrl: pathname }, // Optional: redirect back after sign-in
+      });
+      return null;
+    }
+
+    // If not authenticated and on a public route, allow access
+    if (!isAuthenticated && isPublicRoute) {
+      return <WrappedComponent {...props} />;
+    }
+
+    // Default case: redirect authenticated users to /my-property if not on a defined route
+    if (isAuthenticated) {
+      router.push("/user/my-property");
+      return null;
+    }
+
+    // Fallback: redirect to sign-in if no other conditions match
+    router.push("/sign-in");
+    return null;
   };
 
   return AuthWrapper;
