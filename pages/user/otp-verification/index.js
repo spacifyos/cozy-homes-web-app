@@ -92,7 +92,7 @@ const OtpVerification = () => {
 
       router.replace("/user/my-property");
     } else {
-      router.replace("/");
+      router.replace("/sign-in");
     }
   };
 

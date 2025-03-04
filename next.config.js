@@ -42,6 +42,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/",
+        destination: "/sign-in",
+        permanent: true,
+      },
       ...routeList.map((list) => ({
         source: list,
         destination: "/404",
@@ -50,11 +55,6 @@ const nextConfig = {
       {
         source: "/chat",
         destination: "/user/chat",
-        permanent: true,
-      },
-      {
-        source: "/",
-        destination: "/sign-in",
         permanent: true,
       },
     ];

@@ -16,7 +16,7 @@ const PaymentSuccessful = ({}) => {
   const message = get(router, ["query", "message"], "");
 
   const onClickGoMainPage = () => {
-    router.replace("/");
+    router.replace("/user/my-property");
   };
 
   return (
