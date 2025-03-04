@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import AuthManager from "@/src/utils/AuthManager";
-import { get, isEmpty } from "lodash";
+import { get, includes, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 
 function AuthWrapper(WrappedComponent) {
@@ -13,7 +13,7 @@ function AuthWrapper(WrappedComponent) {
 
     // Define public routes (accessible when not authenticated)
     const isPublicRoute =
-      !pathname.includes("/user") || !pathname.includes("/agency");
+      !includes(pathname, "/user") && !pathname.includes("/agency");
 
     // Check if the route is protected (includes "/user" or "/agency")
     const isProtectedRoute =
