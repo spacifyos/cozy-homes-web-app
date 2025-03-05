@@ -11,6 +11,11 @@ const routeList = [
   "/agency/sign-up",
   // "/sign-in",
   // "/sign-up",
+  "/user/owner/chat",
+  "/user/owner/my-wallet",
+  "/user/owner/chat",
+  "/user/reno-expert",
+  "/user/chat",
   "/user/coins-transaction",
   "/user/latest-update",
   "/user/my-appointment",
@@ -18,7 +23,12 @@ const routeList = [
   "/user/owner/my-wallet",
   "/user/forgot-password/owner",
   "/user/forgot-password/tenant",
+  "/user/forgot-password/tenant",
   "/property-overview/:slug",
+  "/booking/:slug",
+  "/search",
+  "/search/:slug",
+  "/sitemap",
 ];
 
 const nextConfig = {
@@ -52,11 +62,6 @@ const nextConfig = {
         destination: "/404",
         permanent: true,
       })),
-      {
-        source: "/chat",
-        destination: "/user/chat",
-        permanent: true,
-      },
     ];
   },
 };

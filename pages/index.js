@@ -21,6 +21,7 @@ import DesktopPromotionSection from "@/components/Explore/DesktopPromotionSectio
 import * as commonSelector from "@/src/selectors/common";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomImage from "@/components/CustomImage";
+import LoadingOverlay from "@/components/LoadingOverlay";
 
 function Home() {
   const { t } = useTranslation("common");
@@ -111,129 +112,136 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      <NextSeo
-        title={`Explore available rooms for rent anywhere in malaysia | Spacify.asia`}
-        description={`Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`}
-        canonical={process.env.DOMAIN}
-        openGraph={{
-          url: process.env.DOMAIN,
-          title: `Explore available rooms for rent anywhere in malaysia | Spacify.asia`,
-          description: `Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`,
-          images: [
-            {
-              url: Images.logo,
-              width: 800,
-              height: 600,
-              alt: `CozyHomes Image`,
-            },
-          ],
-          siteName: `${process.env.DOMAIN}`,
-        }}
-      />
+    <div className="flex-1 h-screen bg-white">
+      <div className="flex justify-center items-center h-full">
+        <CustomImage src={Images.logo} imageStyle={{ width: 150 }} />
+      </div>
 
-      <a
-        target="_blank"
-        href={`https://wa.me/+601137354267`}
-        className="fixed bottom-10 right-6 z-10"
-      >
-        <CustomImage src={Images.beliveWhatsappIcon} className="w-16 h-16" />
-      </a>
-
-      <DesktopLayout hideNav backgroundColor="bg-white">
-        <div className="relative xl:h-96">
-          <Image
-            loader={({ src, width, quality }) =>
-              `${src}?w=100%&q=${quality || 75}`
-            }
-            alt={"image"}
-            src={"/spacify/images/desktop_banner.webp"}
-            width={0}
-            height={0}
-            className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full"
-            style={{ width: "100%" }}
-          />
-
-          <Image
-            loader={({ src, width, quality }) =>
-              `${src}?w=100%&q=${quality || 75}`
-            }
-            alt={"image"}
-            src={"/spacify/images/desktop_banner.webp"}
-            width={0}
-            height={0}
-            className="xl:hidden lg:hidden md:hidden sm:block block md:object-cover sm:object-cover object-cover"
-            style={{ width: "100%", height: 200 }}
-          />
-
-          <DesktopSearchBar
-            optionList={selectOptionData}
-            searchTypeValue={searchTypeValue}
-            setSearchTypeValue={setSearchTypeValue}
-            onClickSearch={onClickToSearch}
-          />
-        </div>
-
-        <div className="xl:pt-52">
-          <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 container mx-auto">
-            <CustomText textClassName="text-primary font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md">
-              Space For All
-            </CustomText>
-            <h1 className="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs">
-              Provides the safe and innovative platform for you need to ﬁnd your
-              dream space.
-            </h1>
-          </div>
-
-          <DesktopBanner imageData={listingBannerData} />
-
-          <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
-            <DesktopPopularCitySection
-              onClickViewMore={onClickToSearch}
-              data={popularCity}
-              loading={listingDataLoading}
-            />
-          </div>
-
-          <DesktopFeaturedRoomSection
-            data={featuredRooms}
-            loading={listingDataLoading}
-            onClickViewMore={onClickToSearch}
-          />
-
-          <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
-            <DesktopPopularUniversitySection
-              data={popularUniversity}
-              loading={listingDataLoading}
-              onClickViewMore={onClickToSearch}
-            />
-          </div>
-
-          <DesktopCheapestRoomSection
-            data={cheapestRooms}
-            loading={listingDataLoading}
-            onClickViewMore={onClickToSearch}
-          />
-
-          <div className="bg-primary xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
-            <DesktopPromotionSection
-              data={specialPromotion}
-              loading={listingDataLoading}
-              onClickViewMore={onClickToSearch}
-            />
-          </div>
-        </div>
-      </DesktopLayout>
-
-      {/*<EventBanner />*/}
-
-      {/*<BottomNavigate*/}
-      {/*  t={t}*/}
-      {/*  routeName={routeName}*/}
-      {/*  routeQuery={routeQuery}*/}
-      {/*  onClickChangeTab={onClickChangeTab}*/}
-      {/*/>*/}
+      <LoadingOverlay loading={true} />
     </div>
+    // <div className="min-h-screen">
+    //   <NextSeo
+    //     title={`Explore available rooms for rent anywhere in malaysia | Spacify.asia`}
+    //     description={`Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`}
+    //     canonical={process.env.DOMAIN}
+    //     openGraph={{
+    //       url: process.env.DOMAIN,
+    //       title: `Explore available rooms for rent anywhere in malaysia | Spacify.asia`,
+    //       description: `Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my`,
+    //       images: [
+    //         {
+    //           url: Images.logo,
+    //           width: 800,
+    //           height: 600,
+    //           alt: `CozyHomes Image`,
+    //         },
+    //       ],
+    //       siteName: `${process.env.DOMAIN}`,
+    //     }}
+    //   />
+    //
+    //   <a
+    //     target="_blank"
+    //     href={`https://wa.me/+601137354267`}
+    //     className="fixed bottom-10 right-6 z-10"
+    //   >
+    //     <CustomImage src={Images.beliveWhatsappIcon} className="w-16 h-16" />
+    //   </a>
+    //
+    //   <DesktopLayout hideNav backgroundColor="bg-white">
+    //     <div className="relative xl:h-96">
+    //       <Image
+    //         loader={({ src, width, quality }) =>
+    //           `${src}?w=100%&q=${quality || 75}`
+    //         }
+    //         alt={"image"}
+    //         src={"/spacify/images/desktop_banner.webp"}
+    //         width={0}
+    //         height={0}
+    //         className="xl:block lg:block md:block sm:hidden hidden xl:object-cover lg:object-cover md:object-contain sm:object-contain object-contain xl:h-125 lg:125 md:h-full"
+    //         style={{ width: "100%" }}
+    //       />
+    //
+    //       <Image
+    //         loader={({ src, width, quality }) =>
+    //           `${src}?w=100%&q=${quality || 75}`
+    //         }
+    //         alt={"image"}
+    //         src={"/spacify/images/desktop_banner.webp"}
+    //         width={0}
+    //         height={0}
+    //         className="xl:hidden lg:hidden md:hidden sm:block block md:object-cover sm:object-cover object-cover"
+    //         style={{ width: "100%", height: 200 }}
+    //       />
+    //
+    //       <DesktopSearchBar
+    //         optionList={selectOptionData}
+    //         searchTypeValue={searchTypeValue}
+    //         setSearchTypeValue={setSearchTypeValue}
+    //         onClickSearch={onClickToSearch}
+    //       />
+    //     </div>
+    //
+    //     <div className="xl:pt-52">
+    //       <div className="flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col justify-center items-center gap-4 container mx-auto">
+    //         <CustomText textClassName="text-primary font-bold xl:text-2xl lg:text-2xl md:text-xl sm:text-lg text-md">
+    //           Space For All
+    //         </CustomText>
+    //         <h1 className="italic text-center xl:text-base lg:text-base md:text-sm sm:text-sm text-xs">
+    //           Provides the safe and innovative platform for you need to ﬁnd your
+    //           dream space.
+    //         </h1>
+    //       </div>
+    //
+    //       <DesktopBanner imageData={listingBannerData} />
+    //
+    //       <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+    //         <DesktopPopularCitySection
+    //           onClickViewMore={onClickToSearch}
+    //           data={popularCity}
+    //           loading={listingDataLoading}
+    //         />
+    //       </div>
+    //
+    //       <DesktopFeaturedRoomSection
+    //         data={featuredRooms}
+    //         loading={listingDataLoading}
+    //         onClickViewMore={onClickToSearch}
+    //       />
+    //
+    //       <div className="bg-primary-background xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+    //         <DesktopPopularUniversitySection
+    //           data={popularUniversity}
+    //           loading={listingDataLoading}
+    //           onClickViewMore={onClickToSearch}
+    //         />
+    //       </div>
+    //
+    //       <DesktopCheapestRoomSection
+    //         data={cheapestRooms}
+    //         loading={listingDataLoading}
+    //         onClickViewMore={onClickToSearch}
+    //       />
+    //
+    //       <div className="bg-primary xl:py-10 lg:py-8 md:py-6 sm:py-6 py-4">
+    //         <DesktopPromotionSection
+    //           data={specialPromotion}
+    //           loading={listingDataLoading}
+    //           onClickViewMore={onClickToSearch}
+    //         />
+    //       </div>
+    //     </div>
+    //   </DesktopLayout>
+    //
+    //   {/*<EventBanner />*/}
+    //
+    //   {/*<BottomNavigate*/}
+    //   {/*  t={t}*/}
+    //   {/*  routeName={routeName}*/}
+    //   {/*  routeQuery={routeQuery}*/}
+    //   {/*  onClickChangeTab={onClickChangeTab}*/}
+    //   {/*/>*/}
+    // </div>
   );
 }
 

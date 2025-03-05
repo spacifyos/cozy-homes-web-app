@@ -14,22 +14,13 @@ export default function Custom403() {
     <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
       <NextSeo title="User Forbidden - CozyHomes" />
       <div className="flex gap-1">
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#f9a533" }}
-        >
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
           4
         </CustomText>
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#f05a22" }}
-        >
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
           0
         </CustomText>
-        <CustomText
-          textClassName="font-bold"
-          styles={{ fontSize: 70, color: "#36A9E1" }}
-        >
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
           3
         </CustomText>
       </div>

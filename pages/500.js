@@ -4,49 +4,40 @@ import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 
 export default function Custom500() {
-    const router = useRouter();
+  const router = useRouter();
 
-    const onClickGoToBack = () => {
-        router.replace("/sign-in");
-    };
+  const onClickGoToBack = () => {
+    router.replace("/sign-in");
+  };
 
-    return (
-        <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
-            <NextSeo title="Internet Server Error - CozyHomes" />
-            <div className="flex gap-1">
-                <CustomText
-                    textClassName="font-bold"
-                    styles={{ fontSize: 70, color: "#f9a533" }}
-                >
-                    5
-                </CustomText>
-                <CustomText
-                    textClassName="font-bold"
-                    styles={{ fontSize: 70, color: "#f05a22" }}
-                >
-                    0
-                </CustomText>
-                <CustomText
-                    textClassName="font-bold"
-                    styles={{ fontSize: 70, color: "#36A9E1" }}
-                >
-                    0
-                </CustomText>
-            </div>
+  return (
+    <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
+      <NextSeo title="Internet Server Error - CozyHomes" />
+      <div className="flex gap-1">
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
+          5
+        </CustomText>
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
+          0
+        </CustomText>
+        <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
+          0
+        </CustomText>
+      </div>
 
-            <CustomText textClassName="text-lg text-center font-bold pb-2">
-                Oops! Internet Server Error.
-            </CustomText>
+      <CustomText textClassName="text-lg text-center font-bold pb-2">
+        Oops! Internet Server Error.
+      </CustomText>
 
-            <CustomText textClassName="text-center text-sm pb-6">
-                User can try again later.
-            </CustomText>
+      <CustomText textClassName="text-center text-sm pb-6">
+        User can try again later.
+      </CustomText>
 
-            <CustomButton
-                buttonText="Go to home page"
-                buttonClassName="btn-primary"
-                onClick={onClickGoToBack}
-            />
-        </div>
-    );
+      <CustomButton
+        buttonText="Go to home page"
+        buttonClassName="btn-primary"
+        onClick={onClickGoToBack}
+      />
+    </div>
+  );
 }
