@@ -265,19 +265,19 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         false
       )}
 
-      {!isEmpty(userData) && !isTenant && !isBackOffice ? (
-        <FeatureComponent
-          title={"RenoXpert"}
-          icon={Images.renoExpertIconActive}
-          imageWidth={16}
-          pb={3}
-          onClick={() => {
-            return router.push("/user/reno-expert");
-          }}
-        />
-      ) : (
-        false
-      )}
+      {/*{!isEmpty(userData) && !isTenant && !isBackOffice ? (*/}
+      {/*  <FeatureComponent*/}
+      {/*    title={"RenoXpert"}*/}
+      {/*    icon={Images.renoExpertIconActive}*/}
+      {/*    imageWidth={16}*/}
+      {/*    pb={3}*/}
+      {/*    onClick={() => {*/}
+      {/*      return router.push("/user/reno-expert");*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
 
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
@@ -309,19 +309,19 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       <div className="divider-line"></div>
 
-      {!isEmpty(userData) && !isBackOffice ? (
-        <FeatureComponent
-          title="Chat"
-          icon={Images.chatIconActive}
-          imageWidth={18}
-          pb={3}
-          onClick={() => {
-            return router.push(isTenant ? "/user/chat" : "/user/owner/chat");
-          }}
-        />
-      ) : (
-        false
-      )}
+      {/*{!isEmpty(userData) && !isBackOffice ? (*/}
+      {/*  <FeatureComponent*/}
+      {/*    title="Chat"*/}
+      {/*    icon={Images.chatIconActive}*/}
+      {/*    imageWidth={18}*/}
+      {/*    pb={3}*/}
+      {/*    onClick={() => {*/}
+      {/*      return router.push(isTenant ? "/user/chat" : "/user/owner/chat");*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
 
       <FeatureComponent
         title="Terms & Conditions"

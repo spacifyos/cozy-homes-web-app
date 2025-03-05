@@ -55,21 +55,19 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
         style={{ marginTop: 10, marginBottom: 10 }}
       ></div>
 
-      <div className="grid grid-cols-2 gap-2">
-        <div className="flex items-center col-span-1">
+      <div className="flex gap-3 flex-wrap">
+        <div className="flex items-center">
           <CustomImage
             src={Images.buildingIconActive}
-            className="mr-2"
-            imageStyle={{ width: 18, height: 18 }}
+            className="mr-1 w-4 min-w-4"
           />
           <CustomText textClassName="text-sm">{address}</CustomText>
         </div>
 
-        <div className="flex items-center col-span-1">
+        <div className="flex items-center">
           <CustomImage
             src={Images.spaceIconActive}
-            className="mr-2"
-            imageStyle={{ width: 18, height: 18 }}
+            className="mr-1 w-4 min-w-4"
           />
           <CustomText textClassName="text-sm">{roomName}</CustomText>
         </div>

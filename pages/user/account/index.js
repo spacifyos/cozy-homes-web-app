@@ -401,19 +401,19 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (
-            <FeatureComponent
-              title={"RenoXpert"}
-              icon={Images.renoExpertIconActive}
-              imageWidth={16}
-              pb={3}
-              onClick={() => {
-                return router.push("/user/reno-expert");
-              }}
-            />
-          ) : (
-            false
-          )}
+          {/*{!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (*/}
+          {/*  <FeatureComponent*/}
+          {/*    title={"RenoXpert"}*/}
+          {/*    icon={Images.renoExpertIconActive}*/}
+          {/*    imageWidth={16}*/}
+          {/*    pb={3}*/}
+          {/*    onClick={() => {*/}
+          {/*      return router.push("/user/reno-expert");*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*) : (*/}
+          {/*  false*/}
+          {/*)}*/}
 
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
@@ -441,21 +441,21 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && !isBackOffice ? (
-            <FeatureComponent
-              title="Chat"
-              icon={Images.chatIconActive}
-              imageWidth={18}
-              pb={3}
-              onClick={() => {
-                return router.push(
-                  isTenant ? "/user/chat" : "/user/owner/chat",
-                );
-              }}
-            />
-          ) : (
-            false
-          )}
+          {/*{!isEmpty(userProfileData) && !isBackOffice ? (*/}
+          {/*  <FeatureComponent*/}
+          {/*    title="Chat"*/}
+          {/*    icon={Images.chatIconActive}*/}
+          {/*    imageWidth={18}*/}
+          {/*    pb={3}*/}
+          {/*    onClick={() => {*/}
+          {/*      return router.push(*/}
+          {/*        isTenant ? "/user/chat" : "/user/owner/chat",*/}
+          {/*      );*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*) : (*/}
+          {/*  false*/}
+          {/*)}*/}
 
           <div className="divider-line"></div>
 

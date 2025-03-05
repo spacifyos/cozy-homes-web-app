@@ -144,10 +144,10 @@ const MyReport = ({ id }) => {
           </div>
         }
       >
-        <div className="bg-white flex flex-col flex-1 p-10 h-full border global-border-radius">
+        <div className="bg-white flex flex-col flex-1 p-5 h-full border global-border-radius">
           <div className="flex justify-between pb-2">
             <div className="flex justify-center items-center">
-              <CustomText textClassName="font-bold text-primary pr-2">
+              <CustomText textClassName="font-bold text-primary  pr-1">
                 Monthly P&L Statement
               </CustomText>
 
@@ -157,7 +157,7 @@ const MyReport = ({ id }) => {
                 className="w-4 h-4 cursor-pointer"
               />
             </div>
-            <CustomText>{isEmpty(month) ? "-" : month}</CustomText>
+            <CustomText textClassName="text-sm">{isEmpty(month) ? "-" : month}</CustomText>
           </div>
 
           <div className="divider-line"></div>

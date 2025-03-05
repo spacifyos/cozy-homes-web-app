@@ -134,6 +134,10 @@ const isOwner = (role) => {
   return includes(role, Constant.OWNER_ROLE);
 };
 
+const isBackOffice = (role) => {
+  return includes(role, Constant.BACK_OFFICE);
+};
+
 export default {
   isProduction,
   secToMin,
@@ -148,4 +152,5 @@ export default {
   isTechnician,
   isTenant,
   isOwner,
+  isBackOffice,
 };

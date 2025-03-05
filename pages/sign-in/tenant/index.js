@@ -116,10 +116,10 @@ const SignInTenant = () => {
           {/*>*/}
           <div className="">
             <div className="pb-6 flex flex-col items-center">
-              <CustomImage
-                src={Images.logoHorizontalColor}
-                className="mb-4 h-32 w-3/4"
-              />
+              {/*<CustomImage*/}
+              {/*  src={Images.logoHorizontalColor}*/}
+              {/*  className="mb-4 h-16 w-3/4"*/}
+              {/*/>*/}
 
               <CustomText
                 textClassName="text-black font-bold leading-10"

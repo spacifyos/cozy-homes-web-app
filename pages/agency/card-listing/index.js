@@ -268,16 +268,17 @@ const CardListing = () => {
                   </CustomText>
                 </li>
               </ul>
-              <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
-                <CustomImage
-                  src={Images.leftIconBlack}
-                  className="w-2"
-                  onClick={onClickGoBack}
-                />
-                <CustomText textClassName="text-base">
-                  Property Listing
-                </CustomText>
-              </div>
+            </div>
+
+            <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
+              <CustomImage
+                src={Images.leftIconBlack}
+                className="w-2"
+                onClick={onClickGoBack}
+              />
+              <CustomText textClassName="text-base">
+                Property Listing
+              </CustomText>
             </div>
           </div>
         }

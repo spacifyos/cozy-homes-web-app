@@ -29,29 +29,30 @@ const DesktopHeader = ({
           />
 
           {isEmpty(data) ? (
-            <div className="flex gap-3 flex">
-              <CustomButton
-                icon={loading ? "" : Image.signUpIconActive}
-                buttonText={`Sign In`}
-                buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
-                textClassName="text-sm"
-                reverse
-                loadingColor="text-primary"
-                loading={loading}
-                onClick={onClickSignIn}
-              />
-
-              <CustomButton
-                icon={loading ? "" : Image.signUpIconActive}
-                buttonText={`Sign In`}
-                buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
-                textClassName="text-sm"
-                reverse
-                loadingColor="text-primary"
-                loading={loading}
-                onClick={onClickSignIn}
-              />
-            </div>
+            // <div className="flex gap-3 flex">
+            //   <CustomButton
+            //     icon={loading ? "" : Image.signUpIconActive}
+            //     buttonText={`Sign In`}
+            //     buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
+            //     textClassName="text-sm"
+            //     reverse
+            //     loadingColor="text-primary"
+            //     loading={loading}
+            //     onClick={onClickSignIn}
+            //   />
+            //
+            //   <CustomButton
+            //     icon={loading ? "" : Image.signUpIconActive}
+            //     buttonText={`Sign In`}
+            //     buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
+            //     textClassName="text-sm"
+            //     reverse
+            //     loadingColor="text-primary"
+            //     loading={loading}
+            //     onClick={onClickSignIn}
+            //   />
+            // </div>
+            false
           ) : (
             <div className="flex gap-3 flex">
               <CustomButton
@@ -87,18 +88,19 @@ const DesktopHeader = ({
           />
 
           {isEmpty(data) ? (
-            <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-              <CustomButton
-                icon={loading ? "" : Image.signUpIconActive}
-                buttonText={`Sign In`}
-                buttonClassName="btn-white w-36 min-h-10 h-10"
-                textClassName="text-sm"
-                reverse
-                loadingColor="text-primary"
-                loading={loading}
-                onClick={onClickSignIn}
-              />
-            </div>
+            // <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
+            //   <CustomButton
+            //     icon={loading ? "" : Image.signUpIconActive}
+            //     buttonText={`Sign In`}
+            //     buttonClassName="btn-white w-36 min-h-10 h-10"
+            //     textClassName="text-sm"
+            //     reverse
+            //     loadingColor="text-primary"
+            //     loading={loading}
+            //     onClick={onClickSignIn}
+            //   />
+            // </div>
+            false
           ) : (
             <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
               <CustomButton

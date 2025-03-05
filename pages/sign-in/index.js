@@ -27,7 +27,7 @@ const SignIn = () => {
       >
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start py-10">
           <div
-            className={`flex flex-col items-center w-full bg-primary-background`}
+            className={`flex flex-col items-center justify-center w-full bg-primary-background`}
           >
             <CustomText
               styles={{ fontSize: 32 }}
@@ -38,13 +38,13 @@ const SignIn = () => {
 
             <CustomImage
               src={Images.logoHorizontalColor}
-              imageStyle={{ width: 150 }}
-              className="mb-4"
+              className="mb-4 w-3/5 xl:h-24 lg:h-24 md:h-24 sm:h-16 h-16"
             />
 
             <a
               href={`/sign-in/${Constant.TENANT}`}
-              className="global-box-shadow global-border-radius mb-6 w-full cursor-pointer"
+              className="global-box-shadow mb-6 xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
+              style={{ borderRadius: 20 }}
             >
               <CustomImage
                 src={Images.tenantCard}
@@ -54,7 +54,8 @@ const SignIn = () => {
 
             <a
               href={`/sign-in/${Constant.OWNER}`}
-              className="global-box-shadow global-border-radius w-full cursor-pointer"
+              className="global-box-shadow xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
+              style={{ borderRadius: 20 }}
             >
               <CustomImage
                 src={Images.ownerCard}

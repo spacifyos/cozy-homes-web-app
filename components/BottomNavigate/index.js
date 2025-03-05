@@ -10,15 +10,20 @@ import { useRouter } from "next/router";
 const BottomNavigate = ({ routeName, routeQuery }) => {
   const router = useRouter();
   const [lists, setLists] = useState([]);
-
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const isAtBottom = currentScrollY + windowHeight >= documentHeight - 10; // 10px threshold
 
-      if (currentScrollY > lastScrollY) {
+      if (isAtBottom) {
+        // At bottom of page
+        setIsVisible(false);
+      } else if (currentScrollY > lastScrollY) {
         // Scrolling down
         setIsVisible(false);
       } else {

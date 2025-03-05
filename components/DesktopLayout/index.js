@@ -55,8 +55,6 @@ const DesktopLayout = ({
 
   const [selectedUserType, setSelectedUserType] = useState("");
   const [signOutLoading, setSignOutLoading] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   const userType = authSelector.getType(userProfileData);
 
@@ -109,7 +107,11 @@ const DesktopLayout = ({
   };
 
   const onClickExplore = () => {
-    router.push("/sign-in");
+    if (isEmpty(userProfileData)) {
+      router.push("/sign-in");
+    } else {
+      router.push("/user/account");
+    }
   };
 
   const onClickLogoutModal = () => {
@@ -159,7 +161,7 @@ const DesktopLayout = ({
             {isEmpty(pageBreadcrumbs) ? (
               false
             ) : (
-              <div className="container mx-auto xl:py-4 lg:py-4 md:py-4 sm:py-4 py-2">
+              <div className="container mx-auto pt-2 xl:pt-4 lg:pt-4 md:pt-4 sm:pt-4 xl:pb-6 lg:pb-6 md:pb-6 sm:pb-6 pb-6">
                 {pageBreadcrumbs}
               </div>
             )}
@@ -257,7 +259,7 @@ const DesktopLayout = ({
       {includes(pathname, "/user/") ||
       includes(pathname, "/agency/") ||
       includes(pathname, "/sign-in") ||
-      includes(pathname, "/sign-up")||
+      includes(pathname, "/sign-up") ||
       includes(pathname, "/reset-password") ? (
         false
       ) : (
