@@ -88,7 +88,7 @@ function AppContent({ Component, pageProps }) {
         {/*/>*/}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
-          content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5"
+          content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=1"
           name="viewport"
         />
         <meta name="theme-color" content="#36A9E1" />
