@@ -195,24 +195,27 @@ const DesktopLayout = ({
                   <CustomImage
                     src={rightSecondButtonIcon}
                     onClick={onClickRightSecondButton}
-                    className="cursor-pointer w-5 h-5"
+                    className="cursor-pointer w-5 h-5 max-w-5"
                   />
                 )}
 
-                <div onClick={onClickRightButton} className="relative w-5 h-5">
+                <div
+                  onClick={onClickRightButton}
+                  className="relative w-5 h-5 max-w-5"
+                >
                   {isEmpty(rightButtonIcon) ? (
                     rightContent
                   ) : (
                     <CustomImage
                       src={rightButtonIcon}
                       onClick={onClickRightButton}
-                      className="cursor-pointer w-5 h-5"
+                      className="cursor-pointer w-5 h-5 max-w-5"
                     />
                   )}
                   {isFiltered ? (
                     <div
-                      className="w-2.5 h-2.5 rounded-2xl bg-error absolute "
-                      style={{ top: -10, right: -10 }}
+                      className="w-2 h-2 max-w-2 rounded-2xl bg-error absolute "
+                      style={{ top: -8, right: -8 }}
                     ></div>
                   ) : (
                     false

@@ -155,8 +155,8 @@ const PaymentSuccessful = ({ id }) => {
         </div>
 
         <div className="relative pt-6 flex justify-center w-full">
-          <div className="bg-primary p-2 global-border-radius absolute top-0">
-            <CustomImage src={Images.infoIconActive} className="w-6" />
+          <div className="bg-primary p-3 global-border-radius absolute top-0">
+            <CustomImage src={Images.invoiceIconWhite} className="w-6" />
           </div>
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <CustomLabelValue

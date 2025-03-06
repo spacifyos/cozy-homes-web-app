@@ -653,13 +653,11 @@ const RequestOverview = ({ id }) => {
         },
         (err) => {
           Toast.error(err.message);
-          console.log(err.message);
           setCheckInLoading(false);
         },
       );
     } else {
       Toast.error("Geolocation is not supported by your browser.");
-      console.log("Geolocation is not supported by your browser.");
       setCheckInLoading(false);
     }
   };
@@ -686,13 +684,11 @@ const RequestOverview = ({ id }) => {
         },
         (err) => {
           Toast.error(err.message);
-          console.log(err.message);
           setCheckOutLoading(false);
         },
       );
     } else {
       Toast.error("Geolocation is not supported by your browser.");
-      console.log("Geolocation is not supported by your browser.");
       setCheckOutLoading(false);
     }
   };

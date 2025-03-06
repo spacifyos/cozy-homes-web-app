@@ -18,12 +18,12 @@ const SpaceDetailCard = ({ item }) => {
 
   return (
     <div
-      className={`global-box-shadow global-border-radius p-2 flex justify-between items-center ${isEqual(status, "Available") ? "bg-white" : "bg-error"}`}
+      className={`global-box-shadow global-border-radius p-2 flex justify-between items-center ${isEqual(status, "Available") ? "bg-available-light" : "bg-error-light"}`}
     >
       <div className="flex flex-1 items-center">
         <CustomImage
           src={isEmpty(roomImage) ? Images.imageNotFound : roomImage}
-          imageStyle={{ height: 100, width: 100 }}
+          className="w-24 mx-2"
         />
 
         <div className="px-3 flex-1">
@@ -37,7 +37,7 @@ const SpaceDetailCard = ({ item }) => {
                 </CustomText>
               </div>
 
-              <div className="flex items-end">
+              <div className="flex xl:flex-row lg:flex-row md:flex-row sm:flex-row flex-col items-end">
                 <CustomText textClassName="font-bold text-base pr-1">
                   {isEmpty(remainingDays) ? "0" : remainingDays}
                 </CustomText>

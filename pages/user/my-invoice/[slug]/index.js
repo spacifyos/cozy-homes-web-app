@@ -171,14 +171,8 @@ const InvoiceOverview = ({ id }) => {
           rootDataLoading ||
           downloading
         }
-        rightContent={
-          <CustomImage
-            src={Images.downloadIconBlack}
-            imageStyle={{ width: 25 }}
-            className="cursor-pointer"
-            onClick={onClickDownload}
-          />
-        }
+        rightButtonIcon={Images.downloadIconBlack}
+        onClickRightButton={onClickDownload}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -209,10 +203,7 @@ const InvoiceOverview = ({ id }) => {
       >
         <div className="relative pt-6 flex justify-center">
           <div className="bg-primary p-3 global-border-radius absolute top-0">
-            <CustomImage
-              src={Images.invoiceIconWhite}
-              className="w-6"
-            />
+            <CustomImage src={Images.invoiceIconWhite} className="w-6" />
           </div>
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <div className="flex justify-between">

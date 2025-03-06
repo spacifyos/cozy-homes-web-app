@@ -162,7 +162,7 @@ const MaintenanceScheduleInformation = ({
                   }
                 >
                   <CustomImage
-                    src={Images.plusIcon}
+                    src={Images.addIconBlack}
                     imageStyle={{ width: 20, height: 20 }}
                   />
 
@@ -227,7 +227,7 @@ const MaintenanceScheduleInformation = ({
                   }
                 >
                   <CustomImage
-                    src={Images.plusIcon}
+                    src={Images.addIconBlack}
                     imageStyle={{ width: 20, height: 20 }}
                   />
 

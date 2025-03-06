@@ -543,13 +543,17 @@ const RequestOverview = ({ id }) => {
 
           <TechnicianInFormationBoard data={maintenanceTicketOverviewData} />
 
-          <MaintenanceScheduleInformationComponent
-            data={maintenanceTicketOverviewData}
-            images={technicianImageList}
-            videos={technicianVideoValue}
-            onClickPopupImage={onClickPopupImage}
-            onClickPopupVideo={onClickPopupVideo}
-          />
+          {isEmpty(technicianImageList) && isEmpty(technicianVideoValue) ? (
+            false
+          ) : (
+            <MaintenanceScheduleInformationComponent
+              data={maintenanceTicketOverviewData}
+              images={technicianImageList}
+              videos={technicianVideoValue}
+              onClickPopupImage={onClickPopupImage}
+              onClickPopupVideo={onClickPopupVideo}
+            />
+          )}
 
           <CommentComponent
             onClickSendMessage={onClickSendMessage}

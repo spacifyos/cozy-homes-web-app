@@ -13,8 +13,6 @@ const ImageModal = ({
   openImageModal,
 }) => {
   const imageDataValidate = isEmpty(data) ? selectedImage : data;
-  console.log("data", data);
-  console.log("selectedImage", selectedImage);
 
   return openImageModal ? (
     <div
