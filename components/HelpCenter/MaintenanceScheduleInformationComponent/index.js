@@ -49,12 +49,11 @@ const MaintenanceScheduleInformation = ({
               const image = get(list, ["image"], "");
 
               return (
-                <div className="relative">
+                <div className="relative" key={index}>
                   <CustomImage
                     onClick={() => onClickPopupImage(index, "technician")}
-                    key={index}
                     src={image}
-                    className="global-border-radius border w-28 h-28 cursor-pointer"
+                    className="global-border-radius border w-28 h-28 cursor-pointer overflow-hidden"
                   />
                 </div>
               );
@@ -76,7 +75,7 @@ const MaintenanceScheduleInformation = ({
             <CustomImage
               src={Images.playIcon}
               className="w-14 h-14 cursor-pointer"
-              onClick={() => onClickPopupVideo("technician")}
+              onClick={() => onClickPopupVideo("tenant")}
             />
           </div>
         </div>

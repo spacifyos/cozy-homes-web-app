@@ -1,13 +1,17 @@
 import CustomText from "@/components/CustomText";
-import { get, isEmpty } from "lodash";
+import { get, isEmpty, replace } from "lodash";
 
 const VideoModal = ({
   selectedVideo,
   onClickCloseVideoModal,
   openVideoModal,
 }) => {
-  const video = get(selectedVideo, ["video"], "");
-  const tempUrl = get(selectedVideo, ["tempUrl"], "");
+  const video = replace(get(selectedVideo, ["video"], ""), "quicktime", "mp4");
+  const tempUrl = replace(
+    get(selectedVideo, ["tempUrl"], ""),
+    "quicktime",
+    "mp4",
+  );
 
   return openVideoModal ? (
     <div

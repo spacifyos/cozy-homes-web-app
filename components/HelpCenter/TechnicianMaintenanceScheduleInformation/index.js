@@ -122,7 +122,7 @@ const MaintenanceScheduleInformation = ({
                 return (
                   <div
                     key={index}
-                    className={`w-28 h-28 relative flex justify-center items-center border ${isEmpty(path) ? "" : status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
+                    className={`w-28 h-28 relative overflow-hidden flex justify-center items-center border ${isEmpty(path) ? "" : status ? "border-available" : "border-error"} global-border-radius cursor-pointer`}
                   >
                     <CustomImage
                       onClick={() => onClickPopupImage(index, "technician")}

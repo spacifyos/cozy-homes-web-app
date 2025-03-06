@@ -20,6 +20,7 @@ const CustomImage = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        overflow: "hidden",
         ...imageStyle,
       }}
       onClick={onClick}

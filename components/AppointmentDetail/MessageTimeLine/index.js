@@ -45,7 +45,7 @@ const MessageTimeLine = ({ item, onClickSelectedCommentImage }) => {
               <CustomImage
                 key={index}
                 onClick={() => onClickSelectedCommentImage(image)}
-                className="w-10 h-10 border global-border-radius cursor-pointer"
+                className="w-14 h-14 border global-border-radius cursor-pointer overflow-hidden"
                 src={isEmpty(image) ? Images.imageNotFound : image}
               />
             ))}
