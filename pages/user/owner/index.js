@@ -188,12 +188,12 @@ const OwnerHome = () => {
         </div>
       </DesktopLayout>
 
-      <BottomNavigate
-        t={t}
-        routeName={routeName}
-        routeQuery={routeQuery}
-        onClickChangeTab={onClickChangeTab}
-      />
+      {/*<BottomNavigate*/}
+      {/*  t={t}*/}
+      {/*  routeName={routeName}*/}
+      {/*  routeQuery={routeQuery}*/}
+      {/*  onClickChangeTab={onClickChangeTab}*/}
+      {/*/>*/}
     </div>
   );
 };

@@ -504,16 +504,16 @@ const Account = () => {
         otpRequestLoading={otpRequestLoading}
       />
 
-      {Helper.isTenant(userRole) || Helper.isOwner(userRole) ? (
-        <BottomNavigate
-          t={t}
-          routeName={routeName}
-          routeQuery={routeQuery}
-          onClickChangeTab={onClickChangeTab}
-        />
-      ) : (
-        false
-      )}
+      {/*{Helper.isTenant(userRole) || Helper.isOwner(userRole) ? (*/}
+      {/*  <BottomNavigate*/}
+      {/*    t={t}*/}
+      {/*    routeName={routeName}*/}
+      {/*    routeQuery={routeQuery}*/}
+      {/*    onClickChangeTab={onClickChangeTab}*/}
+      {/*  />*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
     </div>
   );
 };

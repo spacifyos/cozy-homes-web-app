@@ -20,102 +20,102 @@ const DesktopHeader = ({
 
   return (
     <div className="bg-white" style={{ borderBottom: "3px #f5f8fd solid" }}>
-      {isEqual(pathname, "/") ? (
-        <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
-          <CustomImage
-            src={Image.logoHorizontalColor}
-            onClick={onClickExplore}
-            className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"
-          />
+      {/*{isEqual(pathname, "/") ? (*/}
+      <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
+        <CustomImage
+          src={Image.logoHorizontalColor}
+          onClick={onClickExplore}
+          className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"
+        />
 
-          {isEmpty(data) ? (
-            // <div className="flex gap-3 flex">
-            //   <CustomButton
-            //     icon={loading ? "" : Image.signUpIconActive}
-            //     buttonText={`Sign In`}
-            //     buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
-            //     textClassName="text-sm"
-            //     reverse
-            //     loadingColor="text-primary"
-            //     loading={loading}
-            //     onClick={onClickSignIn}
-            //   />
-            //
-            //   <CustomButton
-            //     icon={loading ? "" : Image.signUpIconActive}
-            //     buttonText={`Sign In`}
-            //     buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
-            //     textClassName="text-sm"
-            //     reverse
-            //     loadingColor="text-primary"
-            //     loading={loading}
-            //     onClick={onClickSignIn}
-            //   />
-            // </div>
-            false
-          ) : (
-            <div className="flex gap-3 flex">
-              <CustomButton
-                icon={Image.accountIconFillActive}
-                imageStyle={{ width: 13 }}
-                textClassName="text-xs"
-                buttonText={`Hi, ${name}`}
-                buttonClassName={`btn-white min-w-40 xl:flex lg:flex md:hidden sm:hidden hidden`}
-                reverse
-                loading={loading}
-                onClick={onClickMyAccount}
-              />
+        {isEmpty(data) ? (
+          // <div className="flex gap-3 flex">
+          //   <CustomButton
+          //     icon={loading ? "" : Image.signUpIconActive}
+          //     buttonText={`Sign In`}
+          //     buttonClassName="btn-white w-36 min-h-10 h-10 xl:flex lg:flex md:hidden sm:hidden hidden"
+          //     textClassName="text-sm"
+          //     reverse
+          //     loadingColor="text-primary"
+          //     loading={loading}
+          //     onClick={onClickSignIn}
+          //   />
+          //
+          //   <CustomButton
+          //     icon={loading ? "" : Image.signUpIconActive}
+          //     buttonText={`Sign In`}
+          //     buttonClassName="btn-white min-h-10 h-10 xl:hidden lg:hidden"
+          //     textClassName="text-sm"
+          //     reverse
+          //     loadingColor="text-primary"
+          //     loading={loading}
+          //     onClick={onClickSignIn}
+          //   />
+          // </div>
+          false
+        ) : (
+          <div className="flex gap-3 flex">
+            {/*<CustomButton*/}
+            {/*  icon={Image.accountIconFillActive}*/}
+            {/*  imageStyle={{ width: 13 }}*/}
+            {/*  textClassName="text-xs"*/}
+            {/*  buttonText={`Hi, ${name}`}*/}
+            {/*  buttonClassName={`btn-white min-w-40 xl:flex lg:flex md:hidden sm:hidden hidden`}*/}
+            {/*  reverse*/}
+            {/*  loading={loading}*/}
+            {/*  onClick={onClickMyAccount}*/}
+            {/*/>*/}
 
-              <CustomButton
-                icon={Image.accountIconFillActive}
-                imageStyle={{ width: 13 }}
-                textClassName="text-xs"
-                // buttonText={`Hi, ${name}`}
-                buttonClassName={`btn-white xl:hidden lg:hidden w-16`}
-                reverse
-                loading={loading}
-                onClick={onClickMyAccount}
-              />
-            </div>
-          )}
-        </div>
-      ) : (
-        <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">
-          <CustomImage
-            src={Image.logoHorizontalColor}
-            onClick={onClickExplore}
-            className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"
-          />
+            <CustomButton
+              icon={Image.accountIconFillActive}
+              imageStyle={{ width: 13 }}
+              textClassName="text-xs"
+              // buttonText={`Hi, ${name}`}
+              buttonClassName={`btn-white xl:hidden lg:hidden w-16`}
+              reverse
+              loading={loading}
+              onClick={onClickMyAccount}
+            />
+          </div>
+        )}
+      </div>
+      {/*) : (*/}
+      {/*  <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-center justify-center items-center">*/}
+      {/*    <CustomImage*/}
+      {/*      src={Image.logoHorizontalColor}*/}
+      {/*      onClick={onClickExplore}*/}
+      {/*      className="cursor-pointer xl:w-40 lg:w-36 md:w-36 sm:w-36 w-32"*/}
+      {/*    />*/}
 
-          {isEmpty(data) ? (
-            // <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-            //   <CustomButton
-            //     icon={loading ? "" : Image.signUpIconActive}
-            //     buttonText={`Sign In`}
-            //     buttonClassName="btn-white w-36 min-h-10 h-10"
-            //     textClassName="text-sm"
-            //     reverse
-            //     loadingColor="text-primary"
-            //     loading={loading}
-            //     onClick={onClickSignIn}
-            //   />
-            // </div>
-            false
-          ) : (
-            <div className="flex gap-3 hidden xl:flex lg:flex md:flex">
-              <CustomButton
-                icon={Image.accountIconFillActive}
-                imageStyle={{ width: 13 }}
-                buttonText={`Hi, ${name}`}
-                buttonClassName={`btn-white min-w-44`}
-                reverse
-                loading={loading}
-                onClick={onClickMyAccount}
-              />
-            </div>
-          )}
-        </div>
-      )}
+      {/*    {isEmpty(data) ? (*/}
+      {/*       <div className="flex gap-3 hidden xl:flex lg:flex md:flex">*/}
+      {/*         <CustomButton*/}
+      {/*           icon={loading ? "" : Image.signUpIconActive}*/}
+      {/*           buttonText={`Sign In`}*/}
+      {/*           buttonClassName="btn-white w-36 min-h-10 h-10"*/}
+      {/*           textClassName="text-sm"*/}
+      {/*           reverse*/}
+      {/*           loadingColor="text-primary"*/}
+      {/*           loading={loading}*/}
+      {/*           onClick={onClickSignIn}*/}
+      {/*         />*/}
+      {/*       </div>*/}
+      {/*      false*/}
+      {/*    ) : (*/}
+      {/*      <div className="flex gap-3 hidden xl:flex lg:flex md:flex">*/}
+      {/*        <CustomButton*/}
+      {/*          icon={Image.accountIconFillActive}*/}
+      {/*          imageStyle={{ width: 13 }}*/}
+      {/*          buttonText={`Hi, ${name}`}*/}
+      {/*          buttonClassName={`btn-white min-w-44`}*/}
+      {/*          reverse*/}
+      {/*          loading={loading}*/}
+      {/*          onClick={onClickMyAccount}*/}
+      {/*        />*/}
+      {/*      </div>*/}
+      {/*    )}*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </div>
   );
 };

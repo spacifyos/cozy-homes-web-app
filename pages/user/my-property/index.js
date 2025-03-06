@@ -153,7 +153,7 @@ const MyStay = () => {
         </div>
       </DesktopLayout>
 
-      <BottomNavigate routeName={routeName} routeQuery={routeQuery} />
+      {/*<BottomNavigate routeName={routeName} routeQuery={routeQuery} />*/}
     </div>
   );
 };

@@ -18,7 +18,7 @@ const FeatureComponent = ({ name, icon, disable = false, route = "#" }) => {
       <div
         className={`feature-icon-container bg-white`}
       >
-        <CustomImage src={icon} className="w-7" />
+        <CustomImage src={icon} className="w-7 max-w-7 max-h-7" />
       </div>
 
       <CustomText
