@@ -110,7 +110,15 @@ const DesktopLayout = ({
     if (isEmpty(userProfileData)) {
       router.push("/sign-in");
     } else {
-      router.push("/user/account");
+      if (Helper.isBackOffice(userType)) {
+        router.push("/user/account");
+      } else if (Helper.isTenant(userType)) {
+        router.push("/user/my-property");
+      } else if (Helper.isOwner(userType)) {
+        router.push("/user/owner");
+      } else {
+        router.push("/user/account");
+      }
     }
   };
 

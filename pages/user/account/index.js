@@ -307,15 +307,15 @@ const Account = () => {
             false
           )}
 
-          <FeatureComponent
-            title="My Account"
-            icon={Images.accountIconActive}
-            pb={3}
-            onClick={() => {
-              return router.push("/user/account");
-            }}
-            imageWidth={16}
-          />
+          {/*<FeatureComponent*/}
+          {/*  title="My Account"*/}
+          {/*  icon={Images.accountIconActive}*/}
+          {/*  pb={3}*/}
+          {/*  onClick={() => {*/}
+          {/*    return router.push("/user/account");*/}
+          {/*  }}*/}
+          {/*  imageWidth={16}*/}
+          {/*/>*/}
 
           {!isEmpty(userProfileData) && isTenant ? (
             <FeatureComponent
