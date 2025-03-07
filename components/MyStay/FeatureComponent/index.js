@@ -16,9 +16,9 @@ const FeatureComponent = ({ name, icon, disable = false, route = "#" }) => {
   return (
     <a href={route} className="feature-container" ref={targetRef}>
       <div
-        className={`feature-icon-container bg-white`}
+        className={`feature-icon-container bg-white w-16 h-16 min-h-16 mb-2`}
       >
-        <CustomImage src={icon} className="w-7 max-w-7 max-h-7" />
+        <CustomImage src={icon} className="w-6" />
       </div>
 
       <CustomText
