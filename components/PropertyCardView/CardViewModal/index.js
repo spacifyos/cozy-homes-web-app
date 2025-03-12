@@ -62,21 +62,21 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
                   : "Occupied"}
             </CustomText>
 
-            <CustomImage
-              src={
-                isAvailableBook
-                  ? Images.shareIconActive
-                  : Images.shareIconDisable
-              }
-              className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}
-              onClick={(event) => {
-                if (isAvailableBook) {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  onClickShareBooking(bookingLink);
-                }
-              }}
-            />
+            {/*<CustomImage*/}
+            {/*  src={*/}
+            {/*    isAvailableBook*/}
+            {/*      ? Images.shareIconActive*/}
+            {/*      : Images.shareIconDisable*/}
+            {/*  }*/}
+            {/*  className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}*/}
+            {/*  onClick={(event) => {*/}
+            {/*    if (isAvailableBook) {*/}
+            {/*      event.stopPropagation();*/}
+            {/*      event.preventDefault();*/}
+            {/*      onClickShareBooking(bookingLink);*/}
+            {/*    }*/}
+            {/*  }}*/}
+            {/*/>*/}
           </div>
 
           <CustomText textClassName="text-xs">

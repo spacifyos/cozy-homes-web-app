@@ -89,21 +89,21 @@ const MobileUnitContent = ({ unitListing, onClickShareBooking }) => {
                               </CustomText>
                             </div>
 
-                            <CustomImage
-                              src={
-                                isEmpty(isAvailableBook)
-                                  ? Images.shareIconActive
-                                  : Images.shareIconDisable
-                              }
-                              className="w-3 cursor-pointer"
-                              onClick={(event) => {
-                                if (isAvailableBook) {
-                                  event.stopPropagation();
-                                  event.preventDefault();
-                                  onClickShareBooking(bookingLink);
-                                }
-                              }}
-                            />
+                            {/*<CustomImage*/}
+                            {/*  src={*/}
+                            {/*    isEmpty(isAvailableBook)*/}
+                            {/*      ? Images.shareIconActive*/}
+                            {/*      : Images.shareIconDisable*/}
+                            {/*  }*/}
+                            {/*  className="w-3 cursor-pointer"*/}
+                            {/*  onClick={(event) => {*/}
+                            {/*    if (isAvailableBook) {*/}
+                            {/*      event.stopPropagation();*/}
+                            {/*      event.preventDefault();*/}
+                            {/*      onClickShareBooking(bookingLink);*/}
+                            {/*    }*/}
+                            {/*  }}*/}
+                            {/*/>*/}
                           </div>
 
                           <CustomText textClassName="text-xxs line-clamp-1">
