@@ -179,23 +179,23 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         imageWidth={16}
       />
 
-      {!isEmpty(userData) && (isTenant || isBackOffice) ? (
-        <FeatureComponent
-          title="Help Center"
-          icon={Images.helpCenterIconActive}
-          pb={3}
-          onClick={() => {
-            if (isTenant) {
-              return router.push("/user/help-center");
-            } else if (isBackOffice) {
-              return router.push("/agency/help-center");
-            }
-          }}
-          imageWidth={18}
-        />
-      ) : (
-        false
-      )}
+      {/*{!isEmpty(userData) && (isTenant || isBackOffice) ? (*/}
+      {/*  <FeatureComponent*/}
+      {/*    title="Help Center"*/}
+      {/*    icon={Images.helpCenterIconActive}*/}
+      {/*    pb={3}*/}
+      {/*    onClick={() => {*/}
+      {/*      if (isTenant) {*/}
+      {/*        return router.push("/user/help-center");*/}
+      {/*      } else if (isBackOffice) {*/}
+      {/*        return router.push("/agency/help-center");*/}
+      {/*      }*/}
+      {/*    }}*/}
+      {/*    imageWidth={18}*/}
+      {/*  />*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
 
       {/*{!isEmpty(userData) && isBackOffice ? (*/}
       {/*  <FeatureComponent*/}

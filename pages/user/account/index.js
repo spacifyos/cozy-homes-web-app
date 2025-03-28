@@ -317,19 +317,19 @@ const Account = () => {
           {/*  imageWidth={16}*/}
           {/*/>*/}
 
-          {!isEmpty(userProfileData) && isTenant ? (
-            <FeatureComponent
-              title="Help Center"
-              icon={Images.helpCenterIconActive}
-              pb={3}
-              onClick={() => {
-                return router.push("/user/help-center");
-              }}
-              imageWidth={18}
-            />
-          ) : (
-            false
-          )}
+          {/*{!isEmpty(userProfileData) && isTenant ? (*/}
+          {/*  <FeatureComponent*/}
+          {/*    title="Help Center"*/}
+          {/*    icon={Images.helpCenterIconActive}*/}
+          {/*    pb={3}*/}
+          {/*    onClick={() => {*/}
+          {/*      return router.push("/user/help-center");*/}
+          {/*    }}*/}
+          {/*    imageWidth={18}*/}
+          {/*  />*/}
+          {/*) : (*/}
+          {/*  false*/}
+          {/*)}*/}
 
           {!isEmpty(userProfileData) && isBackOffice ? (
             <FeatureComponent
