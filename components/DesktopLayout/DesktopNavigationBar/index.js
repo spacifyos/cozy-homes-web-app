@@ -323,16 +323,16 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {/*  false*/}
       {/*)}*/}
 
-      <FeatureComponent
-        title="Terms & Conditions"
-        icon={Images.termIconActive}
-        imageWidth={18}
-        pb={3}
-        route={"https://tms.spacify.asia/privacy-policy"}
-        target="_blank"
-      />
+      {/*<FeatureComponent*/}
+      {/*  title="Terms & Conditions"*/}
+      {/*  icon={Images.termIconActive}*/}
+      {/*  imageWidth={18}*/}
+      {/*  pb={3}*/}
+      {/*  route={"https://tms.spacify.asia/privacy-policy"}*/}
+      {/*  target="_blank"*/}
+      {/*/>*/}
 
-      <div className="divider-line"></div>
+      {/*<div className="divider-line"></div>*/}
 
       <FeatureComponent
         title="Logout"

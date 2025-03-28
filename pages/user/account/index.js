@@ -459,16 +459,16 @@ const Account = () => {
 
           <div className="divider-line"></div>
 
-          <FeatureComponent
-            title={"Term And Condition"}
-            icon={Images.termIconActive}
-            imageWidth={18}
-            pb={3}
-            route={"https://tms.spacify.asia/privacy-policy"}
-            target="_blank"
-          />
+          {/*<FeatureComponent*/}
+          {/*  title={"Term And Condition"}*/}
+          {/*  icon={Images.termIconActive}*/}
+          {/*  imageWidth={18}*/}
+          {/*  pb={3}*/}
+          {/*  route={"https://tms.spacify.asia/privacy-policy"}*/}
+          {/*  target="_blank"*/}
+          {/*/>*/}
 
-          <div className="divider-line"></div>
+          {/*<div className="divider-line"></div>*/}
 
           <div className="flex justify-between items-center pb-3">
             <div
