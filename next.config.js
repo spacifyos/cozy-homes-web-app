@@ -7,7 +7,7 @@ const withPWA = require("next-pwa")({
 });
 
 const routeList = [
-  // "/agency/sign-in",
+  "/agency/help-center",
   "/agency/sign-up",
   // "/sign-in",
   // "/sign-up",
@@ -16,6 +16,7 @@ const routeList = [
   "/user/owner/chat",
   "/user/reno-expert",
   "/user/chat",
+  "/user/help-center",
   "/user/coins-transaction",
   "/user/latest-update",
   "/user/my-appointment",
