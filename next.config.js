@@ -29,7 +29,6 @@ const routeList = [
   "/booking/:slug",
   "/search",
   "/search/:slug",
-  "/sitemap",
 ];
 
 const nextConfig = {
