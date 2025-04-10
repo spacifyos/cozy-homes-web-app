@@ -25,7 +25,7 @@ const SignIn = () => {
         isMinHeight={false}
         // loading={otpRequestLoading || forgotPasswordLoading}
       >
-        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start py-10">
+        <div className="container mx-auto max-w-screen-lg flex-1 flex flex-col justify-between items-start py-10 gap-5">
           <div
             className={`flex flex-col items-center justify-center w-full bg-primary-background`}
           >
@@ -41,27 +41,51 @@ const SignIn = () => {
               className="mb-4 w-3/5 xl:h-24 lg:h-24 md:h-24 sm:h-16 h-16"
             />
 
-            <a
-              href={`/sign-in/${Constant.TENANT}`}
-              className="global-box-shadow mb-6 xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
-              style={{ borderRadius: 20 }}
-            >
-              <CustomImage
-                src={Images.tenantCard}
-                imageStyle={{ width: "100%" }}
-              />
-            </a>
+            <div className="flex flex-row justify-center items-center w-full gap-6">
+              <a
+                href={`/sign-in/${Constant.TENANT}`}
+                className="global-box-shadow xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
+                style={{ borderRadius: 20 }}
+              >
+                <CustomImage
+                  src={Images.tenantCard}
+                  imageStyle={{ width: "100%" }}
+                />
+              </a>
 
-            <a
-              href={`/sign-in/${Constant.OWNER}`}
-              className="global-box-shadow xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
-              style={{ borderRadius: 20 }}
-            >
-              <CustomImage
-                src={Images.ownerCard}
-                imageStyle={{ width: "100%" }}
-              />
-            </a>
+              <a
+                href={`/sign-in/${Constant.OWNER}`}
+                className=" xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
+                style={{ borderRadius: 20 }}
+              >
+                <CustomImage
+                  src={Images.ownerCard}
+                  imageStyle={{ width: "100%" }}
+                />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex justify-center w-full">
+            <CustomText textClassName="text-center flex">
+              By using this website, you agree to our{" "}
+              <a
+                href={process.env.TERMS_OF_USE}
+                target="_blank"
+                className="px-1 text-primary"
+              >
+                Terms of Use
+              </a>{" "}
+              and{" "}
+              <a
+                href={process.env.PRIVACY_OF_POLICY}
+                target="_blank"
+                className="pl-1 text-primary"
+              >
+                Privacy Policy
+              </a>
+              .
+            </CustomText>
           </div>
         </div>
       </DesktopLayout>

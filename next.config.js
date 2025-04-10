@@ -41,6 +41,8 @@ const nextConfig = {
     SENTRY_DSN: process.env.SENTRY_DSN,
     PRODUCTION: process.env.PRODUCTION,
     PROJECT_NAME: process.env.PROJECT_NAME,
+    TERMS_OF_USE: process.env.TERMS_OF_USE,
+    PRIVACY_OF_POLICY: process.env.PRIVACY_OF_POLICY,
   },
   images: {
     formats: ["image/avif", "image/webp"],
