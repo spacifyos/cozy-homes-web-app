@@ -25,7 +25,7 @@ const SignIn = () => {
         isMinHeight={false}
         // loading={otpRequestLoading || forgotPasswordLoading}
       >
-        <div className="container mx-auto max-w-screen-lg flex-1 flex flex-col justify-between items-start py-10 gap-5">
+        <div className="container mx-auto max-w-screen-lg flex-1 flex flex-col justify-between items-start py-6 gap-5">
           <div
             className={`flex flex-col items-center justify-center w-full bg-primary-background`}
           >
@@ -38,10 +38,10 @@ const SignIn = () => {
 
             <CustomImage
               src={Images.logoHorizontalColor}
-              className="mb-4 w-3/5 xl:h-24 lg:h-24 md:h-24 sm:h-16 h-16"
+              className="mb-4 w-2/5 xl:h-24 lg:h-24 md:h-24 sm:h-16 h-16"
             />
 
-            <div className="flex flex-row justify-center items-center w-full gap-6">
+            <div className="flex xl:flex-row lg:flex-row md:flex-row flex-col justify-center items-center w-full gap-6">
               <a
                 href={`/sign-in/${Constant.TENANT}`}
                 className="global-box-shadow xl:w-3/4 lg:w-3/4 md:w-3/4 sm:w-3/4 w-full cursor-pointer"
@@ -67,8 +67,8 @@ const SignIn = () => {
           </div>
 
           <div className="flex justify-center w-full">
-            <CustomText textClassName="text-center flex">
-              By using this website, you agree to our{" "}
+            <CustomText textClassName="text-center flex justify-center flex-wrap">
+              By using this website, you agree to our
               <a
                 href={process.env.TERMS_OF_USE}
                 target="_blank"
