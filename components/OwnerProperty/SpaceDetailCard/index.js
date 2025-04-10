@@ -31,9 +31,9 @@ const SpaceDetailCard = ({ item }) => {
             <div className="flex justify-between items-center pb-0.5">
               <div className="flex">
                 <CustomText
-                  textClassName={`text-xs text-white ${isEqual(status, "Available") ? "bg-aqua" : "bg-error"} px-4 py-0.5 rounded`}
+                  textClassName={`text-xs text-white ${isEqual(status, "Available") ? "bg-aqua" : "bg-error"} px-4 pb-0.5 rounded`}
                 >
-                  {isEmpty(status) ? "-" : status}
+                  {isEqual(status, "Available") ? "Not Rented" : "Rented"}
                 </CustomText>
               </div>
 
