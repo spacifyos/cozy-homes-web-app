@@ -359,7 +359,9 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && !isBackOffice ? (
+          {!isEmpty(userProfileData) &&
+          !isBackOffice &&
+          !Helper.isTenant(userRole) ? (
             <FeatureComponent
               title={"My E-Agreement"}
               icon={Images.agreementIconActive}

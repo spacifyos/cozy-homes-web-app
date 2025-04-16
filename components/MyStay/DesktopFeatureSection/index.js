@@ -11,11 +11,11 @@ const DesktopFeatureSection = ({}) => {
         name="Smart Lock"
         icon={Images.smartLockIconActive}
       />
-      <FeatureComponent
-        name="E Agreement"
-        icon={Images.agreementIconActive}
-        route="/user/e-agreement"
-      />
+      {/*<FeatureComponent*/}
+      {/*  name="E Agreement"*/}
+      {/*  icon={Images.agreementIconActive}*/}
+      {/*  route="/user/e-agreement"*/}
+      {/*/>*/}
       <FeatureComponent
         disable
         name="Help Center"

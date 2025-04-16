@@ -21,6 +21,11 @@ import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
+import { get, isEmpty, isEqual } from "lodash";
+import apiRequest from "@/src/services/httpUtilities/apiRequest";
+import AuthManager from "@/src/utils/AuthManager";
+import axios from "axios";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
@@ -47,7 +52,10 @@ const MyPropertyOverview = ({ id }) => {
     tenancySelector.getTenancyOverviewLoading(state),
   );
 
+  const [gallerySecretKey, setGallerySecretKey] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [rootDataLoading, setRootDataLoading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const oneTimeFee = tenancySelector.getOneTimeFee(tenancyOverviewData);
   const recurringFee = tenancySelector.getRecurringFee(tenancyOverviewData);
@@ -55,6 +63,7 @@ const MyPropertyOverview = ({ id }) => {
 
   useEffect(() => {
     fetchUserprofileData();
+    fetchRootData();
   }, []);
 
   useEffect(() => {
@@ -82,13 +91,65 @@ const MyPropertyOverview = ({ id }) => {
     }
   };
 
+  const onClickDownloadAgreement = async (url) => {
+    if (!isEmpty(url) && !isEmpty(gallerySecretKey)) {
+      await fetchDocumentData(url, gallerySecretKey);
+    }
+  };
+
+  const fetchRootData = async () => {
+    await apiRequest.getRootDataRequest(
+      setRootDataLoading,
+      getRootDataSuccessCallback,
+    );
+  };
+
+  const getRootDataSuccessCallback = (res) => {
+    const chiper1 = get(res, ["chiper1"], "");
+    const chiper2 = get(res, ["chiper2"], "");
+
+    setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
+  };
+
+  const fetchDocumentData = async (url, key) => {
+    console.log(key);
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: key,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
+
+    setDownloading(true);
+
+    axios
+      .get(url + "/download", { headers: headers })
+      .then(async (response) => {
+        const resUrl = get(response, ["data", "data", "url"], "");
+
+        if (!isEmpty(resUrl)) {
+          await apiRequest.downloadFileRequest(resUrl, {});
+        }
+      })
+      .catch((error) => {
+        Toast.error("Download document failed");
+      })
+      .finally(() => setDownloading(false));
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <NextSeo title="My Property Overview - CozyHomes" />
 
       <DesktopLayout
         hideFooter
-        loading={userProfileLoading || tenancyOverviewLoading}
+        loading={
+          userProfileLoading ||
+          tenancyOverviewLoading ||
+          downloading ||
+          rootDataLoading
+        }
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -127,6 +188,7 @@ const MyPropertyOverview = ({ id }) => {
             onChangeAutoPay={onChangeAutoPay}
             isChecked={isChecked}
             data={tenancyOverviewData}
+            onClickDownloadAgreement={onClickDownloadAgreement}
           />
 
           <TenancyFeeDetail title={"One Time Charges"} data={oneTimeFee} />

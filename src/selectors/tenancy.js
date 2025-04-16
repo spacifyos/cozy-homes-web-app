@@ -30,3 +30,4 @@ export const getFee = (state) => _.get(state, ["fee"], []);
 export const getFeeAmount = (state) => _.get(state, ["fee_amount"], "");
 export const getOneTimeFee = (state) => _.get(state, ["one_time_fee"], []);
 export const getRecurringFee = (state) => _.get(state, ["recurring_fee"], []);
+export const getDocuments = (state) => _.get(state, ["documents"], []);

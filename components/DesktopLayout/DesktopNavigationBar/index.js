@@ -223,7 +223,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         false
       )}
 
-      {!isEmpty(userData) && !isBackOffice ? (
+      {!isEmpty(userData) && !isBackOffice && !Helper.isTenant(userRole) ? (
         <FeatureComponent
           title={"My E-Agreement"}
           icon={Images.agreementIconActive}

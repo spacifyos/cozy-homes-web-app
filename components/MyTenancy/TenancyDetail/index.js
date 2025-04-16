@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { get, isEmpty, map } from "lodash";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { useEffect, useRef, useState } from "react";
@@ -7,6 +7,7 @@ import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent
 import Images from "@/src/utils/Image";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import moment from "moment";
+import { getDocuments } from "@/src/selectors/tenancy";
 
 const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
@@ -26,7 +27,13 @@ const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   );
 };
 
-const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
+const TenancyDetail = ({
+  t,
+  onChangeAutoPay,
+  isChecked,
+  data,
+  onClickDownloadAgreement,
+}) => {
   const targetRef = useRef();
   const [dimensions, setDimensions] = useState(0);
 
@@ -40,6 +47,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
   const totalDays = tenancySelector.getTotalDays(data);
   const createdAt = tenancySelector.getCreatedAt(data);
   const address = tenancySelector.getAddress(data);
+  const documents = tenancySelector.getDocuments(data);
 
   useEffect(() => {
     if (targetRef.current) {
@@ -52,7 +60,7 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
       <div className="flex justify-between items-center">
         <CustomLabelValue
           label={"Tenancy Code"}
-          value={_.isEmpty(tenancyCode) ? "-" : tenancyCode}
+          value={isEmpty(tenancyCode) ? "-" : tenancyCode}
           highlight
         />
 
@@ -84,30 +92,54 @@ const TenancyDetail = ({ t, onChangeAutoPay, isChecked, data }) => {
 
           <div className={"pl-2"}>
             <CustomText textClassName="font-bold text-sm text-primary">
-              {_.isEmpty(propertyName) ? "-" : propertyName}
+              {isEmpty(propertyName) ? "-" : propertyName}
             </CustomText>
             <CustomText textClassName="text-xs">
-              {_.isEmpty(unitName) ? "" : unitName}
-              {_.isEmpty(roomName) ? "" : ", " + roomName}
+              {isEmpty(unitName) ? "" : unitName}
+              {isEmpty(roomName) ? "" : ", " + roomName}
             </CustomText>
           </div>
         </div>
         <CustomLabelValue
           label={"Rental Fee"}
-          value={`RM${_.isEmpty(rental) ? "0" : rental} / monthly`}
+          value={`RM${isEmpty(rental) ? "0" : rental} / monthly`}
         />
         <CustomLabelValue
           label={"Tenancy Period"}
-          value={_.isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
+          value={isEmpty(tenancyPeriod) ? "-" : tenancyPeriod}
         />
         <CustomLabelValue
           label={"Address"}
-          value={_.isEmpty(address) ? "-" : address}
+          value={isEmpty(address) ? "-" : address}
         />
         <CustomLabelValue
           label={"Created At"}
           value={moment(createdAt).format("DD MMM YYYY, HH:mm:ss")}
         />
+        <div className={`pb-4`}>
+          <CustomText textClassName={`text-disable text-xs font-normal pb-1`}>
+            Agreement Document
+          </CustomText>
+
+          {map(documents, (doc, index) => {
+            const docName = get(doc, "name", "");
+            const docUrl = get(doc, "url", "");
+
+            return (
+              <CustomText
+                key={index}
+                onClick={
+                  isEmpty(docUrl)
+                    ? () => {}
+                    : () => onClickDownloadAgreement(docUrl)
+                }
+                textClassName={`text-sm ${isEmpty(docUrl) ? "text-black" : "text-primary cursor-pointer"} font-bold`}
+              >
+                {isEmpty(docUrl) ? "-" : `Document (${index + 1})`}
+              </CustomText>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

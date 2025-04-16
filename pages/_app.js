@@ -97,10 +97,10 @@ function AppContent({ Component, pageProps }) {
 
         <meta name="msvalidate.01" content="74EA887B8E4E9BA232E18AB9F69FDC63" />
 
-        <meta
-          name="google-site-verification"
-          content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"
-        />
+        {/*<meta*/}
+        {/*  name="google-site-verification"*/}
+        {/*  content="GSqA3N1MuPQZCb1VL6Fws8kSrrC3sKXCR0d7wGmvLmk"*/}
+        {/*/>*/}
 
         <link rel="icon" href="/cozyHomes/favicon.ico" sizes="any" />
         <link rel="icon" sizes="32x32" href="/cozyHomes/favicon-32x32.png" />
@@ -137,110 +137,110 @@ function AppContent({ Component, pageProps }) {
           rel="stylesheet"
         />
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
-            strategy="afterInteractive"
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"
-          ></script>
-        ) : (
-          false
-        )}
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <script*/}
+        {/*    strategy="afterInteractive"*/}
+        {/*    async*/}
+        {/*    src="https://www.googletagmanager.com/gtag/js?id=G-JSLN7PTKGY"*/}
+        {/*  ></script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script id="" strategy="afterInteractive">
-            {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <script id="" strategy="afterInteractive">*/}
+        {/*    {`*/}
+        {/*    window.dataLayer = window.dataLayer || [];*/}
+        {/*    function gtag(){dataLayer.push(arguments);}*/}
+        {/*    gtag('js', new Date());*/}
 
-            gtag('config', 'G-JSLN7PTKGY');
-            `}
-          </script>
-        ) : (
-          false
-        )}
+        {/*    gtag('config', 'G-JSLN7PTKGY');*/}
+        {/*    `}*/}
+        {/*  </script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
-            id="Organization"
-            type="application/ld+json"
-            strategy="afterInteractive"
-          >
-            {`{
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "MY",
-                "addressLocality": "Malaysia, Selangor",
-                "postalCode": "47500",
-                "streetAddress":
-                  "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."
-              },
-              "email": "spacify.asia@gmail.com",
-              "name": "CozyHomes | The Property Guys Sdn Bhd",
-              "telephone": "+603-58789831",
-              "url": "https://www.sapcify.asia/",
-              "image": "${Images.logo}",
-              "logo": "${Images.logo}",
-              "description":
-                "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"
-            }`}
-          </script>
-        ) : (
-          false
-        )}
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <script*/}
+        {/*    id="Organization"*/}
+        {/*    type="application/ld+json"*/}
+        {/*    strategy="afterInteractive"*/}
+        {/*  >*/}
+        {/*    {`{*/}
+        {/*      "@context": "https://schema.org",*/}
+        {/*      "@type": "Organization",*/}
+        {/*      "address": {*/}
+        {/*        "@type": "PostalAddress",*/}
+        {/*        "addressCountry": "MY",*/}
+        {/*        "addressLocality": "Malaysia, Selangor",*/}
+        {/*        "postalCode": "47500",*/}
+        {/*        "streetAddress":*/}
+        {/*          "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."*/}
+        {/*      },*/}
+        {/*      "email": "spacify.asia@gmail.com",*/}
+        {/*      "name": "CozyHomes | The Property Guys Sdn Bhd",*/}
+        {/*      "telephone": "+603-58789831",*/}
+        {/*      "url": "https://www.sapcify.asia/",*/}
+        {/*      "image": "${Images.logo}",*/}
+        {/*      "logo": "${Images.logo}",*/}
+        {/*      "description":*/}
+        {/*        "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"*/}
+        {/*    }`}*/}
+        {/*  </script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
-            id="LocalBusiness"
-            type="application/ld+json"
-            strategy="afterInteractive"
-          >
-            {`{
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressCountry": "MY",
-                  "postalCode": "47500",
-                  "addressLocality": "Malaysia, Selangor",
-                  "addressRegion": "MY",
-                  "streetAddress":
-                    "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."
-                },
-                "description":
-                  "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my",
-                "name": "CozyHomes | The Property Guys Sdn Bhd",
-                "telephone": "+603-58789831",
-                "url": "https://www.sapcify.asia/",
-                "image": "${Images.logo}"
-              }`}
-          </script>
-        ) : (
-          false
-        )}
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <script*/}
+        {/*    id="LocalBusiness"*/}
+        {/*    type="application/ld+json"*/}
+        {/*    strategy="afterInteractive"*/}
+        {/*  >*/}
+        {/*    {`{*/}
+        {/*        "@context": "https://schema.org",*/}
+        {/*        "@type": "LocalBusiness",*/}
+        {/*        "address": {*/}
+        {/*          "@type": "PostalAddress",*/}
+        {/*          "addressCountry": "MY",*/}
+        {/*          "postalCode": "47500",*/}
+        {/*          "addressLocality": "Malaysia, Selangor",*/}
+        {/*          "addressRegion": "MY",*/}
+        {/*          "streetAddress":*/}
+        {/*            "No. 42-46, Ground Floor, Jalan SS 19/1D, Subang Jaya, Selangor."*/}
+        {/*        },*/}
+        {/*        "description":*/}
+        {/*          "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my",*/}
+        {/*        "name": "CozyHomes | The Property Guys Sdn Bhd",*/}
+        {/*        "telephone": "+603-58789831",*/}
+        {/*        "url": "https://www.sapcify.asia/",*/}
+        {/*        "image": "${Images.logo}"*/}
+        {/*      }`}*/}
+        {/*  </script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
 
-        {isEqual(process.env.PRODUCTION, "PRODUCTION") ? (
-          <script
-            id="WebSite"
-            type="application/ld+json"
-            strategy="afterInteractive"
-          >
-            {`{
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "name": "CozyHomes | The Property Guys Sdn Bhd",
-                "image": "${Images.logo}",
-                "url": "https://www.sapcify.asia/",
-                "description":
-                  "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"
-              }`}
-          </script>
-        ) : (
-          false
-        )}
+        {/*{isEqual(process.env.PRODUCTION, "PRODUCTION") ? (*/}
+        {/*  <script*/}
+        {/*    id="WebSite"*/}
+        {/*    type="application/ld+json"*/}
+        {/*    strategy="afterInteractive"*/}
+        {/*  >*/}
+        {/*    {`{*/}
+        {/*        "@context": "https://schema.org",*/}
+        {/*        "@type": "WebSite",*/}
+        {/*        "name": "CozyHomes | The Property Guys Sdn Bhd",*/}
+        {/*        "image": "${Images.logo}",*/}
+        {/*        "url": "https://www.sapcify.asia/",*/}
+        {/*        "description":*/}
+        {/*          "Your one-stop solution to Property & Tenant Management. Part of The Makeover Guys @themakeover.my"*/}
+        {/*      }`}*/}
+        {/*  </script>*/}
+        {/*) : (*/}
+        {/*  false*/}
+        {/*)}*/}
       </Head>
 
       <Toaster />
