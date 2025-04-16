@@ -207,7 +207,12 @@ const patchUserPinNumber = async (
   );
 };
 
-const downloadFileRequest = async (url, headers, fileName) => {
+const downloadFileRequest = async (
+  url,
+  headers,
+  fileName = "",
+  extension = ".pdf",
+) => {
   try {
     const response = await axios.get(url, {
       headers,
@@ -219,7 +224,11 @@ const downloadFileRequest = async (url, headers, fileName) => {
     fileLink.href = fileUrl;
     fileLink.setAttribute(
       "download",
-      `${isEmpty(fileName) ? moment().format("YYYYMMDDHHmmss") : fileName}.pdf`,
+      `${
+        (isEmpty(fileName) ? moment().format("YYYYMMDDHHmmss") : fileName) +
+        "." +
+        extension
+      }`,
     );
 
     // specify the file name and extension

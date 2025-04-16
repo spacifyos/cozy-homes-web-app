@@ -124,6 +124,7 @@ const TenancyDetail = ({
           {map(documents, (doc, index) => {
             const docName = get(doc, "name", "");
             const docUrl = get(doc, "url", "");
+            const extension = get(doc, "extension", "");
 
             return (
               <CustomText
@@ -131,7 +132,7 @@ const TenancyDetail = ({
                 onClick={
                   isEmpty(docUrl)
                     ? () => {}
-                    : () => onClickDownloadAgreement(docUrl)
+                    : () => onClickDownloadAgreement(docUrl, extension)
                 }
                 textClassName={`text-sm ${isEmpty(docUrl) ? "text-black" : "text-primary cursor-pointer"} font-bold`}
               >

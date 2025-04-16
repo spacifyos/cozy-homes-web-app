@@ -91,9 +91,9 @@ const MyPropertyOverview = ({ id }) => {
     }
   };
 
-  const onClickDownloadAgreement = async (url) => {
+  const onClickDownloadAgreement = async (url, extension) => {
     if (!isEmpty(url) && !isEmpty(gallerySecretKey)) {
-      await fetchDocumentData(url, gallerySecretKey);
+      await fetchDocumentData(url, gallerySecretKey, extension);
     }
   };
 
@@ -111,8 +111,7 @@ const MyPropertyOverview = ({ id }) => {
     setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
   };
 
-  const fetchDocumentData = async (url, key) => {
-    console.log(key);
+  const fetchDocumentData = async (url, key, extension) => {
     const headers = {
       "Content-Type": "application/json",
       AGSC: key,
@@ -129,7 +128,7 @@ const MyPropertyOverview = ({ id }) => {
         const resUrl = get(response, ["data", "data", "url"], "");
 
         if (!isEmpty(resUrl)) {
-          await apiRequest.downloadFileRequest(resUrl, {});
+          await apiRequest.downloadFileRequest(resUrl, {}, "", extension);
         }
       })
       .catch((error) => {
