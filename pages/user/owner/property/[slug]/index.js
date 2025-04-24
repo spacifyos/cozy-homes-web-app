@@ -17,12 +17,19 @@ import RentTrackerComponent from "@/components/OwnerProperty/RentTrackerComponen
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import moment from "moment";
+import Helper from "@/src/utils/Helper";
+import AuthManager from "@/src/utils/AuthManager";
+import axios from "axios";
+import Toast from "@/src/utils/Toast";
 
 export { getServerSideProps };
 
 const PropertyDetail = ({ id }) => {
   const router = useRouter();
 
+  const [gallerySecretKey, setGallerySecretKey] = useState("");
+  const [rootDataLoading, setRootDataLoading] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("Space Details");
 
   const [propertyDetail, setPropertyDetail] = useState(null);
@@ -93,6 +100,7 @@ const PropertyDetail = ({ id }) => {
 
   useEffect(() => {
     fetchPropertyDetail();
+    fetchRootData();
   }, []);
 
   useEffect(() => {
@@ -136,13 +144,59 @@ const PropertyDetail = ({ id }) => {
     setSelectedSlide(activeIndex);
   };
 
+  const onClickDownloadAgreement = async (url, extension) => {
+    if (!isEmpty(url) && !isEmpty(gallerySecretKey)) {
+      await fetchDocumentData(url, gallerySecretKey, extension);
+    }
+  };
+
+  const fetchRootData = async () => {
+    await apiRequest.getRootDataRequest(
+      setRootDataLoading,
+      getRootDataSuccessCallback,
+    );
+  };
+
+  const getRootDataSuccessCallback = (res) => {
+    const chiper1 = get(res, ["chiper1"], "");
+    const chiper2 = get(res, ["chiper2"], "");
+
+    setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
+  };
+
+  const fetchDocumentData = async (url, key, extension) => {
+    const headers = {
+      "Content-Type": "application/json",
+      AGSC: key,
+      Authorization: await AuthManager.retrieveToken().then((value) => {
+        return `Bearer ${value}`;
+      }),
+    };
+
+    setDownloading(true);
+
+    axios
+      .get(url + "/download", { headers: headers })
+      .then(async (response) => {
+        const resUrl = get(response, ["data", "data", "url"], "");
+
+        if (!isEmpty(resUrl)) {
+          await apiRequest.downloadFileRequest(resUrl, {}, "", extension);
+        }
+      })
+      .catch((error) => {
+        Toast.error("Download document failed");
+      })
+      .finally(() => setDownloading(false));
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <NextSeo title="My Property Overview | Owner - CozyHomes" />
 
       <DesktopLayout
         hideFooter
-        loading={propertyDetailLoading || rentTrackerDataLoading}
+        loading={propertyDetailLoading || rentTrackerDataLoading || downloading}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -211,7 +265,10 @@ const PropertyDetail = ({ id }) => {
             </div>
 
             {isEqual(selectedCategory, "Space Details") ? (
-              <SpaceDetailComponent data={selectedRoom} />
+              <SpaceDetailComponent
+                data={selectedRoom}
+                onClickDownloadAgreement={onClickDownloadAgreement}
+              />
             ) : (
               <RentTrackerComponent
                 data={rentTrackerData}

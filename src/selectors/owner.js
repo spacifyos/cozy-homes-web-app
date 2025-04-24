@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import _, { get } from "lodash";
 
 export const getOwnerName = (state) => get(state, ["owner_name"], "");
 export const getOwnerEmail = (state) => get(state, ["owner_email"], "");
@@ -55,4 +55,4 @@ export const getEndDate = (state) => get(state, ["end_date"], "");
 export const getRoomType = (state) => get(state, ["room_type"], "");
 export const getTenant = (state) => get(state, ["tenant"], []);
 export const getRentalMonth = (state) => get(state, ["rental", "month"], "");
-export const getRentalRental = (state) => get(state, ["rental", "rental"], "");
+export const getDocuments = (state) => _.get(state, ["documents"], []);

@@ -84,7 +84,7 @@ const TenancyDetail = ({
         )}
       </div>
 
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-start overflow-hidden">
         <div className="flex items-end py-3">
           <div className="bg-primary p-3 global-border-radius ">
             <CustomImage src={Images.buildingIconWhite} className="w-6" />
@@ -121,25 +121,28 @@ const TenancyDetail = ({
             Agreement Document
           </CustomText>
 
-          {map(documents, (doc, index) => {
-            const docName = get(doc, "name", "");
-            const docUrl = get(doc, "url", "");
-            const extension = get(doc, "extension", "");
+          {isEmpty(documents)
+            ? "-"
+            : map(documents, (doc, index) => {
+                const docName = get(doc, "name", "");
+                const docUrl = get(doc, "url", "");
+                const extension = get(doc, "extension", "");
 
-            return (
-              <CustomText
-                key={index}
-                onClick={
-                  isEmpty(docUrl)
-                    ? () => {}
-                    : () => onClickDownloadAgreement(docUrl, extension)
-                }
-                textClassName={`text-sm ${isEmpty(docUrl) ? "text-black" : "text-primary cursor-pointer"} font-bold`}
-              >
-                {isEmpty(docUrl) ? "-" : `Document (${index + 1})`}
-              </CustomText>
-            );
-          })}
+                return (
+                  <CustomText
+                    key={index}
+                    onClick={
+                      isEmpty(docUrl)
+                        ? () => {}
+                        : () => onClickDownloadAgreement(docUrl, extension)
+                    }
+                    lineClamp={1}
+                    textClassName={`text-sm ${isEmpty(docUrl) ? "text-black" : "text-primary cursor-pointer"} font-bold`}
+                  >
+                    {isEmpty(docUrl) ? "-" : docName}
+                  </CustomText>
+                );
+              })}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { isEmpty, map } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import SpaceDetailCard from "@/components/OwnerProperty/SpaceDetailCard";
 
-const SpaceDetailComponent = ({ data }) => {
+const SpaceDetailComponent = ({ data, onClickDownloadAgreement }) => {
   return (
     <div className="flex flex-col gap-3 pb-4">
       {isEmpty(data) ? (
@@ -12,7 +12,13 @@ const SpaceDetailComponent = ({ data }) => {
         </div>
       ) : (
         map(data, (item, index) => {
-          return <SpaceDetailCard key={index} item={item} />;
+          return (
+            <SpaceDetailCard
+              key={index}
+              item={item}
+              onClickDownloadAgreement={onClickDownloadAgreement}
+            />
+          );
         })
       )}
     </div>
