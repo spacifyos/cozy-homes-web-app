@@ -185,7 +185,7 @@ const SignInTenant = () => {
                   />
                 </div>
 
-                <Link href={`/user/forgot-password`}>
+                <Link href={`/user/forgot-password?type=Tenant`}>
                   <CustomText textClassName="text-center pb-2 underline cursor-pointer">
                     Forgot password
                   </CustomText>

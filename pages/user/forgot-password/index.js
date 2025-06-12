@@ -243,12 +243,7 @@ const ForgotPassword = () => {
           <div className="bg-white border global-border-radius w-full flex flex-col justify-center items-center p-6">
             <div className="w-full">
               <CustomText
-                textClassName={`text-center pb-6 font-bold text-2xl italic leading-10`}
-                styles={{
-                  color: isEqual(typeQuery, Constant.TENANT)
-                    ? "#18407E"
-                    : "#D71440",
-                }}
+                textClassName={`text-center pb-6 font-bold text-2xl italic leading-10 text-primary`}
               >
                 {typeQuery}
               </CustomText>
