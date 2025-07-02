@@ -154,7 +154,7 @@ const InvoiceOverview = ({ id }) => {
         }
       })
       .catch((error) => {
-        Toast.error("Download document failed");
+        Toast.error("Download failed: " + error.message);
       })
       .finally(() => setDownloading(false));
   };
