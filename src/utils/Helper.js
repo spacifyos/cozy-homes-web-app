@@ -58,7 +58,7 @@ const generateSecretKey = (secret1, secret2) => {
   const key2 = replace(secret2, /8/g, "m");
   let final = "";
 
-  if (secret % 2 == 0) {
+  if (secret % 2 === 0) {
     const reverseKey2 = join(reverse(split(key2, "")), "");
     final = toString(CryptoJS.MD5(key1 + reverseKey2));
   } else {
