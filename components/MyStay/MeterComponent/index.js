@@ -17,15 +17,15 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       className="meter-container"
       // onClick={() => onClickToMeterOverview(id)}
     >
-      <div className="flex items-center pb-1">
-        <div className="bg-primary p-3 global-border-radius mb-1 mr-2">
+      <CustomText textClassName="text-primary text-sm font-bold pb-1 line-clamp-1 pr-5">
+        {isEmpty(name) ? "-" : name}
+      </CustomText>
+      <div className="flex items-end gap-2">
+        <div className="bg-primary p-3 global-border-radius">
           <CustomImage src={Images.meterIconWhite} className="w-4" />
         </div>
 
         <div className="flex flex-col">
-          <CustomText textClassName="text-primary text-sm font-bold pb-1 line-clamp-1 pr-5">
-            {isEmpty(name) ? "-" : name}
-          </CustomText>
           <div className="flex items-center">
             <CustomText textClassName="pr-3 text-xs text-disable">
               Meter Status
@@ -57,30 +57,38 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
               </CustomText>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">
-        <div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-primary-background">
-          <CustomText textClassName="text-disable text-xs">
-            Balance Unit
-          </CustomText>
           <div className="flex items-center">
+            <CustomText textClassName="pr-3 text-xs text-disable">
+              Balance Unit
+            </CustomText>
+
             <CustomText textClassName="text-primary text-base font-bold pe-1">
               {isEmpty(balanceUnit) ? "-" : balanceUnit}
             </CustomText>
-            {/*<CustomImage src={Images.refreshIcon} width={15} height={15} />*/}
           </div>
         </div>
-
-        <a className="col-span-4" href={`/user/my-meter/${id}`}>
-          <CustomButton
-            buttonClassName="w-full btn-primary h-14"
-            textClassName="text-lg"
-            buttonText="Top Up"
-          />
-        </a>
       </div>
+
+      {/*<div className="grid xl:grid-cols-10 lg:grid-cols-8 md:grid-cols-8 sm:grid-cols-6 grid-cols-6 gap-2">*/}
+      {/*<div className="flex flex-col items-center col-span-2 global-box-shadow p-2 global-border-radius h-14 bg-primary-background">*/}
+      {/*  <CustomText textClassName="text-disable text-xs">*/}
+      {/*    Balance Unit*/}
+      {/*  </CustomText>*/}
+      {/*  <div className="flex items-center">*/}
+      {/*    <CustomText textClassName="text-primary text-base font-bold pe-1">*/}
+      {/*      {isEmpty(balanceUnit) ? "-" : balanceUnit}*/}
+      {/*    </CustomText>*/}
+      {/*    /!*<CustomImage src={Images.refreshIcon} width={15} height={15} />*!/*/}
+      {/*  </div>*/}
+      {/*</div>*/}
+      {/*<a className="col-span-4" href={`/user/my-meter/${id}`}>*/}
+      {/*  <CustomButton*/}
+      {/*    buttonClassName="w-full btn-primary h-14"*/}
+      {/*    textClassName="text-lg"*/}
+      {/*    buttonText="Top Up"*/}
+      {/*  />*/}
+      {/*</a>*/}
+      {/*</div>*/}
     </div>
   );
 };

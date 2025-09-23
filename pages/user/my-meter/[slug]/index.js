@@ -197,17 +197,17 @@ const MyMeterOverview = ({ id }) => {
             isShowBalanceInPrice={isShowBalanceInPrice}
           />
 
-          <MeterTopUpSection
-            onClickSelectPrice={onClickSelectPrice}
-            selectedPrice={selectedPrice}
-            unitPrice={unitPrice}
-            onClickPayNow={onClickPayNow}
-            onChangeSelectedPriceValue={onChangeSelectedPriceValue}
-            onClickClearSelectedPrice={onClickClearSelectedPrice}
-            tenancy={tenancy}
-            tenancyValue={tenancyValue}
-            onChangeTenancyValue={onChangeTenancyValue}
-          />
+          {/*<MeterTopUpSection*/}
+          {/*  onClickSelectPrice={onClickSelectPrice}*/}
+          {/*  selectedPrice={selectedPrice}*/}
+          {/*  unitPrice={unitPrice}*/}
+          {/*  onClickPayNow={onClickPayNow}*/}
+          {/*  onChangeSelectedPriceValue={onChangeSelectedPriceValue}*/}
+          {/*  onClickClearSelectedPrice={onClickClearSelectedPrice}*/}
+          {/*  tenancy={tenancy}*/}
+          {/*  tenancyValue={tenancyValue}*/}
+          {/*  onChangeTenancyValue={onChangeTenancyValue}*/}
+          {/*/>*/}
 
           {/*<MeterFeature t={t} onClickToTopUpMeter={onClickToTopUpMeter} />*/}
 
