@@ -32,7 +32,7 @@ const InvoiceSection = ({
       {hideTitle ? (
         false
       ) : (
-        <CustomText textClassName="section-title pb-2">My Invoice</CustomText>
+        <CustomText textClassName="section-title pb-2">My Statement</CustomText>
       )}
 
       <div className="flex justify-between items-end pb-4">
@@ -65,7 +65,7 @@ const InvoiceSection = ({
       <div className="flex flex-col gap-3">
         {isEmpty(data) ? (
           <div style={{ height: 351 }} className="flex justify-center">
-            <CustomEmptyBox emptyTitle="No invoice found" />
+            <CustomEmptyBox emptyTitle="No statement found" />
           </div>
         ) : (
           <InvoiceComponent data={data} type={type} />

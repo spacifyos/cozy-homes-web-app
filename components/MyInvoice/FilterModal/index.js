@@ -52,7 +52,7 @@ const FilterModal = ({
         <div className="grid grid-cols-2 gap-2">
           <div className="col-span-2 pb-2">
             <CustomText textClassName="text-sm pb-1">
-              Invoice Number
+              Statement Number
             </CustomText>
 
             <input

@@ -20,6 +20,21 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
     }
   };
 
+  const textFormat = (value) => {
+    switch (value) {
+      case "Total Paid Invoices":
+        return "Total Paid Statements";
+      case "Total Overdue Invoices":
+        return "Total Overdue Statements";
+      case "Total Unpaid Invoices":
+        return "Total Unpaid Statements";
+      case "Total Invoices":
+        return "Total Statements";
+      default:
+        return "Total Statements";
+    }
+  };
+
   return (
     <div className="pb-8 grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-5">
       {map(data, (item, index) => {
@@ -27,11 +42,15 @@ const DesktopInvoiceSummaryComponent = ({ data }) => {
         const totalAmountText = invoiceSelector.getTotalAmountText(item);
 
         return (
-          <div className="bg-white flex flex-col justify-center items-center global-border-radius global-box-shadow px-5 py-3" key={index} style={{minHeight:120, height:120}}>
-            <CustomText textClassName="text-center text-sm">{isEmpty(name) ? "-" : name}</CustomText>
-            <CustomText
-              textClassName={`${textColor(name)} font-bold text-2xl`}
-            >
+          <div
+            className="bg-white flex flex-col justify-center items-center global-border-radius global-box-shadow px-5 py-3"
+            key={index}
+            style={{ minHeight: 120, height: 120 }}
+          >
+            <CustomText textClassName="text-center text-sm">
+              {isEmpty(name) ? "-" : textFormat(name)}
+            </CustomText>
+            <CustomText textClassName={`${textColor(name)} font-bold text-2xl`}>
               RM{isEmpty(totalAmountText) ? "0" : totalAmountText}
             </CustomText>
             <CustomText textClassName="text-disable text-xs">

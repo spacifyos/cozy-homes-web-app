@@ -124,7 +124,7 @@ const HelpCenter = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Invoice - CozyHomes" />
+      <NextSeo title="My Statement - CozyHomes" />
 
       <DesktopLayout
         hideFooter

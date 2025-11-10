@@ -138,7 +138,7 @@ const TransactionOverview = ({ id }) => {
           }
         >
           <DetailLabel
-            title="Invoice Number"
+            title="Statement Number"
             value={isEmpty(invoiceNumber) ? "-" : invoiceNumber}
             highlight
           />

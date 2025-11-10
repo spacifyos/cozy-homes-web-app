@@ -41,7 +41,7 @@ const DesktopFilterModal = ({
           <div className="col-span-2 pb-2">
             <BookingInput
               required
-              title={"Invoice Number"}
+              title={"Statement Number"}
               placeholder={"Enter Six Digit Number"}
               bgColor="bg-white border"
               inputClassName="border-none"

@@ -211,7 +211,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
-          title="My Invoice"
+          title="My Statement"
           icon={Images.invoiceIconActive}
           imageWidth={16}
           pb={3}

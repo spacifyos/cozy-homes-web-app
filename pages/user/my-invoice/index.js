@@ -176,7 +176,7 @@ const MyInvoice = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Invoice - CozyHomes" />
+      <NextSeo title="My Statement - CozyHomes" />
 
       <DesktopLayout
         hideFooter
@@ -189,7 +189,7 @@ const MyInvoice = () => {
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul className="flex-wrap">
                 <li>
-                  <CustomText textClassName="text-base">My Invoice</CustomText>
+                  <CustomText textClassName="text-base">My Statement</CustomText>
                 </li>
               </ul>
             </div>
@@ -200,7 +200,7 @@ const MyInvoice = () => {
                 className="w-2"
                 onClick={onClickGoBack}
               />
-              <CustomText textClassName="text-base">My Invoice</CustomText>
+              <CustomText textClassName="text-base">My Statement</CustomText>
             </div>
           </div>
         }
@@ -242,7 +242,7 @@ const MyInvoice = () => {
 
           {isEmpty(invoiceListingData) ? (
             <div className="flex flex-1 items-center justify-center py-10 h-full">
-              <CustomEmptyBox emptyTitle="No invoice found" />
+              <CustomEmptyBox emptyTitle="No statement found" />
             </div>
           ) : (
             <InvoiceComponent

@@ -66,7 +66,7 @@ const PaymentSuccessful = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Invoice Payment Successful - CozyHomes" />
+      <NextSeo title="Statement Payment Successful - CozyHomes" />
 
       <DesktopLayout
         loading={invoiceOverviewLoading}
@@ -84,7 +84,7 @@ const PaymentSuccessful = ({ id }) => {
                 <li>
                   <a href={"/user/my-invoice"}>
                     <CustomText textClassName="text-base text-disable">
-                      Invoice
+                      Statement
                     </CustomText>
                   </a>
                 </li>
@@ -97,7 +97,7 @@ const PaymentSuccessful = ({ id }) => {
                 </li>
                 <li>
                   <CustomText textClassName="text-base">
-                    Invoice Payment
+                    Statement Payment
                   </CustomText>
                 </li>
               </ul>
@@ -165,7 +165,7 @@ const PaymentSuccessful = ({ id }) => {
             />
             <CustomLabelValue
               value={isEmpty(code) ? "-" : code}
-              label="Invoice Number"
+              label="Statement Number"
             />
             <CustomLabelValue
               value={isEmpty(property) ? "-" : property}

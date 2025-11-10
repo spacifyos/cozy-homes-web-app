@@ -32,7 +32,7 @@ const InvoiceComponent = ({ data, type }) => {
               <div className="flex flex-col">
                 <div className="flex items-end pb-0.5">
                   <CustomText textClassName="text-black text-sm font-bold line-clamp-1 pr-2">
-                    Invoice #: {isEmpty(code) ? "-" : code}
+                    Statement #: {isEmpty(code) ? "-" : code}
                   </CustomText>
                 </div>
 

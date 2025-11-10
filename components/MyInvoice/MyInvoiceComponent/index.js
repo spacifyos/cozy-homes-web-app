@@ -7,13 +7,13 @@ import moment from "moment";
 const MyInvoiceComponent = ({ data }) => {
   const textColor = (value) => {
     switch (value) {
-      case "Total Paid Invoices":
+      case "Total Paid Statements":
         return "text-available";
-      case "Total Overdue Invoices":
+      case "Total Overdue Statements":
         return "text-error";
-      case "Total Unpaid Invoices":
+      case "Total Unpaid Statements":
         return "text-warning";
-      case "Total Invoices":
+      case "Total Statements":
         return "text-primary";
       default:
         return "text-warning";

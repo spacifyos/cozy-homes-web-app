@@ -24,10 +24,10 @@ const TransactionComponent = ({
           onClick={() => onClickSelectCategory("Rental")}
         />
         <CustomButton
-          buttonText="Invoice"
-          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Invoice") ? "btn-primary" : "btn-white"} mr-2`}
+          buttonText="Statement"
+          buttonClassName={`btn-sm ${isEqual(selectedCategory, "Statement") ? "btn-primary" : "btn-white"} mr-2`}
           textClassName="text-xs"
-          onClick={() => onClickSelectCategory("Invoice")}
+          onClick={() => onClickSelectCategory("Statement")}
         />
       </div>
 

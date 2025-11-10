@@ -161,7 +161,7 @@ const InvoiceOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Invoice Overview - CozyHomes" />
+      <NextSeo title="Statement Overview - CozyHomes" />
 
       <DesktopLayout
         hideFooter
@@ -180,7 +180,7 @@ const InvoiceOverview = ({ id }) => {
                 <li>
                   <a href={"/user/my-invoice"}>
                     <CustomText textClassName="text-base text-disable">
-                      My Invoice
+                      My Statement
                     </CustomText>
                   </a>
                 </li>
@@ -209,7 +209,7 @@ const InvoiceOverview = ({ id }) => {
             <div className="flex justify-between">
               <CustomLabelValue
                 value={isEmpty(code) ? "-" : code}
-                label={"Invoice Number"}
+                label={"Statement Number"}
                 highlight
               />
               <div className="pb-2">
@@ -237,7 +237,7 @@ const InvoiceOverview = ({ id }) => {
             <div className="flex justify-between items-center">
               <CustomLabelValue
                 value={isEmpty(invoiceDate) ? "-" : invoiceDate}
-                label={"Invoice Date"}
+                label={"Statement Date"}
               />
               <CustomLabelValue
                 value={isEmpty(dueDate) ? "-" : dueDate}
@@ -360,7 +360,7 @@ const InvoiceOverview = ({ id }) => {
               top={-14}
               items={[
                 {
-                  name: "Download Invoice",
+                  name: "Download Statement",
                   value: invoiceDocument,
                 },
                 {

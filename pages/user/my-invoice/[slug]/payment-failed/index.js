@@ -20,7 +20,7 @@ const PaymentFailure = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Invoice Payment Failed - CozyHomes" />
+      <NextSeo title="Statement Payment Failed - CozyHomes" />
 
       <DesktopLayout
         pageBreadcrumbs={
@@ -36,7 +36,7 @@ const PaymentFailure = ({ id }) => {
               <li>
                 <a href={"/user/my-invoice"}>
                   <CustomText textClassName="text-base text-disable">
-                    Invoice
+                    Statement
                   </CustomText>
                 </a>
               </li>
@@ -49,7 +49,7 @@ const PaymentFailure = ({ id }) => {
               </li>
               <li>
                 <CustomText textClassName="text-base font-bold">
-                  Invoice Payment
+                  Statement Payment
                 </CustomText>
               </li>
             </ul>

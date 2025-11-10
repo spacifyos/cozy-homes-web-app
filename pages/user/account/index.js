@@ -347,7 +347,7 @@ const Account = () => {
 
           {!isEmpty(userProfileData) && !isBackOffice ? (
             <FeatureComponent
-              title="My Invoice"
+              title="My Statement"
               icon={Images.invoiceIconActive}
               imageWidth={16}
               pb={3}
