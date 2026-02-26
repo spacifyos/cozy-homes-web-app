@@ -151,7 +151,7 @@ const ForgotPasswordOwner = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/}`);
+    router.replace(`/sign-in/owner}`);
   };
 
   const renderContent = (step) => {

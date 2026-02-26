@@ -151,7 +151,8 @@ const ForgotPasswordTenant = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/`);
+    console.log("forgotPasswordSuccess");
+    router.replace(`/sign-in/tenant`);
   };
 
   const renderContent = (step) => {
