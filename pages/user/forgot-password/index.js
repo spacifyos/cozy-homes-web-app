@@ -155,7 +155,7 @@ const ForgotPassword = () => {
   };
 
   const forgotPasswordSuccess = () => {
-    router.replace(`/`);
+    router.replace(`/sign-in`);
   };
 
   const renderContent = (step) => {
