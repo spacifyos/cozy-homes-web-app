@@ -137,6 +137,21 @@ const getInvoicePaymentLinkRequest = async (
   );
 };
 
+const generateInvoicePdfRequest = async (code) => {
+  const res = await api.getGenerateInvoicePdf(code);
+  return res;
+};
+
+const generateInvoiceReceiptPdfRequest = async (code) => {
+  const res = await api.getGenerateInvoiceReceiptPdf(code);
+  return res;
+};
+
+const getRootDataResolve = async () => {
+  const res = await api.getRootData();
+  return get(res, ["data", "data"], {});
+};
+
 const postSyncMeterRequest = async (id, setLoading, successCallback) => {
   await apiRequest(api.postSyncMeter(id), setLoading, successCallback);
 };
@@ -597,6 +612,9 @@ export default {
   postAuthVerify,
   postForgotPasswordRequest,
   getInvoicePaymentLinkRequest,
+  generateInvoicePdfRequest,
+  generateInvoiceReceiptPdfRequest,
+  getRootDataResolve,
   postSyncMeterRequest,
   postMeterTopUpRequest,
   getRootDataRequest,

@@ -97,6 +97,12 @@ const getInvoiceOverview = (id) => apiInstance.get(`/invoice/${id}`);
 const getInvoicePaymentLink = (code) =>
   apiInstance.get(`/invoice/${code}/make-payment`);
 
+const getGenerateInvoicePdf = (code) =>
+  apiInstance.get(`/invoice/${code}/generate-pdf`);
+
+const getGenerateInvoiceReceiptPdf = (code) =>
+  apiInstance.get(`/invoice/${code}/generate-receipt-pdf`);
+
 const getMeterListing = (per_page, page) =>
   apiInstance.get(`/meter?per_page=${per_page}&page=${page}`);
 
@@ -287,6 +293,8 @@ export default {
   getInvoiceListing,
   getInvoiceOverview,
   getInvoicePaymentLink,
+  getGenerateInvoicePdf,
+  getGenerateInvoiceReceiptPdf,
   getMeterListing,
   getMeterOverview,
   postSyncMeter,

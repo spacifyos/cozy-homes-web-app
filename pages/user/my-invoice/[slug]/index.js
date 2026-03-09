@@ -16,7 +16,6 @@ import { isEmpty, map, get, isEqual, upperCase } from "lodash";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Constant from "@/src/utils/Constant";
 import Helper from "@/src/utils/Helper";
-import axios from "axios";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
 import AuthManager from "@/src/utils/AuthManager";
@@ -59,16 +58,7 @@ const InvoiceOverview = ({ id }) => {
   const invoiceDocument = invoiceSelector.getDocument(invoiceOverviewData);
   const receiptDocument = invoiceSelector.getReceipt(invoiceOverviewData);
 
-  const [rootDataLoading, setRootDataLoading] = useState(false);
-  const [targetOpenDocument, setTargetOpenDocument] = useState("");
-  const [gallerySecretKey, setGallerySecretKey] = useState("");
   const [downloading, setDownloading] = useState(false);
-
-  useEffect(() => {
-    if (!isEmpty(gallerySecretKey) && !isEmpty(targetOpenDocument)) {
-      fetchDocumentData(targetOpenDocument, gallerySecretKey);
-    }
-  }, [gallerySecretKey, targetOpenDocument]);
 
   useEffect(() => {
     fetchInvoiceOverviewData(id);
@@ -109,54 +99,33 @@ const InvoiceOverview = ({ id }) => {
   };
 
   const onClickDownloadDocument = async (url) => {
-    if (
-      isEqual(targetOpenDocument, url) &&
-      !isEmpty(gallerySecretKey) &&
-      !isEmpty(targetOpenDocument)
-    ) {
-      await fetchDocumentData(targetOpenDocument, gallerySecretKey);
-      return;
+    try {
+      const isInvoice = isEqual(url, invoiceDocument);
+      const isReceipt = isEqual(url, receiptDocument);
+
+      let response;
+      if (isInvoice) {
+        response = await apiRequest.generateInvoicePdfRequest(code);
+      } else if (isReceipt) {
+        response = await apiRequest.generateInvoiceReceiptPdfRequest(code);
+      } else {
+        Toast.error("Invalid document type");
+        return;
+      }
+
+      const documentUrl = get(response, ["data", "data"], "");
+
+      if (isEmpty(documentUrl)) {
+        Toast.error("Document URL not found");
+        return;
+      }
+
+      await apiRequest.downloadFileRequest(documentUrl);
+    } catch (e) {
+      Toast.error("Failed to download document");
+    } finally {
+      setDownloading(false);
     }
-
-    setTargetOpenDocument(url);
-
-    await apiRequest.getRootDataRequest(
-      setRootDataLoading,
-      getRootDataSuccessCallback,
-    );
-  };
-
-  const getRootDataSuccessCallback = (res) => {
-    const chiper1 = get(res, ["chiper1"], "");
-    const chiper2 = get(res, ["chiper2"], "");
-
-    setGallerySecretKey(Helper.generateSecretKey(chiper1, chiper2));
-  };
-
-  const fetchDocumentData = async (url, key) => {
-    const headers = {
-      "Content-Type": "application/json",
-      AGSC: key,
-      Authorization: await AuthManager.retrieveToken().then((value) => {
-        return `Bearer ${value}`;
-      }),
-    };
-
-    setDownloading(true);
-
-    axios
-      .get(url, { headers: headers })
-      .then(async (response) => {
-        const resUrl = get(response, ["data", "data", "url"], "");
-
-        if (!isEmpty(resUrl)) {
-          await apiRequest.downloadFileRequest(resUrl, {});
-        }
-      })
-      .catch((error) => {
-        Toast.error("Download failed: " + error.message);
-      })
-      .finally(() => setDownloading(false));
   };
 
   return (
@@ -166,10 +135,7 @@ const InvoiceOverview = ({ id }) => {
       <DesktopLayout
         hideFooter
         loading={
-          invoiceOverviewLoading ||
-          getInvoicePaymentLinkLoading ||
-          rootDataLoading ||
-          downloading
+          invoiceOverviewLoading || getInvoicePaymentLinkLoading || downloading
         }
         rightButtonIcon={Images.downloadIconBlack}
         onClickRightButton={onClickDownload}
