@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const UserTypeSelectSection = ({ setSelectedUserType }) => {
   return (
@@ -8,7 +9,7 @@ const UserTypeSelectSection = ({ setSelectedUserType }) => {
       <form method="dialog" className={`flex justify-end`}>
         <button className="btn btn-sm btn-circle btn-ghost right-2">
           <CustomImage
-            src={Images.closeIconBlack}
+            src={Icons.closeIconBlack}
             imageStyle={{ width: 20, height: 20 }}
           />
         </button>

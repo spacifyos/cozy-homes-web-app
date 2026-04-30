@@ -6,6 +6,7 @@ import { isEmpty, isEqual } from "lodash";
 import moment from "moment";
 import Constant from "@/src/utils/Constant";
 import StatusLabel from "@/components/StatusLabel";
+import Icons from "@/components/Icons";
 
 const TransactionCard = ({ data }) => {
   const updatedAt = walletSelector.getUpdatedAt(data);
@@ -20,19 +21,19 @@ const TransactionCard = ({ data }) => {
   const renderIcon = (type) => {
     switch (type) {
       case Constant.WALLET_RENTAL_INCOME:
-        return Images.rentalInIcon;
+        return Icons.rentalInIcon;
       case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
-        return Images.rentalInIcon;
+        return Icons.rentalInIcon;
       case Constant.WALLET_EXPENSE:
-        return Images.rentalOutIcon;
+        return Icons.rentalOutIcon;
       case Constant.WALLET_INVOICE_PAYMENT:
-        return Images.rentalOutIcon;
+        return Icons.rentalOutIcon;
       case Constant.WALLET_WITHDRAWAL:
-        return Images.withdrawIcon;
+        return Icons.withdrawIcon;
       case Constant.WALLET_WITHDRAWAL_REFUND:
-        return Images.refundIcon;
+        return Icons.refundIcon;
       case Constant.WALLET_REVERT_INVOICE_PAYMENT:
-        return Images.refundIcon;
+        return Icons.refundIcon;
     }
   };
 

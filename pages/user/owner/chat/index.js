@@ -17,6 +17,7 @@ import CustomText from "@/components/CustomText";
 import DesktopLayout from "@/components/DesktopLayout";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -112,7 +113,7 @@ const OwnerChat = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

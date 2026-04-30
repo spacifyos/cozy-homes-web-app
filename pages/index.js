@@ -22,6 +22,7 @@ import * as commonSelector from "@/src/selectors/common";
 import AuthManager from "@/src/utils/AuthManager";
 import CustomImage from "@/components/CustomImage";
 import LoadingOverlay from "@/components/LoadingOverlay";
+import Icons from "@/components/Icons";
 
 function Home() {
   const { t } = useTranslation("common");

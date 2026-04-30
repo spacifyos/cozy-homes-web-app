@@ -3,6 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import * as walletSelector from "@/src/selectors/wallet";
+import Icons from "@/components/Icons";
 
 const WalletSummary = ({ data }) => {
   const totalIncome = walletSelector.getTotalIncome(data);
@@ -13,17 +14,17 @@ const WalletSummary = ({ data }) => {
     {
       name: "Total Income",
       value: totalIncome,
-      icon: Images.rentalInIcon,
+      icon: Icons.rentalInIcon,
     },
     {
       name: "Total Expenses",
       value: totalExpense,
-      icon: Images.rentalOutIcon,
+      icon: Icons.rentalOutIcon,
     },
     {
       name: "Total Withdraw",
       value: totalWithdraw,
-      icon: Images.withdrawIcon,
+      icon: Icons.withdrawIcon,
     },
   ];
 

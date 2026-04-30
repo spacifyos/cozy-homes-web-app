@@ -1,6 +1,7 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
+import Icons from "@/components/Icons";
 
 const DesktopSpacifyCoins = ({ route, walletBalance }) => {
   return (
@@ -9,7 +10,7 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
       className="xl:h-36 lg:h-36 md:h-36 sm:h-48 h-44 p-5 global-box-shadow global-border-radius bg-white flex xl:flex-row lg:flex-row md:flex-row sm:flex-col flex-col items-center relative cursor-pointer"
     >
       {/*<div className="absolute right-1 top-3 cursor-pointer">*/}
-      {/*  <CustomImage src={Images.moreIcon} imageStyle={{ width: 22 }} />*/}
+      {/*  <CustomImage src={Icons.moreIcon} imageStyle={{ width: 22 }} />*/}
       {/*</div>*/}
 
       <div className="profile-coin-icon-container">
@@ -29,7 +30,7 @@ const DesktopSpacifyCoins = ({ route, walletBalance }) => {
             {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
             Coming Soon
           </CustomText>
-          {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}
+          {/*<CustomImage src={Icons.refreshIcon} height={20} width={20} />*/}
         </div>
       </div>
     </a>

@@ -4,6 +4,7 @@ import BookingInput from "@/components/Booking/BookingInput";
 import DesktopModal from "@/components/DesktopModal";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const DesktopPinModal = ({
   onClickSubmitSignature,
@@ -23,7 +24,7 @@ const DesktopPinModal = ({
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
               />
             </button>
           </form>

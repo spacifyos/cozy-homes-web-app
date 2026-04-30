@@ -26,6 +26,7 @@ import Helper from "@/src/utils/Helper";
 import * as commonSelector from "@/src/selectors/common";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -557,7 +558,7 @@ const SearchWithSlug = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

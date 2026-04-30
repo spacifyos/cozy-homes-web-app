@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import * as agreementSelector from "@/src/selectors/agreement";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const EAgreementCard = ({ item }) => {
   const referenceNumber = agreementSelector.getReferenceNumber(item);
@@ -42,7 +43,7 @@ const EAgreementCard = ({ item }) => {
         <div className="flex">
           <div className="flex mr-5">
             <CustomImage
-              src={getAgreed ? Images.checkIconAqua : Images.checkIconDisable}
+              src={getAgreed ? Icons.checkIconAqua : Icons.checkIconDisable}
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
@@ -51,7 +52,7 @@ const EAgreementCard = ({ item }) => {
 
           <div className="flex">
             <CustomImage
-              src={getSigned ? Images.checkIconAqua : Images.checkIconDisable}
+              src={getSigned ? Icons.checkIconAqua : Icons.checkIconDisable}
               className="mr-1"
               imageStyle={{ width: 15, height: 15 }}
             />
@@ -60,7 +61,7 @@ const EAgreementCard = ({ item }) => {
         </div>
       </div>
       <CustomImage
-        src={Images.rightIconBlack}
+        src={Icons.rightIconBlack}
         imageStyle={{ width: 10, height: 10 }}
       />
     </a>

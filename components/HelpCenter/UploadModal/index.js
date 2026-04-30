@@ -2,6 +2,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomModal from "@/components/CustomModal";
+import Icons from "@/components/Icons";
 
 const UploadModal = ({
   changeUploadModalTitle,
@@ -18,7 +19,7 @@ const UploadModal = ({
         <div className="flex flex-col items-center">
           <CustomImage
             className="bg-white p-2 cursor-pointer mb-2"
-            src={Images.cameraIcon}
+            src={Icons.cameraIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickOpenCamera}
           />
@@ -28,7 +29,7 @@ const UploadModal = ({
         <div className="flex flex-col items-center">
           <CustomImage
             className="bg-white p-2 cursor-pointer mb-2"
-            src={Images.albumIcon}
+            src={Icons.albumIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />
@@ -38,7 +39,7 @@ const UploadModal = ({
         <div className="flex flex-col items-center">
           <CustomImage
             className="bg-white p-2 cursor-pointer mb-2"
-            src={Images.primaryTermAndConditionIcon}
+            src={Icons.primaryTermAndConditionIcon}
             imageStyle={{ borderRadius: 100, width: 60, height: 60 }}
             onClick={onClickSelectFile}
           />

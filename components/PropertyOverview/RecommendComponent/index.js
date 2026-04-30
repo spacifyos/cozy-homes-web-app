@@ -6,6 +6,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
+import Icons from "@/components/Icons";
 
 const RoomPicCarousel = ({ recommendedList }) => {
   return (
@@ -46,14 +47,14 @@ const RoomPicCarousel = ({ recommendedList }) => {
                 }}
               >
                 <CustomImage
-                  src={Images.femaleUnitIcon}
+                  src={Icons.femaleUnitIcon}
                   imageStyle={{ width: 25 }}
                 />
               </div>
 
               {/*<div className="flex flex-col left-3 top-12 absolute">*/}
               {/*  <div className="bg-white p-1 global-border-radius mb-1">*/}
-              {/*    <CustomImage src={Images.windowIcon} width={20} height={20} />*/}
+              {/*    <CustomImage src={Icons.windowIcon} width={20} height={20} />*/}
               {/*  </div>*/}
               {/*</div>*/}
 

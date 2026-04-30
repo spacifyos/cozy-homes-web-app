@@ -6,6 +6,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import { useState } from "react";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -26,7 +27,7 @@ const TitlePage = () => {
       <div className="body-container relative pt-6 pb-4 flex justify-center">
         <div className="bg-primary p-2 global-border-radius absolute top-0">
           <CustomImage
-            src={Images.ringIcon}
+            src={Icons.ringIcon}
             imageStyle={{ width: 30, height: 30 }}
           />
         </div>

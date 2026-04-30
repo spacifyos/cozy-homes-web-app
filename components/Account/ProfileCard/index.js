@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const ProfileCard = ({ data }) => {
   const name = authSelector.getName(data);
@@ -15,11 +16,11 @@ const ProfileCard = ({ data }) => {
         href={"/user/edit-profile"}
         className="absolute right-3 top-3 cursor-pointer"
       >
-        <CustomImage src={Images.editIcon} imageStyle={{ width: 23 }} />
+        <CustomImage src={Icons.editIcon} imageStyle={{ width: 23 }} />
       </a>
 
       <CustomImage
-        src={Images.userIcon}
+        src={Icons.userIcon}
         imageStyle={{ width: 46 }}
         className="rounded-2xl"
       />

@@ -1,29 +1,34 @@
-import Images from "@/src/utils/Image";
 import _ from "lodash";
 import MeterFeatureComponent from "@/components/MyMeter/MeterFeatureComponent";
+import {
+  TopUpIcon,
+  ClearIcon,
+  UsageIcon,
+  DisconnectIcon,
+} from "@/components/Icons";
 
 const MeterFeature = ({ t, onClickToTopUpMeter }) => {
   return (
     <div className="grid grid-cols-4 gap-4 justify-center pb-7">
       <MeterFeatureComponent
         name={"Top Up"}
-        icon={Images.topUpIcon}
-        onClick={()=>onClickToTopUpMeter(1)}
+        icon={TopUpIcon}
+        onClick={() => onClickToTopUpMeter(1)}
       />
 
       <MeterFeatureComponent
         name={"Clear Balance"}
-        icon={Images.clearIcon}
+        icon={ClearIcon}
       />
 
       <MeterFeatureComponent
         name={"Usage"}
-        icon={Images.usageIcon}
+        icon={UsageIcon}
       />
 
       <MeterFeatureComponent
         name={"Disconnect"}
-        icon={Images.disconnect}
+        icon={DisconnectIcon}
       />
     </div>
   );

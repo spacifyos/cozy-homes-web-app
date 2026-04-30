@@ -17,7 +17,7 @@ const LoadingOverlay = ({ loading = false }) => {
       }
       style={{ backgroundColor: "rgba(256,256,256,0.5)", zIndex: 9999 }}
     >
-      <span className="loading loading-dots loading-lg text-neutral"></span>
+      <span className="loading loading-spinner loading-lg text-neutral"></span>
     </div>
   ) : (
     false

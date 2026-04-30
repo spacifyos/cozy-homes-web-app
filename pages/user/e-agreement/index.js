@@ -16,6 +16,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -100,7 +101,7 @@ const EAgreement = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -129,7 +130,11 @@ const EAgreement = () => {
 
           {isEmpty(agreementListingData) ? (
             <div className="flex flex-col flex-1 justify-center items-center">
-              <CustomEmptyBox />
+              <CustomEmptyBox
+                variant="receipt"
+                emptyTitle="No agreements yet"
+                emptyDesc="Signed e-agreements will be saved here for easy access."
+              />
             </div>
           ) : (
             <div className="flex flex-col gap-4">

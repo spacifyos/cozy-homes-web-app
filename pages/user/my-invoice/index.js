@@ -18,6 +18,7 @@ import DesktopFilterModal from "@/components/MyInvoice/DesktopFilterModal";
 import Helper from "@/src/utils/Helper";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -181,7 +182,7 @@ const MyInvoice = () => {
       <DesktopLayout
         hideFooter
         loading={invoiceListingLoading && isEmpty(invoiceListingData)}
-        rightButtonIcon={Images.filterIconBlack}
+        rightButtonIcon={Icons.filterIconBlack}
         isFiltered={isFilter()}
         onClickRightButton={() => onClickOpenFilter("desktop")}
         pageBreadcrumbs={
@@ -196,7 +197,7 @@ const MyInvoice = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -242,7 +243,11 @@ const MyInvoice = () => {
 
           {isEmpty(invoiceListingData) ? (
             <div className="flex flex-1 items-center justify-center py-10 h-full">
-              <CustomEmptyBox emptyTitle="No statement found" />
+              <CustomEmptyBox
+                variant="statement"
+                emptyTitle="No statements yet"
+                emptyDesc="Your monthly statements will appear here once issued."
+              />
             </div>
           ) : (
             <InvoiceComponent

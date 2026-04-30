@@ -37,6 +37,7 @@ import apiInstance from "@/src/services/httpUtilities/httpManager";
 import axios from "axios";
 import ImageModal from "@/components/PropertyOverview/ImageModal";
 import VideoModal from "@/components/VideoModal";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -154,8 +155,8 @@ const NewRequest = ({}) => {
                 ...type,
                 ...{
                   description: "Have a question?",
-                  icon: Images.enquiryIconWhite,
-                  iconActive: Images.enquiryIconActive,
+                  icon: Icons.enquiryIconWhite,
+                  iconActive: Icons.enquiryIconActive,
                 },
               };
             case 2:
@@ -163,8 +164,8 @@ const NewRequest = ({}) => {
                 ...type,
                 ...{
                   description: "Write us your feedback.",
-                  icon: Images.feedbackIconWhite,
-                  iconActive: Images.feedbackIconActive,
+                  icon: Icons.feedbackIconWhite,
+                  iconActive: Icons.feedbackIconActive,
                 },
               };
           }
@@ -178,8 +179,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.washingMachineIconWhite,
-                  iconActive: Images.washingMachineIconActive,
+                  icon: Icons.washingMachineIconWhite,
+                  iconActive: Icons.washingMachineIconActive,
                   description:
                     "Washer, dryer, oven, air conditioner, water heater, celling fan",
                 },
@@ -188,8 +189,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.electricalIconWhite,
-                  iconActive: Images.electricalIconActive,
+                  icon: Icons.electricalIconWhite,
+                  iconActive: Icons.electricalIconActive,
                   description: "Lights, well socket, wiring, smart meter",
                 },
               };
@@ -197,8 +198,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.plumbimgIconWhite,
-                  iconActive: Images.plumbingIconActive,
+                  icon: Icons.plumbimgIconWhite,
+                  iconActive: Icons.plumbingIconActive,
                   description: "Leaking, faucets, pipes, pump",
                 },
               };
@@ -206,8 +207,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.windowIconWhite,
-                  iconActive: Images.windowIconActive,
+                  icon: Icons.windowIconWhite,
+                  iconActive: Icons.windowIconActive,
                   description: "Doors, windows, flooring, wall",
                 },
               };
@@ -215,8 +216,8 @@ const NewRequest = ({}) => {
               return {
                 ...type,
                 ...{
-                  icon: Images.cleaningIconWhite,
-                  iconActive: Images.cleaningIconActive,
+                  icon: Icons.cleaningIconWhite,
+                  iconActive: Icons.cleaningIconActive,
                   description: "Submit a cleaning service request",
                 },
               };
@@ -530,7 +531,7 @@ const NewRequest = ({}) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

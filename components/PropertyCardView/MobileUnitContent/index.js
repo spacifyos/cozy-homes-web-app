@@ -4,13 +4,18 @@ import * as listingSelector from "@/src/selectors/listing";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const MobileUnitContent = ({ unitListing, onClickShareBooking }) => {
   return (
     <div className="md:col-span-12 sm:col-span-12 col-span-12 xl:hidden lg:hidden md:block sm:block block relative">
       {isEmpty(unitListing) ? (
         <div className="bg-white global-border-radius border border-disable flex justify-center items-center h-screen">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="room"
+          emptyTitle="No units available"
+          emptyDesc="There aren't any units to show for this property right now."
+        />
         </div>
       ) : (
         <div className="flex flex-col gap-4 sticky top-4 ">
@@ -92,8 +97,8 @@ const MobileUnitContent = ({ unitListing, onClickShareBooking }) => {
                             {/*<CustomImage*/}
                             {/*  src={*/}
                             {/*    isEmpty(isAvailableBook)*/}
-                            {/*      ? Images.shareIconActive*/}
-                            {/*      : Images.shareIconDisable*/}
+                            {/*      ? Icons.shareIconActive*/}
+                            {/*      : Icons.shareIconDisable*/}
                             {/*  }*/}
                             {/*  className="w-3 cursor-pointer"*/}
                             {/*  onClick={(event) => {*/}

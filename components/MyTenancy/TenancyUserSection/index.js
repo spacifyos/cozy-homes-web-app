@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const TenancyUserSection = ({ t, data }) => {
   const name = authSelector.getName(data);
@@ -12,7 +13,7 @@ const TenancyUserSection = ({ t, data }) => {
   return (
     <div className="flex justify-between">
       <div className="user-info-container">
-        <CustomImage src={Images.userIconActive} imageStyle={{ width: 60 }} />
+        <CustomImage src={Icons.userIconActive} imageStyle={{ width: 60 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name text-primary">
@@ -21,7 +22,7 @@ const TenancyUserSection = ({ t, data }) => {
 
           <div className="flex items-center">
             <CustomImage
-              src={Images.phoneIconBlack}
+              src={Icons.phoneIconBlack}
               imageStyle={{ width: 15 }}
             />
             <CustomText textClassName="user-info">
@@ -31,7 +32,7 @@ const TenancyUserSection = ({ t, data }) => {
 
           <div className="flex items-center">
             <CustomImage
-              src={Images.emailIconBlack}
+              src={Icons.emailIconBlack}
               imageStyle={{ width: 15 }}
             />
             <CustomText textClassName="user-info">

@@ -2,6 +2,7 @@ import CustomText from "@/components/CustomText";
 import { map, get, isEmpty } from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const BookingSelect = ({
   className,
@@ -10,7 +11,7 @@ const BookingSelect = ({
   title,
   lists,
   name,
-  rightIcon = Images.downIconBlack,
+  rightIcon = Icons.downIconBlack,
   required,
   bgColor = "bg-primary-background",
   disabled = true,

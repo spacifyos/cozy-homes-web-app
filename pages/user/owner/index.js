@@ -20,6 +20,7 @@ import BottomNavigate from "@/components/BottomNavigate";
 import { get } from "lodash";
 import DesktopLayout from "@/components/DesktopLayout";
 import { NextSeo } from "next-seo";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -67,22 +68,22 @@ const OwnerHome = () => {
     {
       name: "Property",
       value: ownerSelector.getTotalProperty(propertyListing),
-      icon: Images.buildingIconActive,
+      icon: Icons.buildingIconActive,
     },
     {
       name: "Unit",
       value: ownerSelector.getTotalUnits(propertyListing),
-      icon: Images.spaceIconActive,
+      icon: Icons.spaceIconActive,
     },
     {
       name: "Room",
       value: `${ownerSelector.getTotalRoom(propertyListing)}`,
-      icon: Images.bedIconActive,
+      icon: Icons.bedIconActive,
     },
     {
       name: "Car Park",
       value: `${ownerSelector.getTotalCarPark(propertyListing)}`,
-      icon: Images.carParkOccupancyIconActive,
+      icon: Icons.carParkOccupancyIconActive,
     },
   ];
 

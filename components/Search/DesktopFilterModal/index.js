@@ -8,6 +8,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import CustomSelect from "@/components/CustomSelect";
 import CustomInput from "@/components/CustomInput";
 import RangeSlider from "react-range-slider-input";
+import Icons from "@/components/Icons";
 
 const DesktopFilterModal = ({
   sortValue,
@@ -52,7 +53,7 @@ const DesktopFilterModal = ({
             >
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
               />
             </button>
           </form>

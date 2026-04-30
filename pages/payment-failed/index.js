@@ -7,6 +7,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { get, isEmpty } from "lodash";
 import { NextSeo } from "next-seo";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -23,7 +24,7 @@ const PaymentFailed = ({ id }) => {
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
       <NextSeo title="Payment Failed - CozyHomes" />
       {/*<CustomImage*/}
-      {/*  src={Images.closeIconBlack}*/}
+      {/*  src={Icons.closeIconBlack}*/}
       {/*  imageStyle={{ width: "20px" }}*/}
       {/*  className=" absolute top-5 right-5 cursor-pointer"*/}
       {/*  onClick={onClickGoMainPage}*/}

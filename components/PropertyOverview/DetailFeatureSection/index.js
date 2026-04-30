@@ -2,26 +2,27 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { isEmpty, map, get } from "lodash";
+import Icons from "@/components/Icons";
 
 const DetailFeatureSection = ({ rental, bedType, bathroom, squareFeet }) => {
   const lists = [
     {
-      icon: Images.bathroomIconDisable,
+      icon: Icons.bathroomIconDisable,
       title: "Bath Room",
       value: isEmpty(bathroom) ? "-" : bathroom,
     },
     {
-      icon: Images.bedIconDisable,
+      icon: Icons.bedIconDisable,
       title: "Bed",
       value: isEmpty(bedType) ? "-" : bedType,
     },
     {
-      icon: Images.squareIcon,
+      icon: Icons.squareIcon,
       title: "Sqft",
       value: `${isEmpty(squareFeet) ? "-" : squareFeet} Sqft`,
     },
     {
-      icon: Images.coinIconDisable,
+      icon: Icons.coinIconDisable,
       title: "Rental Fee",
       value: `RM ${isEmpty(rental) ? "0" : rental} / mth`,
     },

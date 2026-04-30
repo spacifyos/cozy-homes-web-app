@@ -20,6 +20,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import DesktopPinNumberInfoModal from "@/components/EAgreement/DesktopPinNumberInfoModal";
 import DesktopPinModal from "@/components/EAgreement/DesktopPinModal";
 import DesktopCanvasModel from "@/components/EAgreement/DesktopCanvasModel";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -335,7 +336,7 @@ const ViewAgreement = ({ id }) => {
         hideFooter
         loading={loading || agreeLoading || signLoading || downloading}
         onClickRightButton={downloadPdf}
-        rightButtonIcon={Images.downloadIconBlack}
+        rightButtonIcon={Icons.downloadIconBlack}
         pageBreadcrumbs={
           <div>
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
@@ -364,7 +365,7 @@ const ViewAgreement = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -432,7 +433,7 @@ const ViewAgreement = ({ id }) => {
                 <CustomImage
                   className="cursor-pointer"
                   src={
-                    readAgree ? Images.checkIconAqua : Images.uncheckIconWhite
+                    readAgree ? Icons.checkIconAqua : Icons.uncheckIconWhite
                   }
                   imageStyle={{ width: 23 }}
                 />

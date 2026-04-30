@@ -1,5 +1,6 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const EventBanner = () => {
   return (
@@ -15,7 +16,7 @@ const EventBanner = () => {
               style={{ backgroundColor: "transparent", border: "none" }}
             >
               <CustomImage
-                src={Images.closeIconWhite}
+                src={Icons.closeIconWhite}
                 className="w-4 h-4 cursor-pointer"
               />
             </button>

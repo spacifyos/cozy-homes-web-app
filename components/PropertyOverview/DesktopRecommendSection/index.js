@@ -8,6 +8,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
+import Icons from "@/components/Icons";
 
 const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
   return (
@@ -15,7 +16,7 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.recommendIcon}
+            src={Icons.recommendIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
@@ -33,7 +34,7 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
+        {/*  <CustomImage src={Icons.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
       <div className="gap-1 flex justify-center items-center">
@@ -88,8 +89,9 @@ const DesktopRecommendSection = ({ data, loading, onClickViewMore }) => {
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
             <CustomEmptyBox
-              emptyTitle="No recommend property found"
-              emptyDesc="Recommend property not available for now. "
+              variant="property"
+              emptyTitle="No recommendations yet"
+              emptyDesc="We'll surface similar homes here as soon as we find a match."
             />
           </div>
         ) : (

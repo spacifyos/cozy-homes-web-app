@@ -1,5 +1,16 @@
 import FeatureComponent from "@/components/Account/FeatureComponent";
 import Images from "@/src/utils/Image";
+import {
+  HomeIcon,
+  AccountIcon,
+  InvoiceIcon,
+  AgreementIcon,
+  MeterIcon,
+  ReportIcon,
+  LockIcon,
+  ListIcon,
+  LogoutIcon,
+} from "@/components/Icons";
 import { get, isEmpty, isEqual, size } from "lodash";
 import SetPinNumberModal from "@/components/EditProfile/SetPinNumberModal";
 import { useEffect, useState } from "react";
@@ -158,7 +169,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
           title="My Property"
-          icon={Images.homeIconActive}
+          icon={HomeIcon}
           pb={3}
           onClick={() => {
             return router.push(isTenant ? "/user/my-property" : "/user/owner");
@@ -171,7 +182,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       <FeatureComponent
         title="My Account"
-        icon={Images.accountIconActive}
+        icon={AccountIcon}
         pb={3}
         onClick={() => {
           return router.push("/user/account");
@@ -182,7 +193,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {/*{!isEmpty(userData) && (isTenant || isBackOffice) ? (*/}
       {/*  <FeatureComponent*/}
       {/*    title="Help Center"*/}
-      {/*    icon={Images.helpCenterIconActive}*/}
+      {/*    icon={Icons.helpCenterIconActive}*/}
       {/*    pb={3}*/}
       {/*    onClick={() => {*/}
       {/*      if (isTenant) {*/}
@@ -200,7 +211,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {/*{!isEmpty(userData) && isBackOffice ? (*/}
       {/*  <FeatureComponent*/}
       {/*    title="Help Center"*/}
-      {/*    icon={Images.helpCenterIconActive}*/}
+      {/*    icon={Icons.helpCenterIconActive}*/}
       {/*    pb={3}*/}
       {/*    onClick={() => {}}*/}
       {/*    imageWidth={25}*/}
@@ -212,7 +223,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
           title="My Statement"
-          icon={Images.invoiceIconActive}
+          icon={InvoiceIcon}
           imageWidth={16}
           pb={3}
           onClick={() => {
@@ -226,7 +237,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && !isBackOffice && !Helper.isTenant(userRole) ? (
         <FeatureComponent
           title={"My E-Agreement"}
-          icon={Images.agreementIconActive}
+          icon={AgreementIcon}
           imageWidth={16}
           pb={3}
           onClick={() => {
@@ -240,7 +251,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && isTenant && !isBackOffice ? (
         <FeatureComponent
           title={"My Meter"}
-          icon={Images.meterIconActive}
+          icon={MeterIcon}
           imageWidth={14}
           pb={3}
           onClick={() => {
@@ -254,7 +265,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && !isTenant && !isBackOffice ? (
         <FeatureComponent
           title={"My Report"}
-          icon={Images.reportIconActive}
+          icon={ReportIcon}
           imageWidth={16}
           pb={3}
           onClick={() => {
@@ -268,7 +279,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {/*{!isEmpty(userData) && !isTenant && !isBackOffice ? (*/}
       {/*  <FeatureComponent*/}
       {/*    title={"RenoXpert"}*/}
-      {/*    icon={Images.renoExpertIconActive}*/}
+      {/*    icon={Icons.renoExpertIconActive}*/}
       {/*    imageWidth={16}*/}
       {/*    pb={3}*/}
       {/*    onClick={() => {*/}
@@ -282,7 +293,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {!isEmpty(userData) && !isBackOffice ? (
         <FeatureComponent
           title="Set Pin Number"
-          icon={Images.lockIconActive}
+          icon={LockIcon}
           imageWidth={16}
           pb={3}
           onClick={onClickOpenSetPinNumberModal}
@@ -296,7 +307,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       (Helper.isMasterAgency(userRole) || Helper.isAgency(userRole)) ? (
         <FeatureComponent
           title="Property Listing"
-          icon={Images.listIconActive}
+          icon={ListIcon}
           imageWidth={20}
           pb={3}
           onClick={() => {
@@ -312,7 +323,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
       {/*{!isEmpty(userData) && !isBackOffice ? (*/}
       {/*  <FeatureComponent*/}
       {/*    title="Chat"*/}
-      {/*    icon={Images.chatIconActive}*/}
+      {/*    icon={Icons.chatIconActive}*/}
       {/*    imageWidth={18}*/}
       {/*    pb={3}*/}
       {/*    onClick={() => {*/}
@@ -325,7 +336,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       {/*<FeatureComponent*/}
       {/*  title="Terms & Conditions"*/}
-      {/*  icon={Images.termIconActive}*/}
+      {/*  icon={Icons.termIconActive}*/}
       {/*  imageWidth={18}*/}
       {/*  pb={3}*/}
       {/*  route={"https://tms.spacify.asia/privacy-policy"}*/}
@@ -336,7 +347,7 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
 
       <FeatureComponent
         title="Logout"
-        icon={Images.signUpIconActive}
+        icon={LogoutIcon}
         imageWidth={18}
         pb={3}
         onClick={onClickLogout}

@@ -6,6 +6,7 @@ import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 import StatusLabel from "@/components/StatusLabel";
 import { isEmpty, map, get } from "lodash";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const RequestOverviewDetail = ({
   data,
@@ -104,7 +105,7 @@ const RequestOverviewDetail = ({
             className={`w-28 h-28 relative flex justify-center items-center border global-border-radius`}
           >
             <CustomImage
-              src={Images.playIcon}
+              src={Icons.playIcon}
               className="w-14 h-14 cursor-pointer"
               onClick={onClickPopupVideo}
             />

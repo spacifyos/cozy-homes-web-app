@@ -67,7 +67,11 @@ const DesktopListingSection = ({
         </div>
       ) : isEmpty(listingPropertyData) ? (
         <div className="flex flex-1 items-center justify-center py-40">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="property"
+          emptyTitle="No matches found"
+          emptyDesc="Try widening your filters or searching a different area."
+        />
         </div>
       ) : (
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-5">

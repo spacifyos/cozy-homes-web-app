@@ -14,7 +14,11 @@ const ListingComponent = ({ data, targetMonth }) => {
 
       {isEmpty(data) ? (
         <div className="flex flex-1 justify-center ">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="receipt"
+          emptyTitle="No reports yet"
+          emptyDesc="Monthly reports will appear here once they're generated."
+        />
         </div>
       ) : (
         <MyReportCard data={data} targetMonth={targetMonth} />

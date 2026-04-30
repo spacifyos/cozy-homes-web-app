@@ -2,6 +2,7 @@ import CustomText from "@/components/CustomText";
 import _ from "lodash";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const ListingCoinsTransaction = ({ item }) => {
   const date = _.get(item, ["date"], "");
@@ -29,7 +30,7 @@ const ListingCoinsTransaction = ({ item }) => {
             + {coins} coins
           </CustomText>
           <CustomImage
-            src={Images.moreIcon}
+            src={Icons.moreIcon}
             width={25}
             height={25}
             className="absolute right-4"

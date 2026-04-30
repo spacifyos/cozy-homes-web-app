@@ -7,6 +7,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import moment from "moment";
 import StatusLabel from "@/components/StatusLabel";
 import Constant from "@/src/utils/Constant";
+import Icons from "@/components/Icons";
 
 const StepSection = ({ t, data }) => {
   const createAt = listingSelector.getCreatedAt(data);
@@ -23,7 +24,7 @@ const StepSection = ({ t, data }) => {
     <div className="global-box-shadow global-border-radius bg-white p-7">
       <div className="flex flex-row items-start gap-2 ">
         <CustomImage
-          src={Images.stepCompleteIcon}
+          src={Icons.stepCompleteIcon}
           imageStyle={{ width: 30, height: 30 }}
         />
         <div className="flex flex-col">
@@ -54,8 +55,8 @@ const StepSection = ({ t, data }) => {
         <CustomImage
           src={
             !isEqual(paymentStatus, "Paid")
-              ? Images.step2Icon
-              : Images.stepCompleteIcon
+              ? Icons.step2Icon
+              : Icons.stepCompleteIcon
           }
           imageStyle={{ width: 30, height: 30 }}
         />
@@ -96,8 +97,8 @@ const StepSection = ({ t, data }) => {
         <CustomImage
           src={
             isEqual(agencyReviewStatus, "Approved")
-              ? Images.stepCompleteIcon
-              : Images.step3Icon
+              ? Icons.stepCompleteIcon
+              : Icons.step3Icon
           }
           imageStyle={{ width: 30, height: 30 }}
         />

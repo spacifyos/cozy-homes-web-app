@@ -13,8 +13,8 @@ const Facilities = ({ facilitiesList }) => {
         {isEmpty(facilitiesList) ? (
           <div className="flex justify-center flex-1 py-10">
             <CustomEmptyBox
-              emptyTitle="No facilities found"
-              emptyDesc="Facilities is not available for now."
+              emptyTitle="No facilities listed"
+              emptyDesc="The owner hasn't shared facility details yet."
             />
           </div>
         ) : (

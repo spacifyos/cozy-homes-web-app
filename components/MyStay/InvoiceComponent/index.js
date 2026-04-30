@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
 import { map, isEmpty } from "lodash";
 import * as invoiceSelector from "@/src/selectors/invoice";
+import Icons from "@/components/Icons";
 
 const InvoiceComponent = ({ data, type }) => {
   return (
@@ -24,7 +25,7 @@ const InvoiceComponent = ({ data, type }) => {
             <div className="flex items-center">
               <div className="invoice-icon-container">
                 <CustomImage
-                  src={Images.invoiceIconWhite}
+                  src={Icons.invoiceIconWhite}
                   className="w-5"
                 />
               </div>
@@ -54,7 +55,7 @@ const InvoiceComponent = ({ data, type }) => {
 
                     <div className="flex items-center">
                       <CustomImage
-                        src={Images.checkIconAqua}
+                        src={Icons.checkIconAqua}
                         imageStyle={{ width: 15 }}
                         className="mr-1"
                       />
@@ -75,7 +76,7 @@ const InvoiceComponent = ({ data, type }) => {
 
               {/*<div className="flex items-center">*/}
               {/*  <CustomImage*/}
-              {/*    src={Images.moreIcon}*/}
+              {/*    src={Icons.moreIcon}*/}
               {/*    width={25}*/}
               {/*    height={25}*/}
               {/*    className="absolute right-4"*/}

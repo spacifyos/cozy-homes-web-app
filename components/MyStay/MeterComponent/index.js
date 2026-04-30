@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const MeterComponent = ({ onClickToMeterOverview, item }) => {
   const id = meterSelector.getId(item);
@@ -22,7 +23,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       </CustomText>
       <div className="flex items-end gap-2">
         <div className="bg-primary p-3 global-border-radius">
-          <CustomImage src={Images.meterIconWhite} className="w-4" />
+          <CustomImage src={Icons.meterIconWhite} className="w-4" />
         </div>
 
         <div className="flex flex-col">
@@ -33,7 +34,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
             <div className="flex items-center pr-3">
               <CustomImage
-                src={wifi ? Images.powerIconAqua : Images.powerIconDisable}
+                src={wifi ? Icons.powerIconAqua : Icons.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />
@@ -46,7 +47,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
 
             <div className="flex items-center">
               <CustomImage
-                src={power ? Images.powerIconAqua : Images.powerIconDisable}
+                src={power ? Icons.powerIconAqua : Icons.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />
@@ -78,7 +79,7 @@ const MeterComponent = ({ onClickToMeterOverview, item }) => {
       {/*    <CustomText textClassName="text-primary text-base font-bold pe-1">*/}
       {/*      {isEmpty(balanceUnit) ? "-" : balanceUnit}*/}
       {/*    </CustomText>*/}
-      {/*    /!*<CustomImage src={Images.refreshIcon} width={15} height={15} />*!/*/}
+      {/*    /!*<CustomImage src={Icons.refreshIcon} width={15} height={15} />*!/*/}
       {/*  </div>*/}
       {/*</div>*/}
       {/*<a className="col-span-4" href={`/user/my-meter/${id}`}>*/}

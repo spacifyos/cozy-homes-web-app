@@ -8,6 +8,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import { get, isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -23,7 +24,7 @@ const AddBankSuccessful = ({}) => {
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <NextSeo title="Booking Payment Successful - CozyHomes" />
       <CustomImage
-        src={Images.closeIconBlack}
+        src={Icons.closeIconBlack}
         imageStyle={{ width: 20, position: "absolute" }}
         className="top-5 right-5 cursor-pointer"
         onClick={onClickToMyBankPage}

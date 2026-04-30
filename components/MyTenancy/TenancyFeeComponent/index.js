@@ -7,7 +7,11 @@ const TenancyFeeComponent = ({ data }) => {
   return (
     <div className="flex flex-col justify-between items-center gap-2">
       {_.isEmpty(data) ? (
-        <CustomEmptyBox emptyTitle="No charges found" />
+        <CustomEmptyBox
+        variant="receipt"
+        emptyTitle="No charges due"
+        emptyDesc="Your tenancy is all settled — nothing outstanding right now."
+      />
       ) : (
         _.map(data, (item, index) => {
           const name = tenancySelector.getName(item);

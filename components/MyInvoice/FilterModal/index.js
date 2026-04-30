@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
 import { useEffect } from "react";
+import Icons from "@/components/Icons";
 
 const FilterModal = ({
   t,
@@ -78,7 +79,7 @@ const FilterModal = ({
               />
 
               <CustomImage
-                src={Images.calendarIcon}
+                src={Icons.calendarIcon}
                 imageStyle={{ width: 20, height: 20, marginRight: 4 }}
               />
             </div>
@@ -99,7 +100,7 @@ const FilterModal = ({
               />
 
               <CustomImage
-                src={Images.calendarIcon}
+                src={Icons.calendarIcon}
                 imageStyle={{ width: 20, height: 20, marginRight: 4 }}
               />
             </div>

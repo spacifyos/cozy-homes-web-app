@@ -5,6 +5,7 @@ import { isEmpty, map, get, isEqual } from "lodash";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const InvoiceSection = ({
   selectedCategory,
@@ -58,14 +59,18 @@ const InvoiceSection = ({
             View More
           </CustomText>
 
-          <CustomImage src={Images.rightIconBlack} className="w-1.5" />
+          <CustomImage src={Icons.rightIconBlack} className="w-1.5" />
         </a>
       </div>
 
       <div className="flex flex-col gap-3">
         {isEmpty(data) ? (
           <div style={{ height: 351 }} className="flex justify-center">
-            <CustomEmptyBox emptyTitle="No statement found" />
+            <CustomEmptyBox
+            variant="statement"
+            emptyTitle="No statements yet"
+            emptyDesc="Your monthly statements will appear here once issued."
+          />
           </div>
         ) : (
           <InvoiceComponent data={data} type={type} />

@@ -18,6 +18,7 @@ import AuthManager from "@/src/utils/AuthManager";
 import DesktopModal from "@/components/DesktopModal";
 import UserTypeSelectSection from "@/components/Explore/UserTypeSelectSection";
 import Alert from "@/components/Alert";
+import Icons from "@/components/Icons";
 
 const SignInModal = ({
   selectedUserType,
@@ -138,7 +139,7 @@ const SignInModal = ({
                 }}
               >
                 <CustomImage
-                  src={Images.closeIconWhite}
+                  src={Icons.closeIconWhite}
                   imageStyle={{ width: 20, height: 20 }}
                 />
               </button>

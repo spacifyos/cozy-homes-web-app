@@ -9,6 +9,7 @@ import CustomButton from "@/components/CustomButton";
 import BookingTextArea from "@/components/BookingTextArea";
 import { useState } from "react";
 import moment from "moment";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -70,7 +71,7 @@ const Booking = () => {
         <div className="global-box-shadow global-border-radius bg-white p-4">
           <div className="flex gap-2 items-center pb-5">
             <div className="p-2 global-box-shadow global-border-radius bg-primary">
-              <CustomImage src={Images.bookingIcon} width={25} height={25} />
+              <CustomImage src={Icons.bookingIcon} width={25} height={25} />
             </div>
 
             <CustomText textClassName="font-bold text-base text-primary">
@@ -101,7 +102,7 @@ const Booking = () => {
                 onChange={onChangeDate}
             />
             <CustomImage
-                src={Images.calendarIcon}
+                src={Icons.calendarIcon}
                 imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>
@@ -119,7 +120,7 @@ const Booking = () => {
             />
 
             <CustomImage
-              src={Images.clockIcon}
+              src={Icons.clockIcon}
               imageStyle={{ width: 20, height: 20, marginRight: 4 }}
             />
           </div>

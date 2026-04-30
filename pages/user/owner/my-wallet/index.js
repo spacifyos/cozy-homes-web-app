@@ -16,6 +16,7 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { NextSeo } from "next-seo";
 import CustomButton from "@/components/CustomButton";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -131,7 +132,7 @@ const MyWallet = () => {
             href={"/user/owner/my-wallet/withdraw"}
             className="global-box-shadow global-border-radius p-3 bg-white flex justify-center items-center cursor-pointer"
           >
-            <CustomImage src={Images.withdrawIcon} imageStyle={{ width: 25 }} />
+            <CustomImage src={Icons.withdrawIcon} imageStyle={{ width: 25 }} />
             <CustomText textClassName="text-primary pl-2 text-sm">
               Withdraw
             </CustomText>

@@ -4,6 +4,7 @@ import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
 import _, { isEmpty, isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
+import Icons from "@/components/Icons";
 
 const RentChargesComponent = ({
   openCharges,
@@ -30,7 +31,7 @@ const RentChargesComponent = ({
             false
           ) : (
             <CustomImage
-              src={!openCharges ? Images.upIconBlack : Images.downIconBlack}
+              src={!openCharges ? Icons.upIconBlack : Icons.downIconBlack}
               imageStyle={{ width: 13 }}
             />
           )}
@@ -42,7 +43,7 @@ const RentChargesComponent = ({
       <div className="collapse-content p-0">
         <div className="flex items-center pt-1">
           <CustomImage
-            src={Images.infoIconActive}
+            src={Icons.infoIconActive}
             className="cursor-pointer w-4"
             onClick={() =>
               Helper.documentGetElementById("rent_charges_details").showModal()

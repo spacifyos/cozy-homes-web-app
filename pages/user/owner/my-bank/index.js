@@ -148,7 +148,11 @@ const MyBank = () => {
           <div className="flex flex-col flex-1">
             {isEmpty(walletTransactionListing) ? (
               <div className="flex justify-center flex-1">
-                <CustomEmptyBox />
+                <CustomEmptyBox
+                  variant="transaction"
+                  emptyTitle="No transactions yet"
+                  emptyDesc="Your bank activity will show up here once funds start moving."
+                />
               </div>
             ) : (
               <div className="flex flex-col gap-3">

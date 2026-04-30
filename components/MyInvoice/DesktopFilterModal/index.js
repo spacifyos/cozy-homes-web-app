@@ -6,6 +6,7 @@ import DesktopModal from "@/components/DesktopModal";
 import BookingDateInput from "@/components/Booking/BookingDateInput";
 import moment from "moment/moment";
 import BookingInput from "@/components/Booking/BookingInput";
+import Icons from "@/components/Icons";
 
 const DesktopFilterModal = ({
   t,
@@ -29,7 +30,7 @@ const DesktopFilterModal = ({
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
               />
             </button>
           </form>

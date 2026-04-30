@@ -74,7 +74,11 @@ const ListingSection = ({
           </div>
         ) : isEmpty(lists) ? (
           <div className="flex justify-center" style={{ height: 144 }}>
-            <CustomEmptyBox emptyTitle="Property not available now." />
+            <CustomEmptyBox
+            variant="property"
+            emptyTitle="No properties listed"
+            emptyDesc="We're adding new homes all the time — check back soon."
+          />
           </div>
         ) : (
           <Swiper

@@ -8,6 +8,7 @@ import Images from "@/src/utils/Image";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import moment from "moment";
 import { getDocuments } from "@/src/selectors/tenancy";
+import Icons from "@/components/Icons";
 
 const AutoPayButton = ({ isChecked = false, onChangeAutoPay }) => {
   return (
@@ -87,7 +88,7 @@ const TenancyDetail = ({
       <div className="flex flex-col items-start overflow-hidden">
         <div className="flex items-end py-3">
           <div className="bg-primary p-3 global-border-radius ">
-            <CustomImage src={Images.buildingIconWhite} className="w-6" />
+            <CustomImage src={Icons.buildingIconWhite} className="w-6" />
           </div>
 
           <div className={"pl-2"}>

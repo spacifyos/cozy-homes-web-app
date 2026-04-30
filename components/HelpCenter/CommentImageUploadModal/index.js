@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomButton from "@/components/CustomButton";
+import Icons from "@/components/Icons";
 
 const CommentImageUploadModal = ({
   open,
@@ -55,7 +56,7 @@ const CommentImageUploadModal = ({
                       onClick={() => onClickRemoveCommentImage(item)}
                     >
                       <CustomImage
-                        src={Images.deleteIcon}
+                        src={Icons.deleteIcon}
                         className="w-10 h-10"
                       />
                     </div>

@@ -7,6 +7,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const CommentComponent = ({
   onClickSendMessage,
@@ -39,7 +40,11 @@ const CommentComponent = ({
         </div>
       ) : isEmpty(data) ? (
         <div className="py-10">
-          <CustomEmptyBox emptyTitle="No comment found" emptyDesc="" />
+          <CustomEmptyBox
+          variant="comment"
+          emptyTitle="No comments yet"
+          emptyDesc="Be the first to share an update on this ticket."
+        />
         </div>
       ) : (
         map(data, (item, index) => {
@@ -82,7 +87,7 @@ const CommentComponent = ({
             uploadCommentImageRef && uploadCommentImageRef.current.click()
           }
         >
-          <CustomImage src={Images.imageIconDisable} className="w-10 h-10" />
+          <CustomImage src={Icons.imageIconDisable} className="w-10 h-10" />
 
           <input
             capture="environment"

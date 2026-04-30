@@ -32,6 +32,7 @@ import CardViewModal from "@/components/PropertyCardView/CardViewModal";
 import Helper from "@/src/utils/Helper";
 import * as authSelector from "@/src/selectors/auth";
 import { useRouter } from "next/router";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -272,7 +273,7 @@ const CardListing = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

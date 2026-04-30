@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import CustomButton from "@/components/CustomButton";
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 const AppointmentSuccessful = ({}) => {
@@ -22,7 +23,7 @@ const AppointmentSuccessful = ({}) => {
   return (
     <div className="flex flex-col justify-center items-center pt-32 relative">
       <CustomImage
-        src={Images.closeIconBlack}
+        src={Icons.closeIconBlack}
         imageStyle={{ width: "20px" }}
         className=" absolute top-5 right-5 cursor-pointer"
         onClick={onClickGoMainPage}

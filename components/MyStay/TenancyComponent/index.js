@@ -6,6 +6,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import RadialProgressComponent from "@/components/MyStay/RadialProgressComponent";
 import * as tenancySelector from "@/src/selectors/tenancy";
 import { useEffect, useRef, useState } from "react";
+import Icons from "@/components/Icons";
 
 const TenancyComponent = ({ item }) => {
   const targetRef = useRef();
@@ -33,7 +34,7 @@ const TenancyComponent = ({ item }) => {
       className="tenancy-container cursor-pointer grid grid-cols-2 gap-2"
     >
       {/*<CustomImage*/}
-      {/*  src={Images.moreIcon}*/}
+      {/*  src={Icons.moreIcon}*/}
       {/*  width={25}*/}
       {/*  height={25}*/}
       {/*  className="absolute right-4 top-3 cursor-pointer"*/}
@@ -42,7 +43,7 @@ const TenancyComponent = ({ item }) => {
 
       <div className="flex flex-col items-start col-span-1">
         <div className="bg-primary p-2 global-border-radius mb-1 ">
-          <CustomImage src={Images.buildingIconWhite} className="w-6" />
+          <CustomImage src={Icons.buildingIconWhite} className="w-6" />
         </div>
 
         <div className={"pb-2"}>

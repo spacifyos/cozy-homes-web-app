@@ -2,6 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import _ from "lodash";
 import CustomText from "@/components/CustomText";
+import Icons from "@/components/Icons";
 
 const LatestUpdate = ({ t, item, onClickToTitle }) => {
   const date = _.get(item, "date", "");
@@ -13,7 +14,7 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
       <div className="flex items-center">
         <div className="global-border-radius bg-primary p-3 mr-3">
           <CustomImage
-            src={Images.ringIcon}
+            src={Icons.ringIcon}
             imageStyle={{ width: 30, height: 30 }}
           />
         </div>
@@ -30,7 +31,7 @@ const LatestUpdate = ({ t, item, onClickToTitle }) => {
           </CustomText>
         </div>
 
-        <CustomImage src={Images.moreIcon} width={25} height={25} />
+        <CustomImage src={Icons.moreIcon} width={25} height={25} />
 
         {_.isEqual(item.date, "15 Dec 2024") ? (
           <div className="bg-error rounded-2xl h-3 w-3 absolute right-0 top-0"></div>

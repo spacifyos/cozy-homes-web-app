@@ -8,6 +8,7 @@ import Images from "@/src/utils/Image";
 import UploadIcButton from "@/components/Booking/UploadIcButton";
 import Helper from "@/src/utils/Helper";
 import ImageUploading from "@/components/Booking/ImageUploading";
+import Icons from "@/components/Icons";
 
 const DesktopFormSection = ({
   errorMessage,
@@ -391,7 +392,7 @@ const DesktopFormSection = ({
 
           <UploadIcButton
             name="front_image"
-            icon={Images.uploadIconActive}
+            icon={Icons.uploadIconActive}
             buttonText="Front Image"
             imageStyle={{ width: 15 }}
             buttonClassName="btn-primary-outline flex-row-reverse mt-1 w-full"
@@ -414,7 +415,7 @@ const DesktopFormSection = ({
 
           <UploadIcButton
             name="back_image"
-            icon={Images.uploadIconActive}
+            icon={Icons.uploadIconActive}
             imageStyle={{ width: 15 }}
             buttonText="Back Image"
             buttonClassName="btn-primary-outline flex-row-reverse mt-1 w-full"
@@ -429,7 +430,7 @@ const DesktopFormSection = ({
       <div className="flex items-start pt-6 pb-2">
         <div style={{ width: 20 }}>
           <CustomImage
-            src={isReadAgree ? Images.checkIconAqua : Images.uncheckIconWhite}
+            src={isReadAgree ? Icons.checkIconAqua : Icons.uncheckIconWhite}
             imageStyle={{ width: 20 }}
             onClick={onClickReadAgree}
             className="cursor-pointer"

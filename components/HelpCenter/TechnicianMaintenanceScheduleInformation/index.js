@@ -8,6 +8,7 @@ import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 import BookingSelect from "@/components/Booking/BookingSelect";
 import Constant from "@/src/utils/Constant";
+import Icons from "@/components/Icons";
 
 const MaintenanceScheduleInformation = ({
   data,
@@ -143,7 +144,7 @@ const MaintenanceScheduleInformation = ({
                         }
                       >
                         <CustomImage
-                          src={Images.deleteIcon}
+                          src={Icons.deleteIcon}
                           className="w-5 h-5"
                         />
                       </div>
@@ -162,7 +163,7 @@ const MaintenanceScheduleInformation = ({
                   }
                 >
                   <CustomImage
-                    src={Images.addIconBlack}
+                    src={Icons.addIconBlack}
                     imageStyle={{ width: 20, height: 20 }}
                   />
 
@@ -195,7 +196,7 @@ const MaintenanceScheduleInformation = ({
                     false
                   ) : (
                     <CustomImage
-                      src={Images.playIcon}
+                      src={Icons.playIcon}
                       className="w-14 h-14 cursor-pointer"
                       onClick={() => onClickPopupVideo("technician")}
                     />
@@ -211,7 +212,7 @@ const MaintenanceScheduleInformation = ({
                       }
                     >
                       <CustomImage
-                        src={Images.deleteIcon}
+                        src={Icons.deleteIcon}
                         className="w-5 h-5"
                       />
                     </div>
@@ -227,7 +228,7 @@ const MaintenanceScheduleInformation = ({
                   }
                 >
                   <CustomImage
-                    src={Images.addIconBlack}
+                    src={Icons.addIconBlack}
                     imageStyle={{ width: 20, height: 20 }}
                   />
 

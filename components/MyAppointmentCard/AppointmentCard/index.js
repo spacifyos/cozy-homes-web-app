@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
 import CustomButton from "@/components/CustomButton";
 import _ from "lodash";
+import Icons from "@/components/Icons";
 
 const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
   return (
@@ -17,7 +18,7 @@ const AppointmentCard = ({ t, item, onClickToAppointmentOverview }) => {
       <div className="flex items-center pb-2">
         <div className="bg-primary p-2 global-border-radius cursor-pointer">
           <CustomImage
-            src={Images.appointmentIconWhite}
+            src={Icons.appointmentIconWhite}
             imageStyle={{ width: 35, height: 35 }}
             onClick={() => onClickToAppointmentOverview(1)}
           />

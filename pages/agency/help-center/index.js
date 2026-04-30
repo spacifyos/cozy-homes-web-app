@@ -16,6 +16,7 @@ import * as maintenanceTicketAction from "@/src/actions/maintenance-ticket";
 import { useDispatch, useSelector } from "react-redux";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 import CustomEmptyBox from "@/components/CustomEmptyBox";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -144,7 +145,7 @@ const HelpCenter = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -174,7 +175,11 @@ const HelpCenter = () => {
           <div className="flex flex-col gap-4 h-full">
             {isEmpty(maintenanceTicketListingData) ? (
               <div className="flex flex-1 items-center justify-center py-10 h-full">
-                <CustomEmptyBox emptyTitle="No ticket found" />
+                <CustomEmptyBox
+                  variant="ticket"
+                  emptyTitle="No tickets yet"
+                  emptyDesc="New support requests from tenants will land here."
+                />
               </div>
             ) : (
               map(maintenanceTicketListingData, (data, index) => {

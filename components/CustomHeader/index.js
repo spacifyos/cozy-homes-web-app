@@ -2,6 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const CustomHeader = ({
   children,
@@ -34,7 +35,7 @@ const CustomHeader = ({
               <div onClick={onClickGoBack} className="cursor-pointer">
                 <CustomImage
                   className={"me-5 cursor-pointer"}
-                  src={Images.leftIconWhite}
+                  src={Icons.leftIconWhite}
                   imageStyle={{ width: 10, height: 10 }}
                 />
               </div>

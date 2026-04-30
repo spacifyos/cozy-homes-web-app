@@ -8,6 +8,7 @@ import { getServerSideProps } from "@/src/utils/getStatic";
 import { isEmpty } from "lodash";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -35,7 +36,7 @@ const PaymentFailed = ({ id }) => {
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
       {/*  <CustomImage*/}
-      {/*    src={Images.closeIconBlack}*/}
+      {/*    src={Icons.closeIconBlack}*/}
       {/*    imageStyle={{ width: 20 }}*/}
       {/*    onClick={onClickGoMainPage}*/}
       {/*  />*/}

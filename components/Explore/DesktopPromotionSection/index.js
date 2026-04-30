@@ -8,6 +8,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
+import Icons from "@/components/Icons";
 
 const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -15,7 +16,7 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.promotionIconWhite}
+            src={Icons.promotionIconWhite}
             imageStyle={{ width: 20, height: 20 }}
           />
           <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold text-white pl-2">
@@ -39,7 +40,9 @@ const DesktopPromotionSection = ({ onClickViewMore, data, loading }) => {
         ) : isEmpty(data) ? (
           <div className="flex justify-center h-32 2xl:h-40 xl:h-36 lg:h-36 md:h-32 sm:h-32">
             <CustomEmptyBox
-              emptyTitle="Promotion not available now."
+              variant="default"
+              emptyTitle="No promotions right now"
+              emptyDesc="Stay tuned — fresh deals are on the way."
               textColor="#FFFFFF"
             />
           </div>

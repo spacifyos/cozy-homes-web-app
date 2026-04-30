@@ -16,6 +16,7 @@ import { NextSeo } from "next-seo";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import * as walletSelector from "@/src/selectors/wallet";
 import { getTransferTo } from "@/src/selectors/wallet";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -76,7 +77,7 @@ const WithdrawSuccessful = ({ id }) => {
 
       <div className="absolute top-5 right-5 cursor-pointer">
         <CustomImage
-          src={Images.closeIconBlack}
+          src={Icons.closeIconBlack}
           imageStyle={{ width: 20 }}
           onClick={onClickClose}
         />
@@ -101,7 +102,7 @@ const WithdrawSuccessful = ({ id }) => {
       <div className="flex flex-col global-border-radius bg-white py-2 px-4 global-box-shadow w-full my-7">
         <div className="flex items-center justify-center py-4">
           <CustomImage
-            src={Images.checkGreenIcon}
+            src={Icons.checkGreenIcon}
             className="mr-2"
             width={30}
             height={30}
@@ -128,7 +129,7 @@ const WithdrawSuccessful = ({ id }) => {
       <div className="relative pt-6 flex justify-center w-full">
         <div className="bg-primary p-3 global-border-radius absolute top-0">
           <CustomImage
-            src={Images.withdrawIconWhite}
+            src={Icons.withdrawIconWhite}
             imageStyle={{ width: 30, height: 30 }}
           />
         </div>

@@ -9,6 +9,7 @@ import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
+import Icons from "@/components/Icons";
 
 const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -16,7 +17,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.outlineStartIcon}
+            src={Icons.outlineStartIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
@@ -34,7 +35,7 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
+        {/*  <CustomImage src={Icons.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
       <div className="gap-1 flex items-center justify-center">
@@ -88,7 +89,11 @@ const DesktopFeaturedRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center h-32 2xl:h-40 xl:h-36 lg:h-36 md:h-32 sm:h-32">
-            <CustomEmptyBox emptyTitle="Featured Rooms not available now." />
+            <CustomEmptyBox
+            variant="room"
+            emptyTitle="No featured rooms yet"
+            emptyDesc="Check back soon — handpicked rooms are coming."
+          />
           </div>
         ) : (
           <Swiper

@@ -6,6 +6,7 @@ import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import { useEffect, useRef, useState } from "react";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const CanvasModal = ({
   onClickReadSign,
@@ -66,7 +67,7 @@ const CanvasModal = ({
         <div style={{ width: 23 }} onClick={onClickReadSign}>
           <CustomImage
             className="cursor-pointer"
-            src={readSign ? Images.checkGreenIcon : Images.uncheckIcon}
+            src={readSign ? Icons.checkGreenIcon : Icons.uncheckIcon}
             imageStyle={{ width: 23 }}
           />
         </div>

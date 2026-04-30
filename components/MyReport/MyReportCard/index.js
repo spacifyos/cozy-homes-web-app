@@ -1,9 +1,8 @@
-import Images from "@/src/utils/Image";
-import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import { isEmpty, map } from "lodash";
 import * as reportSelector from "@/src/selectors/report";
 import moment from "moment/moment";
+import { ReportIcon } from "@/components/Icons";
 
 const MyReportCard = ({ data, targetMonth }) => {
   return (
@@ -20,7 +19,7 @@ const MyReportCard = ({ data, targetMonth }) => {
             key={index}
             className="flex items-center bg-white global-box-shadow global-border-radius px-4 py-3 cursor-pointer"
           >
-            <CustomImage src={Images.reportIconActive} imageStyle={{ width: 25 }} />
+            <ReportIcon size={25} className="text-primary" />
 
             <div className="pl-3">
               {/*<CustomText textClassName="text-xs text-disable italic">*/}

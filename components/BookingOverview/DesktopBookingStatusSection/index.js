@@ -8,6 +8,7 @@ import * as listingSelector from "@/src/selectors/listing";
 import Constant from "@/src/utils/Constant";
 import CustomButton from "@/components/CustomButton";
 import moment from "moment/moment";
+import Icons from "@/components/Icons";
 
 const DesktopBookingStatusSection = ({ t, data }) => {
   const createAt = listingSelector.getCreatedAt(data);
@@ -30,7 +31,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
         <div className="flex flex-col justify-center items-center">
           <div className="flex flex-col items-center">
             <CustomImage
-              src={Images.stepCompletedIcon}
+              src={Icons.stepCompletedIcon}
               imageStyle={{ width: 30, height: 30 }}
             />
 
@@ -52,7 +53,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
             <CustomImage
               src={
                 !isEqual(paymentStatus, "Paid")
-                  ? Images.step2Icon
+                  ? Icons.step2Icon
                   : Images.paymentFailedIcon
               }
               imageStyle={{ width: 30, height: 30 }}
@@ -93,7 +94,7 @@ const DesktopBookingStatusSection = ({ t, data }) => {
               src={
                 isEqual(agencyReviewStatus, "Approved")
                   ? Images.paymentFailedIcon
-                  : Images.step3Icon
+                  : Icons.step3Icon
               }
               imageStyle={{ width: 30, height: 30 }}
             />

@@ -8,6 +8,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
+import Icons from "@/components/Icons";
 
 const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -15,7 +16,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.outlineStartIcon}
+            src={Icons.outlineStartIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
           <div className="flex gap-2 pl-2">
@@ -33,7 +34,7 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
+        {/*  <CustomImage src={Icons.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
 
@@ -88,7 +89,11 @@ const DesktopCheapestRoomSection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center h-32 2xl:h-40 xl:h-36 lg:h-36 md:h-32 sm:h-32">
-            <CustomEmptyBox emptyTitle="Cheapest rooms not available now." />
+            <CustomEmptyBox
+            variant="room"
+            emptyTitle="No deals at the moment"
+            emptyDesc="Budget-friendly rooms will show up here when they're ready."
+          />
           </div>
         ) : (
           <Swiper

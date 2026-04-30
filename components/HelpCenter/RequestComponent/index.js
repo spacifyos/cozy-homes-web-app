@@ -7,6 +7,7 @@ import Images from "@/src/utils/Image";
 import Helper from "@/src/utils/Helper";
 import Constant from "@/src/utils/Constant";
 import { get, isEmpty, map, size } from "lodash";
+import Icons from "@/components/Icons";
 
 const SpecificRequestComponent = ({
   selectNestedHelpCenterSection,
@@ -114,7 +115,7 @@ const SpecificRequestComponent = ({
                   className="absolute top-1 right-1 cursor-pointer bg-white rounded-2xl"
                   onClick={() => onClickRemoveImage(path)}
                 >
-                  <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
+                  <CustomImage src={Icons.deleteIcon} className="w-5 h-5" />
                 </div>
               )}
             </div>
@@ -129,7 +130,7 @@ const SpecificRequestComponent = ({
             onClick={() => uploadImageRef && uploadImageRef.current.click()}
           >
             <CustomImage
-              src={Images.addIconBlack}
+              src={Icons.addIconBlack}
               imageStyle={{ width: 20, height: 20 }}
             />
 
@@ -161,7 +162,7 @@ const SpecificRequestComponent = ({
               false
             ) : (
               <CustomImage
-                src={Images.playIcon}
+                src={Icons.playIcon}
                 className="w-14 h-14 cursor-pointer"
                 onClick={onClickPopupVideo}
               />
@@ -174,7 +175,7 @@ const SpecificRequestComponent = ({
                 className="absolute top-1 right-1 cursor-pointer z-10"
                 onClick={() => onClickRemoveVideo(path)}
               >
-                <CustomImage src={Images.deleteIcon} className="w-5 h-5" />
+                <CustomImage src={Icons.deleteIcon} className="w-5 h-5" />
               </div>
             )}
           </div>
@@ -186,7 +187,7 @@ const SpecificRequestComponent = ({
             onClick={() => uploadVideoRef && uploadVideoRef.current.click()}
           >
             <CustomImage
-              src={Images.addIconBlack}
+              src={Icons.addIconBlack}
               imageStyle={{ width: 20, height: 20 }}
             />
 

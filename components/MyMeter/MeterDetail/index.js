@@ -4,6 +4,7 @@ import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const MeterDetail = ({ data }) => {
   const name = meterSelector.getName(data);
@@ -18,7 +19,7 @@ const MeterDetail = ({ data }) => {
     <div className="meter-response">
       <div className="flex flex-1 flex-col items-center">
         <div className="bg-primary p-3 px-4 global-border-radius">
-          <CustomImage src={Images.meterIconWhite} className="w-5" />
+          <CustomImage src={Icons.meterIconWhite} className="w-5" />
         </div>
         <CustomText textClassName="text-primary font-bold ">
           {isEmpty(name) ? "-" : name}
@@ -43,7 +44,7 @@ const MeterDetail = ({ data }) => {
         <div className="flex items-center pt-1 gap-5">
           <div className="flex items-center gap-1">
             <CustomImage
-              src={wifi ? Images.powerIconAqua : Images.powerIconDisable}
+              src={wifi ? Icons.powerIconAqua : Icons.powerIconDisable}
               imageStyle={{ width: 15 }}
             />
             <CustomText
@@ -54,7 +55,7 @@ const MeterDetail = ({ data }) => {
           </div>
           <div className="flex items-center gap-1">
             <CustomImage
-              src={power ? Images.powerIconAqua : Images.powerIconDisable}
+              src={power ? Icons.powerIconAqua : Icons.powerIconDisable}
               imageStyle={{ width: 15 }}
             />
             <CustomText

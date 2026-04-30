@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _, { isString } from "lodash";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +13,9 @@ const MeterFeatureComponent = ({ name, icon, onClick }) => {
     }
   }, [targetRef]);
 
+  const isSvgIcon = !isString(icon) && icon != null;
+  const IconComponent = isSvgIcon ? icon : null;
+
   return (
     <div
       className="flex flex-col justify-center items-center text-center cursor-pointer"
@@ -23,7 +26,11 @@ const MeterFeatureComponent = ({ name, icon, onClick }) => {
         className="meter-feature-component"
         style={{ width: dimensions, height: dimensions, minHeight: dimensions }}
       >
-        <CustomImage src={icon} imageStyle={{ width: 45, height: 45 }} />
+        {isSvgIcon ? (
+          <IconComponent size={45} className="text-primary" />
+        ) : (
+          <CustomImage src={icon} imageStyle={{ width: 45, height: 45 }} />
+        )}
       </div>
 
       <CustomText textClassName="text-xs font-bold h-full">

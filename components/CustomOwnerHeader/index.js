@@ -1,6 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const CustomOwnerHeader = ({
   onClickGoBack,
@@ -26,7 +27,7 @@ const CustomOwnerHeader = ({
               <div onClick={onClickGoBack} className="cursor-pointer">
                 <CustomImage
                   className={"me-5 cursor-pointer"}
-                  src={Images.leftIconWhite}
+                  src={Icons.leftIconWhite}
                   imageStyle={{ width: 10 }}
                 />
               </div>

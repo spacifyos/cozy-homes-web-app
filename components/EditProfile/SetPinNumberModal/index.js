@@ -5,6 +5,7 @@ import DesktopModal from "@/components/DesktopModal";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const SetPinNumberModal = ({
   pinNumberValue,
@@ -33,7 +34,7 @@ const SetPinNumberModal = ({
           <form method="dialog" className={`flex justify-end`}>
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
                 imageStyle={{ width: 18, height: 18 }}
               />
             </button>

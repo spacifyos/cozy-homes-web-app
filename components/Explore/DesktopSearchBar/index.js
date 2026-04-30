@@ -7,6 +7,7 @@ import Images from "@/src/utils/Image";
 import CustomSelect from "@/components/CustomSelect";
 import * as commonSelector from "@/src/selectors/common";
 import { useState } from "react";
+import Icons from "@/components/Icons";
 
 const DesktopSearchBar = ({
   onClickSearch,
@@ -68,7 +69,7 @@ const DesktopSearchBar = ({
         >
           <div className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-4">
             <CustomInput
-              rightIcon={Images.searchIconActive}
+              rightIcon={Icons.searchIconActive}
               className="xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2"
               placeholder="Search Rooms ..."
               value={keywordValue}

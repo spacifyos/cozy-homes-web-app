@@ -14,6 +14,7 @@ import { isEmpty } from "lodash";
 import moment from "moment/moment";
 import Constant from "@/src/utils/Constant";
 import { getInvoiceNumber } from "@/src/selectors/wallet";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -83,15 +84,15 @@ const TransactionOverview = ({ id }) => {
   const renderIcon = (type) => {
     switch (type) {
       case Constant.WALLET_RENTAL_INCOME:
-        return Images.rentalInIcon;
+        return Icons.rentalInIcon;
       case Constant.WALLET_MANUAL_PAID_INVOICE_REVERT_PAYMENT:
-        return Images.rentalInIcon;
+        return Icons.rentalInIcon;
       case Constant.WALLET_EXPENSE:
-        return Images.rentalOutIcon;
+        return Icons.rentalOutIcon;
       case Constant.WALLET_INVOICE_PAYMENT:
-        return Images.rentalOutIcon;
+        return Icons.rentalOutIcon;
       case Constant.WALLET_WITHDRAWAL:
-        return Images.withdrawIcon;
+        return Icons.withdrawIcon;
     }
   };
 

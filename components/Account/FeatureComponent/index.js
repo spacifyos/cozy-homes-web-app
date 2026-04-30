@@ -1,7 +1,8 @@
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
-import { isEmpty } from "lodash";
+import { isEmpty, isString } from "lodash";
+import { ChevronRightIcon } from "@/components/Icons";
 
 const FeatureComponent = ({
   icon,
@@ -13,6 +14,20 @@ const FeatureComponent = ({
   route,
   target = "_self",
 }) => {
+  const isSvgIcon = !isString(icon) && icon != null;
+  const IconComponent = isSvgIcon ? icon : null;
+  const iconSize = Math.max(imageWidth, imageHeight);
+
+  const renderIcon = () =>
+    isSvgIcon ? (
+      <IconComponent size={iconSize} className="text-primary" />
+    ) : (
+      <CustomImage
+        src={icon}
+        imageStyle={{ width: imageWidth, height: imageHeight }}
+      />
+    );
+
   return isEmpty(route) ? (
     <div
       className={`flex justify-between items-center cursor-pointer pb-${pb}`}
@@ -23,15 +38,12 @@ const FeatureComponent = ({
           className="bg-white global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
           style={{ width: 46, height: 46 }}
         >
-          <CustomImage
-            src={icon}
-            imageStyle={{ width: imageWidth, height: imageHeight }}
-          />
+          {renderIcon()}
         </div>
         <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIconBlack} className="w-2" />
+      <ChevronRightIcon size={10} className="text-black" />
     </div>
   ) : (
     <a
@@ -44,15 +56,12 @@ const FeatureComponent = ({
           className="bg-white global-box-shadow global-border-radius p-2 mr-3 flex justify-center items-center"
           style={{ width: 46, height: 46 }}
         >
-          <CustomImage
-            src={icon}
-            imageStyle={{ width: imageWidth, height: imageHeight }}
-          />
+          {renderIcon()}
         </div>
         <CustomText textClassName="xl:text-sm lg:text-sm md:text-xs text-xs">{title}</CustomText>
       </div>
 
-      <CustomImage src={Images.rightIconBlack} className="w-2" />
+      <ChevronRightIcon size={10} className="text-black" />
     </a>
   );
 };

@@ -1,25 +1,24 @@
-import Images from "@/src/utils/Image";
 import _ from "lodash";
 import FeatureComponent from "@/components/MyStay/FeatureComponent";
+import {
+  QrIcon,
+  SmartLockIcon,
+  HelpCenterIcon,
+} from "@/components/Icons";
 
 const DesktopFeatureSection = ({}) => {
   return (
     <div className="flex gap-5 pb-7">
-      <FeatureComponent disable name="Scan" icon={Images.qrIconActive} />
+      <FeatureComponent disable name="Scan" icon={QrIcon} />
       <FeatureComponent
         disable
         name="Smart Lock"
-        icon={Images.smartLockIconActive}
+        icon={SmartLockIcon}
       />
-      {/*<FeatureComponent*/}
-      {/*  name="E Agreement"*/}
-      {/*  icon={Images.agreementIconActive}*/}
-      {/*  route="/user/e-agreement"*/}
-      {/*/>*/}
       <FeatureComponent
         disable
         name="Help Center"
-        icon={Images.helpCenterIconActive}
+        icon={HelpCenterIcon}
       />
     </div>
   );

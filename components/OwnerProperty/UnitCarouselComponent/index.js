@@ -4,6 +4,7 @@ import * as ownerSelector from "@/src/selectors/owner";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
+import Icons from "@/components/Icons";
 
 const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
   return (
@@ -22,22 +23,22 @@ const UnitCarouselComponent = ({ data, selectedSlide, onSlideChange }) => {
             {
               name: "Room",
               value: ownerSelector.getTotalRoom(item),
-              icon: Images.bedIconActive,
+              icon: Icons.bedIconActive,
             },
             {
               name: "Car Park",
               value: `${ownerSelector.getTotalCarPark(item)}`,
-              icon: Images.carParkIconActive,
+              icon: Icons.carParkIconActive,
             },
             {
               name: "Room Occupancy",
               value: `${ownerSelector.getTotalRoomOccupancy(item)}%`,
-              icon: Images.occupancyIconActive,
+              icon: Icons.occupancyIconActive,
             },
             {
               name: "Car Park Occupancy",
               value: `${ownerSelector.getTotalCarParkOccupancy(item)}%`,
-              icon: Images.carParkOccupancyIconActive,
+              icon: Icons.carParkOccupancyIconActive,
             },
           ];
 

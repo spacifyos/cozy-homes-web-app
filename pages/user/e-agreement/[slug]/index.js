@@ -15,6 +15,7 @@ import AuthWrapper from "@/components/AuthWrapper";
 import { isEmpty } from "lodash";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -90,7 +91,7 @@ const EAgreementOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -106,7 +107,7 @@ const EAgreementOverview = ({ id }) => {
             className="bg-primary p-3 global-border-radius absolute top-0 z-10"
             style={{ height: 54 }}
           >
-            <CustomImage src={Images.agreementIconWhite} className="w-6" />
+            <CustomImage src={Icons.agreementIconWhite} className="w-6" />
           </div>
 
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
@@ -163,7 +164,7 @@ const EAgreementOverview = ({ id }) => {
                 <div className="flex mr-3 items-start">
                   <CustomImage
                     src={
-                      getAgree ? Images.checkIconAqua : Images.checkIconDisable
+                      getAgree ? Icons.checkIconAqua : Icons.checkIconDisable
                     }
                     className="mr-1"
                     imageStyle={{ width: 18, height: 18 }}
@@ -180,7 +181,7 @@ const EAgreementOverview = ({ id }) => {
                 <div className="flex items-start">
                   <CustomImage
                     src={
-                      getSigned ? Images.checkIconAqua : Images.checkIconDisable
+                      getSigned ? Icons.checkIconAqua : Icons.checkIconDisable
                     }
                     className="mr-1"
                     imageStyle={{ width: 18, height: 18 }}

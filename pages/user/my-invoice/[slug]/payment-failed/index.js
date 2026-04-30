@@ -7,6 +7,7 @@ import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -59,7 +60,7 @@ const PaymentFailure = ({ id }) => {
         <div className="flex flex-col justify-center items-center h-full">
           <div className="absolute top-5 right-5 cursor-pointer">
             <CustomImage
-              src={Images.closeIconBlack}
+              src={Icons.closeIconBlack}
               imageStyle={{ width: 20 }}
               onClick={onClickBackToInvoiceOverview}
             />

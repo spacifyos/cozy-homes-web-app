@@ -2,6 +2,7 @@ import Images from "@/src/utils/Image";
 import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const SpacifyCoins = ({ t, route, walletBalance }) => {
   return (
@@ -10,7 +11,7 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
       className="profile-coin-container col-span-2 cursor-pointer"
     >
       {/*<div className="absolute right-1 top-3 cursor-pointer">*/}
-      {/*  <CustomImage src={Images.moreIcon} imageStyle={{ width: 22 }} />*/}
+      {/*  <CustomImage src={Icons.moreIcon} imageStyle={{ width: 22 }} />*/}
       {/*</div>*/}
 
       <div className="profile-coin-icon-container">
@@ -30,7 +31,7 @@ const SpacifyCoins = ({ t, route, walletBalance }) => {
             {/*{`RM ${isEmpty(walletBalance) ? "0" : walletBalance}`}*/}
             Coming Soon
           </CustomText>
-          {/*<CustomImage src={Images.refreshIcon} height={20} width={20} />*/}
+          {/*<CustomImage src={Icons.refreshIcon} height={20} width={20} />*/}
         </div>
       </div>
     </a>

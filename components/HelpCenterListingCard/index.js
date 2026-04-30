@@ -5,6 +5,7 @@ import Images from "@/src/utils/Image";
 import StatusLabelOutline from "@/components/StatusLabelOutline";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
 import { isEqual } from "lodash";
+import Icons from "@/components/Icons";
 
 const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
   const id = maintenanceTicketSelector.getId(data);
@@ -45,7 +46,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
         </div>
 
         <CustomImage
-          src={Images.rightIconBlack}
+          src={Icons.rightIconBlack}
           className="w-3 h-3"
         />
       </div>
@@ -58,7 +59,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
       <div className="flex gap-3 flex-wrap">
         <div className="flex items-center">
           <CustomImage
-            src={Images.buildingIconActive}
+            src={Icons.buildingIconActive}
             className="mr-1 w-4 min-w-4"
           />
           <CustomText textClassName="text-sm">{address}</CustomText>
@@ -66,7 +67,7 @@ const HelpCenterListingCard = ({ data, onClickToRequestOverview }) => {
 
         <div className="flex items-center">
           <CustomImage
-            src={Images.spaceIconActive}
+            src={Icons.spaceIconActive}
             className="mr-1 w-4 min-w-4"
           />
           <CustomText textClassName="text-sm">{roomName}</CustomText>

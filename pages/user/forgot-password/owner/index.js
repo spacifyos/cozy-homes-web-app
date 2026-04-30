@@ -16,6 +16,7 @@ import * as commonSelector from "@/src/selectors/common";
 import Constant from "@/src/utils/Constant";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -236,7 +237,7 @@ const ForgotPasswordOwner = () => {
         <div onClick={onClickGoBack} className="cursor-pointer pt-5">
           <CustomImage
             className={"me-5 cursor-pointer"}
-            src={Images.leftIconWhite}
+            src={Icons.leftIconWhite}
             imageStyle={{ width: 10, height: 10 }}
           />
         </div>

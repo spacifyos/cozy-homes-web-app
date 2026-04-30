@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import * as ownerSelector from "@/src/selectors/owner";
 import { isEmpty } from "lodash";
 import moment from "moment";
+import Icons from "@/components/Icons";
 
 const RentalIncomeCard = ({ item }) => {
   const unitRoomName = ownerSelector.getUnitRoomName(item);
@@ -13,7 +14,7 @@ const RentalIncomeCard = ({ item }) => {
   return (
     <div className="global-box-shadow global-border-radius p-4 flex justify-between items-center bg-white w-full">
       <div className="flex">
-        <CustomImage src={Images.incomeIconActive} imageStyle={{ width: 35 }} />
+        <CustomImage src={Icons.incomeIconActive} imageStyle={{ width: 35 }} />
 
         <div className="px-3">
           <CustomText textClassName="text-disable italic text-xs">

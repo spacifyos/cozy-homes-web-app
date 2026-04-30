@@ -6,6 +6,7 @@ import CustomButton from "@/components/CustomButton";
 import { useEffect, useRef, useState } from "react";
 import { isEmpty } from "lodash";
 import DesktopModal from "@/components/DesktopModal";
+import Icons from "@/components/Icons";
 
 const DesktopCanvasModal = ({
   onClickReadSign,
@@ -36,7 +37,7 @@ const DesktopCanvasModal = ({
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
               />
             </button>
           </form>
@@ -79,7 +80,7 @@ const DesktopCanvasModal = ({
           <div style={{ width: 23 }} onClick={onClickReadSign}>
             <CustomImage
               className="cursor-pointer"
-              src={readSign ? Images.checkIconAqua : Images.uncheckIconWhite}
+              src={readSign ? Icons.checkIconAqua : Icons.uncheckIconWhite}
               imageStyle={{ width: 23 }}
             />
           </div>

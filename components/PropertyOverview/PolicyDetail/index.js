@@ -23,8 +23,8 @@ const PolicyDetail = ({ loading, data }) => {
           {isEmpty(data) ? (
             <div className="py-10">
               <CustomEmptyBox
-                emptyTitle="No policy found"
-                emptyDesc="Policy is not available for now."
+                emptyTitle="No policies yet"
+                emptyDesc="The owner hasn't set house rules for this property."
               />
             </div>
           ) : (

@@ -3,6 +3,7 @@ import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
   return (
@@ -12,7 +13,7 @@ const PinNumberInfoModal = ({ onClickCloseModal, onClickToSetPinNumber }) => {
       </CustomText>
 
       <div className="flex flex-col justify-center items-center p-6">
-        <CustomImage src={Images.dangerIcon} width={60} />
+        <CustomImage src={Icons.dangerIcon} width={60} />
         <CustomText textClassName="font-bold text-base pt-4 text-center">
           You may set pin number before you sign agreement.
         </CustomText>

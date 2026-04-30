@@ -11,6 +11,7 @@ import {
   getOccupancyRoom,
   getTotalCarPark,
 } from "@/src/selectors/owner";
+import Icons from "@/components/Icons";
 
 const PropertyCarouselComponent = ({ data, showLabel }) => {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -40,22 +41,22 @@ const PropertyCarouselComponent = ({ data, showLabel }) => {
             {
               name: "Room",
               value: ownerSelector.getTotalRoom(item),
-              icon: Images.bedIconActive,
+              icon: Icons.bedIconActive,
             },
             {
               name: "Car Park",
               value: `${ownerSelector.getTotalCarPark(item)}`,
-              icon: Images.carParkIconActive,
+              icon: Icons.carParkIconActive,
             },
             {
               name: "Room Occupancy",
               value: `${ownerSelector.getOccupancyRoom(item)}%`,
-              icon: Images.occupancyIconActive,
+              icon: Icons.occupancyIconActive,
             },
             {
               name: "Car Park Occupancy",
               value: `${ownerSelector.getOccupancyCarPark(item)}%`,
-              icon: Images.carParkOccupancyIconActive,
+              icon: Icons.carParkOccupancyIconActive,
             },
           ];
 

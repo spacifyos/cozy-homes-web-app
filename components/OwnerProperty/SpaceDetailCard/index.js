@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import * as ownerSelector from "@/src/selectors/owner";
 import { get, isEmpty, isEqual, map } from "lodash";
+import Icons from "@/components/Icons";
 
 const SpaceDetailCard = ({ item, onClickDownloadAgreement }) => {
   const status = ownerSelector.getStatus(item);
@@ -55,7 +56,7 @@ const SpaceDetailCard = ({ item, onClickDownloadAgreement }) => {
 
               <div className="flex items-end">
                 <CustomImage
-                  src={Images.spaceIconActive}
+                  src={Icons.spaceIconActive}
                   imageStyle={{ width: 18 }}
                   className="mr-2"
                 />

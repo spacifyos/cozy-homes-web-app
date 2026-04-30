@@ -5,6 +5,7 @@ import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { useState } from "react";
+import Icons from "@/components/Icons";
 
 const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
   const [zoomIn, setZoomIn] = useState(true);
@@ -13,7 +14,11 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
     <div className="md:col-span-12 sm:col-span-12 col-span-12 xl:col-span-10 lg:col-span-10">
       {isEmpty(unitListing) ? (
         <div className="bg-white border-disable border global-border-radius flex justify-center items-center h-screen">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="room"
+          emptyTitle="No units available"
+          emptyDesc="There aren't any units to show for this property right now."
+        />
         </div>
       ) : (
         <div className="bg-white border border-disable global-border-radius flex flex-col gap-4 p-4 sticky top-4">
@@ -23,7 +28,7 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
           >
             <CustomImage
               className="w-5 h-5"
-              src={zoomIn ? Images.zoomInIcon : Images.zoomOutIcon}
+              src={zoomIn ? Icons.zoomInIcon : Icons.zoomOutIcon}
             />
             <CustomText textClassName="text-sm">
               {zoomIn ? "50%" : "100%"}
@@ -93,16 +98,16 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
                                 isEqual(spaceType, "R")
                                   ? !isAvailableBook &&
                                     isEqual(status, "vacant")
-                                    ? Images.roomDisableIcon
+                                    ? Icons.roomDisableIcon
                                     : isEqual(status, "vacant")
-                                      ? Images.roomAvailableIcon
-                                      : Images.roomOccupiedIcon
+                                      ? Icons.roomAvailableIcon
+                                      : Icons.roomOccupiedIcon
                                   : !isAvailableBook &&
                                       isEqual(status, "vacant")
-                                    ? Images.carDisableIcon
+                                    ? Icons.carDisableIcon
                                     : isEqual(status, "vacant")
-                                      ? Images.carAvailableIcon
-                                      : Images.carOccupiedIcon
+                                      ? Icons.carAvailableIcon
+                                      : Icons.carOccupiedIcon
                               }
                               className="w-5 h-5"
                             />
@@ -123,8 +128,8 @@ const CinemaUnitContent = ({ unitListing, onClickSelectRoomDetail }) => {
                           {/*<CustomImage*/}
                           {/*  src={*/}
                           {/*    isEmpty(isAvailableBook)*/}
-                          {/*      ? Images.shareIconActive*/}
-                          {/*      : Images.shareIconDisable*/}
+                          {/*      ? Icons.shareIconActive*/}
+                          {/*      : Icons.shareIconDisable*/}
                           {/*  }*/}
                           {/*  className="w-3 cursor-pointer"*/}
                           {/*  onClick={*/}

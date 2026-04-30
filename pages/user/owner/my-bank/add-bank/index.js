@@ -17,6 +17,7 @@ import LoadingOverlay from "@/components/LoadingOverlay";
 import { useSelector } from "react-redux";
 import * as commonSelector from "@/src/selectors/common";
 import CustomOwnerHeader from "@/components/CustomOwnerHeader";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -98,7 +99,7 @@ const AddBank = () => {
         <div className="bg-white global-box-shadow global-border-radius p-4 relative flex items-center">
           <div className="bg-primary p-3 global-border-radius mr-2">
             <CustomImage
-              src={Images.bankIconWhite}
+              src={Icons.bankIconWhite}
               imageStyle={{ width: 20 }}
             />
           </div>
@@ -158,7 +159,7 @@ const AddBank = () => {
           <div className="flex items-start">
             <div className="" style={{ width: 20, height: 20 }}>
               <CustomImage
-                src={isReadAgree ? Images.checkGreenIcon : Images.uncheckIcon}
+                src={isReadAgree ? Icons.checkGreenIcon : Icons.uncheckIcon}
                 imageStyle={{ width: 20, height: 20 }}
                 onClick={onClickReadAgree}
                 className="cursor-pointer"

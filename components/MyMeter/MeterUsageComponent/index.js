@@ -2,6 +2,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
+import Icons from "@/components/Icons";
 
 const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
   return (
@@ -13,7 +14,7 @@ const MeterUsageComponent = ({ t, onClickToMeterOverview }) => {
     >
       <div className="flex items-center">
         <div className="meter-usage-inside-container">
-          <CustomImage src={Images.meterIcon} width={35} height={35} />
+          <CustomImage src={Icons.meterIcon} width={35} height={35} />
           <div className="flex flex-col px-2">
             <CustomText textClassName="text-xs text-white">
               {t("myMeterOverview.availableUnit")}

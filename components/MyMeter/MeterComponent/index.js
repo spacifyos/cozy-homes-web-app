@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as meterSelector from "@/src/selectors/meter";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const MeterComponent = ({ item }) => {
   const id = meterSelector.getId(item);
@@ -17,7 +18,7 @@ const MeterComponent = ({ item }) => {
       className="bg-white global-box-shadow global-border-radius px-4 pt-4 pb-4 flex cursor-pointer"
     >
       <div className="bg-primary px-2 py-3 global-border-radius flex items-center">
-        <CustomImage src={Images.meterIconWhite} className="w-5 mx-2" />
+        <CustomImage src={Icons.meterIconWhite} className="w-5 mx-2" />
         <div className="flex flex-col items-start justify-center px-2 global-border-radius gap-1">
           <CustomText textClassName="text-white text-xs">
             Available Unit
@@ -50,7 +51,7 @@ const MeterComponent = ({ item }) => {
           <div className="flex flex-wrap">
             <div className="flex items-center pr-2">
               <CustomImage
-                src={wifi ? Images.powerIconAqua : Images.powerIconDisable}
+                src={wifi ? Icons.powerIconAqua : Icons.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />
@@ -63,7 +64,7 @@ const MeterComponent = ({ item }) => {
 
             <div className="flex items-center">
               <CustomImage
-                src={power ? Images.powerIconAqua : Images.powerIconDisable}
+                src={power ? Icons.powerIconAqua : Icons.powerIconDisable}
                 imageStyle={{ width: 15 }}
                 className="mr-1"
               />

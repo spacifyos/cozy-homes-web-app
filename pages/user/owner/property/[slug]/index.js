@@ -21,6 +21,7 @@ import Helper from "@/src/utils/Helper";
 import AuthManager from "@/src/utils/AuthManager";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -51,22 +52,22 @@ const PropertyDetail = ({ id }) => {
     {
       name: "Unit",
       value: ownerSelector.getTotalUnits(propertyDetail),
-      icon: Images.spaceIconActive,
+      icon: Icons.spaceIconActive,
     },
     {
       name: "Room",
       value: ownerSelector.getTotalRoom(propertyDetail),
-      icon: Images.bedIconActive,
+      icon: Icons.bedIconActive,
     },
     {
       name: "Room Occupancy",
       value: `${ownerSelector.getOccupancyRoom(propertyDetail)}%`,
-      icon: Images.occupancyIconActive,
+      icon: Icons.occupancyIconActive,
     },
     {
       name: "Car Park Occupancy",
       value: `${ownerSelector.getOccupancyCarPark(propertyDetail)}%`,
-      icon: Images.carParkOccupancyIconActive,
+      icon: Icons.carParkOccupancyIconActive,
     },
   ];
   const colorList = [
@@ -218,7 +219,7 @@ const PropertyDetail = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

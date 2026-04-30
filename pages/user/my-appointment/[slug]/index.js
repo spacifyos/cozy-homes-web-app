@@ -10,6 +10,7 @@ import { useState, useRef, useEffect } from "react";
 import MessageTimeLine from "@/components/AppointmentDetail/MessageTimeLine";
 import moment from "moment";
 import _ from "lodash";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -22,7 +23,7 @@ const Booking = () => {
       img: Images.filterDefaultImage,
       name: "Joan Lim",
       chat: "Meet at lobby.",
-      icon: Images.ellipseGreenIcon,
+      icon: Icons.ellipseGreenIcon,
       identity: "other",
     },
     {
@@ -37,7 +38,7 @@ const Booking = () => {
       img: Images.imageNotFound,
       name: "Joan Lim",
       chat: "See you.",
-      icon: Images.ellipseGreenIcon,
+      icon: Icons.ellipseGreenIcon,
       identity: "other",
     },
   ];
@@ -95,7 +96,7 @@ const Booking = () => {
           <div className="flex items-center pb-5 relative">
             <div ref={dropdownRef}>
               <CustomImage
-                src={Images.moreIcon}
+                src={Icons.moreIcon}
                 width={25}
                 height={25}
                 className="absolute right-0 top-0"
@@ -115,7 +116,7 @@ const Booking = () => {
               )}
             </div>
               <div className="p-2 global-box-shadow global-border-radius bg-primary mr-2">
-                <CustomImage src={Images.bookingIcon} width={25} height={25} />
+                <CustomImage src={Icons.bookingIcon} width={25} height={25} />
               </div>
               <CustomText textClassName="font-bold text-base text-primary">
                 {t("bookAppointment.myAppointment")}

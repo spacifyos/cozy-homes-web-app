@@ -5,6 +5,7 @@ import RangeSlider from "react-range-slider-input";
 import CustomSelect from "@/components/CustomSelect";
 import "react-range-slider-input/dist/style.css";
 import CustomImage from "@/components/CustomImage";
+import Icons from "@/components/Icons";
 
 const DesktopSearchBar = ({
   onClickOpenModal,
@@ -27,7 +28,7 @@ const DesktopSearchBar = ({
         <CustomText textClassName="text-xs pt-2 pl-4">Search</CustomText>
         <CustomInput
           hideShadow
-          rightIcon={Images.searchIconActive}
+          rightIcon={Icons.searchIconActive}
           className=""
           placeholder="Search Rooms ..."
           value={keywordValue}
@@ -79,7 +80,7 @@ const DesktopSearchBar = ({
           false
         )}
 
-        <CustomImage src={Images.filterIconBlack} className="w-6" />
+        <CustomImage src={Icons.filterIconBlack} className="w-6" />
       </div>
 
       <div className="col-span-1 xl:block hidden"></div>

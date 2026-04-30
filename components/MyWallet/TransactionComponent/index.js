@@ -39,7 +39,11 @@ const TransactionComponent = ({
       <div className="flex flex-col gap-3">
         {isEmpty(data) ? (
           <div style={{ height: 351 }} className="flex justify-center">
-            <CustomEmptyBox />
+            <CustomEmptyBox
+            variant="transaction"
+            emptyTitle="No transactions yet"
+            emptyDesc="Your wallet activity will show up here once you start moving funds."
+          />
           </div>
         ) : (
           map(data, (item, index) => {

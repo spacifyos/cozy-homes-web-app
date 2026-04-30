@@ -8,7 +8,11 @@ const SpaceDetailComponent = ({ data, onClickDownloadAgreement }) => {
     <div className="flex flex-col gap-3 pb-4">
       {isEmpty(data) ? (
         <div style={{ height: 351 }} className="flex justify-center">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="house"
+          emptyTitle="No spaces yet"
+          emptyDesc="Add rooms and units to your property to start managing them."
+        />
         </div>
       ) : (
         map(data, (item, index) => {

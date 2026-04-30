@@ -19,6 +19,7 @@ import Toast from "@/src/utils/Toast";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import CustomModal from "@/components/CustomModal";
 import Helper from "@/src/utils/Helper";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -204,7 +205,7 @@ const Withdraw = () => {
       <CustomModal id="pin_number_warning_modal" disableClose>
         <div className="flex flex-col items-center w-full">
           <CustomImage
-            src={Images.infoIcon}
+            src={Icons.infoIcon}
             imageStyle={{ width: 100, height: 100 }}
           />
           <CustomText textClassName="text-base font-bold text-center pt-2">

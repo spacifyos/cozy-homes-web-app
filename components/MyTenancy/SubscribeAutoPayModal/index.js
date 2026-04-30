@@ -5,6 +5,7 @@ import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
 import Helper from "@/src/utils/Helper";
+import Icons from "@/components/Icons";
 
 const SubscribeAutoPayModal = ({ t }) => {
   return (
@@ -16,7 +17,7 @@ const SubscribeAutoPayModal = ({ t }) => {
         <div className="flex items-center pb-2">
           <div className="bg-primary p-2 global-border-radius mb-1">
             <CustomImage
-              src={Images.buildingIcon}
+              src={Icons.buildingIcon}
               width={30}
               height={30}
             />

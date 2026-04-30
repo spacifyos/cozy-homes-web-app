@@ -15,8 +15,8 @@ const Description = ({ description }) => {
         {isEmpty(description) ? (
           <div className="py-10">
             <CustomEmptyBox
-              emptyTitle="No description found"
-              emptyDesc="Description is not available for now."
+              emptyTitle="No description yet"
+              emptyDesc="The owner hasn't added details for this listing yet."
             />
           </div>
         ) : (

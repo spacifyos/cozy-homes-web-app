@@ -7,6 +7,7 @@ import CustomImage from "@/components/CustomImage";
 import CustomText from "@/components/CustomText";
 import ListingCoinsTransaction from "@/components/CoinsTransaction/ListingCoinsTransaction";
 import _ from "lodash";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -66,7 +67,7 @@ const CoinsTransaction = () => {
             <CustomText textClassName="text-primary text-lg font-bold pr-2">
               5,123
             </CustomText>
-            <CustomImage src={Images.refreshIcon} imageStyle={{ width:20 }} />
+            <CustomImage src={Icons.refreshIcon} imageStyle={{ width:20 }} />
           </div>
         </div>
 

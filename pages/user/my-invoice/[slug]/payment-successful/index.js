@@ -14,6 +14,7 @@ import moment from "moment";
 import { NextSeo } from "next-seo";
 import DesktopLayout from "@/components/DesktopLayout";
 import AuthWrapper from "@/components/AuthWrapper";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -105,7 +106,7 @@ const PaymentSuccessful = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickClose}
               />
@@ -134,7 +135,7 @@ const PaymentSuccessful = ({ id }) => {
 
         <div className="flex flex-col global-border-radius bg-white py-2 px-4 global-box-shadow w-full my-7">
           <div className="flex items-center justify-center py-4">
-            <CustomImage src={Images.checkIconAqua} className="mr-2 w-6" />
+            <CustomImage src={Icons.checkIconAqua} className="mr-2 w-6" />
             <CustomText textClassName="text-black font-bold text-base">
               Payment Completed
             </CustomText>
@@ -156,7 +157,7 @@ const PaymentSuccessful = ({ id }) => {
 
         <div className="relative pt-6 flex justify-center w-full">
           <div className="bg-primary p-3 global-border-radius absolute top-0">
-            <CustomImage src={Images.invoiceIconWhite} className="w-6" />
+            <CustomImage src={Icons.invoiceIconWhite} className="w-6" />
           </div>
           <div className="global-box-shadow global-border-radius p-5 bg-white pt-10 w-full">
             <CustomLabelValue

@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import { get, isEmpty, isEqual } from "lodash";
 import * as listingSelector from "@/src/selectors/listing";
+import Icons from "@/components/Icons";
 
 const CardViewModal = ({ data, onClickShareBooking }) => {
   const bathroom = get(data, ["bathroom"], "");
@@ -28,7 +29,7 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
             <button className="btn btn-sm btn-circle btn-ghost right-2">
               <CustomImage
                 className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                src={Images.closeIconBlack}
+                src={Icons.closeIconBlack}
               />
             </button>
           </form>
@@ -65,8 +66,8 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
             {/*<CustomImage*/}
             {/*  src={*/}
             {/*    isAvailableBook*/}
-            {/*      ? Images.shareIconActive*/}
-            {/*      : Images.shareIconDisable*/}
+            {/*      ? Icons.shareIconActive*/}
+            {/*      : Icons.shareIconDisable*/}
             {/*  }*/}
             {/*  className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}*/}
             {/*  onClick={(event) => {*/}
@@ -84,21 +85,21 @@ const CardViewModal = ({ data, onClickShareBooking }) => {
           </CustomText>
 
           <div className="flex items-center gap-2">
-            <CustomImage src={Images.bathroomIconActive} className="w-4" />
+            <CustomImage src={Icons.bathroomIconActive} className="w-4" />
             <CustomText textClassName="text-xs">
               {isEmpty(bathroom) ? "-" : bathroom}
             </CustomText>
           </div>
 
           <div className="flex items-center gap-2">
-            <CustomImage src={Images.bedIconActive} className="w-4" />
+            <CustomImage src={Icons.bedIconActive} className="w-4" />
             <CustomText textClassName="text-xs">
               {isEmpty(bedType) ? "-" : bedType}
             </CustomText>
           </div>
 
           <div className="flex items-center gap-2">
-            <CustomImage src={Images.spaceIconActive} className="w-4" />
+            <CustomImage src={Icons.spaceIconActive} className="w-4" />
             <CustomText textClassName="text-xs">
               {isEmpty(spaceType) ? "-" : spaceType}
             </CustomText>

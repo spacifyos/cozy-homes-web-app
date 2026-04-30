@@ -2,6 +2,7 @@ import CustomSelect from "@/components/CustomSelect";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
+import Icons from "@/components/Icons";
 
 const FilterSection = ({
   isOpenFilter,
@@ -47,7 +48,7 @@ const FilterSection = ({
           className="bg-white xl:col-span-1 lg:col-span-1 md:col-span-1 sm:col-span-2 col-span-2 flex justify-center items-center global-box-shadow global-border-radius cursor-pointer"
           onClick={() => setIsOpenFilter(!isOpenFilter)}
         >
-          <CustomImage src={Images.filterIconBlack} className="h-6 w-6" />
+          <CustomImage src={Icons.filterIconBlack} className="h-6 w-6" />
         </div>
       </div>
 

@@ -8,6 +8,7 @@ import CustomEmptyBox from "@/components/CustomEmptyBox";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import ListingCardComponent from "@/components/Search/ListingCardComponent";
+import Icons from "@/components/Icons";
 
 const DesktopNearbyRoomSection = ({ data, loading, onClickViewMore }) => {
   return (
@@ -15,7 +16,7 @@ const DesktopNearbyRoomSection = ({ data, loading, onClickViewMore }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.nearbyIcon}
+            src={Icons.nearbyIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
           <CustomText textClassName="text-lg font-bold text-primary pl-2">
@@ -42,8 +43,9 @@ const DesktopNearbyRoomSection = ({ data, loading, onClickViewMore }) => {
         ) : isEmpty(data) ? (
           <div className="flex justify-center">
             <CustomEmptyBox
-              emptyTitle="No recommend property found"
-              emptyDesc="Recommend property not available for now. "
+              variant="property"
+              emptyTitle="Nothing nearby right now"
+              emptyDesc="We'll show similar rooms in the area as new listings arrive."
             />
           </div>
         ) : (

@@ -40,6 +40,7 @@ import * as path from "path";
 import CommentComponent from "@/components/HelpCenter/CommentComponent";
 import TechnicianInFormationBoard from "@/components/HelpCenter/TechnicianInFormationBoard";
 import CommentImageUploadModal from "@/components/HelpCenter/CommentImageUploadModal";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -885,7 +886,7 @@ const RequestOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

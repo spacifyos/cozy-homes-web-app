@@ -3,6 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
+import Icons from "@/components/Icons";
 
 const CustomAlertModal = ({
   alertTitle,
@@ -15,7 +16,7 @@ const CustomAlertModal = ({
   return (
     <CustomModal id={id}>
       <div className="flex flex-col justify-center items-center p-6">
-        <CustomImage src={Images.dangerIcon} width={60} />
+        <CustomImage src={Icons.dangerIcon} width={60} />
         <CustomText textClassName="font-bold text-base pt-4">
           {alertTitle}
         </CustomText>

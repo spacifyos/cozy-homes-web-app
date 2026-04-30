@@ -18,6 +18,7 @@ import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
 import AuthWrapper from "@/components/AuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -160,7 +161,7 @@ const MyMeterOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -175,7 +176,7 @@ const MyMeterOverview = ({ id }) => {
             <CustomImage
               className="mr-4 cursor-pointer"
               onClick={onClickSyncMeter}
-              src={Images.refreshIconActive}
+              src={Icons.refreshIconActive}
               imageStyle={{ width: 30 }}
             />
           </div>

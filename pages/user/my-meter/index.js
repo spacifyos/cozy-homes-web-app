@@ -16,6 +16,7 @@ import DesktopLayout from "@/components/DesktopLayout";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -71,7 +72,7 @@ const MyMeter = () => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -83,7 +84,11 @@ const MyMeter = () => {
         <div className="flex flex-col flex-1 h-full gap-3">
           {isEmpty(meterListingData) ? (
             <div className="flex flex-col justify-center flex-1">
-              <CustomEmptyBox emptyTitle="No meter found" />
+              <CustomEmptyBox
+                variant="meter"
+                emptyTitle="No meters connected"
+                emptyDesc="Meter readings will appear here once your unit is set up."
+              />
             </div>
           ) : (
             map(meterListingData, (item, index) => (

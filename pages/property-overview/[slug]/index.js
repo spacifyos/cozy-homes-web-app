@@ -28,6 +28,7 @@ import DesktopPropertyPriceSection from "@/components/PropertyOverview/DesktopPr
 import CustomText from "@/components/CustomText";
 import axios from "axios";
 import Image from "next/image";
+import Icons from "@/components/Icons";
 
 export async function getServerSideProps(context) {
   const id = get(context, ["params", "slug"], "");
@@ -253,7 +254,7 @@ const PropertyOverview = ({ id, listingPropertyDetailData }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

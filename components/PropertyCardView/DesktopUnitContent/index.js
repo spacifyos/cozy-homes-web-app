@@ -4,13 +4,18 @@ import * as listingSelector from "@/src/selectors/listing";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
+import Icons from "@/components/Icons";
 
 const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
   return (
     <div className="col-span-10 xl:flex lg:flex md:hidden sm:hidden hidden flex-col gap-4 relative">
       {isEmpty(unitListing) ? (
         <div className="bg-white flex justify-center items-center h-screen border global-border-radius">
-          <CustomEmptyBox />
+          <CustomEmptyBox
+          variant="room"
+          emptyTitle="No units available"
+          emptyDesc="There aren't any units to show for this property right now."
+        />
         </div>
       ) : (
         <div className="flex flex-col gap-4 sticky top-4 ">
@@ -82,8 +87,8 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
                             {/*<CustomImage*/}
                             {/*  src={*/}
                             {/*    isAvailableBook*/}
-                            {/*      ? Images.shareIconActive*/}
-                            {/*      : Images.shareIconDisable*/}
+                            {/*      ? Icons.shareIconActive*/}
+                            {/*      : Icons.shareIconDisable*/}
                             {/*  }*/}
                             {/*  className={`w-4 ${isAvailableBook ? "cursor-pointer" : ""}`}*/}
                             {/*  onClick={(event) => {*/}
@@ -102,7 +107,7 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
 
                           <div className="flex items-center gap-2">
                             <CustomImage
-                              src={Images.bathroomIconActive}
+                              src={Icons.bathroomIconActive}
                               className="w-4"
                             />
                             <CustomText textClassName="text-xs">
@@ -112,7 +117,7 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
 
                           <div className="flex items-center gap-2">
                             <CustomImage
-                              src={Images.bedIconActive}
+                              src={Icons.bedIconActive}
                               className="w-4"
                             />
                             <CustomText textClassName="text-xs">
@@ -122,7 +127,7 @@ const DesktopUnitContent = ({ unitListing, onClickShareBooking }) => {
 
                           <div className="flex items-center gap-2">
                             <CustomImage
-                              src={Images.spaceIconActive}
+                              src={Icons.spaceIconActive}
                               className="w-4"
                             />
                             <CustomText textClassName="text-xs">

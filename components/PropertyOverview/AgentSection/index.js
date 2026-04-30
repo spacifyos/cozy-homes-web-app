@@ -4,6 +4,7 @@ import CustomImage from "@/components/CustomImage";
 import * as listingSelector from "@/src/selectors/listing";
 import moment from "moment";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const AgentSection = ({
   t,
@@ -27,7 +28,7 @@ const AgentSection = ({
         <div className=" flex-row flex p-2 pl-3 justify-between items-center">
           <div className="relative ">
             <CustomImage
-              src={Images.userIconActive}
+              src={Icons.userIconActive}
               className="rounded-2xl"
               imageStyle={{ width: 43 }}
             />
@@ -36,7 +37,7 @@ const AgentSection = ({
             {/*  className="flex flex-col bottom-0 absolute bg-white rounded-2xl"*/}
             {/*  style={{ right: -3 }}*/}
             {/*>*/}
-            {/*  <CustomImage src={Images.paidIcon} width={14} />*/}
+            {/*  <CustomImage src={Icons.paidIcon} width={14} />*/}
             {/*</div>*/}
           </div>
 
@@ -56,7 +57,7 @@ const AgentSection = ({
           <div className="flex gap-3 items-center flex-2 pr-1">
             {/*<div className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer">*/}
             {/*  <CustomImage*/}
-            {/*    src={Images.bookingIconActive}*/}
+            {/*    src={Icons.bookingIconActive}*/}
             {/*    width={28}*/}
             {/*    onClick={onClickToBookAppointment}*/}
             {/*  />*/}
@@ -65,7 +66,7 @@ const AgentSection = ({
               href={`tel:${picContactNumber}`}
               className="p-1 global-box-shadow global-border-radius agent-section-icon cursor-pointer"
             >
-              <CustomImage src={Images.phoneIconBlack} width={28} />
+              <CustomImage src={Icons.phoneIconBlack} width={28} />
             </a>
             <a
               href={`${
@@ -94,7 +95,7 @@ const AgentSection = ({
 
             <CustomImage
               className="w-5  cursor-pointer"
-              src={Images.infoIconActive}
+              src={Icons.infoIconActive}
               onClick={onClickOpenMoveInCostModal}
             />
           </div>
@@ -107,7 +108,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.rightIconWhite}
+                src={Icons.rightIconWhite}
                 imageStyle={{ width: 8 }}
               />
             </div>
@@ -120,7 +121,7 @@ const AgentSection = ({
                 Book Now
               </CustomText>
               <CustomImage
-                src={Images.rightIconWhite}
+                src={Icons.rightIconWhite}
                 imageStyle={{ width: 8 }}
               />
             </a>

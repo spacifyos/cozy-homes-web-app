@@ -26,6 +26,7 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import AuthManager from "@/src/utils/AuthManager";
 import axios from "axios";
 import Toast from "@/src/utils/Toast";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -170,7 +171,7 @@ const MyPropertyOverview = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />

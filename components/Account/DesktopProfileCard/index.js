@@ -3,6 +3,7 @@ import CustomImage from "@/components/CustomImage";
 import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const DesktopProfileCard = ({ data }) => {
   const name = authSelector.getName(data);
@@ -18,11 +19,11 @@ const DesktopProfileCard = ({ data }) => {
         href={"/user/edit-profile"}
         className="absolute right-5 top-5 cursor-pointer"
       >
-        <CustomImage src={Images.editIconDisable} className="w-5" />
+        <CustomImage src={Icons.editIconDisable} className="w-5" />
       </a>
 
       <CustomImage
-        src={Images.userIconActive}
+        src={Icons.userIconActive}
         className="rounded-2xl xl:w-20 lg:w-20 md:w-20 sm:w-20 w-16"
       />
 

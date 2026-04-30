@@ -4,6 +4,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import * as authSelector from "@/src/selectors/auth";
+import Icons from "@/components/Icons";
 
 const BankCard = ({ bankDetails }) => {
   const accountHolderName = authSelector.getAccountHolderName(bankDetails);
@@ -22,7 +23,7 @@ const BankCard = ({ bankDetails }) => {
             href={"/user/owner/my-bank/add-bank"}
             className="flex flex-col justify-center items-center flex-1 cursor-pointer"
           >
-            <CustomImage src={Images.addIcon} imageStyle={{ width: 30 }} />
+            <CustomImage src={Icons.addIcon} imageStyle={{ width: 30 }} />
             <CustomText textClassName="text-disable pt-2">Add Bank</CustomText>
           </a>
         ) : (
@@ -33,7 +34,7 @@ const BankCard = ({ bankDetails }) => {
               style={{ width: 30, height: 30, right: -3, bottom: -3 }}
             >
               <CustomImage
-                src={Images.editIconWhite}
+                src={Icons.editIconWhite}
                 imageStyle={{ width: 15 }}
               />
             </a>

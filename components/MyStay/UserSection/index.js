@@ -3,6 +3,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import * as authSelector from "@/src/selectors/auth";
 import { isEmpty } from "lodash";
+import Icons from "@/components/Icons";
 
 const UserSection = ({ data }) => {
   const name = authSelector.getName(data);
@@ -12,7 +13,7 @@ const UserSection = ({ data }) => {
   return (
     <div className="flex justify-between pb-5">
       <div className="user-info-container">
-        <CustomImage src={Images.userIconActive} imageStyle={{ width: 55 }} />
+        <CustomImage src={Icons.userIconActive} imageStyle={{ width: 55 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="user-name">
@@ -20,13 +21,13 @@ const UserSection = ({ data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.phoneIconBlack} imageStyle={{ width: 16 }} />
+            <CustomImage src={Icons.phoneIconBlack} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {isEmpty(phoneNumber) ? "-" : phoneNumber}
             </CustomText>
           </div>
           <div className="flex items-center">
-            <CustomImage src={Images.emailIconBlack} imageStyle={{ width: 16 }} />
+            <CustomImage src={Icons.emailIconBlack} imageStyle={{ width: 16 }} />
             <CustomText textClassName="user-info">
               {isEmpty(email) ? "-" : email}
             </CustomText>
@@ -46,7 +47,7 @@ const UserSection = ({ data }) => {
       {/*      <CustomText textClassName="text-primary font-bold text-lg pr-2">*/}
       {/*        99,999*/}
       {/*      </CustomText>*/}
-      {/*      <CustomImage src={Images.refreshIcon} height={18} width={18} />*/}
+      {/*      <CustomImage src={Icons.refreshIcon} height={18} width={18} />*/}
       {/*    </div>*/}
       {/*  </div>*/}
       {/*</div>*/}

@@ -2,6 +2,7 @@ import Images from "@/src/utils/Image";
 import CustomText from "@/components/CustomText";
 import CustomImage from "@/components/CustomImage";
 import { get, isEmpty, isEqual, map } from "lodash";
+import Icons from "@/components/Icons";
 
 const CustomSelectWithIcon = ({
   option,
@@ -50,7 +51,7 @@ const CustomSelectWithIcon = ({
             </div>
           )}
 
-          <CustomImage src={Images.downIconBlack} imageStyle={{ width: 10 }} />
+          <CustomImage src={Icons.downIconBlack} imageStyle={{ width: 10 }} />
         </div>
 
         {openSelectBank ? (
@@ -87,7 +88,7 @@ const CustomSelectWithIcon = ({
 
                       {isEqual(selectedValue, value) ? (
                         <CustomImage
-                          src={Images.checkIcon}
+                          src={Icons.checkIcon}
                           imageStyle={{ width: 15 }}
                         />
                       ) : (

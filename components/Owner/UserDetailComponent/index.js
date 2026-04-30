@@ -4,6 +4,7 @@ import CustomText from "@/components/CustomText";
 import { isEmpty } from "lodash";
 import * as ownerSelector from "@/src/selectors/owner";
 import * as authSelector from "@/src/selectors/auth";
+import Icons from "@/components/Icons";
 
 const UserDetailComponent = ({ data }) => {
   const name = authSelector.getName(data);
@@ -14,7 +15,7 @@ const UserDetailComponent = ({ data }) => {
   return (
     <div className="p-3 relative w-full bg-white global-border-radius global-box-shadow flex justify-between items-end mb-6">
       <div className="flex items-end">
-        <CustomImage src={Images.userIconActive} imageStyle={{ width: 50 }} />
+        <CustomImage src={Icons.userIconActive} imageStyle={{ width: 50 }} />
 
         <div className="user-info-content">
           <CustomText textClassName="font-bold pb-1" lineClamp={1}>
@@ -22,7 +23,7 @@ const UserDetailComponent = ({ data }) => {
           </CustomText>
 
           <div className="flex items-center">
-            <CustomImage src={Images.phoneIconBlack} imageStyle={{ width: 12 }} />
+            <CustomImage src={Icons.phoneIconBlack} imageStyle={{ width: 12 }} />
             <CustomText
               textClassName="text-xs pl-2 text-disable"
               lineClamp={1}
@@ -31,7 +32,7 @@ const UserDetailComponent = ({ data }) => {
             </CustomText>
           </div>
           <div className="flex items-center">
-            <CustomImage src={Images.emailIconBlack} imageStyle={{ width: 12 }} />
+            <CustomImage src={Icons.emailIconBlack} imageStyle={{ width: 12 }} />
             <CustomText
               textClassName="text-xs pl-2 text-disable"
               lineClamp={1}

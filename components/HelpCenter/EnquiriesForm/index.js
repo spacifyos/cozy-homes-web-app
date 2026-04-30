@@ -6,6 +6,7 @@ import DividerSection from "@/components/HelpCenter/DividerSection";
 import BookingTextArea from "@/components/BookingTextArea";
 import CustomButton from "@/components/CustomButton";
 import Constant from "@/src/utils/Constant";
+import Icons from "@/components/Icons";
 
 const EnquiriesForm = ({
   selectNestedHelpCenterSection,
@@ -57,8 +58,8 @@ const EnquiriesForm = ({
                   className="cursor-pointer"
                   src={
                     isEqual(checkFeedbackMatters, value)
-                      ? Images.checkIconAqua
-                      : Images.uncheckIconWhite
+                      ? Icons.checkIconAqua
+                      : Icons.uncheckIconWhite
                   }
                   imageStyle={{ width: 20, height: 20 }}
                   onClick={() => onClickCheckFeedbackMatters(value)}

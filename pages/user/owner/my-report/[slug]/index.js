@@ -15,6 +15,7 @@ import Helper from "@/src/utils/Helper";
 import CustomImage from "@/components/CustomImage";
 import DesktopLayout from "@/components/DesktopLayout";
 import DesktopModal from "@/components/DesktopModal";
+import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
@@ -105,7 +106,7 @@ const MyReport = ({ id }) => {
       <NextSeo title="PnL Statement Overview | Owner - CozyHomes" />
       <DesktopLayout
         loading={loading}
-        rightButtonIcon={Images.downloadIconBlack}
+        rightButtonIcon={Icons.downloadIconBlack}
         onClickRightButton={onClickDownload}
         pageBreadcrumbs={
           <div>
@@ -135,7 +136,7 @@ const MyReport = ({ id }) => {
 
             <div className="xl:hidden lg:hidden md:hidden sm:flex flex gap-4">
               <CustomImage
-                src={Images.leftIconBlack}
+                src={Icons.leftIconBlack}
                 className="w-2"
                 onClick={onClickGoBack}
               />
@@ -153,7 +154,7 @@ const MyReport = ({ id }) => {
 
               <CustomImage
                 onClick={onClickOpenInformationModal}
-                src={Images.infoIconBlack}
+                src={Icons.infoIconBlack}
                 className="w-4 h-4 cursor-pointer"
               />
             </div>
@@ -423,7 +424,7 @@ const MyReport = ({ id }) => {
                 <button className="btn btn-sm btn-circle btn-ghost right-2">
                   <CustomImage
                     className="xl:w-4 lg:w-4 md:w-4 sm:w-3 w-3"
-                    src={Images.closeIconBlack}
+                    src={Icons.closeIconBlack}
                   />
                 </button>
               </form>

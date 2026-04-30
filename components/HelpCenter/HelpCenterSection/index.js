@@ -2,6 +2,7 @@ import Images from "@/src/utils/Image";
 import { map, get } from "lodash";
 import CategoryCard from "@/components/HelpCenter/NewRequest/CategoryCard";
 import * as maintenanceTicketSelector from "@/src/selectors/maintenance-ticket";
+import Icons from "@/components/Icons";
 
 const HelpCenterSection = ({
   onClickChangeSection,
@@ -17,8 +18,8 @@ const HelpCenterSection = ({
           ...option,
           ...{
             description: "Have A Question Or Want To Send Feedback",
-            icon: Images.generalEnquiryIconWhite,
-            iconActive: Images.generalEnquiryIconActive,
+            icon: Icons.generalEnquiryIconWhite,
+            iconActive: Icons.generalEnquiryIconActive,
           },
         };
       case 2:
@@ -26,8 +27,8 @@ const HelpCenterSection = ({
           ...option,
           ...{
             description: "Submit Maintenance Requests For Issue Resolution",
-            icon: Images.maintenanceRequestIconWhite,
-            iconActive: Images.maintenanceRequestIconActive,
+            icon: Icons.maintenanceRequestIconWhite,
+            iconActive: Icons.maintenanceRequestIconActive,
           },
         };
     }

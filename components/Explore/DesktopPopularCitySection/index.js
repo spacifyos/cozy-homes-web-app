@@ -8,6 +8,7 @@ import Images from "@/src/utils/Image";
 import ListingCardComponent from "@/components/Explore/ListingCardComponent";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import Icons from "@/components/Icons";
 
 const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
   return (
@@ -15,7 +16,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
       <div className="flex justify-between items-center pb-4">
         <div className="flex items-center">
           <CustomImage
-            src={Images.klccIcon}
+            src={Icons.klccIcon}
             imageStyle={{ width: 20, height: 20 }}
           />
           <CustomText textClassName="xl:text-lg lg:text-lg md:text-base sm:text-sm text-sm font-bold text-primary pl-2">
@@ -30,7 +31,7 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
         {/*    View More*/}
         {/*  </CustomText>*/}
 
-        {/*  <CustomImage src={Images.rightIconBlack} className="w-1.5" />*/}
+        {/*  <CustomImage src={Icons.rightIconBlack} className="w-1.5" />*/}
         {/*</div>*/}
       </div>
 
@@ -51,7 +52,11 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
               className="flex justify-center items-center"
               style={{ minHeight: 410 }}
             >
-              <CustomEmptyBox emptyTitle="Property not available now." />
+              <CustomEmptyBox
+                variant="property"
+                emptyTitle="No rooms in this city"
+                emptyDesc="Try a nearby city or check back as new homes are added."
+              />
             </div>
           ) : (
             <div className="grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-3 gap-5">
@@ -81,7 +86,11 @@ const DesktopPopularCitySection = ({ onClickViewMore, data, loading }) => {
           </div>
         ) : isEmpty(data) ? (
           <div className="flex justify-center h-32 2xl:h-40 xl:h-36 lg:h-36 md:h-32 sm:h-32">
-            <CustomEmptyBox emptyTitle="Popular city not available now." />
+            <CustomEmptyBox
+            variant="default"
+            emptyTitle="No featured cities yet"
+            emptyDesc="We'll spotlight popular destinations here soon."
+          />
           </div>
         ) : (
           <Swiper

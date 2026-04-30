@@ -17,8 +17,9 @@ const RecommendSection = ({
       {isEmpty(recommendedList) ? (
         <div className="flex justify-center flex-1 py-10">
           <CustomEmptyBox
-            emptyTitle="No recommend property found"
-            emptyDesc="Recommend property not available for now. "
+            variant="property"
+            emptyTitle="No recommendations yet"
+            emptyDesc="We'll surface similar homes here as soon as we find a match."
           />
         </div>
       ) : (
