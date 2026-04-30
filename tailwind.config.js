@@ -42,6 +42,7 @@ module.exports = {
         tertiary: "#006677",
         warning: "#ff8a00",
         disable: "#CCCCCC",
+        muted: "#6B6B6B",
         black: "#2c2c2c",
         white: "#FFFFFF",
         aqua: "#4DB3A0",

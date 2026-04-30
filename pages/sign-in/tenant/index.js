@@ -1,7 +1,7 @@
 import CustomText from "@/components/CustomText";
 import CustomButton from "@/components/CustomButton";
 import { useRouter } from "next/router";
-import { useTranslation, withTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { get, isEmpty, map } from "lodash";
 import * as authSelector from "@/src/selectors/auth";
@@ -9,14 +9,18 @@ import apiRequest from "@/src/services/httpUtilities/apiRequest";
 import Toast from "@/src/utils/Toast";
 import AuthManager from "@/src/utils/AuthManager";
 import { NextSeo } from "next-seo";
-import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
 import * as commonSelector from "@/src/selectors/common";
 import { useSelector } from "react-redux";
 import Link from "next/link";
 import Constant from "@/src/utils/Constant";
 import DesktopLayout from "@/components/DesktopLayout";
 import AuthWrapper from "@/components/AuthWrapper";
+import {
+  TenantIllustration,
+  EyeOpenIcon,
+  EyeOffIcon,
+  ChevronLeftIcon,
+} from "@/components/Icons";
 
 const SignInTenant = () => {
   const { t } = useTranslation("common");
@@ -27,7 +31,6 @@ const SignInTenant = () => {
   );
 
   const [signInLoading, setSignInLoading] = useState(false);
-
   const [phonePrefix, setPhonePrefix] = useState("+60");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -37,9 +40,7 @@ const SignInTenant = () => {
 
   const onClickToSignUp = () => {
     router
-      .push({
-        pathname: `/sign-up/${Constant.TENANT}`,
-      })
+      .push({ pathname: `/sign-up/${Constant.TENANT}` })
       .then(() => router.reload());
   };
 
@@ -48,7 +49,6 @@ const SignInTenant = () => {
       Toast.error("Phone number is required.");
       return;
     }
-
     if (isEmpty(password)) {
       Toast.error("Password is required.");
       return;
@@ -73,7 +73,6 @@ const SignInTenant = () => {
     if (!isEmpty(authToken) && isUserVerify) {
       AuthManager.setToken(authToken);
       AuthManager.setLoginType(userType);
-
       return router.replace(`/loading`);
     } else {
       return router.push({
@@ -81,18 +80,6 @@ const SignInTenant = () => {
         query: { phoneNumber: userPhoneNumber, type: Constant.TENANT },
       });
     }
-  };
-
-  const onChangePhonePrefix = (e) => {
-    setPhonePrefix(e.target.value);
-  };
-
-  const onChangePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
   };
 
   const handleKeyDown = async (event) => {
@@ -107,155 +94,126 @@ const SignInTenant = () => {
       <NextSeo title="Sign In | Tenant - CozyHomes" />
 
       <DesktopLayout hideNav isMinHeight={false}>
-        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start py-10">
-          {/*<div*/}
-          {/*  style={{*/}
-          {/*    background:*/}
-          {/*      "linear-gradient(125.08deg, #18407E 54.69%, #D71440 96.79%)",*/}
-          {/*  }}*/}
-          {/*  className={`min-h-screen pb-4`}*/}
-          {/*>*/}
-          <div className="">
-            <div className="pb-6 flex flex-col items-center">
-              {/*<CustomImage*/}
-              {/*  src={Images.logoHorizontalColor}*/}
-              {/*  className="mb-4 h-16 w-3/4"*/}
-              {/*/>*/}
+        <div className="container mx-auto max-w-screen-md flex-1 flex flex-col py-8 px-4">
+          <button
+            onClick={() => router.push("/sign-in")}
+            className="flex items-center text-muted hover:text-primary transition self-start mb-4 cursor-pointer"
+          >
+            <ChevronLeftIcon size={14} className="mr-1" />
+            <CustomText textClassName="text-sm">Back</CustomText>
+          </button>
 
-              <CustomText
-                textClassName="text-black font-bold leading-10"
-                styles={{ fontSize: 32 }}
-              >
-                Welcome Back,
-              </CustomText>
-              <CustomText
-                textClassName="text-primary font-bold leading-10"
-                styles={{ fontSize: 32 }}
-              >
-                Tenant
-              </CustomText>
+          <div className="flex flex-col items-center pb-6">
+            <div
+              className="flex items-center justify-center rounded-full bg-primary-background mb-4"
+              style={{ width: 88, height: 88 }}
+            >
+              <TenantIllustration size={56} className="text-primary" />
             </div>
 
-            <div className="w-full">
-              <div className="p-6 global-box-shadow bg-white global-border-radius">
-                <CustomText textClassName="text-center pb-6 font-bold text-lg">
-                  Sign In
+            <CustomText
+              textClassName="text-xs font-bold uppercase tracking-widest text-primary pb-1"
+            >
+              Tenant Sign In
+            </CustomText>
+            <CustomText
+              textClassName="font-bold text-black"
+              styles={{ fontSize: 28 }}
+            >
+              Welcome back
+            </CustomText>
+            <CustomText textClassName="text-sm text-muted pt-1">
+              Sign in to manage your tenancy
+            </CustomText>
+          </div>
+
+          <div className="w-full">
+            <div className="p-6 global-box-shadow bg-white global-border-radius">
+              <div className="mb-4">
+                <CustomText textClassName="text-xs font-bold text-black pb-2">
+                  Phone Number
                 </CustomText>
-
-                <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-2 mb-4">
+                <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-3 grid-cols-3 gap-2">
                   <select
-                    className="select select-bordered w-full max-w-xs bg-white user-input"
+                    className="select select-bordered w-full bg-white user-input"
                     value={phonePrefix}
-                    onChange={onChangePhonePrefix}
+                    onChange={(e) => setPhonePrefix(e.target.value)}
                   >
-                    {map(phonePrefixOption, (list) => {
-                      const name = get(list, ["label"], "");
-                      const value = get(list, ["value"], "");
-
-                      return (
-                        <option key={value} value={value}>
-                          {name}
-                        </option>
-                      );
-                    })}
+                    {map(phonePrefixOption, (list) => (
+                      <option key={get(list, ["value"])} value={get(list, ["value"])}>
+                        {get(list, ["label"])}
+                      </option>
+                    ))}
                   </select>
 
                   <input
                     value={phoneNumber}
-                    onChange={onChangePhoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
                     type="number"
                     placeholder="12 345 6789"
-                    className="input input-bordered w-full bg-white xl:col-span-2 lg:col-span-2 md:col-span-2 sm:col-span-1 col-span-1 user-input"
+                    className="input input-bordered w-full bg-white col-span-2 user-input"
                   />
                 </div>
+              </div>
 
-                <div className="relative mb-8">
+              <div className="mb-2">
+                <CustomText textClassName="text-xs font-bold text-black pb-2">
+                  Password
+                </CustomText>
+                <div className="relative">
                   <input
                     value={password}
-                    onChange={onChangePassword}
+                    onChange={(e) => setPassword(e.target.value)}
                     type={showPassword ? "text" : "password"}
-                    placeholder="Password"
+                    placeholder="Enter your password"
                     className="input input-bordered w-full bg-white pr-10 user-input"
                     onKeyDown={handleKeyDown}
                   />
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
+                    className="absolute inset-y-0 right-0 flex items-center px-3"
                     onClick={() => setShowPassword((prev) => !prev)}
                   >
                     {showPassword ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.27-3.11-11-8 1.01-2.86 2.92-5.1 5.24-6.52" />
-                        <path d="M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-.88" />
-                        <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c5 0 9.27 3.11 11 8a12.18 12.18 0 0 1-4.06 5.15" />
-                        <line x1="1" y1="1" x2="23" y2="23" />
-                      </svg>
+                      <EyeOffIcon className="text-muted" />
                     ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12Z" />
-                        <circle cx="12" cy="12" r="3" />
-                      </svg>
+                      <EyeOpenIcon className="text-muted" />
                     )}
                   </button>
                 </div>
-
-                <div className="flex justify-center pb-2">
-                  <CustomButton
-                    buttonClassName={`btn-primary w-2/4 mb-2`}
-                    buttonText="Sign In"
-                    onClick={onClickToLogin}
-                  />
-                </div>
-
-                <Link href={`/user/forgot-password?type=Tenant`}>
-                  <CustomText textClassName="text-center pb-2 underline cursor-pointer">
-                    Forgot password
-                  </CustomText>
-                </Link>
-
-                <div className="flex justify-center items-center mb-5">
-                  <CustomText>Don’t have account? Click </CustomText>
-                  <div onClick={onClickToSignUp} className="cursor-pointer">
-                    <CustomText textClassName="text-primary font-bold pl-1 underline">
-                      here
-                    </CustomText>
-                  </div>
-                </div>
-
-                <CustomText textClassName="text-sm my-5 text-center">
-                  By using our services, you are deemed unconditionally agree,
-                  consent and be bound by our terms and conditions and privacy
-                  policy.
-                </CustomText>
-
-                <CustomText textClassName="text-xs text-center text-disable">
-                  This site is protected by reCAPTCHA and the Google{" "}
-                  <span className="underline">Privacy Policy</span> and{" "}
-                  <span className="underline">Terms of Service</span> apply.
-                </CustomText>
               </div>
+
+              <Link href={`/user/forgot-password?type=Tenant`}>
+                <CustomText textClassName="text-right text-xs text-primary underline cursor-pointer pb-5">
+                  Forgot password?
+                </CustomText>
+              </Link>
+
+              <CustomButton
+                buttonClassName="btn-primary w-full mb-4"
+                buttonText="Sign In"
+                onClick={onClickToLogin}
+                loading={signInLoading}
+              />
+
+              <div className="flex justify-center items-center mb-3">
+                <CustomText textClassName="text-sm text-muted">
+                  Don't have an account?
+                </CustomText>
+                <div onClick={onClickToSignUp} className="cursor-pointer pl-1">
+                  <CustomText textClassName="text-primary font-bold text-sm underline">
+                    Sign up
+                  </CustomText>
+                </div>
+              </div>
+
+              <CustomText textClassName="text-xxs text-center text-muted leading-relaxed">
+                By signing in, you agree to our terms and privacy policy. This
+                site is protected by reCAPTCHA.
+              </CustomText>
             </div>
           </div>
         </div>
-        {/*</div>*/}
       </DesktopLayout>
     </div>
   );

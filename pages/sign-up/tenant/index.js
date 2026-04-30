@@ -135,13 +135,8 @@ const SignUpTenant = () => {
 
       <DesktopLayout hideNav isMinHeight={false}>
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start pb-10">
-          <div>
+          <div className="pt-10">
             <div className="pb-6 flex flex-col items-center">
-              <CustomImage
-                src={Images.logoHorizontalColor}
-                className="mb-4 h-32 w-3/4"
-              />
-
               <CustomText
                 textClassName="text-black font-bold leading-10"
                 styles={{ fontSize: 32 }}
@@ -264,9 +259,7 @@ const SignUpTenant = () => {
                   <button
                     type="button"
                     className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500"
-                    onClick={() =>
-                      setShowConfirmPassword((prev) => !prev)
-                    }
+                    onClick={() => setShowConfirmPassword((prev) => !prev)}
                   >
                     {showConfirmPassword ? (
                       <svg

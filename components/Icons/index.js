@@ -760,6 +760,56 @@ export const EmptyTicketIllustration = ({ size = 56, className = "text-primary",
   </svg>
 );
 
+export const NotFoundIllustration = ({ size = 240, className = "text-primary", style }) => (
+  <svg width={size} height={size} viewBox="0 0 240 200" fill="none" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="120" cy="180" rx="90" ry="8" fill="currentColor" opacity="0.1" />
+    <path d="M60 70l60-46 60 46v90a4 4 0 0 1-4 4H64a4 4 0 0 1-4-4V70z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" fill="currentColor" fillOpacity="0.06" />
+    <path d="M50 76l70-54 70 54" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round" />
+    <path d="M104 164v-40h32v40" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" fill="currentColor" fillOpacity="0.12" />
+    <circle cx="120" cy="106" r="22" stroke="currentColor" strokeWidth="3" fill="currentColor" fillOpacity="0.1" />
+    <path d="M112 102l16 12M128 102l-16 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+    <path d="M30 110c4-2 8-2 12 0M198 110c4-2 8-2 12 0" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+    <text x="50%" y="68" textAnchor="middle" fontSize="28" fontWeight="700" fill="currentColor" opacity="0.85">404</text>
+  </svg>
+);
+
+export const TenantIllustration = ({ size = 80, className = "text-primary", style }) => (
+  <svg width={size} height={size} viewBox="0 0 120 120" fill="none" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="60" cy="108" rx="36" ry="4" fill="currentColor" opacity="0.12" />
+    <path d="M22 64l38-30 38 30v36a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4V64z" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" fill="currentColor" fillOpacity="0.08" />
+    <path d="M22 64l38-30 38 30" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" />
+    <circle cx="60" cy="68" r="7" stroke="currentColor" strokeWidth="2.4" fill="currentColor" fillOpacity="0.18" />
+    <path d="M48 92c0-7 5-12 12-12s12 5 12 12" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" fill="currentColor" fillOpacity="0.18" />
+  </svg>
+);
+
+export const OwnerIllustration = ({ size = 80, className = "text-secondary", style }) => (
+  <svg width={size} height={size} viewBox="0 0 120 120" fill="none" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="60" cy="108" rx="38" ry="4" fill="currentColor" opacity="0.12" />
+    <rect x="22" y="40" width="36" height="60" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" fill="currentColor" fillOpacity="0.08" />
+    <rect x="58" y="22" width="42" height="78" stroke="currentColor" strokeWidth="2.6" strokeLinejoin="round" fill="currentColor" fillOpacity="0.16" />
+    <path d="M30 54h6M44 54h6M30 70h6M44 70h6M30 86h6M44 86h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <path d="M68 36h8M84 36h8M68 50h8M84 50h8M68 64h8M84 64h8M68 78h8M84 78h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="76" cy="92" r="3" stroke="currentColor" strokeWidth="2" fill="currentColor" />
+  </svg>
+);
+
+export const EyeOpenIcon = ({ size = 20, className = "text-disable", style }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 12S5 5 12 5s11 7 11 7-4 7-11 7S1 12 1 12Z" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+);
+
+export const EyeOffIcon = ({ size = 20, className = "text-disable", style }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-5 0-9.27-3.11-11-8 1.01-2.86 2.92-5.1 5.24-6.52" />
+    <path d="M9.88 9.88A3 3 0 0 0 12 15a3 3 0 0 0 2.12-.88" />
+    <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c5 0 9.27 3.11 11 8a12.18 12.18 0 0 1-4.06 5.15" />
+    <line x1="1" y1="1" x2="23" y2="23" />
+  </svg>
+);
+
 export const EmptyMeterIllustration = ({ size = 56, className = "text-primary", style }) => (
   <svg width={size} height={size} viewBox="0 0 120 120" fill="none" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
     <ellipse cx="60" cy="104" rx="34" ry="4.5" fill="currentColor" opacity="0.08" />
