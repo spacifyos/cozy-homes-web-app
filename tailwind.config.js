@@ -19,7 +19,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Barlow"],
+        sans: ["Halyard"],
       },
       fontSize: {
         xxs: "10px",
@@ -31,22 +31,22 @@ module.exports = {
         125: "500px",
       },
       colors: {
-        primary: "#36A9E1",
-        "primary-background": "#f5f8fd",
-        secondary: "#18407E",
-        "secondary-background": "#FFF4E0",
+        primary: "#005566",
+        "primary-background": "#E0DDD8",
+        secondary: "#B3A17D",
+        "secondary-background": "#F5F0E8",
         available: "#03b78c",
         "available-light": "#DFFFEA",
         error: "#ff2e2e",
         "error-light": "#FFEEF3",
-        tertiary: "#0379b7",
+        tertiary: "#006677",
         warning: "#ff8a00",
         disable: "#CCCCCC",
         black: "#2c2c2c",
         white: "#FFFFFF",
-        aqua: "#41c0be",
+        aqua: "#4DB3A0",
         "owner-background":
-          "linear-gradient(88.34deg, #36A9E1 33.59%, #f9a533 131.55%)",
+          "linear-gradient(88.34deg, #005566 33.59%, #f9a533 131.55%)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -55,14 +55,14 @@ module.exports = {
       },
       borderColor: {
         DEFAULT: "#CCCCCC",
-        primary: "#36A9E1",
+        primary: "#005566",
         warning: "#ff8a00",
         available: "#03b78c",
-        tertiary: "#0379b7",
+        tertiary: "#006677",
         disable: "#CCCCCC",
         white: "#FFFFFF",
-        "primary-background": "#f5f8fd",
-        "secondary-background": "#FFF4E0",
+        "primary-background": "#E0DDD8",
+        "secondary-background": "#F5F0E8",
       },
     },
   },
@@ -71,7 +71,7 @@ module.exports = {
     plugin(function ({ addUtilities }) {
       addUtilities({
         ".btn-primary-background": {
-          "background-color": "#f5f8fd",
+          "background-color": "#E0DDD8",
         },
       });
     }),
@@ -80,9 +80,9 @@ module.exports = {
     themes: [
       {
         mytheme: {
-          primary: "#36A9E1",
-          "primary-background": "#f5f8fd",
-          secondary: "#18407E",
+          primary: "#005566",
+          "primary-background": "#E0DDD8",
+          secondary: "#B3A17D",
           black: "#2c2c2c",
           disable: "#CCCCCC",
         },

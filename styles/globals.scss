@@ -1,6 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Light_Italic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Medium_Italic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Halyard";
+  src: url("/font/Halyard/fonnts.com-Halyard_Display_Bold_Italic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
 @import "button.scss";
 @import "input.scss";
 @import "select.scss";
@@ -105,7 +182,7 @@ body {
 .divider-line {
   height: 1px;
   width: 100%;
-  background-color: #e0ecff !important;
+  background-color: #CCE4E8 !important;
   @apply my-4;
 }
 
@@ -165,7 +242,7 @@ body {
 }
 
 .global-border {
-  border: 1px solid #e0ecff;
+  border: 1px solid #CCE4E8;
 }
 
 .desktop-responsive {

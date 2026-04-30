@@ -15,7 +15,7 @@ const CustomOwnerHeader = ({
 }) => {
   return (
     <div className="flex flex-col flex-1">
-      <div className={`body-container py-5 ${className}`}>
+      <div className={`bg-[#002c33] body-container py-5 ${className}`}>
         <div
           className={`flex items-center justify-between overflow-hidden pb-5`}
         >

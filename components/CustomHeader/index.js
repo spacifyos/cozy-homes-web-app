@@ -25,7 +25,7 @@ const CustomHeader = ({
     >
       <div className="flex-1 relative bg-primary-background overflow-hidden flex flex-col">
         <div
-          className={`flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}
+          className={`bg-[#002c33] flex items-center justify-between global-horizontal-padding pb-5 ${padding ? "pt-12" : "pt-5"} overflow-hidden`}
         >
           <div className="flex justify-center items-center">
             {hideGoBackButton ? (
@@ -34,13 +34,13 @@ const CustomHeader = ({
               <div onClick={onClickGoBack} className="cursor-pointer">
                 <CustomImage
                   className={"me-5 cursor-pointer"}
-                  src={Images.leftIconBlack}
+                  src={Images.leftIconWhite}
                   imageStyle={{ width: 10, height: 10 }}
                 />
               </div>
             )}
 
-            <CustomText textClassName={"font-bold"} styles={{ fontSize: 18 }}>
+            <CustomText textClassName={"font-bold text-white"} styles={{ fontSize: 18 }}>
               {pageTitle}
             </CustomText>
           </div>

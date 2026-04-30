@@ -21,7 +21,7 @@ const CustomDropdown = ({ items, top, onClickDownloadDocument }) => {
               onClick={() => onClickDownloadDocument(value)}
               styles={{
                 borderBottom:
-                  size(items) !== index + 1 ? "1px solid #e0ecff" : "none",
+                  size(items) !== index + 1 ? "1px solid #CCE4E8" : "none",
               }}
             >
               {name}

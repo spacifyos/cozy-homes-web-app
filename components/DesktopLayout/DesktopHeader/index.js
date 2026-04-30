@@ -19,7 +19,7 @@ const DesktopHeader = ({
   const pathname = get(router, ["pathname"], "");
 
   return (
-    <div className="bg-white" style={{ borderBottom: "3px #f5f8fd solid" }}>
+    <div className="bg-[#002c33]">
       {/*{isEqual(pathname, "/") ? (*/}
       <div className="container mx-auto py-2 flex xl:justify-between lg:justify-between md:justify-between sm:justify-between justify-between items-center">
         <CustomImage

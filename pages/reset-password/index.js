@@ -98,7 +98,7 @@ const ResetPassword = () => {
                 textClassName={`text-center pb-6 font-bold text-2xl italic leading-10`}
                 styles={{
                   color: isEqual(typeQuery, Constant.TENANT)
-                    ? "#18407E"
+                    ? "#005566"
                     : "#D71440",
                 }}
               >
