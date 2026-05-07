@@ -57,7 +57,7 @@ const RoleCard = ({
         {title}
       </CustomText>
 
-      <CustomText textClassName="text-sm text-muted leading-relaxed pb-6">
+      <CustomText textClassName="text-sm text-muted leading-relaxed pb-6" styles={{ whiteSpace: "pre-line" }}>
         {description}
       </CustomText>
 
@@ -88,21 +88,20 @@ const SignIn = () => {
               textClassName="font-bold text-black pb-2"
               styles={{ fontSize: 32 }}
             >
-              Welcome back
+              Welcome to PropertyGuys Dashboard
             </CustomText>
 
-            <CustomText textClassName="text-sm text-muted max-w-md">
-              Choose how you want to sign in. You can switch between roles
-              anytime later.
+            <CustomText textClassName="text-lg text-muted max-w-md">
+              Tenancy details. Rent tracking. All in one place.
             </CustomText>
 
-            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 pt-10">
+            <div className="grid xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-5 pt-10 w-full">
               <RoleCard
                 href={`/sign-in/${Constant.TENANT}`}
                 Illustration={TenantIllustration}
                 subtitle="For renters"
                 title="I'm a Tenant"
-                description="Find your next home, manage your tenancy, pay rent and track meters — all in one place."
+                description={"Make payments.\nView tenancy details.\nAccess everything in one place."}
                 accent="primary"
               />
 
@@ -110,8 +109,8 @@ const SignIn = () => {
                 href={`/sign-in/${Constant.OWNER}`}
                 Illustration={OwnerIllustration}
                 subtitle="For landlords"
-                title="I'm an Owner"
-                description="List your properties, screen tenants, collect payments and view income reports."
+                title="I'm an Landlord"
+                description={"Track rent.\nManage tenants.\nView your property performance."}
                 accent="secondary"
               />
             </div>
