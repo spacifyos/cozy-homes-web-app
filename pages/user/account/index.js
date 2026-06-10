@@ -386,19 +386,19 @@ const Account = () => {
             false
           )}
 
-          {!isEmpty(userProfileData) && isTenant && !isBackOffice ? (
-            <FeatureComponent
-              title={"My Meter"}
-              icon={MeterIcon}
-              imageWidth={16}
-              pb={3}
-              onClick={() => {
-                return router.push("/user/my-meter");
-              }}
-            />
-          ) : (
-            false
-          )}
+          {/*{!isEmpty(userProfileData) && isTenant && !isBackOffice ? (*/}
+          {/*  <FeatureComponent*/}
+          {/*    title={"My Meter"}*/}
+          {/*    icon={MeterIcon}*/}
+          {/*    imageWidth={16}*/}
+          {/*    pb={3}*/}
+          {/*    onClick={() => {*/}
+          {/*      return router.push("/user/my-meter");*/}
+          {/*    }}*/}
+          {/*  />*/}
+          {/*) : (*/}
+          {/*  false*/}
+          {/*)}*/}
 
           {!isEmpty(userProfileData) && !isTenant && !isBackOffice ? (
             <FeatureComponent

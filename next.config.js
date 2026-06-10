@@ -25,6 +25,8 @@ const routeList = [
   "/user/forgot-password/owner",
   "/user/forgot-password/tenant",
   "/user/forgot-password/tenant",
+  "/user/my-meter",
+  "/user/my-meter/:slug",
   "/property-overview/:slug",
   "/booking/:slug",
   "/search",

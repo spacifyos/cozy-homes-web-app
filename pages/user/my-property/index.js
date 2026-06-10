@@ -143,7 +143,7 @@ const MyStay = () => {
 
           <DesktopFeatureSection />
 
-          <MeterSection data={meterListingData} />
+          {/*<MeterSection data={meterListingData} />*/}
 
           <InvoiceSection
             onClickSelectCategory={onClickSelectCategory}

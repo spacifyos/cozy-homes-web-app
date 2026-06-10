@@ -248,19 +248,19 @@ const DesktopNavigationBar = ({ userData, onClickLogout }) => {
         false
       )}
 
-      {!isEmpty(userData) && isTenant && !isBackOffice ? (
-        <FeatureComponent
-          title={"My Meter"}
-          icon={MeterIcon}
-          imageWidth={14}
-          pb={3}
-          onClick={() => {
-            return router.push("/user/my-meter");
-          }}
-        />
-      ) : (
-        false
-      )}
+      {/*{!isEmpty(userData) && isTenant && !isBackOffice ? (*/}
+      {/*  <FeatureComponent*/}
+      {/*    title={"My Meter"}*/}
+      {/*    icon={MeterIcon}*/}
+      {/*    imageWidth={14}*/}
+      {/*    pb={3}*/}
+      {/*    onClick={() => {*/}
+      {/*      return router.push("/user/my-meter");*/}
+      {/*    }}*/}
+      {/*  />*/}
+      {/*) : (*/}
+      {/*  false*/}
+      {/*)}*/}
 
       {!isEmpty(userData) && !isTenant && !isBackOffice ? (
         <FeatureComponent
