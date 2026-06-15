@@ -197,28 +197,28 @@ const DesktopLayout = ({
               {pageBreadcrumbs}
 
               <div className="flex justify-center items-center gap-4">
-                {isEmpty(rightSecondButtonIcon) ? (
-                  false
-                ) : (
+                {rightSecondButtonIcon ? (
                   <CustomImage
                     src={rightSecondButtonIcon}
                     onClick={onClickRightSecondButton}
                     className="cursor-pointer w-5 h-5 max-w-5"
                   />
+                ) : (
+                  false
                 )}
 
                 <div
                   onClick={onClickRightButton}
                   className="relative w-5 h-5 max-w-5"
                 >
-                  {isEmpty(rightButtonIcon) ? (
-                    rightContent
-                  ) : (
+                  {rightButtonIcon ? (
                     <CustomImage
                       src={rightButtonIcon}
                       onClick={onClickRightButton}
                       className="cursor-pointer w-5 h-5 max-w-5"
                     />
+                  ) : (
+                    rightContent
                   )}
                   {isFiltered ? (
                     <div

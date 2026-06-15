@@ -1,51 +1,34 @@
 import { useTranslation, withTranslation } from "next-i18next";
 import { getServerSideProps } from "@/src/utils/getStatic";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import CustomImage from "@/components/CustomImage";
-import Images from "@/src/utils/Image";
 import CustomLabelValue from "@/components/CustomLabelValue";
 import CustomText from "@/components/CustomText";
 import StatusLabel from "@/components/StatusLabel";
-import CustomButton from "@/components/CustomButton";
-import { useEffect, useRef, useState } from "react";
 import CustomDropdown from "@/components/CustomDropdown";
-import * as invoiceAction from "@/src/actions/invoice";
-import { useDispatch, useSelector } from "react-redux";
 import * as invoiceSelector from "@/src/selectors/invoice";
-import { isEmpty, map, get, isEqual, upperCase } from "lodash";
+import { isEmpty, map, get, isEqual } from "lodash";
 import apiRequest from "@/src/services/httpUtilities/apiRequest";
-import Constant from "@/src/utils/Constant";
-import Helper from "@/src/utils/Helper";
 import Toast from "@/src/utils/Toast";
 import { NextSeo } from "next-seo";
-import AuthManager from "@/src/utils/AuthManager";
-import AuthWrapper from "@/components/AuthWrapper";
+import OwnerAuthWrapper from "@/components/OwnerAuthWrapper";
 import DesktopLayout from "@/components/DesktopLayout";
 import Icons from "@/components/Icons";
 
 export { getServerSideProps };
 
-const InvoiceOverview = ({ id }) => {
+const OwnerInvoiceOverview = ({ id }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
-  const dispatch = useDispatch();
 
-  const getInvoiceOverviewRequest = (id) =>
-    dispatch(invoiceAction.getInvoiceOverviewRequest(id));
-  const invoiceOverviewData = useSelector((state) =>
-    invoiceSelector.getInvoiceOverviewData(state, id),
-  );
-  const invoiceOverviewLoading = useSelector((state) =>
-    invoiceSelector.getInvoiceOverviewLoading(state),
-  );
-
+  const [invoiceOverviewData, setInvoiceOverviewData] = useState(null);
+  const [invoiceOverviewLoading, setInvoiceOverviewLoading] = useState(false);
   const [openDownloadModal, setOpenDownloadModal] = useState(false);
-  const [getInvoicePaymentLinkLoading, setGetInvoicePaymentLinkLoading] =
-    useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const code = invoiceSelector.getInvoiceNumber(invoiceOverviewData);
   const paymentStatus = invoiceSelector.getPaymentStatus(invoiceOverviewData);
-  const status = invoiceSelector.getStatus(invoiceOverviewData);
   const dueDate = invoiceSelector.getDueDate(invoiceOverviewData);
   const totalAmount = invoiceSelector.getTotalAmount(invoiceOverviewData);
   const billTo = invoiceSelector.getBillTo(invoiceOverviewData);
@@ -59,14 +42,16 @@ const InvoiceOverview = ({ id }) => {
   const invoiceDocument = invoiceSelector.getDocument(invoiceOverviewData);
   const receiptDocument = invoiceSelector.getReceipt(invoiceOverviewData);
 
-  const [downloading, setDownloading] = useState(false);
-
   useEffect(() => {
-    fetchInvoiceOverviewData(id);
+    fetchInvoiceOverviewData();
   }, [id]);
 
-  const fetchInvoiceOverviewData = (id) => {
-    getInvoiceOverviewRequest(id);
+  const fetchInvoiceOverviewData = async () => {
+    await apiRequest.getInvoiceOverviewDetailRequest(
+      id,
+      setInvoiceOverviewLoading,
+      (res) => setInvoiceOverviewData(res),
+    );
   };
 
   const onClickGoBack = () => {
@@ -75,28 +60,6 @@ const InvoiceOverview = ({ id }) => {
 
   const onClickDownload = () => {
     setOpenDownloadModal(!openDownloadModal);
-  };
-
-  const onClickToPayment = async (code) => {
-    if (!isEmpty(code)) {
-      await getPaymentInvoiceLink(code);
-    }
-  };
-
-  const getPaymentInvoiceLink = async (code) => {
-    await apiRequest.getInvoicePaymentLinkRequest(
-      code,
-      setGetInvoicePaymentLinkLoading,
-      getInvoicePaymentLinkSuccess,
-    );
-  };
-
-  const getInvoicePaymentLinkSuccess = (res) => {
-    const url = invoiceSelector.getUrl(res);
-
-    if (!isEmpty(url)) {
-      window.open(url, "_self");
-    }
   };
 
   const onClickDownloadDocument = async (url) => {
@@ -126,7 +89,12 @@ const InvoiceOverview = ({ id }) => {
         return;
       }
 
-      await apiRequest.downloadFileRequest(documentUrl, undefined, fileName, "pdf");
+      await apiRequest.downloadFileRequest(
+        documentUrl,
+        undefined,
+        fileName,
+        "pdf",
+      );
       setOpenDownloadModal(false);
     } catch (e) {
       Toast.error("Failed to download document");
@@ -137,13 +105,11 @@ const InvoiceOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Statement Overview - CozyHomes" />
+      <NextSeo title="Statement Overview | Owner - CozyHomes" />
 
       <DesktopLayout
         hideFooter
-        loading={
-          invoiceOverviewLoading || getInvoicePaymentLinkLoading || downloading
-        }
+        loading={invoiceOverviewLoading || downloading}
         rightButtonIcon={Icons.downloadIconBlack}
         onClickRightButton={onClickDownload}
         pageBreadcrumbs={
@@ -151,9 +117,9 @@ const InvoiceOverview = ({ id }) => {
             <div className="breadcrumbs text-sm xl:block lg:block md:block sm:hidden hidden">
               <ul>
                 <li>
-                  <a href={"/user/my-invoice"}>
+                  <a href={"/user/owner/my-wallet"}>
                     <CustomText textClassName="text-base text-disable">
-                      My Statement
+                      My Wallet
                     </CustomText>
                   </a>
                 </li>
@@ -302,29 +268,6 @@ const InvoiceOverview = ({ id }) => {
                 RM{isEmpty(totalAmount) ? "0" : totalAmount}
               </CustomText>
             </div>
-
-            <div
-              className="divider-line"
-              style={{ marginTop: 10, marginBottom: 10 }}
-            ></div>
-
-            {!isEqual(upperCase(paymentStatus), Constant.PAID) ? (
-              <div className="grid grid-cols-2 gap-2 pt-4">
-                <CustomButton
-                  buttonText={"Cancel"}
-                  buttonClassName="btn-primary-outline"
-                  onClick={onClickGoBack}
-                />
-
-                <CustomButton
-                  buttonText={"Pay Now"}
-                  buttonClassName="btn-primary"
-                  onClick={() => onClickToPayment(code)}
-                />
-              </div>
-            ) : (
-              false
-            )}
           </div>
 
           {openDownloadModal ? (
@@ -351,4 +294,4 @@ const InvoiceOverview = ({ id }) => {
   );
 };
 
-export default withTranslation("common")(AuthWrapper(InvoiceOverview));
+export default withTranslation("common")(OwnerAuthWrapper(OwnerInvoiceOverview));

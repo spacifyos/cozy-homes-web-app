@@ -147,6 +147,21 @@ const generateInvoiceReceiptPdfRequest = async (code) => {
   return res;
 };
 
+const getInvoiceOverviewDetailRequest = async (
+  id,
+  setLoading,
+  successCallback,
+) => {
+  await apiRequest(
+    api.getInvoiceOverview(id),
+    setLoading,
+    successCallback,
+    () => {},
+    "",
+    true,
+  );
+};
+
 const getRootDataResolve = async () => {
   const res = await api.getRootData();
   return get(res, ["data", "data"], {});
@@ -237,13 +252,18 @@ const downloadFileRequest = async (
     const fileUrl = window.URL.createObjectURL(new Blob([response.data]));
     const fileLink = document.createElement("a");
     fileLink.href = fileUrl;
+
+    const baseName = isEmpty(fileName)
+      ? moment().format("YYYYMMDDHHmmss")
+      : fileName;
+    // Normalize the extension so a leading dot (".pdf") or a bare value
+    // ("pdf") both produce a single dot — avoids "name..pdf".
+    const normalizedExtension = String(extension || "").replace(/^\.+/, "");
     fileLink.setAttribute(
       "download",
-      `${
-        (isEmpty(fileName) ? moment().format("YYYYMMDDHHmmss") : fileName) +
-        "." +
-        extension
-      }`,
+      isEmpty(normalizedExtension)
+        ? baseName
+        : `${baseName}.${normalizedExtension}`,
     );
 
     // specify the file name and extension
@@ -614,6 +634,7 @@ export default {
   getInvoicePaymentLinkRequest,
   generateInvoicePdfRequest,
   generateInvoiceReceiptPdfRequest,
+  getInvoiceOverviewDetailRequest,
   getRootDataResolve,
   postSyncMeterRequest,
   postMeterTopUpRequest,
