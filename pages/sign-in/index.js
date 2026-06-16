@@ -109,7 +109,7 @@ const SignIn = () => {
                 href={`/sign-in/${Constant.OWNER}`}
                 Illustration={OwnerIllustration}
                 subtitle="For landlords"
-                title="I'm an Landlord"
+                title="I'm a Landlord"
                 description={"Track rent.\nManage tenants.\nView your property performance."}
                 accent="secondary"
               />
