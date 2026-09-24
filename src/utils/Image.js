@@ -377,7 +377,10 @@ const images = () => {
         imageNotFound: "/spacify/images/logo.webp",
         pageNotFound: "/spacify/images/404_image.png",
       };
+    // Default to Cozy Homes: this repo only ships /cozyHomes assets, and an unset
+    // PROJECT_NAME at build time would otherwise leave every brand image undefined.
     case "COZYHOMES":
+    default:
       return {
         cinemaCarIcon: "/cozyHomes/images/primary_icon/cinema_car_icon.png",
         alertIconActive: "/cozyHomes/images/primary_icon/alert_icon_active.png",
