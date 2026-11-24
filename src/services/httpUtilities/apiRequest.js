@@ -297,9 +297,14 @@ const getOwnerPropertyOverview = async (id, setLoading, successCallback) => {
   );
 };
 
-const getOwnerTransaction = async (setLoading, successCallback) => {
+const getOwnerTransaction = async (
+  setLoading,
+  successCallback,
+  perPage,
+  page,
+) => {
   await apiRequest(
-    api.getOwnerTransaction(),
+    api.getOwnerTransaction(perPage, page),
     setLoading,
     successCallback,
     () => {},

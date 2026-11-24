@@ -136,7 +136,8 @@ const getOwnerPropertyList = () => apiInstance.get(`/owner`);
 const getOwnerPropertyOverview = (id) =>
   apiInstance.get(`/owner/property/${id}`);
 
-const getOwnerTransaction = () => apiInstance.get(`/owner/transaction`);
+const getOwnerTransaction = (perPage = 15, page = 1) =>
+  apiInstance.get(`/owner/transaction?per_page=${perPage}&page=${page}`);
 
 const getWallet = () => apiInstance.get(`/wallet`);
 
