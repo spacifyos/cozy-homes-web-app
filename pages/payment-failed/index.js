@@ -22,7 +22,7 @@ const PaymentFailed = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Payment Failed - CozyHomes" />
+      <NextSeo title="Payment Failed - PropertyGuys" />
       {/*<CustomImage*/}
       {/*  src={Icons.closeIconBlack}*/}
       {/*  imageStyle={{ width: "20px" }}*/}

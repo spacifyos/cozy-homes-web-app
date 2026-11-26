@@ -140,7 +140,7 @@ const MyWallet = () => {
         </div>
       }
     >
-      <NextSeo title="My Wallet | Owner - CozyHomes" />
+      <NextSeo title="My Wallet | Owner - PropertyGuys" />
 
       <WalletSummary data={walletData} />
 

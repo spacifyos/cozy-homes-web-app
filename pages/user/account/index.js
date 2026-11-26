@@ -243,7 +243,7 @@ const Account = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Account - CozyHomes" />
+      <NextSeo title="Account - PropertyGuys" />
 
       <DesktopLayout
         loading={userProfileLoading || signOutLoading || setPinNumberLoading}

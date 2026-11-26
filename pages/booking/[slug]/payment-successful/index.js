@@ -33,7 +33,7 @@ const PaymentSuccessful = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Booking Payment Successful - CozyHomes" />
+      <NextSeo title="Booking Payment Successful - PropertyGuys" />
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
       {/*  <CustomImage*/}

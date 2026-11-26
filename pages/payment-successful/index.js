@@ -22,7 +22,7 @@ const PaymentSuccessful = ({}) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Payment Successful - CozyHomes" />
+      <NextSeo title="Payment Successful - PropertyGuys" />
       {/*<CustomImage*/}
       {/*  src={Icons.closeIconBlack}*/}
       {/*  imageStyle={{ width: 20 }}*/}

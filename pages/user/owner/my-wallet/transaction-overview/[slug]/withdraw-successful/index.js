@@ -73,7 +73,7 @@ const WithdrawSuccessful = ({ id }) => {
 
   return (
     <div className="relative p-4 pt-10 bg-primary-background flex flex-col flex-1 items-center">
-      <NextSeo title="Statement Payment Successful - CozyHomes" />
+      <NextSeo title="Statement Payment Successful - PropertyGuys" />
 
       <div className="absolute top-5 right-5 cursor-pointer">
         <CustomImage

@@ -856,7 +856,7 @@ const RequestOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Help Center Overview - CozyHomes" />
+      <NextSeo title="Help Center Overview - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

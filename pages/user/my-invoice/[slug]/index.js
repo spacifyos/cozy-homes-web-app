@@ -137,7 +137,7 @@ const InvoiceOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Statement Overview - CozyHomes" />
+      <NextSeo title="Statement Overview - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

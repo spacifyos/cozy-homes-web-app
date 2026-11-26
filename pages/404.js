@@ -21,7 +21,7 @@ export default function Custom404() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <NextSeo title="Page Not Found - CozyHomes" />
+      <NextSeo title="Page Not Found - PropertyGuys" />
 
       <div className="flex-1 flex items-center justify-center px-6 py-10">
         <div className="w-full max-w-lg flex flex-col items-center text-center">

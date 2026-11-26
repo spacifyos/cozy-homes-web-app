@@ -228,7 +228,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Forgot Password - CozyHomes" />
+      <NextSeo title="Forgot Password - PropertyGuys" />
 
       <DesktopLayout
         isMinHeight={false}

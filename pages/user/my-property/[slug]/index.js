@@ -140,7 +140,7 @@ const MyPropertyOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Property Overview - CozyHomes" />
+      <NextSeo title="My Property Overview - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

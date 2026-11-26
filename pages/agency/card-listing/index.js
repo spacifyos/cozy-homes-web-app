@@ -252,7 +252,7 @@ const CardListing = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Agency Property Card View - CozyHomes" />
+      <NextSeo title="Agency Property Card View - PropertyGuys" />
 
       <DesktopLayout
         hideNav

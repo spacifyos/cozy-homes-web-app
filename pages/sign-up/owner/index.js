@@ -125,7 +125,7 @@ const SignUpOwner = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Sign Up | Owner - CozyHomes" />
+      <NextSeo title="Sign Up | Owner - PropertyGuys" />
 
       <DesktopLayout hideNav isMinHeight={false}>
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col justify-start items-start pb-10">

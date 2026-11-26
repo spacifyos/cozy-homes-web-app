@@ -83,7 +83,7 @@ const MyReport = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Report | Owner - CozyHomes" />
+      <NextSeo title="My Report | Owner - PropertyGuys" />
       <DesktopLayout
         loading={loading}
         pageBreadcrumbs={

@@ -56,7 +56,7 @@ const RentalIncome = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Rental Income | Owner - CozyHomes" />
+      <NextSeo title="Rental Income | Owner - PropertyGuys" />
       <DesktopLayout
         loading={loading && isEmpty(listing)}
         pageBreadcrumbs={

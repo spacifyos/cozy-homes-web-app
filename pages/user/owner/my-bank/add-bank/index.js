@@ -93,7 +93,7 @@ const AddBank = () => {
       className="pb-10"
       onClickGoBack={onClickGoBack}
     >
-      <NextSeo title="Add Bank | Owner - CozyHomes" />
+      <NextSeo title="Add Bank | Owner - PropertyGuys" />
 
       <div className="mb-10 absolute top-16 w-full px-4 z-10">
         <div className="bg-white global-box-shadow global-border-radius p-4 relative flex items-center">

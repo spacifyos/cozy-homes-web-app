@@ -21,7 +21,7 @@ const PaymentFailure = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Statement Payment Failed - CozyHomes" />
+      <NextSeo title="Statement Payment Failed - PropertyGuys" />
 
       <DesktopLayout
         pageBreadcrumbs={

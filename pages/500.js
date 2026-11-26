@@ -12,7 +12,7 @@ export default function Custom500() {
 
   return (
     <div className="flex flex-col justify-center items-center flex-1 px-10 h-screen bg-primary-background">
-      <NextSeo title="Internet Server Error - CozyHomes" />
+      <NextSeo title="Internet Server Error - PropertyGuys" />
       <div className="flex gap-1">
         <CustomText textClassName="font-bold" styles={{ fontSize: 70 }}>
           5

@@ -65,7 +65,7 @@ const EAgreementOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My E-Agreement Overview - CozyHomes" />
+      <NextSeo title="My E-Agreement Overview - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

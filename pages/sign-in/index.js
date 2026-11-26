@@ -79,7 +79,7 @@ const SignIn = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Sign In - CozyHomes" />
+      <NextSeo title="Sign In - PropertyGuys" />
 
       <DesktopLayout hideNav isMinHeight={false}>
         <div className="container mx-auto max-w-screen-lg flex-1 flex flex-col justify-between items-stretch py-10 gap-8 px-4">

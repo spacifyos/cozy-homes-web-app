@@ -82,7 +82,7 @@ const EAgreement = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My E-Agreement - CozyHomes" />
+      <NextSeo title="My E-Agreement - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

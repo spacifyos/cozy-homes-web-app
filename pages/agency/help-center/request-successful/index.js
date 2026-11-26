@@ -20,7 +20,7 @@ const RequestSuccessful = ({}) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Request Successful - CozyHomes" />
+      <NextSeo title="Request Successful - PropertyGuys" />
       {/*<CustomImage*/}
       {/*  src={Icons.closeIconBlack}*/}
       {/*  imageStyle={{ width: 20 }}*/}

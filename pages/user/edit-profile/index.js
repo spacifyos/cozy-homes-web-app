@@ -177,7 +177,7 @@ const EditProfile = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Edit Profile - CozyHomes" />
+      <NextSeo title="Edit Profile - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

@@ -91,7 +91,7 @@ const SignInTenant = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Sign In | Tenant - CozyHomes" />
+      <NextSeo title="Sign In | Tenant - PropertyGuys" />
 
       <DesktopLayout hideNav isMinHeight={false}>
         <div className="container mx-auto max-w-screen-md flex-1 flex flex-col py-8 px-4">

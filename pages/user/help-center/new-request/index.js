@@ -505,7 +505,7 @@ const NewRequest = ({}) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Help Center New Request - CozyHomes" />
+      <NextSeo title="Help Center New Request - PropertyGuys" />
 
       <DesktopLayout
         hideFooter

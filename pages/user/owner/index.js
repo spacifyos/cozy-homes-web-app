@@ -149,7 +149,7 @@ const OwnerHome = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Property | Owner - CozyHomes" />
+      <NextSeo title="My Property | Owner - PropertyGuys" />
 
       <DesktopLayout
         loading={

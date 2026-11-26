@@ -32,7 +32,7 @@ const PaymentFailed = ({ id }) => {
 
   return (
     <div className="flex flex-col justify-center items-center relative bg-primary-background h-screen">
-      <NextSeo title="Booking Payment Failed - CozyHomes" />
+      <NextSeo title="Booking Payment Failed - PropertyGuys" />
 
       {/*<div className="absolute top-5 right-5 cursor-pointer">*/}
       {/*  <CustomImage*/}

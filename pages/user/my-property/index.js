@@ -113,7 +113,7 @@ const MyStay = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="My Stay - CozyHomes" />
+      <NextSeo title="My Stay - PropertyGuys" />
 
       <DesktopLayout
         loading={

@@ -137,7 +137,7 @@ const MyMeterOverview = ({ id }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <NextSeo title="Meter Overview - CozyHomes" />
+      <NextSeo title="Meter Overview - PropertyGuys" />
 
       <DesktopLayout
         hideFooter
